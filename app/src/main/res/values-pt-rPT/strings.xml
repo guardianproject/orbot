@@ -22,7 +22,7 @@
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Geral</string>
     <string name="pref_start_boot_title">Iniciar o Orbot no Arranque</string>
-    <string name="pref_start_boot_summary">Iniciar automaticamente o Orbot e conetar o Tor quando o seu dispositivo Android inicia</string>
+    <string name="pref_start_boot_summary">Iniciar automaticamente o Orbot e conetar o Tor quando o seu aparelho Android inicia</string>
     <!--New Wizard Strings-->
     <!--Title Screen-->
     <!--Warning screen-->
@@ -50,7 +50,7 @@
     <string name="done">Concluído!</string>
     <string name="disable">Desativar</string>
     <string name="enable">Ativar</string>
-    <string name="wizard_details_msg">O Orbot é um software de código aberto que contem Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent e Polipo. Ele fornece um proxy local HTTP (8118) e um proxy SOCKS (9050) como acesso a rede Tor. Orbot também tem a habilidade, em aparelhos com acesso root, de enviar todo o trafego de Internet via a rede Tor.</string>
+    <string name="wizard_details_msg">O Orbot é um software de código aberto que contem Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent. Ele fornece um proxy local HTTP (8118) e um proxy SOCKS (9050) como acesso a rede Tor. Orbot também tem a habilidade, em aparelhos com acesso root, de enviar todo o trafego de Internet via rede Tor.</string>
     <string name="pref_proxy_type_dialog">Inserir Tipo de Proxy</string>
     <string name="pref_proxy_port_dialog">Inserir Porta do Proxy</string>
     <string name="pref_proxy_username_summary">Nome do Utilizador do Proxy (Opcional)</string>
@@ -71,7 +71,7 @@
     <string name="pref_isolate_dest">Isolar os endereços de destino</string>
     <string name="pref_disable_ipv4_summary">Diz às saídas para não se conectarem a endereços IPv4</string>
     <string name="found_existing_tor_process">processo Tor existente foi encontrado…</string>
-    <string name="app_services">Serviços de aplicação</string>
+    <string name="app_services">Serviços de app</string>
     <string name="pref_reduced_connection_padding">Preenchimento de conexão reduzido</string>
     <string name="start_tor_again_for_finish_the_process">Reiniciar o Tor para terminar o processo</string>
     <string name="delete_cookie">Eliminar cookie</string>
@@ -86,7 +86,7 @@
     <string name="something_bad_happened">Aconteceu algo de mau. Verifique o registo de eventos</string>
     <string name="pref_http_summary">Porta em que o Tor oferece o seu proxy HTTP (predefinição: 8118 ou 0 para desativar)</string>
     <string name="confirm_cookie_deletion">Confirmar eliminação de cookies</string>
-    <string name="client_cookies">Cookies de clientes</string>
+    <string name="client_cookies">Cookie dos Clientes</string>
     <string name="pref_connection_padding">Preenchimento de conexão</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Abrir o Proxy em Todas as Interfaces</string>
     <string name="pref_http_dialog">Configuração da Porta HTTP</string>
@@ -103,14 +103,14 @@
     <string name="menu_hidden_services">Serviços ocultos</string>
     <string name="pref_proxy_type_summary">Protocolo para usar para o servidor proxy: HTTP, HTTPS, Socks4, Socks5</string>
     <string name="pref_proxy_port_summary">Porta do Servidor Proxy</string>
-    <string name="pref_proxy_password_dialog">Inserir Senha do Proxy</string>
-    <string name="pref_proxy_password_title">Senha do Proxy de Saída</string>
+    <string name="pref_proxy_password_dialog">Inserir palavra-passe do proxy</string>
+    <string name="pref_proxy_password_title">Palavra-passe do proxy de saída</string>
     <string name="pref_proxy_title">Proxy de Rede de Saída (Opcional)</string>
     <string name="pref_use_expanded_notifications_title">Notificações Estendidas</string>
     <string name="bridges_updated">Pontes Atualizadas</string>
     <string name="pref_proxy_host_title">Anfitrião Proxy de Saída</string>
     <string name="pref_proxy_host_dialog">Inserir Hospedeiro Proxy</string>
-    <string name="pref_proxy_password_summary">Senha do Proxy (Opcional)</string>
+    <string name="pref_proxy_password_summary">Palavra-passe do Proxy (Opcional)</string>
     <string name="project_home">Projeto Home(s):</string>
     <string name="pref_proxy_type_title">Tipo de Proxy de Saída</string>
     <string name="hidden_services">Serviços ocultos</string>
@@ -127,7 +127,7 @@
     <string name="bridge_direct_connect">Conecte-se diretamente ao Tor (O melhor)</string>
     <string name="testing_bridges_fail">FALHOU. Tente outra opção</string>
     <string name="testing_bridges_success">Sucesso. A configuração da Ponte está boa!</string>
-    <string name="testing_bridges">Testando a ponte de conexão com o Tor…</string>
+    <string name="testing_bridges">Testando a ponte de conexão com o Tor….</string>
     <string name="app_shortcuts">Aplicações ativadas para o Tor</string>
     <string name="share_as_qr">Compartilhar como QR</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Por favor reinicie Orbot para ativar as mundanças</string>
@@ -140,14 +140,14 @@
     <string name="backup_restored">Backup restaurado</string>
     <string name="backup_saved_at_external_storage">Backup gravado em mídia externa</string>
     <string name="delete_service">Remover Serviço</string>
-    <string name="backup_service">Serviço de Backup</string>
+    <string name="backup_service">Serviço de Backup <i>(Aviso: Isso pode expor a sua configuração de serviço para as outras apps)</i></string>
     <string name="show_auth_cookie">Mostre cookie de autenticação</string>
     <string name="copy_address_to_clipboard">Copiar para a area de transferência</string>
     <string name="onion_port">Porta Onion</string>
     <string name="local_port">Porta Local</string>
     <string name="vpn_default_world">Global (Automático)</string>
     <string name="apps_mode">Modo VPN</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Se a sua rede móvel bloqueia o Tor, pode utilizar um \'Servidor Ponte\' como alternativa contra o bloqueio. SELECIONE umas das opções para configurar e testar..,.</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Se a sua rede móvel bloqueia o Tor, pode utilizar um \'Servidor Ponte\' como alternativa contra o bloqueio. SELECIONE umas das opções para configurar e testar…</string>
     <string name="restart_orbot_to_use_this_bridge_">Por favor reinicie Orbot para ativar as mundanças</string>
     <string name="pref_torrc_dialog">Torrc Personalizado</string>
     <string name="pref_torrc_summary">SOMENTE EXPERIENTES: adicione sua própria linha de configuração torrc</string>
@@ -163,7 +163,7 @@
     <string name="pref_disable_network_title">Sem Rede, Modo de Latência Automática</string>
     <string name="pref_use_expanded_notifications">Mostrar as notificação expandida com o Tor, país de saída e o IP</string>
     <string name="pref_use_persistent_notifications">Mantenha sempre um ícone na barra de ferramentas quando o Orbot estiver conectado</string>
-    <string name="hidden_service_request">Uma aplicação quer abrir uma porta do servidor onion %1$d para a rede Tor. É seguro caso confie nesta aplicação.</string>
+    <string name="hidden_service_request">Uma app quer abrir uma porta no servidor onion %1$d para a rede Tor. É seguro caso confie nesta app.</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Ativar os registos de depuração para saída (deve usar adb ou aLogCat para ver)</string>
@@ -181,10 +181,52 @@
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Impressões digitais, apelidos, países e endereços para a última etapa</string>
     <string name="your_relay_settings_caused_an_exception_">As suas configurações de retransmissão causaram uma exceção!</string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">As suas configurações de Endereços Acessíveis causou uma exceção!</string>
-    <string name="pref_allow_background_starts_summary">Deixar uma aplicação informar o Orbot para iniciar o Tor e os seus serviços relacionados</string>
+    <string name="pref_allow_background_starts_summary">Deixar uma app informar o Orbot para iniciar o Tor e os seus serviços relacionados</string>
     <string name="pref_allow_background_starts_title">Permitir Inicializações em Segundo Plano</string>
     <string name="pref_entrance_node_dialog">Digite os Nós de Entrada</string>
     <string name="pref_entrance_node_summary">Impressões digitais, apelidos, países e endereços para a primeira etapa</string>
     <string name="pref_entrance_node">Nós de Entrada</string>
     <string name="pref_node_configuration_summary">Aqui estão as configurações avançadas que podem reduzir o seu anonimato</string>
+    <string name="be_a_snowflake_desc">Permita que os outros utilizadores do Tor se conectem ao Tor através do seu aparelho</string>
+    <string name="be_a_snowflake_title">Execute o proxy Snowflake</string>
+    <string name="bridge_snowflake">Conecte através dos outros pares Tor (experimental)</string>
+    <string name="use_qr_code">Use um Código QR</string>
+    <string name="paste_bridges">Colar as Pontes</string>
+    <string name="in_a_browser">Visite o %s com um navegador e toque no Get Bridges &gt; Just Give Me Bridges!</string>
+    <string name="use_custom_bridges">Use Pontes Personalizadas</string>
+    <string name="configure_custom_bridges">Configure as Pontes Personalizadas</string>
+    <string name="custom_bridges">Pontes Personalizadas</string>
+    <string name="request_bridges_from_torproject">Solicite pontes do torproject.org</string>
+    <string name="enter_characters_from_image">Digite os caracteres da imagem</string>
+    <string name="captcha">Captcha</string>
+    <string name="solve_captcha_instruction">Para solicitar pontes resolva o CAPTCHA.</string>
+    <string name="refresh_captcha">Atualize o CAPTCHA</string>
+    <string name="request_bridges">Solicitar Pontes</string>
+    <string name="testing_tor_direct_success">Sucesso. A conexão com o Tor é boa!</string>
+    <string name="testing_tor_direct">Testando a conexão com o Tor…</string>
+    <string name="pref_reduced_circuit_padding_summary">Use menos algoritmos de preenchimento para reduzir o uso dos dados e da bateria</string>
+    <string name="pref_reduced_circuit_padding">Preenchimento reduzido do circuito</string>
+    <string name="pref_circuit_padding_summary">Ative o preenchimento do circuito para se defender contra algumas formas de análise de tráfego</string>
+    <string name="pref_circuit_padding">Preenchimento do circuito</string>
+    <string name="backup_port_exist">Erro: Um serviço Onion já está usando a porta %s</string>
+    <string name="confirm">Confirme</string>
+    <string name="v3_import_auth_private">Importe o .auth_private</string>
+    <string name="v3_backup_name_hint">Nome do ficheiro de backup…</string>
+    <string name="v3_delete_client_authorization_confirm">Exclua a autorização do cliente</string>
+    <string name="v3_delete_client_authorization">Exclua a chave de autorização do cliente</string>
+    <string name="v3_backup_key_warning">Aviso: Isso pode expor a sua chave a os outras apps</string>
+    <string name="v3_backup_key">Chave de autorização do cliente de backup</string>
+    <string name="v3_onion">Domínio v3 .onion</string>
+    <string name="v3_key_hash">Chave privada x25519 na Base 32</string>
+    <string name="v3_client_auth_activity_title">Autorização v3 do cliente</string>
+    <string name="v3_client_auth">Autorização do cliente do serviço Onion v3</string>
+    <string name="v3_hosted_services">Serviços Onion v3 hospedados</string>
+    <string name="v2_hidden_services">v2 Onion Services (Descontinuado)</string>
+    <string name="get_bridges_email_request">Solicite Pontes através do E-mail</string>
+    <string name="mebibyte">MiB</string>
+    <string name="kibibyte">KiB</string>
+    <string name="mebibyte_per_second">MiB/s</string>
+    <string name="kibibyte_per_second">KiB/s</string>
+    <string name="deny">Negue</string>
+    <string name="allow">Permita</string>
 </resources>
