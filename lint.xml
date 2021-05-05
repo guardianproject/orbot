@@ -18,6 +18,7 @@
     <issue id="HardwareIds" severity="error"/>
     <issue id="ImpliedQuantity" severity="error"/>
     <issue id="InvalidPackage" severity="error"/>
+    <issue id="LocaleFolder" severity="error"/>>
     <issue id="NestedScrolling" severity="error"/>
     <issue id="NewApi" severity="error"/>
     <issue id="PackageManagerGetSignatures" severity="error"/>
@@ -30,11 +31,4 @@
     <issue id="TrustAllX509TrustManager" severity="error"/>
     <issue id="Typos" severity="error"/>
     <issue id="UnsafeProtectedBroadcastReceiver" severity="error"/>
-
-    <!-- both the correct and deprecated locales need to be present for
-         them to be recognized on all devices -->
-    <issue id="LocaleFolder" severity="error">
-        <ignore path="src/main/res/values-he"/>
-        <ignore path="src/main/res/values-id"/>
-    </issue>
 </lint>

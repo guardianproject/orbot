@@ -675,7 +675,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 if (name == null) name = "v3" + v3LocalPort;
                 final String finalName = name;
                 new AlertDialog.Builder(this)
-                        .setMessage(getString(R.string.hidden_service_request, String.valueOf(v3LocalPort)))
+                        .setMessage(getString(R.string.hidden_service_request, v3LocalPort))
                         .setPositiveButton(R.string.allow, (d, w) -> enableV3OnionService(v3LocalPort, v3onionPort, finalName))
                         .setNegativeButton(R.string.deny, (d, w) -> d.dismiss())
                         .show();
@@ -689,7 +689,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 final Boolean v2authCookie = intent.getBooleanExtra("hs_auth_cookie", false);
                 final Uri v2KeyUri = intent.getData();
 
-                String v2RequestMsg = getString(R.string.hidden_service_request, String.valueOf(v2hiddenServicePort));
+                String v2RequestMsg = getString(R.string.hidden_service_request, v2hiddenServicePort);
                 new AlertDialog.Builder(this).setMessage(v2RequestMsg)
                         .setPositiveButton(R.string.allow, (dialog, which) -> enableHiddenServicePortV2(
                                 v2hiddenServiceName, v2hiddenServicePort,

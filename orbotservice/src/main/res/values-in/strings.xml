@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">Orbot</string>
-    <string name="status_starting_up">Orbot sedang dimulai…</string>
+  <string name="app_description">Orbot adalah aplikasi proxy gratis yang membuat aplikasi-aplikasi lainnya dapat terkoneksi dengan internet secara aman. Orbot menggunakan Tor untuk mengenkripsi hubungan internet anda dan menyalurkannya melewati berbagai komputer di seluruh dunia. Tor adalah software gratis dan suatu network terbuka, yang membantu anda menghindari pengawasan network yang mengancam kebebasan pribadi dan privasi, aktivitas bisnis rahasia dan relasi, serta keamanan negara yang dikenal dengan analisa traffic.</string>
+    <string name="status_starting_up">Orbot sedang dimulai...</string>
   <string name="status_activated">Tersambung ke Jaringan Tor</string>
   <string name="status_disabled">Orbot telah dibatalkan</string>
-  <string name="status_shutting_down">Orbot sedang dimatikan</string>
+  <string name="status_shutting_down">TorService dimatikan</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->
   <!--Title Screen-->
-  <!--Warning screen-->
+    <!--Warning screen-->
     <!--Permissions screen-->
-  <!--TipsAndTricks screen-->
-  <!--Transparent Proxy screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
+    <string name="couldn_t_start_tor_process_">Tidak dapat memulai proses Tor:</string>
+    <string name="your_reachableaddresses_settings_caused_an_exception_">Pengaturan ReachableAddresses anda menyebabkan kesalahan!</string>
+  <string name="your_relay_settings_caused_an_exception_">Pengaturan relay anda menyebabkan kesalahan!</string>
+    <string name="found_existing_tor_process">menemukan proses Tor yang ada...</string>
+  <string name="something_bad_happened">Sesuatu yang buruk terjadi. Periksa log</string>
+    <string name="unable_to_read_hidden_service_name">tidak dapat membaca nama layanan tersembunyi</string>
+  <string name="unable_to_start_tor">Tidak dapat memulai Tor:</string>
+    <string name="newnym">Anda telah beralih ke identitas Tor baru!</string>
+    <string name="updating_settings_in_tor_service">memperbarui setting pada layanan Tor</string>
 </resources>

@@ -93,7 +93,7 @@
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
-  <string name="hidden_service_request">Imantat apayañ thakhinak Tor llikar mä wakichäwiw jist\'arañ muni %1$s. Wakichawitix uñt\'atachixa, iyaw sama.</string>
+  <string name="hidden_service_request">Imantat apayañ thakhinak Tor llikar mä wakichäwiw jist\'arañ muni %1$d. Wakichawitix uñt\'atachixa, iyaw sama.</string>
   <string name="found_existing_tor_process">Utjir Toraw jikxatata...</string>
   <string name="something_bad_happened">Mä jan walt\'äwiw utji. Qillqantayasit uñakipam</string>
   <string name="unable_to_read_hidden_service_name">Janiw imantat yanapirin sutiman ullarañjamakänti</string>

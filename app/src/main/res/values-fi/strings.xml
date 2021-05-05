@@ -127,7 +127,7 @@
     <string name="wizard_details_msg">Orbot on avoimen lähdekoodin sovellus, joka sisältää Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent ja Polipo. Se tarjoaa paikallisen HTTP-välityspalvelimen (8118) ja SOCKS-välityspalvelimen (9050) Tor-verkkoon. Orbotilla on myös ominaisuus, rootattulla laitteella, lähettää kaiken Internet-liikenteen Torin kautta.</string>
     <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
-    <string name="hidden_service_request">Sovellus haluaa avata sipulipalvelimen portin %1$s Tor-verkkoon. Tämä on turvallista, jos luotat sovellukseen.</string>
+    <string name="hidden_service_request">Sovellus haluaa avata sipulipalvelimen portin %1$d Tor-verkkoon. Tämä on turvallista, jos luotat sovellukseen.</string>
     <string name="pref_http_title">Tori HTTP</string>
     <string name="pref_http_summary">Portti, jossa Tor tarjoaa HTTP-välityspalvelimen (oletus: 8118 tai 0 poistaa käytöstä)</string>
     <string name="pref_http_dialog">HTTP-portin määritys</string>

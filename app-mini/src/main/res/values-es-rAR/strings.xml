@@ -94,7 +94,7 @@
   <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
-  <string name="hidden_service_request">Una aplicación quiere abrir el puerto del servidor oculto %1$s a la red de tor. Esto es seguro si confías en la aplicación</string>
+  <string name="hidden_service_request">Una aplicación quiere abrir el puerto del servidor oculto %1$d a la red de tor. Esto es seguro si confías en la aplicación</string>
   <string name="found_existing_tor_process">encontrado el proceso tor existente</string>
   <string name="something_bad_happened">algo malo ha ocurrido. verifica el registro.</string>
   <string name="unable_to_start_tor">No se puede iniciar Tor:</string>

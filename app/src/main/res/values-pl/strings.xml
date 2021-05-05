@@ -152,7 +152,7 @@
     <string name="backup_restored">Przywrócono kopię zapasową</string>
     <string name="backup_saved_at_external_storage">Kopia zapasowa zapisywana w pamięci zewnętrznej</string>
     <string name="backup_service">Usługa tworzenia kopii zapasowych</string>
-    <string name="hidden_service_request">Aplikacja chce otworzyć port serwera cebulowego %1$s do sieci Tor. Jest to bezpieczne, jeśli zaufasz aplikacji.</string>
+    <string name="hidden_service_request">Aplikacja chce otworzyć port serwera cebulowego %1$d do sieci Tor. Jest to bezpieczne, jeśli zaufasz aplikacji.</string>
     <string name="client_cookies">Klient cookies</string>
     <string name="auth_cookie">Autoryzacja cookie</string>
     <string name="show_auth_cookie">Pokaż autoryzację cookie</string>
