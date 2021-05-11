@@ -228,4 +228,5 @@
     <string name="v2_hidden_services">v2 Onion Services (Descontinuado)</string>
     <string name="deny">Negue</string>
     <string name="allow">Permita</string>
+    <string name="backup_port_exist">Erro: Um serviço Onion já está usando a porta %s</string>
 </resources>
