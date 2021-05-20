@@ -1,0 +1,157 @@
+apply plugin: 'com.android.application'
+
+// Create a variable called keystorePropertiesFile, and initialize it to your
+// keystore.properties file, in the rootProject folder.
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+
+// Initialize a new Properties() object called keystoreProperties.
+def keystoreProperties = new Properties()
+
+// Load your keystore.properties file into the keystoreProperties object.
+if (keystorePropertiesFile.canRead()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+android {
+    signingConfigs {
+        release {
+            if (keystorePropertiesFile.canRead()) {
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+            }
+        }
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    compileSdkVersion 30
+    buildToolsVersion '30.0.3'
+    defaultConfig {
+        applicationId "org.torproject.android.tv"
+        minSdkVersion 23 
+        targetSdkVersion 29
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    aaptOptions {
+        cruncherEnabled = false
+    }
+
+    flavorDimensions "teevee"
+
+    productFlavors {
+        mini {
+            dimension "teevee"
+            minSdkVersion 23 
+            applicationId 'org.torproject.android.tv'
+            targetSdkVersion 29 
+            versionCode 10010000
+            versionName 'orbot-tv-1.0.0-BETA-1-tor-0.4.5.7'
+            archivesBaseName = "Orbot-TV-$versionName"
+        }
+    }
+
+    splits {
+
+        // Configures multiple APKs based on ABI. This helps keep the size down, since PT binaries can be large.
+        abi {
+
+            // Enables building multiple APKs per ABI.
+            enable true
+
+            // By default all ABIs are included, so use reset() and include to specify that we only
+            // want APKs for x86 and x86_64.
+
+            // Resets the list of ABIs that Gradle should create APKs for to none.
+            reset()
+
+            // Specifies a list of ABIs that Gradle should create APKs for.
+            include "x86", "armeabi-v7a", "x86_64", "arm64-v8a"
+
+            // Specifies that we do not want to also generate a universal APK that includes all ABIs.
+            universalApk false
+        }
+
+    }
+
+    packagingOptions {
+        exclude 'lib/x86/obfs4proxy.so'
+        exclude 'lib/x86_64/obfs4proxy.so'
+        exclude 'lib/arm64-v8a/obfs4proxy.so'
+        exclude 'lib/armeabi-v7a/obfs4proxy.so'
+        exclude 'lib/armeabi/obfs4proxy.so'
+        exclude 'META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version'
+    }
+}
+
+repositories {
+    jcenter {
+        content {
+            includeGroup('com.jraska')
+            includeGroup('tools.fastlane')
+        }
+    }
+}
+
+dependencies {
+    implementation project(':orbotservice')
+    implementation 'com.github.apl-devs:appintro:v4.2.2'
+    implementation 'androidx.palette:palette:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation project(path: ':appcore')
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation project(path: ':intentintegrator')
+    androidTestImplementation "tools.fastlane:screengrab:1.2.0"
+
+    def leanback_version = "1.1.0-rc01"
+
+    implementation "androidx.leanback:leanback:$leanback_version"
+
+    // leanback-preference is an add-on that provides a settings UI for TV apps.
+    implementation "androidx.leanback:leanback-preference:$leanback_version"
+
+    // leanback-paging is an add-on that simplifies adding paging support to a RecyclerView Adapter.
+    implementation "androidx.leanback:leanback-paging:1.1.0-alpha07"
+
+    // leanback-tab is an add-on that provides customized TabLayout to be used as the top navigation bar.
+    implementation "androidx.leanback:leanback-tab:1.1.0-beta01"
+
+}
+
+// Map for the version code that gives each ABI a value.
+ext.abiCodes = ['armeabi-v7a': '1', 'arm64-v8a': '2', 'mips': '3', 'x86': '4', 'x86_64': '5']
+
+import com.android.build.OutputFile
+
+// For each APK output variant, override version code of outputs based on ABI codes
+// ex) 'mips' -> 3xxx
+// ex) 'x86' -> 4xxx
+android.applicationVariants.all { variant ->
+    variant.outputs.each { output ->
+        def baseVersionCode = project.ext.abiCodes.get(output.getFilter(OutputFile.ABI))
+        if (baseVersionCode != null) {
+            output.versionCodeOverride = Integer.valueOf(baseVersionCode + variant.versionCode)
+        }
+    }
+}
