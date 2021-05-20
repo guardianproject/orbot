@@ -21,6 +21,9 @@ public class OrbotMiniApp extends Application implements OrbotConstants {
         if (!Prefs.getDefaultLocale().equals(Locale.getDefault().getLanguage())) {
             Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
         }
+
+        //no hosting of onion services!
+        Prefs.putHostOnionServicesEnabled(false);
     }
 
     @Override
