@@ -21,6 +21,8 @@ public class Prefs {
     private final static String PREF_USE_VPN = "pref_vpn";
     private final static String PREF_EXIT_NODES = "pref_exit_nodes";
     private final static String PREF_BE_A_SNOWFLAKE = "pref_be_a_snowflake";
+    private final static String PREF_HOST_ONION_SERVICES = "pref_host_onionservices";
+
 
     private static SharedPreferences prefs;
 
@@ -35,6 +37,14 @@ public class Prefs {
 
     private static void putString(String key, String value) {
         prefs.edit().putString(key, value).apply();
+    }
+
+    public static boolean hostOnionServicesEnabled () {
+        return prefs.getBoolean(PREF_HOST_ONION_SERVICES, true);
+    }
+
+    public static void putHostOnionServicesEnabled(boolean value) {
+        putBoolean(PREF_HOST_ONION_SERVICES, value);
     }
 
     public static boolean bridgesEnabled() {

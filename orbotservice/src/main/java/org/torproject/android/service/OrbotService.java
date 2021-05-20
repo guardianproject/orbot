@@ -296,32 +296,29 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     private void stopTorAsync() {
 
-        new Thread(() -> {
-            Log.i("OrbotService", "stopTor");
-            try {
-                sendCallbackStatus(STATUS_STOPPING);
-                sendCallbackLogMessage(getString(R.string.status_shutting_down));
+        Log.i("OrbotService", "stopTor");
+        try {
+            sendCallbackStatus(STATUS_STOPPING);
+            sendCallbackLogMessage(getString(R.string.status_shutting_down));
 
-                if (useIPtObfsMeekProxy())
-                    IPtProxy.stopObfs4Proxy();
+            if (useIPtObfsMeekProxy())
+                IPtProxy.stopObfs4Proxy();
 
-                if (useIPtSnowflakeProxy())
-                    IPtProxy.stopSnowflake();
+            if (useIPtSnowflakeProxy())
+                IPtProxy.stopSnowflake();
 
+            stopTor();
 
-                stopTorDaemon(true);
+            //stop the foreground priority and make sure to remove the persistant notification
+            stopForeground(true);
 
-                //stop the foreground priority and make sure to remove the persistant notification
-                stopForeground(true);
-
-                sendCallbackLogMessage(getString(R.string.status_disabled));
-            } catch (Exception e) {
-                logNotice("An error occured stopping Tor: " + e.getMessage());
-                sendCallbackLogMessage(getString(R.string.something_bad_happened));
-            }
-            clearNotifications();
-            sendCallbackStatus(STATUS_OFF);
-        }).start();
+            sendCallbackLogMessage(getString(R.string.status_disabled));
+        } catch (Exception e) {
+            logNotice("An error occured stopping Tor: " + e.getMessage());
+            sendCallbackLogMessage(getString(R.string.something_bad_happened));
+        }
+        clearNotifications();
+        sendCallbackStatus(STATUS_OFF);
     }
 
     private void stopTorOnError(String message) {
@@ -377,11 +374,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     private void startSnowflakeClient() {
         //this is using the current, default Tor snowflake infrastructure
-        String front = getCdnFront(this,"snowflake");
+        String target = getCdnFront(this, "snowflake-target");
+        String front = getCdnFront(this,"snowflake-front");
         String stunServer = getCdnFront(this, "snowflake-stun");
 
-        IPtProxy.startSnowflake(stunServer, front,
-                null, null, true, false, true, 3);
+        IPtProxy.startSnowflake(stunServer, target, front,
+                 null, true, false, true, 3);
 
     }
 
@@ -408,41 +406,33 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         boolean unsafeLogging = false;
         IPtProxy.startSnowflakeProxy(capacity, broker, relay, stun, logFile, keepLocalAddresses, unsafeLogging);
     }
+
+    private void stopSnowflakeProxy () {
+
+        IPtProxy.stopSnowflakeProxy();
+    }
     /**
      * if someone stops during startup, we may have to wait for the conn port to be setup, so we can properly shutdown tor
      */
-    private void stopTorDaemon(boolean waitForConnection) throws Exception {
+    private void stopTor() throws Exception {
 
-        int tryCount = 0;
-
-        while (tryCount++ < 3) {
-            if (conn != null) {
-                logNotice("Using control port to shutdown Tor");
-
-                try {
-                    logNotice("sending HALT signal to Tor process");
-                    conn.shutdownTor(TorControlCommands.SIGNAL_SHUTDOWN);
-
-                } catch (IOException e) {
-                    Log.d(OrbotConstants.TAG, "error shutting down Tor via connection", e);
-                }
-
-                if (shouldUnbindTorService) {
-                    unbindService(torServiceConnection);
-                    shouldUnbindTorService = false;
-                }
-
-                conn = null;
-                break;
-            }
-
-            if (!waitForConnection)
-                break;
+        if (conn != null) {
+            logNotice("Using control port to shutdown Tor");
 
             try {
-                Thread.sleep(3000);
-            } catch (Exception e) {
+                logNotice("sending HALT signal to Tor process");
+                conn.shutdownTor(TorControlCommands.SIGNAL_SHUTDOWN);
+
+            } catch (IOException e) {
+                Log.d(OrbotConstants.TAG, "error shutting down Tor via connection", e);
             }
+
+            if (shouldUnbindTorService) {
+                unbindService(torServiceConnection);
+                shouldUnbindTorService = false;
+            }
+
+            conn = null;
         }
     }
 
@@ -728,7 +718,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             sendCallbackStatus(STATUS_STARTING);
 
             // make sure there are no stray daemons running
-            stopTorDaemon(false);
+            stopTor();
 
             showToolbarNotification(getString(R.string.status_starting_up), NOTIFY_ID, R.drawable.ic_stat_tor);
             //sendCallbackLogMessage(getString(R.string.status_starting_up));
@@ -742,15 +732,18 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 }
 
             runTorShellCmd();
-            try {
-                updateLegacyV2OnionNames();
-            } catch (SecurityException se) {
-                logNotice("unable to upload legacy v2 onion names");
-            }
-            try {
-                updateV3OnionNames();
-            } catch (SecurityException se) {
-                logNotice("unable to upload v3 onion names");
+
+            if (Prefs.hostOnionServicesEnabled()) {
+                try {
+                    updateLegacyV2OnionNames();
+                } catch (SecurityException se) {
+                    logNotice("unable to upload legacy v2 onion names");
+                }
+                try {
+                    updateV3OnionNames();
+                } catch (SecurityException se) {
+                    logNotice("unable to upload v3 onion names");
+                }
             }
         } catch (Exception e) {
             logException("Unable to start Tor: " + e.toString(), e);
@@ -1205,11 +1198,14 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             return null;
         }
 
-        ContentResolver contentResolver = getApplicationContext().getContentResolver();
-        addV3OnionServicesToTorrc(extraLines, contentResolver);
-        addV3ClientAuthToTorrc(extraLines, contentResolver);
-        addV2HiddenServicesToTorrc(extraLines, contentResolver);
-        addV2ClientCookiesToTorrc(extraLines, contentResolver);
+        if (Prefs.hostOnionServicesEnabled()) {
+            ContentResolver contentResolver = getApplicationContext().getContentResolver();
+            addV3OnionServicesToTorrc(extraLines, contentResolver);
+            addV3ClientAuthToTorrc(extraLines, contentResolver);
+            addV2HiddenServicesToTorrc(extraLines, contentResolver);
+            addV2ClientCookiesToTorrc(extraLines, contentResolver);
+        }
+
         return extraLines;
     }
 

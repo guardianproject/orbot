@@ -64,5 +64,5 @@ dependencies {
     api 'info.guardianproject:jtorctl:0.4.5.7'
     implementation 'info.guardianproject:tor-android:0.4.5.7'
 
-    implementation 'com.github.tladesignz:IPtProxy:0.5.2'
+    implementation 'com.github.tladesignz:IPtProxy:0.6.0'
 }
