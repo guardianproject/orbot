@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:showIn="@layout/activity_app_config"
     android:padding="20dp"
+    android:layout_marginTop="60dp"
     >
 
 
