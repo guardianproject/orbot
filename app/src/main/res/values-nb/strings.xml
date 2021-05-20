@@ -151,7 +151,7 @@
     <string name="trouble_connecting">Tilkoblingsproblemer?</string>
     <string name="full_device_vpn">VPN for hele enheten</string>
     <string name="vpn_disabled">VPN Deaktivert</string>
-    <string name="wizard_details_msg">Orbot er et fritt program som inneholder Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent og Polipo. Den gir en lokal HTTP-proxy (8118) og en SOCKS-mellomtjener (9050) inn i Tor-nettverket. Orbot har også muligheten til å sende all Internett-trafikk gjennom Tor på enheter med superbrukertilgang.</string>
+    <string name="wizard_details_msg">Orbot er et fritt program som inneholder Tor, Obfs4Proxy, BadVPN Tun2Socks, og LibEvent. Den gir en lokal HTTP-proxy (8118) og en SOCKS-mellomtjener (9050) inn i Tor-nettverket. Orbot har også muligheten til å sende all Internett-trafikk gjennom Tor på enheter med superbrukertilgang.</string>
     <string name="hidden_service_request">Et program ønsker å åpne løktjenerport %1$d til Tor-nettverket. Dette er trygt såfremt du stoler på programmet.</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Åpne proxy på alle grensesnitt</string>
     <string name="pref_http_title">Tor HTTP</string>
@@ -211,4 +211,7 @@
     <string name="kibibyte">KiB</string>
     <string name="mebibyte_per_second">MiB/s</string>
     <string name="kibibyte_per_second">KiB/s</string>
+    <string name="confirm">Bekreft</string>
+    <string name="deny">Nekt</string>
+    <string name="allow">Tillat</string>
 </resources>

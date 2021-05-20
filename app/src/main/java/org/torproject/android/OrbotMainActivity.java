@@ -113,7 +113,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private static final float ROTATE_TO = 360.0f * 4f;// 3.141592654f * 32.0f;
     private static final String[] COUNTRY_CODES = {"DE", "AT", "SE", "CH", "IS", "CA", "US", "ES", "FR", "BG", "PL", "AU", "BR", "CZ", "DK", "FI", "GB", "HU", "NL", "JP", "RO", "RU", "SG", "SK"};
     private static final String URL_TOR_CHECK = "https://check.torproject.org";
-    ;
+
     // this is what takes messages or values from the callback threads or other non-mainUI threads
     // and passes them back into the main UI thread for display to the user
     private final Handler mStatusUpdateHandler = new MainActivityStatusUpdateHandler(this);
@@ -1064,6 +1064,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 rotation.setRepeatCount(0);
                 imgStatus.startAnimation(rotation);
                 lblStatus.setText(getString(R.string.newnym));
+                sendIntentToService(TorControlCommands.SIGNAL_NEWNYM);
                 break;
             case STATUS_STARTING:
                 return; // tor is starting up, a new identity isn't needed
