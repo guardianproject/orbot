@@ -94,12 +94,11 @@ android {
     }
 
     packagingOptions {
-        exclude 'assets/arm/obfs4proxy'
-        exclude 'lib/x86/obfs4proxy.so'
-        exclude 'lib/x86_64/obfs4proxy.so'
-        exclude 'lib/arm64-v8a/obfs4proxy.so'
-        exclude 'lib/armeabi-v7a/obfs4proxy.so'
-        exclude 'lib/armeabi/obfs4proxy.so'
+        exclude 'lib/x86/libgojni.so'
+        exclude 'lib/x86_64/libgojni.so'
+        exclude 'lib/arm64-v8a/libgojni.so'
+        exclude 'lib/armeabi-v7a/libgojni.so'
+        exclude 'lib/armeabi/libgojni.so'
         exclude 'META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version'
     }
 }
