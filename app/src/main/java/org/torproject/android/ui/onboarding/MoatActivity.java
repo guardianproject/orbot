@@ -188,9 +188,9 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
         IPtProxy.startObfs4Proxy("DEBUG", false, false);
 
-        ProxiedHurlStack phs = new ProxiedHurlStack("127.0.0.1", (int) IPtProxy.MeekSocksPort,
-          "url=" + OrbotService.getCdnFront(this,"moat-url")
-                  + ";front=" + OrbotService.getCdnFront(this,"moat-front"), "\0");
+        ProxiedHurlStack phs = new ProxiedHurlStack("127.0.0.1", (int) IPtProxy.meekPort(),
+          "url=" + OrbotService.getCdnFront("moat-url")
+                  + ";front=" + OrbotService.getCdnFront("moat-front"), "\0");
 
         mQueue = Volley.newRequestQueue(this, phs);
 
