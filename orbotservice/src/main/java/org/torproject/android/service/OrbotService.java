@@ -414,7 +414,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     /**
      * if someone stops during startup, we may have to wait for the conn port to be setup, so we can properly shutdown tor
      */
-    private void stopTor() throws Exception {
+    private synchronized void stopTor() throws Exception {
 
         if (conn != null) {
             logNotice("Using control port to shutdown Tor");
@@ -731,7 +731,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     customEnv.add("TOR_PT_PROXY=socks5://" + OrbotVpnManager.sSocksProxyLocalhost + ":" + OrbotVpnManager.sSocksProxyServerPort);
                 }
 
-            runTorShellCmd();
+            startTorService();
 
             if (Prefs.hostOnionServicesEnabled()) {
                 try {
@@ -828,7 +828,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         }
     }
 
-    private void runTorShellCmd() throws Exception {
+    private synchronized void startTorService() throws Exception {
         updateTorConfigCustom(TorService.getDefaultsTorrc(this),
                 "DNSPort 0\n" +
                 "TransPort 0\n" +
