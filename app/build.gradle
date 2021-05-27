@@ -136,7 +136,7 @@ dependencies {
     androidTestImplementation "tools.fastlane:screengrab:1.2.0"
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
     implementation 'com.android.volley:volley:1.2.0'
-    implementation 'com.github.tladesignz:IPtProxy:0.5.2'
+    implementation 'com.github.tladesignz:IPtProxy:1.0.0'
 }
 
 // Map for the version code that gives each ABI a value.
