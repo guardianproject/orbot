@@ -340,24 +340,19 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     private static HashMap<String,String> mFronts;
 
-    public static void loadCdnFronts (Context context)
-    {
-
-        if (mFronts == null)
-        {
+    public static void loadCdnFronts (Context context) {
+        if (mFronts == null) {
             mFronts = new HashMap<>();
 
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open("fronts")));
-                String line = null;
-                while ((line = reader.readLine())!=null)
-                {
+                String line;
+                while ((line = reader.readLine())!=null) {
                     String[] front = line.split(" ");
 
                     //add some code to test the connection here
 
                     mFronts.put(front[0],front[1]);
-
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -365,18 +360,16 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         }
     }
 
-    public static String getCdnFront (Context context, String service)
-    {
-
+    public static String getCdnFront(String service) {
         return mFronts.get(service);
     }
 
 
     private void startSnowflakeClient() {
         //this is using the current, default Tor snowflake infrastructure
-        String target = getCdnFront(this, "snowflake-target");
-        String front = getCdnFront(this,"snowflake-front");
-        String stunServer = getCdnFront(this, "snowflake-stun");
+        String target = getCdnFront("snowflake-target");
+        String front = getCdnFront("snowflake-front");
+        String stunServer = getCdnFront("snowflake-stun");
 
         IPtProxy.startSnowflake(stunServer, target, front,
                  null, true, false, true, 3);
@@ -529,6 +522,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         File fileCacheDir = new File(getCacheDir(), "pt");
         if (!fileCacheDir.exists())
+            //noinspection ResultOfMethodCallIgnored
             fileCacheDir.mkdir();
         IPtProxy.setStateLocation(fileCacheDir.getAbsolutePath());
         String fileTestState = IPtProxy.getStateLocation();
@@ -1121,20 +1115,21 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
             //check if any PT bridges are needed
             if (bridgeList.contains("obfs")) {
-                extraLines.append("ClientTransportPlugin obfs3 socks5 127.0.0.1:" + IPtProxy.Obfs3SocksPort).append('\n');
-                extraLines.append("ClientTransportPlugin obfs4 socks5 127.0.0.1:" + IPtProxy.Obfs4SocksPort).append('\n');
+
+                extraLines.append("ClientTransportPlugin obfs3 socks5 127.0.0.1:" + IPtProxy.obfs3Port()).append('\n');
+                extraLines.append("ClientTransportPlugin obfs4 socks5 127.0.0.1:" + IPtProxy.obfs4Port()).append('\n');
 
                 if (bridgeList.equals("obfs4"))
                     builtInBridgeType = "obfs4";
             }
 
             if (bridgeList.equals("meek")) {
-                extraLines.append("ClientTransportPlugin meek_lite socks5 127.0.0.1:" + IPtProxy.MeekSocksPort).append('\n');
+                extraLines.append("ClientTransportPlugin meek_lite socks5 127.0.0.1:" + IPtProxy.meekPort()).append('\n');
                 builtInBridgeType = "meek_lite";
             }
 
             if (bridgeList.equals("snowflake")) {
-                extraLines.append("ClientTransportPlugin snowflake socks5 127.0.0.1:" + IPtProxy.SnowflakeSocksPort).append('\n');
+                extraLines.append("ClientTransportPlugin snowflake socks5 127.0.0.1:" + IPtProxy.snowflakePort()).append('\n');
                 builtInBridgeType = "snowflake";
             }
 
