@@ -155,11 +155,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         return bridgeList.split("\\n");
     }
 
-    private static boolean useIPtProxy() {
-        String bridgeList = Prefs.getBridgesList();
-        return bridgeList.contains("obfs3") || bridgeList.contains("obfs4") || bridgeList.contains("meek");
-    }
-
     public void debug(String msg) {
         Log.d(OrbotConstants.TAG, msg);
 
