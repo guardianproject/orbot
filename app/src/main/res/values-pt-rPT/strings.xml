@@ -225,8 +225,6 @@
     <string name="get_bridges_email_request">Solicite Pontes através do E-mail</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
-    <string name="mebibyte_per_second">MiB/s</string>
-    <string name="kibibyte_per_second">KiB/s</string>
     <string name="deny">Negue</string>
     <string name="allow">Permita</string>
 </resources>

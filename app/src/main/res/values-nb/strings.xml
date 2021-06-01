@@ -209,8 +209,6 @@
     <string name="get_bridges_email_request">Forespør broer via e-post</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
-    <string name="mebibyte_per_second">MiB/s</string>
-    <string name="kibibyte_per_second">KiB/s</string>
     <string name="confirm">Bekreft</string>
     <string name="deny">Nekt</string>
     <string name="allow">Tillat</string>

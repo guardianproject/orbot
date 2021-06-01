@@ -339,7 +339,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     }
 
     private void resetBandwidthStatTextviews() {
-        String zero = String.format("%s / %s", formatCount(0), formatTotal(0));
+        String zero = String.format("%s / %s", OrbotService.formatBandwidthCount(this, 0), formatTotal(0));
         downloadText.setText(zero);
         uploadText.setText(zero);
     }
@@ -1026,20 +1026,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mLocalBroadcastReceiver);
     }
 
-    private String formatCount(long count) {
-        NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
-        // Converts the supplied argument into a string.
-        // Under 2 mebibytes, returns "xxx.xKiB/s"
-        // Over 2 mebibytes, returns "xxx.xxMiB/s"
-        if (count < 1e6)
-            return numberFormat.format(Math.round(((float) ((int) (count * 10 / 1024)) / 10)))
-                    + getString(R.string.kibibyte_per_second);
-        else
-            return numberFormat.format(Math
-                    .round(((float) ((int) (count * 100 / 1024 / 1024)) / 100)))
-                    + getString(R.string.mebibyte_per_second);
-    }
-
     private String formatTotal(long count) {
         NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
         // Converts the supplied argument into a string.
@@ -1192,8 +1178,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     long download = data.getLong("download");
                     long totalRead = data.getLong("readTotal");
                     long totalWrite = data.getLong("writeTotal");
-                    oma.downloadText.setText(String.format("%s / %s", oma.formatCount(download), oma.formatTotal(totalRead)));
-                    oma.uploadText.setText(String.format("%s / %s", oma.formatCount(upload), oma.formatTotal(totalWrite)));
+                    oma.downloadText.setText(String.format("%s / %s", OrbotService.formatBandwidthCount(oma, download), oma.formatTotal(totalRead)));
+                    oma.uploadText.setText(String.format("%s / %s", OrbotService.formatBandwidthCount(oma, upload), oma.formatTotal(totalWrite)));
                     break;
 
                 case MESSAGE_PORTS:

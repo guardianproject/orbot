@@ -204,8 +204,6 @@
     <string name="v2_hidden_services">Dịch vụ Onion v2 (Không được hỗ trợ nữa)</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
-    <string name="mebibyte_per_second">MiB/s</string>
-    <string name="kibibyte_per_second">KiB/s</string>
     <string name="refresh_apps">Làm mới các ứng dụng</string>
     <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="app_services">Dịch vụ ứng dụng</string>

@@ -23,4 +23,6 @@
   <string name="unable_to_start_tor">Tor başlatılamadı:</string>
     <string name="newnym">Yeni bir Tor kimliğine geçiş yaptınız!</string>
     <string name="updating_settings_in_tor_service">Tor hizmet ayarları güncellemesi</string>
+  <string name="mebibyte_per_second">MiB/s</string>
+  <string name="kibibyte_per_second">KiB/s</string>
 </resources>

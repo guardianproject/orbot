@@ -209,8 +209,6 @@
     <string name="get_bridges_email_request">Solicite Pontes através do E-mail</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
-    <string name="mebibyte_per_second">MiB/s</string>
-    <string name="kibibyte_per_second">KiB/s</string>
     <string name="be_a_snowflake_desc">Permita que os outros usuários do Tor se conectem ao Tor através do seu dispositivo</string>
     <string name="be_a_snowflake_title">Execute o proxy Snowflake</string>
     <string name="confirm">Confirme</string>

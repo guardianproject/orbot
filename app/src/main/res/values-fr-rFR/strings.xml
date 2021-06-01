@@ -208,8 +208,6 @@
     <string name="pref_circuit_padding">Bourrage du circuit</string>
     <string name="mebibyte">Mio</string>
     <string name="kibibyte">Kio</string>
-    <string name="mebibyte_per_second">Mio/s</string>
-    <string name="kibibyte_per_second">Kio/s</string>
     <string name="get_bridges_email_request">Demander des ponts par courriel</string>
     <string name="be_a_snowflake_desc">Autorisez les autres utilisateurs de Tor de se connecter à Tor par votre appareil</string>
     <string name="be_a_snowflake_title">Exécuter le mandataire Snowflake</string>

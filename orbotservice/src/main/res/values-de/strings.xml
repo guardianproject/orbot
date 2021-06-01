@@ -23,4 +23,6 @@
   <string name="unable_to_start_tor">Tor kann nicht gestartet werden:</string>
     <string name="newnym">Sie haben zu einer neuen Tor-Identität gewechselt!</string>
     <string name="updating_settings_in_tor_service">Einstellungen im Tor-Dienst werden aktualisiert</string>
+  <string name="mebibyte_per_second">MiB/s</string>
+  <string name="kibibyte_per_second">KiB/s</string>
 </resources>

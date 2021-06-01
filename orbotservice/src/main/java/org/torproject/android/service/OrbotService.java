@@ -60,10 +60,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 import java.util.StringTokenizer;
@@ -1186,6 +1188,16 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         }
 
         return extraLines;
+    }
+
+    public static String formatBandwidthCount(Context context, long bitsPerSecond) {
+        NumberFormat nf = NumberFormat.getInstance(Locale.getDefault());
+        if (bitsPerSecond < 1e6)
+            return nf.format(Math.round(((float) ((int) (bitsPerSecond * 10 / 1024)) / 10)))
+                    + context.getString(R.string.kibibyte_per_second);
+        else
+            return nf.format(Math.round(((float) ((int) (bitsPerSecond * 100 / 1024 / 1024)) / 100)))
+                    + context.getString(R.string.mebibyte_per_second);
     }
 
     private void addV3OnionServicesToTorrc(StringBuffer torrc, ContentResolver contentResolver) {

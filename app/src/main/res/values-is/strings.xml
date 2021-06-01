@@ -209,8 +209,6 @@
     <string name="testing_tor_direct">Prófa tengingu við Tor…</string>
     <string name="get_bridges_email_request">Biðja um brýr með tölvupósti</string>
     <string name="mebibyte">MiB</string>
-    <string name="mebibyte_per_second">MiB/sek</string>
-    <string name="kibibyte_per_second">KiB/sek</string>
     <string name="be_a_snowflake_desc">Leyfa öðrum Tor-notendum að tengjast Tor í gegnum tækið þitt</string>
     <string name="be_a_snowflake_title">Keyra Snowflake-milliþjón</string>
     <string name="backup_port_exist">Villa: Önnur onion-þjónusta er þegar að nota gátt %s</string>

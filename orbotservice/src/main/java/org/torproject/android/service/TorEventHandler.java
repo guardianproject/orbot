@@ -1,16 +1,15 @@
 package org.torproject.android.service;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import net.freehaven.tor.control.EventHandler;
 
 import org.torproject.android.service.util.ExternalIPFetcher;
 import org.torproject.android.service.util.Prefs;
 
-import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.StringTokenizer;
 
 /**
@@ -19,18 +18,15 @@ import java.util.StringTokenizer;
 public class TorEventHandler implements EventHandler, TorServiceConstants {
 
     private final static int BW_THRESDHOLD = 10000;
-    private OrbotService mService;
+    private final OrbotService mService;
     private long lastRead = -1;
     private long lastWritten = -1;
     private long mTotalTrafficWritten = 0;
     private long mTotalTrafficRead = 0;
-    private NumberFormat mNumberFormat;
-    private HashMap<String, Node> hmBuiltNodes = new HashMap<>();
+    private final HashMap<String, Node> hmBuiltNodes = new HashMap<>();
 
     public TorEventHandler(OrbotService service) {
         mService = service;
-        mNumberFormat = NumberFormat.getInstance(Locale.getDefault()); //localized numbers!
-
     }
 
     public HashMap<String, Node> getNodes() {
@@ -39,7 +35,7 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
 
     @Override
     public void message(String severity, String msg) {
-
+        Log.d("bim", "message: " + msg);
         if (severity.equalsIgnoreCase("debug"))
             mService.debug(severity + ": " + msg);
         else
@@ -94,11 +90,12 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
             if (read > 0 || written > 0)
                 iconId = R.drawable.ic_stat_tor_xfer;
 
-            String sb = formatCount(read) +
+            String sb = OrbotService.formatBandwidthCount(mService, read) +
                     " \u2193" +
                     " / " +
-                    formatCount(written) +
+                    OrbotService.formatBandwidthCount(mService, written) +
                     " \u2191";
+            Log.d("bim", "bandWidthUsed " + read + ", " + written);
             mService.showToolbarNotification(sb, OrbotService.NOTIFY_ID, iconId);
 
             mTotalTrafficWritten += written;
@@ -113,22 +110,6 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
         lastWritten += written;
         lastRead += read;
 
-    }
-
-    private String formatCount(long count) {
-        // Converts the supplied argument into a string.
-
-        // Under 2Mb, returns "xxx.xKb"
-        // Over 2Mb, returns "xxx.xxMb"
-        if (mNumberFormat != null)
-            if (count < 1e6)
-                return mNumberFormat.format(Math.round((float) ((int) (count * 10 / 1024)) / 10)) + "kbps";
-            else
-                return mNumberFormat.format(Math.round((float) ((int) (count * 100 / 1024 / 1024)) / 100)) + "mbps";
-        else
-            return "";
-
-        //return count+" kB";
     }
 
     public void circuitStatus(String status, String circID, String path) {
