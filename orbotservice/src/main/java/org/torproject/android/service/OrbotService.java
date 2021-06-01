@@ -986,13 +986,13 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         }
     }
 
-    protected void sendCallbackBandwidth(long upload, long download, long written, long read) {
+    protected void sendCallbackBandwidth(long lastWritten, long lastRead, long totalWritten, long totalRead) {
         Intent intent = new Intent(LOCAL_ACTION_BANDWIDTH);
 
-        intent.putExtra("up", upload);
-        intent.putExtra("down", download);
-        intent.putExtra("written", written);
-        intent.putExtra("read", read);
+        intent.putExtra("totalWritten", totalWritten);
+        intent.putExtra("totalRead", totalRead);
+        intent.putExtra("lastWritten", lastWritten);
+        intent.putExtra("lastRead", lastRead);
         intent.putExtra(EXTRA_STATUS, mCurrentStatus);
 
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);

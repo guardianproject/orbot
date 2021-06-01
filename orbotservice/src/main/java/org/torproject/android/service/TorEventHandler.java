@@ -1,7 +1,6 @@
 package org.torproject.android.service;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import net.freehaven.tor.control.EventHandler;
 
@@ -35,7 +34,6 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
 
     @Override
     public void message(String severity, String msg) {
-        Log.d("bim", "message: " + msg);
         if (severity.equalsIgnoreCase("debug"))
             mService.debug(severity + ": " + msg);
         else
@@ -90,18 +88,14 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
             if (read > 0 || written > 0)
                 iconId = R.drawable.ic_stat_tor_xfer;
 
-            String sb = OrbotService.formatBandwidthCount(mService, read) +
-                    " \u2193" +
-                    " / " +
-                    OrbotService.formatBandwidthCount(mService, written) +
-                    " \u2191";
-            Log.d("bim", "bandWidthUsed " + read + ", " + written);
+            String sb = OrbotService.formatBandwidthCount(mService, read) + " \u2193" + " / " +
+                    OrbotService.formatBandwidthCount(mService, written) + " \u2191";
             mService.showToolbarNotification(sb, OrbotService.NOTIFY_ID, iconId);
 
             mTotalTrafficWritten += written;
             mTotalTrafficRead += read;
 
-            mService.sendCallbackBandwidth(lastWritten, lastRead, mTotalTrafficWritten, mTotalTrafficRead);
+            mService.sendCallbackBandwidth(written, read, mTotalTrafficWritten, mTotalTrafficRead);
 
             lastWritten = 0;
             lastRead = 0;
