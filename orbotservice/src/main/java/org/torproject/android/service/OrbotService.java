@@ -375,16 +375,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     This is to host a snowflake entrance node / bridge
      */
     private void runSnowflakeProxy () {
-
-
-        // @param capacity Maximum concurrent clients. OPTIONAL. Defaults to 10, if 0.
-// @param broker Broker URL. OPTIONAL. Defaults to https://snowflake-broker.bamsoftware.com/, if empty.
-// @param relay WebSocket relay URL. OPTIONAL. Defaults to wss://snowflake.bamsoftware.com/, if empty.
-// @param stun STUN URL. OPTIONAL. Defaults to stun:stun.stunprotocol.org:3478, if empty.
-// @param logFile Name of log file. OPTIONAL
-// @param keepLocalAddresses Keep local LAN address ICE candidates.
-// @param unsafeLogging Prevent logs from being scrubbed.
-
         int capacity = 3;
         String broker = "https://snowflake-broker.bamsoftware.com/";
         String relay = "wss://snowflake.bamsoftware.com/";
@@ -396,7 +386,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     }
 
     private void stopSnowflakeProxy () {
-
         IPtProxy.stopSnowflakeProxy();
     }
     /**
