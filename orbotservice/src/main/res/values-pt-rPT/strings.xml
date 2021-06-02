@@ -9,4 +9,7 @@
   <!--Permissions screen-->
   <!--TipsAndTricks screen-->
   <!--Transparent Proxy screen-->
+
+  <string name="mebibyte_per_second">MiB/s</string>
+  <string name="kibibyte_per_second">KiB/s</string>
 </resources>

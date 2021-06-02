@@ -22,4 +22,9 @@
     <string name="menu_new_identity">New Identity</string>
     <string name="waiting_for_control_port">Waiting for control port...</string>
     <string name="connecting_to_control_port">Connecting to control port:</string>
+
+    <string name="kibibyte_per_second">KiB/s</string>
+    <string name="mebibyte_per_second">MiB/s</string>
+
 </resources>
+

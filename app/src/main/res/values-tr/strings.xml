@@ -209,8 +209,6 @@
     <string name="get_bridges_email_request">Köprüleri E-postayla İste</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
-    <string name="mebibyte_per_second">MiB/s</string>
-    <string name="kibibyte_per_second">KiB/s</string>
     <string name="be_a_snowflake_desc">Diğer Tor kullanıcılarının aygıtınız üzerinden Tor\'a bağlanmasına izin verin</string>
     <string name="be_a_snowflake_title">Snowflake Vekil Sunucusu Çalıştır</string>
     <string name="confirm">Onayla</string>

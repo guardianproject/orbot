@@ -205,8 +205,6 @@
     <string name="get_bridges_email_request">Запитувати мости електронною поштою</string>
     <string name="mebibyte">МіБ</string>
     <string name="kibibyte">КіБ</string>
-    <string name="mebibyte_per_second">МіБ/с</string>
-    <string name="kibibyte_per_second">КіБ/с</string>
     <string name="pref_reduced_circuit_padding_summary">Використання нижчих накладних алгоритмів заповнення для скорочення використання даних і акумулятора</string>
     <string name="pref_reduced_circuit_padding">Скорочене заповнення ланцюжка</string>
     <string name="pref_circuit_padding_summary">Увімкнути заповнення ланцюжка для захисту від деяких форм аналізу трафіку</string>

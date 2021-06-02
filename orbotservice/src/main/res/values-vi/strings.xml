@@ -23,4 +23,6 @@
   <string name="unable_to_start_tor">Không thể khởi động Tor được: </string>
     <string name="newnym">Bạn đã chuyển sang một mạch Tor mới!</string>
     <string name="updating_settings_in_tor_service">đang cập nhật cài đặt dịch vụ Tor</string>
+  <string name="mebibyte_per_second">MiB/s</string>
+  <string name="kibibyte_per_second">KiB/s</string>
 </resources>

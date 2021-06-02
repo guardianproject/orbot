@@ -60,10 +60,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 import java.util.StringTokenizer;
@@ -153,11 +155,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         // this regex replaces lines that only contain whitespace with an empty String
         bridgeList = bridgeList.trim().replaceAll("(?m)^[ \t]*\r?\n", "");
         return bridgeList.split("\\n");
-    }
-
-    private static boolean useIPtProxy() {
-        String bridgeList = Prefs.getBridgesList();
-        return bridgeList.contains("obfs3") || bridgeList.contains("obfs4") || bridgeList.contains("meek");
     }
 
     public void debug(String msg) {
@@ -380,16 +377,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     This is to host a snowflake entrance node / bridge
      */
     private void runSnowflakeProxy () {
-
-
-        // @param capacity Maximum concurrent clients. OPTIONAL. Defaults to 10, if 0.
-// @param broker Broker URL. OPTIONAL. Defaults to https://snowflake-broker.bamsoftware.com/, if empty.
-// @param relay WebSocket relay URL. OPTIONAL. Defaults to wss://snowflake.bamsoftware.com/, if empty.
-// @param stun STUN URL. OPTIONAL. Defaults to stun:stun.stunprotocol.org:3478, if empty.
-// @param logFile Name of log file. OPTIONAL
-// @param keepLocalAddresses Keep local LAN address ICE candidates.
-// @param unsafeLogging Prevent logs from being scrubbed.
-
         int capacity = 3;
         String broker = "https://snowflake-broker.bamsoftware.com/";
         String relay = "wss://snowflake.bamsoftware.com/";
@@ -401,7 +388,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     }
 
     private void stopSnowflakeProxy () {
-
         IPtProxy.stopSnowflakeProxy();
     }
     /**
@@ -1000,13 +986,13 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         }
     }
 
-    protected void sendCallbackBandwidth(long upload, long download, long written, long read) {
+    protected void sendCallbackBandwidth(long lastWritten, long lastRead, long totalWritten, long totalRead) {
         Intent intent = new Intent(LOCAL_ACTION_BANDWIDTH);
 
-        intent.putExtra("up", upload);
-        intent.putExtra("down", download);
-        intent.putExtra("written", written);
-        intent.putExtra("read", read);
+        intent.putExtra("totalWritten", totalWritten);
+        intent.putExtra("totalRead", totalRead);
+        intent.putExtra("lastWritten", lastWritten);
+        intent.putExtra("lastRead", lastRead);
         intent.putExtra(EXTRA_STATUS, mCurrentStatus);
 
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
@@ -1202,6 +1188,16 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         }
 
         return extraLines;
+    }
+
+    public static String formatBandwidthCount(Context context, long bitsPerSecond) {
+        NumberFormat nf = NumberFormat.getInstance(Locale.getDefault());
+        if (bitsPerSecond < 1e6)
+            return nf.format(Math.round(((float) ((int) (bitsPerSecond * 10 / 1024)) / 10)))
+                    + context.getString(R.string.kibibyte_per_second);
+        else
+            return nf.format(Math.round(((float) ((int) (bitsPerSecond * 100 / 1024 / 1024)) / 100)))
+                    + context.getString(R.string.mebibyte_per_second);
     }
 
     private void addV3OnionServicesToTorrc(StringBuffer torrc, ContentResolver contentResolver) {

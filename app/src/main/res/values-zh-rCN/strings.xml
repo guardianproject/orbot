@@ -209,8 +209,6 @@
     <string name="get_bridges_email_request">通过电子邮件请求网桥</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
-    <string name="mebibyte_per_second">MiB/秒</string>
-    <string name="kibibyte_per_second">KiB/秒</string>
     <string name="be_a_snowflake_desc">允许其他 Tor 用户通过你的设备连接到 Tor</string>
     <string name="be_a_snowflake_title">运行 Snowflake 代理</string>
     <string name="confirm">确认</string>
