@@ -369,7 +369,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         String stunServer = getCdnFront("snowflake-stun");
 
         IPtProxy.startSnowflake(stunServer, target, front,
-                 null, true, false, true, 3);
+                 null, true, false, true, 1);
 
     }
 
