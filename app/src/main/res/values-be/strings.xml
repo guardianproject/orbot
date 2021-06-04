@@ -19,7 +19,7 @@
   <string name="menu_share_bridge">Апублікаваць QR-код моста</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Некаторыя звесткі пра праграму Orbot</string>
-  <string name="wizard_details_msg">Orbot — гэта праграма з адкрытым зыходным кодам, якая ўтрымоўвае Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent і Polipo. Яно прапануе лакальны HTTP- (8118) і SOCKS-проксі (9050) у сетку Tor. Orbot таксама дазваляе на прыладах з правамі root перасылаць увесь інтэрнэт-трафік праз Tor.</string>
+  <string name="wizard_details_msg">Orbot — гэта праграма з адкрытым зыходным кодам, якая ўтрымоўвае Tor, Obfs4Proxy, BadVPN, Tun2Socks і LibEvent. Яно прапануе лакальны HTTP- (8118) і SOCKS-проксі (9050) у сетку Tor. Orbot таксама дазваляе на прыладах з правамі root перасылаць увесь інтэрнэт-трафік праз Tor.</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Агульныя</string>
   <string name="pref_start_boot_title">Запускаць Orbot пры загрузцы</string>

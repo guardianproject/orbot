@@ -19,7 +19,7 @@
   <string name="btn_okay">Iyaw saña</string>
     <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbotxat juk\'amp yatiñataki</string>
-  <string name="wizard_details_msg">Orbot wakichawix inakiwa ukatx Tor ukaniwa, Obfs4Proxy, BadVPN Tun2Socks, LibEvent ukhamarak Polipo. Proxy HTTP (8118) ukhamarak mä proxy SOCKS (9050) Tor taypin utjayi. Mä rooteat atamirinx Orbotax Tor tuqiw taqpach llika yatiyäwinak  apayarakispawa.</string>
+  <string name="wizard_details_msg">Orbot wakichawix inakiwa ukatx Tor ukaniwa, Obfs4Proxy, BadVPN, Tun2Socks ukhamarak LibEvent. Proxy HTTP (8118) ukhamarak mä proxy SOCKS (9050) Tor taypin utjayi. Mä rooteat atamirinx Orbotax Tor tuqiw taqpach llika yatiyäwinak  apayarakispawa.</string>
   <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Wakiskiri</string>
   <string name="pref_start_boot_title">Orbot qhantaykas qalltaña</string>
@@ -90,7 +90,6 @@
   <string name="third_party_software">3ar jaljat-Software </string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Imantat apayañ thakhinak Tor llikar mä wakichäwiw jist\'arañ muni %1$d. Wakichawitix uñt\'atachixa, iyaw sama.</string>

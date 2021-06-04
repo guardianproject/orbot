@@ -20,7 +20,7 @@
     <string name="btn_okay">Oké</string>
     <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Enkele Orbot-gegevens</string>
-  <string name="wizard_details_msg">Orbot is een openbronapplicatie die Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent en Polipo bevat. Het creëert een lokale HTTP-proxy (8118) en een SOCKS-proxy (9050) naar het Tor-netwerk. Orbot heeft ook de mogelijkheid om al het internetverkeer over het Tor-netwerk te sturen.</string>
+  <string name="wizard_details_msg">Orbot is een openbronapplicatie die Tor, Obfs4Proxy, BadVPN, Tun2Socks en LibEvent bevat. Het creëert een lokale HTTP-proxy (8118) en een SOCKS-proxy (9050) naar het Tor-netwerk. Orbot heeft ook de mogelijkheid om al het internetverkeer over het Tor-netwerk te sturen.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Algemeen</string>
   <string name="pref_start_boot_title">Start Orbot bij opstarten</string>
@@ -91,7 +91,6 @@
     <string name="third_party_software">Software van 3e partijen: </string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Een app wil de verborgenserverpoort %1$d tot het Tor-netwerk openen. Dit is veilig als je de app vertrouwt.</string>

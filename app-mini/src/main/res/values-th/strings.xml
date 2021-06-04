@@ -20,7 +20,7 @@
     <string name="btn_okay">ตกลง</string>
     <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">รายละเอียดเกี่ยวกับ Orbot</string>
-  <string name="wizard_details_msg">Orbot เป็นแอปพลิเคชันโอเพ่นซอร์สที่ประกอบด้วย Tor, Obfs4Proxy, BadVPN, Tun2Socks, LibEvent และ Polipo โดย Orbot จะสร้างพร็อกซี (8118) และพร็อกซี SOCKS (9050) ในเครื่อง ภายในเครือข่าย Tor Orbot ยังสามารถทำการรับส่งข้อมูลทั้งหมดส่งผ่าน Tor ได้บนอุปกรณ์ที่ได้ทำการ root แล้ว</string>
+  <string name="wizard_details_msg">Orbot เป็นแอปพลิเคชันโอเพ่นซอร์สที่ประกอบด้วย Tor, Obfs4Proxy, BadVPN, Tun2Socks และ LibEvent โดย Orbot จะสร้างพร็อกซี (8118) และพร็อกซี SOCKS (9050) ในเครื่อง ภายในเครือข่าย Tor Orbot ยังสามารถทำการรับส่งข้อมูลทั้งหมดส่งผ่าน Tor ได้บนอุปกรณ์ที่ได้ทำการ root แล้ว</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">ทั่วไป</string>
   <string name="pref_start_boot_title">เริ่ม Orbot เมื่อเปิดระบบ</string>
@@ -91,7 +91,6 @@
     <string name="third_party_software">ซอฟต์แวร์โดยผู้ผลิตอื่น:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">โปรแกรมต้องการเปิดพอร์ต %1$d ที่ซ่อนอยู่ของเซิร์ฟเวอร์ให้เชื่อมกับเครือข่าย Tor การกระทำนี้ปลอดภัยถ้าคุณเชื่อถือโปรแกรมนั้น</string>

@@ -20,7 +20,7 @@
     <string name="btn_okay">確定</string>
     <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot 的一些詳細資料</string>
-  <string name="wizard_details_msg">Orbot 是一款開源應用,其包含 Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent 與 Polipo.它提供了本地的 HTTP 代理 (8118) 與 SOCKS 代理 (9050) 到 Tor 網路中. Orbot 也有能力可在取得最高權限的設備上來利用 Tor 傳送互聯網流量</string>
+  <string name="wizard_details_msg">Orbot 是一款開源應用,其包含 Tor, Obfs4Proxy, BadVPN, Tun2Socks 與 LibEvent.它提供了本地的 HTTP 代理 (8118) 與 SOCKS 代理 (9050) 到 Tor 網路中. Orbot 也有能力可在取得最高權限的設備上來利用 Tor 傳送互聯網流量</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">一般</string>
   <string name="pref_start_boot_title">開機時自動啟動 Orbot</string>
@@ -91,7 +91,6 @@
     <string name="third_party_software">第三方軟體：</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">有一個應用要開啟隱藏的伺服器端口 %1$d 到 Tor 網路,如果信得過此應用才進行此操作</string>

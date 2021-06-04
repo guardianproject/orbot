@@ -20,7 +20,7 @@
     <string name="btn_okay">Okay</string>
     <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Alguns detalhes do Orbot</string>
-  <string name="wizard_details_msg">Orbot é um software de código aberto que contem Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent e Polipo. Ele fornece um proxy local HTTP (8118) e um proxy SOCKS (9050) como acesso a rede Tor. Orbot também tem a habilidade, em dispositivos com acesso root, de enviar todo o trafego de Internet via rede Tor.</string>
+  <string name="wizard_details_msg">Orbot é um software de código aberto que contem Tor, Obfs4Proxy, BadVPN, Tun2Socks e LibEvent. Ele fornece um proxy local HTTP (8118) e um proxy SOCKS (9050) como acesso a rede Tor. Orbot também tem a habilidade, em dispositivos com acesso root, de enviar todo o trafego de Internet via rede Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Geral</string>
   <string name="pref_start_boot_title">Iniciar Orbot no Boot</string>
@@ -91,7 +91,6 @@
     <string name="third_party_software">Software de Terceiros</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Um aplicativo precisa abrir uma porta tipo servidor escondida %1$dpara a Rede Tor. Isso é seguro se você confiar nesta aplicação.</string>

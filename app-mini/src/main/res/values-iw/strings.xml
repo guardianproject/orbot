@@ -19,7 +19,7 @@
     <string name="btn_okay">אישור</string>
     <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">פרטים מסוימים של Orbot </string>
-  <string name="wizard_details_msg">Orbot היא אפליקציית קוד פתוח הכוללת את Tor, LibEvent ו-Polipo. היא מתחבר לרשת Tor באמצעות שרת פרוקסי HTTP מקומי (8118) ושרת פרוקסי SOCKS (פורט 9050). Orbot יכולה בנוסף עם הרשאות רוט לנתב את כל תעבורת האינטרנט של המכשיר דרך Tor כברירת מחדל.</string>
+  <string name="wizard_details_msg">Orbot היא אפליקציית קוד פתוח הכוללת את Tor ו-LibEvent. היא מתחבר לרשת Tor באמצעות שרת פרוקסי HTTP מקומי (8118) ושרת פרוקסי SOCKS (פורט 9050). Orbot יכולה בנוסף עם הרשאות רוט לנתב את כל תעבורת האינטרנט של המכשיר דרך Tor כברירת מחדל.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">כללי</string>
   <string name="pref_start_boot_title">התחל את Orbot בהדלקת המכשיר</string>
@@ -79,7 +79,6 @@
     <string name="third_party_software">תוכנה-צד-ג׳: </string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
     <string name="found_existing_tor_process">נמצא תהליך Tor קיים…</string>
   <string name="something_bad_happened">משהו רע התרחש. בדוק את היומן</string>
     <string name="unable_to_read_hidden_service_name">לא מסוגל לקרוא שם שירות נסתר</string>
