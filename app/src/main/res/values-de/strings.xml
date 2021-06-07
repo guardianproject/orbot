@@ -123,8 +123,8 @@
     <string name="send_email">E-Mail senden</string>
     <string name="vpn_default_world">Global (Automatisch)</string>
     <string name="hidden_services">Onion Dienste</string>
-    <string name="title_activity_hidden_services">Onion Dienste</string>
-    <string name="menu_hidden_services">Onion Dienste</string>
+    <string name="title_activity_hidden_services">Onion-Dienste</string>
+    <string name="menu_hidden_services">Onion-Dienste</string>
     <string name="save">Speichern</string>
     <string name="local_port">Lokaler Port</string>
     <string name="onion_port">Onion-Port</string>
@@ -202,12 +202,12 @@
     <string name="refresh_captcha">CAPTCHA erneuern</string>
     <string name="request_bridges">Brücken anfordern</string>
     <string name="testing_tor_direct">Verbindung zu Tor wird getestet …</string>
-    <string name="testing_tor_direct_success">Erfolgreich. Tor-Verbindungsqualitaet ist gut!</string>
+    <string name="testing_tor_direct_success">Erfolgreich. Tor-Verbindungsqualität ist gut!</string>
     <string name="v3_import_auth_private">Importiere .auth_private</string>
     <string name="v3_backup_name_hint">Sicherungsdateiname …</string>
     <string name="v3_delete_client_authorization_confirm">Entferne Client Authorisierung</string>
     <string name="v3_client_auth">v3 Onion Dienst Client Authorisierung</string>
-    <string name="v2_hidden_services">v2 Onion Dienste (veralted)</string>
+    <string name="v2_hidden_services">v2 Onion Dienste (veraltet)</string>
     <string name="v3_hosted_services">Gehostete v3 Onion Dienste</string>
     <string name="v3_delete_client_authorization">Entferne Client Authorisierungs-Schlüssel</string>
     <string name="v3_backup_key_warning">Warnung: Dadurch könnten Ihre Schlüssel anderen Apps zugänglich gemacht werden</string>
@@ -215,7 +215,7 @@
     <string name="v3_onion">v3 .onion-Domain</string>
     <string name="v3_key_hash">x25519 Privater Schlüssel in Base32</string>
     <string name="v3_client_auth_activity_title">v3 Client Authorisierung</string>
-    <string name="backup_port_exist">Fehler: Ein anderer Onion Dienst nutzt bereits Port %s</string>
+    <string name="backup_port_exist">Fehler: Ein anderer Onion-Dienst nutzt bereits Port %s</string>
     <string name="get_bridges_email_request">Brücken via E-Mail anfordern</string>
     <string name="deny">Ablehnen</string>
     <string name="allow">Erlauben</string>
