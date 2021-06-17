@@ -1,3 +1,69 @@
+/** 16.5.0-ALPHA-1 2 June 2021 **/
+
+5e3963d8 (HEAD -> master, tag: 16.5.0-ALPHA-2-tor.0.4.5.7) update Orbot to 1650200100
+71545226 (origin/master, origin/HEAD) Merge branch 'bitmold-tor_event_bandwidth'
+491e3572 (bitmold-tor_event_bandwidth) bandwidth propagates correctly from TorEventHandler -> OrbotService -> OrbotMainActivity
+2519bb35 consistent data transfer logic in service, makes units in notiifcation accurate
+2041ec1d not needed in appcore build.gradle
+a348217e comment no longer needed with IPtProxy sources being hosted
+56e08141 removed obsolete method
+5fc9f872 Merge branch 'bitmold-IPtProxyPorts'
+99f2aa53 (bitmold-IPtProxyPorts) update bridge line for snowflake
+08b79c4b add fingerprint to bridge config https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake/-/issues/40045#note_2737108
+a36c8391 Merge branch 'IPtProxyPorts' of https://github.com/bitmold/orbot into bitmold-IPtProxyPorts
+fe196385 IPtProxy 1.0.0
+0d950796 make calls to start and stop synchronized
+88553b18 Merge branch 'IPtProxyPorts' of https://github.com/bitmold/orbot into bitmold-IPtProxyPorts
+4f8982e0 Orbot changes for new verison of IPtProxy that dynamically picks ports
+18fc0453 mini build should exclude PT support
+b8dbbcca (newport/master) added new app-tv module, updated app-mini
+efe44dc0 update app-mini to mini-1.0.0-BETA-2-tor-0.4.5.7
+c3631e4c fix app config layout
+e6fb6252 Merge branch 'master' of github.com:guardianproject/orbot
+976b0340 update app-mini to work with latest OrbotService
+0e39a777 add overall preference for enabling/disabling onion service hosting
+c7bb4ec9 fixed broken newnym btn on main activity
+e9d71feb Merge pull request #459 from eighthave/weblate
+c6dab304 update orbotservice target SDK to 30 to match the app
+377fd63c remove gpmaven repo, get jsockAndroid directly via jitpack.io
+2a466241 Translated using Weblate (Vietnamese)
+14fa245e Translated using Weblate (Portuguese)
+8ecb756f Translated using Weblate (Portuguese (Portugal))
+6793a99a Translated using Weblate (Portuguese (Brazil))
+3055933f Translated using Weblate (Norwegian Bokmål)
+2648b294 (tag: 16.5.0-ALPHA-1-tor.0.4.5.7) update version to 1650100100 (16.5 alpha 1)
+d2d85aaa Merge pull request #457 from eighthave/jcenter-gpmaven-migration
+839c3787 Merge branch 'eighthave-master'
+dd7152e9 (eighthave-master) Merge branch 'master' of https://github.com/eighthave/orbot into eighthave-master
+aa643f4a Merge pull request #456 from eighthave/lint-fixes
+a6cd5b00 start migration away from jcenter and gpmaven repos
+40c3da9d use tor-android and jtorctl v0.4.5.7
+c90c51aa gitlab-ci: quiet unzip output
+374e093c put all Control Port event registration onServiceConnected()
+c41f8e88 fix lint StringFormatMatches: bad format type, was String should be int
+9b483cfd get geoip files as JARs from jcenter Maven repo
+afb3ae78 use new jtorctl constants for Tor event names
+f7384977 use new jtorctl constants for Tor signal names
+c229771b switch to native TorService
+df577415 purge unused test code, including old copy of jtorctl
+2c9e02bd switch to new jtorctl version to support TorService
+3cf3f968 fix lint Typo: internett -> Internett
+95f318ca "id" is a long deprecated locale for Indonesian.  "in" is canonical
+9fe04093 "he" is a long deprecated locale for Hebrew.  "iw" is canonical
+3c401120 update gradle wrapper to match gradle version
+4a8c8f75 Merge pull request #455 from weblate/weblate-guardianproject-orbot
+c90508fd Translated using Weblate (Chinese (Simplified))
+cb7a0d56 Translated using Weblate (Ukrainian)
+13f646ab Translated using Weblate (Icelandic)
+80f06beb Translated using Weblate (French)
+9ebe5fe5 Translated using Weblate (Portuguese (Brazil))
+68596948 Translated using Weblate (Ukrainian)
+802da569 Translated using Weblate (Turkish)
+f1714076 Translated using Weblate (Norwegian Bokmål)
+b87b6eb4 removed me from FUNDING.yml
+6bff3434 Show both local port and "onion port" on hosted v2 and v3 onion services
+df8360b4 remove unneeded old obfs4proxy library references
+
 /** 16.4.1-RC-1 / 9 April 2021 / c80f18ae2508b73fcbfd6e09b394a2a196de7459 **/
 
 c80f18ae (HEAD -> master, tag: 16.4.1-RC-1-tor.0.4.4.6) update version code to 1641300100
