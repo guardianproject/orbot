@@ -19,7 +19,7 @@
     <string name="menu_share_bridge">Compartir QR de bridge</string>
     <!--Welcome Wizard strings (DJH)-->
     <string name="wizard_details">Algunos detalles de Orbot</string>
-    <string name="wizard_details_msg">Orbot es una aplicación de código abierto que contiene Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent y Polipo. Proporciona un proxy HTTP (8118) y un proxy SOCKS (9050) hacia el interior de la red Tor. En una maquina rooteada, Orbot también tiene la capacidad de enviar todo el tráfico de Internet a través de Tor.</string>
+    <string name="wizard_details_msg">Orbot es una aplicación de código abierto que contiene Tor, Obfs4Proxy, BadVPN, Tun2Socks y LibEvent. Proporciona un proxy HTTP (8118) y un proxy SOCKS (9050) hacia el interior de la red Tor. En una maquina rooteada, Orbot también tiene la capacidad de enviar todo el tráfico de Internet a través de Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">General</string>
     <string name="pref_start_boot_title">Iniciar Orbot en el arranque</string>

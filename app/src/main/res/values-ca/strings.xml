@@ -19,7 +19,7 @@
     <string name="menu_share_bridge">Comparteix el BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
     <string name="wizard_details">Alguns detalls de l\'Orbot</string>
-    <string name="wizard_details_msg">Orbot és una aplicació de codi obert que conté Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent i Polipo. Proporciona un proxy HTTP local (8118) i un proxy SOCKS (9050) a la xarxa Tor. En dispositius root Orbot també té la capacitat d\'enviar tot el trànsit d\'Internet a través de Tor.</string>
+    <string name="wizard_details_msg">Orbot és una aplicació de codi obert que conté Tor, Obfs4Proxy, BadVPN, Tun2Socks i LibEvent. Proporciona un proxy HTTP local (8118) i un proxy SOCKS (9050) a la xarxa Tor. En dispositius root Orbot també té la capacitat d\'enviar tot el trànsit d\'Internet a través de Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">General</string>
     <string name="pref_start_boot_title">Inicia l\'Obot a l\'arrencada</string>

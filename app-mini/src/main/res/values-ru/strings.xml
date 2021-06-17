@@ -20,7 +20,7 @@
     <string name="btn_okay">OK</string>
     <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Некоторые сведения о программе Orbot</string>
-  <string name="wizard_details_msg">Orbot — это приложение с открытым исходным кодом, которое содержит Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent и Polipo. Оно предоставляет локальный HTTP- (8118) и SOCKS-прокси (9050) в сеть Tor. Orbot также позволяет на устройствах с правами root пересылать весь интернет-трафик через Tor.</string>
+  <string name="wizard_details_msg">Orbot — это приложение с открытым исходным кодом, которое содержит Tor, Obfs4Proxy, BadVPN, Tun2Socks и LibEvent. Оно предоставляет локальный HTTP- (8118) и SOCKS-прокси (9050) в сеть Tor. Orbot также позволяет на устройствах с правами root пересылать весь интернет-трафик через Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Общие</string>
   <string name="pref_start_boot_title">Запускать Orbot при загрузке</string>
@@ -91,7 +91,6 @@
     <string name="third_party_software">Программы сторонних разработчиков: </string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Приложение хочет открыть скрытый порт сервера %1$d сети Tor. Это безопасно, если вы доверяете данному приложению.</string>

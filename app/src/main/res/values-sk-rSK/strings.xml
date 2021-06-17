@@ -26,7 +26,7 @@
     <string name="menu_scan">Skenovať BridgeQR</string>
     <string name="menu_share_bridge">Zdieľať BridgeQR</string>
     <string name="wizard_details">Niektoré podrobnosti Orbotu</string>
-    <string name="wizard_details_msg">Orbot je open-source aplikácia, ktorá obsahuje Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent a Polipo. Poskytuje lokálny HTTP proxy (8118) a SOCKS proxy (9050) do siete Tor. Orbot má tiež možnosť na koreňovom zariadení posielať všetok internetový prenos cez Tor.</string>
+    <string name="wizard_details_msg">Orbot je open-source aplikácia, ktorá obsahuje Tor, Obfs4Proxy, BadVPN, Tun2Socks a LibEvent. Poskytuje lokálny HTTP proxy (8118) a SOCKS proxy (9050) do siete Tor. Orbot má tiež možnosť na koreňovom zariadení posielať všetok internetový prenos cez Tor.</string>
     <string name="pref_general_group">Všeobecné</string>
     <string name="pref_start_boot_title">Spustiť Orbot pri štarte</string>
 </resources>

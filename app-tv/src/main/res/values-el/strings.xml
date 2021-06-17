@@ -20,7 +20,7 @@
     <string name="btn_okay">Okay</string>
     <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Μερικές λεπτομέρειες για το Orbot</string>
-  <string name="wizard_details_msg">Το Orbot είναι μια εφαρμογή ανοικτού λογισμικού που περιέχει τα Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent καί Polipo.  Διαθέτει τοπικούς πληρεξούσιους διακομιστές HTTP (8118) και SOCKS (9050) για το δίκτυο Tor. Σε συσκευές που έχουν διαμορφωθεί για ριζική χρήση, το Orbot μπορεί να μεταδίδει όλη την διαδυκτιακή κυκλοφορία μέσω Tor.</string>
+  <string name="wizard_details_msg">Το Orbot είναι μια εφαρμογή ανοικτού λογισμικού που περιέχει τα Tor, Obfs4Proxy, BadVPN, Tun2Socks καί LibEvent.  Διαθέτει τοπικούς πληρεξούσιους διακομιστές HTTP (8118) και SOCKS (9050) για το δίκτυο Tor. Σε συσκευές που έχουν διαμορφωθεί για ριζική χρήση, το Orbot μπορεί να μεταδίδει όλη την διαδυκτιακή κυκλοφορία μέσω Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Γενικά</string>
   <string name="pref_start_boot_title">Έναρξη του Orbot κατά την εκκίνηση</string>
@@ -91,7 +91,6 @@
     <string name="third_party_software">Λογισμικό τρίτων:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Κάποια εφαρμογή προσπαθεί να ανοίξει την κρυφή θύρα διακομιστή %1$dστο δίκτυο Tor. Πρόκειται για ασφαλή ενέργεια, εφόσον γνωρίζετε την εφαρμογή.</string>

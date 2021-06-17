@@ -20,7 +20,7 @@
     <string name="btn_okay">Okej</string>
     <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot-information</string>
-  <string name="wizard_details_msg">Orbot är ett program med öppen källkod som innehåller Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent och Polipo. Den tillhandahåller en lokal HTTP-proxy (8118) och en SOCKS-proxy (9050) i Tor-nätverket. Orbot har också förmågan att, på rotad enhet, skicka all internettrafik genom Tor.</string>
+  <string name="wizard_details_msg">Orbot är ett program med öppen källkod som innehåller Tor, Obfs4Proxy, BadVPN, Tun2Socks och LibEvent. Den tillhandahåller en lokal HTTP-proxy (8118) och en SOCKS-proxy (9050) i Tor-nätverket. Orbot har också förmågan att, på rotad enhet, skicka all internettrafik genom Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Allmänt</string>
   <string name="pref_start_boot_title">Starta Orbot vid Uppstart</string>
@@ -91,7 +91,6 @@
     <string name="third_party_software">Tredjepartsprogramvara:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">En app vill öppna dold serverport %1$d till Tor-nätverket. Det här är säkert om du litar på appen.</string>
