@@ -20,7 +20,7 @@
     <string name="btn_okay">OK</string>
     <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Orbot詳細</string>
-  <string name="wizard_details_msg">Orbot はTor、Obfs4Proxy、BadVPN Tun2Socks、LibEvent、Polipoを含むオープンソースアプリです。ローカルHTTPプロキシ (8118) と SOCKSプロキシ (9050) をTorネットワークに接続します。root化された端末ではOrbotは全ての通信をTorを通して行うこともできます。</string>
+  <string name="wizard_details_msg">Orbot はTor、Obfs4Proxy、BadVPN、Tun2Socks、LibEventを含むオープンソースアプリです。ローカルHTTPプロキシ (8118) と SOCKSプロキシ (9050) をTorネットワークに接続します。root化された端末ではOrbotは全ての通信をTorを通して行うこともできます。</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">一般</string>
   <string name="pref_start_boot_title">起動時にOrbotを実行する</string>
@@ -91,7 +91,6 @@
     <string name="third_party_software">第三者製のソフトウェア</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">アプリが非公開サーバーポート %1$d をTorネットワークに開放しようとしています。信頼できるアプリであればこれは安全です。</string>

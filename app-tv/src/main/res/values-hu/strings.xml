@@ -20,7 +20,7 @@
     <string name="btn_okay">OK</string>
     <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Néhány Orbot adat</string>
-  <string name="wizard_details_msg">Az Orbot egy nyilt forráskódú alkalmazás ami Tor, Obfs4Proxy, BadVPN Tun2Socks, LibEvent és Polipo alkalmazásokat tartalmaz. Helyi  HTTP proxyt (8118) és  SOCKS proxyt (9050) biztosít a Tor hálózatba. Az Orbot továbbá képes arra, hogy rootolt eszközön a teljes internet forgalmat keresztül küldje a Tor-on.</string>
+  <string name="wizard_details_msg">Az Orbot egy nyilt forráskódú alkalmazás ami Tor, Obfs4Proxy, BadVPN, Tun2Socks és LibEvent alkalmazásokat tartalmaz. Helyi  HTTP proxyt (8118) és  SOCKS proxyt (9050) biztosít a Tor hálózatba. Az Orbot továbbá képes arra, hogy rootolt eszközön a teljes internet forgalmat keresztül küldje a Tor-on.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Általános</string>
   <string name="pref_start_boot_title">Az Orbot indítása rendszerindításkor</string>
@@ -91,7 +91,6 @@
     <string name="third_party_software">3. fél szoftver:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Egy app egy rejtett szerver portot %1$d nyitna a Tor hálózatra. Ez biztonságos, ha megbízik az appban.</string>

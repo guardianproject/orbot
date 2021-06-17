@@ -89,7 +89,6 @@
     <string name="third_party_software">Perangkat Lunak Pihak Ke-3:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="found_existing_tor_process">menemukan proses Tor yang ada...</string>
   <string name="something_bad_happened">Sesuatu yang buruk terjadi. Periksa log</string>
     <string name="unable_to_read_hidden_service_name">tidak dapat membaca nama layanan tersembunyi</string>

@@ -20,7 +20,7 @@
     <string name="btn_okay">قبول</string>
     <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">برخی جزییات درباره اوربوت</string>
-  <string name="wizard_details_msg">اوربات نرم‌افزاری آزاد است که شامل تور، Obfs4Proxy، BadVPN Tun2Socks، LibEvent و پولیپو می‌شود. این نرم‌افزار یک اچ‌تی‌تی‌پی پراکسی (8118) و ساکس (9050) محلی روی شبکه تور فراهم می‌کند. همچنین اوربات می‌تواند روی دستگاه‌های روت شده، تمام ترافیک اینترنت را ار تور عبور دهد.</string>
+  <string name="wizard_details_msg">اوربات نرم‌افزاری آزاد است که شامل تور، Obfs4Proxy، BadVPN، Tun2Socks، LibEvent و پولیپو می‌شود. این نرم‌افزار یک اچ‌تی‌تی‌پی پراکسی (8118) و ساکس (9050) محلی روی شبکه تور فراهم می‌کند. همچنین اوربات می‌تواند روی دستگاه‌های روت شده، تمام ترافیک اینترنت را ار تور عبور دهد.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">کلی</string>
   <string name="pref_start_boot_title">اوربوت را همزمان با بوت آغاز کن</string>
@@ -91,7 +91,6 @@
     <string name="third_party_software">3rd-Party-Software:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="polipo_version">Polipo v1.1.9: https://github.com/jech/polipo</string>
   <string name="obfsproxy_version">Obfs4proxy نسخه‌ی 0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">اپلیکیشنی می‌خواهد پورت سرور %1$d را به شبکه تور بگشاید. در صورتی که به این برنامه اطمینان دارید، چنین کاری امن است.</string>

@@ -19,7 +19,7 @@
   <string name="menu_share_bridge">Подели BridgeQR</string>
   <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Детаљи о Орботу</string>
-  <string name="wizard_details_msg">Орбот је апликација отвореног кода која садржи Тор, Obfs4Proxy, BadVPN Tun2Socks, LibEvent и Polipo. Омогућава локални HTTP proxy (8118) и SOCKS proxy (9050) у Тор мрежу. Орбот такође има могућност да на рутованом уређају шаље сав интернет саобраћај преко Тор-а.</string>
+  <string name="wizard_details_msg">Орбот је апликација отвореног кода која садржи Тор, Obfs4Proxy, BadVPN, Tun2Socks и LibEvent. Омогућава локални HTTP proxy (8118) и SOCKS proxy (9050) у Тор мрежу. Орбот такође има могућност да на рутованом уређају шаље сав интернет саобраћај преко Тор-а.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Опште</string>
   <string name="pref_start_boot_title">Покрени Орбот при покретању уређаја</string>
