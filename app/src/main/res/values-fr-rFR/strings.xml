@@ -121,7 +121,7 @@
     <string name="wizard_details_msg">Orbot est une application à code source ouvert qui comprend Tor, Obfs4Proxy, BadVPN Tun2Socks et LibEvent. Elle fournit un mandataire HTTP local (8118) et un mandataire SOCKS (9050) vers le réseau Tor. Sur un appareil débridé, Orbot peut aussi faire passer tout le trafic Internet par Tor.</string>
     <string name="obfsproxy_version">Obfs4proxy : https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL : http://www.openssl.org</string>
-    <string name="hidden_service_request">Une appli veut ouvrir le serveur onion sur le port %1$d au réseau Tor. Cette action est sûre si vous faites confiance à cette appli.</string>
+    <string name="hidden_service_request">Une appli veut ouvrir le serveur onion sur le port %1$s au réseau Tor. Cette action est sûre si vous faites confiance à cette appli.</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Ouvrir le mandataire sur toutes les interfaces</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Autoriser l’accès à Tor aux pairs Wi-Fi, aux appareils qui utilisent la fonction modem et à quiconque peut se connecter à votre IP</string>
     <string name="pref_http_title">HTTP Tor</string>
