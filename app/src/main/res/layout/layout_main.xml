@@ -82,8 +82,8 @@
                     android:ellipsize="end"
                     android:fontFamily="sans-serif-light"
                     android:gravity="center"
-                    android:lines="1"
-                    android:maxLines="1"
+                    android:lines="2"
+                    android:maxLines="2"
                     android:text="[             ]"
                     android:textSize="14sp" />
 

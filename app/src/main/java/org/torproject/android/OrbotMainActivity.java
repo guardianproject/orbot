@@ -941,7 +941,18 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 mBtnStart.setText(R.string.menu_stop);
                 mPulsator.stop();
 
-                lblStatus.setText(getString(R.string.status_activated));
+                if (Prefs.beSnowflakeProxy())
+                {
+                    lblStatus.setText(getString(R.string.status_activated)+"\n"
+                    + "❄❄You are a snowflake❄❄");
+
+                }
+                else
+                {
+                    lblStatus.setText(getString(R.string.status_activated));
+
+                }
+
 
                 if (autoStartFromIntent) {
                     autoStartFromIntent = false;
@@ -958,7 +969,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     setResult(RESULT_OK, resultIntent);
 
                     finish();
-                    Log.d(TAG, "autoStartFromIntent finish");
                 }
 
                 break;
