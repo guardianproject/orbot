@@ -45,9 +45,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.concurrent.TimeoutException;
@@ -55,6 +57,8 @@ import java.util.concurrent.TimeoutException;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
+import static org.torproject.android.service.TorServiceConstants.TOR_DNS_PORT_DEFAULT;
+import static org.torproject.android.service.TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT;
 
 public class OrbotVpnManager implements Handler.Callback {
     private static final String TAG = "OrbotVpnService";
@@ -83,7 +87,8 @@ public class OrbotVpnManager implements Handler.Callback {
     }
 
     public static File makePdnsdConf(Context context, File fileDir, String torDnsHost, int torDnsPort, String pdnsdHost, int pdnsdPort) throws IOException {
-        String conf = String.format(context.getString(R.string.pdnsd_conf), torDnsHost, torDnsPort, fileDir.getCanonicalPath(), pdnsdHost, pdnsdPort);
+        String conf = String.format(context.getString(R.string.pdnsd_conf),
+                torDnsHost, torDnsPort, fileDir.getAbsolutePath(), pdnsdHost, pdnsdPort);
 
         Log.d(TAG, "pdsnd conf:" + conf);
 
@@ -93,9 +98,8 @@ public class OrbotVpnManager implements Handler.Callback {
             fPid.delete();
         }
 
-        FileOutputStream fos = new FileOutputStream(fPid, false);
-        PrintStream ps = new PrintStream(fos);
-        ps.print(conf);
+        PrintWriter ps = new PrintWriter(new FileWriter(fPid, false));
+        ps.write(conf);
         ps.close();
 
         File cache = new File(fileDir, "pdnsd.cache");
@@ -140,8 +144,8 @@ public class OrbotVpnManager implements Handler.Callback {
                 } else if (action.equals(TorServiceConstants.LOCAL_ACTION_PORTS)) {
                     Log.d(TAG, "setting VPN ports");
 
-                    int torSocks = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT, -1);
-                    int torDns = intent.getIntExtra(OrbotService.EXTRA_DNS_PORT, -1);
+                    int torSocks = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT, TOR_TRANSPROXY_PORT_DEFAULT);
+                    int torDns = intent.getIntExtra(OrbotService.EXTRA_DNS_PORT, TOR_DNS_PORT_DEFAULT);
 
                     //if running, we need to restart
                     if ((torSocks != mTorSocks || torDns != mTorDns)) {
