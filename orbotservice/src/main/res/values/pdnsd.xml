@@ -12,7 +12,6 @@ global {
 	timeout=10;
 	daemon=on;
 	pid_file="%3$s/pdnsd.pid";
-
 }
 
 server {

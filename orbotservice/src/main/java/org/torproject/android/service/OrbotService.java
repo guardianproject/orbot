@@ -293,16 +293,20 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     private void stopTorAsync() {
 
-        Log.i("OrbotService", "stopTor");
+        debug("stopTor");
+
         try {
             sendCallbackStatus(STATUS_STOPPING);
             sendCallbackLogMessage(getString(R.string.status_shutting_down));
 
-            if (useIPtObfsMeekProxy())
-                IPtProxy.stopObfs4Proxy();
-
-            if (useIPtSnowflakeProxy())
-                IPtProxy.stopSnowflake();
+            if (Prefs.bridgesEnabled()) {
+                if (useIPtObfsMeekProxy())
+                    IPtProxy.stopObfs4Proxy();
+                else if (useIPtSnowflakeProxy())
+                    IPtProxy.stopSnowflake();
+            }
+            else if (Prefs.beSnowflakeProxy())
+                disableSnowflakeProxy();
 
             stopTor();
 
@@ -376,7 +380,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     /*
     This is to host a snowflake entrance node / bridge
      */
-    private void runSnowflakeProxy () {
+    private void enableSnowflakeProxy () {
         int capacity = 3;
         String broker = "https://snowflake-broker.bamsoftware.com/";
         String relay = "wss://snowflake.bamsoftware.com/";
@@ -385,10 +389,15 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         boolean keepLocalAddresses = true;
         boolean unsafeLogging = false;
         IPtProxy.startSnowflakeProxy(capacity, broker, relay, stun, logFile, keepLocalAddresses, unsafeLogging);
+
+        logNotice("Snowflake Proxy mode ENABLED");
     }
 
-    private void stopSnowflakeProxy () {
+    private void disableSnowflakeProxy () {
         IPtProxy.stopSnowflakeProxy();
+
+        logNotice("Snowflake Proxy mode DISABLED");
+
     }
     /**
      * if someone stops during startup, we may have to wait for the conn port to be setup, so we can properly shutdown tor
@@ -849,6 +858,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     }
                     conn.setEvents(events);
                     logNotice("SUCCESS added control port event handler");
+                    initControlConnection();
                 } catch (IOException | InterruptedException e) {
                     e.printStackTrace();
                     stopTorOnError(e.getLocalizedMessage());
@@ -880,6 +890,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             }
         };
 
+        /**
         BroadcastReceiver receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -896,6 +907,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         Looper looper = handlerThread.getLooper();
         Handler handler = new Handler(looper);
         registerReceiver(receiver, new IntentFilter(TorService.ACTION_STATUS), null, handler);
+        **/
 
         Intent serviceIntent = new Intent(this, TorService.class);
         if (Build.VERSION.SDK_INT < 29) {
@@ -1050,7 +1062,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         logNotice(getString(R.string.updating_settings_in_tor_service));
         SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
 
-        boolean useBridges = Prefs.bridgesEnabled();
         boolean becomeRelay = prefs.getBoolean(OrbotConstants.PREF_OR, false);
         boolean ReachableAddresses = prefs.getBoolean(OrbotConstants.PREF_REACHABLE_ADDRESSES, false);
         boolean enableStrictNodes = prefs.getBoolean("pref_strict_nodes", false);
@@ -1058,7 +1069,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         String exitNodes = prefs.getString("pref_exit_nodes", "");
         String excludeNodes = prefs.getString("pref_exclude_nodes", "");
 
-        if (!useBridges) {
+        if (!Prefs.bridgesEnabled()) {
             extraLines.append("UseBridges 0").append('\n');
             if (Prefs.useVpn()) { //set the proxy here if we aren't using a bridge
                 if (!mIsLollipop) {
@@ -1163,7 +1174,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         }
 
         try {
-            if (becomeRelay && (!useBridges) && (!ReachableAddresses)) {
+            if (becomeRelay && (!Prefs.bridgesEnabled()) && (!ReachableAddresses)) {
                 int ORPort = Integer.parseInt(Objects.requireNonNull(prefs.getString(OrbotConstants.PREF_OR_PORT, "9001")));
                 String nickname = prefs.getString(OrbotConstants.PREF_OR_NICKNAME, "Orbot");
                 String dnsFile = writeDNSFile();
@@ -1536,14 +1547,14 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             if (!TextUtils.isEmpty(action)) {
                 if (action.equals(ACTION_START) || action.equals(ACTION_START_ON_BOOT)) {
 
-                    if (useIPtObfsMeekProxy())
-                        IPtProxy.startObfs4Proxy("DEBUG", false, false);
-
-                    if (useIPtSnowflakeProxy())
-                        startSnowflakeClient();
-
-                    if (Prefs.beSnowflakeProxy())
-                        runSnowflakeProxy();
+                    if (Prefs.bridgesEnabled()) {
+                        if (useIPtObfsMeekProxy())
+                            IPtProxy.startObfs4Proxy("DEBUG", false, false);
+                        else if (useIPtSnowflakeProxy())
+                            startSnowflakeClient();
+                    }
+                    else if (Prefs.beSnowflakeProxy())
+                        enableSnowflakeProxy();
 
                     startTor();
                     replyWithStatus(mIntent);
