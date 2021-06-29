@@ -21,6 +21,8 @@ public class Prefs {
     private final static String PREF_USE_VPN = "pref_vpn";
     private final static String PREF_EXIT_NODES = "pref_exit_nodes";
     private final static String PREF_BE_A_SNOWFLAKE = "pref_be_a_snowflake";
+    private final static String PREF_BE_A_SNOWFLAKE_LIMIT = "pref_be_a_snowflake_limit";
+
     private final static String PREF_HOST_ONION_SERVICES = "pref_host_onionservices";
 
 
@@ -78,6 +80,10 @@ public class Prefs {
 
     public static void setBeSnowflakeProxy (boolean beSnowflakeProxy) {
         putBoolean(PREF_BE_A_SNOWFLAKE,beSnowflakeProxy);
+    }
+
+    public static boolean limitSnowflakeProxying () {
+        return prefs.getBoolean(PREF_BE_A_SNOWFLAKE_LIMIT,false);
     }
 
     public static void setDefaultLocale(String value) {

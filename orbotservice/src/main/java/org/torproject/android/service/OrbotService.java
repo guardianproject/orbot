@@ -26,8 +26,10 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.net.VpnService;
+import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -1554,7 +1556,16 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                             startSnowflakeClient();
                     }
                     else if (Prefs.beSnowflakeProxy())
-                        enableSnowflakeProxy();
+                    {
+
+                        if (Prefs.limitSnowflakeProxying()
+                        && isChargingAndWifi(OrbotService.this))
+                        {
+                            enableSnowflakeProxy();
+                        }
+                        else
+                            enableSnowflakeProxy();
+                    }
 
                     startTor();
                     replyWithStatus(mIntent);
@@ -1606,6 +1617,20 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 }
             }
         }
+    }
+
+    public static boolean isChargingAndWifi(Context context) {
+        Intent intent = context.registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        int plugged = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
+        boolean isCharging = plugged == BatteryManager.BATTERY_PLUGGED_AC || plugged == BatteryManager.BATTERY_PLUGGED_USB || plugged == BatteryManager.BATTERY_PLUGGED_WIRELESS;
+
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        boolean isUnmetered = cm.getActiveNetworkInfo() != null
+                && cm.getActiveNetworkInfo().isConnected()
+                && (!cm.isActiveNetworkMetered());
+
+        return isCharging && isUnmetered;
     }
 
     private class ActionBroadcastReceiver extends BroadcastReceiver {

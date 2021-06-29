@@ -265,4 +265,9 @@
     <string name="bridge_snowflake">Connect through other Tor peers (experimental)</string>
     <string name="be_a_snowflake_title">Run Snowflake Proxy</string>
     <string name="be_a_snowflake_desc">Allow other Tor users to connect to Tor through your device</string>
+
+    <string name="be_a_snowflake_title_limit">Snowflake Proxy Limits</string>
+    <string name="be_a_snowflake_desc_limit">Only when device is plugged in and on wifi</string>
+
+
 </resources>
