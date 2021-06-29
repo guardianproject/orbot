@@ -383,7 +383,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     This is to host a snowflake entrance node / bridge
      */
     private void enableSnowflakeProxy () {
-        int capacity = 3;
+        int capacity = 1;
         String broker = "https://snowflake-broker.bamsoftware.com/";
         String relay = "wss://snowflake.bamsoftware.com/";
         String stun = "stun:stun.stunprotocol.org:3478";
