@@ -298,7 +298,7 @@
             android:title="@string/be_a_snowflake_title"
             android:summary="@string/be_a_snowflake_desc" />
         <CheckBoxPreference
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="pref_be_a_snowflake_limit"
             android:title="@string/be_a_snowflake_title_limit"
             android:summary="@string/be_a_snowflake_desc_limit" />
