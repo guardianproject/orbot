@@ -536,7 +536,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         extraLines.append("\n");
 
         extraLines.append("RunAsDaemon 0").append('\n');
-        extraLines.append("AvoidDiskWrites 0").append('\n');
+        extraLines.append("AvoidDiskWrites 1").append('\n');
 
         String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS, (TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT));
 
