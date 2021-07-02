@@ -575,7 +575,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             extraLines.append("SocksListenAddress 0.0.0.0").append('\n');
 
 
-        extraLines.append("HTTPTunnelPort ").append(httpPortPref).append('\n');
+        extraLines.append("HTTPTunnelPort ").append(httpPortPref).append(isolate).append('\n');
 
         if (prefs.getBoolean(OrbotConstants.PREF_CONNECTION_PADDING, false)) {
             extraLines.append("ConnectionPadding 1").append('\n');
