@@ -1549,10 +1549,15 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                             startSnowflakeClient();
                     } else if (Prefs.beSnowflakeProxy()) {
 
-                        if (Prefs.limitSnowflakeProxying()
-                                && isChargingAndWifi(OrbotService.this)) {
-                            enableSnowflakeProxy();
-                        } else
+                        if (Prefs.limitSnowflakeProxying())
+                        {
+                                if (isChargingAndWifi(OrbotService.this))
+                                {
+                                    enableSnowflakeProxy();
+                                }
+
+                        }
+                        else
                             enableSnowflakeProxy();
                     }
 
