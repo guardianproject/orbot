@@ -89,6 +89,7 @@ import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 import static androidx.core.content.FileProvider.getUriForFile;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
+import static org.torproject.android.service.TorServiceConstants.ACTION_STOP;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
 import static org.torproject.android.service.TorServiceConstants.DIRECTORY_TOR_DATA;
 import static org.torproject.android.service.TorServiceConstants.STATUS_OFF;
@@ -280,8 +281,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private void stopTor() {
         if (mBtnVPN.isChecked()) sendIntentToService(ACTION_STOP_VPN);
 
-        Intent intent = new Intent(OrbotMainActivity.this, OrbotService.class);
-        stopService(intent);
+        sendIntentToService(ACTION_STOP);
+
     }
 
     private void doLayout() {
