@@ -153,4 +153,6 @@
     <string name="confirm">Vahvista</string>
     <string name="deny">Kiellä</string>
     <string name="allow">Salli</string>
+    <string name="mebibyte">MiB</string>
+    <string name="kibibyte">KiB</string>
 </resources>
