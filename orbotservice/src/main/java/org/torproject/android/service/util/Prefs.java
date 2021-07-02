@@ -83,7 +83,7 @@ public class Prefs {
     }
 
     public static boolean limitSnowflakeProxying () {
-        return prefs.getBoolean(PREF_BE_A_SNOWFLAKE_LIMIT,false);
+        return prefs.getBoolean(PREF_BE_A_SNOWFLAKE_LIMIT,true);
     }
 
     public static void setDefaultLocale(String value) {
