@@ -288,7 +288,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             //not registered yet
         }
 
-        stopTorAsync();
+
 
         super.onDestroy();
     }
@@ -404,7 +404,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     /**
      * if someone stops during startup, we may have to wait for the conn port to be setup, so we can properly shutdown tor
      */
-    private synchronized void stopTor() throws Exception {
+    private void stopTor() throws Exception {
 
         if (conn != null) {
             logNotice("Using control port to shutdown Tor");
@@ -695,21 +695,14 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     private void startTor() {
         try {
 
-            // STATUS_STARTING is set in onCreate()
-            if (mCurrentStatus.equals(STATUS_STOPPING)) {
-                // these states should probably be handled better
-                sendCallbackLogMessage("Ignoring start request, currently " + mCurrentStatus);
-                return;
-            } else if (mCurrentStatus.equals(STATUS_ON)) {
+            if (torServiceConnection != null && conn != null)
+            {
                 showConnectedToTorNetworkNotification();
                 sendCallbackLogMessage("Ignoring start request, already started.");
                 return;
             }
 
             sendCallbackStatus(STATUS_STARTING);
-
-            // make sure there are no stray daemons running
-            stopTor();
 
             showToolbarNotification(getString(R.string.status_starting_up), NOTIFY_ID, R.drawable.ic_stat_tor);
             //sendCallbackLogMessage(getString(R.string.status_starting_up));
@@ -1554,16 +1547,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                             IPtProxy.startObfs4Proxy("DEBUG", false, false);
                         else if (useIPtSnowflakeProxy())
                             startSnowflakeClient();
-                    }
-                    else if (Prefs.beSnowflakeProxy())
-                    {
+                    } else if (Prefs.beSnowflakeProxy()) {
 
                         if (Prefs.limitSnowflakeProxying()
-                        && isChargingAndWifi(OrbotService.this))
-                        {
+                                && isChargingAndWifi(OrbotService.this)) {
                             enableSnowflakeProxy();
-                        }
-                        else
+                        } else
                             enableSnowflakeProxy();
                     }
 
@@ -1585,7 +1574,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                         if (mPortSOCKS != -1 && mPortHTTP != -1)
                             sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
                     }
-
+                } else if (action.equals(ACTION_STOP)) {
+                    stopTorAsync();
                 } else if (action.equals(ACTION_START_VPN)) {
                     if (mVpnManager != null && (!mVpnManager.isStarted())) {
                         //start VPN here
