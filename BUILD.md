@@ -22,19 +22,19 @@ UNIX:
 		
 		cd orbotservice/src/main
 		ndk-build (located in Android/Sdk/ndk/VERSION/)
-		mv libs/armeabi-v7a/pdnsd libs/armeabi-v7a/pdnsd.so
-		mv libs/arm64-v8a/pdnsd libs/arm64-v8a/pdnsd.so
-		mv libs/x86/pdnsd libs/x86/pdnsd.so
-		mv libs/x86_64/pdnsd libs/x86_64/pdnsd.so
+		mv libs/armeabi-v7a/pdnsd libs/armeabi-v7a/libpdnsd.so
+		mv libs/arm64-v8a/pdnsd libs/arm64-v8a/libpdnsd.so
+		mv libs/x86/pdnsd libs/x86/libpdnsd.so
+		mv libs/x86_64/pdnsd libs/x86_64/libpdnsd.so
 
 Windows:
 
 		cd orbotservice\src\main
 		ndk-build.cmd (located in Android\Sdk\ndk\VERSION\) 
-		ren libs\armeabi-v7a\pdnsd pdnsd.so
-		ren libs\arm64-v8a\pdnsd pdnsd.so
-		ren libs\x86\pdnsd pdnsd.so
-		ren libs\x86_64\pdnsd pdnsd.so
+		ren libs\armeabi-v7a\pdnsd libpdnsd.so
+		ren libs\arm64-v8a\pdnsd libpdnsd.so
+		ren libs\x86\pdnsd libpdnsd.so
+		ren libs\x86_64\pdnsd libpdnsd.so
 
 
 Now build the Android app using Android Studio/gradle
