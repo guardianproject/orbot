@@ -227,4 +227,6 @@
     <string name="deny">Negue</string>
     <string name="allow">Permita</string>
     <string name="backup_port_exist">Erro: Um serviço Onion já está usando a porta %s</string>
+    <string name="be_a_snowflake_desc_limit">Somente quando o dispositivo está conectado e na rede wifi</string>
+    <string name="be_a_snowflake_title_limit">Limites do proxy snowflake</string>
 </resources>

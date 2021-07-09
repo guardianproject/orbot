@@ -118,7 +118,7 @@
     <string name="save">Enregistrer</string>
     <string name="name">Nom</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Veuillez redémarrer Orbot pour activer les changements</string>
-    <string name="wizard_details_msg">Orbot est une application à code source ouvert qui comprend Tor, Obfs4Proxy, BadVPN Tun2Socks et LibEvent. Elle fournit un mandataire HTTP local (8118) et un mandataire SOCKS (9050) vers le réseau Tor. Sur un appareil débridé, Orbot peut aussi faire passer tout le trafic Internet par Tor.</string>
+    <string name="wizard_details_msg">Orbot est une application à code source ouvert qui comprend Tor, Obfs4Proxy, BadVPN, Tun2Socks et LibEvent. Elle fournit un mandataire HTTP local (8118) et un mandataire SOCKS (9050) vers le réseau Tor. Sur un appareil débridé, Orbot peut aussi faire passer tout le trafic Internet par Tor.</string>
     <string name="obfsproxy_version">Obfs4proxy : https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL : http://www.openssl.org</string>
     <string name="hidden_service_request">Une appli veut ouvrir le serveur onion sur le port %1$s au réseau Tor. Cette action est sûre si vous faites confiance à cette appli.</string>
@@ -227,4 +227,6 @@
     <string name="backup_port_exist">Erreur : Un service onion utilise déjà le port %s</string>
     <string name="v3_backup_key">Sauvegarder la clé d’autorisation client</string>
     <string name="v3_onion">Domaine .onion v3</string>
+    <string name="be_a_snowflake_desc_limit">Seulement quand l’appareil est branché et sur le Wi-Fi</string>
+    <string name="be_a_snowflake_title_limit">Limites du mandataire Snowflake</string>
 </resources>

@@ -3,15 +3,43 @@
     <string name="menu_settings">Setări</string>
     <string name="menu_about">Despre</string>
     <string name="button_about">Despre</string>
-  <string name="menu_exit">Ieşire</string>
+    <string name="menu_exit">Ieşire</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
-  <string name="pref_general_group">General</string>
-  <!--New Wizard Strings-->
-  <!--Title Screen-->
-  <!--Warning screen-->
+    <string name="pref_general_group">General</string>
+    <!--New Wizard Strings-->
+    <!--Title Screen-->
+    <!--Warning screen-->
     <!--Permissions screen-->
-  <!--TipsAndTricks screen-->
-  <!--Transparent Proxy screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
     <string name="error">Eroare</string>
+    <string name="pref_proxy_type_dialog">Introduceți tipul de proxy</string>
+    <string name="pref_proxy_type_summary">Protocolul de utilizat pentru serverul proxy: HTTP, HTTPS, SOCKS4, SOCKS5</string>
+    <string name="pref_proxy_type_title">Tipul de proxy de ieșire</string>
+    <string name="pref_proxy_title">Proxy de rețea de ieșire (opțional)</string>
+    <string name="pref_allow_background_starts_summary">Permiteți oricărei aplicații să îi spună lui Orbot să pornească Tor și serviciile conexe</string>
+    <string name="pref_allow_background_starts_title">Permiteți porniri în fundal</string>
+    <string name="pref_entrance_node_dialog">Intrați în nodurile de intrare</string>
+    <string name="pref_entrance_node_summary">Amprentele digitale, muchiile, țările și adresele pentru primul hop</string>
+    <string name="pref_entrance_node">Noduri de intrare</string>
+    <string name="pref_node_configuration_summary">Acestea sunt setări avansate care pot reduce anonimatul dumneavoastră</string>
+    <string name="pref_node_configuration">Configurația nodului</string>
+    <string name="pref_start_boot_summary">Pornește automat Orbot și conectează Tor atunci când dispozitivul tău Android pornește</string>
+    <string name="pref_start_boot_title">Porniți Orbot la pornire</string>
+    <string name="wizard_details_msg">Orbot este o aplicație open-source care conține Tor, Obfs4Proxy, BadVPN, Tun2Socks și LibEvent. Acesta oferă un proxy HTTP local (8118) și un proxy SOCKS (9050) în rețeaua Tor. Orbot are, de asemenea, capacitatea, pe dispozitivul înrădăcinat, de a trimite tot traficul de internet prin Tor.</string>
+    <string name="wizard_details">Câteva detalii despre Orbot</string>
+    <string name="menu_share_bridge">Distribuie BridgeQR</string>
+    <string name="menu_scan">Scanare BridgeQR</string>
+    <string name="main_layout_upload">Încărcați</string>
+    <string name="main_layout_download">Descărcați</string>
+    <string name="menu_stop">Stop</string>
+    <string name="menu_start">Start</string>
+    <string name="menu_log">Jurnal</string>
+    <string name="status_shutting_down">TorService se oprește</string>
+    <string name="status_disabled">Orbot este dezactivat</string>
+    <string name="status_activated">Conectat la rețeaua Tor</string>
+    <string name="status_starting_up">Orbot începe…</string>
+    <string name="app_description">Orbot este o aplicație proxy gratuită care permite altor aplicații să utilizeze internetul în condiții de mai mare siguranță. Orbot folosește Tor pentru a vă cripta traficul de internet și apoi îl ascunde trecând printr-o serie de calculatoare din întreaga lume. Tor este un software gratuit și o rețea deschisă care vă ajută să vă apărați împotriva unei forme de supraveghere a rețelei care amenință libertatea și intimitatea personală, activitățile și relațiile de afaceri confidențiale și securitatea statului, cunoscută sub numele de analiză a traficului.</string>
+    <string name="app_name">Orbot</string>
 </resources>

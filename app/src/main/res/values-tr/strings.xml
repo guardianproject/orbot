@@ -227,4 +227,6 @@
     <string name="deny">Reddet</string>
     <string name="allow">İzin ver</string>
     <string name="backup_port_exist">Hata: Bir Onion Hizmeti Zaten %s Bağlantı Noktasını Kullanıyor</string>
+    <string name="be_a_snowflake_title_limit">Snowflake Vekil Sınırları</string>
+    <string name="be_a_snowflake_desc_limit">Yalnızca aygıt prize takılı ve kablosuz ağa bağlıysa</string>
 </resources>
