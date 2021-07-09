@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PosizionePrivacy</string>
+    <string name="app_name">Orbot</string>
     <string name="app_description">Orbot è un\'applicazione proxy che permette alle altre applicazioni di accedere a internet in maniera più sicura. Orbot usa Tor per cifrare il traffico internet e lo nasconde poi facendolo rimbalzare attraverso una serie di computer attorno al mondo. Tor è un software libero e una rete aperta che aiuta a difendersi da una forma di sorveglianza che minaccia libertà personale e privacy personale, le attività e le relazioni commerciali riservate e la sicurezza dello stato nota come analisi del traffico.</string>
     <string name="status_starting_up">Orbot è in esecuzione…</string>
     <string name="status_activated">Connesso alla rete Tor</string>
@@ -19,7 +19,7 @@
     <string name="menu_share_bridge">Condividi BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
     <string name="wizard_details">Alcuni dettagli su Orbot</string>
-    <string name="wizard_details_msg">Orbot é un\'applicazione open source che contiene Tor, Obfs4proxy, BadVPN, Tun2Socks e LibEvent. Esso fornisce un proxy HTTP locale (8118) e un proxy SOCKS (9050) per la rete Tor. Orbot permette anche, nei dispositivi rootati, di inviare tutto il traffico tramite Tor.</string>
+    <string name="wizard_details_msg">Orbot è un\'applicazione open source che contiene Tor, Obfs4proxy, BadVPN, Tun2Socks e LibEvent. Esso fornisce un proxy HTTP locale (8118) e un proxy SOCKS (9050) per la rete Tor. Orbot permette anche, nei dispositivi rootati, di inviare tutto il traffico tramite Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Generale</string>
     <string name="pref_start_boot_title">Avvia Orbot al boot</string>
