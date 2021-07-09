@@ -29,8 +29,8 @@ LOCAL_MODULE    := pdnsd
 LOCAL_SRC_FILES := $(PDNSD_SOURCES:$(LOCAL_PATH)/%=%)
 LOCAL_CFLAGS    := -Wall -O2 -I$(LOCAL_PATH)/pdnsd -DHAVE_STPCPY
 
-
-include $(BUILD_SHARED_LIBRARY)
+include $(BUILD_EXECUTABLE)
+##include $(BUILD_SHARED_LIBRARY)
 
 ########################################################
 ## libancillary
