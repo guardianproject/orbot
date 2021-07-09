@@ -16,6 +16,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -346,6 +347,23 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
 
         mBtnVPN = findViewById(R.id.btnVPN);
 
+        mBtnVPN.setFocusable(true);
+        mBtnVPN.setFocusableInTouchMode(true);
+
+        mBtnVPN.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (hasFocus)
+                    v.setBackgroundColor(getColor(R.color.dark_purple));
+                else
+                {
+                    v.setBackgroundColor(getColor(R.color.med_gray));
+                }
+            }
+        });
+
+
         boolean useVPN = Prefs.useVpn();
         mBtnVPN.setChecked(useVPN);
 
@@ -366,6 +384,10 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(llm);
+        rv.setFocusable(true);
+        rv.setFocusableInTouchMode(true);
+
+
     }
 
     @Override
@@ -908,6 +930,9 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
             View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_apps_listing, viewGroup, false);
             final AppViewHolder avh = new AppViewHolder(v);
 
+            v.setFocusable(true);
+            v.setFocusableInTouchMode(true);
+
 
             return avh;
         }
@@ -947,6 +972,28 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
 
                         }
                     });
+
+                    avh.parent.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                        @Override
+                        public void onFocusChange(View v, boolean hasFocus) {
+
+                            if (hasFocus)
+                                v.setBackgroundColor(getColor(R.color.dark_purple));
+                            else
+                            {
+                                Palette.generateAsync(drawableToBitmap(app.getIcon()), new Palette.PaletteAsyncListener() {
+                                    public void onGenerated(Palette palette) {
+                                        // Do something with colors...
+
+                                        int color = palette.getVibrantColor(0x000000);
+                                        avh.parent.setBackgroundColor(color);
+
+                                    }
+                                });
+                            }
+                        }
+                    });
+
                 } catch (NameNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -959,6 +1006,18 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
 
                         showAppPicker();
 
+                    }
+                });
+                avh.parent.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
+
+                        if (hasFocus)
+                            v.setBackgroundColor(getColor(R.color.dark_purple));
+                        else
+                        {
+                            v.setBackgroundColor(getColor(R.color.med_gray));
+                        }
                     }
                 });
             }
