@@ -363,7 +363,7 @@ public class OrbotVpnManager implements Handler.Callback {
 
         File fileConf = makePdnsdConf(mService, mService.getFilesDir(), torDnsHost, torDnsPort, pdnsdHost, pdnsdPort);
 
-        String[] cmdString = {pdnsPath, "-c", fileConf.toString(), "-g", "-v2"};
+        String[] cmdString = {pdnsPath, "-c", fileConf.toString()};
         ProcessBuilder pb = new ProcessBuilder(cmdString);
         pb.redirectErrorStream(true);
         Process proc = pb.start();
