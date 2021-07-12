@@ -92,7 +92,7 @@ public class OrbotVpnManager implements Handler.Callback {
 
         Log.d(TAG, "pdsnd conf:" + conf);
 
-        File fPid = new File(fileDir, pdnsdPort + "pdnsd.conf");
+        File fPid = new File(fileDir, "pdnsd.conf");
 
         if (fPid.exists()) {
             fPid.delete();
