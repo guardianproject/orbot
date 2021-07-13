@@ -48,6 +48,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.jetradarmobile.snowfall.SnowfallView;
 
 import net.freehaven.tor.control.TorControlCommands;
 import org.json.JSONArray;
@@ -98,6 +99,7 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
     private TextView uploadText = null;
     private TextView mTxtOrbotLog = null;
     private Switch mBtnVPN = null;
+    private Switch mBtnSnowflake = null;
     /* Some tracking bits */
     private String torStatus = null; //latest status reported from the tor service
     private Intent lastStatusIntent;  // the last ACTION_STATUS Intent received
@@ -326,6 +328,9 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
         Intent intent = new Intent(TeeveeMainActivity.this, OrbotService.class);
         stopService(intent);
 
+        SnowfallView sv = findViewById(R.id.snowflake_view);
+        sv.setVisibility(View.GONE);
+        sv.stopFalling();
     }
 
     private void doLayout() {
@@ -379,6 +384,33 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
             }
         });
 
+        mBtnSnowflake = findViewById(R.id.btnSnowflake);
+        mBtnSnowflake.setFocusable(true);
+        mBtnSnowflake.setFocusableInTouchMode(true);
+
+        mBtnSnowflake.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (hasFocus)
+                    v.setBackgroundColor(getColor(R.color.dark_purple));
+                else
+                {
+                    v.setBackgroundColor(getColor(R.color.med_gray));
+                }
+            }
+        });
+
+
+        boolean beASnowflake = Prefs.beSnowflakeProxy();
+        mBtnSnowflake.setChecked(beASnowflake);
+
+        mBtnSnowflake.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               Prefs.setBeSnowflakeProxy(isChecked);
+            }
+        });
 
         rv = findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -789,6 +821,24 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
 
                 finish();
                 Log.d(TAG, "autoStartFromIntent finish");
+            }
+
+            if (Prefs.beSnowflakeProxy())
+            {
+
+
+                SnowfallView sv = findViewById(R.id.snowflake_view);
+                sv.setVisibility(View.VISIBLE);
+                sv.restartFalling();
+
+            }
+            else
+            {
+                SnowfallView sv = findViewById(R.id.snowflake_view);
+                sv.setVisibility(View.GONE);
+                sv.stopFalling();
+
+
             }
 
 

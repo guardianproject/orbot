@@ -5,12 +5,23 @@
 	android:orientation="vertical"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-    android:background="@color/light_gray"
+    android:background="@color/light_purple"
 	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+	<com.jetradarmobile.snowfall.SnowfallView
+		android:id="@+id/snowflake_view"
+		android:visibility="gone"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"/>
 
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+	>
 
 
 <androidx.recyclerview.widget.RecyclerView
@@ -18,6 +29,8 @@
 	android:layout_height="wrap_content"
 	android:id="@+id/rv"
 	android:layout_marginBottom="60dp"
+
+
 	/>
 
 
@@ -90,7 +103,16 @@
 				android:lines="1"
 				/>
 
+		<Switch
+			android:id="@+id/btnSnowflake"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/snowflake_mode"
+			android:layout_margin="9dp"
+			android:layout_gravity="center"
+			app:switchPadding="3dp"
 
+			/>
     </LinearLayout>
 
 
@@ -130,6 +152,7 @@
 			android:fontFamily="monospace"
 			 />
     </LinearLayout>
+	</FrameLayout>
 
 </LinearLayout>
 

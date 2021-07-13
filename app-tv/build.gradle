@@ -137,6 +137,9 @@ dependencies {
     // leanback-tab is an add-on that provides customized TabLayout to be used as the top navigation bar.
     implementation "androidx.leanback:leanback-tab:1.1.0-beta01"
 
+    //add snowflake fun
+    implementation 'com.github.jetradarmobile:android-snowfall:1.2.1'
+
 }
 
 // Map for the version code that gives each ABI a value.

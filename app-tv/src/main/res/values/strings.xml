@@ -244,4 +244,5 @@
     <string name="wifi_only">Wifi only</string>
     <string name="keep_your_apps_from_using_mobile_data">Only allow connection over wifi (coming soon!)</string>
     <string name="remove">Remove</string>
+    <string name="snowflake_mode">Snowflake</string>
 </resources>
