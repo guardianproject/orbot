@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Orbot</string>
-    <string name="app_description">Orbot යනු අනෙකුත් අැප්ස් හට වඩා අාරක්ෂාකාරීව අන්තර්ජාලෙය් සැරිසැරීමට ඉඩ සලසාදෙන  නොමිලේ ලබාදෙන්නාවූ ප්රොක්සි සේවාවකි. එය Tor යොදාගනිමින් ඔබගේ අන්තර්ජාල ගනුදෙනු ඛේතනය කරයි එමෙන්ම එය ලොව වටා වූ අනෙකුත් සමාන්තර පරිගනක හරහා ගෙනයමින්  ඔබගේ අන්තර්ජාල ගනුදෙනු සඟවා තබාගනී. Tor යනු </string>
-    <string name="status_starting_up">Orbot ආරම්භ කරමින්…</string>
-    <string name="status_activated">Tor ජාලයට සබැදියි</string>
-    <string name="status_disabled">Orbot ක්‍රියාවිරහිත කර ඇත </string>
-    <string name="menu_settings">සිටවුම්</string>
+    <string name="app_name">ඕර්බොට්</string>
+    <string name="app_description">ඕර්බොට් යනු අන්තර්ජාලය වඩාත් ආරක්ෂිතව භාවිතා කිරීමට අනෙකුත් යෙදුම් වලට බලය ලබා දෙන නොමිලේ පෙරකලාසි යෙදුමකි. ඕර්බට් අන්තර්ජාල ගමනාගමනය සංකේතාංකනය කිරීමට ටෝර් භාවිතා කරන අතර පසුව එය ලොව පුරා පරිගණක මාලාවක් හරහා පැන්න වීමෙන් සැඟවීමට ලක් කරයි. ටෝර් යනු නොමිලේ මෘදුකාංගයක් වන අතර පුද්ගලික නිදහස සහ පෞද්ගලිකත්වය, විශ්වාස කටයුතු ව්‍යාපාරික ක්‍රියාකාරකම් සහ සබැඳියාවන්ච ට ඇතිවන තර්ජන, සහ ජනපද ආරක්ෂාව ලෙස හැඳින්වෙන ප්‍රවාහ විශ්ලේෂණය යනාදී ජාල ප්‍රවීක්ෂණ ආකාර වලට එරෙහිව සිටීමට ඔබට සහාය වන විවෘත ජාලයකි.</string>
+    <string name="status_starting_up">ඕර්බොට් ඇරඹෙමින්…</string>
+    <string name="status_activated">ටෝර් ජාලයට සම්බන්ධයි</string>
+    <string name="status_disabled">ඕර්බොට් ක්‍රියාවිරහිත කර ඇත</string>
+    <string name="menu_settings">සැකසුම්</string>
     <string name="menu_log">ලොගය </string>
     <string name="menu_start">අරඹන්න</string>
     <string name="menu_stop">නවත්වන්න</string>
-    <string name="menu_about">පිළිබද</string>
+    <string name="menu_about">පිළිබඳව</string>
     <string name="main_layout_download">බාගන්න</string>
     <string name="main_layout_upload">උඩුගත කරන්න </string>
-    <string name="button_about">පිළිබද</string>
-    <string name="menu_exit">ඉවත් වන්න</string>
+    <string name="button_about">පිළිබඳව</string>
+    <string name="menu_exit">පිටවන්න</string>
     <!--Welcome Wizard strings (DJH)-->
     <string name="wizard_details">Orbot පිළිබද ඇතැම් විස්තර </string>
     <!--END Welcome Wizard strings (DJH)-->
