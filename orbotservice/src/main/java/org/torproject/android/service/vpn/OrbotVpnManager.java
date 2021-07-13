@@ -79,20 +79,22 @@ public class OrbotVpnManager implements Handler.Callback {
     private final File filePdnsd;
     private boolean isRestart = false;
     private final VpnService mService;
+    private final SharedPreferences prefs;
 
     public OrbotVpnManager(VpnService service) {
         mService = service;
+        prefs = Prefs.getSharedPrefs(mService.getApplicationContext());
         filePdnsd = CustomNativeLoader.loadNativeBinary(service.getApplicationContext(), PDNSD_BIN, new File(service.getFilesDir(), PDNSD_BIN));
         Tun2Socks.init();
     }
 
-    public static File makePdnsdConf(Context context, File fileDir, String torDnsHost, int torDnsPort, String pdnsdHost, int pdnsdPort) throws IOException {
+    public static File makePdnsdConf(Context context, File fileDir, String torDnsHost, int torDnsPort, String pdnsdHost, int pdnsdPort, String pdnsdDebug) throws IOException {
         String conf = String.format(context.getString(R.string.pdnsd_conf),
-                torDnsHost, torDnsPort, fileDir.getAbsolutePath(), pdnsdHost, pdnsdPort);
+                torDnsHost, torDnsPort, fileDir.getAbsolutePath(), pdnsdHost, pdnsdPort, pdnsdDebug);
 
         Log.d(TAG, "pdsnd conf:" + conf);
 
-        File fPid = new File(fileDir, pdnsdPort + "pdnsd.conf");
+        File fPid = new File(fileDir, "pdnsd.conf");
 
         if (fPid.exists()) {
             fPid.delete();
@@ -335,7 +337,6 @@ public class OrbotVpnManager implements Handler.Callback {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void doLollipopAppRouting(VpnService.Builder builder) throws NameNotFoundException {
-        SharedPreferences prefs = Prefs.getSharedPrefs(mService.getApplicationContext());
         ArrayList<TorifiedApp> apps = TorifiedApp.getApps(mService, prefs);
 
 
@@ -360,10 +361,16 @@ public class OrbotVpnManager implements Handler.Callback {
     }
 
     private void startDNS(String pdnsPath, String torDnsHost, int torDnsPort, String pdnsdHost, int pdnsdPort) throws IOException, TimeoutException {
+        String debugEnabledCmd = "";
+        String debugEnabledConf = "off";
+        if (Prefs.useDebugLogging()) {
+            debugEnabledCmd = "-g";
+            debugEnabledConf = "on";
+        }
 
-        File fileConf = makePdnsdConf(mService, mService.getFilesDir(), torDnsHost, torDnsPort, pdnsdHost, pdnsdPort);
+        File fileConf = makePdnsdConf(mService, mService.getFilesDir(), torDnsHost, torDnsPort, pdnsdHost, pdnsdPort, debugEnabledConf);
 
-        String[] cmdString = {pdnsPath, "-c", fileConf.toString(), "-g", "-v2"};
+        String[] cmdString = {pdnsPath, "-c", fileConf.toString(), debugEnabledCmd, "-v2"};
         ProcessBuilder pb = new ProcessBuilder(cmdString);
         pb.redirectErrorStream(true);
         Process proc = pb.start();
