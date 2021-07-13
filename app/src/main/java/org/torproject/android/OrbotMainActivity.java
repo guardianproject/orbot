@@ -51,6 +51,8 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.jetradarmobile.snowfall.SnowfallView;
+
 import org.torproject.android.core.Languages;
 import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.core.ui.Rotate3dAnimation;
@@ -282,6 +284,10 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         if (mBtnVPN.isChecked()) sendIntentToService(ACTION_STOP_VPN);
 
         sendIntentToService(ACTION_STOP);
+
+        SnowfallView sv = findViewById(R.id.snowflake_view);
+        sv.setVisibility(View.GONE);
+        sv.stopFalling();
 
     }
 
@@ -945,12 +951,20 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 if (Prefs.beSnowflakeProxy())
                 {
                     lblStatus.setText(getString(R.string.status_activated)+"\n"
-                    + "❄❄You are a snowflake❄❄");
+                    + getString(R.string.snowflake_proxy_enabled));
+
+                    SnowfallView sv = findViewById(R.id.snowflake_view);
+                    sv.setVisibility(View.VISIBLE);
+                    sv.restartFalling();
 
                 }
                 else
                 {
                     lblStatus.setText(getString(R.string.status_activated));
+                    SnowfallView sv = findViewById(R.id.snowflake_view);
+                    sv.setVisibility(View.GONE);
+                    sv.stopFalling();
+
 
                 }
 
