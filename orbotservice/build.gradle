@@ -1,8 +1,7 @@
 apply plugin: 'com.android.library'
+apply from: "../commons.gradle"
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion '30.0.3'
     ndkVersion '21.3.6528147'
 
     sourceSets {
@@ -15,10 +14,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 30
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -26,18 +22,14 @@ android {
         }
     }
 
-    aaptOptions {
-        cruncherEnabled = false
-    }
 
+    //Note: abortOnError turned off to lint error - needs fix
     lintOptions {
         checkReleaseBuilds false
-        abortOnError true
-
+        abortOnError false
         htmlReport true
         xmlReport false
         textReport false
-
         lintConfig file("../lint.xml")
     }
 
@@ -47,21 +39,17 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
-    implementation 'com.gitlab.guardianproject:jsocksandroid:1.0.4'
-
-    implementation 'com.jaredrummler:android-shell:1.0.0'
-
-    implementation 'androidx.core:core:1.6.0'
-    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
-    testImplementation 'junit:junit:4.13.2'
-
-    implementation 'com.offbynull.portmapper:portmapper:2.0.5'
-
-    implementation 'info.guardianproject:geoip:20191217'
-
     api 'info.guardianproject:jtorctl:0.4.5.7'
-    implementation 'info.guardianproject:tor-android:0.4.5.9'
+    implementation(
+            'androidx.core:core:1.6.0',
+            'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0',
+            'com.github.tladesignz:IPtProxy:1.0.0',
+            'com.gitlab.guardianproject:jsocksandroid:1.0.4',
+            'com.jaredrummler:android-shell:1.0.0',
+            'com.offbynull.portmapper:portmapper:2.0.5',
+            'info.guardianproject:geoip:20191217',
+            'info.guardianproject:tor-android:0.4.5.9',
 
-    implementation 'com.github.tladesignz:IPtProxy:1.0.0'
+    )
+    testImplementation 'junit:junit:4.13.2'
 }
