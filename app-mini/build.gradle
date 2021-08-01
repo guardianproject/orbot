@@ -44,15 +44,3 @@ dependencies {
     )
     androidTestImplementation "tools.fastlane:screengrab:1.2.0"
 }
-
-// For each APK output variant, override version code of outputs based on ABI codes
-// ex) 'mips' -> 3xxx
-// ex) 'x86' -> 4xxx
-android.applicationVariants.all { variant ->
-    variant.outputs.each { output ->
-        def baseVersionCode = project.ext.abiCodes.get(output.getFilter(com.android.build.OutputFile.ABI))
-        if (baseVersionCode != null) {
-            output.versionCodeOverride = Integer.valueOf(baseVersionCode + variant.versionCode)
-        }
-    }
-}
