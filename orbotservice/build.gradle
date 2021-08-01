@@ -23,10 +23,9 @@ android {
     }
 
 
-    //Note: abortOnError turned off to lint error - needs fix
     lintOptions {
         checkReleaseBuilds false
-        abortOnError false
+        abortOnError true
         htmlReport true
         xmlReport false
         textReport false
