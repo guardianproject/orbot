@@ -1,5 +1,15 @@
 apply from: "../commons-device.gradle"
 
+/* gets the version name from the latest Git tag, stripping the leading v off */
+def getVersionName = { ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'describe', '--tags', '--always'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
 android {
     defaultConfig {
         applicationId "org.torproject.android"
