@@ -1388,7 +1388,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     @Override
     public IBinder onBind(Intent intent) {
-        Log.e(TAG, "onBind");
+        Log.d(TAG, "OrbotService: onBind");
         return super.onBind(intent); // invoking super class will call onRevoke() when appropriate
     }
 
