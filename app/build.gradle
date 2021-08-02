@@ -45,6 +45,12 @@ android {
             archivesBaseName = "Orbot-$versionName"
         }
     }
+
+    splits {
+        abi {
+            universalApk true
+        }
+    }
 }
 
 dependencies {
