@@ -4,16 +4,21 @@
 apply plugin: 'com.android.application'
 apply from: "../commons.gradle"
 
-ext.createKeyStoreProperties = { ->
-    def keystorePropertiesFile = rootProject.file("keystore.properties")
-    def properties = new Properties()
-    if (keystorePropertiesFile.canRead()) {
-        properties.load(new FileInputStream(keystorePropertiesFile))
-    }
-    return properties
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+if (keystorePropertiesFile.canRead()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
-
-def keystoreProperties = createKeyStoreProperties()
+//Increments versionCode by ABI type
+def abiCodeMap = ['armeabi-v7a': '1', 'arm64-v8a': '2', 'x86': '4', 'x86_64': '5']
+android.applicationVariants.all { variant ->
+    variant.outputs.each { output ->
+        def baseVersionCode = abiCodeMap.get(output.getFilter("ABI"))
+        if(baseVersionCode != null) {
+            output.versionCodeOverride = Integer.valueOf(variant.versionCode) + Integer.valueOf(baseVersionCode)
+        }
+    }
+}
 
 android {
 
