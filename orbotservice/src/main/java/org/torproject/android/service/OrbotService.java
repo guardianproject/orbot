@@ -352,11 +352,11 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 String line;
                 while ((line = reader.readLine())!=null) {
                     String[] front = line.split(" ");
-
                     //add some code to test the connection here
 
                     mFronts.put(front[0],front[1]);
                 }
+                reader.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
