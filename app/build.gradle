@@ -66,7 +66,7 @@ android {
                 libs.android.material,
                 libs.bclogic.pulsator,
                 libs.guardian.jtorctl,
-                libs.ipt.proxy\
+                libs.ipt.proxy
 
         )
         androidTestImplementation libs.fastlane.screengrab
