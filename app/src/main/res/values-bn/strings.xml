@@ -41,4 +41,26 @@
     <string name="status_shutting_down">টর সার্ভিস বন্ধ করা হচ্ছে</string>
     <string name="status_disabled">অরবট নিষ্ক্রিয় করা হয়েছে</string>
     <string name="status_activated">টর নেটওয়ার্কের সাথে সংযুক্ত হয়েছে</string>
+    <string name="project_urls">https://www.torproject.org/docs/android
+\nhttps://guardianproject.info/apps/orbot/</string>
+    <string name="tor_version">Tor: https://www.torproject.org</string>
+    <string name="project_home">প্রকল্প স্থান:</string>
+    <string name="enter_ports">পোর্ট সংখ্যা দাও</string>
+    <string name="relay_nickname">রিলে ডাক নাম</string>
+    <string name="relay_port">রিলে পোর্ট</string>
+    <string name="use_bridges">সেতু ব্যবহার করো</string>
+    <string name="strict_nodes">কঠোর শাখা</string>
+    <string name="exclude_nodes">অব্যবহৃত শাখা</string>
+    <string name="exit_nodes">বের হওয়ার শাখা</string>
+    <string name="confirm">নিশ্চিতকরণ</string>
+    <string name="deny">অস্বীকার</string>
+    <string name="allow">অনুমোদন</string>
+    <string name="captcha">ক্যাপচা</string>
+    <string name="mebibyte">মেবাইট</string>
+    <string name="kibibyte">কিবাইট</string>
+    <string name="enable">সক্রিয়</string>
+    <string name="onion">.onion</string>
+    <string name="done">সম্পন্ন!</string>
+    <string name="relaying">রিলে হচ্ছে</string>
+    <string name="relays">রিলে</string>
 </resources>
