@@ -1,0 +1,4 @@
+* ondersteuning voor OnionServices v3
+* verbeteringen aan bridge configuratie
+* zorgt ervoor dat VPN-modus wordt behandeld als "unmetered connection"
+* experimentele modus om te kunnen werken als een Snowflake proxy

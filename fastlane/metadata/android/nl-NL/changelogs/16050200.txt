@@ -1,0 +1,1 @@
+Verhelpt crash gerelateerd aan het starten van een achtergrond service
