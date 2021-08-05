@@ -1,0 +1,8 @@
+- Pagrindinis naudotojo sąsajos atnaujinimas!
+- Nauji sąrankos ir tilto konfigūravimo vedliai
+- Patobulintos VPN funkcijos
+- Ištaisyti onion / paslėptų paslaugų konfigūravimo sutrikimai
+
+ir dar daugiau...
+
+AČIŪ: pgerber, syphyr, Khsed4, BjarniRunar, Unpublished, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, arrase ir kitiems už praneštas problemas, pakeitimus ir PR

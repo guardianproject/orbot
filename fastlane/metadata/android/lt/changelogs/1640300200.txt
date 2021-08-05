@@ -1,0 +1,4 @@
+* pridėtas „Snowflake“ tilto palaikymas
+* atnaujintas Obfs4 ir „Meek“ tilto palaikymas
+* padidintas funkcijos „Prašyti naujų tiltų“ greitis
+* Atnaujinta „Tor“ versija iki 0.4.4.6

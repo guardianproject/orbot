@@ -1,0 +1,4 @@
+* „OnionServices v3“ palaikymas
+* patobulinta tilto konfigūracija
+* užtikrinama, kad VPN režimas būtų traktuojamas kaip „nematuojamas ryšys„
+* eksperimentinis režimas, leidžiantis veikti kaip „Snowflake„ tarpinis serveris (proxy)
