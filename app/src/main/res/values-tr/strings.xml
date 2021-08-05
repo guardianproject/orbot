@@ -229,4 +229,5 @@
     <string name="backup_port_exist">Hata: Bir Onion Hizmeti Zaten %s Bağlantı Noktasını Kullanıyor</string>
     <string name="be_a_snowflake_title_limit">Snowflake Vekil Sınırları</string>
     <string name="be_a_snowflake_desc_limit">Yalnızca aygıt prize takılı ve kablosuz ağa bağlıysa</string>
+    <string name="snowflake_proxy_enabled">SNOWFLAKE VEKİL MODU ETKIN</string>
 </resources>
