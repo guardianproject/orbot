@@ -1,0 +1,10 @@
+***ATENȚIE: TOATE FUNCȚIILE ROOT S-AU SCOS DIN NOUA VERSIUNE A ORBOT.***
+Vă rugăm uzați "Apps VPN Mode" de la Orbot sau Orfox în loc de proxy clar cu root.
+
+* Actualizare la Tor 0.3.1.8
+* S-a scos suportul pt. funcțiilor Root / Transproxy, deoarece au devenit
+nesigure și netestate
+* Suport optimizat pentru proxing transparent VPN și noul "Apps".
+interfață de selecție
+* Trimiteți la Obfs4proxy problema includerii datelor de licență
+* Actualizare la noile locații ale Tor Meek Bridge

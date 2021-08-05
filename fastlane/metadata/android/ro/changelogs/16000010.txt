@@ -1,0 +1,8 @@
+- Actualizare majoră a interfeței de utilizator!
+- Noi asistenți pentru configurare și configurare punte
+- Funcții VPN îmbunătățite
+- Corecții pentru blocajele de configurare a serviciilor Onion/Hidden Service
+
+și multe altele...
+
+MULȚUMIRI: pgerber, syphyr, Khsed4, BjarniRunar, Unpublished, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, arrase și alții pentru probleme, comenzi și PR-uri

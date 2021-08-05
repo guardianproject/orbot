@@ -1,0 +1,4 @@
+* Corecții majore pentru modul VPN
+* Noi punți implicite
+* Actualizat la tor 0.4.0.0.4
+* Suport pentru modul pe 64 de biți și Android Q
