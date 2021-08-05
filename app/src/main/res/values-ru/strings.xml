@@ -19,7 +19,7 @@
     <string name="menu_share_bridge">Опубликовать QR-код моста</string>
     <!--Welcome Wizard strings (DJH)-->
     <string name="wizard_details">Некоторые сведения о программе Orbot</string>
-    <string name="wizard_details_msg">Orbot — это приложение с открытым исходным кодом, которое содержит Tor, Obfs4Proxy, BadVPN, Tun2Socks и LibEvent. Оно предоставляет локальный HTTP- (8118) и SOCKS-прокси (9050) в сеть Tor. Orbot также позволяет на устройствах с правами root пересылать весь интернет-трафик через Tor.</string>
+    <string name="wizard_details_msg">Orbot - это приложение с открытым исходным кодом, которое содержит Tor, Obfs4Proxy, BadVPN, Tun2Socks и LibEvent. Оно предоставляет локальный HTTP-прокси (8118) и SOCKS-прокси (9050) в сеть Tor. Orbot также имеет возможность на рутированном устройстве отправлять весь интернет-трафик через Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Общие</string>
     <string name="pref_start_boot_title">Запускать Orbot при загрузке</string>
@@ -89,9 +89,9 @@
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
-    <string name="hidden_service_request">Приложение хочет открыть скрытый порт сервера %1$d сети Tor. Это безопасно, если вы доверяете данному приложению.</string>
+    <string name="hidden_service_request">Приложение хочет открыть onion-сервер на порту %1$s в сети Tor. Это безопасно, если вы доверяете приложению.</string>
     <string name="found_existing_tor_process">найден существующий процесс Tor…</string>
-    <string name="something_bad_happened">Произошла какая-то ошибка. Проверьте журнал.</string>
+    <string name="something_bad_happened">Произошло что-то плохое. Проверьте журнал</string>
     <string name="unable_to_read_hidden_service_name">невозможно прочитать имя скрытой службы</string>
     <string name="unable_to_start_tor">Невозможно запустить Tor:</string>
     <string name="pref_use_persistent_notifications">Всегда отображать иконку в панели задач когда Orbot подключён</string>
@@ -117,7 +117,7 @@
     <string name="pref_torrc_dialog">Пользовательский Torrc</string>
     <string name="bridges_updated">Мосты обновлены</string>
     <string name="restart_orbot_to_use_this_bridge_">Пожалуйста, перезапустите Orbot для вступления изменения в силу</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Если ваша мобильная сеть активно блокирует Tor, вы можете использовать мосты Tor для доступа к сети. Выберите один из вариантов для настройки и тестирования:</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Если ваша мобильная сеть активно блокирует Tor, вы можете использовать \'Bridge Server\' в качестве альтернативного способа входа. Выберите один из вариантов для настройки и тестирования…</string>
     <string name="get_bridges_email">Эл. почта</string>
     <string name="apps_mode">VPN-режим</string>
     <string name="send_email">Отправить письмо</string>
@@ -132,7 +132,7 @@
     <string name="done">Готово!</string>
     <string name="copy_address_to_clipboard">Скопировать адрес в буфер обмена</string>
     <string name="show_auth_cookie">Показать авторизирующие cookie</string>
-    <string name="backup_service">Резервировать службу</string>
+    <string name="backup_service">Резервное копирование службы <i>(Внимание: это может раскрыть конфигурацию вашей службы другим приложениям)</i></string>
     <string name="delete_service">Удалить службу</string>
     <string name="backup_saved_at_external_storage">Резервная копия сохранена на внешнем хранилище</string>
     <string name="backup_restored">Восстановлено из резервной копии</string>
@@ -145,7 +145,7 @@
     <string name="copy_cookie_to_clipboard">Копировать cookie в буфер обмена</string>
     <string name="auth_cookie_was_not_configured">Авторизирующие cookie не настроены</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Пожалуйста, перезапустите Orbot для вступления изменения в силу</string>
-    <string name="client_cookies">Cookies клиента</string>
+    <string name="client_cookies">Cookies для клиентов</string>
     <string name="onion">.onion</string>
     <string name="cookie_from_QR">Прочитать из QR-кода</string>
     <string name="backup_cookie">Резервировать cookie</string>
@@ -164,9 +164,9 @@
     <string name="pref_reduced_connection_padding">Сокращённая прокладка соединения</string>
     <string name="pref_reduced_connection_padding_summary">Раньше закрывает ретранслированные соединения и отправляет меньше пакетов заполнения для уменьшения объёма передаваемых данных и использования батареи</string>
     <string name="app_shortcuts">Приложения с поддержкой Tor</string>
-    <string name="testing_bridges">Тестирование соединения с Tor через мост…</string>
-    <string name="testing_bridges_success">Успешно! Мост настроен правильно.</string>
-    <string name="testing_bridges_fail">НЕУДАЧНО. Попробуйте другой вариант.</string>
+    <string name="testing_bridges">Тестирование мостового соединения с Tor....</string>
+    <string name="testing_bridges_success">Успех. Конфигурация моста в порядке!</string>
+    <string name="testing_bridges_fail">НЕ УДАЛОСЬ. Попробуйте другой вариант</string>
     <string name="bridge_direct_connect">Подключение непосредственно к Tor (лучше всего)</string>
     <string name="bridge_community">Подключение через серверы сообщества</string>
     <string name="bridge_cloud">Подключение через облачные серверы</string>
@@ -187,4 +187,46 @@
     <string name="pref_http_title">Tor HTTP</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Разрешить Wi-Fi пирам, привязанным устройствам и всем, кто может подключиться к вашему IP, доступ к Tor</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Открыть прокси на всех интерфейсах</string>
+    <string name="be_a_snowflake_desc_limit">Только когда устройство подключено к сети и находится в сети Wi-Fi</string>
+    <string name="be_a_snowflake_title_limit">Ограничения прокси-сервера Snowflake</string>
+    <string name="be_a_snowflake_desc">Разрешить другим пользователям Tor подключаться к Tor через ваше устройство</string>
+    <string name="be_a_snowflake_title">Запустите прокси-сервер Snowflake</string>
+    <string name="bridge_snowflake">Подключение через других пользователей Tor (экспериментально)</string>
+    <string name="use_qr_code">Используйте QR-код</string>
+    <string name="paste_bridges">Вставить Мосты</string>
+    <string name="in_a_browser">В браузере зайдите на сайт %s и нажмите Get Bridges &gt; Just Give Me Bridges!</string>
+    <string name="use_custom_bridges">Используйте пользовательские мосты</string>
+    <string name="configure_custom_bridges">Настройка пользовательских мостов</string>
+    <string name="custom_bridges">Индивидуальные мосты</string>
+    <string name="request_bridges_from_torproject">Запросить мосты с сайта torproject.org</string>
+    <string name="enter_characters_from_image">Введите символы с изображения</string>
+    <string name="captcha">Captcha</string>
+    <string name="solve_captcha_instruction">Решите CAPTCHA, чтобы запросить мосты.</string>
+    <string name="refresh_captcha">Обновить CAPTCHA</string>
+    <string name="request_bridges">Запросить мосты</string>
+    <string name="testing_tor_direct_success">Успех. Tor-соединение установлено!</string>
+    <string name="testing_tor_direct">Проверка соединения с Tor…</string>
+    <string name="pref_reduced_circuit_padding_summary">Используйте алгоритмы заполнения с меньшими накладными расходами, чтобы уменьшить расход данных и батареи</string>
+    <string name="pref_reduced_circuit_padding">Уменьшение заполнения цепи подключения</string>
+    <string name="pref_circuit_padding_summary">Включить защиту цепей для защиты от некоторых видов анализа трафика</string>
+    <string name="pref_circuit_padding">Прокладка цепей</string>
+    <string name="backup_port_exist">Ошибка: Onion Service уже использует порт %s</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="v3_import_auth_private">Импорт .auth_private</string>
+    <string name="v3_backup_name_hint">Имя файла резервной копии…</string>
+    <string name="v3_delete_client_authorization_confirm">Удалить авторизацию клиента</string>
+    <string name="v3_delete_client_authorization">Удалить ключ авторизации клиента</string>
+    <string name="v3_backup_key_warning">Внимание: Это может раскрыть ваш ключ другим приложениям</string>
+    <string name="v3_backup_key">Ключ авторизации клиента резервного копирования</string>
+    <string name="v3_onion">v3 Домен .onion</string>
+    <string name="v3_key_hash">x25519 Закрытый ключ в базе 32</string>
+    <string name="v3_client_auth_activity_title">v3 Авторизация клиента</string>
+    <string name="v3_client_auth">v3 Onion Service Авторизация Клиента</string>
+    <string name="v3_hosted_services">Хостинг v3 Onion Services</string>
+    <string name="v2_hidden_services">v2 Onion Services (Устаревшие)</string>
+    <string name="get_bridges_email_request">Запросить мосты по электронной почте</string>
+    <string name="mebibyte">MiB</string>
+    <string name="kibibyte">KiB</string>
+    <string name="deny">Отказать</string>
+    <string name="allow">Разрешить</string>
 </resources>
