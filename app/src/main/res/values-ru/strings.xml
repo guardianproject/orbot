@@ -229,4 +229,5 @@
     <string name="kibibyte">KiB</string>
     <string name="deny">Отказать</string>
     <string name="allow">Разрешить</string>
+    <string name="snowflake_proxy_enabled">РЕЖИМ SNOWFLAKE PROXY ВКЛЮЧЕН</string>
 </resources>
