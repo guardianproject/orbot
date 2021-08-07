@@ -113,16 +113,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         if (mApps == null)
             mApps = getApps(mPrefs);
 
-        Collections.sort(mApps, (o1, o2) -> {
-            /* Some apps start with lowercase letters and without the sorting being case
-               insensitive they'd appear at the end of the grid of apps, a position where users
-               would likely not expect to find them.
-             */
-            if (o1.isTorified() == o2.isTorified())
-                return o1.getName().compareToIgnoreCase(o2.getName());
-            if (o1.isTorified()) return -1;
-            return 1;
-        });
+        TorifiedApp.sortAppsForTorifiedAndAbc(mApps);
 
         final LayoutInflater inflater = getLayoutInflater();
 
@@ -198,7 +189,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     }
 
     public ArrayList<TorifiedApp> getApps(SharedPreferences prefs) {
-
         String tordAppString = prefs.getString(PREFS_KEY_TORIFIED, "");
 
         String[] tordApps;
@@ -210,22 +200,14 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
             tordApps[tordIdx++] = st.nextToken();
         }
         Arrays.sort(tordApps);
-
         List<ApplicationInfo> lAppInfo = pMgr.getInstalledApplications(0);
-
         Iterator<ApplicationInfo> itAppInfo = lAppInfo.iterator();
-
         ArrayList<TorifiedApp> apps = new ArrayList<>();
 
-        ApplicationInfo aInfo;
-
-        TorifiedApp app;
-
         while (itAppInfo.hasNext()) {
-            aInfo = itAppInfo.next();
+            ApplicationInfo aInfo = itAppInfo.next();
             if (!includeAppInUi(aInfo)) continue;
-            app = new TorifiedApp();
-
+            TorifiedApp app = new TorifiedApp();
 
             try {
                 PackageInfo pInfo = pMgr.getPackageInfo(aInfo.packageName, PackageManager.GET_PERMISSIONS);
