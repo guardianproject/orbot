@@ -248,7 +248,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
 
             // check if this application is allowed
-            if (Arrays.binarySearch(tordApps, app.getUsername()) >= 0) {
+            if (Arrays.binarySearch(tordApps, app.getPackageName()) >= 0) {
                 app.setTorified(true);
             } else {
                 app.setTorified(false);
@@ -268,9 +268,9 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
         for (TorifiedApp tApp : mApps) {
             if (tApp.isTorified()) {
-                tordApps.append(tApp.getUsername());
+                tordApps.append(tApp.getPackageName());
                 tordApps.append("|");
-                response.putExtra(tApp.getUsername(), true);
+                response.putExtra(tApp.getPackageName(), true);
             }
         }
 

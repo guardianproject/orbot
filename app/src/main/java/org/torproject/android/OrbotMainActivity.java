@@ -87,9 +87,12 @@ import java.net.URLDecoder;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import pl.bclogic.pulsator4droid.library.PulsatorLayout;
@@ -1115,35 +1118,36 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             drawFullDeviceVpn();
         } else {
             PackageManager packageManager = getPackageManager();
+            String[] tordApps = tordAppString.split("\\|");
+            LinearLayout container = (LinearLayout) llBoxShortcuts.getChildAt(0);
             tvVpnAppStatus.setVisibility(View.GONE);
             llBoxShortcuts.setVisibility(View.VISIBLE);
-            LinearLayout container = (LinearLayout) llBoxShortcuts.getChildAt(0);
             container.removeAllViews();
-            List<TorifiedApp> apps = TorifiedApp.getApps(this, mPrefs);
-            TorifiedApp.sortAppsForTorifiedAndAbc(apps);
-            int appsAdded = 0;
-
-            for (TorifiedApp app : apps) {
-                if (!app.isTorified()) break;
+            Map<String, ImageView> icons = new TreeMap<>();
+            for (String tordApp : tordApps) {
                 try {
-                    String pkgId = app.getPackageName();
+                    packageManager.getPackageInfo(tordApp, 0);
                     ImageView iv = new ImageView(this);
+                    ApplicationInfo applicationInfo = packageManager.getApplicationInfo(tordApp, 0);
+                    iv.setImageDrawable(packageManager.getApplicationIcon(tordApp));
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     params.setMargins(3, 3, 3, 3);
                     iv.setLayoutParams(params);
-                    iv.setImageDrawable(packageManager.getApplicationIcon(pkgId));
-                    iv.setOnClickListener(v -> openBrowser(URL_TOR_CHECK, false, pkgId));
-                    container.addView(iv);
-                    appsAdded++;
+                    iv.setOnClickListener(v -> openBrowser(URL_TOR_CHECK, false, tordApp));
+                    icons.put(packageManager.getApplicationLabel(applicationInfo).toString(), iv);
+
                 } catch (PackageManager.NameNotFoundException e) {
                     e.printStackTrace();
                 }
             }
-            if (appsAdded == 0) {
+            if (icons.size() == 0) {
                         /* if a user uninstalled or disabled all apps that were set on the device
                            then we want to have the no apps added view appear even though
                            the tordAppString variable is not empty */
                 drawFullDeviceVpn();
+            } else {
+                TreeMap<String, ImageView> sorted = new TreeMap<>(icons);
+                for (ImageView iv : sorted.values()) container.addView(iv);
             }
         }
 
