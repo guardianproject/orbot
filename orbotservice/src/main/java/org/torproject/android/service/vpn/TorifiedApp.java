@@ -112,7 +112,7 @@ public class TorifiedApp implements Comparable {
             //app.setIcon(pMgr.getApplicationIcon(aInfo));
 
             // check if this application is allowed
-            if (Arrays.binarySearch(tordApps, app.getUsername()) >= 0) {
+            if (Arrays.binarySearch(tordApps, app.getPackageName()) >= 0) {
                 app.setTorified(true);
             } else {
                 app.setTorified(false);
@@ -124,6 +124,19 @@ public class TorifiedApp implements Comparable {
         Collections.sort(apps);
 
         return apps;
+    }
+
+    public static void sortAppsForTorifiedAndAbc(List<TorifiedApp> apps) {
+        Collections.sort(apps, (o1, o2) -> {
+            /* Some apps start with lowercase letters and without the sorting being case
+               insensitive they'd appear at the end of the grid of apps, a position where users
+               would likely not expect to find them.
+             */
+            if (o1.isTorified() == o2.isTorified())
+                return o1.getName().compareToIgnoreCase(o2.getName());
+            if (o1.isTorified()) return -1;
+            return 1;
+        });
     }
 
     public boolean usesInternet() {

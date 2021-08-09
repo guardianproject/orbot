@@ -283,13 +283,43 @@
                         android:text="@string/app_shortcuts" />
 
                     <LinearLayout
-                        android:id="@+id/boxAppShortcuts"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:orientation="horizontal"
+                        android:id="@+id/llVpn"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:padding="3dp"
                         android:minHeight="200dp"
-                        android:padding="3dp" />
+                        android:weightSum="100"
+                        android:layout_height="wrap_content">
+
+                        <HorizontalScrollView
+                            android:layout_weight="95"
+                            android:layout_margin="3dp"
+                            android:id="@+id/llBoxShortcuts"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                          <LinearLayout
+                              android:orientation="horizontal"
+                              android:id="@+id/llBoxShortcutsInner"
+                              android:layout_width="match_parent"
+                              android:layout_height="match_parent"/>
+                        </HorizontalScrollView>
+
+                        <TextView
+                            android:layout_weight="95"
+                            android:id="@+id/tvVpnAppStatus"
+                            android:text="@string/full_device_vpn"
+                            android:layout_margin="3dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:layout_weight="5"
+                            android:id="@+id/ivAppVpnSettings"
+                            android:src="@drawable/ic_settings_white_24dp"
+                            android:layout_margin="3dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
                 </LinearLayout>
 
 
