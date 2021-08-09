@@ -102,9 +102,14 @@ public class CustomBridgesActivity extends AppCompatActivity implements TextWatc
             }
         });
         findViewById(R.id.btEmail).setOnClickListener(v -> {
-            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + EMAIL_TOR_BRIDGES));
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "get transport");
-            emailIntent.putExtra(Intent.EXTRA_TEXT, "get transport");
+            String requestText = "get transport";
+            String emailUrl = String.format("mailto: %s?subject=%s&body=%s" ,
+                    Uri.encode(EMAIL_TOR_BRIDGES),
+                    Uri.encode(requestText),
+                    Uri.encode(requestText));
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse(emailUrl));
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, requestText);
+            emailIntent.putExtra(Intent.EXTRA_TEXT, requestText);
             startActivity(Intent.createChooser(emailIntent, getString(R.string.send_email)));
         });
     }
