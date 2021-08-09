@@ -1,0 +1,4 @@
+* a adăugat suport pentru podul Snowflake
+* actualizat suportul pentru Obfs4 și Meek bridge
+* a fost îmbunătățită viteza funcției "Request new bridges".
+* actualizare Tor la 0.4.4.4.6

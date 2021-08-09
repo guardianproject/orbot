@@ -1,0 +1,9 @@
+- 30 % mažesnis diegimo (APK) dydis - mažiau nei 10 MB!
+ - atnaujinta į tor 0.3.3.5 (Onion Services v3 palaikymas ir daugiau)
+ - daug tor pataisymų, prijungiamas transporto dvejetainis diegimas
+ - nebėra „Polipo“ HTTP serverio, tiesiog naudojamas naujas integruotas „Tor“ palaikymas
+ - patobulintas kalbos pasirinkimas
+
+NAUJAS LEIDIMAS: prieiga prie „Išorinės saugyklos“ nuolatinei onion paslaugų atsarginei informacijai saugoti.
+
+Pilna info: https://github.com/n8fr8/orbot/releases/tag/16.0.2-RC-1

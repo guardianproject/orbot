@@ -1,0 +1,8 @@
+- Grote update van de gebruikersinterface!
+- Nieuwe wizards voor setup en bridge configuratie
+- Verbeterde VPN functies
+- Oplossingen voor crashen van Onion/Hidden service configuratie
+
+en nog veel meer...
+
+BEDANKT: pgerber, syphyr, Khsed4, BjarniRunar, Unpublished, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, arrase en anderen voor de problemen, commits, en PR's

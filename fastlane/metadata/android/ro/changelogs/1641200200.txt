@@ -1,0 +1,4 @@
+* suport pentru OnionServices v3
+* îmbunătățiri la configurarea punților
+* se asigură că modul VPN este tratat ca "conexiune nemăsurată"
+* modul experimental pentru a permite rularea ca proxy Snowflake

@@ -1,23 +1,17 @@
-Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.
+Orbot este o aplicație proxy gratuită care permite altor aplicații să utilizeze internetul în condiții de mai mare siguranță. Orbot folosește Tor pentru a vă cripta traficul de internet și apoi îl ascunde trecând printr-o serie de calculatoare din întreaga lume. Tor este un software gratuit și o rețea deschisă care vă ajută să vă apărați împotriva unei forme de supraveghere a rețelei care amenință libertatea și intimitatea personală, activitățile și relațiile de afaceri confidențiale și securitatea statului, cunoscută sub numele de analiză a traficului.
 
-*** SAMSUNG GALAXY USERS ***
-On some devices, a Samsung app is listening on the same network port that Orbot needs. Download 'SockStat' from Google Play. Look for the app on port 9050. Force stop and disable that app. You can also try to change Orbot's "Tor SOCKS" setting under the Debug section to 9051 or AUTO. You can see the fix in this video: https://www.youtube.com/watch?v=yK-nK4F67_g
-*****
+Orbot este singura aplicație care creează o conexiune la internet cu adevărat privată. După cum scrie New York Times, "atunci când o comunicare sosește din Tor, nu poți ști niciodată de unde sau de la cine vine". 
 
-Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.
+Tor a câștigat în 2012 premiul pentru pionieri al Electronic Frontier Foundation (EFF).
 
-★ ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.
-★ PRIVATE WEB SURFING: Use with Orfox, the most anonymous way to access any website, even if it’s normally blocked, monitored, or on the hidden web. Get Orfox: https://play.google.com/store/apps/details?id=info.guardianproject.orfox
-★ PRIVATE CHAT MESSAGING: Use ChatSecure with Orbot to chat confidentially with anyone, anywhere for free. Get ChatSecure: https://goo.gl/O3FfS
-★ PRIVACY FOR APPS: Any installed app can use Tor if it has a proxy feature, using the settings found here: https://goo.gl/2OA1y Use Orbot with Twitter, or try private web searching with DuckDuckGo: https://goo.gl/lgh1p
-★ PRIVACY FOR EVERYONE: Tor can help you confidentially research a competitor, get around the Facebook block at school, or circumvent a firewall to watch sports at work.
-★ PRIVACY MADE EASY: Check out our fun, interactive walkthrough: https://guardianproject.info/howto/browsefreely
-★ IT’S OFFICIAL: This is the official version of the Tor onion routing service for Android.
+★ NU ACCEPTĂ ÎNLOCUITORI: Orbot este cel mai sigur mod de a utiliza internetul pe Android. Punct. Orbot vă face să ricoșeze traficul criptat de mai multe ori prin computere din întreaga lume, în loc să vă conecteze direct, cum fac VPN-urile și proxies. Acest proces durează ceva mai mult, dar cea mai puternică protecție a confidențialității și a identității disponibilă merită așteptarea.
+★ CONFIDENȚIALITATE PENTRU APPS: Orice aplicație instalată poate folosi Tor prin intermediul funcției Orbot VPN sau, dacă are o funcție proxy, folosind setările găsite aici: https://goo.gl/2OA1y Utilizați Orbot cu Twitter sau încercați căutarea privată pe web cu DuckDuckGo: https://goo.gl/lgh1p
+★ CONFIDENȚIALITATE PENTRU TOATĂ LUMEA: Orbot împiedică pe cineva care vă urmărește conexiunea să știe ce aplicații utilizați sau ce site-uri web vizitați. Tot ceea ce poate vedea cineva care vă monitorizează traficul de rețea este faptul că utilizați Tor.
 
-***We Love Feedback***
-★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow.
-★ OPEN-SOURCE: Orbot is free software. Take a look at our source code, or join the community to make it better: https://gitweb.torproject.org/orbot.git
-★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? We’d love to hear from you! Send us an email: support@guardianproject.info
+***Ne place feedback-ul***
+★ DESPRE NOI: Guardian Project este un grup de dezvoltatori care realizează aplicații mobile sigure și coduri open-source pentru un viitor mai bun.
+★ OPEN-SOURCE: Orbot este un software liber. Aruncați o privire la codul nostru sursă sau alăturați-vă comunității pentru a-l face mai bun: https://github.com/guardianproject/orbot sau https://gitweb.torproject.org/orbot.git
+★ TRIMITEȚI-NE UN MESAJ: Ne lipsește caracteristica ta preferată? Ați găsit un bug enervant? Ne-ar face plăcere să avem vești de la tine! Trimiteți-ne un e-mail: support@guardianproject.info
 
 ***Disclaimer***
-The Guardian Project makes apps that are designed to protect your security and anonymity. The protocols that we use are widely regarded as the state of the art in security technology. While we are constantly upgrading our software to combat the latest threats and eliminate bugs, no technology is 100% foolproof. For maximum security and anonymity users must utilize best practices to keep themselves safe.  You can find a good introductory guide to these topics at https://securityinabox.org
+Guardian Project creează aplicații care sunt concepute pentru a vă proteja securitatea și anonimatul. Protocoalele pe care le folosim sunt considerate pe scară largă ca fiind la cel mai avansat nivel al tehnologiei de securitate. Deși ne actualizăm în mod constant software-ul pentru a combate cele mai recente amenințări și pentru a elimina bug-urile, nicio tehnologie nu este 100% infailibilă. Pentru o securitate și un anonimat maxime, utilizatorii trebuie să utilizeze cele mai bune practici pentru a se menține în siguranță.  Puteți găsi un bun ghid introductiv pentru aceste subiecte la https://securityinabox.org.

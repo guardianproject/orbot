@@ -1,0 +1,4 @@
+* Pagrindiniai VPN režimo pataisymai
+* Nauji numatytieji tiltai
+* Atnaujinta į tor 0.4.0.4
+* 64 bitų režimo ir „Android Q“ palaikymas

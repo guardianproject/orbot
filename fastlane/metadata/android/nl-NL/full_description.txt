@@ -1,23 +1,17 @@
-Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.
+Orbot is een gratis proxy-app die andere apps in staat stelt veiliger gebruik te maken van het internet. Orbot gebruikt Tor om je internetverkeer te versleutelen en verbergt het vervolgens door het via een reeks computers over de hele wereld te laten stuiteren. Tor is gratis software en een open netwerk dat je helpt je te verdedigen tegen een vorm van netwerkbewaking die een bedreiging vormt voor de persoonlijke vrijheid en privacy, vertrouwelijke zakelijke activiteiten en relaties, en de staatsveiligheid, bekend als verkeersanalyse.
 
-*** SAMSUNG GALAXY USERS ***
-On some devices, a Samsung app is listening on the same network port that Orbot needs. Download 'SockStat' from Google Play. Look for the app on port 9050. Force stop and disable that app. You can also try to change Orbot's "Tor SOCKS" setting under the Debug section to 9051 or AUTO. You can see the fix in this video: https://www.youtube.com/watch?v=yK-nK4F67_g
-*****
+Orbot is de enige app die een echt private internetverbinding creëert. Zoals de New York Times schrijft, "wanneer een communicatie via Tor binnenkomt, kun je nooit weten waar of van wie het afkomstig is."
 
-Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.
+Tor won in 2012 de Electronic Frontier Foundation (EFF) Pioneer Award.
 
-★ ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.
-★ PRIVATE WEB SURFING: Use with Orfox, the most anonymous way to access any website, even if it’s normally blocked, monitored, or on the hidden web. Get Orfox: https://play.google.com/store/apps/details?id=info.guardianproject.orfox
-★ PRIVATE CHAT MESSAGING: Use ChatSecure with Orbot to chat confidentially with anyone, anywhere for free. Get ChatSecure: https://goo.gl/O3FfS
-★ PRIVACY FOR APPS: Any installed app can use Tor if it has a proxy feature, using the settings found here: https://goo.gl/2OA1y Use Orbot with Twitter, or try private web searching with DuckDuckGo: https://goo.gl/lgh1p
-★ PRIVACY FOR EVERYONE: Tor can help you confidentially research a competitor, get around the Facebook block at school, or circumvent a firewall to watch sports at work.
-★ PRIVACY MADE EASY: Check out our fun, interactive walkthrough: https://guardianproject.info/howto/browsefreely
-★ IT’S OFFICIAL: This is the official version of the Tor onion routing service for Android.
+★ ACCEPTEER GEEN VERVANGERS: Orbot is de veiligste manier om het internet te gebruiken op Android. Punt uit. Orbot kaatst uw versleutelde verkeer meerdere keren door computers over de hele wereld, in plaats van u rechtstreeks te verbinden zoals bij VPN's en proxy's. Dit proces duurt iets langer, maar de sterkste privacy- en identiteitsbescherming die beschikbaar is, is het wachten waard.
+★ PRIVACY VOOR APPS: Elke geïnstalleerde app kan Tor gebruiken via de Orbot VPN-functie, of als het een proxy-functie heeft, met behulp van de instellingen die hier te vinden zijn: https://goo.gl/2OA1y Gebruik Orbot met Twitter, of probeer privé op het web te zoeken met DuckDuckGo: https://goo.gl/lgh1p
+★ PRIVACY VOOR IEDEREEN: Orbot voorkomt dat iemand die uw verbinding in de gaten houdt, weet welke apps u gebruikt of websites u bezoekt. Het enige wat iemand die je netwerkverkeer in de gaten houdt kan zien is dat je Tor gebruikt.
 
-***We Love Feedback***
-★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow.
-★ OPEN-SOURCE: Orbot is free software. Take a look at our source code, or join the community to make it better: https://gitweb.torproject.org/orbot.git
-★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? We’d love to hear from you! Send us an email: support@guardianproject.info
+***Wij houden van feedback***
+★ OVER ONS: Guardian Project is een groep ontwikkelaars die veilige mobiele apps en open-source code maken voor een betere toekomst.
+★ OPEN-SOURCE: Orbot is vrije software. Neem een kijkje in onze broncode, of sluit je aan bij de community om het beter te maken: https://github.com/guardianproject/orbot of https://gitweb.torproject.org/orbot.git
+★ MESSAGE ONS: Missen we uw favoriete functie? Een vervelende bug gevonden? We horen graag van u! Stuur ons een email: support@guardianproject.info
 
 ***Disclaimer***
-The Guardian Project makes apps that are designed to protect your security and anonymity. The protocols that we use are widely regarded as the state of the art in security technology. While we are constantly upgrading our software to combat the latest threats and eliminate bugs, no technology is 100% foolproof. For maximum security and anonymity users must utilize best practices to keep themselves safe.  You can find a good introductory guide to these topics at https://securityinabox.org
+Guardian Project maakt apps die zijn ontworpen om uw veiligheid en anonimiteit te beschermen. De protocollen die we gebruiken worden algemeen beschouwd als het neusje van de zalm op het gebied van beveiligingstechnologie. Hoewel we onze software voortdurend upgraden om de nieuwste bedreigingen te bestrijden en bugs te elimineren, is geen enkele technologie 100% waterdicht. Voor maximale veiligheid en anonimiteit moeten gebruikers gebruik maken van de beste praktijken om zichzelf veilig te houden.  U kunt een goede inleidende gids over deze onderwerpen vinden op https://securityinabox.org

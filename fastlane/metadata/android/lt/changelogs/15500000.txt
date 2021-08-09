@@ -1,0 +1,9 @@
+***ĮSPĖJIMAS: IŠ ŠIOS NAUJOS ORBOT VERSIJOS PAŠALINTOS VISOS ROOT FUNKCIJOS.***
+Vietoj skaidraus tarpinio serverio su root naudokite „Orbot“ „Apps VPN Mode“ arba „Orfox“ naršyklę.
+
+* Atnaujinti į Tor 0.3.1.8
+* Pašalintas root / Transproxy funkcijų palaikymas
+* Patobulintas VPN skaidraus tarpinio serverio ir naujos „Apps“ programėlės naudotojo sąsajos
+pasirinkimo palaikymas
+* Išspręsta Obfs4proxy licencijos info įtraukimo problema
+* Atnaujinta naujausia „Tor“ palaikymo „Meek“ tilto vieta

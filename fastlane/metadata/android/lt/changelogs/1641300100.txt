@@ -1,0 +1,3 @@
+- pašalinta „Meek“ „Cloud“ tilto parinktis, nes ji nebepalaikoma
+- patobulintas „Onion V3“ paslaugos palaikymas
+- dėl #441, pataiso programų paiešką, kad būtų galima pasirinkti programomis pagrįstą VPN

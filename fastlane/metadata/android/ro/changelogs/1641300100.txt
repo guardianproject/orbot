@@ -1,0 +1,3 @@
+- a eliminat opțiunea de punte Meek "Cloud" din cauza faptului că nu mai este susținută
+- mai multe îmbunătățiri în ceea ce privește suportul pentru serviciul Onion V3
+- pentru #441, se corectează căutarea aplicației pentru selectarea VPN bazată pe aplicație

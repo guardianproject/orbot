@@ -1,0 +1,2 @@
+* reparaties voor Bridge ondersteuning
+* bijgewerkt naar tor 0.4.1.5

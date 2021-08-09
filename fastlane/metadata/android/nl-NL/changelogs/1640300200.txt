@@ -1,0 +1,4 @@
+* toegevoegd Snowflake brug ondersteuning
+* Obfs4 en Meek bridge ondersteuning bijgewerkt
+* snelheid van "Verzoek nieuwe bruggen" functie verbeterd
+* Tor bijgewerkt naar 0.4.4.6
