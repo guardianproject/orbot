@@ -1,0 +1,11 @@
+/*
+    Applies across all modules
+ */
+android {
+    compileSdkVersion 30
+    buildToolsVersion '30.0.3'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}

@@ -1,0 +1,13 @@
+/*
+    Applies across android app module with limited capabilities: {app-mini, app-tv}
+ */
+apply from: "../commons-device.gradle"
+
+android {
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+        }
+    }
+}
