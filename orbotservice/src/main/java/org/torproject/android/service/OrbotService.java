@@ -1095,7 +1095,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     }
                 }
             }
-        } else {
+        } else { // bridges enabled:
 
             loadBridgeDefaults();
             extraLines.append("UseBridges 1").append('\n');
@@ -1125,8 +1125,11 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 builtInBridgeType = "snowflake";
             }
 
-            if (!TextUtils.isEmpty(builtInBridgeType))
+            if (!TextUtils.isEmpty(builtInBridgeType)) {
                 getBridges(builtInBridgeType, extraLines);
+                extraLines.append("PublishServerDescriptor 1\n");
+                extraLines.append("BridgeDistribution none\n");
+            }
             else {
                 String[] bridgeListLines = parseBridgesFromSettings(bridgeList);
                 int bridgeIdx = (int) Math.floor(Math.random() * ((double) bridgeListLines.length));
