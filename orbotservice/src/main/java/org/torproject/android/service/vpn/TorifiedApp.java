@@ -31,6 +31,8 @@ public class TorifiedApp implements Comparable {
     private boolean usesInternet = false;
     private int[] enabledPorts;
 
+
+
     public static ArrayList<TorifiedApp> getApps(Context context, SharedPreferences prefs) {
 
         String tordAppString = prefs.getString(PREFS_KEY_TORIFIED, "");
@@ -56,25 +58,22 @@ public class TorifiedApp implements Comparable {
 
         ApplicationInfo aInfo;
 
-        int appIdx = 0;
         TorifiedApp app;
 
         while (itAppInfo.hasNext()) {
             aInfo = itAppInfo.next();
 
             app = new TorifiedApp();
-
             try {
                 PackageInfo pInfo = pMgr.getPackageInfo(aInfo.packageName, PackageManager.GET_PERMISSIONS);
-
-                if (pInfo != null && pInfo.requestedPermissions != null) {
+                if (Arrays.binarySearch(VpnPrefs.BYPASS_VPN_PACKAGES, aInfo.packageName) >= 0) {
+                    app.setUsesInternet(false);
+                } else if (pInfo != null && pInfo.requestedPermissions != null) {
                     for (String permInfo : pInfo.requestedPermissions) {
                         if (permInfo.equals(Manifest.permission.INTERNET)) {
                             app.setUsesInternet(true);
-
                         }
                     }
-
                 }
 
 
@@ -117,8 +116,6 @@ public class TorifiedApp implements Comparable {
             } else {
                 app.setTorified(false);
             }
-
-            appIdx++;
         }
 
         Collections.sort(apps);

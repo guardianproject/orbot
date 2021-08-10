@@ -344,15 +344,16 @@ public class OrbotVpnManager implements Handler.Callback {
         for (TorifiedApp app : apps) {
             if (app.isTorified() && (!app.getPackageName().equals(mService.getPackageName()))) {
                 if (prefs.getBoolean(app.getPackageName() + OrbotConstants.APP_TOR_KEY, true)) {
-
                     builder.addAllowedApplication(app.getPackageName());
-
                 }
 
                 perAppEnabled = true;
 
             }
         }
+
+        for (String packageName : VpnPrefs.BYPASS_VPN_PACKAGES)
+            builder.addDisallowedApplication(packageName);
 
         if (!perAppEnabled)
             builder.addDisallowedApplication(mService.getPackageName());
