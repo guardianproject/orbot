@@ -39,6 +39,7 @@ import android.provider.BaseColumns;
 import android.text.TextUtils;
 import android.util.Log;
 
+import net.freehaven.tor.control.RawEventListener;
 import net.freehaven.tor.control.TorControlCommands;
 import net.freehaven.tor.control.TorControlConnection;
 
@@ -828,37 +829,49 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             @Override
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
                 torService = ((TorService.LocalBinder) iBinder).getService();
+
+                    while ((conn = torService.getTorControlConnection())==null)
+                    {
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
                 try {
-                    conn = torService.getTorControlConnection();
-                    while (conn == null) {
-                        Log.v(TAG, "Waiting for Tor Control Connection...");
-                        Thread.sleep(500);
-                        conn = torService.getTorControlConnection();
-                    }
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
                     mEventHandler = new TorEventHandler(OrbotService.this);
-                    logNotice("adding control port event handler");
+
+                ArrayList<String> events = new ArrayList<>(Arrays.asList(
+                        TorControlCommands.EVENT_OR_CONN_STATUS,
+                        TorControlCommands.EVENT_CIRCUIT_STATUS,
+                        TorControlCommands.EVENT_NOTICE_MSG,
+                        TorControlCommands.EVENT_WARN_MSG,
+                        TorControlCommands.EVENT_ERR_MSG,
+                        TorControlCommands.EVENT_BANDWIDTH_USED,
+                        TorControlCommands.EVENT_NEW_DESC,
+                        TorControlCommands.EVENT_ADDRMAP));
+                if (Prefs.useDebugLogging()) {
+                    events.add(TorControlCommands.EVENT_DEBUG_MSG);
+                    events.add(TorControlCommands.EVENT_INFO_MSG);
+                }
+                try {
                     conn.setEventHandler(mEventHandler);
-                    ArrayList<String> events = new ArrayList<>(Arrays.asList(
-                            TorControlCommands.EVENT_OR_CONN_STATUS,
-                            TorControlCommands.EVENT_CIRCUIT_STATUS,
-                            TorControlCommands.EVENT_NOTICE_MSG,
-                            TorControlCommands.EVENT_WARN_MSG,
-                            TorControlCommands.EVENT_ERR_MSG,
-                            TorControlCommands.EVENT_BANDWIDTH_USED,
-                            TorControlCommands.EVENT_NEW_DESC,
-                            TorControlCommands.EVENT_ADDRMAP));
-                    if (Prefs.useDebugLogging()) {
-                        events.add(TorControlCommands.EVENT_DEBUG_MSG);
-                        events.add(TorControlCommands.EVENT_INFO_MSG);
-                    }
                     conn.setEvents(events);
                     logNotice("SUCCESS added control port event handler");
-                    initControlConnection();
-                } catch (IOException | InterruptedException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
-                    stopTorOnError(e.getLocalizedMessage());
-                    conn = null;
                 }
+
+
+                initControlConnection();
+                    showConnectedToTorNetworkNotification();
+
             }
 
             @Override
