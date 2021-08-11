@@ -34,6 +34,7 @@ import org.torproject.android.R;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorifiedApp;
+import org.torproject.android.service.vpn.VpnPrefs;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -54,9 +55,13 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     private ListAdapter adapterApps;
     private ProgressBar progressBar;
 
-    // returns true if the given app is enabled and not orbot
+    /**
+     * @return true if the app is "enabled", not Orbot, and not in
+     * {@link org.torproject.android.service.vpn.VpnPrefs#BYPASS_VPN_PACKAGES}
+     */
     public static boolean includeAppInUi(ApplicationInfo applicationInfo) {
         if (!applicationInfo.enabled) return false;
+        if (Arrays.binarySearch(VpnPrefs.BYPASS_VPN_PACKAGES, applicationInfo.packageName) >= 0) return false;
         return !BuildConfig.APPLICATION_ID.equals(applicationInfo.packageName);
     }
 
@@ -117,7 +122,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
         final LayoutInflater inflater = getLayoutInflater();
 
-        adapterApps = new ArrayAdapter<TorifiedApp>(this, R.layout.layout_apps_item, R.id.itemtext, mApps) {
+        adapterApps = new ArrayAdapter<>(this, R.layout.layout_apps_item, R.id.itemtext, mApps) {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
