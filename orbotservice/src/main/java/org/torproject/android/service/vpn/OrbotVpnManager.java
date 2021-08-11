@@ -352,11 +352,11 @@ public class OrbotVpnManager implements Handler.Callback {
             }
         }
 
-        for (String packageName : VpnPrefs.BYPASS_VPN_PACKAGES)
-            builder.addDisallowedApplication(packageName);
-
-        if (!perAppEnabled)
+        if (!perAppEnabled) {
             builder.addDisallowedApplication(mService.getPackageName());
+            for (String packageName : VpnPrefs.BYPASS_VPN_PACKAGES)
+                builder.addDisallowedApplication(packageName);
+        }
 
     }
 
