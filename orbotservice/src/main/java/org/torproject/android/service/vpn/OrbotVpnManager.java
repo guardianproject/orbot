@@ -360,16 +360,16 @@ public class OrbotVpnManager implements Handler.Callback {
     }
 
     private void startDNS(String pdnsPath, String torDnsHost, int torDnsPort, String pdnsdHost, int pdnsdPort) throws IOException, TimeoutException {
-        String debugEnabledCmd = "";
+    //    String debugEnabledCmd = "";
         String debugEnabledConf = "off";
         if (Prefs.useDebugLogging()) {
-            debugEnabledCmd = "-g";
+      //      debugEnabledCmd = "-g";
             debugEnabledConf = "on";
         }
 
         File fileConf = makePdnsdConf(mService, mService.getFilesDir(), torDnsHost, torDnsPort, pdnsdHost, pdnsdPort, debugEnabledConf);
 
-        String[] cmdString = {pdnsPath, "-c", fileConf.toString(), debugEnabledCmd, "-v2"};
+        String[] cmdString = {pdnsPath, "-c", fileConf.toString(), "-v2"};
         ProcessBuilder pb = new ProcessBuilder(cmdString);
         pb.redirectErrorStream(true);
         Process proc = pb.start();
@@ -386,6 +386,11 @@ public class OrbotVpnManager implements Handler.Callback {
             String line;
             while ((line = br.readLine()) != null) {
                 Log.d(TAG, "pdnsd: " + line);
+            }
+
+            br = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+            while ((line = br.readLine()) != null) {
+                Log.d(TAG, "pdnsd ERROR: " + line);
             }
         }
 
