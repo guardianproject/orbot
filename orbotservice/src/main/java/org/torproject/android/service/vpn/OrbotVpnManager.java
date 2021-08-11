@@ -360,10 +360,8 @@ public class OrbotVpnManager implements Handler.Callback {
     }
 
     private void startDNS(String pdnsPath, String torDnsHost, int torDnsPort, String pdnsdHost, int pdnsdPort) throws IOException, TimeoutException {
-    //    String debugEnabledCmd = "";
         String debugEnabledConf = "off";
         if (Prefs.useDebugLogging()) {
-      //      debugEnabledCmd = "-g";
             debugEnabledConf = "on";
         }
 
