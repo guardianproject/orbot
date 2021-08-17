@@ -51,20 +51,24 @@ android {
             universalApk true
         }
     }
-}
 
-dependencies {
-    implementation(
-            project(path: ':appcore'),
-            project(path: ':intentintegrator'),
-            project(':orbotservice'),
-            'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0',
-            'com.android.volley:volley:1.2.0',
-            'com.github.apl-devs:appintro:v4.2.2',
-            'com.github.jetradarmobile:android-snowfall:1.2.1',
-            'com.github.tladesignz:IPtProxy:1.0.0',
-            'com.google.android.material:material:1.4.0',
-            'pl.bclogic:pulsator4droid:1.0.3'
-    )
-    androidTestImplementation "tools.fastlane:screengrab:1.2.0"
+    dependencies {
+        implementation(
+                project(':appcore'),
+                project(':intentintegrator'),
+                project(':orbotservice'),
+                libs.apl.appintro,
+                libs.android.snowfall,
+                libs.android.volley,
+                libs.androidx.core,
+                libs.androidx.localbroadcast,
+                libs.androidx.palette,
+                libs.android.material,
+                libs.bclogic.pulsator,
+                libs.guardian.jtorctl,
+                libs.ipt.proxy
+
+        )
+        androidTestImplementation libs.fastlane.screengrab
+    }
 }

@@ -1,0 +1,55 @@
+[versions]
+android-material-version = "1.4.0"
+android-shell-version = "1.0.0"
+android-snowfall-version = "1.2.1"
+android-volley-version = "1.2.0"
+
+androidx-appcompat-version = "1.3.1"
+androidx-constraint-layout-version = "2.1.0"
+androidx-coordinator-layout-version = "1.1.0"
+androidx-core-version = "1.6.0"
+androidx-leanback-version = "1.2.0-alpha01"
+androidx-leanback-paging-version = "1.1.0-alpha08"
+androidx-leanback-tab-version = "1.1.0-beta01"
+androidx-localbroadcast-version = "1.0.0"
+androidx-palette-version= "1.0.0"
+androidx-recyclerview-version = "1.2.1"
+
+apl-appintro-version = "v4.2.2"
+bclogic-pulsator-version = "1.0.3"
+fastlane-screengrab-version = "1.2.0"
+guardian-jsocks-version = "1.0.4"
+guardian-jtorctl-version = "0.4.5.7"
+ipt-proxy-version = "1.0.0"
+portmapper-version = "2.0.5"
+tor-android-version = "0.4.5.9"
+
+[libraries]
+android-material = { module = "com.google.android.material:material", version.ref = "android-material-version" }
+android-shell = { module = "com.jaredrummler:android-shell", version.ref = "android-shell-version" }
+android-snowfall = { module = "com.github.jetradarmobile:android-snowfall", version.ref = "android-snowfall-version" }
+android-volley = { module = "com.android.volley:volley", version.ref = "android-volley-version" }
+
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat-version" }
+androidx-constraint-layout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraint-layout-version" }
+androidx-coordinator-layout = { module = "androidx.coordinatorlayout:coordinatorlayout", version.ref = "androidx-coordinator-layout-version" }
+androidx-core = { module = "androidx.core:core", version.ref = "androidx-core-version" }
+androidx-leanback-core = { module = "androidx.leanback:leanback", version.ref = "androidx-leanback-version" }
+androidx-leanback-paging = { module = "androidx.leanback:leanback-paging", version.ref = "androidx-leanback-paging-version" }
+androidx-leanback-preferences = { module = "androidx.leanback:leanback-preference", version.ref = "androidx-leanback-version" }
+androidx-leanback-tab = { module = "androidx.leanback:leanback-tab", version.ref = "androidx-leanback-tab-version" }
+androidx-localbroadcast = { module = "androidx.localbroadcastmanager:localbroadcastmanager", version.ref = "androidx-localbroadcast-version" }
+androidx-palette = { module = "androidx.palette:palette", version.ref = "androidx-palette-version" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "androidx-recyclerview-version" }
+
+apl-appintro = { module = "com.github.apl-devs:appintro", version.ref = "apl-appintro-version" }
+bclogic-pulsator = { module = "pl.bclogic:pulsator4droid", version.ref = "bclogic-pulsator-version" }
+fastlane-screengrab = { module = "tools.fastlane:screengrab", version.ref = "fastlane-screengrab-version" }
+guardian-jsocks = { module = "com.gitlab.guardianproject:jsocksandroid", version.ref = "guardian-jsocks-version" }
+guardian-jtorctl = { module = "info.guardianproject:jtorctl", version.ref = "guardian-jtorctl-version" }
+ipt-proxy = { module = "com.github.tladesignz:IPtProxy", version.ref = "ipt-proxy-version" }
+portmapper = { module = "com.offbynull.portmapper:portmapper", version.ref = "portmapper-version" }
+tor-android = { module = "info.guardianproject:tor-android", version.ref = "tor-android-version" }
+
+[bundles]
+leanback= ["androidx-leanback-core", "androidx-leanback-paging", "androidx-leanback-preferences", "androidx-leanback-tab"]
