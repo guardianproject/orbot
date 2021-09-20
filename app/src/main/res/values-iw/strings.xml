@@ -100,4 +100,7 @@
     <string name="status_shutting_down">שירות Tor נכבה</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">טביעות אצבע, כינויים, מדינות וכתובות עבור נקודת הגישור האחרונה</string>
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">טביעות אצבע, כינויים, מדינות וכתובות להחרגה</string>
+    <string name="ports_reachable_behind_a_restrictive_firewall">פתחות נגישות מאחורי חומת אש מגבילה</string>
+    <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
+    <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
 </resources>
