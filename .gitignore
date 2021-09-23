@@ -60,7 +60,6 @@ bin
 gen
 native
 libs/jtorctl.jar
-local.properties
 builds
 external/patches/*
 obj
