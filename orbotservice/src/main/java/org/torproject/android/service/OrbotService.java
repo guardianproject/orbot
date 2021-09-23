@@ -172,7 +172,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             e.printStackTrace(new PrintStream(baos));
 
             sendCallbackLogMessage(msg + '\n' + baos.toString());
-
         } else
             sendCallbackLogMessage(msg);
 
@@ -310,12 +309,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
             stopTor();
 
-            //stop the foreground priority and make sure to remove the persistant notification
+            //stop the foreground priority and make sure to remove the persistent notification
             stopForeground(true);
 
             sendCallbackLogMessage(getString(R.string.status_disabled));
         } catch (Exception e) {
-            logNotice("An error occured stopping Tor: " + e.getMessage());
+            logNotice("An error occurred stopping Tor: " + e.getMessage());
             sendCallbackLogMessage(getString(R.string.something_bad_happened));
         }
         clearNotifications();
@@ -421,6 +420,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             }
 
             conn = null;
+        } else {
+            stopSelf();
         }
     }
 
