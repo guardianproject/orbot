@@ -32,14 +32,11 @@ import android.net.VpnService;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.IBinder;
-import android.os.Looper;
 import android.provider.BaseColumns;
 import android.text.TextUtils;
 import android.util.Log;
 
-import net.freehaven.tor.control.RawEventListener;
 import net.freehaven.tor.control.TorControlCommands;
 import net.freehaven.tor.control.TorControlConnection;
 
@@ -174,7 +171,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             e.printStackTrace(new PrintStream(baos));
 
-            sendCallbackLogMessage(msg + '\n' + new String(baos.toByteArray()));
+            sendCallbackLogMessage(msg + '\n' + baos.toString());
 
         } else
             sendCallbackLogMessage(msg);
