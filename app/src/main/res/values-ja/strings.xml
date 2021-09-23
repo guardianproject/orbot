@@ -92,7 +92,6 @@
     <string name="hidden_service_request">アプリが非公開サーバーポート %1$d をTorネットワークに開放しようとしています。信頼できるアプリであればこれは安全です。</string>
     <string name="found_existing_tor_process">Torプロセスを発見</string>
     <string name="something_bad_happened">何かが起こりました。ログを確認してください。</string>
-    <string name="unable_to_read_hidden_service_name">hidden serviceの名前読込不能</string>
     <string name="unable_to_start_tor">Torを実行できませんでした</string>
     <string name="pref_use_persistent_notifications">Orbotが接続中はアイコンを常にツールバーに表示</string>
     <string name="pref_use_persistent_notifications_title">通知を常に有効化</string>
@@ -123,7 +122,6 @@
     <string name="send_email">メール送信</string>
     <string name="vpn_default_world">世界中 (自動)</string>
     <string name="hidden_services">Hidden Services</string>
-    <string name="title_activity_hidden_services">Hidden Services</string>
     <string name="menu_hidden_services">Hidden Services</string>
     <string name="save">保存</string>
     <string name="local_port">ローカルポート</string>
@@ -131,7 +129,6 @@
     <string name="name">名前</string>
     <string name="done">完了</string>
     <string name="copy_address_to_clipboard">アドレスをクリップボードにコピー</string>
-    <string name="show_auth_cookie">Cookie 認証を非表示</string>
     <string name="backup_service">バックアップサービス</string>
     <string name="delete_service">サービスを削除</string>
     <string name="backup_saved_at_external_storage">バックアップは外部記憶装置に保存されました</string>
@@ -142,16 +139,8 @@
     <string name="confirm_service_deletion">サービス削除を確認</string>
     <string name="service_type">サービスタイプ</string>
     <string name="auth_cookie">Cookie 認証</string>
-    <string name="copy_cookie_to_clipboard">Cookie をクリップボードにコピー</string>
-    <string name="auth_cookie_was_not_configured">Authクッキーは設定されませんでした</string>
     <string name="please_restart_Orbot_to_enable_the_changes">変更を有効にするにはOrbotを再起動してください</string>
-    <string name="client_cookies">クライアント Cookie</string>
     <string name="onion">.onion</string>
-    <string name="cookie_from_QR">QRコードから読み取り</string>
-    <string name="backup_cookie">Cookie をバックアップ</string>
-    <string name="delete_cookie">Cookie を削除</string>
-    <string name="confirm_cookie_deletion">クッキー削除を確認</string>
-    <string name="hosted_services">ホスト型サービス</string>
     <string name="share_as_qr">QR でシェア</string>
     <string name="disable">無効</string>
     <string name="enable">有効</string>

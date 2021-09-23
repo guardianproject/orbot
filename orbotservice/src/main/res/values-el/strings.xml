@@ -17,7 +17,6 @@
   <string name="your_relay_settings_caused_an_exception_">Οι ρυθμίσεις αναμεταδότη σας προκάλεσαν μια εξαίρεση!</string>
     <string name="found_existing_tor_process">αναζήτηση διεργασιών Tor...</string>
   <string name="something_bad_happened">Κάτι κακό συνέβη. Ελέγξτε τις καταγραφές</string>
-    <string name="unable_to_read_hidden_service_name">αδυναμία ανάγνωσης του ονόματος της κρυφής υπηρεσίας</string>
-  <string name="unable_to_start_tor">Αδυναμία εκκίνησης του Tor:</string>
+    <string name="unable_to_start_tor">Αδυναμία εκκίνησης του Tor:</string>
     <string name="newnym">Έχετε αλλάξει επιτυχώς την ταυτότητα σας στο Tor! </string>
 </resources>

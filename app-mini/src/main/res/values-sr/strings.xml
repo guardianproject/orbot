@@ -94,8 +94,7 @@
   <string name="hidden_service_request">Апликација жели да отвори сакривен порт%1$d на серверу за Тор мрежу. Ово је сигуран потез уколико верујете апликацији.</string>
   <string name="found_existing_tor_process">нађен покренути Тор процес...</string>
   <string name="something_bad_happened">Нешто лоше се догодило. Прегледајте логове</string>
-    <string name="unable_to_read_hidden_service_name">нисам у могућности да прочитам име сакривеног сервиса</string>
-  <string name="unable_to_start_tor">Тор није у могућности да се покрене:</string>
+    <string name="unable_to_start_tor">Тор није у могућности да се покрене:</string>
     <string name="pref_use_persistent_notifications">Увек прикажи икону у тулбару када је Орбот конектован</string>
   <string name="pref_use_persistent_notifications_title">Стално укључене нотификације</string>
   <string name="pref_use_expanded_notifications">Прикажи опширно обавештење Тор излаза државе и IP-ја</string>
@@ -128,7 +127,6 @@
     <string name="send_email">Пошаљи Е-пошту</string>
   <string name="vpn_default_world">Глобално (Аутоматски)</string>
   <string name="hidden_services">Скривени Сервиси</string>
-  <string name="title_activity_hidden_services">Скривени Сервиси</string>
   <string name="menu_hidden_services">Скривени Сервиси</string>
   <string name="save">Сачувај</string>
     <string name="local_port">Локални Порт</string>
@@ -136,8 +134,7 @@
   <string name="name">Име</string>
   <string name="done">Готово !</string>
     <string name="copy_address_to_clipboard">Копирај адреса у clipboard</string>
-  <string name="show_auth_cookie">Покажите ауторизовани колачић</string>
-  <string name="backup_service">Услуга за резервне копије</string>
+    <string name="backup_service">Услуга за резервне копије</string>
   <string name="delete_service">Обриши Услугу</string>
   <string name="backup_saved_at_external_storage">Резербна копија је сачувана на спољној меморији</string>
   <string name="backup_restored">Резервна копија је обновљена</string>
@@ -147,13 +144,7 @@
   <string name="click_again_for_backup">Кликните поново за резервну копију</string>
   <string name="service_type">Тип Услуге</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Молимо покрените поново Орбот ради примењивања промена</string>
-  <string name="client_cookies">Колачићи клијента</string>
   <string name="onion">.onion</string>
-  <string name="cookie_from_QR">Прочитај са QR кода</string>
-  <string name="backup_cookie">Резервна копија колачића</string>
-  <string name="delete_cookie">Избриши колачић</string>
-  <string name="confirm_cookie_deletion">Потрврди брисање колачића</string>
-  <string name="hosted_services">Хостоване Услуге</string>
   <string name="share_as_qr">Дели као QR код</string>
   <string name="disable">Онемогући</string>
   <string name="enable">Омогући</string>

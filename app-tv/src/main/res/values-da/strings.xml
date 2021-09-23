@@ -88,8 +88,7 @@
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="found_existing_tor_process">fandt eksisterende Tor process...</string>
   <string name="something_bad_happened">Noget slemt er sket. Check loggen</string>
-    <string name="unable_to_read_hidden_service_name">ikke i stand til at læse navnet på den skjulte service</string>
-  <string name="unable_to_start_tor">Kunne ikke starte Tor:</string>
+    <string name="unable_to_start_tor">Kunne ikke starte Tor:</string>
     <string name="pref_use_persistent_notifications">Vis altid ikonet i statuslinien når Orbot er forbundet til netværket</string>
   <string name="pref_use_persistent_notifications_title">Vis altid notifikationer</string>
     <string name="set_locale_title">Sprog</string>
@@ -98,8 +97,7 @@
   <string name="get_bridges_email">Mail</string>
   <string name="activate">Aktiver</string>
   <string name="hidden_services">Skjulte tjenester</string>
-  <string name="title_activity_hidden_services">Skjulte tjenester</string>
-  <string name="menu_hidden_services">Skjulte tjenester</string>
+    <string name="menu_hidden_services">Skjulte tjenester</string>
   <string name="save">Gem</string>
   <string name="name">Navn</string>
   <string name="disable">Deaktivere</string>

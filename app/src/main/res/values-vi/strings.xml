@@ -88,7 +88,6 @@
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="found_existing_tor_process">tìm ra tiến trình hiện hành của Tor…</string>
     <string name="something_bad_happened">Có gì đó không ổn. Xin xem lại nhật ký</string>
-    <string name="unable_to_read_hidden_service_name">không thể đọc được tên dịch vụ ẩn</string>
     <string name="unable_to_start_tor">Không thể khởi động Tor được: </string>
     <string name="pref_use_persistent_notifications">Luôn giữ thông báo trong thanh trạng thái khi Orbot được kết nối</string>
     <string name="pref_use_persistent_notifications_title">Thông báo thường trực</string>
@@ -162,15 +161,7 @@
     <string name="consider_enable_battery_optimizations">Hãy cân nhắc việc bật tối ưu hoá pin</string>
     <string name="consider_disable_battery_optimizations">Hãy cân nhắc việc tắt tối ưu hoá pin</string>
     <string name="share_as_qr">Chia sẻ dưới dạng QR</string>
-    <string name="hosted_services">Dịch vụ được lưu trữ</string>
-    <string name="confirm_cookie_deletion">Xác nhận xoá cookie</string>
-    <string name="delete_cookie">Xoá cookie</string>
-    <string name="backup_cookie">Sao lưu cookie</string>
-    <string name="cookie_from_QR">Đọc từ QR</string>
     <string name="onion">.onion</string>
-    <string name="client_cookies">Cookie khách</string>
-    <string name="auth_cookie_was_not_configured">Cookie xác thực không được thiết lập</string>
-    <string name="copy_cookie_to_clipboard">Sao chép cookie vào bộ nhớ tạm</string>
     <string name="auth_cookie">Cookie xác thực</string>
     <string name="service_type">Loại dịch vụ</string>
     <string name="confirm_service_deletion">Xác nhận xoá dịch vụ</string>
@@ -182,13 +173,11 @@
     <string name="backup_saved_at_external_storage">Đã lưu bản sao lưu ở bộ nhớ ngoài</string>
     <string name="delete_service">Xoá dịch vụ</string>
     <string name="backup_service">Sao lưu dịch vụ <i>(Cảnh báo: Việc này có thể sẽ làm lộ thiết lập dịch vụ của bạn cho các ứng dụng khác)</i></string>
-    <string name="show_auth_cookie">Hiện cookie xác thực</string>
     <string name="copy_address_to_clipboard">Sao chép địa chỉ vào bộ nhớ tạm</string>
     <string name="done">Xong!</string>
     <string name="onion_port">Cổng Onion</string>
     <string name="local_port">Cổng cục bộ</string>
     <string name="menu_hidden_services">Dịch vụ Onion</string>
-    <string name="title_activity_hidden_services">Dịch vụ Onion</string>
     <string name="confirm">Xác nhận</string>
     <string name="v3_import_auth_private">Nhập .auth_private</string>
     <string name="v3_backup_name_hint">Tên tệp sao lưu…</string>
@@ -201,7 +190,6 @@
     <string name="v3_client_auth_activity_title">Uỷ quyền khách v3</string>
     <string name="v3_client_auth">Uỷ quyền khách cho dịch vụ Onion v3</string>
     <string name="v3_hosted_services">Dịch vụ Onion v3 được lưu trữ</string>
-    <string name="v2_hidden_services">Dịch vụ Onion v2 (Không được hỗ trợ nữa)</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
     <string name="refresh_apps">Làm mới các ứng dụng</string>

@@ -53,7 +53,6 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -85,22 +84,9 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     static final int NOTIFY_ID = 1;
     private static final int ERROR_NOTIFY_ID = 3;
-    private static final int HS_NOTIFY_ID = 4;
-    private static final Uri V2_HS_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers/hs");
     private static final Uri V3_ONION_SERVICES_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.v3onionservice/v3");
-    private static final Uri COOKIE_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.hiddenservices.providers.cookie/cookie");
     private static final Uri V3_CLIENT_AUTH_URI = Uri.parse("content://org.torproject.android.ui.v3onionservice.clientauth/v3auth");
     private final static String NOTIFICATION_CHANNEL_ID = "orbot_channel_1";
-    private static final String[] LEGACY_V2_ONION_SERVICE_PROJECTION = new String[]{
-            OnionService._ID,
-            OnionService.NAME,
-            OnionService.DOMAIN,
-            OnionService.PORT,
-            OnionService.AUTH_COOKIE,
-            OnionService.AUTH_COOKIE_VALUE,
-            OnionService.ONION_PORT,
-            OnionService.ENABLED,
-            OnionService.PATH};
     private static final String[] V3_ONION_SERVICE_PROJECTION = new String[]{
             OnionService._ID,
             OnionService.NAME,
@@ -110,11 +96,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             OnionService.ENABLED,
             OnionService.PATH
     };
-    private static final String[] LEGACY_COOKIE_PROJECTION = new String[]{
-            ClientCookie._ID,
-            ClientCookie.DOMAIN,
-            ClientCookie.AUTH_COOKIE_VALUE,
-            ClientCookie.ENABLED};
     private static final String[] V3_CLIENT_AUTH_PROJECTION = new String[]{
             V3ClientAuth._ID,
             V3ClientAuth.DOMAIN,
@@ -144,7 +125,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     private NotificationManager mNotificationManager = null;
     private NotificationCompat.Builder mNotifyBuilder;
     private boolean mNotificationShowing = false;
-    private File mHSBasePath, mV3OnionBasePath, mV3AuthBasePath;
+    private File mV3OnionBasePath, mV3AuthBasePath;
     private ArrayList<Bridge> alBridges = null;
 
     /**
@@ -464,10 +445,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             if (!appCacheHome.exists())
                 appCacheHome.mkdirs();
 
-            mHSBasePath = new File(getFilesDir().getAbsolutePath(), TorServiceConstants.HIDDEN_SERVICES_DIR);
-            if (!mHSBasePath.isDirectory())
-                mHSBasePath.mkdirs();
-
             mV3OnionBasePath = new File(getFilesDir().getAbsolutePath(), TorServiceConstants.ONION_SERVICES_DIR);
             if (!mV3OnionBasePath.isDirectory())
                 mV3OnionBasePath.mkdirs();
@@ -718,11 +695,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
             if (Prefs.hostOnionServicesEnabled()) {
                 try {
-                    updateLegacyV2OnionNames();
-                } catch (SecurityException se) {
-                    logNotice("unable to upload legacy v2 onion names");
-                }
-                try {
                     updateV3OnionNames();
                 } catch (SecurityException se) {
                     logNotice("unable to upload v3 onion names");
@@ -760,54 +732,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 e.printStackTrace();
             }
             onionServices.close();
-        }
-    }
-
-    private void updateLegacyV2OnionNames() throws SecurityException {
-        // Tor is running, update new .onion names at db
-        ContentResolver mCR = getApplicationContext().getContentResolver();
-        Cursor hidden_services = mCR.query(V2_HS_CONTENT_URI, LEGACY_V2_ONION_SERVICE_PROJECTION, null, null, null);
-        if (hidden_services != null) {
-            try {
-                while (hidden_services.moveToNext()) {
-                    String HSDomain = hidden_services.getString(hidden_services.getColumnIndex(OnionService.DOMAIN));
-                    int HSAuthCookie = hidden_services.getInt(hidden_services.getColumnIndex(OnionService.AUTH_COOKIE));
-                    String HSAuthCookieValue = hidden_services.getString(hidden_services.getColumnIndex(OnionService.AUTH_COOKIE_VALUE));
-                    // Update only new domains or restored from backup with auth cookie
-                    if ((HSDomain == null || HSDomain.length() < 1) || (HSAuthCookie == 1 && (HSAuthCookieValue == null || HSAuthCookieValue.length() < 1))) {
-                        String hsDirPath = new File(mHSBasePath.getAbsolutePath(), hidden_services.getString(hidden_services.getColumnIndex(OnionService.PATH))).getCanonicalPath();
-                        File file = new File(hsDirPath, "hostname");
-
-                        if (file.exists()) {
-                            ContentValues fields = new ContentValues();
-
-                            try {
-                                int id = hidden_services.getInt(hidden_services.getColumnIndex(OnionService._ID));
-                                String onionHostname = Utils.readString(new FileInputStream(file)).trim();
-                                if (HSAuthCookie == 1) {
-                                    String[] aux = onionHostname.split(" ");
-                                    onionHostname = aux[0];
-                                    fields.put(OnionService.AUTH_COOKIE_VALUE, aux[1]);
-                                }
-                                fields.put(OnionService.DOMAIN, onionHostname);
-                                mCR.update(V2_HS_CONTENT_URI, fields, OnionService._ID + "=" + id, null);
-                            } catch (FileNotFoundException e) {
-                                logException("unable to read onion hostname file", e);
-                                showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
-                            }
-                        } else {
-                            showToolbarNotification(getString(R.string.unable_to_read_hidden_service_name), HS_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
-                        }
-                    }
-                }
-
-            } catch (NumberFormatException e) {
-                Log.e(OrbotConstants.TAG, "error parsing hsport", e);
-            } catch (Exception e) {
-                Log.e(OrbotConstants.TAG, "error starting share server", e);
-            }
-
-            hidden_services.close();
         }
     }
 
@@ -1200,8 +1124,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             ContentResolver contentResolver = getApplicationContext().getContentResolver();
             addV3OnionServicesToTorrc(extraLines, contentResolver);
             addV3ClientAuthToTorrc(extraLines, contentResolver);
-            addV2HiddenServicesToTorrc(extraLines, contentResolver);
-            addV2ClientCookiesToTorrc(extraLines, contentResolver);
         }
 
         return extraLines;
@@ -1249,58 +1171,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         }
     }
 
-    private void addV2HiddenServicesToTorrc(StringBuffer torrc, ContentResolver contentResolver) {
-        try {
-            Cursor hidden_services = contentResolver.query(V2_HS_CONTENT_URI, LEGACY_V2_ONION_SERVICE_PROJECTION, OnionService.ENABLED + "=1", null, null);
-            if (hidden_services != null) {
-                try {
-                    while (hidden_services.moveToNext()) {
-                        int id = hidden_services.getInt(hidden_services.getColumnIndex(OnionService._ID));
-                        String HSname = hidden_services.getString(hidden_services.getColumnIndex(OnionService.NAME));
-                        String domain = hidden_services.getString(hidden_services.getColumnIndex(OnionService.DOMAIN));
-                        int HSLocalPort = hidden_services.getInt(hidden_services.getColumnIndex(OnionService.PORT));
-                        int HSOnionPort = hidden_services.getInt(hidden_services.getColumnIndex(OnionService.ONION_PORT));
-                        int HSAuthCookie = hidden_services.getInt(hidden_services.getColumnIndex(OnionService.AUTH_COOKIE));
-                        String path = hidden_services.getString(hidden_services.getColumnIndex(OnionService.PATH));
-
-                        // logic to fix bug where you can't have 2+ hidden services on same local port without breaking services that were configured before the bug fix
-                        if (path == null) {
-                            String newPath = "hs";
-                            if (domain == null)
-                                newPath +=UUID.randomUUID().toString();
-                            else
-                                newPath += HSLocalPort;
-
-                            ContentValues cv = new ContentValues();
-                            cv.put(OnionService.PATH, newPath);
-                            contentResolver.update(V2_HS_CONTENT_URI, cv, OnionService._ID + "=" + id, null);
-                            path = newPath;
-                        }
-
-                        String hsDirPath = new File(mHSBasePath.getAbsolutePath(), path).getCanonicalPath();
-
-
-                        debug("Adding hidden service on port: " + HSLocalPort);
-
-                        torrc.append("HiddenServiceDir" + ' ' + hsDirPath).append('\n');
-                        torrc.append("HiddenServiceVersion 2").append('\n');
-                        torrc.append("HiddenServicePort" + ' ' + HSOnionPort + " 127.0.0.1:" + HSLocalPort).append('\n');
-
-                        if (HSAuthCookie == 1)
-                            torrc.append("HiddenServiceAuthorizeClient stealth " + HSname).append('\n');
-                    }
-                } catch (NumberFormatException e) {
-                    Log.e(OrbotConstants.TAG, "error parsing hsport", e);
-                } catch (Exception e) {
-                    Log.e(OrbotConstants.TAG, "error starting share server", e);
-                }
-
-                hidden_services.close();
-            }
-        } catch (SecurityException se) {
-        }
-    }
-
     public static String buildV3ClientAuthFile(String domain, String keyHash) {
         return domain + ":descriptor:x25519:" + keyHash;
     }
@@ -1327,25 +1197,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             } catch (Exception e) {
                 Log.e(TAG, "error adding v3 client auth...");
             }
-        }
-    }
-
-    private void addV2ClientCookiesToTorrc(StringBuffer torrc, ContentResolver contentResolver) {
-        try {
-            Cursor client_cookies = contentResolver.query(COOKIE_CONTENT_URI, LEGACY_COOKIE_PROJECTION, ClientCookie.ENABLED + "=1", null, null);
-            if (client_cookies != null) {
-                try {
-                    while (client_cookies.moveToNext()) {
-                        String domain = client_cookies.getString(client_cookies.getColumnIndex(ClientCookie.DOMAIN));
-                        String cookie = client_cookies.getString(client_cookies.getColumnIndex(ClientCookie.AUTH_COOKIE_VALUE));
-                        torrc.append("HidServAuth" + ' ' + domain + ' ' + cookie).append('\n');
-                    }
-                } catch (Exception e) {
-                    Log.e(OrbotConstants.TAG, "error starting share server", e);
-                }
-                client_cookies.close();
-            }
-        } catch (SecurityException se) {
         }
     }
 
@@ -1516,8 +1367,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         public static final String PORT = "port";
         public static final String ONION_PORT = "onion_port";
         public static final String DOMAIN = "domain";
-        public static final String AUTH_COOKIE = "auth_cookie";
-        public static final String AUTH_COOKIE_VALUE = "auth_cookie_value";
         public static final String ENABLED = "enabled";
         public static final String PATH = "filepath";
     }
@@ -1528,11 +1377,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         public static final String ENABLED = "enabled";
     }
 
-    public static final class ClientCookie implements BaseColumns {
-        public static final String DOMAIN = "domain";
-        public static final String AUTH_COOKIE_VALUE = "auth_cookie_value";
-        public static final String ENABLED = "enabled";
-    }
 
     // for bridge loading from the assets default bridges.txt file
     static class Bridge {

@@ -94,15 +94,6 @@
             android:theme="@style/Theme.AppCompat" />
 
         <activity
-            android:name=".ui.hiddenservices.HiddenServicesActivity"
-            android:label="@string/title_activity_hidden_services"
-            android:theme="@style/DefaultTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".OrbotMainActivity" />
-        </activity>
-
-        <activity
             android:name=".ui.v3onionservice.OnionServiceActivity"
             android:label="@string/hidden_services"
             android:theme="@style/DefaultTheme">
@@ -117,15 +108,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".OrbotMainActivity"/>
-        </activity>
-
-        <activity
-            android:name=".ui.hiddenservices.ClientCookiesActivity"
-            android:label="@string/client_cookies"
-            android:theme="@style/DefaultTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".OrbotMainActivity" />
         </activity>
 
         <activity
@@ -146,11 +128,6 @@
             android:label="@string/use_custom_bridges" />
 
         <provider
-            android:name=".ui.hiddenservices.providers.HSContentProvider"
-            android:authorities="org.torproject.android.ui.hiddenservices.providers"
-            android:exported="false" />
-
-        <provider
             android:name=".ui.v3onionservice.OnionServiceContentProvider"
             android:authorities="org.torproject.android.ui.v3onionservice"
             android:exported="false" />
@@ -169,11 +146,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/hidden_services_paths" />
         </provider>
-
-        <provider
-            android:name=".ui.hiddenservices.providers.CookieContentProvider"
-            android:authorities="org.torproject.android.ui.hiddenservices.providers.cookie"
-            android:exported="false" />
 
         <receiver
             android:name=".service.StartTorReceiver"

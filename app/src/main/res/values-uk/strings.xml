@@ -92,7 +92,6 @@
     <string name="hidden_service_request">Застосунок хоче відкрити сервер onion на порту %1$s до мережі Tor. Це безпечно, якщо ви довіряєте застосунку.</string>
     <string name="found_existing_tor_process">знайдено наявний процес Tor…</string>
     <string name="something_bad_happened">Виникла якась помилка. Перевірте лог</string>
-    <string name="unable_to_read_hidden_service_name">неможливо прочитати ім\'я прихованої служби</string>
     <string name="unable_to_start_tor">Неможливо запустити Tor:</string>
     <string name="pref_use_persistent_notifications">Завжди показувати іконку в панелі завдань коли Orbot підключений</string>
     <string name="pref_use_persistent_notifications_title">Сповіщення про постійну роботу</string>
@@ -123,7 +122,6 @@
     <string name="send_email">Надіслати листа</string>
     <string name="vpn_default_world">Глобальний (автоматичний)</string>
     <string name="hidden_services">Приховані Послуги</string>
-    <string name="title_activity_hidden_services">Приховані Послуги</string>
     <string name="menu_hidden_services">Приховані Послуги</string>
     <string name="save">Зберегти</string>
     <string name="local_port">Місцевий Порт</string>
@@ -131,7 +129,6 @@
     <string name="name">Ім\'я</string>
     <string name="done">Зроблено!</string>
     <string name="copy_address_to_clipboard">Скопіювати адресу в буфер обміну</string>
-    <string name="show_auth_cookie">Показати авторизацію реп\'яшків</string>
     <string name="backup_service">Резервне копіювання <i>(Попередження: це може надати конфігурацію вашої служби іншим програмам)</i></string>
     <string name="delete_service">Вилучити Сервіс</string>
     <string name="backup_saved_at_external_storage">Резервна копія збережена на зовнішній пам\'яті</string>
@@ -142,16 +139,8 @@
     <string name="confirm_service_deletion">Підтвердьте видалення сервісу</string>
     <string name="service_type">Тип сервісу</string>
     <string name="auth_cookie">Авторизація реп\'яшків </string>
-    <string name="copy_cookie_to_clipboard">Копіювати реп\'яшки в буфер обміну</string>
-    <string name="auth_cookie_was_not_configured">Авторизація реп\'яшків не налаштована</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Будь ласка, перезапустіть Orbot, щоб зміни ввійшли в силу</string>
-    <string name="client_cookies">Клієнтські Cookie</string>
     <string name="onion">.onion</string>
-    <string name="cookie_from_QR">Зчитати з QR-коду</string>
-    <string name="backup_cookie">Резервне копіювання реп\'яшків</string>
-    <string name="delete_cookie">Вилучити реп\'яшки</string>
-    <string name="confirm_cookie_deletion">Підтвердити вилучення реп\'яшків</string>
-    <string name="hosted_services">Розміщені Сервіси</string>
     <string name="share_as_qr">Поділитися у виді QR-коду</string>
     <string name="disable">Вимкнути</string>
     <string name="enable">Увімкнути</string>
@@ -223,7 +212,6 @@
     <string name="v3_client_auth_activity_title">Авторизація клієнта v3</string>
     <string name="v3_client_auth">Авторизація клієнта служби Onion v3</string>
     <string name="v3_hosted_services">Хостинг служб Onion v3</string>
-    <string name="v2_hidden_services">Служби Onion v2 (застарілі)</string>
     <string name="deny">Заборонити</string>
     <string name="allow">Длзволити</string>
     <string name="backup_port_exist">Помилка: служба Onion вже використовує порт %s</string>

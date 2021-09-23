@@ -92,7 +92,6 @@
     <string name="hidden_service_request">En app vill öppna dold serverport %1$d till Tor-nätverket. Det här är säkert om du litar på appen.</string>
     <string name="found_existing_tor_process">hittade existerande Tor process…</string>
     <string name="something_bad_happened">Något dåligt hände. Kolla loggen</string>
-    <string name="unable_to_read_hidden_service_name">kan inte läsa gömda tjänstens namn</string>
     <string name="unable_to_start_tor">Kan inte starta Tor:</string>
     <string name="pref_use_persistent_notifications">Behåll alltid ikonen i verktygsfältet när Orbot är ansluten</string>
     <string name="pref_use_persistent_notifications_title">Alltid-På Notifikationer</string>
@@ -123,7 +122,6 @@
     <string name="send_email">Skicka e-post</string>
     <string name="vpn_default_world">Global (automatisk)</string>
     <string name="hidden_services">Hidden Services</string>
-    <string name="title_activity_hidden_services">Hidden Services</string>
     <string name="menu_hidden_services">Hidden Services</string>
     <string name="save">Spara</string>
     <string name="local_port">Lokal port</string>
@@ -131,7 +129,6 @@
     <string name="name">Namn</string>
     <string name="done">Klart!</string>
     <string name="copy_address_to_clipboard">Kopiera adress till urklipp</string>
-    <string name="show_auth_cookie">Visa auth kaka</string>
     <string name="backup_service">Säkerhetskopiera tjänst</string>
     <string name="delete_service">Ta bort tjänst</string>
     <string name="backup_saved_at_external_storage">Säkerhetskopiering sparad i externt lagringsutrymme</string>
@@ -142,16 +139,8 @@
     <string name="confirm_service_deletion">Bekräfta tjänst borttagning</string>
     <string name="service_type">Typ av tjänst</string>
     <string name="auth_cookie">Auth kaka</string>
-    <string name="copy_cookie_to_clipboard">Kopiera kaka till urklipp</string>
-    <string name="auth_cookie_was_not_configured">Auth kaka var inte konfigurerad</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Vänligen starta om Orbot för att aktivera ändringarna</string>
-    <string name="client_cookies">Klientkakor</string>
     <string name="onion">.onion</string>
-    <string name="cookie_from_QR">Läs från QR</string>
-    <string name="backup_cookie">Säkerhetskopiera kaka</string>
-    <string name="delete_cookie">Ta bort kaka</string>
-    <string name="confirm_cookie_deletion">Bekräfta borttagning av kaka</string>
-    <string name="hosted_services">Värdtjänster</string>
     <string name="share_as_qr">Dela som QR</string>
     <string name="disable">Inaktivera</string>
     <string name="enable">Aktivera</string>

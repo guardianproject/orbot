@@ -92,8 +92,7 @@
   <string name="hidden_service_request">有一個應用要開啟隱藏的伺服器端口 %1$d 到 Tor 網路,如果信得過此應用才進行此操作</string>
   <string name="found_existing_tor_process">發現已有 Tor 程序運行中 …</string>
   <string name="something_bad_happened">發生錯誤。檢視日誌檔</string>
-    <string name="unable_to_read_hidden_service_name">無法讀取隱藏服務的名稱</string>
-  <string name="unable_to_start_tor">無法啟動 Tor：</string>
+    <string name="unable_to_start_tor">無法啟動 Tor：</string>
     <string name="pref_use_persistent_notifications">當 Orbot 連線成功時，總是在工具列顯示它的圖示</string>
   <string name="pref_use_persistent_notifications_title">總是顯示連線通知</string>
   <string name="pref_use_expanded_notifications">在通知中顯示 Tor 出口點的國家和 IP</string>
@@ -123,7 +122,6 @@
     <string name="send_email">寄送電子信件</string>
   <string name="vpn_default_world">全域(自動)</string>
   <string name="hidden_services">隱藏服務</string>
-  <string name="title_activity_hidden_services">隱藏服務</string>
   <string name="menu_hidden_services">隱藏服務</string>
   <string name="save">儲存</string>
     <string name="local_port">本地端口</string>
@@ -131,7 +129,6 @@
   <string name="name">名稱</string>
   <string name="done">已完成!</string>
     <string name="copy_address_to_clipboard">複製地址到剪貼簿</string>
-  <string name="show_auth_cookie">顯示 auth cookie</string>
   <string name="backup_service">備份服務</string>
   <string name="delete_service">刪除服務</string>
   <string name="backup_saved_at_external_storage">備份檔儲存在外部儲存器</string>
@@ -142,16 +139,8 @@
   <string name="confirm_service_deletion">確認服務刪除</string>
     <string name="service_type">服務類型</string>
   <string name="auth_cookie">Auth cookie</string>
-  <string name="copy_cookie_to_clipboard">複製 Cookie 到剪貼簿</string>
-  <string name="auth_cookie_was_not_configured">Auth cookie 未設定</string>
   <string name="please_restart_Orbot_to_enable_the_changes">請重新啟動 Orbot 來讓設定生效。</string>
-  <string name="client_cookies">客戶 cookies</string>
   <string name="onion">.onion</string>
-  <string name="cookie_from_QR">由 QR 碼讀取</string>
-  <string name="backup_cookie">備分 cookie</string>
-  <string name="delete_cookie">刪除 cookie</string>
-  <string name="confirm_cookie_deletion">確認刪除  cookie</string>
-  <string name="hosted_services">主機的服務</string>
   <string name="share_as_qr">利用 QR 碼分享</string>
   <string name="disable">關閉</string>
   <string name="enable">啟用</string>

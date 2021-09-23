@@ -91,8 +91,7 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="found_existing_tor_process">găsit proces Tor existent...</string>
   <string name="something_bad_happened">Ceva rău s-a întâmplat. Verifică log-ul</string>
-    <string name="unable_to_read_hidden_service_name">nu am putut citi numele serviciului ascuns</string>
-  <string name="unable_to_start_tor">Nu am reuşit să pornesc Tor:</string>
+    <string name="unable_to_start_tor">Nu am reuşit să pornesc Tor:</string>
     <string name="pref_use_persistent_notifications">Arată tot timpul icoana în bară când Orbot este conectat</string>
   <string name="pref_use_persistent_notifications_title">Notificări active tot timpul</string>
   <string name="pref_use_expanded_notifications">Arată notificări extinse cu Tor exit country şi IP</string>
@@ -122,8 +121,7 @@
     <string name="activate">Activează</string>
   <string name="send_email">Trimite email</string>
   <string name="hidden_services">Servicii ascunse</string>
-  <string name="title_activity_hidden_services">Servicii ascunse</string>
-  <string name="menu_hidden_services">Servicii ascunse</string>
+    <string name="menu_hidden_services">Servicii ascunse</string>
   <string name="save">Salvează</string>
   <string name="name">Nume</string>
   <string name="done">Gata!</string>

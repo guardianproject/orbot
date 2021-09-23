@@ -17,7 +17,6 @@
   <string name="your_relay_settings_caused_an_exception_">Els paràmetres de reemissió han causat una excepció.</string>
     <string name="found_existing_tor_process">s\'ha trobat un procés Tor existent...</string>
   <string name="something_bad_happened">Ha fallat alguna cosa. Comproveu el registre</string>
-    <string name="unable_to_read_hidden_service_name">ha estat impossible llegir el nom del servei ocult</string>
-  <string name="unable_to_start_tor">Ha estat impossible iniciar Tor:</string>
+    <string name="unable_to_start_tor">Ha estat impossible iniciar Tor:</string>
     <string name="newnym">Heu canviat a una nova identitat Tor.</string>
 </resources>

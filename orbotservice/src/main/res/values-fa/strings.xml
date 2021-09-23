@@ -19,8 +19,7 @@
   <string name="your_relay_settings_caused_an_exception_">تنظیمات رله شما موجب خطا شده اند</string>
     <string name="found_existing_tor_process">یک تور درحال اجرا پیدا شد...</string>
   <string name="something_bad_happened">اتفاق بدی افتاد. وقایع ثبت شده را چک کنید</string>
-    <string name="unable_to_read_hidden_service_name">ناتوان در خواندن نام سرویس مخفی</string>
-  <string name="unable_to_start_tor">ناتوان در راه اندازی تور:</string>
+    <string name="unable_to_start_tor">ناتوان در راه اندازی تور:</string>
     <string name="newnym">شما به شناسه جدید تور منتقل شدید</string>
     <string name="updating_settings_in_tor_service">به روز رسانی تنظیمات در سرویس Tor</string>
 </resources>

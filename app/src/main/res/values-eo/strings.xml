@@ -66,8 +66,7 @@
   <string name="enter_ports">Entajpu pordojn</string>
     <string name="project_home">Retpaĝaro(j) de la Projekto:</string>
     <string name="found_existing_tor_process">trovi ekzistantan Tor-procedon…</string>
-    <string name="unable_to_read_hidden_service_name">ne eblas legi nomon de la kaŝita servo</string>
-  <string name="unable_to_start_tor">Ne eblas startigi Tor:</string>
+    <string name="unable_to_start_tor">Ne eblas startigi Tor:</string>
     <string name="set_locale_title">Lingvo</string>
   <string name="save">Konservi</string>
   <string name="name">Nomo</string>

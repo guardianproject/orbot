@@ -19,8 +19,7 @@
   <string name="your_relay_settings_caused_an_exception_">Thiết lập relay của bạn đã gây ra một vấn đề!</string>
     <string name="found_existing_tor_process">tìm ra tiến trình hiện hành của Tor...</string>
   <string name="something_bad_happened">Có gì đó không ổn. Xin xem lại nhật ký</string>
-    <string name="unable_to_read_hidden_service_name">không thể đọc được tên dịch vụ ẩn</string>
-  <string name="unable_to_start_tor">Không thể khởi động Tor được: </string>
+    <string name="unable_to_start_tor">Không thể khởi động Tor được: </string>
     <string name="newnym">Bạn đã chuyển sang một mạch Tor mới!</string>
     <string name="updating_settings_in_tor_service">đang cập nhật cài đặt dịch vụ Tor</string>
   <string name="mebibyte_per_second">MiB/s</string>

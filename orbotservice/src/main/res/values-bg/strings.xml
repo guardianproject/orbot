@@ -19,8 +19,7 @@
   <string name="your_relay_settings_caused_an_exception_">Твоите настройки за препращане предизвикаха изключение!</string>
     <string name="found_existing_tor_process">намерил си съвместим Tor проект...</string>
   <string name="something_bad_happened">Нещо лошо се случи. Проверете лога</string>
-    <string name="unable_to_read_hidden_service_name">не може да прочете име на скрита услуга</string>
-  <string name="unable_to_start_tor">Не може да стартира Тор:</string>
+    <string name="unable_to_start_tor">Не може да стартира Тор:</string>
     <string name="newnym">Сменихте своята Тор идентичност!</string>
     <string name="updating_settings_in_tor_service">обновяване на настройките в Tor услугата</string>
 </resources>

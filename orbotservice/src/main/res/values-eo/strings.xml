@@ -15,6 +15,5 @@
     <string name="couldn_t_start_tor_process_">Tor-procedo ne sukcesis stariĝi:</string>
     <string name="your_relay_settings_caused_an_exception_">Via agordo de relajso kaŭzis escepton!</string>
     <string name="found_existing_tor_process">trovi ekzistantan Tor-procedon...</string>
-    <string name="unable_to_read_hidden_service_name">ne eblas legi nomon de la kaŝita servo</string>
-  <string name="unable_to_start_tor">Ne eblas startigi Tor:</string>
+    <string name="unable_to_start_tor">Ne eblas startigi Tor:</string>
 </resources>

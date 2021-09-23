@@ -17,7 +17,6 @@
   <string name="your_relay_settings_caused_an_exception_">Ang iyong relay settings ay nag sanhi ng exception!</string>
     <string name="found_existing_tor_process"> nakakita ng umiiral na Tor process...</string>
   <string name="something_bad_happened">May nangyaring masama. Tingnan ang log</string>
-    <string name="unable_to_read_hidden_service_name">hindi mabasa ang pangalan ng tagong serbisyo</string>
-  <string name="unable_to_start_tor">Hindi masimulan ang Tor:</string>
+    <string name="unable_to_start_tor">Hindi masimulan ang Tor:</string>
     <string name="newnym">Ikaw ay nagpalit ng bagong pagkakakilanlan sa Tor!</string>
 </resources>

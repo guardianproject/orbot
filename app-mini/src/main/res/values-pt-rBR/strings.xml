@@ -96,8 +96,7 @@
   <string name="hidden_service_request">Um aplicativo precisa abrir uma porta tipo servidor escondida %1$dpara a Rede Tor. Isso é seguro se você confiar nesta aplicação.</string>
   <string name="found_existing_tor_process">procurando processos Tor existentes...</string>
   <string name="something_bad_happened">Algo ruim aconteceu. Cheque o lo</string>
-    <string name="unable_to_read_hidden_service_name">habilitar ler o nome do serviço oculto</string>
-  <string name="unable_to_start_tor">Habilitar iniciar o Tor:</string>
+    <string name="unable_to_start_tor">Habilitar iniciar o Tor:</string>
     <string name="pref_use_persistent_notifications">Sempre manter o ícone na barra de tarefas quando o Orbot está conectado</string>
   <string name="pref_use_persistent_notifications_title">Notificações Sempre Ligadas</string>
   <string name="pref_use_expanded_notifications">Mostrar notificação expandida com Tor país de saída e IP</string>
@@ -130,7 +129,6 @@
   <string name="send_email">Enviar Email</string>
   <string name="vpn_default_world">Global (Automático)</string>
   <string name="hidden_services">Serviços Ocultos</string>
-  <string name="title_activity_hidden_services">Serviços Ocultos</string>
   <string name="menu_hidden_services">Serviços Ocultos</string>
   <string name="save">Salvar</string>
     <string name="local_port">Porta Local</string>
@@ -138,8 +136,7 @@
   <string name="name">Nome</string>
   <string name="done">Feito!</string>
     <string name="copy_address_to_clipboard">Copiar para a area de transferência </string>
-  <string name="show_auth_cookie">Mostre cookie de autenticação</string>
-  <string name="backup_service">Serviço de Backup</string>
+    <string name="backup_service">Serviço de Backup</string>
   <string name="delete_service">Remover Serviço</string>
   <string name="backup_saved_at_external_storage">Backup salvo em mídia externa</string>
   <string name="backup_restored">Backup Restaurado</string>
@@ -148,7 +145,6 @@
   <string name="click_again_for_backup">Clique novamente para backup</string>
   <string name="service_type">Tipo do Serviço</string>
   <string name="auth_cookie">Cookie de autenticação</string>
-  <string name="copy_cookie_to_clipboard">Copiar cookie para a area de transferência</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Por favor reinicie Orbot para habilitar as mundanças</string>
   <string name="share_as_qr">Compartilhar como QR</string>
   <string name="disable">Desabilitar</string>

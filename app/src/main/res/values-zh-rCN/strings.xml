@@ -88,7 +88,6 @@
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="found_existing_tor_process">发现现有的Tor进程…</string>
     <string name="something_bad_happened">发生错误，请检查日志</string>
-    <string name="unable_to_read_hidden_service_name">无法读取隐藏服务名称</string>
     <string name="unable_to_start_tor">无法启动 Tor：</string>
     <string name="pref_use_persistent_notifications">Orbot 连接后始终在通知栏显示图标</string>
     <string name="pref_use_persistent_notifications_title">始终显示通知</string>
@@ -140,7 +139,6 @@
     <string name="start_tor_again_for_finish_the_process">再次启动 Tor 以完成该过程</string>
     <string name="confirm_service_deletion">确认服务删除</string>
     <string name="service_type">服务类型</string>
-    <string name="cookie_from_QR">从二维码读取</string>
     <string name="share_as_qr">以 QR 码形式分享</string>
     <string name="disable">禁用</string>
     <string name="enable">启用</string>
@@ -158,10 +156,6 @@
     <string name="full_device_vpn">全设备 VPN</string>
     <string name="vpn_disabled">VPN 已禁用</string>
     <string name="default_socks_http">SOCKS: - HTTP: -</string>
-    <string name="copy_cookie_to_clipboard">复制 cookie 到剪贴板</string>
-    <string name="backup_cookie">备份 cookie</string>
-    <string name="delete_cookie">删除 cookie</string>
-    <string name="confirm_cookie_deletion">确认 cookie 删除</string>
     <string name="pref_isolate_dest_summary">对每个目标地址使用不同的回路</string>
     <string name="refresh_apps">刷新应用程序</string>
     <string name="app_services">应用服务</string>
@@ -176,17 +170,12 @@
     <string name="pref_isolate_dest">隔离目标地址</string>
     <string name="auth_cookie">认证 cookie</string>
     <string name="create_a_backup_first">先建立一个备份</string>
-    <string name="show_auth_cookie">显示 auth cookie</string>
     <string name="onion_port">洋葱端口</string>
     <string name="menu_hidden_services">洋葱服务</string>
-    <string name="title_activity_hidden_services">洋葱服务</string>
     <string name="hidden_services">洋葱服务</string>
     <string name="hidden_service_request">一个应用程序想要在端口 %1$s上打开到 Tor 网络的洋葱服务器。如果你信任这个应用程序，这是安全的。</string>
     <string name="pref_connection_padding">连接填充</string>
-    <string name="hosted_services">托管的服务</string>
     <string name="onion">.onion 地址</string>
-    <string name="client_cookies">客户端 Cookies</string>
-    <string name="auth_cookie_was_not_configured">未配置 Auth cookie</string>
     <string name="bridge_snowflake">通过其他 Tor 对等端连接 (实验性)</string>
     <string name="use_qr_code">使用二维码</string>
     <string name="paste_bridges">粘贴网桥</string>
@@ -223,7 +212,6 @@
     <string name="v3_client_auth_activity_title">v3 客户端授权</string>
     <string name="v3_client_auth">v3 Onion 服务客户端授权</string>
     <string name="v3_hosted_services">托管的 v3 Onion 服务</string>
-    <string name="v2_hidden_services">v2 Onion 服务 (已废弃)</string>
     <string name="deny">拒绝</string>
     <string name="allow">允许</string>
     <string name="backup_port_exist">错误：一个 Onion 服务已经在使用端口 %s</string>

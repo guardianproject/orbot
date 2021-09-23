@@ -19,8 +19,7 @@
   <string name="your_relay_settings_caused_an_exception_">Vaše postavke releja su uzrokovale iznimku!</string>
     <string name="found_existing_tor_process">pronađeni postojeći Tor procesi...</string>
   <string name="something_bad_happened">Nešto loše se dogodilo. Provjerite dnevnik</string>
-    <string name="unable_to_read_hidden_service_name">nije moguće pročitati ime skrivene usluge</string>
-  <string name="unable_to_start_tor">Nije moguće pokrenuti Tor:</string>
+    <string name="unable_to_start_tor">Nije moguće pokrenuti Tor:</string>
     <string name="newnym">Prebacili ste se na nov Tor identitet!</string>
     <string name="updating_settings_in_tor_service">ažuriram postavke u Tor usluzi</string>
 </resources>

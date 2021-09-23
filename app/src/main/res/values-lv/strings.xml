@@ -88,8 +88,7 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="found_existing_tor_process">Atrada esošu Tor procesu…</string>
   <string name="something_bad_happened">Nav labi. Pārbaudiet žurnālu</string>
-    <string name="unable_to_read_hidden_service_name">Nespēj lasīt slēpta pakalpojuma nosaukumu</string>
-  <string name="unable_to_start_tor">Nevar startēt Tor:</string>
+    <string name="unable_to_start_tor">Nevar startēt Tor:</string>
     <string name="pref_use_persistent_notifications">Vienmēr paturēt ikonu rīkjoslā, kad Orbot ir savienots</string>
   <string name="pref_use_persistent_notifications_title">Vienmēr ieslēgtie paziņojumi</string>
   <string name="pref_use_expanded_notifications">Rādīt paplašinātus paziņojumus, kur norādīts IP un Tor izejas valsts</string>
@@ -116,8 +115,7 @@
     <string name="get_bridges_email">E-pasts</string>
   <string name="send_email">Nosūtīt e-pastu</string>
   <string name="hidden_services">Slēptie pakalpojumi</string>
-  <string name="title_activity_hidden_services">Slēptie pakalpojumi</string>
-  <string name="menu_hidden_services">Slēptie pakalpojumi</string>
+    <string name="menu_hidden_services">Slēptie pakalpojumi</string>
   <string name="save">Saglabāt</string>
   <string name="name">Vārds</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Lūdzu pārstartējiet Orbot, lai iespējotu izmaiņas</string>

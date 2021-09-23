@@ -12,7 +12,6 @@
     <string name="your_relay_settings_caused_an_exception_">Your relay settings caused an exception!</string>
     <string name="found_existing_tor_process">found existing Tor process&#8230;</string>
     <string name="something_bad_happened">Something bad happened. Check the log</string>
-    <string name="unable_to_read_hidden_service_name">unable to read onion service name</string>
     <string name="unable_to_start_tor">Unable to start Tor:</string>
 
     <string name="newnym">You\'ve switched to a new Tor identity!</string>

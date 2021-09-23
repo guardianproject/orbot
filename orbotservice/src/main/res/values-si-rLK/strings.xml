@@ -17,6 +17,5 @@
   <string name="your_relay_settings_caused_an_exception_">ඔබේ ප්‍රතියෝජක සිටුවම්වල ව්‍යතිරේකයක් හටගෙන ඇත!</string>
     <string name="found_existing_tor_process">පවතින Tor ක්‍රියාවලි හමුවිය...</string>
   <string name="something_bad_happened">යම් නොමනා දෙයක් සිදුවිය. ලොගය පරික්ෂා කර බලන්න </string>
-    <string name="unable_to_read_hidden_service_name">සැගවුණු සේවා නාමය කියවීමට නොහැකිය </string>
-  <string name="unable_to_start_tor">Tor ආරම්භ කිරීමට නොහැකිය:</string>
+    <string name="unable_to_start_tor">Tor ආරම්භ කිරීමට නොහැකිය:</string>
 </resources>

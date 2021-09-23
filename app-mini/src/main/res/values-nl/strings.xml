@@ -96,8 +96,7 @@
   <string name="hidden_service_request">Een app wil de verborgenserverpoort %1$d tot het Tor-netwerk openen. Dit is veilig als je de app vertrouwt.</string>
   <string name="found_existing_tor_process">bestaand Tor-proces gevonden…</string>
   <string name="something_bad_happened">Er is een fout opgetreden. Controleer de log</string>
-    <string name="unable_to_read_hidden_service_name">Kan verborgen dienst-naam niet lezen</string>
-  <string name="unable_to_start_tor">Kan Tor niet starten:</string>
+    <string name="unable_to_start_tor">Kan Tor niet starten:</string>
     <string name="pref_use_persistent_notifications">Houd icoon in taakbalk zolang Orbot verbonden is</string>
   <string name="pref_use_persistent_notifications_title">Meldingen altijd aan</string>
   <string name="pref_use_expanded_notifications">Toon uitgebreide melding met Tor-exitland en IP</string>
@@ -130,7 +129,6 @@
     <string name="send_email">E-mail versturen</string>
   <string name="vpn_default_world">Algemeen (automatisch)</string>
   <string name="hidden_services">Verborgen diensten</string>
-  <string name="title_activity_hidden_services">Verborgen diensten</string>
   <string name="menu_hidden_services">Verborgen diensten</string>
   <string name="save">Opslaan</string>
     <string name="local_port">Lokale poort</string>
@@ -138,7 +136,6 @@
   <string name="name">Naam</string>
   <string name="done">Klaar!</string>
     <string name="copy_address_to_clipboard">Adres kopiëren naar klembord</string>
-  <string name="show_auth_cookie">Authenticatiecookie tonen</string>
   <string name="backup_service">Back-updienst</string>
   <string name="delete_service">Dienst verwijderen</string>
   <string name="backup_saved_at_external_storage">Back-up opgeslagen op externe opslag</string>
@@ -149,16 +146,8 @@
   <string name="click_again_for_backup">Klik opnieuw voor back-up</string>
   <string name="service_type">Diensttype</string>
   <string name="auth_cookie">Authenticatiecookie</string>
-  <string name="copy_cookie_to_clipboard">Cookie kopiëren naar klembord</string>
-  <string name="auth_cookie_was_not_configured">Authenticatiecookie is niet ingesteld</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Herstart Orbot om de wijzigingen in te schakelen</string>
-  <string name="client_cookies">Cliëntcookies</string>
   <string name="onion">.onion</string>
-  <string name="cookie_from_QR">Lezen van QR-code</string>
-  <string name="backup_cookie">Back-up maken van cookie</string>
-  <string name="delete_cookie">Cookie verwijderen</string>
-  <string name="confirm_cookie_deletion">Bevestig verwijderen van cookie</string>
-  <string name="hosted_services">Gehoste diensten</string>
   <string name="share_as_qr">Delen als QR-code</string>
   <string name="disable">Uitschakelen</string>
   <string name="enable">Inschakelen</string>

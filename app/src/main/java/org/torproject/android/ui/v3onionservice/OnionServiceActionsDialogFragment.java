@@ -16,7 +16,6 @@ import androidx.fragment.app.DialogFragment;
 import org.torproject.android.R;
 import org.torproject.android.core.ClipboardUtils;
 import org.torproject.android.core.DiskUtils;
-import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
 
 import java.io.File;
 
@@ -88,8 +87,8 @@ public class OnionServiceActionsDialogFragment extends DialogFragment {
     private void attemptToWriteBackup(Uri outputFile) {
         String port = getArguments().getString(OnionServiceActivity.BUNDLE_KEY_PORT);
         String relativePath = getArguments().getString(OnionServiceActivity.BUNDLE_KEY_PATH);
-        BackupUtils backupUtils = new BackupUtils(getContext());
-        String backup = backupUtils.createV3ZipBackup(port, relativePath, outputFile);
+        V3BackupUtils v3BackupUtils = new V3BackupUtils(getContext());
+        String backup = v3BackupUtils.createV3ZipBackup(port, relativePath, outputFile);
         Toast.makeText(getContext(), backup != null ? R.string.backup_saved_at_external_storage : R.string.error, Toast.LENGTH_LONG).show();
         dismiss();
     }

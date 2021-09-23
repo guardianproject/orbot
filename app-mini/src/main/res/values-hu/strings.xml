@@ -96,8 +96,7 @@
   <string name="hidden_service_request">Egy app egy rejtett szerver portot %1$d nyitna a Tor hálózatra. Ez biztonságos, ha megbízik az appban.</string>
   <string name="found_existing_tor_process">létező Tor folyamat találva...</string>
   <string name="something_bad_happened">Valami rossz történt. Nézd meg a naplót.</string>
-    <string name="unable_to_read_hidden_service_name">nem olvasható a rejtett szolgáltatás neve</string>
-  <string name="unable_to_start_tor">A Tor indítása sikertelen:</string>
+    <string name="unable_to_start_tor">A Tor indítása sikertelen:</string>
     <string name="pref_use_persistent_notifications">Mindig tartsa az ikont az eszköztáron, ha az Orbot csatlakoztatva van.</string>
   <string name="pref_use_persistent_notifications_title">Mindig-bekapcsolt értesítések</string>
   <string name="pref_use_expanded_notifications">Mutassa a bővített értesítést a Tor kilépő országgal és IP-vel</string>
@@ -130,7 +129,6 @@
     <string name="send_email">Email küldése</string>
   <string name="vpn_default_world">Globális (Auto)</string>
   <string name="hidden_services">Rejtett szolgáltatások</string>
-  <string name="title_activity_hidden_services">Rejtett szolgáltatások</string>
   <string name="menu_hidden_services">Rejtett szolgáltatások</string>
   <string name="save">Mentés</string>
     <string name="local_port">Helyi Port</string>
@@ -138,7 +136,6 @@
   <string name="name">Név</string>
   <string name="done">Kész!</string>
     <string name="copy_address_to_clipboard">Cím másolása vágólapra</string>
-  <string name="show_auth_cookie">Azonosító süti megjelenítése</string>
   <string name="backup_service">Mentő szolgáltatás</string>
   <string name="delete_service">Szolgáltatás Törlése</string>
   <string name="backup_saved_at_external_storage">Külső tárhelyre mentve</string>
@@ -149,16 +146,8 @@
   <string name="click_again_for_backup">Kattintson még egyszer a mentéshez</string>
   <string name="service_type">Szolgáltatás típus</string>
   <string name="auth_cookie">Azonosító süti</string>
-  <string name="copy_cookie_to_clipboard">Süti másolása vágólapra</string>
-  <string name="auth_cookie_was_not_configured">Azonosító süti nem konfigurált</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Kérlek indítsd újra az Orbot-ot a változások engedélyezéséhez</string>
-  <string name="client_cookies">Kliens sütik</string>
   <string name="onion">.onion</string>
-  <string name="cookie_from_QR">Olvasás QR-ból</string>
-  <string name="backup_cookie">Süti mentése</string>
-  <string name="delete_cookie">Süti törlése</string>
-  <string name="confirm_cookie_deletion">Süti törlés jóváhagyása</string>
-  <string name="hosted_services">Futtatott szolgáltatások</string>
   <string name="share_as_qr">Megosztás QR-ként</string>
   <string name="disable">Kikapcsol</string>
   <string name="enable">Engedélyezés</string>

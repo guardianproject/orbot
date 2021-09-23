@@ -1,4 +1,4 @@
-package org.torproject.android.ui.hiddenservices.permissions;
+package org.torproject.android.ui.v3onionservice;
 
 import android.annotation.TargetApi;
 import android.content.Context;

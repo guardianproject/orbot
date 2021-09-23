@@ -90,7 +90,6 @@
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="found_existing_tor_process">عُثر علي عملية تور سابقة تعمل…</string>
     <string name="something_bad_happened">حصل خطأ ما. افحص السجل</string>
-    <string name="unable_to_read_hidden_service_name">غير قادر على قراءة اسم الخدمة المخفية</string>
     <string name="unable_to_start_tor">غير قادر على بدء تور:</string>
     <string name="pref_use_persistent_notifications">دائما ضع الأيقونة في شريط الأدوات عندما يكون اوربوت متصلاً</string>
     <string name="pref_use_persistent_notifications_title">تنبيهات دائمة</string>
@@ -120,7 +119,6 @@
     <string name="send_email">أرسل بريد الكتروني</string>
     <string name="vpn_default_world">شامل (تلقائي)</string>
     <string name="hidden_services">خدمات خفية</string>
-    <string name="title_activity_hidden_services">خدمات خفية</string>
     <string name="menu_hidden_services">خدمات خفية</string>
     <string name="save">حفظ</string>
     <string name="local_port">المنفذ المحلي</string>
@@ -128,7 +126,6 @@
     <string name="name">الاسم</string>
     <string name="done">تم !</string>
     <string name="copy_address_to_clipboard">نسخ العنوان إلى الحافظة</string>
-    <string name="show_auth_cookie">عرض كعكة المصادقة</string>
     <string name="backup_service">النسخ الإحتياطي للخدمة</string>
     <string name="delete_service">حذف الخدمة</string>
     <string name="backup_saved_at_external_storage">تمت عملية حفظ النسخة الإحتياطية في ذاكرة التخزين الخارجية</string>
@@ -139,16 +136,8 @@
     <string name="confirm_service_deletion">تأكيد حذف الخدمة</string>
     <string name="service_type">نوع الخدمة</string>
     <string name="auth_cookie">كعكة المصادقة</string>
-    <string name="copy_cookie_to_clipboard">نسخ الكعكة إلى الحافظة</string>
-    <string name="auth_cookie_was_not_configured">لم يتم إعداد كعكة المصادقة</string>
     <string name="please_restart_Orbot_to_enable_the_changes">الرجاء إعادة تشغيل أوربوت لتفعيل التعديلات</string>
-    <string name="client_cookies">كعكات العميل</string>
     <string name="onion">.onion</string>
-    <string name="cookie_from_QR">القراءة مِن رمز الكيو آر</string>
-    <string name="backup_cookie">النسخ الإحتياطي للكعكة</string>
-    <string name="delete_cookie">حذف الكعكة</string>
-    <string name="confirm_cookie_deletion">تأكيد إزالة الكعكة</string>
-    <string name="hosted_services">الخدمات المستضافة</string>
     <string name="share_as_qr">شارك كرمز كيو آر</string>
     <string name="disable">إلغاء</string>
     <string name="enable">تمكين</string>

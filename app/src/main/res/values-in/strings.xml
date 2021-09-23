@@ -88,7 +88,6 @@
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="found_existing_tor_process">menemukan proses Tor yang ada…</string>
     <string name="something_bad_happened">Sesuatu yang buruk terjadi. Periksa log</string>
-    <string name="unable_to_read_hidden_service_name">tidak dapat membaca nama layanan tersembunyi</string>
     <string name="unable_to_start_tor">Tidak dapat memulai Tor:</string>
     <string name="pref_use_persistent_notifications">Selalu pelihara icon dalam toolbar ketika Orbot terhubung</string>
     <string name="pref_use_persistent_notifications_title">Pemberitahuan Selalu-Hidup</string>
@@ -120,7 +119,6 @@
     <string name="done">Beres!</string>
     <string name="name">Nama</string>
     <string name="menu_hidden_services">Perkhidmatan Onion</string>
-    <string name="title_activity_hidden_services">Perkhidmatan Onion</string>
     <string name="apps_mode">Mode VPN</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>

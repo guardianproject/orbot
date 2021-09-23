@@ -19,8 +19,7 @@
   <string name="your_relay_settings_caused_an_exception_">Sənin keçid seçimlərin istisnaya səbəb oldu!</string>
     <string name="found_existing_tor_process">mövcud Tor prosesi tapıldı...</string>
   <string name="something_bad_happened">Nə isə pis bir şey oldu. Girişi yoxla</string>
-    <string name="unable_to_read_hidden_service_name">gizli xidmət adını oxumağı deaktivləşdir</string>
-  <string name="unable_to_start_tor">Tor-un başlanmasını dayandır:</string>
+    <string name="unable_to_start_tor">Tor-un başlanmasını dayandır:</string>
   <string name="newnym">Yeni Tor oxşarına qoşuldun!</string>
   <string name="updating_settings_in_tor_service">Tor xidmətində quraşdırmalar yüklənir</string>
 </resources>

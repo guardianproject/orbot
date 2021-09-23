@@ -91,8 +91,7 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="found_existing_tor_process">намерил си съвместим Tor проект...</string>
   <string name="something_bad_happened">Нещо лошо се случи. Проверете лога</string>
-    <string name="unable_to_read_hidden_service_name">не може да прочете име на скрита услуга</string>
-  <string name="unable_to_start_tor">Не може да стартира Тор:</string>
+    <string name="unable_to_start_tor">Не може да стартира Тор:</string>
     <string name="pref_use_persistent_notifications">Винаги показвай икона в тулбара когато Орбот е свързан</string>
   <string name="pref_use_persistent_notifications_title">Уведомления винаги включени</string>
   <string name="pref_use_expanded_notifications">Покажи разширена информация за Tor изходната държава и IP в лентата за известия</string>
@@ -122,8 +121,7 @@
     <string name="activate">Активирай</string>
   <string name="send_email">Изпрати имейл</string>
   <string name="hidden_services">Скрити услуги</string>
-  <string name="title_activity_hidden_services">Скрити услуги</string>
-  <string name="menu_hidden_services">Скрити услуги</string>
+    <string name="menu_hidden_services">Скрити услуги</string>
   <string name="save">Запази</string>
   <string name="name">Име</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Моля, рестартирай Orbot, за да влязат в действие промените</string>

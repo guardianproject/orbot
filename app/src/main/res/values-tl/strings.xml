@@ -86,8 +86,7 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="found_existing_tor_process"> nakakita ng umiiral na Tor process…</string>
   <string name="something_bad_happened">May nangyaring masama. Tingnan ang log</string>
-    <string name="unable_to_read_hidden_service_name">hindi mabasa ang pangalan ng tagong serbisyo</string>
-  <string name="unable_to_start_tor">Hindi masimulan ang Tor:</string>
+    <string name="unable_to_start_tor">Hindi masimulan ang Tor:</string>
     <string name="pref_use_persistent_notifications">Palaging panatilihin ang icon sa toolbar kapag ang Orbot ay naka-connect</string>
   <string name="pref_use_persistent_notifications_title">Palaging i-On ang Notifications</string>
   <string name="pref_use_expanded_notifications">Ipakita ang pinalaking notification kasama ng Tor exit country at IP</string>

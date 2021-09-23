@@ -91,8 +91,7 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="found_existing_tor_process">nájdený iný proces Tor...</string>
   <string name="something_bad_happened">Deje sa niečo zlé. Skontrolujte podrobnosti.</string>
-    <string name="unable_to_read_hidden_service_name">nemožné prečítať názov skrytej služby</string>
-  <string name="unable_to_start_tor">Nemožné spustiť Tor:</string>
+    <string name="unable_to_start_tor">Nemožné spustiť Tor:</string>
     <string name="pref_use_persistent_notifications">Vždy ponechať ikonu v stavovom riadku, keď je Orbot pripojený</string>
   <string name="pref_use_persistent_notifications_title">Vždy zapnuté upozornenia</string>
   <string name="pref_use_expanded_notifications">Zobraziť rozšírené upozornenie s výstupnou krajinou a IP adresou siete Tor</string>

@@ -20,7 +20,6 @@
     <string name="pref_reduced_circuit_padding_summary">Norėdami sumažinti duomenų ir akumuliatoriaus naudojimą, naudokite žemesnius užpildymo algoritmus</string>
     <string name="pref_circuit_padding_summary">Įgalinti grandinės užpildymą, kad būtų galima apsisaugoti nuo kai kurių srauto analizės formų</string>
     <string name="pref_isolate_dest_summary">Kiekvienam paskirties adresui naudoti skirtingą grandinę</string>
-    <string name="hosted_services">Patalpintos paslaugos</string>
     <string name="backup_port_exist">Klaida: „Onion Service“ jau naudoja prievadą %s</string>
     <string name="name">Pavadinimas</string>
     <string name="v3_hosted_services">„v3 Onion Services“ priegloba</string>
@@ -38,7 +37,6 @@
     <string name="v3_key_hash">x25519 privatus raktas 32 bazėje</string>
     <string name="bridge_snowflake">Prisijungti per kitus „Tor“ sujungimus (eksperimentinis)</string>
     <string name="solve_captcha_instruction">Išspręskite CAPTCHA, kad galėtumėte prašyti tiltų.</string>
-    <string name="unable_to_read_hidden_service_name">nepavyksta perskaityti onion paslaugos pavadinimo</string>
     <string name="ports_reachable_behind_a_restrictive_firewall">Prievadai, pasiekiami už ribojančiosios ugniasienės</string>
     <string name="listening_port_for_your_tor_relay">„Tor“ relės klausymo prievadas</string>
     <string name="v3_client_auth">v3 „Onion Service“ kliento autorizavimas</string>
@@ -46,7 +44,6 @@
     <string name="bridge_direct_connect">Prisijungti tiesiogiai prie „Tor“ (geriausia)</string>
     <string name="testing_bridges_success">Sėkmė. Tilto konfigūracija gera!</string>
     <string name="testing_bridges">Tikrinamas tilto prijungimas prie „Tor“….</string>
-    <string name="auth_cookie_was_not_configured">Auth slapukas nebuvo sukonfigūruotas</string>
     <string name="backup_saved_at_external_storage">Atsarginė kopija išsaugota išorinėje saugykloje</string>
     <string name="updating_settings_in_tor_service">atnaujinami „Tor“ paslaugos nustatymai</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Atidaryti įgaliotąjį serverį visose sąsajose</string>
@@ -54,7 +51,6 @@
     <string name="use_only_these_specified_nodes">Naudoti *tik* šiuos nurodytus mazgus</string>
     <string name="v3_delete_client_authorization">Ištrinti kliento autorizavimo raktą</string>
     <string name="v3_backup_key">Padaryti kliento autorizavimo rakto atsarginę kopiją</string>
-    <string name="v2_hidden_services">v2 „Onion Services“ (nebenaudojama)</string>
     <string name="request_bridges_from_torproject">Prašyti tiltų iš torproject.org</string>
     <string name="enter_characters_from_image">Įveskite simbolius iš vaizdo</string>
     <string name="testing_tor_direct">Bandomas ryšys su „Tor“…</string>
@@ -65,7 +61,6 @@
     <string name="testing_bridges_fail">NEPAVYKO. Išbandykite kitą parinktį</string>
     <string name="consider_enable_battery_optimizations">Apsvarstykite galimybę įjungti baterijos optimizavimą</string>
     <string name="consider_disable_battery_optimizations">Apsvarstykite galimybę išjungti baterijos optimizavimą</string>
-    <string name="copy_cookie_to_clipboard">Kopijuoti slapuką į iškarpinę</string>
     <string name="create_a_backup_first">Pirmiausia sukurkite atsarginę kopiją</string>
     <string name="copy_address_to_clipboard">Kopijuoti adresą į iškarpinę</string>
     <string name="unable_to_start_tor">Nepavyko paleisti „Tor“:</string>
@@ -89,10 +84,7 @@
     <string name="pref_reduced_connection_padding">Sumažintas ryšio užpildymas</string>
     <string name="pref_isolate_dest">Išskirti paskirties adresus</string>
     <string name="share_as_qr">Bendrinti kaip QR</string>
-    <string name="confirm_cookie_deletion">Patvirtinti slapuko ištrynimą</string>
-    <string name="cookie_from_QR">Skaityti iš QR</string>
     <string name="confirm_service_deletion">Patvirtinti paslaugos ištrynimą</string>
-    <string name="show_auth_cookie">Rodyti auth slapuką</string>
     <string name="pref_torrc_title">„Torrc“ pasirinktinė konfigūracija</string>
     <string name="pref_dnsport_dialog">DNS prievado konfigūracija</string>
     <string name="pref_dnsport_title">„Tor“ DNS prievadas</string>
@@ -133,9 +125,6 @@
     <string name="trouble_connecting">Nepavyksta prisijungti\?</string>
     <string name="app_shortcuts">„Tor“ įgalintos programos</string>
     <string name="pref_connection_padding">Ryšio užpildymas</string>
-    <string name="delete_cookie">Ištrinti slapuką</string>
-    <string name="backup_cookie">Atsarginės kopijos slapukas</string>
-    <string name="client_cookies">Kliento slapukai</string>
     <string name="auth_cookie">Auth slapukas</string>
     <string name="service_type">Paslaugos tipas</string>
     <string name="restore_backup">Atkurti atsarginę kopiją</string>
@@ -144,7 +133,6 @@
     <string name="onion_port">Onion prievadas</string>
     <string name="local_port">Vietinis prievadas</string>
     <string name="menu_hidden_services">Onion paslaugos</string>
-    <string name="title_activity_hidden_services">Onion paslaugos</string>
     <string name="hidden_services">Onion paslaugos</string>
     <string name="vpn_default_world">Visuotinis (automatinis)</string>
     <string name="send_email">Siųsti el. laišką</string>

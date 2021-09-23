@@ -58,7 +58,6 @@
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="found_existing_tor_process">processo Tor existente foi encontrado…</string>
     <string name="something_bad_happened">Aconteceu algo de mau. Verifique o registo de eventos</string>
-    <string name="unable_to_read_hidden_service_name">não é possível ler o nome do serviço ocultado</string>
     <string name="unable_to_start_tor">Não é possível iniciar o Tor:</string>
     <string name="pref_use_persistent_notifications_title">Notificações Sempre Ativadas</string>
     <string name="pref_use_expanded_notifications_title">Notificações Estendidas</string>
@@ -71,7 +70,6 @@
     <string name="get_bridges_email">Correio Eletrônico</string>
     <string name="send_email">Enviar Mensagem</string>
     <string name="hidden_services">Serviços ocultos</string>
-    <string name="title_activity_hidden_services">Serviços ocultos</string>
     <string name="menu_hidden_services">Serviços ocultos</string>
     <string name="save">Guardar</string>
     <string name="name">Nome</string>
@@ -96,14 +94,7 @@
     <string name="pref_isolate_dest">Isolar os endereços de destino</string>
     <string name="consider_enable_battery_optimizations">Considere a possibilidade de ativar otimizações de bateria</string>
     <string name="consider_disable_battery_optimizations">Considere a possibilidade de desativar otimizações de bateria</string>
-    <string name="hosted_services">Serviços Hospedados</string>
-    <string name="confirm_cookie_deletion">Confirmar eliminação de cookies</string>
-    <string name="delete_cookie">Eliminar cookie</string>
-    <string name="backup_cookie">Cookie de backup</string>
-    <string name="cookie_from_QR">Ler do QR</string>
     <string name="onion">.onion</string>
-    <string name="client_cookies">Cookie dos Clientes</string>
-    <string name="auth_cookie_was_not_configured">O cookie de autenticação não foi configurado</string>
     <string name="start_tor_again_for_finish_the_process">Reiniciar o Tor para terminar o processo</string>
     <string name="pref_http_dialog">Configuração da Porta HTTP</string>
     <string name="pref_http_summary">Porta em que o Tor oferece o seu proxy HTTP (predefinição: 8118 ou 0 para desativar)</string>
@@ -121,7 +112,6 @@
     <string name="app_shortcuts">Aplicações ativadas para o Tor</string>
     <string name="share_as_qr">Compartilhar como QR</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Por favor reinicie Orbot para ativar as mundanças</string>
-    <string name="copy_cookie_to_clipboard">Copiar cookie para a area de transferência</string>
     <string name="auth_cookie">Cookie de autenticação</string>
     <string name="service_type">Tipo do Serviço</string>
     <string name="confirm_service_deletion">Confirmar a remoção do serviço</string>
@@ -131,7 +121,6 @@
     <string name="backup_saved_at_external_storage">Backup gravado em mídia externa</string>
     <string name="delete_service">Remover Serviço</string>
     <string name="backup_service">Serviço de Backup <i>(Aviso: Isso pode expor a sua configuração de serviço para as outras apps)</i></string>
-    <string name="show_auth_cookie">Mostre cookie de autenticação</string>
     <string name="copy_address_to_clipboard">Copiar para a area de transferência</string>
     <string name="onion_port">Porta Onion</string>
     <string name="local_port">Porta Local</string>
@@ -221,7 +210,6 @@
     <string name="v3_client_auth_activity_title">Autorização v3 do cliente</string>
     <string name="v3_client_auth">Autorização do cliente do serviço Onion v3</string>
     <string name="v3_hosted_services">Serviços Onion v3 hospedados</string>
-    <string name="v2_hidden_services">v2 Onion Services (Descontinuado)</string>
     <string name="get_bridges_email_request">Solicite Pontes através do E-mail</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>

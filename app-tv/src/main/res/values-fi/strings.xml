@@ -91,8 +91,7 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="found_existing_tor_process">löytyi olemassaoleva Tor-prosessi...</string>
   <string name="something_bad_happened">Jotain pahaa tapahtui. Tarkista loki</string>
-  <string name="unable_to_read_hidden_service_name">piilopalvelunimen lukeminen epäonnistui</string>
-  <string name="unable_to_start_tor">Torin käynnistys epäonnistui:</string>
+    <string name="unable_to_start_tor">Torin käynnistys epäonnistui:</string>
   <string name="pref_use_persistent_notifications">Pidä kuvake aina työkalupalkissa, kun Orbot on yhdistetty</string>
   <string name="pref_use_persistent_notifications_title">Ilmoitukset aina käytössä</string>
   <string name="pref_use_expanded_notifications">Näytä laajennettu ilmoitus (Torin ulostulon maa ja IP)</string>
@@ -122,8 +121,7 @@
     <string name="activate">Ota käyttöön</string>
   <string name="send_email">Lähetä sähköpostia</string>
   <string name="hidden_services">Piilopalvelut</string>
-  <string name="title_activity_hidden_services">Piilopalvelut</string>
-  <string name="menu_hidden_services">Piilopalvelut</string>
+    <string name="menu_hidden_services">Piilopalvelut</string>
   <string name="save">Tallenna</string>
   <string name="name">Nimi</string>
   <string name="done">Valmis!</string>

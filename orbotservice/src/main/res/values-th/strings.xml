@@ -14,6 +14,5 @@
     <string name="your_reachableaddresses_settings_caused_an_exception_">การตั้งค่า ReachableAddresses ของคุณทำให้เกิดข้อผิดพลาด</string>
   <string name="your_relay_settings_caused_an_exception_">การตั้งค่ารีเลย์ของคุณทำให้เกิดข้อผิดพลาด</string>
     <string name="something_bad_happened">เกิดอะไรไม่ดีสักอย่าง ให้ตรวจดูจากปูม</string>
-    <string name="unable_to_read_hidden_service_name">ไม่สามารถอ่านชื่อของบริการไม่เปิดเผย</string>
-  <string name="unable_to_start_tor">ไม่สามารถเริ่ม Tor</string>
+    <string name="unable_to_start_tor">ไม่สามารถเริ่ม Tor</string>
 </resources>

@@ -91,8 +91,7 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="found_existing_tor_process">pronađeni postojeći Tor procesi...</string>
   <string name="something_bad_happened">Nešto loše se dogodilo. Provjerite dnevnik</string>
-  <string name="unable_to_read_hidden_service_name">nije moguće pročitati ime skrivene usluge</string>
-  <string name="unable_to_start_tor">Nije moguće pokrenuti Tor:</string>
+    <string name="unable_to_start_tor">Nije moguće pokrenuti Tor:</string>
   <string name="pref_use_persistent_notifications">Uvjek drži ikonu na alatnoj traci kad je Orbot spojen</string>
   <string name="pref_use_persistent_notifications_title">Obavijesti o stalnoj pokrenutosti</string>
   <string name="pref_use_expanded_notifications">Prikaži proširene obavijesti s Tor izlaznom državom i IP-em</string>

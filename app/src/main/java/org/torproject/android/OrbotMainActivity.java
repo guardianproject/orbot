@@ -15,9 +15,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.net.Uri;
 import android.net.VpnService;
 import android.os.Build;
@@ -39,7 +37,6 @@ import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,7 +46,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -65,15 +61,10 @@ import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.Utils;
-import org.torproject.android.service.vpn.TorifiedApp;
 import org.torproject.android.service.vpn.VpnPrefs;
 import org.torproject.android.ui.AppManagerActivity;
 import org.torproject.android.ui.dialog.AboutDialogFragment;
-import org.torproject.android.ui.hiddenservices.ClientCookiesActivity;
-import org.torproject.android.ui.hiddenservices.HiddenServicesActivity;
-import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
-import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
-import org.torproject.android.ui.hiddenservices.providers.HSContentProvider;
+import org.torproject.android.ui.v3onionservice.PermissionManager;
 import org.torproject.android.ui.onboarding.BridgeWizardActivity;
 import org.torproject.android.ui.onboarding.OnboardingActivity;
 import org.torproject.android.ui.v3onionservice.OnionServiceContentProvider;
@@ -87,17 +78,12 @@ import java.net.URLDecoder;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.StringTokenizer;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 
 import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
-import static androidx.core.content.FileProvider.getUriForFile;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP;
@@ -111,7 +97,6 @@ import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
 
 public class OrbotMainActivity extends AppCompatActivity implements OrbotConstants {
 
-    private static final String INTENT_ACTION_REQUEST_HIDDEN_SERVICE = "org.torproject.android.REQUEST_HS_PORT";
     private static final String INTENT_ACTION_REQUEST_V3_ONION_SERVICE = "org.torproject.android.REQUEST_V3_ONION_SERVICE";
     private static final String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";
     private static final int REQUEST_VPN = 8888;
@@ -217,26 +202,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private SharedPreferences mPrefs = null;
     private boolean autoStartFromIntent = false;
 
-    private void migratePreferences() {
-        String hsPortString = mPrefs.getString("pref_hs_ports", "");
-        if (hsPortString.length() > 0) {
-            StringTokenizer st = new StringTokenizer(hsPortString, ",");
-            ContentResolver cr = getContentResolver();
-            while (st.hasMoreTokens()) {
-                int hsPort = Integer.parseInt(st.nextToken().split(" ")[0]);
-                ContentValues fields = new ContentValues();
-                fields.put("name", hsPort);
-                fields.put("port", hsPort);
-                fields.put("onion_port", hsPort);
-                cr.insert(HSContentProvider.CONTENT_URI, fields);
-            }
-
-            Editor pEdit = mPrefs.edit();
-            pEdit.remove("pref_hs_ports");
-            pEdit.apply();
-        }
-    }
-
     /**
      * Called when the activity is first created.
      */
@@ -244,8 +209,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         super.onCreate(savedInstanceState);
 
         mPrefs = Prefs.getSharedPrefs(getApplicationContext());
-
-        migratePreferences(); // Migrate old preferences
 
         /* Create the widgets before registering for broadcasts to guarantee
          * that the widgets exist when the status updates try to update them */
@@ -468,10 +431,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             startActivity(new Intent(this, OnionServiceActivity.class));
         } else if (item.getItemId() == R.id.menu_v3_onion_client_auth) {
             startActivity(new Intent(this, ClientAuthActivity.class));
-        } else if (item.getItemId() == R.id.menu_hidden_services) {
-            startActivity(new Intent(this, HiddenServicesActivity.class));
-        } else if (item.getItemId() == R.id.menu_client_cookies) {
-            startActivity(new Intent(this, ClientCookiesActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -556,125 +515,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             stopTor();
             Toast.makeText(this, R.string.start_tor_again_for_finish_the_process, Toast.LENGTH_LONG).show();
         }
-
-
-
-    }
-
-    private void enableHiddenServicePortV2(String hsName, final int hsPort, int hsRemotePort,
-                                           final String backupToPackage, final Uri hsKeyPath, final Boolean authCookie) {
-        String onionHostname = null;
-
-        if (hsName == null)
-            hsName = "hs" + hsPort;
-
-        if (hsRemotePort == -1)
-            hsRemotePort = hsPort;
-
-        ContentValues fields = new ContentValues();
-        fields.put(HSContentProvider.HiddenService.NAME, hsName);
-        fields.put(HSContentProvider.HiddenService.PORT, hsPort);
-        fields.put(HSContentProvider.HiddenService.ONION_PORT, hsRemotePort);
-        fields.put(HSContentProvider.HiddenService.AUTH_COOKIE, authCookie);
-
-        ContentResolver cr = getContentResolver();
-
-        Cursor row = cr.query(
-                HSContentProvider.CONTENT_URI,
-                HSContentProvider.PROJECTION,
-                HSContentProvider.HiddenService.ONION_PORT + "=" + hsPort,
-                null,
-                null
-        );
-
-        if (row == null || row.getCount() < 1) {
-            cr.insert(HSContentProvider.CONTENT_URI, fields);
-        } else if (row.moveToFirst()) {
-            onionHostname = row.getString(row.getColumnIndex(HSContentProvider.HiddenService.DOMAIN));
-            row.close();
-        }
-
-        if (onionHostname == null || onionHostname.length() < 1) {
-
-            if (hsKeyPath != null) {
-                BackupUtils hsutils = new BackupUtils(getApplicationContext());
-                hsutils.restoreKeyBackup(hsPort, hsKeyPath);
-            }
-
-            if (torStatus.equals(TorServiceConstants.STATUS_OFF)) {
-                startTor();
-            } else {
-                stopTor();
-                Toast.makeText(this, R.string.start_tor_again_for_finish_the_process, Toast.LENGTH_LONG).show();
-            }
-
-            new Thread() {
-
-                public void run() {
-                    String hostname = null;
-                    Intent nResult = new Intent();
-
-                    while (hostname == null) {
-                        try {
-                            Thread.sleep(3000); //wait three seconds
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-                        Cursor onion = getContentResolver().query(
-                                HSContentProvider.CONTENT_URI,
-                                HSContentProvider.PROJECTION,
-                                HSContentProvider.HiddenService.ONION_PORT + "=" + hsPort,
-                                null,
-                                null
-                        );
-
-                        if (onion != null && onion.getCount() > 0) {
-                            onion.moveToNext();
-                            hostname = onion.getString(onion.getColumnIndex(HSContentProvider.HiddenService.DOMAIN));
-
-                            if (hostname == null || hostname.length() < 1)
-                                continue;
-
-                            nResult.putExtra("hs_host", hostname);
-
-                            if (authCookie) {
-                                nResult.putExtra(
-                                        "hs_auth_cookie",
-                                        onion.getString(onion.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE_VALUE))
-                                );
-                            }
-
-                            if (backupToPackage != null && backupToPackage.length() > 0) {
-                                String servicePath = getFilesDir() + "/" + TorServiceConstants.HIDDEN_SERVICES_DIR + "/hs" + hsPort;
-                                File hidden_service_key = new File(servicePath, "private_key");
-                                Context context = getApplicationContext();
-
-                                Uri contentUri = getUriForFile(
-                                        context,
-                                        "org.torproject.android.ui.hiddenservices.storage",
-                                        hidden_service_key
-                                );
-
-                                context.grantUriPermission(backupToPackage, contentUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                                nResult.setData(contentUri);
-                                nResult.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                            }
-
-                            onion.close();
-                            setResult(RESULT_OK, nResult);
-                            finish();
-                        }
-                    }
-                }
-            }.start();
-
-        } else {
-            Intent nResult = new Intent();
-            nResult.putExtra("hs_host", onionHostname);
-            setResult(RESULT_OK, nResult);
-            finish();
-        }
     }
 
     private synchronized void handleIntents() {
@@ -701,23 +541,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                         .setNegativeButton(R.string.deny, (d, w) -> d.dismiss())
                         .show();
                 return;
-
-            case INTENT_ACTION_REQUEST_HIDDEN_SERVICE:
-                final int v2hiddenServicePort = intent.getIntExtra("hs_port", -1);
-                final int v2hiddenServiceRemotePort = intent.getIntExtra("hs_onion_port", -1);
-                final String v2hiddenServiceName = intent.getStringExtra("hs_name");
-                final String v2backupToPackage = intent.getStringExtra("hs_backup_to_package");
-                final Boolean v2authCookie = intent.getBooleanExtra("hs_auth_cookie", false);
-                final Uri v2KeyUri = intent.getData();
-
-                String v2RequestMsg = getString(R.string.hidden_service_request, v2hiddenServicePort);
-                new AlertDialog.Builder(this).setMessage(v2RequestMsg)
-                        .setPositiveButton(R.string.allow, (dialog, which) -> enableHiddenServicePortV2(
-                                v2hiddenServiceName, v2hiddenServicePort,
-                                v2hiddenServiceRemotePort, v2backupToPackage,
-                                v2KeyUri, v2authCookie))
-                        .setNegativeButton(R.string.deny, (d, w) -> d.dismiss()).show();
-                return; //don't null the setIntent() as we need it later
 
             case INTENT_ACTION_REQUEST_START_TOR:
                 autoStartFromIntent = true;

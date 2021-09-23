@@ -92,8 +92,7 @@
   <string name="hidden_service_request">Une appli veut ouvrir le port %1$d du serveur caché au réseau Tor. Cela est sécuritaire si vous faites confiance à l’appli.</string>
   <string name="found_existing_tor_process">un processus existant de Tor a été trouvé…</string>
   <string name="something_bad_happened">Quelque chose n’a pas été. Vérifiez le journal</string>
-    <string name="unable_to_read_hidden_service_name">impossible de lire le nom du service caché</string>
-  <string name="unable_to_start_tor">Impossible de démarrer Tor :</string>
+    <string name="unable_to_start_tor">Impossible de démarrer Tor :</string>
     <string name="pref_use_persistent_notifications">Toujours conserver l’icône dans la barre des tâches quand Orbot est connecté.</string>
   <string name="pref_use_persistent_notifications_title">Notifications toujours actives</string>
   <string name="pref_use_expanded_notifications">Montrer des notifications étendues avec le pays de sortie de Tor et l’IP</string>
@@ -123,7 +122,6 @@
     <string name="send_email">Envoyer un courriel</string>
   <string name="vpn_default_world">Mondial (Auto)</string>
   <string name="hidden_services">Services cachés</string>
-  <string name="title_activity_hidden_services">Services cachés</string>
   <string name="menu_hidden_services">Services cachés</string>
   <string name="save">Enregistrer</string>
     <string name="local_port">Port local</string>
@@ -131,7 +129,6 @@
   <string name="name">Nom</string>
   <string name="done">Fait !</string>
     <string name="copy_address_to_clipboard">Copier l’adresse vers le presse-papiers</string>
-  <string name="show_auth_cookie">Afficher le témoin auth</string>
   <string name="backup_service">Service de sauvegarde</string>
   <string name="delete_service">Supprimer le service</string>
   <string name="backup_saved_at_external_storage">La sauvegarde a été enregistrée sur une mémoire externe</string>
@@ -142,16 +139,8 @@
   <string name="confirm_service_deletion">Confirmer la suppression du service</string>
     <string name="service_type">Type de service</string>
   <string name="auth_cookie">Témoin auth</string>
-  <string name="copy_cookie_to_clipboard">Copier le témoin vers le presse-papiers</string>
-  <string name="auth_cookie_was_not_configured">Le témoin auth n’est pas configuré</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Veuillez redémarrer Orbot pour activer les changements</string>
-  <string name="client_cookies">Témoins du client</string>
   <string name="onion">.onion</string>
-  <string name="cookie_from_QR">Lire d’un code QR</string>
-  <string name="backup_cookie">Sauvegarder le témoin</string>
-  <string name="delete_cookie">Supprimer le témoin</string>
-  <string name="confirm_cookie_deletion">Confirmer la suppression du témoin</string>
-  <string name="hosted_services">Services hébergés</string>
   <string name="share_as_qr">Partager comme code QR</string>
   <string name="disable">Désactiver</string>
   <string name="enable">Activer</string>

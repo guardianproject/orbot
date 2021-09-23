@@ -88,7 +88,6 @@
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="found_existing_tor_process">znaleziono istniejący proces Tora…</string>
     <string name="something_bad_happened">Coś nie poszło nie tak. Sprawdź logi</string>
-    <string name="unable_to_read_hidden_service_name">uniemożliw czytanie nazw ukrytych serwisów</string>
     <string name="unable_to_start_tor">Nie można wystartować aplikacji Tor:</string>
     <string name="pref_use_persistent_notifications">Zawsze trzymaj ikonę w pasku powiadomień gdy Orbot jest połączony</string>
     <string name="pref_use_persistent_notifications_title">Powiadomienia zawsze aktywne</string>
@@ -117,7 +116,6 @@
     <string name="apps_mode">Tryb VPN</string>
     <string name="send_email">Wyślij Email</string>
     <string name="hidden_services">Ukryte Usługi</string>
-    <string name="title_activity_hidden_services">Ukryte Usługi</string>
     <string name="menu_hidden_services">Ukryte Usługi</string>
     <string name="save">Zapisz</string>
     <string name="local_port">Lokalne Porty</string>
@@ -138,12 +136,7 @@
     <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
     <string name="consider_disable_battery_optimizations">Rozważ wyłączenie optymalizacji baterii</string>
     <string name="share_as_qr">Udostępnij jako QR</string>
-    <string name="confirm_cookie_deletion">Potwierdź usunięcie pliku cookie</string>
-    <string name="delete_cookie">Usuń plik cookie</string>
-    <string name="backup_cookie">Kopia zapasowa pliku cookie</string>
-    <string name="cookie_from_QR">Czytaj z QR</string>
     <string name="onion">.onion</string>
-    <string name="copy_cookie_to_clipboard">Skopiuj plik cookie do schowka</string>
     <string name="service_type">Typ usługi</string>
     <string name="confirm_service_deletion">Potwierdź usunięcie usługi</string>
     <string name="start_tor_again_for_finish_the_process">Uruchom Tor ponownie, aby zakończyć proces</string>
@@ -153,10 +146,7 @@
     <string name="backup_saved_at_external_storage">Kopia zapasowa zapisywana w pamięci zewnętrznej</string>
     <string name="backup_service">Usługa tworzenia kopii zapasowych</string>
     <string name="hidden_service_request">Aplikacja chce otworzyć port serwera cebulowego %1$d do sieci Tor. Jest to bezpieczne, jeśli zaufasz aplikacji.</string>
-    <string name="client_cookies">Klient cookies</string>
     <string name="auth_cookie">Autoryzacja cookie</string>
-    <string name="show_auth_cookie">Pokaż autoryzację cookie</string>
-    <string name="auth_cookie_was_not_configured">Autoryzowany plik cookie nie został skonfigurowany</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jeśli twoja sieć komórkowa aktywnie blokuje Tor, możesz użyć „Serwer mostkowy” jako alternatywnego sposobu wejścia. Wybierz jedną z opcji, aby skonfigurować i przetestować …</string>
     <string name="wizard_details_msg">Orbot to aplikacja typu open source, która zawiera Tor, Obfs4Proxy, BadVPN, Tun2Socks i LibEvent. Zapewnia lokalny serwer proxy HTTP (8118) i serwer proxy SOCKS (9050) do sieci Tor. Orbot ma również możliwość, na zrootowanym urządzeniu, wysyłania całego ruchu internetowego przez Tor.</string>
     <string name="refresh_apps">Odśwież aplikacje</string>
@@ -180,7 +170,6 @@
     <string name="pref_isolate_dest_summary">Użyj innego obwodu dla każdego adresu docelowego</string>
     <string name="pref_isolate_dest">Izoluj adresy docelowe</string>
     <string name="consider_enable_battery_optimizations">Rozważ wyłączenie optymalizacji baterii</string>
-    <string name="hosted_services">Usługi Hostingowe</string>
     <string name="pref_connection_padding">Wypełnienie połączenia</string>
     <string name="pref_connection_padding_summary">Zawsze włącza wypełnienie połączenia, aby chronić się przed niektórymi formami analizy ruchu. Domyślnie: auto</string>
     <string name="default_socks_http">SOCKS: - HTTP: -</string>

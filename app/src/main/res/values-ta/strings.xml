@@ -35,11 +35,7 @@
   <string name="save">சேமி</string>
   <string name="name">பெயர்</string>
   <string name="service_type">சேவை வகை</string>
-  <string name="backup_cookie">நினைவிகளை காப்புப்பிரதிகலெடு</string>
-  <string name="delete_cookie">நினைவிகளை ஆழி</string>
-  <string name="confirm_cookie_deletion">நினைவிகளின் நீக்கத்தை உறுதிப்படுத்து</string>
-  <string name="hosted_services">வழங்கப்பட்ட சேவைகள்</string>
-  <string name="share_as_qr">QR ஆக பகிர்</string>
+    <string name="share_as_qr">QR ஆக பகிர்</string>
   <string name="disable">முடக்கு</string>
   <string name="enable">செயல்படுத்து</string>
   <string name="trouble_connecting">இணைப்பதில் சிக்கலா ?</string>

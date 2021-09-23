@@ -95,8 +95,7 @@
   <string name="hidden_service_request">Дадатак хоча адкрыць схаваны порт сервера %1$d сеткі Tor. Гэта бяспечна, калі вы давяраеце дадзенаму дадатку.</string>
   <string name="found_existing_tor_process">знойдзены існавалы працэс Tor...</string>
   <string name="something_bad_happened">Адбылася нейкая памылка. Праверце журнал.</string>
-  <string name="unable_to_read_hidden_service_name">немагчыма прачытаць імя схаванай службы</string>
-  <string name="unable_to_start_tor">Немагчыма запусціць Tor:</string>
+    <string name="unable_to_start_tor">Немагчыма запусціць Tor:</string>
   <string name="pref_use_persistent_notifications">Заўсёды адлюстроўваць іконку у панэлі заданняў калі Orbot падключаны</string>
   <string name="pref_use_persistent_notifications_title">Нязменнае апавяшчэнне пра працу</string>
   <string name="pref_use_expanded_notifications">Паказаць пашыранае апавяшчэнне Tor з краінай выхаду і IP</string>
@@ -129,7 +128,6 @@
   <string name="send_email">Адправіць ліст</string>
   <string name="vpn_default_world">Свет (аўта)</string>
   <string name="hidden_services">Схаваныя службы</string>
-  <string name="title_activity_hidden_services">Схаваныя службы</string>
   <string name="menu_hidden_services">Схаваныя службы</string>
   <string name="save">Захаваць</string>
   <string name="local_port">Лакальны порт</string>
@@ -137,7 +135,6 @@
   <string name="name">Імя</string>
   <string name="done">Гатова!</string>
     <string name="copy_address_to_clipboard">Скапіяваць адрас у буфер памену</string>
-  <string name="show_auth_cookie">Паказаць аўтарызуючыя cookie</string>
   <string name="backup_service">Рэзерваваць службу</string>
   <string name="delete_service">Выдаліць службу</string>
   <string name="backup_saved_at_external_storage">Рэзервовая копія захавана на вонкавым сховішчы</string>
@@ -148,16 +145,8 @@
   <string name="click_again_for_backup">Націсніце яшчэ раз для рэзервавання</string>
   <string name="service_type">Тып службы</string>
   <string name="auth_cookie">Аўтарызучыя cookie</string>
-  <string name="copy_cookie_to_clipboard">Капіяваць cookie у буфер памену</string>
-  <string name="auth_cookie_was_not_configured">Аўтарызучыя cookie не наладжаны</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Калі ласка, перазапусціце Orbot для ўступу змены ў сілу</string>
-  <string name="client_cookies">Cookies кліента</string>
   <string name="onion">.onion</string>
-  <string name="cookie_from_QR">Прачытаць з QR-кода</string>
-  <string name="backup_cookie">Рэзерваваць cookie</string>
-  <string name="delete_cookie">Выдаліць cookies</string>
-  <string name="confirm_cookie_deletion">Пацвердзіце выдаленне cookie</string>
-  <string name="hosted_services">Размешчаныя службы</string>
   <string name="share_as_qr">Падзяліцца праз QR-код</string>
   <string name="disable">Адключыць</string>
   <string name="enable">Уключыць</string>

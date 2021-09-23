@@ -93,7 +93,6 @@
     <string name="hidden_service_request">एक ऐप Tor नेटवर्क पर %1$dछिपा सर्वर पोर्ट खोलना चाहता है। यदि आप ऐप पर विश्वास करते हैं, तो यह सुरक्षित है</string>
     <string name="found_existing_tor_process">मौजूदा तोर प्रक्रिया पाया …</string>
     <string name="something_bad_happened">कुछ बुरा हो गया। लॉग की जांच करें</string>
-    <string name="unable_to_read_hidden_service_name">छिपी हुई सेवा का नाम पढ़ने में असमर्थ</string>
     <string name="unable_to_start_tor">टो शुरू करने में असमर्थ:</string>
     <string name="pref_use_persistent_notifications">ऑरबोट कनेक्ट होने पर टूलबार में हमेशा आइकन रखें</string>
     <string name="pref_use_persistent_notifications_title">हमेशा की सूचनाएं</string>
@@ -124,7 +123,6 @@
     <string name="send_email">ईमेल भेजें</string>
     <string name="vpn_default_world">ग्लोबल (ऑटो)</string>
     <string name="hidden_services">हिडन सेवाएं</string>
-    <string name="title_activity_hidden_services">हिडन सेवाएं</string>
     <string name="menu_hidden_services">हिडन सेवाएं</string>
     <string name="save">बचाना</string>
     <string name="local_port">स्थानीय पोर्ट</string>
@@ -132,7 +130,6 @@
     <string name="name">नाम</string>
     <string name="done">किया हुआ!</string>
     <string name="copy_address_to_clipboard">क्लिपबोर्ड को पता कॉपी करें</string>
-    <string name="show_auth_cookie">Auth कुकी दिखाएं</string>
     <string name="backup_service">बैकअप सेवा</string>
     <string name="delete_service">सेवा हटाएँ</string>
     <string name="backup_saved_at_external_storage">बाह्य संग्रहण में बैकअप सहेजा गया</string>
@@ -143,16 +140,8 @@
     <string name="confirm_service_deletion">सेवा हटाने की पुष्टि करें</string>
     <string name="service_type">सेवा प्रकार</string>
     <string name="auth_cookie">Auth कुकी</string>
-    <string name="copy_cookie_to_clipboard">क्लिपबोर्ड पर कुकी कॉपी करें</string>
-    <string name="auth_cookie_was_not_configured">Auth कुकी कॉन्फ़िगर नहीं की गई थी</string>
     <string name="please_restart_Orbot_to_enable_the_changes">परिवर्तन सक्षम करने के लिए Orbot पुनः प्रारंभ करें</string>
-    <string name="client_cookies">क्लाइंट कुकीज़</string>
     <string name="onion">.अनियन </string>
-    <string name="cookie_from_QR">QR से पढ़ें</string>
-    <string name="backup_cookie">बैकअप कुकी</string>
-    <string name="delete_cookie">कुकी हटाएं</string>
-    <string name="confirm_cookie_deletion">कुकी हटाने की पुष्टि करें</string>
-    <string name="hosted_services">होस्टेड सर्विसेस</string>
     <string name="share_as_qr">QR के रूप में शेयर करें</string>
     <string name="disable">अक्षम</string>
     <string name="enable">सक्षम करें</string>

@@ -92,7 +92,6 @@
     <string name="hidden_service_request">اپلیکیشنی می‌خواهد پورت سرور %1$d را به شبکه تور بگشاید. در صورتی که به این برنامه اطمینان دارید، چنین کاری امن است.</string>
     <string name="found_existing_tor_process">یک تور درحال اجرا پیدا شد…</string>
     <string name="something_bad_happened">اتفاق بدی افتاد. وقایع ثبت شده را چک کنید</string>
-    <string name="unable_to_read_hidden_service_name">ناتوان در خواندن نام سرویس مخفی</string>
     <string name="unable_to_start_tor">ناتوان در راه اندازی تور:</string>
     <string name="pref_use_persistent_notifications">وقتی ربات پیازی متصل است، همیشه آیکون مربوط را در نوار ابزار نگه دار.</string>
     <string name="pref_use_persistent_notifications_title">آگاهسازی همیشه روشن</string>
@@ -123,7 +122,6 @@
     <string name="send_email">ایمیل بفرست</string>
     <string name="vpn_default_world">جهانی (خودکار)</string>
     <string name="hidden_services">سرویس‌های مخفی</string>
-    <string name="title_activity_hidden_services">سرویس‌های مخفی</string>
     <string name="menu_hidden_services">سرویس‌های مخفی</string>
     <string name="save">ذخيره</string>
     <string name="local_port">درگاه محلی</string>
@@ -131,7 +129,6 @@
     <string name="name">نام</string>
     <string name="done">انجام شد!</string>
     <string name="copy_address_to_clipboard">رونوشت نشانی‌ها در حافظه موقت</string>
-    <string name="show_auth_cookie">نمایش کوکی احراز هویت</string>
     <string name="backup_service">سرویس بک‌آپ</string>
     <string name="delete_service">حذف سرویس</string>
     <string name="backup_saved_at_external_storage">بک‌آپ در انباره خارجی ذخیره شد</string>
@@ -142,16 +139,8 @@
     <string name="confirm_service_deletion">حذف سرویس را تایید کنید</string>
     <string name="service_type">نوع سرویس</string>
     <string name="auth_cookie">کوکی Auth</string>
-    <string name="copy_cookie_to_clipboard">کپی کردن کوکی به کلیپ بورد</string>
-    <string name="auth_cookie_was_not_configured">کوکی احراز هویت پیکربندی نشده بود</string>
     <string name="please_restart_Orbot_to_enable_the_changes">برای دیدن تغییرات، اوربات  را دوباره راه اندازی کنید</string>
-    <string name="client_cookies">کوکی‌های Client</string>
     <string name="onion">onion.</string>
-    <string name="cookie_from_QR">از QR بخوان</string>
-    <string name="backup_cookie">بک‌آپ از کوکی</string>
-    <string name="delete_cookie">حذف کوکی</string>
-    <string name="confirm_cookie_deletion">تایید حذف کوکی</string>
-    <string name="hosted_services">سرویس‌های میزبانی‌شده</string>
     <string name="share_as_qr">هم‌رسانی با QR</string>
     <string name="disable">غیرفعال کن</string>
     <string name="enable">فعال کن</string>

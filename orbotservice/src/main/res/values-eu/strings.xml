@@ -17,7 +17,6 @@
   <string name="your_relay_settings_caused_an_exception_">Zure errele ezarpenak salbuespena sortu dute!</string>
     <string name="found_existing_tor_process">Aurreko Tor prozesua topatuta...</string>
   <string name="something_bad_happened">Zerbait txarra gertatu da. Begiratu logetan</string>
-    <string name="unable_to_read_hidden_service_name">ezkutuko zerbitzuare izena ezin da irakurri</string>
-  <string name="unable_to_start_tor">Ezin izan da Tor hasi:</string>
+    <string name="unable_to_start_tor">Ezin izan da Tor hasi:</string>
     <string name="newnym">ChatSecure - Andriodentzako berehalako mezulari bezero ziurra</string>
 </resources>

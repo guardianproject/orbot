@@ -30,21 +30,6 @@
                 android:title="@string/v3_client_auth"
                 yourapp:showAsAction="never" />
 
-            <item
-                android:title="@string/v2_hidden_services"
-                yourapp:showAsAction="never">
-                <menu>
-                    <item
-                        android:id="@+id/menu_hidden_services"
-                        android:title="@string/hosted_services"
-                        yourapp:showAsAction="never" />
-
-                    <item
-                        android:id="@+id/menu_client_cookies"
-                        android:title="@string/client_cookies"
-                        yourapp:showAsAction="never" />
-                </menu>
-            </item>
         </menu>
     </item>
 

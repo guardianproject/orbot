@@ -18,7 +18,6 @@
   <string name="your_relay_settings_caused_an_exception_">Os seus axustes de relay causou unha excepción!</string>
     <string name="found_existing_tor_process">atopado proceso Tor existente...</string>
   <string name="something_bad_happened">Algo malo pasou. Comprobe o rexistro</string>
-    <string name="unable_to_read_hidden_service_name">imposible ler nome de servizo oculto</string>
-  <string name="unable_to_start_tor">Incapaz de arrancar Tor</string>
+    <string name="unable_to_start_tor">Incapaz de arrancar Tor</string>
     <string name="newnym">Cambiou a unha nova identidade Tor!</string>
 </resources>
