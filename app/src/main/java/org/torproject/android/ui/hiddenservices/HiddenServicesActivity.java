@@ -39,7 +39,8 @@ public class HiddenServicesActivity extends AppCompatActivity {
             BUNDLE_KEY_PORT = "port",
             BUNDLE_KEY_ONION = "onion",
             BUNDLE_KEY_AUTH_COOKIE = "auth_cookie",
-            BUNDLE_KEY_AUTH_COOKIE_VALUE = "auth_cookie_value";
+            BUNDLE_KEY_AUTH_COOKIE_VALUE = "auth_cookie_value",
+            BUNDLE_KEY_PATH = "path";
     private static final int REQUEST_CODE_READ_ZIP_BACKUP = 125;
     private static final String BUNDLE_KEY_SHOW_USER_SERVICES = "show_user_services";
     private ContentResolver mResolver;
@@ -83,6 +84,7 @@ public class HiddenServicesActivity extends AppCompatActivity {
             arguments.putString(BUNDLE_KEY_ONION, item.getString(item.getColumnIndex(HSContentProvider.HiddenService.DOMAIN)));
             arguments.putInt(BUNDLE_KEY_AUTH_COOKIE, item.getInt(item.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE)));
             arguments.putString(BUNDLE_KEY_AUTH_COOKIE_VALUE, item.getString(item.getColumnIndex(HSContentProvider.HiddenService.AUTH_COOKIE_VALUE)));
+            arguments.putString(BUNDLE_KEY_PATH, item.getString(item.getColumnIndex(HSContentProvider.HiddenService.PATH)));
 
             HSActionsDialog dialog = new HSActionsDialog();
             dialog.setArguments(arguments);

@@ -40,8 +40,8 @@ public class BackupUtils {
         mResolver = mContext.getContentResolver();
     }
 
-    public String createV3ZipBackup(String port, Uri zipFile) {
-        String[] files = createFilesForZippingV3(port);
+    public String createV3ZipBackup(String port, String relativePath, Uri zipFile) {
+        String[] files = createFilesForZippingV3(relativePath);
         ZipUtilities zip = new ZipUtilities(files, zipFile, mResolver);
         if (!zip.zip()) return null;
         return zipFile.getPath();
@@ -61,8 +61,8 @@ public class BackupUtils {
         return backupFile.getPath();
     }
 
-    public String createV2ZipBackup(int port, Uri zipFile) {
-        String[] files = createFilesForZippingV2(port);
+    public String createV2ZipBackup(int port, String relativePath, Uri zipFile) {
+        String[] files = createFilesForZippingV2(relativePath);
         ZipUtilities zip = new ZipUtilities(files, zipFile, mResolver);
 
         if (!zip.zip())
@@ -72,15 +72,15 @@ public class BackupUtils {
     }
 
     // todo this doesn't export data for onions that orbot hosts which have authentication (not supported yet...)
-    private String[] createFilesForZippingV3(String port) {
-        final String v3BasePath = getV3BasePath() + "/v3" + port + "/";
+    private String[] createFilesForZippingV3(String relativePath) {
+        final String v3BasePath = getV3BasePath() + "/" + relativePath + "/";
         final String hostnamePath = v3BasePath + "hostname",
                 configFilePath = v3BasePath + configFileName,
                 privKeyPath = v3BasePath + "hs_ed25519_secret_key",
                 pubKeyPath = v3BasePath + "hs_ed25519_public_key";
 
         Cursor portData = mResolver.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION,
-                OnionServiceContentProvider.OnionService.PORT + "=" + port, null, null);
+                OnionServiceContentProvider.OnionService.PATH + "=\"" + relativePath + "\"", null, null);
 
         JSONObject config = new JSONObject();
         try {
@@ -109,16 +109,16 @@ public class BackupUtils {
         return new String[]{hostnamePath, configFilePath, privKeyPath, pubKeyPath};
     }
 
-    private String[] createFilesForZippingV2(int port) {
-        File hsBasePath = getHSBasePath();
-        String configFilePath = hsBasePath + "/hs" + port + "/" + configFileName;
-        String hostnameFilePath = hsBasePath + "/hs" + port + "/hostname";
-        String keyFilePath = hsBasePath + "/hs" + port + "/private_key";
+    private String[] createFilesForZippingV2(String relativePath) {
+        final String hsBasePath = getHSBasePath() + "/" + relativePath + "/";
+        String configFilePath = hsBasePath + configFileName;
+        String hostnameFilePath = hsBasePath + "hostname";
+        String keyFilePath = hsBasePath + "private_key";
 
         Cursor portData = mResolver.query(
                 HSContentProvider.CONTENT_URI,
                 HSContentProvider.PROJECTION,
-                HSContentProvider.HiddenService.PORT + "=" + port,
+                HSContentProvider.HiddenService.PATH + "=\"" + relativePath + "\"",
                 null,
                 null
         );
@@ -193,7 +193,7 @@ public class BackupUtils {
                 Toast.makeText(mContext, R.string.backup_restored, Toast.LENGTH_LONG).show();
             } else {
                 // collision, clean up files
-                for (File file: v3Path.listFiles())
+                for (File file : v3Path.listFiles())
                     file.delete();
                 v3Path.delete();
                 Toast.makeText(mContext, mContext.getString(R.string.backup_port_exist, port), Toast.LENGTH_LONG).show();

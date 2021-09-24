@@ -33,7 +33,7 @@ public class HSDeleteDialog extends DialogFragment {
 
         // Delete from internal storage
         String base = context.getFilesDir().getAbsolutePath() + "/" + TorServiceConstants.HIDDEN_SERVICES_DIR;
-        File dir = new File(base, "hs" + arguments.getString(HiddenServicesActivity.BUNDLE_KEY_PORT));
+        File dir = new File(base, arguments.getString(HiddenServicesActivity.BUNDLE_KEY_PATH));
 
         if (dir.isDirectory()) {
             String[] children = dir.list();

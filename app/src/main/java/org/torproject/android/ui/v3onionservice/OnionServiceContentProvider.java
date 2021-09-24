@@ -21,7 +21,8 @@ public class OnionServiceContentProvider extends ContentProvider {
             OnionService.DOMAIN,
             OnionService.ONION_PORT,
             OnionService.CREATED_BY_USER,
-            OnionService.ENABLED
+            OnionService.ENABLED,
+            OnionService.PATH
     };
 
     private static final int ONIONS = 1, ONION_ID = 2;
@@ -102,7 +103,7 @@ public class OnionServiceContentProvider extends ContentProvider {
         public static final String DOMAIN = "domain";
         public static final String CREATED_BY_USER = "created_by_user";
         public static final String ENABLED = "enabled";
-
+        public static final String PATH = "filepath";
         private OnionService() { // no-op
         }
     }

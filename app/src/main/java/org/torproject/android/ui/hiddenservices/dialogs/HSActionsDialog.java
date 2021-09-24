@@ -107,8 +107,9 @@ public class HSActionsDialog extends DialogFragment {
     }
 
     private void attemptToWriteBackup(Uri outputFile) {
+        String path = getArguments().getString(HiddenServicesActivity.BUNDLE_KEY_PATH);
         BackupUtils backupUtils = new BackupUtils(getContext());
-        String backup = backupUtils.createV2ZipBackup(port, outputFile);
+        String backup = backupUtils.createV2ZipBackup(port, path, outputFile);
         Toast.makeText(getContext(), backup != null ? R.string.backup_saved_at_external_storage : R.string.error, Toast.LENGTH_LONG).show();
         dismiss();
     }

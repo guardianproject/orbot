@@ -63,6 +63,7 @@ public class OnionServiceActionsDialogFragment extends DialogFragment {
 
     private void doBackup(Bundle arguments, Context context) {
         String filename = "onion_service" + arguments.getString(OnionServiceActivity.BUNDLE_KEY_PORT) + ".zip";
+        String relativePath = arguments.getString(OnionServiceActivity.BUNDLE_KEY_PATH);
         if (arguments.getString(OnionServiceActivity.BUNDLE_KEY_DOMAIN) == null) {
             Toast.makeText(context, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG).show();
             return;
@@ -85,8 +86,10 @@ public class OnionServiceActionsDialogFragment extends DialogFragment {
     }
 
     private void attemptToWriteBackup(Uri outputFile) {
+        String port = getArguments().getString(OnionServiceActivity.BUNDLE_KEY_PORT);
+        String relativePath = getArguments().getString(OnionServiceActivity.BUNDLE_KEY_PATH);
         BackupUtils backupUtils = new BackupUtils(getContext());
-        String backup = backupUtils.createV3ZipBackup(getArguments().getString(OnionServiceActivity.BUNDLE_KEY_PORT), outputFile);
+        String backup = backupUtils.createV3ZipBackup(port, relativePath, outputFile);
         Toast.makeText(getContext(), backup != null ? R.string.backup_saved_at_external_storage : R.string.error, Toast.LENGTH_LONG).show();
         dismiss();
     }
