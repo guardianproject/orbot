@@ -28,19 +28,19 @@ android {
         exclude 'lib/armeabi-v7a/libgojni.so'
         exclude 'lib/armeabi/libgojni.so'
     }
-}
-
-dependencies {
-    implementation(
-            project(path: ':appcore'),
-            project(path: ':intentintegrator'),
-            project(':orbotservice'),
-            'androidx.constraintlayout:constraintlayout:2.1.0',
-            'androidx.coordinatorlayout:coordinatorlayout:1.1.0',
-            'androidx.recyclerview:recyclerview:1.2.1',
-            'androidx.palette:palette:1.0.0',
-            'com.github.apl-devs:appintro:v4.2.2',
-            'com.google.android.material:material:1.4.0'
-    )
-    androidTestImplementation "tools.fastlane:screengrab:1.2.0"
+    dependencies {
+        implementation(
+                project(path: ':appcore'),
+                project(path: ':intentintegrator'),
+                project(':orbotservice'),
+                libs.android.material,
+                libs.androidx.coordinator.layout,
+                libs.androidx.localbroadcast,
+                libs.androidx.palette,
+                libs.androidx.recyclerview,
+                libs.apl.appintro,
+                libs.guardian.jtorctl
+        )
+        androidTestImplementation libs.fastlane.screengrab
+    }
 }

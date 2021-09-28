@@ -36,21 +36,18 @@ android {
 
 dependencies {
     implementation(
-            project(path: ':appcore'),
-            project(path: ':intentintegrator'),
+            project(':appcore'),
+            project(':intentintegrator'),
             project(':orbotservice'),
-            'androidx.constraintlayout:constraintlayout:2.1.0',
-            'androidx.coordinatorlayout:coordinatorlayout:1.1.0',
-            "androidx.leanback:leanback:1.2.0-alpha01",
-            "androidx.leanback:leanback-paging:1.1.0-alpha08",
-            "androidx.leanback:leanback-preference:1.2.0-alpha01",
-            "androidx.leanback:leanback-tab:1.1.0-beta01",
-            'androidx.palette:palette:1.0.0',
-            'androidx.recyclerview:recyclerview:1.2.1',
-            'com.github.apl-devs:appintro:v4.2.2',
-            'com.github.jetradarmobile:android-snowfall:1.2.1',
-            'com.google.android.material:material:1.4.0'
+            libs.android.material,
+            libs.android.snowfall,
+            libs.androidx.coordinator.layout,
+            libs.androidx.localbroadcast,
+            libs.androidx.palette,
+            libs.androidx.recyclerview,
+            libs.apl.appintro,
+            libs.guardian.jtorctl,
+            libs.bundles.leanback
     )
-    androidTestImplementation "tools.fastlane:screengrab:1.2.0"
-
+    androidTestImplementation libs.fastlane.screengrab
 }
