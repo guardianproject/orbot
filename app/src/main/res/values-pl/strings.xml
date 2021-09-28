@@ -185,4 +185,8 @@
     <string name="pref_connection_padding_summary">Zawsze włącza wypełnienie połączenia, aby chronić się przed niektórymi formami analizy ruchu. Domyślnie: auto</string>
     <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Zezwalaj urządzeniom w tej samej sieci Wi-Fi, podłączonym do twojego hotspotu Wi-Fi i innym, którzy mogą połączyć się z twoim adresem IP, na dostęp do Tor</string>
+    <string name="mebibyte">MiB</string>
+    <string name="kibibyte">KiB</string>
+    <string name="deny">Odmów</string>
+    <string name="allow">Zezwól</string>
 </resources>
