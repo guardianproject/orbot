@@ -38,17 +38,14 @@ android {
 }
 
 dependencies {
-    api 'info.guardianproject:jtorctl:0.4.5.7'
+    api libs.guardian.jtorctl
     implementation(
-            'androidx.core:core:1.6.0',
-            'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0',
-            'com.github.tladesignz:IPtProxy:1.0.0',
-            'com.gitlab.guardianproject:jsocksandroid:1.0.4',
-            'com.jaredrummler:android-shell:1.0.0',
-            'com.offbynull.portmapper:portmapper:2.0.5',
-            'info.guardianproject:geoip:20191217',
-            'info.guardianproject:tor-android:0.4.5.9',
-
+            libs.android.shell,
+            libs.androidx.core,
+            libs.androidx.localbroadcast,
+            libs.ipt.proxy,
+            libs.guardian.jsocks,
+            libs.portmapper,
+            libs.tor.android
     )
-    testImplementation 'junit:junit:4.13.2'
 }

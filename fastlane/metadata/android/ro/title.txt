@@ -1,1 +1,1 @@
-Orbot: Tor for Android
+Orbot: Tor pentru Android

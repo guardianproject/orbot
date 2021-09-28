@@ -219,4 +219,6 @@
     <string name="get_bridges_email_request">Brücken via E-Mail anfordern</string>
     <string name="deny">Ablehnen</string>
     <string name="allow">Erlauben</string>
+    <string name="be_a_snowflake_desc_limit">Nur wenn das Gerät angeschlossen und mit WLAN verbunden ist</string>
+    <string name="paste_bridges">Brücken einfügen</string>
 </resources>

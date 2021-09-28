@@ -222,11 +222,12 @@
     <string name="request_bridges">Yêu cầu cầu nối</string>
     <string name="solve_captcha_instruction">Giải CAPTCHA để yêu cầu cầu nối.</string>
     <string name="refresh_captcha">Làm mới CAPTCHA</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Nếu mạng di động của bạn chặn Tor một cách chủ động, bạn có thể sử dụng một \'Máy chủ cầu nối\' làm một cách thay thế để vào. CHỌN một trong số các tuỳ chọn để thiết lập và thử nghiệm…</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Nếu mạng di động của bạn chặn Tor một cách chủ động, bạn có thể sử dụng một \'Máy chủ cầu nối\' làm một cách thay thế để vào. Chọn một trong số các tuỳ chọn để thiết lập và thử nghiệm…</string>
     <string name="hidden_services">Dịch vụ Onion</string>
     <string name="vpn_default_world">Toàn cầu (Tự động)</string>
     <string name="apps_mode">Chế độ VPN</string>
     <string name="get_bridges_email_request">Yêu cầu cầu nối qua Email</string>
     <string name="be_a_snowflake_desc_limit">Chỉ khi thiết bị được cắm điện và có wifi</string>
     <string name="be_a_snowflake_title_limit">Giới hạn Proxy Snowflake</string>
+    <string name="snowflake_proxy_enabled">CHẾ ĐỘ PROXY SNOWFLAKE ĐÃ BẬT</string>
 </resources>
