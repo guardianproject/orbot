@@ -34,7 +34,7 @@ public class OnionServiceDeleteDialogFragment extends DialogFragment {
     private void doDelete(Bundle arguments, Context context) {
         context.getContentResolver().delete(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.OnionService._ID + '=' + arguments.getInt(OnionServiceActivity.BUNDLE_KEY_ID), null);
         String base = context.getFilesDir().getAbsolutePath() + "/" + TorServiceConstants.ONION_SERVICES_DIR;
-        DiskUtils.recursivelyDeleteDirectory(new File(base, "v3" + arguments.getString(OnionServiceActivity.BUNDLE_KEY_PORT)));
+        DiskUtils.recursivelyDeleteDirectory(new File(base, arguments.getString(OnionServiceActivity.BUNDLE_KEY_PATH)));
     }
 
 }
