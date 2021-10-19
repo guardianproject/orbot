@@ -45,6 +45,7 @@ dependencies {
             libs.androidx.localbroadcast,
             libs.ipt.proxy,
             libs.guardian.jsocks,
+            libs.guardian.geoip,
             libs.portmapper,
             libs.tor.android
     )

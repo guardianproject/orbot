@@ -18,6 +18,7 @@ androidx-recyclerview-version = "1.2.1"
 apl-appintro-version = "v4.2.2"
 bclogic-pulsator-version = "1.0.3"
 fastlane-screengrab-version = "1.2.0"
+guardian-geoip-version = "20191217"
 guardian-jsocks-version = "1.0.4"
 guardian-jtorctl-version = "0.4.5.7"
 ipt-proxy-version = "1.0.0"
@@ -45,6 +46,7 @@ androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version
 apl-appintro = { module = "com.github.apl-devs:appintro", version.ref = "apl-appintro-version" }
 bclogic-pulsator = { module = "pl.bclogic:pulsator4droid", version.ref = "bclogic-pulsator-version" }
 fastlane-screengrab = { module = "tools.fastlane:screengrab", version.ref = "fastlane-screengrab-version" }
+guardian-geoip = { module = "info.guardianproject:geoip", version.ref = "guardian-geoip-version" }
 guardian-jsocks = { module = "com.gitlab.guardianproject:jsocksandroid", version.ref = "guardian-jsocks-version" }
 guardian-jtorctl = { module = "info.guardianproject:jtorctl", version.ref = "guardian-jtorctl-version" }
 ipt-proxy = { module = "com.github.tladesignz:IPtProxy", version.ref = "ipt-proxy-version" }
