@@ -469,8 +469,15 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             if (Build.VERSION.SDK_INT >= 26)
                 createNotificationChannel();
 
-            CustomTorResourceInstaller installer = new CustomTorResourceInstaller(this, appBinHome);
-            installer.installGeoIP();
+            try {
+                CustomTorResourceInstaller installer = new CustomTorResourceInstaller(this, appBinHome);
+                installer.installGeoIP();
+            }
+            catch (IOException io)
+            {
+                Log.e(OrbotConstants.TAG, "Error installing geoip files", io);
+                logNotice("There was an error installing geoip files");
+            }
 
             pluggableTransportInstall();
 
@@ -480,8 +487,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         } catch (Exception e) {
             //what error here
-            Log.e(OrbotConstants.TAG, "Error installing Orbot binaries", e);
-            logNotice("There was an error installing Orbot binaries");
+            Log.e(OrbotConstants.TAG, "Error installing setting up Orbot", e);
+            logNotice("There was an error setting up Orbot");
         }
 
         Log.i("OrbotService", "onCreate end");
@@ -960,7 +967,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 
-        if (Prefs.useVpn())
+        if (Prefs.useVpn() && mVpnManager != null)
             mVpnManager.handleIntent(new Builder(), intent);
 
     }
