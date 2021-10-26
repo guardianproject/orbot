@@ -22,7 +22,7 @@ guardian-jsocks-version = "1.0.4"
 guardian-jtorctl-version = "0.4.5.7"
 ipt-proxy-version = "1.0.0"
 portmapper-version = "2.0.5"
-tor-android-version = "0.4.5.9"
+tor-android-version = "0.4.6.10"
 
 [libraries]
 android-material = { module = "com.google.android.material:material", version.ref = "android-material-version" }
