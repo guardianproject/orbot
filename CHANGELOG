@@ -1,3 +1,197 @@
+/** 16.5.2-BETA 1 26 Oct 2021 **/
+
+57add48c (HEAD -> master, origin/master, origin/HEAD) move libs.versions.toml to dependencies.gradle makes it easier to work with in Android Studio
+9497a5e3 (tag: 16.5.2-BETA-1-tor.0.4.6.7) switch to tor 0.4.6.7
+ece15f2f Merge branch 'master' of github.com:guardianproject/orbot
+0b1e7be2 Merge branch 'no_v2_onions'
+2d1455ef stop warning us about jcenter...we know already!
+d119de00 (no_v2_onions) handle geoip failed loading and other potential NPE
+a783bf60 update library and gradle
+3ad3f1df update library versions
+8c831500 Merge pull request #529 from syphyr/main
+2ee2955e Merge pull request #534 from weblate/weblate-guardianproject-orbot
+a23f02b2 Translated using Weblate (Portuguese (Brazil))
+cb98e7fe (origin/no_v2_onions) Removes V2 Onion Services From Orbot  - Removes V2 Hosted Services and Client Cookies  - Removes Assocaited Code in OrbotService  - OrbotApp will delete local v2 databases  - Removes XML Resources  - Refactored V2 code that V3 used to appropriate V3 Backages
+e815bc07 Merge pull request #527 from guardianproject/fix_523_onionbackup
+2b83f0d9 Add geoip library to libs.versions.toml
+5465fffb (origin/fix_523_onionbackup) Fixes #523 Onion Site Backup Bags
+d3fba523 Merge branch 'fix_519_exit_icon'
+3b81a4e0 (fix_519_exit_icon) Merge branch 'master' into fix_519_exit_icon
+af5f9ef6 Merge branch 'sisbell-509'
+87084b29 (sisbell-509) Merge branch '509' of https://github.com/sisbell/orbot into sisbell-509
+384518da Merge pull request #515 from weblate/weblate-guardianproject-orbot
+2085efbb Translated using Weblate (Polish)
+d991a573 Translated using Weblate (German)
+b04d74d6 Translated using Weblate (Hebrew)
+b52082df Translated using Weblate (Finnish)
+f7e024ff Translated using Weblate (Ukrainian)
+eaa9c306 Translated using Weblate (Lithuanian)
+cc3c0cbd Translated using Weblate (Vietnamese)
+1065d695 Translated using Weblate (Romanian)
+52d30704 Translated using Weblate (Italian)
+03152454 (origin/fix_519_exit_icon) Fixes 519 Icon Always Leaves on Exit
+f2ea0b95 orbotservice lint; unused imports
+e625d4c8 local.properties ignored twice
+0a296e87 add tv screenshots to fastlane
+6287db6d Merge branch 'bitmold-vpn_blocklist'
+482696b9 (origin/bitmold-vpn_blocklist, bitmold-vpn_blocklist) only set disallowed if "per app" is not being used
+a8565835 Merge branch 'vpn_blocklist' of https://github.com/bitmold/orbot into bitmold-vpn_blocklist
+81d25780 ensure tor conn events are set properly by waiting one second longer (waiting for a better fix from TorService library on this)
+2697c93c remove debug commandline for pdnsd (doesn't work)
+e8a6e14f remove command line debug commands (don't work, cause failed pdnsd startup)
+9759e94f Fixes #474 Remove Briar from Orbot VPN Routing + UI
+8ed64e61 Remove typo
+4727db2d Implements #509: Use Gradle Version Catalog
+822d3582 Merge branch 'bitmold-missing_vpn_icons'
+91f0fc4c (bitmold-missing_vpn_icons) Merge branch 'missing_vpn_icons' of https://github.com/bitmold/orbot into bitmold-missing_vpn_icons
+9376a33f Merge branch 'sisbell-505'
+3943b9d9 (sisbell-505) Merge branch '505' of https://github.com/sisbell/orbot into sisbell-505
+f3a83d6e remove unsupported string locale
+aa2f224b Merge branch 'sisbell-501'
+c4c099ad (sisbell-501) Merge branch '501' of https://github.com/sisbell/orbot into sisbell-501
+9376d450 Merge pull request #497 from weblate/weblate-guardianproject-orbot
+c1fdff65 Package name is saved for torified apps instead of "username". This is much more performant than the last commit, but the UI will not immediately be updated if the user had older Orbot data saved (No "torification" is actually compromised though...)
+d8a44643 Fixes #498, Not performant because pref data isn't migrated
+e6c9d985 Translated using Weblate (Russian)
+31458190 Translated using Weblate (Ukrainian)
+0748373b Translated using Weblate (Chinese (Simplified))
+517661ce Translated using Weblate (Turkish)
+e0d819fb Translated using Weblate (Portuguese (Brazil))
+5909ae70 Translated using Weblate (Icelandic)
+44f59e03 Translated using Weblate (Hebrew)
+b9b4706c Translated using Weblate (Bengali)
+80af9baa Translated using Weblate (Russian)
+2b3794b1 Translated using Weblate (Dutch)
+088a0f47 Translated using Weblate (Romanian)
+83a855b8 Translated using Weblate (Polish)
+fd12e20d Translated using Weblate (Lithuanian)
+c43662a9 Translated using Weblate (Turkish)
+ff8411ab Add in versionCode updates based on ABI
+c75f5305 Removed Log.e from OrbotService onBind (not an error)
+c3f2395d Format error in pdnsd configuration, expected number given "off"
+4569eec6 CDN Fronts Reader never closed
+75a5748f SELECT -> Select
+5f45f0ac App should also include a universal APK for build
+ef8a8f1d Fixes #505: Custom bridges Send to Email feature does not include Subject or Body message for some devices
+92693d66 abi codes no longer used.
+91778035 Use def rather than ext for defining getVersionName. This avoids a conflict with internal gradle API.
+11a59387 Remove unused build code for version overrides
+0669e248 Turn back on lint check for orbotservice
+193f0fc6 Fix #501 - Duplicate Config Info in Build Files
+3ad5324d remove old obfs4proxy binary (now using IPtProxy)
+2e723388 update android dependencies
+9bb2e3f7 (tag: orbot-tv-1.0.0-BETA-2-tor-0.4.5.9) update orbot-tv aka app-tv release to 10020000
+7023cd27 enable snowflake mode for orbotTV
+055900d9 add UI feedback when Snowflake Proxy mode is enabled
+5b33510d Merge branch 'master' of github.com:guardianproject/orbot
+283b281c Merge pull request #493 from weblate/weblate-guardianproject-orbot
+bca48cc9 Merge branch 'master' of github.com:guardianproject/orbot
+df0cfc80 Merge pull request #495 from SkewedZeppelin/fixup
+443f383a Translated using Weblate (Sinhala)
+dbaf06be Fixup 93bf7b24
+cb9bd46e Merge pull request #491 from SkewedZeppelin/nodebugpdnsd
+9717385a Merge pull request #490 from syphyr/main
+93bf7b24 Only enable pdnsd debug output when debug logging is enabled
+7e223f02 (tag: 16.5.1-BETA-2a-tor.0.4.5.9) update version 1651100210 (quick pdnsd fix)
+ecd12b0b update build info on renaming pdnsd after ndk-build
+6afd54bf have to build pdnsd as an executable, then rename it to libpdnsd.so
+7c6f924f Create only one pdnsd config file
+2a0ffa65 (tag: 16.5.1-BETA-2-tor.0.4.5.9, syphyr-main) update to version 1651100200
+1113f18c enable focus highlighting for non touch screens
+fdb16f27 fix orbot-tv app highlighting
+9a03f120 Merge branch 'master' of github.com:guardianproject/orbot into syphyr-main
+a749fe0d Merge pull request #486 from weblate/weblate-guardianproject-orbot
+8472e0dd Merge pull request #483 from SkewedZeppelin/avoiddiskwrites
+e75f0c76 Merge pull request #487 from cohosh/default-bridge
+570f7133 Translated using Weblate (Italian)
+cab9ea3f Translated using Weblate (Turkish)
+9d58ca88 Translated using Weblate (Vietnamese)
+184068d1 Translated using Weblate (Chinese (Simplified))
+26622efe Translated using Weblate (Ukrainian)
+ed259377 Translated using Weblate (Romanian)
+21f6597b Translated using Weblate (Portuguese (Brazil))
+e08cfa44 Translated using Weblate (Hebrew)
+5943f0c1 Translated using Weblate (French)
+e56ce667 Remove old default bridge
+602d2115 Merge branch 'main' of https://github.com/syphyr/orbot into syphyr-main
+78f0b765 update gradle tools
+920a4e30 Merge pull request #481 from SkewedZeppelin/snowflakelimit
+d55ebce9 Merge branch 'SkewedZeppelin-snowflakelimit'
+877556a9 (SkewedZeppelin-snowflakelimit) fix conflict
+ef0e1c24 Merge branch 'master' of github.com:guardianproject/orbot
+ddb95c33 Merge pull request #482 from SkewedZeppelin/snowflakelimitdefault
+7d526c2e Merge pull request #476 from SkewedZeppelin/isolatehttp
+65168659 Merge branch 'master' of github.com:guardianproject/orbot
+2f62f17f Merge pull request #485 from weblate/weblate-guardianproject-orbot
+206e7ee2 (tag: 16.5.1-BETA-1-tor.0.4.5.9) update to 1651100100
+9226ccbe Translated using Weblate (Finnish)
+806b7233 improve stop/start logic for tor and snowflake
+c0b09bff don't destroy service each time you stop Tor - causes memory issues and crashes in libtor
+f2199c59 Actually enable AvoidDiskWrites
+e07c3129 Build pdnsd as shared library
+3498903f Limit snowflake by default
+fe38aa2d Fixup snowflake limit check
+f313d83f only provide 1 snowlake proxy connection at a time
+a398b446 enable limit snowflake proxy mode to plugged in and unmetered connections
+7e3b3e5b update grade and tor-android to 0.4.5.9
+245eb345 Enable IsolateDestAddr on HTTPTunnelPort if set
+0636eacb Merge branch 'weblate-weblate-guardianproject-orbot'
+fac3b206 (weblate-weblate-guardianproject-orbot) must use youtube for video links for play store
+cadeee4b Merge branch 'weblate-guardianproject-orbot' of https://github.com/weblate/orbot into weblate-weblate-guardianproject-orbot
+589df2a9 Merge branch 'master' of github.com:guardianproject/orbot
+ed5833e1 latest changelog additions
+65d8ca30 small changes for showing snowflake activation
+b3116b7c dns config file formatting fix
+718fca6b cleanup of VPN DNS startup
+ace8a88e Merge pull request #466 from syphyr/main
+7c7a265c Merge pull request #470 from RyHmann/patch-1
+df4d4201 Cleanup old references to Polipo
+abce51c9 Update README.md
+c3ff9b75 Translated using Weblate (German)
+31f538e5 Translated using Weblate (German)
+09e47093 Translated using Weblate (Chinese (Simplified))
+d1c48c4f Translated using Weblate (Hebrew)
+098c9122 Translated using Weblate (French)
+c4b27c27 Translated using Weblate (Turkish)
+972972a5 Translated using Weblate (Indonesian)
+a3e98abe Translated using Weblate (Ukrainian)
+fd5f775c Translated using Weblate (Portuguese (Brazil))
+ff18db92 Translated using Weblate (Ukrainian)
+73bcfb53 Merge branch 'master' of github.com:guardianproject/orbot
+ed96c1a2 Merge pull request #465 from cohosh/single-snowflake
+be382ada Use only a single Snowflake at a time
+5e3963d8 (tag: 16.5.0-ALPHA-2-tor.0.4.5.7) update Orbot to 1650200100
+71545226 Merge branch 'bitmold-tor_event_bandwidth'
+491e3572 (bitmold-tor_event_bandwidth) bandwidth propagates correctly from TorEventHandler -> OrbotService -> OrbotMainActivity
+2519bb35 consistent data transfer logic in service, makes units in notiifcation accurate
+2041ec1d not needed in appcore build.gradle
+a348217e comment no longer needed with IPtProxy sources being hosted
+56e08141 removed obsolete method
+5fc9f872 Merge branch 'bitmold-IPtProxyPorts'
+99f2aa53 (bitmold-IPtProxyPorts) update bridge line for snowflake
+08b79c4b add fingerprint to bridge config https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake/-/issues/40045#note_2737108
+a36c8391 Merge branch 'IPtProxyPorts' of https://github.com/bitmold/orbot into bitmold-IPtProxyPorts
+fe196385 IPtProxy 1.0.0
+0d950796 make calls to start and stop synchronized
+88553b18 Merge branch 'IPtProxyPorts' of https://github.com/bitmold/orbot into bitmold-IPtProxyPorts
+4f8982e0 Orbot changes for new verison of IPtProxy that dynamically picks ports
+18fc0453 mini build should exclude PT support
+b8dbbcca (newport/master) added new app-tv module, updated app-mini
+efe44dc0 update app-mini to mini-1.0.0-BETA-2-tor-0.4.5.7
+c3631e4c fix app config layout
+e6fb6252 Merge branch 'master' of github.com:guardianproject/orbot
+976b0340 update app-mini to work with latest OrbotService
+0e39a777 add overall preference for enabling/disabling onion service hosting
+c7bb4ec9 fixed broken newnym btn on main activity
+e9d71feb Merge pull request #459 from eighthave/weblate
+c6dab304 update orbotservice target SDK to 30 to match the app
+377fd63c remove gpmaven repo, get jsockAndroid directly via jitpack.io
+2a466241 Translated using Weblate (Vietnamese)
+14fa245e Translated using Weblate (Portuguese)
+8ecb756f Translated using Weblate (Portuguese (Portugal))
+6793a99a Translated using Weblate (Portuguese (Brazil))
+3055933f Translated using Weblate (Norwegian Bokmål)
+
 /** 16.5.0-ALPHA-1 2 June 2021 **/
 
 5e3963d8 (HEAD -> master, tag: 16.5.0-ALPHA-2-tor.0.4.5.7) update Orbot to 1650200100
