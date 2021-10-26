@@ -59,6 +59,7 @@ android {
 }
 
 repositories {
+    //noinspection JcenterRepositoryObsolete
     jcenter {
         content {
             includeGroup('com.jraska')
