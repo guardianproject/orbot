@@ -3,6 +3,7 @@ include ':appcore'
 include ':orbotservice'
 include ':app',':app-mini', ':app-tv'
 
+/**
 enableFeaturePreview("VERSION_CATALOGS")
 dependencyResolutionManagement {
     versionCatalogs {
@@ -10,4 +11,4 @@ dependencyResolutionManagement {
             from(files("./gradle/libs.versions.toml"))
         }
     }
-}
+}**/

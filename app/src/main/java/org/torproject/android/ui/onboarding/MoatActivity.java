@@ -186,7 +186,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
         IPtProxy.setStateLocation(fileCacheDir.getAbsolutePath());
 
-        IPtProxy.startObfs4Proxy("DEBUG", false, false);
+        IPtProxy.startObfs4Proxy("DEBUG", false, false, null);
 
         ProxiedHurlStack phs = new ProxiedHurlStack("127.0.0.1", (int) IPtProxy.meekPort(),
           "url=" + OrbotService.getCdnFront("moat-url")

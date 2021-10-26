@@ -1406,7 +1406,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
                     if (Prefs.bridgesEnabled()) {
                         if (useIPtObfsMeekProxy())
-                            IPtProxy.startObfs4Proxy("DEBUG", false, false);
+                            IPtProxy.startObfs4Proxy("DEBUG", false, false, null);
                         else if (useIPtSnowflakeProxy())
                             startSnowflakeClient();
                     } else if (Prefs.beSnowflakeProxy()) {

@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-android-extensions'
 }
 apply from: "../commons.gradle"
+apply from : '../dependencies.gradle'
 
 android {
     defaultConfig {
@@ -26,6 +27,6 @@ dependencies {
     implementation(
             project(':orbotservice'),
             "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
-            libs.androidx.appcompat
+            libs.androidx_appcompat
     )
 }

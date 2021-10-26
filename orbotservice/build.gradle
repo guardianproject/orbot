@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply from: "../commons.gradle"
+apply from : '../dependencies.gradle'
 
 android {
     ndkVersion '21.3.6528147'
@@ -38,15 +39,15 @@ android {
 }
 
 dependencies {
-    api libs.guardian.jtorctl
+    api libs.guardian_jtorctl
     implementation(
-            libs.android.shell,
-            libs.androidx.core,
-            libs.androidx.localbroadcast,
-            libs.ipt.proxy,
-            libs.guardian.jsocks,
-            libs.guardian.geoip,
+            libs.android_shell,
+            libs.androidx_core,
+            libs.androidx_localbroadcast,
+            libs.ipt_proxy,
+            libs.guardian_jsocks,
+            libs.guardian_geoip,
             libs.portmapper,
-            libs.tor.android
+            libs.tor_android
     )
 }

@@ -1,4 +1,5 @@
 apply from: "../commons-device.gradle"
+apply from : '../dependencies.gradle'
 
 /* gets the version name from the latest Git tag, stripping the leading v off */
 def getVersionName = { ->
@@ -39,7 +40,7 @@ android {
             minSdkVersion 16
             applicationId 'org.torproject.android'
             targetSdkVersion 29
-            versionCode 1651100210
+            versionCode 1652100110
 
             versionName getVersionName()
             archivesBaseName = "Orbot-$versionName"
@@ -57,18 +58,18 @@ android {
                 project(':appcore'),
                 project(':intentintegrator'),
                 project(':orbotservice'),
-                libs.apl.appintro,
-                libs.android.snowfall,
-                libs.android.volley,
-                libs.androidx.core,
-                libs.androidx.localbroadcast,
-                libs.androidx.palette,
-                libs.android.material,
-                libs.bclogic.pulsator,
-                libs.guardian.jtorctl,
-                libs.ipt.proxy
+                libs.apl_appintro,
+                libs.android_snowfall,
+                libs.android_volley,
+                libs.androidx_core,
+                libs.androidx_localbroadcast,
+                libs.androidx_palette,
+                libs.android_material,
+                libs.bclogic_pulsator,
+                libs.guardian_jtorctl,
+                libs.ipt_proxy
 
         )
-        androidTestImplementation libs.fastlane.screengrab
+        androidTestImplementation libs.fastlane_screengrab
     }
 }
