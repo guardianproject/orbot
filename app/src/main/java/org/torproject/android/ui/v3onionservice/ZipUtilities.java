@@ -1,4 +1,4 @@
-package org.torproject.android.ui.hiddenservices.backup;
+package org.torproject.android.ui.v3onionservice;
 
 import android.content.ContentResolver;
 import android.net.Uri;
@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;

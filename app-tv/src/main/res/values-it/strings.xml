@@ -96,8 +96,7 @@
   <string name="hidden_service_request">Un\'app vuole aprire la porta %1$d del server nascosto alla rete Tor. È un\'azione sicura se ti fidi dell\'app.</string>
   <string name="found_existing_tor_process">trovato un processo Tor esistente...</string>
   <string name="something_bad_happened">E\' accaduto un evento indesiderato. Controllare i log.</string>
-    <string name="unable_to_read_hidden_service_name">Impossibile leggere il nome del servizio nascosto.</string>
-  <string name="unable_to_start_tor">Impossibile avviare Tor:</string>
+    <string name="unable_to_start_tor">Impossibile avviare Tor:</string>
     <string name="pref_use_persistent_notifications">Mantieni sempre l\'icona nella barra degli strumenti quando Orbot è connesso.</string>
   <string name="pref_use_persistent_notifications_title">Notifiche sempre attive</string>
   <string name="pref_use_expanded_notifications">Visualizza notifica espansa con nazione e ip dell\'nodo d\'uscita Tor</string>
@@ -130,7 +129,6 @@
     <string name="send_email">Invia email</string>
   <string name="vpn_default_world">Globale (Auto)</string>
   <string name="hidden_services">Servizi nascosti</string>
-  <string name="title_activity_hidden_services">Servizi nascosti</string>
   <string name="menu_hidden_services">Servizi nascosti</string>
   <string name="save">Salva</string>
     <string name="local_port">Porta locale</string>
@@ -138,7 +136,6 @@
   <string name="name">Nome</string>
   <string name="done">Fatto!</string>
     <string name="copy_address_to_clipboard">Copia l\'indirizzo negli appunti</string>
-  <string name="show_auth_cookie">Mostra cookie di autenticazione</string>
   <string name="backup_service">Servizio di backup</string>
   <string name="delete_service">Elimina il servizio</string>
   <string name="backup_saved_at_external_storage">Backup salvato nell\'archiviazione esterna</string>
@@ -149,16 +146,8 @@
   <string name="click_again_for_backup">Clicca ancora per eseguire il backup</string>
   <string name="service_type">Tipo di servizio</string>
   <string name="auth_cookie">Cookie autenticazione</string>
-  <string name="copy_cookie_to_clipboard">Copia cookie negli appunti</string>
-  <string name="auth_cookie_was_not_configured">Cookie di autenticazione non configurato</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Per favore riavvia Orbot per rendere effettive le modifiche</string>
-  <string name="client_cookies">Cookie del client</string>
   <string name="onion">.onion</string>
-  <string name="cookie_from_QR">Leggi da QR</string>
-  <string name="backup_cookie">Backup cookie</string>
-  <string name="delete_cookie">Elimina cookie</string>
-  <string name="confirm_cookie_deletion">Conferma eliminazione cookie</string>
-  <string name="hosted_services">Servizi ospitati</string>
   <string name="share_as_qr">Condividi come QR</string>
   <string name="disable">Disabilita</string>
   <string name="enable">Abilità</string>

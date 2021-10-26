@@ -17,7 +17,6 @@
   <string name="your_relay_settings_caused_an_exception_">귀하의 중계서버 설정은 예외를 발생시켰습니다!</string>
     <string name="found_existing_tor_process">존재하고 있는 Tor 프로세스 발견</string>
   <string name="something_bad_happened">어떤 나쁜 것이 발생. 로그 확인하세요.</string>
-    <string name="unable_to_read_hidden_service_name">히든 서비스 이름을 읽을 수 없음</string>
-  <string name="unable_to_start_tor">Tor 시작 불가능</string>
+    <string name="unable_to_start_tor">Tor 시작 불가능</string>
     <string name="newnym">새로운 Tor 신원으로 전환되었습니다!</string>
 </resources>

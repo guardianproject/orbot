@@ -88,7 +88,6 @@
     <string name="libevent_version">LibEvent v2.0.21 : http://www.monkey.org/~provos/libevent/</string>
     <string name="found_existing_tor_process">un processus Tor existant a été trouvé…</string>
     <string name="something_bad_happened">Une problème est survenu. Consultez le journal</string>
-    <string name="unable_to_read_hidden_service_name">impossible de lire le nom du service onion</string>
     <string name="unable_to_start_tor">Impossible de démarrer Tor :</string>
     <string name="pref_use_persistent_notifications">Toujours conserver l’icône dans la barre d’outils quand Orbot est connecté</string>
     <string name="pref_use_persistent_notifications_title">Notifications toujours actives</string>
@@ -131,13 +130,11 @@
     <string name="apps_mode">Mode RPV</string>
     <string name="vpn_default_world">Global (automatique)</string>
     <string name="hidden_services">Services onion</string>
-    <string name="title_activity_hidden_services">Services onion</string>
     <string name="menu_hidden_services">Services onion</string>
     <string name="local_port">Port local</string>
     <string name="onion_port">Port onion</string>
     <string name="done">Terminé</string>
     <string name="copy_address_to_clipboard">Copier l’adresse dans le presse-papiers</string>
-    <string name="show_auth_cookie">Afficher le témoin d’authentification</string>
     <string name="backup_service">Sauvegarder le service <i>(Avertissement : La configuration de votre service pourrait être exposée à d’autres applis)</i></string>
     <string name="delete_service">Supprimer le service</string>
     <string name="backup_saved_at_external_storage">La sauvegarde a été enregistrée sur la mémoire externe</string>
@@ -148,15 +145,7 @@
     <string name="confirm_service_deletion">Confirmez la suppression du service</string>
     <string name="service_type">Type de service</string>
     <string name="auth_cookie">Témoin d’authentification</string>
-    <string name="copy_cookie_to_clipboard">Copier le témoin dans le presse-papiers</string>
-    <string name="auth_cookie_was_not_configured">Le témoin d’authentification n’a pas été configuré</string>
-    <string name="client_cookies">Témoins des clients</string>
     <string name="onion">.onion</string>
-    <string name="cookie_from_QR">Balayer un code QR</string>
-    <string name="backup_cookie">Sauvegarder le témoin</string>
-    <string name="delete_cookie">Supprimer le témoin</string>
-    <string name="confirm_cookie_deletion">Confirmer la suppression du témoin</string>
-    <string name="hosted_services">Services hébergés</string>
     <string name="share_as_qr">Partager en tant que code QR</string>
     <string name="disable">Désactiver</string>
     <string name="enable">Activer</string>
@@ -221,7 +210,6 @@
     <string name="v3_client_auth_activity_title">Autorisation client v3</string>
     <string name="v3_client_auth">Autorisation client Onion Service v3</string>
     <string name="v3_hosted_services">Services Onion v3 hébergés</string>
-    <string name="v2_hidden_services">Services Onion v2 (déconseillés)</string>
     <string name="deny">Refuser</string>
     <string name="allow">Autoriser</string>
     <string name="backup_port_exist">Erreur : Un service onion utilise déjà le port %s</string>

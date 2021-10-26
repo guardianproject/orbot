@@ -93,8 +93,7 @@
   <string name="openssl_version">OpenSSL v1.0.2j: https://www.openssl.org</string>
   <string name="found_existing_tor_process">fant eksisterende Tor-prosess…</string>
   <string name="something_bad_happened">Noe alvorlig skjedde. Sjekk loggen.</string>
-    <string name="unable_to_read_hidden_service_name">klarte ikke å lese skjult tjenestenavn</string>
-  <string name="unable_to_start_tor">Klarte ikke å starte Tor:</string>
+    <string name="unable_to_start_tor">Klarte ikke å starte Tor:</string>
     <string name="pref_use_persistent_notifications">Alltid behold ikonet i verktøyslinjen når Orbot er tilkoblet</string>
   <string name="pref_use_persistent_notifications_title">Alltid-På -varslinger</string>
   <string name="pref_use_expanded_notifications">Vis utvidede merknader med land og IP for utgangstrafikk fra Tor</string>
@@ -125,7 +124,6 @@
   <string name="apps_mode">VPN-modus</string>
   <string name="send_email">Send e-post</string>
   <string name="hidden_services">Hidden Services</string>
-  <string name="title_activity_hidden_services">Hidden Services</string>
   <string name="menu_hidden_services">Hidden Services</string>
   <string name="save">Lagre</string>
     <string name="local_port">Lokalt port</string>
@@ -141,15 +139,8 @@
   <string name="confirm_service_deletion">Bekreft sletting av tjeneste</string>
   <string name="click_again_for_backup">Klikk igjen for å sikkerhetskopiere</string>
   <string name="service_type">Tjenestetype</string>
-  <string name="copy_cookie_to_clipboard">Kopier kake til utklippstavle</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Gjør omstart av Orbot før endringer trer i kraft</string>
-  <string name="client_cookies">Klientinformasjonskapsler</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Gjør omstart av Orbot før endringer trer i kraft</string>
   <string name="onion">.onion</string>
-  <string name="cookie_from_QR">Les fra QR</string>
-  <string name="backup_cookie">Sikkerhetskopier informasjonskapsel</string>
-  <string name="delete_cookie">Slett informasjonskapsel</string>
-  <string name="confirm_cookie_deletion">Bekreft sletting av informasjonskapsel</string>
-  <string name="hosted_services">Vertstjenester</string>
   <string name="share_as_qr">Del som QR</string>
   <string name="disable">Skru av</string>
   <string name="enable">Slå på</string>

@@ -19,8 +19,7 @@
   <string name="your_relay_settings_caused_an_exception_">あなたのリレー設定により例外が発生しました!</string>
     <string name="found_existing_tor_process">Torプロセスを発見</string>
   <string name="something_bad_happened">何かが起こりました。ログを確認してください。</string>
-    <string name="unable_to_read_hidden_service_name">hidden serviceの名前読込不能</string>
-  <string name="unable_to_start_tor">Torを実行できませんでした</string>
+    <string name="unable_to_start_tor">Torを実行できませんでした</string>
     <string name="newnym">新たな Tor の身元に切り替えました。</string>
     <string name="updating_settings_in_tor_service">Torサービスの設定を更新中</string>
 </resources>

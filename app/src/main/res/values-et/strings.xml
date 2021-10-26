@@ -81,8 +81,7 @@
     <string name="third_party_software">Kolmanda osapoole tarkvara:</string>
   <string name="found_existing_tor_process">leidus töötav Tor protsess…</string>
   <string name="something_bad_happened">Juhtus midagi halba. Kontrollige logi</string>
-    <string name="unable_to_read_hidden_service_name">ei õnnestu lugeda varjatud teenuse nime</string>
-  <string name="unable_to_start_tor">Tor käivitamine ebaõnnestus:</string>
+    <string name="unable_to_start_tor">Tor käivitamine ebaõnnestus:</string>
     <string name="pref_use_persistent_notifications">Ühendatud Orbot korral näidata katkematult ikoonide tööriistariba</string>
   <string name="pref_use_persistent_notifications_title">Pidevalt kuvatavad teated</string>
     <string name="pref_disable_network_title">Pole võrgu auto-und</string>

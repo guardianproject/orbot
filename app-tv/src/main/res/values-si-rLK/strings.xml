@@ -77,8 +77,7 @@
     <string name="third_party_software">3 වන පාර්ශව මෘදුකාංග</string>
   <string name="found_existing_tor_process">පවතින Tor ක්‍රියාවලි හමුවිය...</string>
   <string name="something_bad_happened">යම් නොමනා දෙයක් සිදුවිය. ලොගය පරික්ෂා කර බලන්න </string>
-    <string name="unable_to_read_hidden_service_name">සැගවුණු සේවා නාමය කියවීමට නොහැකිය </string>
-  <string name="unable_to_start_tor">Tor ආරම්භ කිරීමට නොහැකිය:</string>
+    <string name="unable_to_start_tor">Tor ආරම්භ කිරීමට නොහැකිය:</string>
     <string name="pref_use_persistent_notifications">Orbot සම්බන්ධ වී ඇති සැමවිටම විට මෙවලම් තීරුවේ නිරූපකය තබාගන්න</string>
   <string name="pref_use_persistent_notifications_title">නිවේදන ලැබීමට සලස්වන්න </string>
     <string name="set_locale_title">භාෂාව</string>
@@ -86,8 +85,7 @@
   <string name="mb">MB</string>
   <string name="activate">ක්‍රියාකරවන්න</string>
   <string name="hidden_services">සැගවුණු සේවා </string>
-  <string name="title_activity_hidden_services">සැගවුණු සේවා </string>
-  <string name="menu_hidden_services">සැගවුණු සේවා </string>
+    <string name="menu_hidden_services">සැගවුණු සේවා </string>
   <string name="save">සුරකින්න</string>
   <string name="name">නම</string>
 </resources>

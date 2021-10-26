@@ -102,7 +102,6 @@
     <string name="deny">Deny</string>
     <string name="found_existing_tor_process">found existing Tor process&#8230;</string>
     <string name="something_bad_happened">Something bad happened. Check the log</string>
-    <string name="unable_to_read_hidden_service_name">unable to read onion service name</string>
     <string name="unable_to_start_tor">Unable to start Tor:</string>
 
     <string name="pref_use_persistent_notifications">Always keep the icon in toolbar when Orbot is connected</string>
@@ -162,7 +161,6 @@
 
     <string name="vpn_default_world">Global (Auto)</string>
     <string name="hidden_services">Onion Services</string>
-    <string name="v2_hidden_services">v2 Onion Services (Deprecated)</string>
     <string name="v3_hosted_services">Hosted v3 Onion Services</string>
     <string name="v3_client_auth">v3 Onion Service Client Authorization</string>
     <string name="v3_client_auth_activity_title">v3 Client Authorization</string>
@@ -175,7 +173,6 @@
     <string name="v3_backup_name_hint">Backup filename…</string>
     <string name="v3_import_auth_private">Import .auth_private</string>
     <string name="confirm">Confirm</string>
-    <string name="title_activity_hidden_services">Onion Services</string>
     <string name="menu_hidden_services">Onion Services</string>
     <string name="save">Save</string>
     <string name="local_port">Local Port</string>
@@ -183,7 +180,6 @@
     <string name="name">Name</string>
     <string name="done">Done!</string>
     <string name="copy_address_to_clipboard">Copy address to clipboard</string>
-    <string name="show_auth_cookie">Show auth cookie</string>
     <string name="backup_service">Backup Service &lt;i&gt;(Warning: This Could Expose Your Service Configuration to Other Apps)&lt;/i&gt;</string>
     <string name="delete_service">Delete Service</string>
     <string name="backup_saved_at_external_storage">Backup saved at external storage</string>
@@ -195,16 +191,8 @@
     <string name="confirm_service_deletion">Confirm service deletion</string>
     <string name="service_type">Service type</string>
     <string name="auth_cookie">Auth cookie</string>
-    <string name="copy_cookie_to_clipboard">Copy cookie to clipboard</string>
-    <string name="auth_cookie_was_not_configured">Auth cookie was not configured</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Please restart Orbot to enable the changes</string>
-    <string name="client_cookies">Client Cookies</string>
     <string name="onion">.onion</string>
-    <string name="cookie_from_QR">Read from QR</string>
-    <string name="backup_cookie">Backup cookie</string>
-    <string name="delete_cookie">Delete cookie</string>
-    <string name="confirm_cookie_deletion">Confirm cookie deletion</string>
-    <string name="hosted_services">Hosted Services</string>
     <string name="share_as_qr">Share as QR</string>
     <string name="disable">Disable</string>
     <string name="enable">Enable</string>

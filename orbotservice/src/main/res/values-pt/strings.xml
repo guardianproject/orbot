@@ -15,8 +15,7 @@
     <string name="couldn_t_start_tor_process_">Não foi possível iniciar o processo Tor: </string>
     <string name="found_existing_tor_process">encontrado o processo Tor existente...</string>
   <string name="something_bad_happened">Aconteceu algo de mau. Verifique o registo de eventos.</string>
-    <string name="unable_to_read_hidden_service_name">não é possível ler o nome do serviço ocultado</string>
-  <string name="unable_to_start_tor">Não é possível iniciar o Tor:</string>
+    <string name="unable_to_start_tor">Não é possível iniciar o Tor:</string>
     <string name="newnym">Mudou para uma nova identidade do Tor!</string>
     <string name="updating_settings_in_tor_service">a atualizar as definições no serviço Tor</string>
   <string name="mebibyte_per_second">MiB/s</string>

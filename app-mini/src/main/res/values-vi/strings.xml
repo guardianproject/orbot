@@ -91,8 +91,7 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="found_existing_tor_process">tìm ra tiến trình hiện hành của Tor...</string>
   <string name="something_bad_happened">Có gì đó không ổn. Xin xem lại nhật ký</string>
-    <string name="unable_to_read_hidden_service_name">không thể đọc được tên dịch vụ ẩn</string>
-  <string name="unable_to_start_tor">Không thể khởi động Tor được: </string>
+    <string name="unable_to_start_tor">Không thể khởi động Tor được: </string>
     <string name="pref_use_persistent_notifications">Luôn giữ thông báo trong thanh trạng thái khi Orbot được kết nối</string>
   <string name="pref_use_persistent_notifications_title">Thông báo thường trực</string>
   <string name="pref_use_expanded_notifications">Hiển thị thông báo mở rộng với IP và quốc gia của nút cuối (Tor exit-node)</string>

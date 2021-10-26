@@ -19,8 +19,7 @@
   <string name="your_relay_settings_caused_an_exception_">中继设置导致异常！</string>
     <string name="found_existing_tor_process">发现当前已存在 Tor 进程...</string>
   <string name="something_bad_happened">发生错误，请检查日志</string>
-    <string name="unable_to_read_hidden_service_name">无法读取隐藏服务名称</string>
-  <string name="unable_to_start_tor">无法启动 Tor：</string>
+    <string name="unable_to_start_tor">无法启动 Tor：</string>
     <string name="newnym">已切换为新的 Tor 标识！</string>
     <string name="updating_settings_in_tor_service">正在更新 Tor 服务中的设置</string>
   <string name="mebibyte_per_second">MiB/秒</string>

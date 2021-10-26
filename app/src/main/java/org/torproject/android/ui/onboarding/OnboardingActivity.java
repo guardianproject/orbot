@@ -14,7 +14,7 @@ import org.torproject.android.R;
 import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.ui.AppManagerActivity;
-import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
+import org.torproject.android.ui.v3onionservice.PermissionManager;
 
 public class OnboardingActivity extends AppIntro {
 

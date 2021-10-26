@@ -96,8 +96,7 @@
   <string name="hidden_service_request">Unha aplicación quere abrir o porto oculto de servidor %1$d a rede Tor. Esto é seguro se vostede confía na app.</string>
   <string name="found_existing_tor_process">atopado proceso Tor existente...</string>
   <string name="something_bad_happened">Algo malo pasou. Comprobe o rexistro</string>
-    <string name="unable_to_read_hidden_service_name">imposible ler nome de servizo oculto</string>
-  <string name="unable_to_start_tor">Incapaz de arrancar Tor</string>
+    <string name="unable_to_start_tor">Incapaz de arrancar Tor</string>
     <string name="pref_use_persistent_notifications">Mostrar sempre a icona na barra de ferramentas cando Orbot estea conectado</string>
   <string name="pref_use_persistent_notifications_title">Notificacións Sempre Acesas</string>
   <string name="pref_use_expanded_notifications">Mostar notificación extendida co país de saída de Tor e IP</string>
@@ -130,7 +129,6 @@
     <string name="send_email">Enviar correo</string>
   <string name="vpn_default_world">Global (Auto)</string>
   <string name="hidden_services">Servizos agochados</string>
-  <string name="title_activity_hidden_services">Servizos agochados</string>
   <string name="menu_hidden_services">Servizos agochados</string>
   <string name="save">Gardar</string>
     <string name="local_port">Porto local</string>
@@ -138,7 +136,6 @@
   <string name="name">Nome</string>
   <string name="done">Feito!</string>
     <string name="copy_address_to_clipboard">Copiar enderezo ao portapapeis</string>
-  <string name="show_auth_cookie">Mostar testemuño de autorización</string>
   <string name="backup_service">Servizo de respaldo</string>
   <string name="delete_service">Eliminar servizo</string>
   <string name="backup_saved_at_external_storage">Respaldo gardado en almacenamento externo</string>
@@ -149,16 +146,8 @@
   <string name="click_again_for_backup">Pulse de novo para respaldar</string>
   <string name="service_type">Tipo de servizo</string>
   <string name="auth_cookie">Testemuño de autorización</string>
-  <string name="copy_cookie_to_clipboard">Copie o testemuño ao portapapeis</string>
-  <string name="auth_cookie_was_not_configured">Non estableceu un testemuño de autorización</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Por favor, reinicie Orbot para activar os cambios</string>
-  <string name="client_cookies">Testemuños do cliente</string>
   <string name="onion">.onion</string>
-  <string name="cookie_from_QR">Ler desde QR</string>
-  <string name="backup_cookie">Testemuño de respaldo</string>
-  <string name="delete_cookie">Eliminar testemuño</string>
-  <string name="confirm_cookie_deletion">Confirme a eliminación do testemuño</string>
-  <string name="hosted_services">Servizos hospedados</string>
   <string name="share_as_qr">Compartir como QR</string>
   <string name="disable">Inhabilitar</string>
   <string name="enable">Activar</string>

@@ -18,6 +18,5 @@
   <string name="your_relay_settings_caused_an_exception_">Dine relæindstillinger forårsagede en fejl!</string>
     <string name="found_existing_tor_process">fandt eksisterende Tor process...</string>
   <string name="something_bad_happened">Noget slemt er sket. Check loggen</string>
-    <string name="unable_to_read_hidden_service_name">ikke i stand til at læse navnet på den skjulte service</string>
-  <string name="unable_to_start_tor">Kunne ikke starte Tor:</string>
+    <string name="unable_to_start_tor">Kunne ikke starte Tor:</string>
 </resources>

@@ -92,7 +92,6 @@
     <string name="hidden_service_request">Una aplicació vol obrir el port de servidor ocults%1$d a la xarxa Tor. Això és segur si confieu en l\'aplicació.</string>
     <string name="found_existing_tor_process">s\'ha trobat un procés Tor existent…</string>
     <string name="something_bad_happened">Ha fallat alguna cosa. Comproveu el registre</string>
-    <string name="unable_to_read_hidden_service_name">ha estat impossible llegir el nom del servei ocult</string>
     <string name="unable_to_start_tor">Ha estat impossible iniciar Tor:</string>
     <string name="pref_use_persistent_notifications">Manté la icona sempre a la barra d\'eines mentre l\'Orbot està connectat</string>
     <string name="pref_use_persistent_notifications_title">Notificacions sempre activades</string>
@@ -123,7 +122,6 @@
     <string name="send_email">Envia correu-e</string>
     <string name="vpn_default_world">Global (auto)</string>
     <string name="hidden_services">Serveis ocults</string>
-    <string name="title_activity_hidden_services">Serveis ocults</string>
     <string name="menu_hidden_services">Serveis ocults</string>
     <string name="save">Desa</string>
     <string name="local_port">Port local</string>
@@ -131,7 +129,6 @@
     <string name="name">Nom</string>
     <string name="done">Fet!</string>
     <string name="copy_address_to_clipboard">Copia adreça al portapapers</string>
-    <string name="show_auth_cookie">Mostrar galetes d\'autentificació</string>
     <string name="backup_service">Servei de còpia de seguretat</string>
     <string name="delete_service">Esborrar servei</string>
     <string name="backup_saved_at_external_storage">Còpia de seguretat desada a emmagatzematge extern</string>
@@ -142,16 +139,8 @@
     <string name="confirm_service_deletion">Confirma la supressió del servei</string>
     <string name="service_type">Tipus de servei</string>
     <string name="auth_cookie">Auth cookie</string>
-    <string name="copy_cookie_to_clipboard">Copieu les galetes al porta-retalls</string>
-    <string name="auth_cookie_was_not_configured">No s\'ha configurat l\'Auth cookie</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Reinicieu l\'Orbot per aplicar els canvis</string>
-    <string name="client_cookies">Client cookies</string>
     <string name="onion">.onion</string>
-    <string name="cookie_from_QR">Llegir de QR</string>
-    <string name="backup_cookie">Backup cookie</string>
-    <string name="delete_cookie">Elimina la galeta</string>
-    <string name="confirm_cookie_deletion">Confirma la supressió de les galetes</string>
-    <string name="hosted_services">Serveis allotjats</string>
     <string name="share_as_qr">Comparteix com a QR</string>
     <string name="disable">Deshabilitar </string>
     <string name="enable">Habilitar</string>

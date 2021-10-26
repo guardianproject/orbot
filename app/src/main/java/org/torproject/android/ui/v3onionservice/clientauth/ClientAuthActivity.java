@@ -22,7 +22,7 @@ import androidx.fragment.app.Fragment;
 import org.torproject.android.R;
 import org.torproject.android.core.DiskUtils;
 import org.torproject.android.core.LocaleHelper;
-import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
+import org.torproject.android.ui.v3onionservice.V3BackupUtils;
 
 import java.io.File;
 import java.util.List;
@@ -82,7 +82,7 @@ public class ClientAuthActivity extends AppCompatActivity {
                     return;
                 }
                 String authText = DiskUtils.readFileFromInputStream(getContentResolver(), uri);
-                new BackupUtils(this).restoreClientAuthBackup(authText);
+                new V3BackupUtils(this).restoreClientAuthBackup(authText);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
@@ -139,7 +139,7 @@ public class ClientAuthActivity extends AppCompatActivity {
                 .setTitle(R.string.restore_backup)
                 .setItems(fileNames, (dialog, which) -> {
                     String authFileText = DiskUtils.readFile(getContentResolver(), files[which]);
-                    new BackupUtils(this).restoreClientAuthBackup(authFileText);
+                    new V3BackupUtils(this).restoreClientAuthBackup(authFileText);
                 })
                 .show();
     }

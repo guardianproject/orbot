@@ -90,7 +90,6 @@
     <string name="openssl_version">OpenSSL v1.0.2j: https://www.openssl.org</string>
     <string name="found_existing_tor_process">fant eksisterende Tor-prosess…</string>
     <string name="something_bad_happened">Noe alvorlig skjedde. Sjekk loggen.</string>
-    <string name="unable_to_read_hidden_service_name">klarte ikke å lese skjult tjenestenavn</string>
     <string name="unable_to_start_tor">Klarte ikke å starte Tor:</string>
     <string name="pref_use_persistent_notifications">Alltid behold ikonet i verktøyslinjen når Orbot er tilkoblet</string>
     <string name="pref_use_persistent_notifications_title">Alltid-På -varslinger</string>
@@ -119,7 +118,6 @@
     <string name="apps_mode">VPN-modus</string>
     <string name="send_email">Send e-post</string>
     <string name="hidden_services">Hidden Services</string>
-    <string name="title_activity_hidden_services">Hidden Services</string>
     <string name="menu_hidden_services">Hidden Services</string>
     <string name="save">Lagre</string>
     <string name="local_port">Lokalt port</string>
@@ -135,15 +133,8 @@
     <string name="start_tor_again_for_finish_the_process">Start Tor igjen for å fullføre prosessen</string>
     <string name="confirm_service_deletion">Bekreft sletting av tjeneste</string>
     <string name="service_type">Tjenestetype</string>
-    <string name="copy_cookie_to_clipboard">Kopier kake til utklippstavle</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Gjør omstart av Orbot før endringer trer i kraft</string>
-    <string name="client_cookies">Klientinformasjonskapsler</string>
     <string name="onion">.onion</string>
-    <string name="cookie_from_QR">Les fra QR</string>
-    <string name="backup_cookie">Sikkerhetskopier informasjonskapsel</string>
-    <string name="delete_cookie">Slett informasjonskapsel</string>
-    <string name="confirm_cookie_deletion">Bekreft sletting av informasjonskapsel</string>
-    <string name="hosted_services">Vertstjenester</string>
     <string name="share_as_qr">Del som QR</string>
     <string name="disable">Skru av</string>
     <string name="enable">Slå på</string>
@@ -161,7 +152,6 @@
     <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="pref_http_dialog">HTTP-portoppsett</string>
     <string name="auth_cookie">Identitetsbekreftelseskake</string>
-    <string name="auth_cookie_was_not_configured">Identitetsbekreftelseskake ikke satt opp</string>
     <string name="consider_disable_battery_optimizations">Overvei å skru av batterioptimalisering</string>
     <string name="consider_enable_battery_optimizations">Overvei å skru på batterioptimalisering</string>
     <string name="pref_isolate_dest">Isoler måladresser</string>
@@ -178,7 +168,6 @@
     <string name="pref_reduced_connection_padding">Redusert tilknytningsutfylling</string>
     <string name="pref_connection_padding_summary">Tillat tilknytningsutfylling for å beskytte mot noen typer trafikkanalyse. Forvalg: auto</string>
     <string name="pref_connection_padding">Tilkoblingsutfylling</string>
-    <string name="show_auth_cookie">Vis identitetsbekreftelseskake</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Tillat Wi-Fi-likemenn, tjudrede enheter, og alle som kan koble til din IP; tilgang til Tor</string>
     <string name="app_shortcuts">Programmer som kan bruke Tor</string>
     <string name="testing_bridges_success">Brooppsettet fungerer.</string>

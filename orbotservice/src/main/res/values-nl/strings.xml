@@ -19,8 +19,7 @@
   <string name="your_relay_settings_caused_an_exception_">Je relay-instellingen veroorzaakten een fout!</string>
     <string name="found_existing_tor_process">bestaand Tor-proces gevonden…</string>
   <string name="something_bad_happened">Er is een fout opgetreden. Controleer de log</string>
-    <string name="unable_to_read_hidden_service_name">Kan verborgen dienst-naam niet lezen</string>
-  <string name="unable_to_start_tor">Kan Tor niet starten:</string>
+    <string name="unable_to_start_tor">Kan Tor niet starten:</string>
     <string name="newnym">Je bent naar een nieuwe Tor identiteit gewisseld!</string>
     <string name="updating_settings_in_tor_service">instellingen in Tor-dienst worden bijgewerkt</string>
 </resources>

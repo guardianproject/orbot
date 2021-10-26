@@ -24,9 +24,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import org.torproject.android.R;
 import org.torproject.android.core.DiskUtils;
 import org.torproject.android.core.LocaleHelper;
-import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
-import org.torproject.android.ui.hiddenservices.backup.ZipUtilities;
-import org.torproject.android.ui.hiddenservices.permissions.PermissionManager;
 
 import java.io.File;
 
@@ -134,7 +131,7 @@ public class OnionServiceActivity extends AppCompatActivity {
 
         new AlertDialog.Builder(this)
                 .setTitle(R.string.restore_backup)
-                .setItems(fileNames, (dialog, which) -> new BackupUtils(this).restoreZipBackupV3Legacy(files[which]))
+                .setItems(fileNames, (dialog, which) -> new V3BackupUtils(this).restoreZipBackupV3Legacy(files[which]))
                 .show();
     }
 
@@ -142,7 +139,7 @@ public class OnionServiceActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int result, Intent data) {
         super.onActivityResult(requestCode, result, data);
         if (requestCode == REQUEST_CODE_READ_ZIP_BACKUP && result == RESULT_OK) {
-            new BackupUtils(this).restoreZipBackupV3(data.getData());
+            new V3BackupUtils(this).restoreZipBackupV3(data.getData());
         }
     }
 

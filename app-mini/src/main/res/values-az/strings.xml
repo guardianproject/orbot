@@ -92,8 +92,7 @@ Tor: https://www.torproject.org</string>
 LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="found_existing_tor_process">mövcud Tor prosesi tapıldı...</string>
   <string name="something_bad_happened">Nə isə pis bir şey oldu. Girişi yoxla</string>
-    <string name="unable_to_read_hidden_service_name">gizli xidmət adını oxumağı deaktivləşdir</string>
-  <string name="unable_to_start_tor">Tor-un başlanmasını dayandır:</string>
+    <string name="unable_to_start_tor">Tor-un başlanmasını dayandır:</string>
     <string name="pref_use_persistent_notifications">Həmişə Orbot qoşulduğu hallarda nişanı alətlət panelində saxla</string>
   <string name="pref_use_persistent_notifications_title">Həmişə Açıq Xəbərdarlıqlar</string>
   <string name="pref_use_expanded_notifications">Torla birlikdə ətraflı bildirişi göstərib ölkə və IP-dən çıxın. </string>

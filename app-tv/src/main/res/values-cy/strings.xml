@@ -36,8 +36,7 @@
     <string name="set_locale_title">Iaith</string>
     <string name="activate">Ysgogi</string>
   <string name="hidden_services">Gwasanaethau Cudd</string>
-  <string name="title_activity_hidden_services">Gwasanaethau Cudd</string>
-  <string name="menu_hidden_services">Gwasanaethau Cudd</string>
+    <string name="menu_hidden_services">Gwasanaethau Cudd</string>
   <string name="save">Cadw</string>
   <string name="name">Enw</string>
 </resources>

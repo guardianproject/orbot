@@ -92,7 +92,6 @@
     <string name="hidden_service_request">Eine Anwendung möchte den Onion Server auf Port %1$s zum Tor-Netzwerk öffnen. Dies ist sicher, wenn Sie der Anwendung vertrauen.</string>
     <string name="found_existing_tor_process">bestehenden Tor-Prozess gefunden …</string>
     <string name="something_bad_happened">Etwas ist schief gelaufen. Bitte Protokoll überprüfen</string>
-    <string name="unable_to_read_hidden_service_name">Name des versteckten Dienstes kann nicht gelesen werden</string>
     <string name="unable_to_start_tor">Tor kann nicht gestartet werden:</string>
     <string name="pref_use_persistent_notifications">Symbol immer in der Statusleiste lassen, wenn Orbot verbunden ist</string>
     <string name="pref_use_persistent_notifications_title">Aktivitätsanzeige</string>
@@ -123,7 +122,6 @@
     <string name="send_email">E-Mail senden</string>
     <string name="vpn_default_world">Global (Automatisch)</string>
     <string name="hidden_services">Onion Dienste</string>
-    <string name="title_activity_hidden_services">Onion-Dienste</string>
     <string name="menu_hidden_services">Onion-Dienste</string>
     <string name="save">Speichern</string>
     <string name="local_port">Lokaler Port</string>
@@ -131,7 +129,6 @@
     <string name="name">Name</string>
     <string name="done">Fertig!</string>
     <string name="copy_address_to_clipboard">Adresse in die Zwischenablage kopieren</string>
-    <string name="show_auth_cookie">Authentifikationscookie anzeigen</string>
     <string name="backup_service">Backup Service <i>(Warnung: Dadurch könnte Ihre Service Konfiguration anderen Apps zugänglich gemacht werden)</i></string>
     <string name="delete_service">Dienst löschen</string>
     <string name="backup_saved_at_external_storage">Sicherung auf externem Speicher abgelegt</string>
@@ -142,16 +139,8 @@
     <string name="confirm_service_deletion">Löschen des Dienstes bestätigen</string>
     <string name="service_type">Dienst-Typ</string>
     <string name="auth_cookie">Authentifikationscookie</string>
-    <string name="copy_cookie_to_clipboard">Cookie in die Zwischenablage kopieren</string>
-    <string name="auth_cookie_was_not_configured">Es wurde kein Authentifikationscookie festgelegt</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Bitte Orbot zum Aktivieren der Änderungen neustarten</string>
-    <string name="client_cookies">Client-Cookies</string>
     <string name="onion">.onion</string>
-    <string name="cookie_from_QR">QR-Code einlesen</string>
-    <string name="backup_cookie">Cookie sichern</string>
-    <string name="delete_cookie">Cookie löschen</string>
-    <string name="confirm_cookie_deletion">Cookie-Löschung bestätigen</string>
-    <string name="hosted_services">Gehostete Dienste</string>
     <string name="share_as_qr">Als QR-Code teilen</string>
     <string name="disable">Deaktivieren</string>
     <string name="enable">Aktivieren</string>
@@ -207,7 +196,6 @@
     <string name="v3_backup_name_hint">Sicherungsdateiname …</string>
     <string name="v3_delete_client_authorization_confirm">Entferne Client Authorisierung</string>
     <string name="v3_client_auth">v3 Onion Dienst Client Authorisierung</string>
-    <string name="v2_hidden_services">v2 Onion Dienste (veraltet)</string>
     <string name="v3_hosted_services">Gehostete v3 Onion Dienste</string>
     <string name="v3_delete_client_authorization">Entferne Client Authorisierungs-Schlüssel</string>
     <string name="v3_backup_key_warning">Warnung: Dadurch könnten Ihre Schlüssel anderen Apps zugänglich gemacht werden</string>

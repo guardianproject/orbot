@@ -92,7 +92,6 @@
     <string name="hidden_service_request">Апликација сака да отвори сокриена серверска порта %1$d кон Tor мрежата. Ова е безбедно доколку и верувате на апликацијата.</string>
     <string name="found_existing_tor_process">Пронајден постоечки Tor-процес …</string>
     <string name="something_bad_happened">Се случи грешка. Проверете го дневникот</string>
-    <string name="unable_to_read_hidden_service_name">не може да се прочита името на скриениот сервис</string>
     <string name="unable_to_start_tor">Tor не може да се стартува:</string>
     <string name="pref_use_persistent_notifications">Секогаш чувајте ја иконата во лентата со алатки кога Orbot е поврзан</string>
     <string name="pref_use_persistent_notifications_title">Известувања секогаш вклучени</string>
@@ -123,7 +122,6 @@
     <string name="send_email">Испратете е-пошта</string>
     <string name="vpn_default_world">Глобално (Автоматски)</string>
     <string name="hidden_services">Скриени сервиси</string>
-    <string name="title_activity_hidden_services">Скриени сервиси</string>
     <string name="menu_hidden_services">Скриени сервиси</string>
     <string name="save">Зачувај</string>
     <string name="local_port">Локална порта</string>
@@ -131,7 +129,6 @@
     <string name="name">Име</string>
     <string name="done">Завршено!</string>
     <string name="copy_address_to_clipboard">Копирај ја адресата за залепување</string>
-    <string name="show_auth_cookie">Покажи автентично колаче</string>
     <string name="backup_service">Резервна копија</string>
     <string name="delete_service">Избриши услуга</string>
     <string name="backup_saved_at_external_storage">Резервната копија е снимена на надворешна меморија</string>
@@ -142,16 +139,8 @@
     <string name="confirm_service_deletion">Потврди бришење на услугата</string>
     <string name="service_type">Тип на услуга</string>
     <string name="auth_cookie">Автентично колаче</string>
-    <string name="copy_cookie_to_clipboard">Копирај колаче за залепување</string>
-    <string name="auth_cookie_was_not_configured">Автентичното колаче не е прилагодено</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Ве молиме стартувајте го повторно Orbot за да се овозможат промените</string>
-    <string name="client_cookies">Клиентски колачиња</string>
     <string name="onion">.onion</string>
-    <string name="cookie_from_QR">Прочитај од QR</string>
-    <string name="backup_cookie">Направи резервна копија на колаче</string>
-    <string name="delete_cookie">Избриши колаче</string>
-    <string name="confirm_cookie_deletion">Потврди бришење на колаче</string>
-    <string name="hosted_services">Хостирани услуги</string>
     <string name="share_as_qr">Сподели како QR</string>
     <string name="disable">Оневозможи</string>
     <string name="enable">Овозможи</string>

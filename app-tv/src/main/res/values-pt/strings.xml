@@ -60,8 +60,7 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="found_existing_tor_process">encontrado o processo Tor existente...</string>
   <string name="something_bad_happened">Aconteceu algo de mau. Verifique o registo de eventos.</string>
-    <string name="unable_to_read_hidden_service_name">não é possível ler o nome do serviço ocultado</string>
-  <string name="unable_to_start_tor">Não é possível iniciar o Tor:</string>
+    <string name="unable_to_start_tor">Não é possível iniciar o Tor:</string>
     <string name="pref_use_persistent_notifications_title">Notificações Sempre Ativadas</string>
   <string name="pref_use_expanded_notifications_title">Notificações Estendidas</string>
     <string name="set_locale_title">Idioma</string>
@@ -76,8 +75,7 @@
     <string name="activate">Ativar</string>
   <string name="send_email">Enviar Mensagem</string>
     <string name="hidden_services">Serviços ocultos</string>
-  <string name="title_activity_hidden_services">Serviços ocultos</string>
-  <string name="menu_hidden_services">Serviços ocultos</string>
+    <string name="menu_hidden_services">Serviços ocultos</string>
   <string name="save">Guardar</string>
   <string name="name">Nome</string>
   <string name="done">Concluído!</string>

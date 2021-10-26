@@ -19,8 +19,7 @@
   <string name="your_relay_settings_caused_an_exception_">Suas configurações de retransmissão causaram uma exceção!</string>
     <string name="found_existing_tor_process">procurando processos Tor existentes...</string>
   <string name="something_bad_happened">Algo ruim aconteceu. Cheque o lo</string>
-    <string name="unable_to_read_hidden_service_name">habilitar ler o nome do serviço oculto</string>
-  <string name="unable_to_start_tor">Habilitar iniciar o Tor:</string>
+    <string name="unable_to_start_tor">Habilitar iniciar o Tor:</string>
     <string name="newnym">Você trocou para uma nova identidade Tor!</string>
     <string name="updating_settings_in_tor_service">atualizando configurações no serviço Tor</string>
   <string name="mebibyte_per_second">MiB/s</string>

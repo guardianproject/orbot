@@ -92,8 +92,7 @@
   <string name="hidden_service_request">Imantat apayañ thakhinak Tor llikar mä wakichäwiw jist\'arañ muni %1$d. Wakichawitix uñt\'atachixa, iyaw sama.</string>
   <string name="found_existing_tor_process">Utjir Toraw jikxatata…</string>
   <string name="something_bad_happened">Mä jan walt\'äwiw utji. Qillqantayasit uñakipam</string>
-  <string name="unable_to_read_hidden_service_name">Janiw imantat yanapirin sutiman ullarañjamakänti</string>
-  <string name="unable_to_start_tor">Janiw Torax aqtayañjamäkiti:</string>
+    <string name="unable_to_start_tor">Janiw Torax aqtayañjamäkiti:</string>
   <string name="pref_use_persistent_notifications">Orbot aqtatäki ukjax chimpup uñstayañapuni</string>
   <string name="pref_use_persistent_notifications_title">Yatiyäwinakax purinipuniniwa</string>
   <string name="pref_use_expanded_notifications">Kawkja markans IP ukamp Toramp  uñstani uka yatiyäw juk\'amp uñacht\'ayaña</string>
@@ -123,7 +122,6 @@
   <string name="send_email">Qillqat apayaña</string>
   <string name="vpn_default_world">Uraqpacha (justupaki)</string>
   <string name="hidden_services">Imantat lurañanaka</string>
-  <string name="title_activity_hidden_services">Imantat lurañanaka</string>
   <string name="menu_hidden_services">Imantat lurañanaka</string>
   <string name="save">Imaña</string>
   <string name="local_port">Akankïr apayañ thakhi</string>
@@ -131,7 +129,6 @@
   <string name="name">Suti</string>
   <string name="done">¡Tukuyata!</string>
     <string name="copy_address_to_clipboard">Utjirinak waruqañawjar imam</string>
-  <string name="show_auth_cookie"> Uñt\'ayktam uka cookie uñstayam</string>
   <string name="backup_service">Yanapirit imat luratanakam waruqam</string>
   <string name="delete_service">Lurañanak pichsuña</string>
   <string name="backup_saved_at_external_storage">Imat luratanakamax yaqha yänakar imataxiwa</string>
@@ -142,16 +139,8 @@
   <string name="confirm_service_deletion">Lurañanakax pichsutäniwa</string>
     <string name="service_type">Kunayman lurañanaka</string>
   <string name="auth_cookie">Chiqat k\'arich uk katjir cookie</string>
-  <string name="copy_cookie_to_clipboard">Cookie waruqañawjar imam</string>
-  <string name="auth_cookie_was_not_configured">Chiqat k\'arich uk katjir cookiex janiw mayjt\'ayatäkiti</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Mayjt\'ayatanak aqtayañatak Orbot mayamp qhant\'ayam, amp suma</string>
-  <string name="client_cookies">Apnaqirin Cookiepa</string>
   <string name="onion">.onion</string>
-  <string name="cookie_from_QR">QR ukamp ullaraña</string>
-  <string name="backup_cookie">Cookien imat luratanakapa</string>
-  <string name="delete_cookie">Cookie pichsum</string>
-  <string name="confirm_cookie_deletion">Cookie pichsut mayamp uñxatam</string>
-  <string name="hosted_services">Qurpachat lurañanaka</string>
   <string name="share_as_qr">QRjam ch\'iqiyaña</string>
   <string name="disable">Jiwt\'ayaña</string>
   <string name="enable">Aqtayaña</string>

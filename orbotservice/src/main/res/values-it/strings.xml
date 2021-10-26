@@ -19,8 +19,7 @@
   <string name="your_relay_settings_caused_an_exception_">La configurazione del tuo relay ha causato un\'eccezione!</string>
     <string name="found_existing_tor_process">trovato un processo Tor esistente...</string>
   <string name="something_bad_happened">E\' accaduto un evento indesiderato. Controllare i log.</string>
-    <string name="unable_to_read_hidden_service_name">Impossibile leggere il nome del servizio nascosto.</string>
-  <string name="unable_to_start_tor">Impossibile avviare Tor:</string>
+    <string name="unable_to_start_tor">Impossibile avviare Tor:</string>
     <string name="newnym">Sei passato a una nuova identità Tor!</string>
     <string name="updating_settings_in_tor_service">aggiornamento impostazioni nel servizio Tor</string>
 </resources>

@@ -75,8 +75,7 @@
     <string name="third_party_software">3rd-Party-Software: </string>
   <string name="found_existing_tor_process">Proses Tor sedia ada ditemui..</string>
   <string name="something_bad_happened">Sesuatu yang buruk berlaku. Semak log.</string>
-    <string name="unable_to_read_hidden_service_name">tidak dapat membaca nama servis tersembunyi</string>
-  <string name="unable_to_start_tor">Tidak dapat memulakan Tor:</string>
+    <string name="unable_to_start_tor">Tidak dapat memulakan Tor:</string>
     <string name="pref_use_persistent_notifications">Sentiasa biar ikon pada toolbar apabila Orbot bersambung</string>
   <string name="pref_use_persistent_notifications_title">Sentiasa On Notifikasi</string>
     <string name="set_locale_title">Tetapan Tempatan</string>

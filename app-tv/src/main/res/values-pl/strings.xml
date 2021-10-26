@@ -91,8 +91,7 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="found_existing_tor_process">znaleziono istniejący proces Tora...</string>
   <string name="something_bad_happened">Coś nie poszło nie tak. Sprawdź logi</string>
-    <string name="unable_to_read_hidden_service_name">uniemożliw czytanie nazw ukrytych serwisów</string>
-  <string name="unable_to_start_tor">Nie można wystartować aplikacji Tor:</string>
+    <string name="unable_to_start_tor">Nie można wystartować aplikacji Tor:</string>
     <string name="pref_use_persistent_notifications">Zawsze trzymaj ikonę w pasku powiadomień gdy Orbot jest połączony</string>
   <string name="pref_use_persistent_notifications_title">Powiadomienia zawsze aktywne</string>
   <string name="pref_use_expanded_notifications">Pokaż rozszerzone powiadomienie z krajem Tor exit node oraz jego IP</string>
@@ -123,8 +122,7 @@
   <string name="apps_mode">Tryb VPN</string>
   <string name="send_email">Wyślij Email</string>
   <string name="hidden_services">Ukryte Usługi</string>
-  <string name="title_activity_hidden_services">Ukryte Usługi</string>
-  <string name="menu_hidden_services">Ukryte Usługi</string>
+    <string name="menu_hidden_services">Ukryte Usługi</string>
   <string name="save">Zapisz</string>
     <string name="local_port">Lokalne Porty</string>
   <string name="name">Nazwa</string>

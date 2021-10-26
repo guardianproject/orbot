@@ -19,8 +19,7 @@
   <string name="your_relay_settings_caused_an_exception_">Tor aktarıcı ayarlarınız bir istisnaya yol açtı!</string>
     <string name="found_existing_tor_process">varolan bir Tor işlemi bulundu...</string>
   <string name="something_bad_happened">Kötü bir şey oldu. Kayıtlara bakınız</string>
-    <string name="unable_to_read_hidden_service_name">gizli hizmet adı okunamıyor</string>
-  <string name="unable_to_start_tor">Tor başlatılamadı:</string>
+    <string name="unable_to_start_tor">Tor başlatılamadı:</string>
     <string name="newnym">Yeni bir Tor kimliğine geçiş yaptınız!</string>
     <string name="updating_settings_in_tor_service">Tor hizmet ayarları güncellemesi</string>
   <string name="mebibyte_per_second">MiB/s</string>

@@ -96,8 +96,7 @@
   <string name="hidden_service_request">Κάποια εφαρμογή προσπαθεί να ανοίξει την κρυφή θύρα διακομιστή %1$dστο δίκτυο Tor. Πρόκειται για ασφαλή ενέργεια, εφόσον γνωρίζετε την εφαρμογή.</string>
   <string name="found_existing_tor_process">αναζήτηση διεργασιών Tor...</string>
   <string name="something_bad_happened">Κάτι κακό συνέβη. Ελέγξτε τις καταγραφές</string>
-    <string name="unable_to_read_hidden_service_name">αδυναμία ανάγνωσης του ονόματος της κρυφής υπηρεσίας</string>
-  <string name="unable_to_start_tor">Αδυναμία εκκίνησης του Tor:</string>
+    <string name="unable_to_start_tor">Αδυναμία εκκίνησης του Tor:</string>
     <string name="pref_use_persistent_notifications">Να διατηρείται πάντοτε το εικονίδιο στην γραμμή εργαλείων όταν το Orbot συνδέεται</string>
   <string name="pref_use_persistent_notifications_title">Ειδοποιήσεις διαρκούς σύνδεσης</string>
   <string name="pref_use_expanded_notifications">Εμφάνιση εκτεταμένης ειδοποίησης με τη χώρα εξόδου του Tor και τη διεύθυνση IP</string>
@@ -130,7 +129,6 @@
     <string name="send_email">Στείλτε Email</string>
   <string name="vpn_default_world">Παγκόσμια (Auto)</string>
   <string name="hidden_services">Αποκρυφες υπηρεσιες</string>
-  <string name="title_activity_hidden_services">Αποκρυφες υπηρεσιες</string>
   <string name="menu_hidden_services">Αποκρυφες υπηρεσιες</string>
   <string name="save">Αποθήκευση</string>
     <string name="local_port">Τοπική θύρα</string>
@@ -138,7 +136,6 @@
   <string name="name">Όνομα</string>
   <string name="done">Έγινε!</string>
     <string name="copy_address_to_clipboard">Αντιγραφή διέυθυνσης στο πρόχειρο</string>
-  <string name="show_auth_cookie">Εμφάνιση αναγνωριστικού cookie</string>
   <string name="backup_service">Υπηρεσία δημιουργίας αντιγράφου ασφαλείας</string>
   <string name="delete_service">Διαγραφή υπηρεσίας</string>
   <string name="backup_saved_at_external_storage">Το αντίγράφο ασφαλείας αποθηκεύθηκε σε εξωτερικό μέσο αποθήκευσης</string>
@@ -149,16 +146,8 @@
   <string name="click_again_for_backup">Πατήστε ξανά για το αντίγραφο ασφαλείας</string>
   <string name="service_type">Τύπος υπηρεσίας</string>
   <string name="auth_cookie">Αναγνωριστικό cookie</string>
-  <string name="copy_cookie_to_clipboard">Αντιγραφή τού cookie στο πρόχειρο</string>
-  <string name="auth_cookie_was_not_configured">Το αναγνωριστικό cookie δεν διαμορφώθηκε</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Παρακαλούμε επανεκκινήστε το Orbot για να ενεργοποιήσετε τις αλλαγές</string>
-  <string name="client_cookies">Cookies πελατών</string>
   <string name="onion">.onion</string>
-  <string name="cookie_from_QR">Ανάγνωση από QR</string>
-  <string name="backup_cookie">Cookie αντίγραφου ασφαλείας </string>
-  <string name="delete_cookie">Αφαίρεση Cookie</string>
-  <string name="confirm_cookie_deletion">Επιβεβαίωση διαγραφής τού cookie </string>
-  <string name="hosted_services">Φιλοξενημένες υπηρεσίες</string>
   <string name="share_as_qr">Κοινοποίηση ως QR</string>
   <string name="disable">Απενεργοποίηση</string>
   <string name="enable">Ενεργοποίηση</string>

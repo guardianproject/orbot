@@ -96,8 +96,7 @@
   <string name="hidden_service_request">Aplikazio batek ezkutuko zerbitzariko %1$d ataka ireki nau du Tor sarera. Segurua da aplikazioaz fidatzen bazara.</string>
   <string name="found_existing_tor_process">aurreko Tor prozesu bat aurkitu da...</string>
   <string name="something_bad_happened">Zerbait txarra gertatu da. Begiratu egunkarian</string>
-    <string name="unable_to_read_hidden_service_name">ezin izan da ezkutuko zerbitzuaren izena irakurri</string>
-  <string name="unable_to_start_tor">Ezin izan da Tor hasi:</string>
+    <string name="unable_to_start_tor">Ezin izan da Tor hasi:</string>
     <string name="pref_use_persistent_notifications">Mantendu ikonoa tresna barran Orbot konektatuta dagoenean</string>
   <string name="pref_use_persistent_notifications_title">Beti piztutako jakinarazpenak</string>
   <string name="pref_use_expanded_notifications">Erakutsi hedatutako jakinarazpenak Tor irteera herrialde eta IP-arekin</string>
@@ -130,7 +129,6 @@
     <string name="send_email">Bidali E-maila</string>
   <string name="vpn_default_world">Orokorra (Automatikoa)</string>
   <string name="hidden_services">Ezkutuko zerbitzuak</string>
-  <string name="title_activity_hidden_services">Ezkutuko zerbitzuak</string>
   <string name="menu_hidden_services">Ezkutuko zerbitzuak</string>
   <string name="save">Gorde</string>
     <string name="local_port">Ataka lokala</string>
@@ -138,7 +136,6 @@
   <string name="name">Izena</string>
   <string name="done">Egina!</string>
     <string name="copy_address_to_clipboard">Kopiatu helbidea arbelera</string>
-  <string name="show_auth_cookie">Erakutsi autentifikazio cookie-a</string>
   <string name="backup_service">Egin zerbitzuaren babeskopia</string>
   <string name="delete_service">Ezabatu zerbitzua</string>
   <string name="backup_saved_at_external_storage">Babeskopia kanpo biltegiratzean gorde da</string>
@@ -149,16 +146,8 @@
   <string name="click_again_for_backup">Egin klik berriro babeskopiarako</string>
   <string name="service_type">Zerbitzu mota</string>
   <string name="auth_cookie">Autentifikazio cookie-a</string>
-  <string name="copy_cookie_to_clipboard">Kopiatu cookie-a arbelera</string>
-  <string name="auth_cookie_was_not_configured">Ez da autentifikazio cookie-a konfiguratu</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Mesedez berrabiarazi Orbot aldaketak aktibatzeko</string>
-  <string name="client_cookies">Bezero-cookie-ak</string>
   <string name="onion">.onion</string>
-  <string name="cookie_from_QR">Irakurri QR-tik</string>
-  <string name="backup_cookie">Egin cookie-aren babeskopia</string>
-  <string name="delete_cookie">Ezabatu cookie-a</string>
-  <string name="confirm_cookie_deletion">Berretsi cookie-a ezabatzea</string>
-  <string name="hosted_services">Ostatatutako zerbitzuak</string>
   <string name="share_as_qr">Partekatu QR gisa</string>
   <string name="disable">Desgaitu</string>
   <string name="enable">Gaitu</string>

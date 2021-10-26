@@ -92,7 +92,6 @@
     <string name="hidden_service_request">Una aplicación quiere abrir el puerto %1$d de servidor oculto a la red Tor. Esto es seguro si confía en la aplicación.</string>
     <string name="found_existing_tor_process">Se encontró un proceso de Tor ya existente…</string>
     <string name="something_bad_happened">Hubo algún tipo de problema. Compruebe el registro (log)</string>
-    <string name="unable_to_read_hidden_service_name">No fue posible leer el nombre del servicio oculto</string>
     <string name="unable_to_start_tor">No fue posible iniciar Tor: </string>
     <string name="pref_use_persistent_notifications">Mantener siempre el icono de Orbot en la barra de tareas cuando esté conectado</string>
     <string name="pref_use_persistent_notifications_title">Notificaciones siempre activadas</string>
@@ -123,7 +122,6 @@
     <string name="send_email">Enviar correo</string>
     <string name="vpn_default_world">Global (Automático)</string>
     <string name="hidden_services">Servicios ocultos</string>
-    <string name="title_activity_hidden_services">Servicios ocultos</string>
     <string name="menu_hidden_services">Servicios ocultos</string>
     <string name="save">Guardar</string>
     <string name="local_port">Puerto local</string>
@@ -131,7 +129,6 @@
     <string name="name">Nombre</string>
     <string name="done">¡Hecho!</string>
     <string name="copy_address_to_clipboard">Copiar dirección al portapapeles</string>
-    <string name="show_auth_cookie">Mostrar cookie de autentificación</string>
     <string name="backup_service">Hacer copia de seguridad del servicio</string>
     <string name="delete_service">Borrar servicio</string>
     <string name="backup_saved_at_external_storage">Copia de seguridad guardada en un almacenamiento externo</string>
@@ -142,16 +139,8 @@
     <string name="confirm_service_deletion">Confirme el borrado del servicio</string>
     <string name="service_type">Tipo de servicio</string>
     <string name="auth_cookie">Cookie de autentificación</string>
-    <string name="copy_cookie_to_clipboard">Copiar cookie al portapapeles</string>
-    <string name="auth_cookie_was_not_configured">La cookie de autentificación no fue configurada</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Por favor, reinicie Orbot para habilitar los cambios</string>
-    <string name="client_cookies">Cookies de cliente</string>
     <string name="onion">.onion</string>
-    <string name="cookie_from_QR">Leer desde QR</string>
-    <string name="backup_cookie">Realizar copia de seguridad de cookie</string>
-    <string name="delete_cookie">Borrar cookie</string>
-    <string name="confirm_cookie_deletion">Confirmar borrado de cookie</string>
-    <string name="hosted_services">Servicios alojados</string>
     <string name="share_as_qr">Compartir como QR</string>
     <string name="disable">Deshabilitar</string>
     <string name="enable">Habilitar</string>

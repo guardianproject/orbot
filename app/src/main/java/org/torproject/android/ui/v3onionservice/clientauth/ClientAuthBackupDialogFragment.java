@@ -20,7 +20,7 @@ import androidx.fragment.app.DialogFragment;
 import org.torproject.android.R;
 import org.torproject.android.core.DiskUtils;
 import org.torproject.android.core.ui.NoPersonalizedLearningEditText;
-import org.torproject.android.ui.hiddenservices.backup.BackupUtils;
+import org.torproject.android.ui.v3onionservice.V3BackupUtils;
 
 import java.io.File;
 
@@ -119,10 +119,10 @@ public class ClientAuthBackupDialogFragment extends DialogFragment {
     }
 
     private void attemptToWriteBackup(Uri outputFile) {
-        BackupUtils backupUtils = new BackupUtils(getContext());
+        V3BackupUtils v3BackupUtils = new V3BackupUtils(getContext());
         String domain = getArguments().getString(ClientAuthActivity.BUNDLE_KEY_DOMAIN);
         String hash = getArguments().getString(ClientAuthActivity.BUNDLE_KEY_HASH);
-        String backup = backupUtils.createV3AuthBackup(domain, hash, outputFile);
+        String backup = v3BackupUtils.createV3AuthBackup(domain, hash, outputFile);
         Toast.makeText(getContext(), backup != null ? R.string.backup_saved_at_external_storage : R.string.error, Toast.LENGTH_LONG).show();
         dismiss();
     }

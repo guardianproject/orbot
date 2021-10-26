@@ -18,8 +18,7 @@
   <string name="your_relay_settings_caused_an_exception_">Jūsu retranslatora iestatījumi izraisīja izņēmuma situāciju!</string>
     <string name="found_existing_tor_process">Atrada esošu Tor procesu...</string>
   <string name="something_bad_happened">Nav labi. Pārbaudiet žurnālu</string>
-    <string name="unable_to_read_hidden_service_name">Nespēj lasīt slēpta pakalpojuma nosaukumu</string>
-  <string name="unable_to_start_tor">Nevar startēt Tor:</string>
+    <string name="unable_to_start_tor">Nevar startēt Tor:</string>
     <string name="newnym">Jūs pārslēdzāties uz jaunu Tor\'a identitāti!</string>
     <string name="updating_settings_in_tor_service">atjaunina Tor pakalpojuma iestatījumus </string>
 </resources>

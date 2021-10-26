@@ -19,8 +19,7 @@
   <string name="your_relay_settings_caused_an_exception_">إعدادات المرحلات لديك تسببت بخطأ!</string>
     <string name="found_existing_tor_process">عُثر علي عملية تور سابقة تعمل...</string>
   <string name="something_bad_happened">حصل خطأ ما. افحص السجل</string>
-    <string name="unable_to_read_hidden_service_name">غير قادر على قراءة اسم الخدمة المخفية</string>
-  <string name="unable_to_start_tor">غير قادر على بدء تور:</string>
+    <string name="unable_to_start_tor">غير قادر على بدء تور:</string>
     <string name="newnym">لقد تحولت الى هوية تور جديدة</string>
     <string name="updating_settings_in_tor_service">تحديث الاعدادات في خدمات تور</string>
 </resources>

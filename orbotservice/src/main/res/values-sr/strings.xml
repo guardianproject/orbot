@@ -18,6 +18,5 @@
   <string name="your_relay_settings_caused_an_exception_">Ваше поставке релеја су изазвале изузетак!</string>
     <string name="found_existing_tor_process">нађен покренути Тор процес...</string>
   <string name="something_bad_happened">Нешто лоше се догодило. Прегледајте логове</string>
-    <string name="unable_to_read_hidden_service_name">нисам у могућности да прочитам име сакривеног сервиса</string>
-  <string name="unable_to_start_tor">Тор није у могућности да се покрене:</string>
+    <string name="unable_to_start_tor">Тор није у могућности да се покрене:</string>
 </resources>

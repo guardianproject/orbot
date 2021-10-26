@@ -19,8 +19,7 @@
   <string name="your_relay_settings_caused_an_exception_">Ihre Relaiseinstellungen haben einen Ausnahmefehler verursacht!</string>
     <string name="found_existing_tor_process">bestehender Tor-Prozess gefunden …</string>
   <string name="something_bad_happened">Etwas ist schief gelaufen. Bitte Protokoll prüfen</string>
-    <string name="unable_to_read_hidden_service_name">Name des versteckten Dienstes kann nicht gelesen werden</string>
-  <string name="unable_to_start_tor">Tor kann nicht gestartet werden:</string>
+    <string name="unable_to_start_tor">Tor kann nicht gestartet werden:</string>
     <string name="newnym">Sie haben zu einer neuen Tor-Identität gewechselt!</string>
     <string name="updating_settings_in_tor_service">Einstellungen im Tor-Dienst werden aktualisiert</string>
   <string name="mebibyte_per_second">MiB/s</string>

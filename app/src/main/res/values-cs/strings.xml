@@ -34,8 +34,7 @@
     <string name="set_locale_title">Jazyk</string>
     <string name="get_bridges_email">Email</string>
   <string name="hidden_services">Skryté Služby</string>
-  <string name="title_activity_hidden_services">Skryté Služby</string>
-  <string name="menu_hidden_services">Skryté Služby</string>
+    <string name="menu_hidden_services">Skryté Služby</string>
   <string name="save">Uložit</string>
   <string name="name">Jméno</string>
   <string name="done">Hotovo!</string>

@@ -88,7 +88,6 @@
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="found_existing_tor_process">löytyi olemassaoleva Tor-prosessi…</string>
     <string name="something_bad_happened">Jotain pahaa tapahtui. Tarkista loki</string>
-    <string name="unable_to_read_hidden_service_name">piilopalvelunimen lukeminen epäonnistui</string>
     <string name="unable_to_start_tor">Torin käynnistys epäonnistui:</string>
     <string name="pref_use_persistent_notifications">Pidä kuvake aina työkalupalkissa, kun Orbot on yhdistetty</string>
     <string name="pref_use_persistent_notifications_title">Ilmoitukset aina käytössä</string>
@@ -116,7 +115,6 @@
     <string name="get_bridges_email">Sähköposti</string>
     <string name="send_email">Lähetä sähköpostia</string>
     <string name="hidden_services">Piilopalvelut</string>
-    <string name="title_activity_hidden_services">Piilopalvelut</string>
     <string name="menu_hidden_services">Piilopalvelut</string>
     <string name="save">Tallenna</string>
     <string name="name">Nimi</string>
@@ -137,7 +135,6 @@
     <string name="local_port">Paikallinen portti</string>
     <string name="onion_port">Sipuliportti</string>
     <string name="copy_address_to_clipboard">Kopioi osoite leikepöydälle</string>
-    <string name="show_auth_cookie">Näytä autenttinen eväste</string>
     <string name="delete_service">Poista palvelu</string>
     <string name="backup_saved_at_external_storage">Varmuuskopio tallennettu ulkoiseen tallennustilaan</string>
     <string name="backup_restored">Varmuuskopio palautettu</string>
@@ -146,8 +143,6 @@
     <string name="start_tor_again_for_finish_the_process">Käynnistä Tor uudelleen prosessin viimeistelemiseksi</string>
     <string name="confirm_service_deletion">Vahvista palvelun poisto</string>
     <string name="service_type">Palvelun tyyppi</string>
-    <string name="copy_cookie_to_clipboard">Kopioi eväste leikepöydälle</string>
-    <string name="client_cookies">Asiakasohjelman evästeet</string>
     <string name="onion">.onion</string>
     <string name="use_qr_code">Käytä QR-koodia</string>
     <string name="confirm">Vahvista</string>

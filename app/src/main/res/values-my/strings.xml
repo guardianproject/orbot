@@ -20,8 +20,7 @@
     <string name="set_locale_title">ဘာသာစကား</string>
   <string name="get_bridges_email">အီးေမးလ္</string>
   <string name="hidden_services">Hidden Services</string>
-  <string name="title_activity_hidden_services">Hidden Services</string>
-  <string name="menu_hidden_services">Hidden Services</string>
+    <string name="menu_hidden_services">Hidden Services</string>
   <string name="save">သိမ္းဆည္းပါ</string>
   <string name="name">အမည်</string>
 </resources>

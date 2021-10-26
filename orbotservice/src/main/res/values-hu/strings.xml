@@ -19,8 +19,7 @@
   <string name="your_relay_settings_caused_an_exception_">Az átjátszód beállításai kivételt okoztak!</string>
     <string name="found_existing_tor_process">létező Tor folyamat találva...</string>
   <string name="something_bad_happened">Valami rossz történt. Nézd meg a naplót.</string>
-    <string name="unable_to_read_hidden_service_name">nem olvasható a rejtett szolgáltatás neve</string>
-  <string name="unable_to_start_tor">A Tor indítása sikertelen:</string>
+    <string name="unable_to_start_tor">A Tor indítása sikertelen:</string>
     <string name="newnym">Új Tor identitásra váltottál!</string>
     <string name="updating_settings_in_tor_service">a Tor szolgáltatás beállításainak frissítése</string>
 </resources>

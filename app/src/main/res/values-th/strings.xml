@@ -92,7 +92,6 @@
     <string name="hidden_service_request">โปรแกรมต้องการเปิดพอร์ต %1$d ที่ซ่อนอยู่ของเซิร์ฟเวอร์ให้เชื่อมกับเครือข่าย Tor การกระทำนี้ปลอดภัยถ้าคุณเชื่อถือโปรแกรมนั้น</string>
     <string name="found_existing_tor_process">พบกระบวนการ Tor ที่มีอยู่แล้ว…</string>
     <string name="something_bad_happened">เกิดอะไรไม่ดีสักอย่าง ให้ตรวจดูจากบันทึก</string>
-    <string name="unable_to_read_hidden_service_name">ไม่สามารถอ่านชื่อของบริการที่ซ่อน</string>
     <string name="unable_to_start_tor">ไม่สามารถเริ่ม Tor:</string>
     <string name="pref_use_persistent_notifications">แสดงไอคอนในทูลบาร์เสมอเมื่อ Orbot เชื่อมต่ออยู่</string>
     <string name="pref_use_persistent_notifications_title">การแจ้งเตือนแบบตลอดเวลา</string>
@@ -123,7 +122,6 @@
     <string name="send_email">ส่งอีเมล</string>
     <string name="vpn_default_world">ทั่วโลก (อัตโนมัติ)</string>
     <string name="hidden_services">บริการที่ซ่อน</string>
-    <string name="title_activity_hidden_services">บริการที่ซ่อน</string>
     <string name="menu_hidden_services">บริการที่ซ่อน</string>
     <string name="save">บันทึก</string>
     <string name="local_port">พอร์ตในเครื่อง</string>
@@ -131,7 +129,6 @@
     <string name="name">ชื่อเอกสาร</string>
     <string name="done">เสร็จสิ้น!</string>
     <string name="copy_address_to_clipboard">คัดลอกที่อยู่ลงในคลิปบอร์ด</string>
-    <string name="show_auth_cookie">แสดงคุกกี้ที่ได้รับอนุญาต</string>
     <string name="backup_service">บริการสำรองข้อมูล</string>
     <string name="delete_service">บริการลบ</string>
     <string name="backup_saved_at_external_storage">ข้อมูลสำรองบันทึกที่ที่เก็บข้อมูลภายนอก</string>
@@ -142,16 +139,8 @@
     <string name="confirm_service_deletion">ยืนยันการลบบริการ</string>
     <string name="service_type">ประเภทของบริการ</string>
     <string name="auth_cookie">คุกกี้ที่ได้รับอนุญาต</string>
-    <string name="copy_cookie_to_clipboard">คัดลอกคุกกี้ลงในคลิปบอร์ด</string>
-    <string name="auth_cookie_was_not_configured">ยังไม่ได้กำหนดค่าคุกกี้ที่ได้รับอนุญาต</string>
     <string name="please_restart_Orbot_to_enable_the_changes">กรุณาเริ่ม Orbot ใหม่เพื่อให้การเปลี่ยนแปลงใช้งานได้</string>
-    <string name="client_cookies">คุกกี้ของไคลเอ็นต์</string>
     <string name="onion">.onion</string>
-    <string name="cookie_from_QR">อ่านจากคิวอาร์</string>
-    <string name="backup_cookie">สำรองข้อมูลคุกกี้</string>
-    <string name="delete_cookie">ลบคุกกี้</string>
-    <string name="confirm_cookie_deletion">ยืนยันการลบคุกกี้</string>
-    <string name="hosted_services">บริการโฮสต์</string>
     <string name="share_as_qr">แชร์ในรูปแบบคิวอาร์</string>
     <string name="disable">ปิดการใช้งาน</string>
     <string name="enable">เปิดใช้งาน</string>

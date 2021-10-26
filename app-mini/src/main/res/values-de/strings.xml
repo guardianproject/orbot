@@ -96,8 +96,7 @@
   <string name="hidden_service_request">Eine Anwendung möchte den Versteckten Server-Anschluss %1$d zum Tor-Netz öffnen. Dies ist sicher, wenn Sie der Anwendung vertrauen.</string>
   <string name="found_existing_tor_process">bestehenden Tor-Prozess gefunden …</string>
   <string name="something_bad_happened">Etwas ist schief gelaufen. Bitte Protokoll überprüfen</string>
-    <string name="unable_to_read_hidden_service_name">Name des versteckten Dienstes kann nicht gelesen werden</string>
-  <string name="unable_to_start_tor">Tor kann nicht gestartet werden:</string>
+    <string name="unable_to_start_tor">Tor kann nicht gestartet werden:</string>
     <string name="pref_use_persistent_notifications">Behalte immer das Symbol in der Symbolleiste, wenn Orbot verbunden ist</string>
   <string name="pref_use_persistent_notifications_title">Aktivitätsanzeige</string>
   <string name="pref_use_expanded_notifications">Zeige erweiterte Benachrichtigung mit Tor-Ausgangsland und IP an</string>
@@ -130,7 +129,6 @@
     <string name="send_email">E-Mail senden</string>
   <string name="vpn_default_world">Global (Automatisch)</string>
   <string name="hidden_services">Versteckte Dienste</string>
-  <string name="title_activity_hidden_services">Versteckte Dienste</string>
   <string name="menu_hidden_services">Versteckte Dienste</string>
   <string name="save">Speichern</string>
     <string name="local_port">Lokaler Anschluss</string>
@@ -138,7 +136,6 @@
   <string name="name">Name</string>
   <string name="done">Fertig!</string>
     <string name="copy_address_to_clipboard">Adresse in die Zwischenablage kopieren</string>
-  <string name="show_auth_cookie">Authentifikationscookie anzeigen</string>
   <string name="backup_service">Sicherungsdienst</string>
   <string name="delete_service">Dienst löschen</string>
   <string name="backup_saved_at_external_storage">Sicherung auf externem Speicher gespeichert </string>
@@ -149,16 +146,8 @@
   <string name="click_again_for_backup">Zum Sichern noch einmal klicken</string>
   <string name="service_type">Dienst-Typ</string>
   <string name="auth_cookie">Authentifikationscookie</string>
-  <string name="copy_cookie_to_clipboard">Cookie in die Zwischenablage kopieren</string>
-  <string name="auth_cookie_was_not_configured">Es wurde kein Authentifikationscookie festgelegt</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Bitte Orbot zum Aktivieren der Änderungen neustarten</string>
-  <string name="client_cookies">Client Cookies</string>
   <string name="onion">.onion</string>
-  <string name="cookie_from_QR">Lese QR-Code</string>
-  <string name="backup_cookie">Cookie sichern</string>
-  <string name="delete_cookie">Cookie löschen</string>
-  <string name="confirm_cookie_deletion">Cookie-Löschung bestätigen</string>
-  <string name="hosted_services">Gehostete Dienste</string>
   <string name="share_as_qr">Teile als QR-Code</string>
   <string name="disable">Deaktivieren</string>
   <string name="enable">Aktivieren</string>

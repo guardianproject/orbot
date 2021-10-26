@@ -78,7 +78,6 @@
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="found_existing_tor_process">נמצא תהליך Tor קיים…</string>
     <string name="something_bad_happened">משהו רע התרחש. בדוק את היומן</string>
-    <string name="unable_to_read_hidden_service_name">לא מסוגל לקרוא שם שירות נסתר</string>
     <string name="unable_to_start_tor">לא מסוגל להתחיל את Tor:</string>
     <string name="pref_use_persistent_notifications">לשמור תמיד את האיקון בסרגל כלים כשאורבוט מחובר</string>
     <string name="set_locale_title">שפה</string>

@@ -18,8 +18,7 @@
   <string name="your_relay_settings_caused_an_exception_">Endurvarp stillingar þínar ollu undanþágu!</string>
     <string name="found_existing_tor_process">fann annan Tor þráð...</string>
   <string name="something_bad_happened">Eitthvað slæmt gerðist. Athugaðu skráninguna</string>
-    <string name="unable_to_read_hidden_service_name">get ekki lesið nafn földu þjónustunnar</string>
-  <string name="unable_to_start_tor">Get ekki kveikt á Tor:</string>
+    <string name="unable_to_start_tor">Get ekki kveikt á Tor:</string>
     <string name="newnym">Þú ert komin með nýtt Tor auðkenni!</string>
     <string name="updating_settings_in_tor_service">uppfæri stillingar í Tor þjónustu</string>
 

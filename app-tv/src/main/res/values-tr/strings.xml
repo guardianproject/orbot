@@ -96,8 +96,7 @@
   <string name="hidden_service_request">Bir uygulama Tor ağına %1$d gizli sunucu kapısını açmak istiyor. Uygulamaya güveniyorsanız bu işlem güvenlidir.</string>
   <string name="found_existing_tor_process">varolan bir Tor işlemi bulundu...</string>
   <string name="something_bad_happened">Bir şeyler ters gitti. Günlük kayıtlarına bakın</string>
-  <string name="unable_to_read_hidden_service_name">gizli hizmet adı okunamadı</string>
-  <string name="unable_to_start_tor">Tor başlatılamadı:</string>
+    <string name="unable_to_start_tor">Tor başlatılamadı:</string>
   <string name="pref_use_persistent_notifications">Orbot bağlı olduğu sürece simge araç çubuğunda görüntülensin</string>
   <string name="pref_use_persistent_notifications_title">Bildirimler Her Zaman Açık</string>
   <string name="pref_use_expanded_notifications">Tor çıkış ülkesi ve IP adresi ile ilgili ayrıntılı bildirim görüntülensin</string>
@@ -130,7 +129,6 @@
   <string name="send_email">E-posta Gönder</string>
   <string name="vpn_default_world">Genel (Otomatik)</string>
   <string name="hidden_services">Gizli Hizmetler</string>
-  <string name="title_activity_hidden_services">Gizli Hizmetler</string>
   <string name="menu_hidden_services">Gizli Hizmetler</string>
   <string name="save">Kaydet</string>
   <string name="local_port">Yerel Kapı</string>
@@ -138,7 +136,6 @@
   <string name="name">Ad</string>
   <string name="done">Tamam!</string>
     <string name="copy_address_to_clipboard">Adresi panoya kopyala</string>
-  <string name="show_auth_cookie">Kimlik doğrulama çerezini görüntüle</string>
   <string name="backup_service">Hizmeti Yedekle</string>
   <string name="delete_service">Hizmeti Sil</string>
   <string name="backup_saved_at_external_storage">Yedek dış depolamaya kaydedildi</string>
@@ -149,16 +146,8 @@
   <string name="click_again_for_backup">Yedeklemek için yeniden tıklayın</string>
   <string name="service_type">Hizmet Türü</string>
   <string name="auth_cookie">Kimlik Doğrulama Çerezi</string>
-  <string name="copy_cookie_to_clipboard">Çerezi panoya kopyala</string>
-  <string name="auth_cookie_was_not_configured">Kimlik doğrulama çerezi yapılandırılmamış</string>
   <string name="please_restart_Orbot_to_enable_the_changes">Değişiklikleri etkinleştirmek için Orbot uygulamasını yeniden başlatın</string>
-  <string name="client_cookies">İstemci çerezleri</string>
   <string name="onion">.onion</string>
-  <string name="cookie_from_QR">QR kodundan oku</string>
-  <string name="backup_cookie">Çerezi yedekle</string>
-  <string name="delete_cookie">Çerezi sil</string>
-  <string name="confirm_cookie_deletion">Çerezi silmeyi onayla</string>
-  <string name="hosted_services">Barındırılan Hizmetler</string>
   <string name="share_as_qr">QR Olarak Paylaş</string>
   <string name="disable">Devre Dışı Bırak</string>
   <string name="enable">Etkinleştir</string>

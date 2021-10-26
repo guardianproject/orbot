@@ -91,8 +91,7 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="found_existing_tor_process">존재하고 있는 Tor 프로세스 발견</string>
   <string name="something_bad_happened">어떤 나쁜 것이 발생. 로그 확인하세요.</string>
-    <string name="unable_to_read_hidden_service_name">히든 서비스 이름을 읽을 수 없음</string>
-  <string name="unable_to_start_tor">Tor 시작 불가능</string>
+    <string name="unable_to_start_tor">Tor 시작 불가능</string>
     <string name="pref_use_persistent_notifications">Orbot이 연결되었을 때 툴바에 아이콘 보이기</string>
   <string name="pref_use_persistent_notifications_title">항상 켜진 알림</string>
   <string name="pref_use_expanded_notifications">출구 및 IP 정보알림 보이기</string>
