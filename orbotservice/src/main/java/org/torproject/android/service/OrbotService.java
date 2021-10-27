@@ -487,7 +487,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         } catch (Exception e) {
             //what error here
-            Log.e(OrbotConstants.TAG, "Error installing setting up Orbot", e);
+            Log.e(OrbotConstants.TAG, "Error setting up Orbot", e);
             logNotice("There was an error setting up Orbot");
         }
 
