@@ -40,7 +40,7 @@ ext {
             androidx_leanback_tab        :  "androidx.leanback:leanback-tab:$versions.androidx_leanback_tab" ,
             androidx_localbroadcast        :  "androidx.localbroadcastmanager:localbroadcastmanager:$versions.androidx_localbroadcast" ,
             androidx_palette               :  "androidx.palette:palette:$versions.androidx_palette" ,
-            androidx_recyclerview          :  "androidx.recyclerview:recyclerview$versions.androidx_recyclerview" ,
+            androidx_recyclerview          :  "androidx.recyclerview:recyclerview:$versions.androidx_recyclerview" ,
             apl_appintro                   :  "com.github.apl-devs:appintro:$versions.apl_appintro" ,
             bclogic_pulsator               :  "pl.bclogic:pulsator4droid:$versions.bclogic_pulsator" ,
             fastlane_screengrab            :  "tools.fastlane:screengrab:$versions.fastlane_screengrab" ,
