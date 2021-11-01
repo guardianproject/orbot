@@ -42,16 +42,15 @@ dependencies {
             project(':orbotservice'),
             libs.android_material,
             libs.android_snowfall,
+            libs.androidx_constraint,
             libs.androidx_coordinator,
             libs.androidx_leanback_core,
             libs.androidx_leanback_paging,
             libs.androidx_leanback_preferences,
             libs.androidx_leanback_tab,
-            libs.androidx_localbroadcast,
             libs.androidx_palette,
             libs.androidx_recyclerview,
-            libs.apl_appintro,
-            libs.guardian_jtorctl
+            libs.apl_appintro
     )
     androidTestImplementation libs.fastlane_screengrab
 }
