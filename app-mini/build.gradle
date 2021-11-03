@@ -35,12 +35,11 @@ android {
                 project(path: ':intentintegrator'),
                 project(':orbotservice'),
                 libs.android_material,
+                libs.androidx_constraint,
                 libs.androidx_coordinator,
-                libs.androidx_localbroadcast,
                 libs.androidx_palette,
                 libs.androidx_recyclerview,
-                libs.apl_appintro,
-                libs.guardian_jtorctl
+                libs.apl_appintro
         )
         androidTestImplementation libs.fastlane_screengrab
     }
