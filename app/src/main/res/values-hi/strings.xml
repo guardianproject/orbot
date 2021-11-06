@@ -19,7 +19,6 @@
     <string name="menu_scan">स्कैन ब्रिज क्यूआर</string>
     <string name="menu_share_bridge">शेयर ब्रिज QR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details">कुछ औरबोट विवरण</string>
     <string name="wizard_details_msg">ऑरबोट एक ओपन-सोर्स एप्लिकेशन है जिसमें टोर, ओबफ्स 4 प्रोक्सी, बैड वीपीएन टोन 2 एसॉक्स, लिबवेवेंट और पोलीपो शामिल हैं। यह टो नेट नेटवर्क में एक स्थानीय HTTP प्रॉक्सी (8118) और एक सॉक्स प्रॉक्सी (9050) प्रदान करता है। ऑरबोट की भी क्षमता है, रूट डिवाइस पर, टो के माध्यम से सभी इंटरनेट ट्रैफिक भेजने के लिए</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">समन्य </string>

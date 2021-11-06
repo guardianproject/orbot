@@ -18,8 +18,7 @@
   <string name="menu_scan">掃描網橋 QR 碼</string>
   <string name="menu_share_bridge">分享網橋 QR 碼</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_details">Orbot 的一些詳細資料</string>
-  <string name="wizard_details_msg">Orbot 是一款開源應用,其包含 Tor, Obfs4Proxy, BadVPN, Tun2Socks 與 LibEvent.它提供了本地的 HTTP 代理 (8118) 與 SOCKS 代理 (9050) 到 Tor 網路中. Orbot 也有能力可在取得最高權限的設備上來利用 Tor 傳送互聯網流量</string>
+    <string name="wizard_details_msg">Orbot 是一款開源應用,其包含 Tor, Obfs4Proxy, BadVPN, Tun2Socks 與 LibEvent.它提供了本地的 HTTP 代理 (8118) 與 SOCKS 代理 (9050) 到 Tor 網路中. Orbot 也有能力可在取得最高權限的設備上來利用 Tor 傳送互聯網流量</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">一般</string>
   <string name="pref_start_boot_title">開機時自動啟動 Orbot</string>

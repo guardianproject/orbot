@@ -14,7 +14,6 @@
     <string name="button_about">Pri</string>
     <string name="menu_exit">Eliri</string>
     <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_details">Kelkaj Detaloj pri Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Ĝenerala</string>
   <string name="pref_start_boot_title">Ŝalti Orbot dum praŝargado</string>

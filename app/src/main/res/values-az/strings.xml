@@ -18,7 +18,6 @@
   <string name="menu_scan">KörpüQR kodu skan edin</string>
   <string name="menu_share_bridge">KörpüQR kodu paylaşın</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_details">Bəzi Orbot Detalları</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Əsas</string>
   <string name="pref_start_boot_title">Android Açıldıqda Orbotu Başlat</string>

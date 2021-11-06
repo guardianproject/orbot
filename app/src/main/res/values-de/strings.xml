@@ -18,7 +18,6 @@
     <string name="menu_scan">BrückenQR scannen</string>
     <string name="menu_share_bridge">BrückenQR teilen</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details">Nähere Informationen zu Orbot</string>
     <string name="wizard_details_msg">Orbot ist eine quelloffene Anwendung, die Tor, Obfs4Proxy, BadVPN, Tun2Socks, LibEvent enthält. Sie stellt einen lokalen HTTP-Proxy (Port: 8118) und einen SOCKS-Proxy (Port: 9050) in das Tor-Netzwerk bereit. Auf gerooteten Geräten kann Orbot auch sämtliche Internetverbindungen durch Tor leiten.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Allgemein</string>

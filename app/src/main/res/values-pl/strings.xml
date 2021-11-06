@@ -18,7 +18,6 @@
     <string name="menu_scan">Skanuj BridgeQR</string>
     <string name="menu_share_bridge">Podziel się BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details">Niektóre szczegóły o Orbocie</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Ogólne</string>
     <string name="pref_start_boot_title">Uruchamiaj Orbota przy starcie</string>

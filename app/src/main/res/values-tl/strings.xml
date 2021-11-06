@@ -15,7 +15,6 @@
     <string name="menu_exit">Labasan</string>
   <string name="menu_share_bridge">Ipamahagi ang BridgeQR</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_details">Ilang detalye sa Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Pangkalahatan</string>
   <string name="pref_start_boot_title">Umpisahan ang Orboot sa Boot</string>

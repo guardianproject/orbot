@@ -13,7 +13,6 @@
     <string name="button_about">Amdanom ni</string>
     <string name="menu_exit">Gadael</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_details">Rhai manylion am Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Cyffredinol</string>
   <!--New Wizard Strings-->

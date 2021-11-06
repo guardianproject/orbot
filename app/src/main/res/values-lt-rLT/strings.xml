@@ -107,7 +107,6 @@
     <string name="pref_proxy_type_title">Išeinančio įgaliotojo serverio tipas</string>
     <string name="pref_allow_background_starts_title">Leisti paleisti fone</string>
     <string name="pref_entrance_node_dialog">Įveskite įėjimo mazgus</string>
-    <string name="wizard_details">Keletas „Orbot“ detalių</string>
     <string name="status_disabled">„Orbot“ yra išjungtas</string>
     <string name="status_starting_up">„Orbot“ paleidžiama…</string>
     <string name="v3_import_auth_private">Importuoti .auth_private</string>

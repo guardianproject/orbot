@@ -34,7 +34,6 @@
     <string name="pref_node_configuration">নোড কনফিগারেশন</string>
     <string name="pref_start_boot_summary">অরবোট স্বয়ংক্রিয়ভাবে শুরু করো এবং তোমার অ্যান্ড্রয়েড ডিভাইস বুট হওয়ার পরে টরে সংযুক্ত করো</string>
     <string name="pref_start_boot_title">বুট-এর সময় অরবট শুরু করো</string>
-    <string name="wizard_details">অরবটের কিছু বিবরণ</string>
     <string name="menu_share_bridge">ব্রিজকিউআর শেয়ার করো</string>
     <string name="menu_scan">ব্রিজকিউআর চেক করো</string>
     <string name="main_layout_upload">আপলোড</string>

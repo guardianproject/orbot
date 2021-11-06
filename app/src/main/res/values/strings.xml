@@ -18,7 +18,6 @@
     <string name="menu_scan">Scan BridgeQR</string>
     <string name="menu_share_bridge">Share BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details">Some Orbot Details</string>
     <string name="wizard_details_msg">Orbot is an open-source application that contains Tor, Obfs4Proxy, BadVPN, Tun2Socks and LibEvent. It provides a local HTTP proxy (8118) and a SOCKS proxy (9050) into the Tor network.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">General</string>
@@ -93,6 +92,8 @@
     <string name="project_home">Project Home:</string>
     <string name="project_urls">https://orbot.app/</string>
     <string name="third_party_software">3rd-Party-Software: </string>
+    <string name="version">Version:</string>
+    <string name="license">License:</string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent: http://www.monkey.org/~provos/libevent/</string>
     <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
