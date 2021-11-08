@@ -18,7 +18,6 @@
     <string name="menu_scan">Сканувати BridgeQR</string>
     <string name="menu_share_bridge">Поділитися BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details">Деякі відомості про програму Orbot</string>
     <string name="wizard_details_msg">Orbot — це програма з відкритим кодом, яка містить Tor, Obfs4Proxy, BadVPN, Tun2Socks, LibEvent. Він забезпечує локальний HTTP-проксі (8118) та проксі SOCKS (9050) у мережу Tor. Orbot також має здатність, на кореневому пристрої, відправляти весь інтернет-трафік через Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Основні</string>

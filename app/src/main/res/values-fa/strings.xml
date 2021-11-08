@@ -18,7 +18,6 @@
     <string name="menu_scan">اسکن BridgeQR</string>
     <string name="menu_share_bridge">اشتراک BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details">برخی جزییات درباره اوربوت</string>
     <string name="wizard_details_msg">اوربات نرم‌افزاری آزاد است که شامل تور، Obfs4Proxy، BadVPN، Tun2Socks، LibEvent و پولیپو می‌شود. این نرم‌افزار یک اچ‌تی‌تی‌پی پراکسی (8118) و ساکس (9050) محلی روی شبکه تور فراهم می‌کند. همچنین اوربات می‌تواند روی دستگاه‌های روت شده، تمام ترافیک اینترنت را ار تور عبور دهد.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">کلی</string>

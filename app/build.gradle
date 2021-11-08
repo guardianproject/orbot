@@ -58,15 +58,12 @@ android {
                 project(':appcore'),
                 project(':intentintegrator'),
                 project(':orbotservice'),
-                libs.apl_appintro,
+                libs.android_material,
                 libs.android_snowfall,
                 libs.android_volley,
-                libs.androidx_core,
                 libs.androidx_localbroadcast,
-                libs.androidx_palette,
-                libs.android_material,
+                libs.apl_appintro,
                 libs.bclogic_pulsator,
-                libs.guardian_jtorctl,
                 libs.ipt_proxy
 
         )

@@ -14,7 +14,6 @@
     <string name="button_about">O programu</string>
     <string name="menu_exit">Izhod</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_details">Nekaj podrobnosti o Orbot-u</string>
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Splošno</string>
   <!--New Wizard Strings-->

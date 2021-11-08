@@ -18,7 +18,6 @@
     <string name="menu_scan">Skann BridgeQR</string>
     <string name="menu_share_bridge">Del BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details">Noen Orbot-detaljer</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Generelt</string>
     <string name="pref_start_boot_title">Start Orbot ved oppstart</string>

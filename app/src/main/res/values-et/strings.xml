@@ -16,7 +16,6 @@
     <string name="button_about">Lähemalt</string>
     <string name="menu_exit">Välja</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_details">Mõned Orbot\'i detailid</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Üldist</string>
   <string name="pref_start_boot_title">Käivita Orbot seadme käivitumisel</string>

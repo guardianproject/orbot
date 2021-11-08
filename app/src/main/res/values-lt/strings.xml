@@ -18,8 +18,7 @@
   <string name="menu_scan">Nuskaityti tilto QR kodą</string>
   <string name="menu_share_bridge">Dalintis tilto QR kodu</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_details">Orbot detalės</string>
-  <string name="wizard_details_msg">Orbot yra atviro kodo programėlė, kuri susideda iš Tor, Obfs4Proxy, BadVPN, Tun2Socks ir LibEvent. Ji leidžia jungtis prie Tor tinklo per HTTP (8118) ir SOCKS (9050) tarpinius serverius. Orbot taip pat leidžia perkelti visą tinklo srautą per Tor tinklą, jeigu turite root/supernaudotojo privilegijas.</string>
+    <string name="wizard_details_msg">Orbot yra atviro kodo programėlė, kuri susideda iš Tor, Obfs4Proxy, BadVPN, Tun2Socks ir LibEvent. Ji leidžia jungtis prie Tor tinklo per HTTP (8118) ir SOCKS (9050) tarpinius serverius. Orbot taip pat leidžia perkelti visą tinklo srautą per Tor tinklą, jeigu turite root/supernaudotojo privilegijas.</string>
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Bendra</string>
   <!--New Wizard Strings-->

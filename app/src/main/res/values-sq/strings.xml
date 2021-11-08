@@ -10,7 +10,6 @@
     <string name="button_about">Informacione</string>
   <string name="menu_exit">Dil</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_details">Disa detaje te Orbot</string>
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Të Përgjithshme</string>
   <!--New Wizard Strings-->

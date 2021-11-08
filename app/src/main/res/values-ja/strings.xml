@@ -18,7 +18,6 @@
     <string name="menu_scan">ブリッジQRをスキャン</string>
     <string name="menu_share_bridge">ブリッジQRを共有</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details">Orbot詳細</string>
     <string name="wizard_details_msg">Orbot はTor、Obfs4Proxy、BadVPN、Tun2Socks、LibEventを含むオープンソースアプリです。ローカルHTTPプロキシ (8118) と SOCKSプロキシ (9050) をTorネットワークに接続します。root化された端末ではOrbotは全ての通信をTorを通して行うこともできます。</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">一般</string>

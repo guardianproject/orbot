@@ -18,7 +18,6 @@
     <string name="menu_scan">BridgeQR scannen</string>
     <string name="menu_share_bridge">BridgeQR delen</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details">Enkele Orbot-gegevens</string>
     <string name="wizard_details_msg">Orbot is een openbronapplicatie die Tor, Obfs4Proxy, BadVPN, Tun2Socks en LibEvent bevat. Het creëert een lokale HTTP-proxy (8118) en een SOCKS-proxy (9050) naar het Tor-netwerk. Orbot heeft ook de mogelijkheid om al het internetverkeer over het Tor-netwerk te sturen.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Algemeen</string>

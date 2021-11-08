@@ -8,33 +8,24 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="15px"
-            android:paddingTop="15px"
-            android:text="@string/wizard_details"
-            android:textColor="#00ff00"
-            android:textStyle="bold" />
+        android:orientation="vertical"
+        android:paddingLeft="?dialogPreferredPadding"
+        android:paddingRight="?dialogPreferredPadding">
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:paddingLeft="15px"
             android:text="@string/wizard_details_msg"
-            android:textColor="#ffffff"
-            android:textColorLink="#ffffff" />
+            android:textColor="@android:color/white"
+            android:textColorLink="@android:color/white" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="15px"
             android:paddingTop="15px"
-            android:text="Version: "
-            android:textColor="#00ff00"
+            android:text="@string/version"
+            android:textColor="@color/bright_green"
             android:textStyle="bold" />
 
         <TextView
@@ -42,80 +33,71 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:paddingLeft="15px"
             android:text="- Unknown -"
-            android:textColor="#ffffff" />
+            android:textColor="@android:color/white" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="15px"
             android:paddingTop="15px"
             android:text="@string/project_home"
-            android:textColor="#00ff00"
+            android:textColor="@color/bright_green"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:paddingLeft="15px"
             android:text="@string/project_urls"
-            android:textColor="#ffffff"
-            android:textColorLink="#ffffff" />
+            android:textColor="@android:color/white"
+            android:textColorLink="@android:color/white" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="15px"
             android:paddingTop="15px"
             android:text="@string/third_party_software"
-            android:textColor="#00ff00"
+            android:textColor="@color/bright_green"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:paddingLeft="15px"
             android:text="@string/tor_version"
-            android:textColor="#ffffff"
-            android:textColorLink="#ffffff" />
+            android:textColor="@android:color/white"
+            android:textColorLink="@android:color/white" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:paddingLeft="15px"
             android:text="@string/libevent_version"
-            android:textColor="#ffffff"
-            android:textColorLink="#ffffff" />
+            android:textColor="@android:color/white"
+            android:textColorLink="@android:color/white" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:paddingLeft="15px"
             android:text="@string/obfsproxy_version"
-            android:textColor="#ffffff"
-            android:textColorLink="#ffffff" />
+            android:textColor="@android:color/white"
+            android:textColorLink="@android:color/white" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:paddingLeft="15px"
             android:text="@string/openssl_version"
-            android:textColor="#ffffff"
-            android:textColorLink="#ffffff" />
+            android:textColor="@android:color/white"
+            android:textColorLink="@android:color/white" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="15px"
             android:paddingTop="15px"
-            android:text="License: "
-            android:textColor="#00ff00"
+            android:text="@string/license"
+            android:textColor="@color/bright_green"
             android:textStyle="bold" />
 
         <TextView
@@ -123,9 +105,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:paddingLeft="15px"
-            android:textColor="#ffffff"
-            android:textColorLink="#ffffff" />
+            android:textColor="@android:color/white"
+            android:textColorLink="@android:color/white" />
     </LinearLayout>
 </ScrollView>
 

@@ -18,7 +18,6 @@
     <string name="menu_scan">Eskaneatu BridgeQR</string>
     <string name="menu_share_bridge">Partekatu BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details">Orbot xehetasun batzuk</string>
     <string name="wizard_details_msg">Tor, Obfs4Proxy, BadVPN, Tun2Socks eta LibEvent dituen kode irekiko aplikazio bat da Orbot. Tor sarera sartzeko HTTP proxya (8118) eta SOCKS proxya (9050) eskaintzen ditu. Rooteatutako gailuetan Orbot-ek interneteko trafiko guztia Tor bidez bidali dezake baita ere.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Orokorra</string>

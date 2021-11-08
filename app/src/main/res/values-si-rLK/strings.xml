@@ -15,7 +15,6 @@
     <string name="button_about">පිළිබඳව</string>
     <string name="menu_exit">පිටවන්න</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details">Orbot පිළිබද ඇතැම් විස්තර </string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">පොදු</string>
     <string name="pref_start_boot_title">Orbot ඇරඹුම් ධාවකයේ අරඹන්න </string>

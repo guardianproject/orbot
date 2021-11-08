@@ -18,8 +18,7 @@
   <string name="menu_scan">Skeniraj BridgeQR</string>
   <string name="menu_share_bridge">Podijeli BridgeQR</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_details">Detalji o Orbot-u</string>
-  <!--END Welcome Wizard strings (DJH)-->
+    <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Općenito</string>
   <string name="pref_start_boot_title">Pokreni Orbot pri pokretanju</string>
   <string name="pref_start_boot_summary">Automatski pokreni Orbot i poveži Tor kad se Android uređaj pokrene</string>

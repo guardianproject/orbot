@@ -17,7 +17,6 @@
   <string name="menu_scan">ஸ்கேன் BridgeQR</string>
   <string name="menu_share_bridge">BridgeQR பகிர்ந்திடு</string>
   <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_details">ஆர்பாட் பற்றிய தகவல்</string>
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">பொது</string>
   <!--New Wizard Strings-->

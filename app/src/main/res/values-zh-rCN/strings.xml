@@ -18,7 +18,6 @@
     <string name="menu_scan">扫描网桥 QR 码</string>
     <string name="menu_share_bridge">分享网桥 QR 码</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details">更多 Orbot 信息</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">常规</string>
     <string name="pref_start_boot_title">开机时启动 Orbot</string>

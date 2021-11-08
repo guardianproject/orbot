@@ -18,7 +18,6 @@
   <string name="menu_scan">Skenovat QR kód bridge</string>
   <string name="menu_share_bridge">Sdílet QR kód bridge</string>
     <!--Welcome Wizard strings (DJH)-->
-  <string name="wizard_details">Detaily o Orbotu</string>
     <!--END Welcome Wizard strings (DJH)-->
   <string name="pref_general_group">Hlavní</string>
   <string name="pref_start_boot_title">Spustit Orbot při zapnutí zařízení</string>

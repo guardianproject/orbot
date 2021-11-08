@@ -18,7 +18,6 @@
     <string name="menu_scan">Skanna BridgeQR</string>
     <string name="menu_share_bridge">Dela BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details">Orbot-information</string>
     <string name="wizard_details_msg">Orbot är ett program med öppen källkod som innehåller Tor, Obfs4Proxy, BadVPN, Tun2Socks och LibEvent. Den tillhandahåller en lokal HTTP-proxy (8118) och en SOCKS-proxy (9050) i Tor-nätverket. Orbot har också förmågan att, på rotad enhet, skicka all internettrafik genom Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Allmänt</string>
