@@ -74,6 +74,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
 
 import IPtProxy.IPtProxy;
+
+import androidx.annotation.ChecksSdkIntAtLeast;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -110,6 +112,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     public static File appBinHome;
     public static File appCacheHome;
     private final ExecutorService mExecutor = Executors.newCachedThreadPool();
+    @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.LOLLIPOP)
     boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     TorEventHandler mEventHandler;
     OrbotVpnManager mVpnManager;
@@ -425,6 +428,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         }
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     @Override
     public void onCreate() {
         super.onCreate();
@@ -632,7 +636,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         return portString;
     }
 
-    public boolean updateTorConfigCustom(File fileTorRcCustom, String extraLines) throws IOException, TimeoutException {
+    public boolean updateTorConfigCustom(File fileTorRcCustom, String extraLines) throws IOException {
         FileWriter fos = new FileWriter(fileTorRcCustom, false);
         PrintWriter ps = new PrintWriter(fos);
         ps.print(extraLines);
@@ -1328,7 +1332,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     Bridge b = new Bridge();
                     b.type = st.nextToken();
 
-                    StringBuffer sbConfig = new StringBuffer();
+                    StringBuilder sbConfig = new StringBuilder();
 
                     while (st.hasMoreTokens())
                         sbConfig.append(st.nextToken()).append(' ');

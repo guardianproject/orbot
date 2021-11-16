@@ -44,7 +44,8 @@
         <activity
             android:name=".OrbotMainActivity"
             android:excludeFromRecents="false"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -70,8 +71,9 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity> <!-- This is for ensuring the background service still runs when/if the app is swiped away -->
+        </activity>
 
+        <!-- This is for ensuring the background service still runs when/if the app is swiped away -->
         <activity
             android:name=".service.util.DummyActivity"
             android:allowTaskReparenting="true"
@@ -160,7 +162,9 @@
             android:name=".core.OnBootReceiver"
             android:enabled="true"
             android:exported="true">
-            <intent-filter android:directBootAware="true">
+
+            <intent-filter android:directBootAware="true"
+                tools:targetApi="n">
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
@@ -172,7 +176,8 @@
             android:name=".service.OrbotService"
             android:enabled="true"
             android:permission="android.permission.BIND_VPN_SERVICE"
-            android:stopWithTask="false">
+            android:stopWithTask="false"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.net.VpnService" />
             </intent-filter>
