@@ -18,7 +18,7 @@
     <string name="menu_scan">Escanear um BridgeQR</string>
     <string name="menu_share_bridge">Compartilhar o BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details_msg">O Orbot é um software de código aberto que contem Tor, Obfs4Proxy, BadVPN, Tun2Socks, LibEvent. Ele fornece um proxy local HTTP (8118) e um proxy SOCKS (9050) como acesso a rede Tor. Orbot também tem a habilidade, em dispositivos com acesso root, de enviar todo o trafego de Internet via rede Tor.</string>
+    <string name="wizard_details_msg">O Orbot é um software de código aberto que contem Tor, Obfs4Proxy, BadVPN, Tun2Socks, LibEvent. Ele fornece um proxy local HTTP (8118) e um proxy SOCKS (9050) como acesso a rede Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Geral</string>
     <string name="pref_start_boot_title">Iniciar o Orbot durante o Boot</string>
@@ -81,8 +81,8 @@
     <string name="ports_reachable_behind_a_restrictive_firewall">Portas atingíveis atrás de um firewall restritivo</string>
     <string name="enter_ports">Insira as portas</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Ativar os registros log de depuração para saída (deve usar adb ou aLogCat para ver)</string>
-    <string name="project_home">Home(s) do Projeto: </string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
+    <string name="project_home">Site do projeto:</string>
+    <string name="project_urls">https://orbot.app/</string>
     <string name="third_party_software">Software de Terceiros:</string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
@@ -216,5 +216,7 @@
     <string name="backup_port_exist">Erro: Um serviço Onion já está usando a porta %s</string>
     <string name="be_a_snowflake_desc_limit">Somente quando o dispositivo está conectado e na rede Wi-Fi</string>
     <string name="be_a_snowflake_title_limit">Limites do proxy snowflake</string>
-    <string name="snowflake_proxy_enabled">MODO DE PROXY SNOWFLAKE ATIVADO</string>
+    <string name="snowflake_proxy_enabled">Modo proxy snowflake ativado</string>
+    <string name="version">Versão:</string>
+    <string name="license">Licença:</string>
 </resources>
