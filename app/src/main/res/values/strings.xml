@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</string>
-    <string name="status_starting_up">Orbot is starting&#8230;</string>
+    <string name="status_starting_up">Orbot is starting…</string>
     <string name="status_activated">Connected to the Tor network</string>
     <string name="status_disabled">Orbot is deactivated</string>
     <string name="status_shutting_down">TorService is shutting down</string>
@@ -36,30 +36,22 @@
     <string name="pref_entrance_node_dialog">Enter Entrance Nodes</string>
     <string name="pref_allow_background_starts_title">Allow Background Starts</string>
     <string name="pref_allow_background_starts_summary">Let any app tell Orbot to start Tor and related services</string>
-
     <string name="pref_proxy_title">Outbound Network Proxy (Optional)</string>
-
     <string name="pref_proxy_type_title">Outbound Proxy Type</string>
     <string name="pref_proxy_type_summary">Protocol to use for proxy server: HTTP, HTTPS, SOCKS4, SOCKS5</string>
     <string name="pref_proxy_type_dialog">Enter Proxy Type</string>
-
     <string name="pref_proxy_host_title">Outbound Proxy Host</string>
     <string name="pref_proxy_host_summary">Proxy Server hostname</string>
     <string name="pref_proxy_host_dialog">Enter Proxy Host</string>
-
     <string name="pref_proxy_port_title">Outbound Proxy Port</string>
     <string name="pref_proxy_port_summary">Proxy Server port</string>
     <string name="pref_proxy_port_dialog">Enter Proxy port</string>
-
     <string name="pref_proxy_username_title">Outbound Proxy Username</string>
     <string name="pref_proxy_username_summary">Proxy Username (Optional)</string>
     <string name="pref_proxy_username_dialog">Enter Proxy Username</string>
-
     <string name="pref_proxy_password_title">Outbound Proxy Password</string>
     <string name="pref_proxy_password_summary">Proxy Password (Optional)</string>
     <string name="pref_proxy_password_dialog">Enter Proxy Password</string>
-
-
     <string name="couldn_t_start_tor_process_">Couldn\'t start Tor process: </string>
     <string name="error">Error</string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">Your ReachableAddresses settings caused an exception!</string>
@@ -101,74 +93,53 @@
     <string name="hidden_service_request">An app wants to open onion server on port %1$s to the Tor network. This is safe if you trust the app.</string>
     <string name="allow">Allow</string>
     <string name="deny">Deny</string>
-    <string name="found_existing_tor_process">found existing Tor process&#8230;</string>
+    <string name="found_existing_tor_process">found existing Tor process…</string>
     <string name="something_bad_happened">Something bad happened. Check the log</string>
     <string name="unable_to_start_tor">Unable to start Tor:</string>
-
     <string name="pref_use_persistent_notifications">Always keep the icon in toolbar when Orbot is connected</string>
     <string name="pref_use_persistent_notifications_title">Always-On Notifications</string>
-
     <string name="pref_use_expanded_notifications">Show expanded notification with Tor exit country and IP</string>
     <string name="pref_use_expanded_notifications_title">Expanded Notifications</string>
-
     <string name="set_locale_title">Language</string>
     <string name="pref_disable_network_title">No Network Auto-Sleep</string>
     <string name="pref_disable_network_summary">Put Tor to sleep when there is no internet available</string>
     <string name="newnym">You\'ve switched to a new Tor identity!</string>
-
     <string name="pref_open_proxy_on_all_interfaces_title">Open Proxy on All Interfaces</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Allow Wi-Fi peers, tethered devices and anyone else who can connect to your IP, to access Tor</string>
-
     <string name="updating_settings_in_tor_service">updating settings in Tor service</string>
-
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">Port that Tor offers its SOCKS proxy on (default: 9050 or 0 to disable)</string>
     <string name="pref_socks_dialog">SOCKS Port Config</string>
-
     <string name="pref_http_title">Tor HTTP</string>
     <string name="pref_http_summary">Port that Tor offers its HTTP proxy on (default: 8118 or 0 to disable)</string>
     <string name="pref_http_dialog">HTTP Port Config</string>
-
     <string name="pref_transport_title">Tor TransProxy Port</string>
     <string name="pref_transport_summary">Port that Tor offers its Transparent Proxy on (default: 9040 or 0 to disable)</string>
     <string name="pref_transport_dialog">TransProxy Port Config</string>
-
-
     <string name="pref_dnsport_title">Tor DNS Port</string>
     <string name="pref_dnsport_summary">Port that Tor offers its DNS on (default: 5400 or 0 to disable)</string>
     <string name="pref_dnsport_dialog">DNS Port Config</string>
-
-
     <string name="pref_torrc_title">Torrc Custom Config</string>
     <string name="pref_torrc_summary">EXPERTS ONLY: enter direct torrc config lines</string>
     <string name="pref_torrc_dialog">Custom Torrc</string>
-
-
     <string name="kibibyte">KiB</string>
     <string name="mebibyte">MiB</string>
-
     <string name="bridges_updated">Bridges Updated</string>
-
     <string name="restart_orbot_to_use_this_bridge_">Please restart Orbot to enable the changes</string>
-
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">If your mobile network actively blocks Tor, you can use a \'Bridge Server\' as an alternate way in. Select one of the options to configure and test…</string>
-
     <string name="get_bridges_email">Email</string>
     <string name="get_bridges_email_request">Request Bridges via Email</string>
-
     <string name="apps_mode">VPN Mode</string>
-
     <string name="send_email">Send Email</string>
-
     <string name="vpn_default_world">Global (Auto)</string>
     <string name="hidden_services">Onion Services</string>
     <string name="v3_hosted_services">Hosted v3 Onion Services</string>
     <string name="v3_client_auth">v3 Onion Service Client Authorization</string>
     <string name="v3_client_auth_activity_title">v3 Client Authorization</string>
-    <string name="v3_key_hash">x25519 Private Key in Base 32</string>
+    <string name="v3_key_hash">x25519 Private Key in Base32</string>
     <string name="v3_onion">v3 .onion Domain</string>
     <string name="v3_backup_key">Backup Client Authorization Key</string>
-    <string name="v3_backup_key_warning">Warning: This Could Expose Your Key to Other Apps</string>
+    <string name="v3_backup_key_warning">Warning: This could expose your key to other apps</string>
     <string name="v3_delete_client_authorization">Delete Client Authorization Key</string>
     <string name="v3_delete_client_authorization_confirm">Delete Client Authorization</string>
     <string name="v3_backup_name_hint">Backup filename…</string>
@@ -185,7 +156,7 @@
     <string name="delete_service">Delete Service</string>
     <string name="backup_saved_at_external_storage">Backup saved at external storage</string>
     <string name="backup_restored">Backup restored</string>
-    <string name="backup_port_exist">Error: An Onion Service is Already Using Port %s</string>
+    <string name="backup_port_exist">Error: An Onion service is already using port %s</string>
     <string name="restore_backup">Restore Backup</string>
     <string name="create_a_backup_first">Create a backup first</string>
     <string name="start_tor_again_for_finish_the_process">Start Tor again for finish the process</string>
@@ -222,42 +193,33 @@
     <string name="bridge_direct_connect">Connect directly to Tor (Best)</string>
     <string name="bridge_community">Connect through community servers</string>
     <string name="bridge_cloud">Connect through cloud servers</string>
-
     <string name="trouble_connecting">Trouble connecting?</string>
     <string name="full_device_vpn">Full Device VPN</string>
     <string name="vpn_disabled">VPN Disabled</string>
-
     <string name="menu_new_identity">New Identity</string>
-
     <string name="user_services">User services</string>
     <string name="app_services">App services</string>
     <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="refresh_apps">Refresh Apps</string>
-
     <!-- MoatActivity -->
     <string name="request_bridges">Request Bridges</string>
     <string name="refresh_captcha">Refresh CAPTCHA</string>
     <string name="solve_captcha_instruction">Solve the CAPTCHA to request bridges.</string>
     <string name="captcha">Captcha</string>
     <string name="enter_characters_from_image">Enter characters from image</string>
-
     <!-- BridgeWizardActivity -->
     <string name="request_bridges_from_torproject">Request Bridges from torproject.org</string>
     <string name="custom_bridges">Custom Bridges</string>
     <string name="configure_custom_bridges">Configure Custom Bridges</string>
-
     <!-- CustomBridgesActivity -->
     <string name="use_custom_bridges">Use Custom Bridges</string>
-    <string name="in_a_browser">In a browser, visit %s and tap "Get Bridges" > "Just Give Me Bridges!"</string>
+    <string name="in_a_browser">In a browser, visit %s and tap "Get Bridges" &gt; "Just Give Me Bridges!"</string>
     <string name="paste_bridges">Paste Bridges</string>
     <string name="use_qr_code">Use QR Code</string>
     <string name="bridge_snowflake">Connect through other Tor peers (experimental)</string>
     <string name="be_a_snowflake_title">Run Snowflake Proxy</string>
     <string name="be_a_snowflake_desc">Allow other Tor users to connect to Tor through your device</string>
-
     <string name="be_a_snowflake_title_limit">Snowflake Proxy Limits</string>
-    <string name="be_a_snowflake_desc_limit">Only when device is plugged in and on wifi</string>
-    <string name="snowflake_proxy_enabled">SNOWFLAKE PROXY MODE ENABLED</string>
-
-
+    <string name="be_a_snowflake_desc_limit">Only when the device is charging and on Wi-Fi</string>
+    <string name="snowflake_proxy_enabled">Snowflake proxy mode on</string>
 </resources>

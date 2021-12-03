@@ -214,7 +214,7 @@
     <string name="vpn_default_world">Toàn cầu (Tự động)</string>
     <string name="apps_mode">Chế độ VPN</string>
     <string name="get_bridges_email_request">Yêu cầu cầu nối qua Email</string>
-    <string name="be_a_snowflake_desc_limit">Chỉ khi thiết bị được cắm điện và có wifi</string>
+    <string name="be_a_snowflake_desc_limit">Chỉ khi thiết bị được cắm điện và có Wi-Fi</string>
     <string name="be_a_snowflake_title_limit">Giới hạn Proxy Snowflake</string>
     <string name="snowflake_proxy_enabled">CHẾ ĐỘ PROXY SNOWFLAKE ĐÃ BẬT</string>
 </resources>

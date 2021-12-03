@@ -41,7 +41,7 @@
     <string name="status_starting_up">Orbot începe…</string>
     <string name="app_description">Orbot este o aplicație proxy gratuită care permite altor aplicații să utilizeze internetul în condiții de mai mare siguranță. Orbot folosește Tor pentru a vă cripta traficul de internet și apoi îl ascunde trecând printr-o serie de calculatoare din întreaga lume. Tor este un software gratuit și o rețea deschisă care vă ajută să vă apărați împotriva unei forme de supraveghere a rețelei care amenință libertatea și intimitatea personală, activitățile și relațiile de afaceri confidențiale și securitatea statului, cunoscută sub numele de analiză a traficului.</string>
     <string name="app_name">Orbot</string>
-    <string name="be_a_snowflake_desc_limit">Numai atunci când dispozitivul este conectat la priză și pe wifi</string>
+    <string name="be_a_snowflake_desc_limit">Numai atunci când dispozitivul este conectat la priză și pe Wi-Fi</string>
     <string name="be_a_snowflake_title_limit">Limitele Proxy Snowflake</string>
     <string name="be_a_snowflake_desc">Permiteți altor utilizatori Tor să se conecteze la Tor prin intermediul dispozitivului dumneavoastră</string>
     <string name="be_a_snowflake_title">Rulați Snowflake Proxy</string>
