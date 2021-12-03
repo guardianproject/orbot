@@ -132,4 +132,14 @@
     <string name="pref_http_summary">Port yang Tor menawarkan proxy HTTP-nya (standar: 8118 atau 0 untuk mematikan)</string>
     <string name="trouble_connecting">Ada masalah saat menyambung\?</string>
     <string name="onion">.onion</string>
+    <string name="pref_open_proxy_on_all_interfaces_title">Buka Proxy di Semua Antarmuka</string>
+    <string name="pref_http_dialog">Konfigurasi Port HTTP</string>
+    <string name="get_bridges_email_request">Minta Bridges melalui Email</string>
+    <string name="vpn_default_world">Global (Otomatis)</string>
+    <string name="hidden_services">Layanan Onion</string>
+    <string name="v2_hidden_services">Layanan Onion v2 (Usang)</string>
+    <string name="v3_hosted_services">Layanan Onion v3 Yang Dihosting</string>
+    <string name="v3_client_auth">Otorisasi Klien Layanan Onion v3</string>
+    <string name="v3_client_auth_activity_title">Otorisasi Klien v3</string>
+    <string name="use_qr_code">Gunakan Kode QR</string>
 </resources>
