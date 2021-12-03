@@ -18,7 +18,7 @@
     <string name="menu_scan">Сканувати BridgeQR</string>
     <string name="menu_share_bridge">Поділитися BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details_msg">Orbot — це програма з відкритим кодом, яка містить Tor, Obfs4Proxy, BadVPN, Tun2Socks, LibEvent. Він забезпечує локальний HTTP-проксі (8118) та проксі SOCKS (9050) у мережу Tor. Orbot також має здатність, на кореневому пристрої, відправляти весь інтернет-трафік через Tor.</string>
+    <string name="wizard_details_msg">Orbot — це застосунок з відкритим кодом, що містить Tor, Obfs4Proxy, BadVPN, Tun2Socks, LibEvent. Він забезпечує локальний HTTP-проксі (8118) та проксі SOCKS (9050) у мережу Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Основні</string>
     <string name="pref_start_boot_title">Запуск Orbot при ввімкненні</string>
@@ -81,8 +81,8 @@
     <string name="ports_reachable_behind_a_restrictive_firewall">Порти доступні із обмежуваного брандмауера</string>
     <string name="enter_ports">Введіть порти</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Увімкнути вивід журналу зневадження (потрібно використовувати adb або aLogCat для перегляду)</string>
-    <string name="project_home">Домашня сторінка(и) проєкту:</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
+    <string name="project_home">Домівка проєкту:</string>
+    <string name="project_urls">https://orbot.app/</string>
     <string name="third_party_software">Програми сторонніх розробників: </string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
@@ -204,17 +204,19 @@
     <string name="v3_backup_name_hint">Назва файлу резервної копії…</string>
     <string name="v3_delete_client_authorization_confirm">Видалити авторизацію клієнта</string>
     <string name="v3_delete_client_authorization">Видалити ключ авторизації клієнта</string>
-    <string name="v3_backup_key_warning">Попередження. Це може відкрити ваш ключ для інших програм</string>
+    <string name="v3_backup_key_warning">Попередження: Це може відкрити ваш ключ для інших застосунків</string>
     <string name="v3_backup_key">Резервне копіювання ключа авторизації клієнта</string>
     <string name="v3_onion">Домен .onion v3</string>
-    <string name="v3_key_hash">x25519 Закритий ключ у базі 32</string>
+    <string name="v3_key_hash">x25519 Закритий ключ у Base32</string>
     <string name="v3_client_auth_activity_title">Авторизація клієнта v3</string>
     <string name="v3_client_auth">Авторизація клієнта служби Onion v3</string>
     <string name="v3_hosted_services">Хостинг служб Onion v3</string>
     <string name="deny">Заборонити</string>
     <string name="allow">Длзволити</string>
     <string name="backup_port_exist">Помилка: служба Onion вже використовує порт %s</string>
-    <string name="be_a_snowflake_desc_limit">Тільки коли пристрій під\'єднано до мережі Wi-Fi</string>
+    <string name="be_a_snowflake_desc_limit">Тільки коли пристрій заряджається і під\'єднаний до мережі Wi-Fi</string>
     <string name="be_a_snowflake_title_limit">Обмеження проксі Snowflake</string>
-    <string name="snowflake_proxy_enabled">РЕЖИМ SNOWFLAKE-ПРОКСІ УВІМКНЕНО</string>
+    <string name="snowflake_proxy_enabled">Режим Snowflake-проксі увімкнено</string>
+    <string name="version">Версія:</string>
+    <string name="license">Ліцензія:</string>
 </resources>
