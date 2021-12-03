@@ -1,6 +1,17 @@
-اربت یک برنامه پروکسی مجانی است٬ که دیگر برنامه ها را  به استفاده امن از اینترنت توانمند می کند. اربت از تور برای رمزگذاری کردن ترافیک اینترنت استفاده می کند و بعد آن ها را از طر
-یق کامپیوترهای متفاوت در نقاط مختلف جهان مخفی می کند. تور یک برنامه مجانی و شبکه باز است که  از شما در مقابل زیر نظر بودن در شبکه٬‌ تهدید آزادی های شخصی٬ خصوصی٬ فعالیت های کاری و رابطه های شخصی ب
-طور امن محافظت می کند. 
+روبات پیازی، یک کارهٔ پیشکار آزاد است که دیگر کاره‌ها را در استفاده امن از اینترنت توانمند می‌کند . روبات پیازی برای رمزگذاری شدآمد اینترنتتان و نهفتنش با عبور از میان دنباله‌ای از رایانه‌ها در سراسر جهان، از تور استفاده می‌کند. تور نرم‌افزار آزاد و شبکه‌ای باز است که به شما در برابر شکلی از نظارت شبکه با نام تجزیهٔ شدآمد که محرمانگی و آزادی فردی، فعّالیت‌های تجاری محرمانه و امنیت ملی را تهدید می‌کند، یاری می‌رساند.
 
-اربت تنها برنامه ای است که امکان ارتباط مطمئن اینترنتی را فراهم می کند. همانطور که روزنامه نیویورک تامیز نوشته٬ وقتی که ارتباطات از سمت تور می آید ما نمی توانیم دریابیم که  از کج
-ا آمده یا از طرف چه کسی است. تور برنده جایزه تازه های الکترونیک (EFF)  در سال 2012 شد.
+روبات پیازی تنها کاره‌ای است که یک اتّصال اینترنتی واقعاً خصوصی‌ ایجاد می‌کند. همان طور که روزنامه نیویورک تایمز می‌نویسد «هنگامی که ارتباطاتی از تور می‌رسد، هرگز نمی‌توانید بدانید از کجا یا چه‌کسی است.»
+
+تور جایزهٔ پیشگام بنیاد مرزهای الکترونیک (EFF) سال ۲۰۱۲ را برنده شد.
+
+★ ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.
+★ PRIVACY FOR APPS: Any installed app can use Tor via the Orbot VPN feature, or if it has a proxy feature, using the settings found here: https://goo.gl/2OA1y Use Orbot with Twitter, or try private web searching with DuckDuckGo: https://goo.gl/lgh1p
+★ PRIVACY FOR EVERYONE: Orbot prevents someone watching your connection from knowing what apps you are using or websites you visit. All anyone monitoring your network traffic can see is that you're using Tor.
+
+***ما عاشق بازخوردیم***
+★ دربارهٔ ما: پروژهٔ گاردین، گروهی از توسعه‌دهندگانیست که برای فردایی بهتر، کد نرم‌افزار آزاد و کاره‌های همراه امن می‌سازند.
+★ نرم‌افزار آزاد: روبات پیازی نرم‌افزار آزاد است. نگاهی به کدهای مبدأمان انداخته یا برای بهتر کردنش، به این اجتماع بپیوندید: https://github.com/guardianproject/orbot یا https://gitweb.torproject.org/orbot.git
+★ به ما پیام دهید: آیا ویژگی مورد علاقه‌تان را از قلم انداخته‌ایم؟ مشکل آزاردهنده‌ای یافتید؟ ما عاشق شنیدن از شماییم. رایانامه‌ای بهمان بفرستید: support@guardianproject.info
+
+***رفع مسئولیت***
+Guardian Project makes apps that are designed to protect your security and anonymity. The protocols that we use are widely regarded as the state of the art in security technology. While we are constantly upgrading our software to combat the latest threats and eliminate bugs, no technology is 100% foolproof. For maximum security and anonymity users must utilize best practices to keep themselves safe.  You can find a good introductory guide to these topics at https://securityinabox.org
