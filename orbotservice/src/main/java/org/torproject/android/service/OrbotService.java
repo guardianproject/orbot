@@ -679,7 +679,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
      */
     private void startTor() {
         try {
-
             if (torServiceConnection != null && conn != null)
             {
                 showConnectedToTorNetworkNotification();
@@ -701,7 +700,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 }
 
             startTorService();
-
             if (Prefs.hostOnionServicesEnabled()) {
                 try {
                     updateV3OnionNames();
@@ -735,8 +733,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                             contentResolver.update(V3_ONION_SERVICES_CONTENT_URI, fields, OnionService._ID + "=" + id, null);
                         }
                     }
-
                 }
+                sendCallbackStatus(STATUS_V3_NAMES_UPDATED);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -1436,7 +1434,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     }
                 } else if (action.equals(ACTION_STOP)) {
                     stopTorAsync();
-                } else if (action.equals(ACTION_START_VPN)) {
+                } else if (action.equals(ACTION_UPDATE_ONION_NAMES)) {
+                    updateV3OnionNames();
+                }
+                else if (action.equals(ACTION_START_VPN)) {
                     if (mVpnManager != null && (!mVpnManager.isStarted())) {
                         //start VPN here
                         Intent vpnIntent = VpnService.prepare(OrbotService.this);
