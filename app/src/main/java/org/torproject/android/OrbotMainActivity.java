@@ -804,7 +804,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                 }
 
-    
+
                 if (autoStartFromIntent) {
                     autoStartFromIntent = false;
                     Intent resultIntent = lastStatusIntent;
