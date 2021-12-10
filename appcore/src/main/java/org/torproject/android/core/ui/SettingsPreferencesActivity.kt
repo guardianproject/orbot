@@ -13,6 +13,7 @@ import org.torproject.android.core.LocaleHelper
 
 class SettingsPreferencesActivity : PreferenceActivity() {
     private var prefLocale: ListPreference? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         addPreferencesFromResource(intent.getIntExtra(BUNDLE_KEY_PREFERENCES_XML, 0))
@@ -30,6 +31,10 @@ class SettingsPreferencesActivity : PreferenceActivity() {
             finish()
             false
         }
+
+        val bridgesEnabled = getSharedPreferences("org.torproject.android_preferences", MODE_MULTI_PROCESS).getBoolean("pref_bridges_enabled", false)
+        findPreference("pref_be_a_snowflake")?.isEnabled = !bridgesEnabled
+        findPreference("pref_be_a_snowflake_limit").isEnabled = !bridgesEnabled
     }
 
     override fun attachBaseContext(newBase: Context) = super.attachBaseContext(LocaleHelper.onAttach(newBase))
