@@ -502,7 +502,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         return mCurrentStatus;
     }
 
-    private boolean pluggableTransportInstall() {
+    private void pluggableTransportInstall() {
 
         File fileCacheDir = new File(getCacheDir(), "pt");
         if (!fileCacheDir.exists())
@@ -511,8 +511,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         IPtProxy.setStateLocation(fileCacheDir.getAbsolutePath());
         String fileTestState = IPtProxy.getStateLocation();
         debug("IPtProxy state: " + fileTestState);
-
-        return false;
     }
 
     private File updateTorrcCustomFile() throws IOException, TimeoutException {
