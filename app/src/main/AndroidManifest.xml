@@ -139,16 +139,6 @@
             android:name=".ui.v3onionservice.clientauth.ClientAuthContentProvider"
             android:exported="false"/>
 
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="org.torproject.android.ui.hiddenservices.storage"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/hidden_services_paths" />
-        </provider>
-
         <receiver
             android:name=".service.StartTorReceiver"
             android:exported="true"
