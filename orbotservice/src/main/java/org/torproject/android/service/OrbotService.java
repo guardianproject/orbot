@@ -36,6 +36,7 @@ import android.os.IBinder;
 import android.provider.BaseColumns;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import net.freehaven.tor.control.TorControlCommands;
 import net.freehaven.tor.control.TorControlConnection;
@@ -74,7 +75,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
 
 import IPtProxy.IPtProxy;
-
+import IPtProxy.SnowflakeClientConnected;
 import androidx.annotation.ChecksSdkIntAtLeast;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
@@ -372,8 +373,14 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         String logFile = null;
         boolean keepLocalAddresses = true;
         boolean unsafeLogging = false;
-        IPtProxy.startSnowflakeProxy(capacity, broker, relay, stun, natProbe, logFile, keepLocalAddresses, unsafeLogging, null);
-
+        SnowflakeClientConnected callback = null;
+        if (Prefs.showSnowflakeProxyMessage()) {
+            callback = (SnowflakeClientConnected) () -> {
+                String message = String.format(getString(R.string.snowflake_proxy_client_connected_msg), "❄️", "❄️");
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+            };
+        }
+        IPtProxy.startSnowflakeProxy(capacity, broker, relay, stun, natProbe, logFile, keepLocalAddresses, unsafeLogging, callback);
         logNotice("Snowflake Proxy mode ENABLED");
     }
 
