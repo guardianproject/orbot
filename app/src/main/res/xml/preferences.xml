@@ -291,7 +291,7 @@
             android:title="@string/pref_disable_network_title" />
 
     </PreferenceCategory>
-    <PreferenceCategory android:title="Experimental">
+    <PreferenceCategory android:title="@string/snowflake_proxy_pref_category">
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="pref_be_a_snowflake"
