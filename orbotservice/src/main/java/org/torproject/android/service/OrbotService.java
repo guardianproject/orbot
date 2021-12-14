@@ -354,10 +354,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         String target = getCdnFront("snowflake-target");
         String front = getCdnFront("snowflake-front");
         String stunServer = getCdnFront("snowflake-stun");
+        String ampCache = "https://cdn.ampproject.org/";
 
-        IPtProxy.startSnowflake(stunServer, target, front,
+        IPtProxy.startSnowflake(stunServer, target, front, ampCache,
                  null, true, false, true, 1);
-
     }
 
     /*
@@ -368,10 +368,11 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         String broker = "https://snowflake-broker.bamsoftware.com/";
         String relay = "wss://snowflake.bamsoftware.com/";
         String stun = "stun:stun.stunprotocol.org:3478";
+        String natProbe = null;
         String logFile = null;
         boolean keepLocalAddresses = true;
         boolean unsafeLogging = false;
-        IPtProxy.startSnowflakeProxy(capacity, broker, relay, stun, logFile, keepLocalAddresses, unsafeLogging);
+        IPtProxy.startSnowflakeProxy(capacity, broker, relay, stun, natProbe, logFile, keepLocalAddresses, unsafeLogging, null);
 
         logNotice("Snowflake Proxy mode ENABLED");
     }
