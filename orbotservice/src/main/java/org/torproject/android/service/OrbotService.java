@@ -355,10 +355,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         String target = getCdnFront("snowflake-target");
         String front = getCdnFront("snowflake-front");
         String stunServer = getCdnFront("snowflake-stun");
-        String ampCache = "https://cdn.ampproject.org/";
+        String ampCache = null; //  getCdnFront("snowflake-ampcache");
 
         IPtProxy.startSnowflake(stunServer, target, front, ampCache,
-                 null, true, false, true, 1);
+                 null, true, false, false, 1);
     }
 
     /*
@@ -366,9 +366,9 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
      */
     private void enableSnowflakeProxy () {
         int capacity = 1;
-        String broker = "https://snowflake-broker.bamsoftware.com/";
-        String relay = "wss://snowflake.bamsoftware.com/";
-        String stun = "stun:stun.stunprotocol.org:3478";
+        String broker = null; // "https://snowflake-broker.bamsoftware.com/";
+        String relay =  null; // "wss://snowflake.bamsoftware.com/";
+        String stun = null; // "stun:stun.stunprotocol.org:3478";
         String natProbe = null;
         String logFile = null;
         boolean keepLocalAddresses = true;
@@ -377,7 +377,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         if (Prefs.showSnowflakeProxyMessage()) {
             callback = (SnowflakeClientConnected) () -> {
                 String message = String.format(getString(R.string.snowflake_proxy_client_connected_msg), "❄️", "❄️");
-                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                new Handler(getMainLooper()).post(() -> Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show());
             };
         }
         IPtProxy.startSnowflakeProxy(capacity, broker, relay, stun, natProbe, logFile, keepLocalAddresses, unsafeLogging, callback);

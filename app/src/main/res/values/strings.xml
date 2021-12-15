@@ -258,7 +258,7 @@
 
     <string name="be_a_snowflake_title_limit">Snowflake Proxy Limits</string>
     <string name="be_a_snowflake_desc_limit">Only when device is plugged in and on wifi</string>
-    <string name="snowflake_proxy_enabled">SNOWFLAKE PROXY MODE ENABLED</string>
+    <string formatted="true" name="snowflake_proxy_enabled">Snowflake proxy mode enabled</string>
     <string name="snowflake_proxy_msg_title">Show Connection Notification</string>
     <string name="snowflake_proxy_msg_description">Show a message when your snowflake helps someone circumvent censorship</string>
 
