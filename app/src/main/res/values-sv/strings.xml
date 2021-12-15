@@ -152,9 +152,6 @@
     <string name="pref_reduced_connection_padding">Minskad anslutnings-utfyllnad</string>
     <string name="pref_reduced_connection_padding_summary">Stänger relä-anslutningar tidigare, och skickar färre utfyllnadspaket för att minska datatrafik och batteriförbrukning</string>
     <string name="app_shortcuts">Tor-aktiverade appar</string>
-    <string name="testing_bridges">Testa broanslutning till Tor…</string>
-    <string name="testing_bridges_success">Lyckades. Brokonfigurationen är bra!</string>
-    <string name="testing_bridges_fail">MISSLYCKADES. Försök med ett annat alternativ</string>
     <string name="bridge_direct_connect">Anslut direkt till Tor (Bästa)</string>
     <string name="bridge_community">Anslut genom gemenskaps servrar</string>
     <string name="bridge_cloud">Anslut via molnservrar</string>

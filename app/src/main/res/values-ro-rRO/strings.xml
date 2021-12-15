@@ -69,11 +69,8 @@
     <string name="bridge_cloud">Conectare prin intermediul serverelor cloud</string>
     <string name="bridge_community">Conectați-vă prin intermediul serverelor comunității</string>
     <string name="bridge_direct_connect">Conectați-vă direct la Tor (Cel mai bun)</string>
-    <string name="testing_bridges_fail">A EȘUAT. Încercați o altă opțiune</string>
     <string name="testing_tor_direct_success">Succes. Configurația punții este bună!</string>
-    <string name="testing_bridges_success">Succes. Configurația punții este bună!</string>
     <string name="testing_tor_direct">Testarea conexiunii la Tor…</string>
-    <string name="testing_bridges">Testarea conexiunii punții la Tor....</string>
     <string name="app_shortcuts">Aplicații compatibile cu Tor</string>
     <string name="pref_disable_ipv4_summary">Spune ieșirilor să nu se conecteze la adrese IPv4</string>
     <string name="pref_disable_ipv4">Dezactivați conexiunile IPv4</string>

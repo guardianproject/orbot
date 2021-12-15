@@ -188,11 +188,8 @@
     <string name="bridge_cloud">Yhdistä pilvipalvelimien läpi</string>
     <string name="bridge_community">Yhdistä yhteisöpalvelimien läpi</string>
     <string name="bridge_direct_connect">Yhdistä suoraan Toriin (Paras)</string>
-    <string name="testing_bridges_fail">EPÄONNISTUI. Kokeile toista vaihtoehtoa</string>
     <string name="testing_tor_direct_success">Onnistui. Tor-yhteys on kunnossa!</string>
-    <string name="testing_bridges_success">Onnistui. Siltamääritykset ovat kunnossa!</string>
     <string name="testing_tor_direct">Kokeillaan yhteyttä Toriin…</string>
-    <string name="testing_bridges">Kokeillaan siltayhteyttä Toriin….</string>
     <string name="app_shortcuts">Torilla toimivat sovellukset</string>
     <string name="pref_disable_ipv4_summary">Kertoo exit-solmulle, ettei yhdistetä IPv4-osoitteisiin</string>
     <string name="pref_disable_ipv4">Poista käytöstä IPv4-yhteydet</string>

@@ -160,9 +160,6 @@
   <string name="pref_reduced_connection_padding">Σύνδεση αναπλήρωσης</string>
   <string name="pref_reduced_connection_padding_summary">Κλείνει τον ηλεκτρονόμο συνδέσεων αργά και αποστολή λιγότερο να γεμίσει τα πακέτα για να μειώσει δεδομένων και τη χρήση της μπαταρίας</string>
     <string name="app_shortcuts">Ενεργοποιημένες εφαρμογές με το Τοr</string>
-    <string name="testing_bridges">Δοκιμή σύνδεσης γέφυρας με το Tor....</string>
-  <string name="testing_bridges_success">Επιτυχία. Η διαμόρφωση της γέφυρας πέτυχε!</string>
-  <string name="testing_bridges_fail">ΑΠΟΤΥΧΙΑ. Δοκιμάστε μία άλλη διαμόρφωση</string>
   <string name="bridge_direct_connect">Απευθείας σύνδεση με το δίκτυο Tor (προεπιλογή)</string>
   <string name="bridge_community">Σύνδεση μέσω κοινοτικών διακομιστών</string>
   <string name="bridge_cloud">Σύνδεση μέσω cloud server</string>

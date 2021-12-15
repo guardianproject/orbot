@@ -152,9 +152,6 @@
     <string name="pref_reduced_connection_padding">ลดช่องว่างภายในเครือข่าย</string>
     <string name="pref_reduced_connection_padding_summary">เลือกการเชื่อมต่อรีเลย์ให้เร็วขึ้นและส่งช่องว่างภายในแพคเก็ตให้น้อยลงเพื่อลดการใช้งานข้อมูลและแบตเตอรี่</string>
     <string name="app_shortcuts">แอปที่ใช้ได้กับ Tor</string>
-    <string name="testing_bridges">ทดสอบการเชื่อมต่อ Bridge กับ Tor…</string>
-    <string name="testing_bridges_success">สำเร็จ การกำหนดค่า Bridge เรียบร้อยดีแล้ว!</string>
-    <string name="testing_bridges_fail">ล้มเหลว ลองตัวเลือกอื่น</string>
     <string name="bridge_direct_connect">เชื่อมต่อกับ Tor โดยตรง (ดีที่สุด)</string>
     <string name="bridge_community">เชื่อมต่อผ่านเซิร์ฟเวอร์ของชุมชน</string>
     <string name="bridge_cloud">เชื่อมต่อผ่านเซิร์ฟเวอร์คลาวด์</string>

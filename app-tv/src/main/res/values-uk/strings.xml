@@ -157,9 +157,6 @@
   <string name="pref_isolate_dest_summary">Використати інакшу схему для кожної адреси призначення</string>
   <string name="pref_connection_padding_summary">Завжди забезпечує заповнення підключення для захисту від деяких форм аналізу трафіку. За замовчуванням: автоматично</string>
     <string name="app_shortcuts">Застосунки, що працюють з Tor</string>
-    <string name="testing_bridges">Тестування моста з\'єднання з Tor....</string>
-  <string name="testing_bridges_success">Успішно. Конфігурація мосту хороша!</string>
-  <string name="testing_bridges_fail">НЕ ВДАЛОСЯ. Спробуйте інакший варіант</string>
   <string name="bridge_direct_connect">Під\'єднання безпосередньо до Tor (Найкраще)</string>
   <string name="bridge_community">Під\'єднання через сервери спільноти</string>
   <string name="bridge_cloud">Під\'єднання через хмарні сервери</string>

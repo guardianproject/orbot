@@ -152,9 +152,6 @@
     <string name="pref_reduced_connection_padding">Connessione allungata ridotta</string>
     <string name="pref_reduced_connection_padding_summary">Chiudi prima le connessioni dei relay e invia meno pacchetti allungati per ridurre utilizzo di dati e batteria</string>
     <string name="app_shortcuts">App abilitate a Tor</string>
-    <string name="testing_bridges">Test della connessione bridge verso Tor…</string>
-    <string name="testing_bridges_success">Successo. La configurazione bridge è corretta!</string>
-    <string name="testing_bridges_fail">FALLITO. Prova un\'altra opzione</string>
     <string name="bridge_direct_connect">Connettiti direttamente a Tor (Migliore)</string>
     <string name="bridge_community">Connettiti tramite i server comunitari</string>
     <string name="bridge_cloud">Connettiti tramite i server cloud</string>

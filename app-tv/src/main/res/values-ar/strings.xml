@@ -149,9 +149,6 @@
   <string name="consider_disable_battery_optimizations">يرجى تعطيل تحسينات البطارية</string>
   <string name="consider_enable_battery_optimizations">يرجى تشغيل تحسينات طاقة البطارية</string>
   <string name="app_shortcuts">التطبيقات المهيئة للعبور عبر تور</string>
-  <string name="testing_bridges">جارٍ فحص اتصال الجسر بشبكة تور ...</string>
-  <string name="testing_bridges_success">نجحت العملية. إنّ إعدادات الجسر جيدة !</string>
-  <string name="testing_bridges_fail">فشلت العملية. حاول بخيارات أخرى</string>
   <string name="bridge_direct_connect">الإتصال المباشر بشبكة تور (أفضل)</string>
   <string name="bridge_community">الإتصال عبر خوادم المجتمع</string>
   <string name="bridge_cloud">الإتصال عن طريق الخوادم السحابية</string>

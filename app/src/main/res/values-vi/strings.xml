@@ -144,7 +144,6 @@
     <string name="pref_reduced_connection_padding">Giảm khoảng cách kết nối</string>
     <string name="pref_connection_padding_summary">Luôn bật đặt khoảng cách cho kết nối để phòng vệ chống lại một số dạng phân tích lưu lượng. Mặc định: tự động</string>
     <string name="pref_connection_padding">Đặt khoảng cách cho kết nối</string>
-    <string name="testing_bridges">Đang thử nghiệm kết nối cầu nối đến Tor….</string>
     <string name="app_shortcuts">Ứng dụng được bật Tor</string>
     <string name="pref_disable_ipv4_summary">Bảo các lối ra không được kết nối đến các địa chỉ IPv4</string>
     <string name="pref_disable_ipv4">Tắt các kết nối IPv4</string>
@@ -202,9 +201,7 @@
     <string name="bridge_cloud">Kết nối thông qua các máy chủ đám mây</string>
     <string name="bridge_community">Kết nối thông qua các máy chủ cộng đồng</string>
     <string name="bridge_direct_connect">Kết nối trực tiếp đến Tor (Tốt nhất)</string>
-    <string name="testing_bridges_fail">THẤT BẠI. Hãy thử một tuỳ chọn khác</string>
     <string name="testing_tor_direct_success">Thành công. Kết nối đến Tor tốt rồi!</string>
-    <string name="testing_bridges_success">Thành công. Thiết lập cầu nối tốt rồi!</string>
     <string name="testing_tor_direct">Đang thử nghiệm kết nối đến Tor…</string>
     <string name="request_bridges">Yêu cầu cầu nối</string>
     <string name="solve_captcha_instruction">Giải CAPTCHA để yêu cầu cầu nối.</string>
