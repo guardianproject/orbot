@@ -34,6 +34,8 @@ public interface TorServiceConstants {
     String ACTION_START_VPN = "org.torproject.android.intent.action.START_VPN";
     String ACTION_STOP_VPN = "org.torproject.android.intent.action.STOP_VPN";
 
+    String ACTION_UPDATE_ONION_NAMES = "org.torproject.android.intent.action.UPDATE_ONION_NAMES";
+
     String ACTION_START_ON_BOOT = "org.torproject.android.intent.action.START_BOOT";
 
     int REQUEST_VPN = 7777;
@@ -78,6 +80,9 @@ public interface TorServiceConstants {
      * All tor-related services and daemons are stopped
      */
     String STATUS_OFF = "OFF";
+
+    String STATUS_V3_NAMES_UPDATED = "V3_NAMES_UPDATED";
+
     /**
      * All tor-related services and daemons have completed starting
      */
