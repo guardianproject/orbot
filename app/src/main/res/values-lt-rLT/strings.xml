@@ -13,7 +13,7 @@
     <string name="app_name">Orbot</string>
     <string name="enter_exclude_nodes">Įveskite neįtrauktinus mazgus</string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">Jūsų pasiekiamų adresų nustatymai sukėlė išimtį!</string>
-    <string name="be_a_snowflake_desc_limit">Tik tada, kai įrenginys prijungtas prie maitinimo šaltinio ir naudoja „Wi-Fi“</string>
+    <string name="be_a_snowflake_desc_limit">Tik tada, kai įrenginys kraunasi ir naudoja „Wi-Fi“</string>
     <string name="be_a_snowflake_desc">Leisti kitiems „Tor“ vartotojams prisijungti prie „Tor“ per jūsų įrenginį</string>
     <string name="pref_disable_ipv4_summary">Nurodo išėjimams nesijungti prie IPv4 adresų</string>
     <string name="pref_prefer_ipv6_summary">Nurodo, kad pirmenybė teikiama IPv6 adresams</string>
@@ -34,7 +34,7 @@
     <string name="pref_entrance_node_summary">Pirštų atspaudai, slapyvardžiai, šalys ir adresai, kurių nereikia paskutiniam šuoliui</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Pirštų atspaudai, slapyvardžiai, šalys ir adresai, pirmajam šuoliui</string>
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Pirštų atspaudai, slapyvardžiai, šalys ir adresai, kurių nereikia traukti</string>
-    <string name="v3_key_hash">x25519 privatus raktas 32 bazėje</string>
+    <string name="v3_key_hash">x25519 privatus raktas Base32</string>
     <string name="bridge_snowflake">Prisijungti per kitus „Tor“ sujungimus (eksperimentinis)</string>
     <string name="solve_captcha_instruction">Išspręskite CAPTCHA, kad galėtumėte prašyti tiltų.</string>
     <string name="ports_reachable_behind_a_restrictive_firewall">Prievadai, pasiekiami už ribojančiosios ugniasienės</string>
@@ -143,8 +143,7 @@
     <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
     <string name="libevent_version">LibEvent: http://www.monkey.org/~provos/libevent/</string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="project_urls">https://www.torproject.org/docs/android
-\nhttps://guardianproject.info/apps/orbot/</string>
+    <string name="project_urls">https://orbot.app/</string>
     <string name="project_home">Projekto namai:</string>
     <string name="enter_ports">Įvesti prievadus</string>
     <string name="reachable_ports">Pasiekiami prievadai</string>
@@ -191,7 +190,7 @@
     <string name="pref_open_proxy_on_all_interfaces_summary">Leisti „Wi-Fi“ poroms, pririštiems įrenginiams ir visiems kitiems, kurie gali prisijungti prie jūsų IP, pasiekti „Tor“</string>
     <string name="hidden_service_request">Programėlė nori atidaryti „Tor“ tinklo prievado %1$s onion serverį. Tai saugu, jei pasitikite programėle.</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jei jūsų mobiliojo ryšio tinklas aktyviai blokuoja „Tor“, galite naudoti „tilto serverį“ kaip alternatyvų prisijungimo būdą. Pasirinkite vieną iš parinkčių, kad galėtumėte konfigūruoti ir išbandyti…</string>
-    <string name="wizard_details_msg">„Orbot“ yra atvirojo kodo programa, kurią sudaro „Tor“, „Obfs4Proxy“, „BadVPN“, „Tun2Socks“ ir „LibEvent“. Ji suteikia vietinį HTTP įgaliotąjį (proxy) serverį (8118) ir SOCKS įgaliotąjį serverį (9050) į „Tor“ tinklą. „Orbot“ taip pat turi galimybę įsišaknijusiame įrenginyje visą interneto srautą siųsti per „Tor“.</string>
+    <string name="wizard_details_msg">„Orbot“ yra atvirojo kodo programa, kurią sudaro „Tor“, „Obfs4Proxy“, „BadVPN“, „Tun2Socks“ ir „LibEvent“. Ji suteikia vietinį HTTP įgaliotąjį (proxy) serverį (8118) ir SOCKS įgaliotąjį serverį (9050) į „Tor“ tinklą.</string>
     <string name="relaying">Perdavimas</string>
     <string name="pref_general_group">Bendrieji</string>
     <string name="menu_log">Žurnalas</string>
@@ -214,5 +213,7 @@
     <string name="menu_stop">Sustabdyti</string>
     <string name="menu_start">Pradėti</string>
     <string name="app_description">„Orbot“ yra nemokama įgaliotojo serverio programa, kuri leidžia kitoms programoms saugiau naudotis internetu. „Orbot“ naudoja „Tor“, kad užšifruotų jūsų interneto srautą ir paslėptų jį per kelis kompiuterius visame pasaulyje. „Tor“ yra nemokama programinė įranga ir atviras tinklas, padedantis apsisaugoti nuo tinklo stebėjimo, keliančio grėsmę asmens laisvei ir privatumui, konfidencialiai verslo veiklai ir santykiams bei valstybės saugumui, vadinamo srauto analize.</string>
-    <string name="snowflake_proxy_enabled">„SNOWFLAKE“ ĮGALIOTOJO SERVERIO REŽIMAS ĮJUNGTAS</string>
+    <string name="snowflake_proxy_enabled">„Snowflake“ įgaliotojo serverio rėžimas įjungtas</string>
+    <string name="version">Versija:</string>
+    <string name="license">Licencija:</string>
 </resources>
