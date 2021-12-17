@@ -160,9 +160,6 @@
   <string name="pref_reduced_connection_padding">Csökkentett kapcsolat kitöltés</string>
   <string name="pref_reduced_connection_padding_summary">Hamarabb lezárja a relé kapcsolatokat, és kevesebb kitöltő csomagot küld a csökkentett adat és akkumulátor használat érdekében</string>
     <string name="app_shortcuts">Tor-engedélyezett Alkalmazások</string>
-    <string name="testing_bridges">A híd Tor-hoz csatlakozásának tesztelése....</string>
-  <string name="testing_bridges_success">Sikeres. A híd konfiguráció megfelelő!</string>
-  <string name="testing_bridges_fail">SIKERTELEN: Próbáljon meg másik beállítást</string>
   <string name="bridge_direct_connect">Csatlakozás közvetlenül a Tor-hoz (Legjobb)</string>
   <string name="bridge_community">Csatlakozás közösségi szervereken keresztül</string>
   <string name="bridge_cloud">Csatlakozás felhőszervereken keresztül</string>

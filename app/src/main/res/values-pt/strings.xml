@@ -105,9 +105,6 @@
     <string name="bridge_cloud">Conecte-se através de servidores em nuvem</string>
     <string name="bridge_community">Conecte-se através de servidores da comunidade</string>
     <string name="bridge_direct_connect">Conecte-se diretamente ao Tor (O melhor)</string>
-    <string name="testing_bridges_fail">FALHOU. Tente outra opção</string>
-    <string name="testing_bridges_success">Sucesso. A configuração da Ponte está boa!</string>
-    <string name="testing_bridges">Testando a ponte de conexão com o Tor….</string>
     <string name="app_shortcuts">Aplicações ativadas para o Tor</string>
     <string name="share_as_qr">Compartilhar como QR</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Por favor reinicie Orbot para ativar as mundanças</string>

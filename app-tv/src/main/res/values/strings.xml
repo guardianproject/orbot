@@ -204,9 +204,6 @@
     <string name="pref_disable_ipv4">Disable IPv4 connections</string>
     <string name="pref_disable_ipv4_summary">Tells exits not to connect to IPv4 addresses</string>
     <string name="app_shortcuts">Tor-Enabled Apps</string>
-    <string name="testing_bridges">Testing bridge connection to Tor....</string>
-    <string name="testing_bridges_success">Success. Bridge configuration is good!</string>
-    <string name="testing_bridges_fail">FAILED. Try another option</string>
     <string name="bridge_direct_connect">Connect directly to Tor (Best)</string>
     <string name="bridge_community">Connect through community servers</string>
     <string name="bridge_cloud">Connect through cloud servers</string>

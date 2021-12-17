@@ -160,9 +160,6 @@
   <string name="pref_reduced_connection_padding">Редуцирај поврзување со камуфлажа</string>
   <string name="pref_reduced_connection_padding_summary">Исклучете ги врските на релеата поскоро и испраќањето на камуфлирани пакети за да го намалите користењето на податоци и потрошувачката на батеријата</string>
   <string name="app_shortcuts">Tor-овозможени апликации</string>
-  <string name="testing_bridges">Тестирање на мост поврзувањето кон Tor...</string>
-  <string name="testing_bridges_success">Успешно. Мост поставките се добри!</string>
-  <string name="testing_bridges_fail">НЕУСПЕШНО. Пробајте друга опција</string>
   <string name="bridge_direct_connect">Поврзи директно на Tor (Најдобро)</string>
   <string name="bridge_community">Поврзи преку сервери на заедницата</string>
   <string name="bridge_cloud">Поврзи преку облак-сервери</string>

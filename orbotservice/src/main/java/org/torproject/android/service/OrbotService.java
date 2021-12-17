@@ -36,6 +36,7 @@ import android.os.IBinder;
 import android.provider.BaseColumns;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import net.freehaven.tor.control.TorControlCommands;
 import net.freehaven.tor.control.TorControlConnection;
@@ -74,7 +75,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
 
 import IPtProxy.IPtProxy;
-
+import IPtProxy.SnowflakeClientConnected;
 import androidx.annotation.ChecksSdkIntAtLeast;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
@@ -138,6 +139,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     private static String[] parseBridgesFromSettings(String bridgeList) {
         // this regex replaces lines that only contain whitespace with an empty String
         bridgeList = bridgeList.trim().replaceAll("(?m)^[ \t]*\r?\n", "");
+        Log.d("bim", "bridgeList=" + bridgeList);
         return bridgeList.split("\\n");
     }
 
@@ -285,7 +287,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             if (Prefs.bridgesEnabled()) {
                 if (useIPtObfsMeekProxy())
                     IPtProxy.stopObfs4Proxy();
-                else if (useIPtSnowflakeProxy())
+                else if (useIPtSnowflakeProxyDomainFronting())
                     IPtProxy.stopSnowflake();
             }
             else if (Prefs.beSnowflakeProxy())
@@ -317,9 +319,14 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         return bridgeList.contains("obfs") || bridgeList.contains("meek");
     }
 
-    private static boolean useIPtSnowflakeProxy() {
+    private static boolean useIPtSnowflakeProxyDomainFronting() {
         String bridgeList = Prefs.getBridgesList();
-        return bridgeList.contains("snowflake");
+        return bridgeList.equals("snowflake");
+    }
+
+    private static boolean useIPtSnowflakeProxyAMPRendezvous() {
+        String bridgeList = Prefs.getBridgesList();
+        return bridgeList.equals("snowflake-amp");
     }
 
     private static HashMap<String,String> mFronts;
@@ -349,15 +356,23 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     }
 
 
-    private void startSnowflakeClient() {
+    private void startSnowflakeClientDomainFronting() {
         //this is using the current, default Tor snowflake infrastructure
         String target = getCdnFront("snowflake-target");
         String front = getCdnFront("snowflake-front");
         String stunServer = getCdnFront("snowflake-stun");
+        String ampCache = null;
 
-        IPtProxy.startSnowflake(stunServer, target, front,
-                 null, true, false, true, 1);
+        IPtProxy.startSnowflake(stunServer, target, front, ampCache,
+                 null, true, false, false, 1);
+    }
 
+    private void startSnowflakeClientAmpRendezvous() {
+        String stunServers ="stun:stun.l.google.com:19302,stun:stun.voip.blackberry.com:3478,stun:stun.altar.com.pl:3478,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478,stun:stun.sonetel.com:3478,stun:stun.sonetel.net:3478,stun:stun.stunprotocol.org:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.voys.nl:3478";
+        String target = "https://snowflake-broker.torproject.net/";
+        String front = "www.google.com";
+        String ampCache ="https://cdn.ampproject.org/";
+        IPtProxy.startSnowflake(stunServers, target, front, ampCache, null, true, false, false, 1);
     }
 
     /*
@@ -365,14 +380,21 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
      */
     private void enableSnowflakeProxy () {
         int capacity = 1;
-        String broker = "https://snowflake-broker.bamsoftware.com/";
-        String relay = "wss://snowflake.bamsoftware.com/";
-        String stun = "stun:stun.stunprotocol.org:3478";
+        String broker = null; // "https://snowflake-broker.bamsoftware.com/";
+        String relay =  null; // "wss://snowflake.bamsoftware.com/";
+        String stun = null; // "stun:stun.stunprotocol.org:3478";
+        String natProbe = null;
         String logFile = null;
         boolean keepLocalAddresses = true;
         boolean unsafeLogging = false;
-        IPtProxy.startSnowflakeProxy(capacity, broker, relay, stun, logFile, keepLocalAddresses, unsafeLogging);
-
+        SnowflakeClientConnected callback = null;
+        if (Prefs.showSnowflakeProxyMessage()) {
+            callback = (SnowflakeClientConnected) () -> {
+                String message = String.format(getString(R.string.snowflake_proxy_client_connected_msg), "❄️", "❄️");
+                new Handler(getMainLooper()).post(() -> Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show());
+            };
+        }
+        IPtProxy.startSnowflakeProxy(capacity, broker, relay, stun, natProbe, logFile, keepLocalAddresses, unsafeLogging, callback);
         logNotice("Snowflake Proxy mode ENABLED");
     }
 
@@ -1064,7 +1086,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 builtInBridgeType = "meek_lite";
             }
 
-            if (bridgeList.equals("snowflake")) {
+            if (bridgeList.equals("snowflake") || bridgeList.equals("snowflake-amp")) {
                 extraLines.append("ClientTransportPlugin snowflake socks5 127.0.0.1:" + IPtProxy.snowflakePort()).append('\n');
                 builtInBridgeType = "snowflake";
             }
@@ -1409,8 +1431,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     if (Prefs.bridgesEnabled()) {
                         if (useIPtObfsMeekProxy())
                             IPtProxy.startObfs4Proxy("DEBUG", false, false, null);
-                        else if (useIPtSnowflakeProxy())
-                            startSnowflakeClient();
+                        else if (useIPtSnowflakeProxyDomainFronting())
+                            startSnowflakeClientDomainFronting();
+                        else if (useIPtSnowflakeProxyAMPRendezvous())
+                            startSnowflakeClientAmpRendezvous();
                     } else if (Prefs.beSnowflakeProxy()) {
 //                        if (Prefs.limitSnowflakeProxying()) {
                             enableSnowflakeProxy();

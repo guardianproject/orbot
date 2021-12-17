@@ -160,10 +160,7 @@
   <string name="pref_reduced_connection_padding">Bourrage réduit de la connexion</string>
   <string name="pref_reduced_connection_padding_summary">Ferme plus tôt les connexions de relais et envoie moins de paquets de bourrage pour réduire les données et l’utilisation de la pile</string>
     <string name="app_shortcuts">Applis pouvant utiliser Tor</string>
-    <string name="testing_bridges">Test de la connexion-pont vers Tor…</string>
-  <string name="testing_bridges_success">Réussite. La configuration du pont est bonne !</string>
-  <string name="testing_bridges_fail">ÉCHEC. Essayer une autre option</string>
-  <string name="bridge_direct_connect">Se connecter directement à Tor (le mieux)</string>
+    <string name="bridge_direct_connect">Se connecter directement à Tor (le mieux)</string>
   <string name="bridge_community">Se connecter par des serveurs communautaires</string>
   <string name="bridge_cloud">Se connecter par des serveurs nuagiques</string>
     <string name="trouble_connecting">Des problèmes de connexion ?</string>

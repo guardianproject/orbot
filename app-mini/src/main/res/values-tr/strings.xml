@@ -160,10 +160,7 @@
   <string name="pref_reduced_connection_padding">Azaltılmış bağlantı yastıklaması</string>
   <string name="pref_reduced_connection_padding_summary">Aktarıcı bağlantılarını daha kısa sürede kapatır ve veri ve pil kullanımını azaltmak için daha az yastıklama paketi gönderir.</string>
   <string name="app_shortcuts">Tor Kullanan Uygulamalar</string>
-  <string name="testing_bridges">Tor köprü bağlantısı sınanıyor...</string>
-  <string name="testing_bridges_success">Tamamdır, köprü yapılandırması çalışıyor.</string>
-  <string name="testing_bridges_fail">Sorun var. Diğer seçenekleri deneyin</string>
-  <string name="bridge_direct_connect">Doğrudan Tor ağına bağlanılsın (en iyisi)</string>
+    <string name="bridge_direct_connect">Doğrudan Tor ağına bağlanılsın (en iyisi)</string>
   <string name="bridge_community">Topluluk sunucuları üzerinden bağlanılsın</string>
   <string name="bridge_cloud">Bulut sunucular üzerinden bağlanılsın</string>
     <string name="trouble_connecting">Bağlanmakta sorun mu yaşıyorsunuz?</string>
