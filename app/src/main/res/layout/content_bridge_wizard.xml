@@ -67,12 +67,21 @@
                 android:layout_margin="12dp"
                 android:text="@string/bridge_snowflake" />
 
+
+            <RadioButton
+                android:id="@+id/btnSnowflakeAmp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="@string/bridge_snowflake_amp"/>
+
             <RadioButton
                 android:id="@+id/btnCustomBridges"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
                 android:text="@string/custom_bridges" />
+
 
         </RadioGroup>
 
@@ -84,14 +93,5 @@
             android:text="@string/configure_custom_bridges"
             android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/lbl_bridge_test_status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:gravity="center"
-            android:textColor="@color/bright_green"
-            android:textSize="16sp"
-            android:textStyle="bold" />
     </LinearLayout>
 </ScrollView>

@@ -152,9 +152,6 @@
     <string name="pref_reduced_connection_padding">Minnkuð bólstrun tengingar (padding)</string>
     <string name="pref_reduced_connection_padding_summary">Lokar tengingum við endurvarpa fyrr og sendir færri pakka til að bólstra tengingu (padding) svo gagnamagn og rafhlöðunotkun sé sem minnst</string>
     <string name="app_shortcuts">Tor-virkjuð forrit</string>
-    <string name="testing_bridges">Prófa brúartengingu við Tor….</string>
-    <string name="testing_bridges_success">Tókst. Uppsetning brúar virkar!</string>
-    <string name="testing_bridges_fail">MISTÓKST. Reyndu annan valkost</string>
     <string name="bridge_direct_connect">Tengjast beint við Tor (best)</string>
     <string name="bridge_community">Tengjast í gegnum þjóna meðlima</string>
     <string name="bridge_cloud">Tengjast í gegnum þjóna í tölvuskýjum</string>

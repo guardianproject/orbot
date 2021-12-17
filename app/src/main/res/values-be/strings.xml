@@ -152,9 +152,6 @@
   <string name="pref_reduced_connection_padding">Сокращённая прокладка соединения</string>
   <string name="pref_reduced_connection_padding_summary">Раней зачыняе рэтрансляваныя злучэнні і адпраўляе менш пакетаў запаўнення для змяншэння аб\'ёму перадатных дадзеных і выкарыстання батарэі</string>
   <string name="app_shortcuts">Дадаткі з падтрымкай Tor</string>
-  <string name="testing_bridges">Тэставанне злучэння з Tor праз мост…</string>
-  <string name="testing_bridges_success">Паспяхова! Мост наладжаны правільна.</string>
-  <string name="testing_bridges_fail">НЯЎДАЛА. Паспрабуйце іншы варыянт.</string>
   <string name="bridge_direct_connect">Падключэнне непасрэдна да Tor (найлепей)</string>
   <string name="bridge_community">Падключэнне праз серверы супольнасці</string>
   <string name="bridge_cloud">Падключэнне праз воблачныя серверы</string>

@@ -158,9 +158,6 @@
     <string name="bridge_cloud">Połącz się przez serwery w chmurze</string>
     <string name="bridge_community">Połącz się przez serwery społeczności</string>
     <string name="bridge_direct_connect">Połącz się bezpośrednio z Tor (najlepiej)</string>
-    <string name="testing_bridges_fail">Nie powiodło się. Wypróbuj inną opcję</string>
-    <string name="testing_bridges_success">Sukces. Konfiguracja mostu jest dobra!</string>
-    <string name="testing_bridges">Testuję połączenie mostu z Tor…</string>
     <string name="app_shortcuts">Aplikacje obsługujące Tor</string>
     <string name="pref_disable_ipv4_summary">Informuje wyjścia, aby nie łączyły się z adresami IPv4</string>
     <string name="pref_disable_ipv4">Wyłącz połączenia IPv4</string>

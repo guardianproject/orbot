@@ -160,10 +160,7 @@
   <string name="pref_reduced_connection_padding">Konexioaren betegarria gutxitua</string>
   <string name="pref_reduced_connection_padding_summary">Errelearen konexioa azkarrago ixten du eta pakete betegarri gutxiago bidaltzen ditu datu eta bateria erabilera gutxiagotzeko</string>
     <string name="app_shortcuts">Tor-gaitutako aplikazioak</string>
-    <string name="testing_bridges">Zubiaren Tor konexioa egiaztatzen...</string>
-  <string name="testing_bridges_success">Arrakasta. Zubiaren konfigurazioa egokia da!</string>
-  <string name="testing_bridges_fail">HUTSA. Saiatu beste aukera bat</string>
-  <string name="bridge_direct_connect">Konektatu zuzenean Tor sarera (Onena)</string>
+    <string name="bridge_direct_connect">Konektatu zuzenean Tor sarera (Onena)</string>
   <string name="bridge_community">Konektatu komunitatearen zerbitzarietatik</string>
   <string name="bridge_cloud">Konektatu hodeiko zerbitzarietatik</string>
     <string name="trouble_connecting">Arazoak konektatzeko?</string>

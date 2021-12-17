@@ -160,9 +160,6 @@
   <string name="pref_reduced_connection_padding">Espazado limitado da conexión</string>
   <string name="pref_reduced_connection_padding_summary">Pecha as conexións de repetidores máis axiña e envía menos paquetes de espazado para reducir os datos e o uso de batería</string>
     <string name="app_shortcuts">Apps con Tor activado</string>
-    <string name="testing_bridges">Probando a conexión ponte a Tor...</string>
-  <string name="testing_bridges_success">Parabéns. A conexión da Ponte é boa!</string>
-  <string name="testing_bridges_fail">FALLO. Probe outra opción.</string>
   <string name="bridge_direct_connect">Conectar directamente con Tor (preferido)</string>
   <string name="bridge_community">Conectar a través de servidores da comunidade</string>
   <string name="bridge_cloud">Conectar a través de servidores na nube</string>

@@ -35,6 +35,7 @@ class SettingsPreferencesActivity : PreferenceActivity() {
         val bridgesEnabled = getSharedPreferences("org.torproject.android_preferences", MODE_MULTI_PROCESS).getBoolean("pref_bridges_enabled", false)
         findPreference("pref_be_a_snowflake")?.isEnabled = !bridgesEnabled
         findPreference("pref_be_a_snowflake_limit")?.isEnabled = !bridgesEnabled
+        findPreference("pref_show_snowflake_proxy_msg")?.isEnabled = !bridgesEnabled
     }
 
     override fun attachBaseContext(newBase: Context) = super.attachBaseContext(LocaleHelper.onAttach(newBase))

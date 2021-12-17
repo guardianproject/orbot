@@ -152,9 +152,6 @@
   <string name="pref_reduced_connection_padding">Juk\'aptayat waythapiñ ch\'amañchiri</string>
   <string name="pref_reduced_connection_padding_summary">Ch\'amachirimp llika katuqatamp  juk\'aqtayañataki, jank\'aki ch\'iqiyir waythapir jist\'antam ukatx juk\'amp juk\'a ch\'amachir wakichäwinak apayam</string>
   <string name="app_shortcuts">Toramp apnaqañataki wakichäwinaka</string>
-  <string name="testing_bridges">Torar waythapir apayañ thakhix yant\'ataskiwa</string>
-  <string name="testing_bridges_success">Walikipuniwa. ¡jalakipäwix askinjam mayjt\'ayatawa!</string>
-  <string name="testing_bridges_fail">PANTJATAWA. Yaqh yant\'am</string>
   <string name="bridge_direct_connect">Tor ukar chiqak waykattaña (juk\'amp khusa)</string>
   <string name="bridge_community">Yanapirinakan atamirinakapamp waythapiña</string>
   <string name="bridge_cloud">Llikan imirinakamp waythapiña</string>
