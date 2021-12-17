@@ -819,17 +819,20 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     events.add(TorControlCommands.EVENT_DEBUG_MSG);
                     events.add(TorControlCommands.EVENT_INFO_MSG);
                 }
-                try {
-                    conn.setEventHandler(mEventHandler);
-                    conn.setEvents(events);
-                    logNotice("SUCCESS added control port event handler");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
+                if (conn != null) {
+                    try {
+                        conn.setEventHandler(mEventHandler);
+                        conn.setEvents(events);
+                        logNotice("SUCCESS added control port event handler");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
 
-                initControlConnection();
+                    initControlConnection();
                     showConnectedToTorNetworkNotification();
+                }
 
             }
 
