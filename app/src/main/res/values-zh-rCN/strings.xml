@@ -145,9 +145,6 @@
     <string name="consider_enable_battery_optimizations">考虑启用电池优化</string>
     <string name="pref_disable_ipv4">禁用 IPv4 连接</string>
     <string name="app_shortcuts">启用 Tor 的应用</string>
-    <string name="testing_bridges">正在测试通过网桥连接到Tor ….</string>
-    <string name="testing_bridges_success">成功。网桥配置良好！</string>
-    <string name="testing_bridges_fail">失败。尝试其他选项</string>
     <string name="bridge_direct_connect">直接连接到 Tor（最佳）</string>
     <string name="bridge_community">通过社区服务器进行连接</string>
     <string name="bridge_cloud">通过云服务器进行连接</string>

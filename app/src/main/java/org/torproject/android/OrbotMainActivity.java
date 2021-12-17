@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.net.VpnService;
 import android.os.Build;
@@ -98,6 +100,7 @@ import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
 public class OrbotMainActivity extends AppCompatActivity implements OrbotConstants {
 
     private static final String INTENT_ACTION_REQUEST_V3_ONION_SERVICE = "org.torproject.android.REQUEST_V3_ONION_SERVICE";
+    private static final String INTENT_EXTRA_REQUESTED_V3_HOSTNAME = "org.torproject.android.REQUESTED_V3_HOSTNAME";
     private static final String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";
     private static final int REQUEST_VPN = 8888;
     private static final int REQUEST_SETTINGS = 0x9874;
@@ -132,6 +135,9 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     /* Some tracking bits */
     private String torStatus = null; //latest status reported from the tor service
     private Intent lastStatusIntent;  // the last ACTION_STATUS Intent received
+
+    // used when apps request a new v3 service
+    private long lastInsertedOnionServiceRowId = -1;
 
     /**
      * The state and log info from {@link OrbotService} are sent to the UI here in
@@ -507,7 +513,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         fields.put(OnionServiceContentProvider.OnionService.CREATED_BY_USER, 0);
 
         ContentResolver contentResolver = getContentResolver();
-        contentResolver.insert(OnionServiceContentProvider.CONTENT_URI, fields);
+        lastInsertedOnionServiceRowId = ContentUris.parseId(contentResolver.insert(OnionServiceContentProvider.CONTENT_URI, fields));
+
 
         if (torStatus.equals(TorServiceConstants.STATUS_OFF)) {
             startTor();
@@ -538,7 +545,11 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 new AlertDialog.Builder(this)
                         .setMessage(getString(R.string.hidden_service_request, v3LocalPort))
                         .setPositiveButton(R.string.allow, (d, w) -> enableV3OnionService(v3LocalPort, v3onionPort, finalName))
-                        .setNegativeButton(R.string.deny, (d, w) -> d.dismiss())
+                        .setNegativeButton(R.string.deny, (d, w) -> {
+                            setResult(RESULT_CANCELED);
+                            d.dismiss();
+                            finish();
+                        })
                         .show();
                 return;
 
@@ -804,6 +815,10 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                 }
 
+                // if new onion hostnames are generated, update local DB
+                sendIntentToService(TorServiceConstants.ACTION_UPDATE_ONION_NAMES);
+
+
 
                 if (autoStartFromIntent) {
                     autoStartFromIntent = false;
@@ -858,6 +873,27 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 resetBandwidthStatTextviews();
 
                 break;
+
+            case TorServiceConstants.STATUS_V3_NAMES_UPDATED:
+                if (lastInsertedOnionServiceRowId == -1) break; // another app did not request an onion service
+                ContentResolver cr = getContentResolver();
+                String where = OnionServiceContentProvider.OnionService._ID + "=" + lastInsertedOnionServiceRowId;
+                Cursor v3Cursor = cr.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION,
+                        where, null, null);
+                if (v3Cursor == null || v3Cursor.getCount() != 1 || !v3Cursor.moveToFirst()) {
+                    if (v3Cursor != null) v3Cursor.close();
+                    setResult(RESULT_CANCELED);
+                    finish();
+                    return;
+                }
+                String hostname = v3Cursor.getString(v3Cursor.getColumnIndex(OnionServiceContentProvider.OnionService.DOMAIN));
+                v3Cursor.close();
+                if (TextUtils.isEmpty(hostname)) break;
+                Intent response = new Intent();
+                response.putExtra(INTENT_EXTRA_REQUESTED_V3_HOSTNAME, hostname);
+                setResult(RESULT_OK, response);
+                finish();
+                return;
         }
     }
 

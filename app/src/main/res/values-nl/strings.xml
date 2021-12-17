@@ -152,9 +152,6 @@
     <string name="pref_reduced_connection_padding">Beperkte verbindingsopvulling</string>
     <string name="pref_reduced_connection_padding_summary">Sluit relayverbindingen sneller en stuurt minder opvullingspakketten om gegevens- en accuverbruik te verminderen</string>
     <string name="app_shortcuts">Tor-gebruikende apps</string>
-    <string name="testing_bridges">Bridgeverbinding met Tor testen…</string>
-    <string name="testing_bridges_success">Voltooid. Bridgeconfiguratie is in orde!</string>
-    <string name="testing_bridges_fail">MISLUKT. Probeer een andere optie</string>
     <string name="bridge_direct_connect">Rechtstreeks verbinden met Tor (best)</string>
     <string name="bridge_community">Verbinden via gemeenschapsservers</string>
     <string name="bridge_cloud">Verbinden via cloudservers</string>

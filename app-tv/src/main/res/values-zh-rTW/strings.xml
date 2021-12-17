@@ -161,9 +161,6 @@
   <string name="pref_reduced_connection_padding">減少連接保護</string>
   <string name="pref_reduced_connection_padding_summary">關閉中繼連接並傳送少數保護封包來減少資料和電池的用量</string>
     <string name="app_shortcuts">Tor 支持的應用</string>
-    <string name="testing_bridges">測試橋接連線到 Tor</string>
-  <string name="testing_bridges_success">成功,橋接設定良好!</string>
-  <string name="testing_bridges_fail">失敗,嘗試其它選項</string>
   <string name="bridge_direct_connect">直接連上洋蔥路由網路(最佳)</string>
   <string name="bridge_community">透過社區伺服器連接</string>
   <string name="bridge_cloud">透過雲端伺服器連接</string>

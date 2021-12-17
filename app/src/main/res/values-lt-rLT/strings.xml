@@ -42,8 +42,6 @@
     <string name="v3_client_auth">v3 „Onion Service“ kliento autorizavimas</string>
     <string name="testing_tor_direct_success">Sėkmė. „Tor“ jungtis yra gera!</string>
     <string name="bridge_direct_connect">Prisijungti tiesiogiai prie „Tor“ (geriausia)</string>
-    <string name="testing_bridges_success">Sėkmė. Tilto konfigūracija gera!</string>
-    <string name="testing_bridges">Tikrinamas tilto prijungimas prie „Tor“….</string>
     <string name="backup_saved_at_external_storage">Atsarginė kopija išsaugota išorinėje saugykloje</string>
     <string name="updating_settings_in_tor_service">atnaujinami „Tor“ paslaugos nustatymai</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Atidaryti įgaliotąjį serverį visose sąsajose</string>
@@ -58,7 +56,6 @@
     <string name="default_socks_http">Kojinės: - HTTP: -</string>
     <string name="bridge_cloud">Prisijungti per debesų serverius</string>
     <string name="bridge_community">Prisijungti per bendruomenės serverius</string>
-    <string name="testing_bridges_fail">NEPAVYKO. Išbandykite kitą parinktį</string>
     <string name="consider_enable_battery_optimizations">Apsvarstykite galimybę įjungti baterijos optimizavimą</string>
     <string name="consider_disable_battery_optimizations">Apsvarstykite galimybę išjungti baterijos optimizavimą</string>
     <string name="create_a_backup_first">Pirmiausia sukurkite atsarginę kopiją</string>

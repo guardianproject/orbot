@@ -161,10 +161,7 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="pref_reduced_connection_padding">Relleno de la conexión reducido</string>
   <string name="pref_reduced_connection_padding_summary">Cierra las conexiones de repetidor más pronto y envía menos paquetes de relleno para reducir el uso de datos y batería</string>
     <string name="app_shortcuts">Aplicaciones habilitadas-para-Tor</string>
-    <string name="testing_bridges">Probando conexión de puente hacia Tor...</string>
-  <string name="testing_bridges_success">Exitosa. ¡La configuración del puente de red es buena!</string>
-  <string name="testing_bridges_fail">FALLIDA. Pruebe otra opción</string>
-  <string name="bridge_direct_connect">Conectar directamente a Tor (lo mejor)</string>
+    <string name="bridge_direct_connect">Conectar directamente a Tor (lo mejor)</string>
   <string name="bridge_community">Conectar a través de servidores de la comunidad</string>
   <string name="bridge_cloud">Conectar a través de servidores de la nube</string>
     <string name="trouble_connecting">¿Problemas al conectar?</string>

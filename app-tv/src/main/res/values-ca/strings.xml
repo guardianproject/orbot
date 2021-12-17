@@ -160,9 +160,6 @@
   <string name="pref_reduced_connection_padding">Farciment de connexió reduit</string>
   <string name="pref_reduced_connection_padding_summary">Tanca les connexions de retransmissió abans i envia menys paquets de farciment per reduir l\'ús de dades i bateria.</string>
     <string name="app_shortcuts">Aplicacions emprant Tor</string>
-    <string name="testing_bridges">Provant connexió pont a Tor...</string>
-  <string name="testing_bridges_success">Èxit. Connexió pont funciona!</string>
-  <string name="testing_bridges_fail">ERROR. Prova una altra opció</string>
   <string name="bridge_direct_connect">Connecta directament a Tor (Lo millor)</string>
   <string name="bridge_community">Connecta mitjançant servidors de comunitat</string>
   <string name="bridge_cloud">Connecta mitjançant servidors núvol</string>

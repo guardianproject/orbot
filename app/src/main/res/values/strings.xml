@@ -185,11 +185,8 @@
     <string name="pref_disable_ipv4">Disable IPv4 connections</string>
     <string name="pref_disable_ipv4_summary">Tells exits not to connect to IPv4 addresses</string>
     <string name="app_shortcuts">Tor-Enabled Apps</string>
-    <string name="testing_bridges">Testing bridge connection to Tor….</string>
     <string name="testing_tor_direct">Testing connection to Tor…</string>
-    <string name="testing_bridges_success">Success. Bridge configuration is good!</string>
     <string name="testing_tor_direct_success">Success. Tor connection is good!</string>
-    <string name="testing_bridges_fail">FAILED. Try another option</string>
     <string name="bridge_direct_connect">Connect directly to Tor (Best)</string>
     <string name="bridge_community">Connect through community servers</string>
     <string name="bridge_cloud">Connect through cloud servers</string>
@@ -216,10 +213,19 @@
     <string name="in_a_browser">In a browser, visit %s and tap "Get Bridges" &gt; "Just Give Me Bridges!"</string>
     <string name="paste_bridges">Paste Bridges</string>
     <string name="use_qr_code">Use QR Code</string>
-    <string name="bridge_snowflake">Connect through other Tor peers (experimental)</string>
+    <string name="snowflake_proxy_pref_category">Snowflake Proxy (Experimental)</string>
+    <string name="bridge_snowflake">Connect through peers via the snowflake proxy (using domain fronting)</string>
+    <string name="bridge_snowflake_amp">Connect through peers via the snowflake proxy (using AMP cache rendezvous)</string>
     <string name="be_a_snowflake_title">Run Snowflake Proxy</string>
-    <string name="be_a_snowflake_desc">Allow other Tor users to connect to Tor through your device</string>
+
+    <string name="be_a_snowflake_desc">Allow other Tor users to connect to Tor through your device. (This can\'t be used if you connect alongside bridges)</string>
+
     <string name="be_a_snowflake_title_limit">Snowflake Proxy Limits</string>
-    <string name="be_a_snowflake_desc_limit">Only when the device is charging and on Wi-Fi</string>
-    <string name="snowflake_proxy_enabled">Snowflake proxy mode on</string>
+    <string name="be_a_snowflake_desc_limit">Only when device is plugged in and on wifi</string>
+    <string formatted="true" name="snowflake_proxy_enabled">Snowflake proxy mode enabled</string>
+    <string name="snowflake_proxy_msg_title">Show Connection Notification</string>
+    <string name="snowflake_proxy_msg_description">Show a message when your snowflake helps someone circumvent censorship</string>
+
+
+
 </resources>

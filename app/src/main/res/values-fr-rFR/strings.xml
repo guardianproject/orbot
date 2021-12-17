@@ -161,9 +161,6 @@
     <string name="pref_disable_ipv4">Désactiver les connexions IPv4</string>
     <string name="pref_disable_ipv4_summary">Indique aux sorties de ne pas se connecter aux adresses IPv4</string>
     <string name="app_shortcuts">Applis pour lesquelles Tor est activé</string>
-    <string name="testing_bridges">Essai de connexion par pont vers Tor…</string>
-    <string name="testing_bridges_success">C’est réussi. La configuration du pont est valide.</string>
-    <string name="testing_bridges_fail">ÉCHEC. Essayez une autre option</string>
     <string name="bridge_direct_connect">Se connecter directement à Tor (le meilleur choix)</string>
     <string name="bridge_community">Se connecter par des serveurs communautaires</string>
     <string name="bridge_cloud">Se connecter par des serveurs nuagiques</string>
