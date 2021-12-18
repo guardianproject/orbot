@@ -121,8 +121,6 @@
     <string name="apps_mode">Mode VPN</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
-    <string name="mebibyte_per_second">MiB/s</string>
-    <string name="kibibyte_per_second">KiB/s</string>
     <string name="pref_http_title">Tor HTTP</string>
     <string name="deny">Pangkar</string>
     <string name="allow">Izinkan</string>
@@ -137,7 +135,6 @@
     <string name="get_bridges_email_request">Minta Bridges melalui Email</string>
     <string name="vpn_default_world">Global (Otomatis)</string>
     <string name="hidden_services">Layanan Onion</string>
-    <string name="v2_hidden_services">Layanan Onion v2 (Usang)</string>
     <string name="v3_hosted_services">Layanan Onion v3 Yang Dihosting</string>
     <string name="v3_client_auth">Otorisasi Klien Layanan Onion v3</string>
     <string name="v3_client_auth_activity_title">Otorisasi Klien v3</string>

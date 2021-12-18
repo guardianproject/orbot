@@ -200,12 +200,6 @@
     <string name="consider_enable_battery_optimizations">Harkitse virransäästöasetusten käyttöönottoa</string>
     <string name="consider_disable_battery_optimizations">Harkitse virransäästöasetusten poistamista</string>
     <string name="share_as_qr">Jaa QR-koodina</string>
-    <string name="hosted_services">Ylläpidetyt palvelut</string>
-    <string name="confirm_cookie_deletion">Vahvista evästeen poisto</string>
-    <string name="delete_cookie">Poista eväste</string>
-    <string name="backup_cookie">Varmuuskopioi eväste</string>
-    <string name="cookie_from_QR">Lue QR-koodista</string>
-    <string name="auth_cookie_was_not_configured">Tunnistautumisevästettä ei määritelty</string>
     <string name="auth_cookie">Tunnistautumiseväste</string>
     <string name="backup_port_exist">Virhe: Sipulipalvelu käyttää jo porttia %s</string>
     <string name="backup_service">Varmuuskopiopalvelu <i>( Varoitus: Tämä voi paljastaa avaimesi toisille sovelluksille )</i></string>
@@ -217,7 +211,6 @@
     <string name="v3_client_auth_activity_title">v3 Asiakasohjelman todentaminen</string>
     <string name="v3_client_auth">v3 Onion Service asiakasohjelman todentaminen</string>
     <string name="v3_hosted_services">Ylläpidetty v3 Onion Services</string>
-    <string name="v2_hidden_services">v2 Onion Services (Vanhentunut)</string>
     <string name="get_bridges_email_request">Pyydä siltoja sähköpostitse</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Salli Wi-Fi -vertaisten, yhdistettyjen laitteiden ja kenen tahansa, joka voi yhdistää sinun IP-osoitteeseesi, yhdistää Tor-verkkoon.</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Avaa välityspalvelin kaikilla rajapinnoilla</string>
