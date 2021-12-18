@@ -756,15 +756,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                         }
                     }
                 }
-                /*
-                This old status hack is temporary and fixes the issue reported by syphyr at
-                https://github.com/guardianproject/orbot/pull/556
-                Down the line a better approach needs to happen for sending back the onion names updated
-                status, perhaps just adding it as an extra to the normal Intent callback...
-                 */
-                String oldStatus = mCurrentStatus;
-                sendCallbackStatus(STATUS_V3_NAMES_UPDATED);
-                mCurrentStatus = oldStatus;
+                mHandler.post(() ->
+                   LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(LOCAL_ACTION_V3_NAMES_UPDATED)));
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -109,6 +109,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private static final int STATUS_UPDATE = 1;
     private static final int MESSAGE_TRAFFIC_COUNT = 2;
     private static final int MESSAGE_PORTS = 3;
+    private static final int MESSAGE_V3_UPDATED = 4;
     private static final float ROTATE_FROM = 0.0f;
     private static final float ROTATE_TO = 360.0f * 4f;// 3.141592654f * 32.0f;
     private static final String[] COUNTRY_CODES = {"DE", "AT", "SE", "CH", "IS", "CA", "US", "ES", "FR", "BG", "PL", "AU", "BR", "CZ", "DK", "FI", "GB", "HU", "NL", "JP", "RO", "RU", "SG", "SK"};
@@ -197,9 +198,17 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     mStatusUpdateHandler.sendMessage(msg);
 
                     break;
+
                 }
+
+                case TorServiceConstants.LOCAL_ACTION_V3_NAMES_UPDATED: {
+                    Message msg = mStatusUpdateHandler.obtainMessage(MESSAGE_V3_UPDATED);
+                    mStatusUpdateHandler.sendMessage(msg);
+                    break;
+                }
+
                 case ACTION_STOP_VPN: {
-                    mBtnVPN.setChecked(false);
+                    mBtnVPN.setChecked(false); // check change listener triggers other code to run
                     break;
                 }
             }
@@ -224,14 +233,11 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
          * status broadcasts to prevent other apps from sending fake/wrong status
          * info to this app */
         LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
-        lbm.registerReceiver(mLocalBroadcastReceiver,
-                new IntentFilter(TorServiceConstants.ACTION_STATUS));
-        lbm.registerReceiver(mLocalBroadcastReceiver,
-                new IntentFilter(TorServiceConstants.LOCAL_ACTION_BANDWIDTH));
-        lbm.registerReceiver(mLocalBroadcastReceiver,
-                new IntentFilter(TorServiceConstants.LOCAL_ACTION_LOG));
-        lbm.registerReceiver(mLocalBroadcastReceiver,
-                new IntentFilter(TorServiceConstants.LOCAL_ACTION_PORTS));
+        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(TorServiceConstants.ACTION_STATUS));
+        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(TorServiceConstants.LOCAL_ACTION_BANDWIDTH));
+        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(TorServiceConstants.LOCAL_ACTION_LOG));
+        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(TorServiceConstants.LOCAL_ACTION_PORTS));
+        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(TorServiceConstants.LOCAL_ACTION_V3_NAMES_UPDATED));
 
 
         boolean showFirstTime = mPrefs.getBoolean("connect_first_time", true);
@@ -873,27 +879,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 resetBandwidthStatTextviews();
 
                 break;
-
-            case TorServiceConstants.STATUS_V3_NAMES_UPDATED:
-                if (lastInsertedOnionServiceRowId == -1) break; // another app did not request an onion service
-                ContentResolver cr = getContentResolver();
-                String where = OnionServiceContentProvider.OnionService._ID + "=" + lastInsertedOnionServiceRowId;
-                Cursor v3Cursor = cr.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION,
-                        where, null, null);
-                if (v3Cursor == null || v3Cursor.getCount() != 1 || !v3Cursor.moveToFirst()) {
-                    if (v3Cursor != null) v3Cursor.close();
-                    setResult(RESULT_CANCELED);
-                    finish();
-                    return;
-                }
-                String hostname = v3Cursor.getString(v3Cursor.getColumnIndex(OnionServiceContentProvider.OnionService.DOMAIN));
-                v3Cursor.close();
-                if (TextUtils.isEmpty(hostname)) break;
-                Intent response = new Intent();
-                response.putExtra(INTENT_EXTRA_REQUESTED_V3_HOSTNAME, hostname);
-                setResult(RESULT_OK, response);
-                finish();
-                return;
         }
     }
 
@@ -1066,6 +1051,27 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     int socksPort = data.getInt("socks");
                     int httpPort = data.getInt("http");
                     oma.lblPorts.setText(String.format(Locale.getDefault(), "SOCKS: %d | HTTP: %d", socksPort, httpPort));
+                    break;
+
+                case MESSAGE_V3_UPDATED:
+                    if (oma.lastInsertedOnionServiceRowId == -1) break; // another app did not request an onion service
+                    ContentResolver cr = oma.getContentResolver();
+                    String where = OnionServiceContentProvider.OnionService._ID + "=" + oma.lastInsertedOnionServiceRowId;
+                    Cursor v3Cursor = cr.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION,
+                            where, null, null);
+                    if (v3Cursor == null || v3Cursor.getCount() != 1 || !v3Cursor.moveToFirst()) {
+                        if (v3Cursor != null) v3Cursor.close();
+                        oma.setResult(RESULT_CANCELED);
+                        oma.finish();
+                        break;
+                    }
+                    String hostname = v3Cursor.getString(v3Cursor.getColumnIndex(OnionServiceContentProvider.OnionService.DOMAIN));
+                    v3Cursor.close();
+                    if (TextUtils.isEmpty(hostname)) break;
+                    Intent response = new Intent();
+                    response.putExtra(INTENT_EXTRA_REQUESTED_V3_HOSTNAME, hostname);
+                    oma.setResult(RESULT_OK, response);
+                    oma.finish();
                     break;
 
                 default:

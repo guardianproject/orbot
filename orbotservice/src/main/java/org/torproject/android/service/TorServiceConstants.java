@@ -75,13 +75,12 @@ public interface TorServiceConstants {
     String LOCAL_ACTION_BANDWIDTH = "bandwidth";
     String LOCAL_EXTRA_LOG = "log";
     String LOCAL_ACTION_PORTS = "ports";
+    String LOCAL_ACTION_V3_NAMES_UPDATED = "v3onions";
 
     /**
      * All tor-related services and daemons are stopped
      */
     String STATUS_OFF = "OFF";
-
-    String STATUS_V3_NAMES_UPDATED = "V3_NAMES_UPDATED";
 
     /**
      * All tor-related services and daemons have completed starting
