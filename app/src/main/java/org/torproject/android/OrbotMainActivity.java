@@ -179,6 +179,26 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                     break;
                 }
+                case TorServiceConstants.LOCAL_ACTION_V3_NAMES_UPDATED:
+                    if (lastInsertedOnionServiceRowId == -1) break; // another app did not request an onion service
+                    ContentResolver cr = getContentResolver();
+                    String where = OnionServiceContentProvider.OnionService._ID + "=" + lastInsertedOnionServiceRowId;
+                    Cursor v3Cursor = cr.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION,
+                            where, null, null);
+                    if (v3Cursor == null || v3Cursor.getCount() != 1 || !v3Cursor.moveToFirst()) {
+                        if (v3Cursor != null) v3Cursor.close();
+                        OrbotMainActivity.this.setResult(RESULT_CANCELED);
+                        OrbotMainActivity.this.finish();
+                        return;
+                    }
+                    String hostname = v3Cursor.getString(v3Cursor.getColumnIndex(OnionServiceContentProvider.OnionService.DOMAIN));
+                    v3Cursor.close();
+                    if (TextUtils.isEmpty(hostname)) break;
+                    Intent response = new Intent();
+                    response.putExtra(INTENT_EXTRA_REQUESTED_V3_HOSTNAME, hostname);
+                    OrbotMainActivity.this.setResult(RESULT_OK, response);
+                    OrbotMainActivity.this.finish();
+                    break;
                 case TorServiceConstants.ACTION_STATUS: {
                     lastStatusIntent = intent;
 
@@ -260,10 +280,29 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         startService(intent);
     }
 
-    private void stopTor() {
-        if (mBtnVPN.isChecked()) sendIntentToService(ACTION_STOP_VPN);
+    private boolean waitingToStop = false;
 
-        sendIntentToService(ACTION_STOP);
+    private void stopTor() {
+
+        if (torStatus.equals(TorServiceConstants.STATUS_ON))
+        {
+            if (mBtnVPN.isChecked()) sendIntentToService(ACTION_STOP_VPN);
+            sendIntentToService(ACTION_STOP);
+        }
+        else if (torStatus.equals(STATUS_STARTING)) {
+
+            if (!waitingToStop) {
+                waitingToStop = true;
+                updateStatus("...", STATUS_STOPPING);
+                mStatusUpdateHandler.postDelayed(() -> {
+
+                    if (mBtnVPN.isChecked()) sendIntentToService(ACTION_STOP_VPN);
+                    sendIntentToService(ACTION_STOP);
+                    waitingToStop = false;
+
+                }, 3000);
+            }
+        }
 
         SnowfallView sv = findViewById(R.id.snowflake_view);
         sv.setVisibility(View.GONE);
@@ -874,26 +913,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                 break;
 
-            case TorServiceConstants.STATUS_V3_NAMES_UPDATED:
-                if (lastInsertedOnionServiceRowId == -1) break; // another app did not request an onion service
-                ContentResolver cr = getContentResolver();
-                String where = OnionServiceContentProvider.OnionService._ID + "=" + lastInsertedOnionServiceRowId;
-                Cursor v3Cursor = cr.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION,
-                        where, null, null);
-                if (v3Cursor == null || v3Cursor.getCount() != 1 || !v3Cursor.moveToFirst()) {
-                    if (v3Cursor != null) v3Cursor.close();
-                    setResult(RESULT_CANCELED);
-                    finish();
-                    return;
-                }
-                String hostname = v3Cursor.getString(v3Cursor.getColumnIndex(OnionServiceContentProvider.OnionService.DOMAIN));
-                v3Cursor.close();
-                if (TextUtils.isEmpty(hostname)) break;
-                Intent response = new Intent();
-                response.putExtra(INTENT_EXTRA_REQUESTED_V3_HOSTNAME, hostname);
-                setResult(RESULT_OK, response);
-                finish();
-                return;
+
         }
     }
 
