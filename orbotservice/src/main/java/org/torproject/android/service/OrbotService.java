@@ -763,7 +763,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 status, perhaps just adding it as an extra to the normal Intent callback...
                  */
                 String oldStatus = mCurrentStatus;
-                sendCallbackStatus(STATUS_V3_NAMES_UPDATED);
+                Intent intent = new Intent(LOCAL_ACTION_V3_NAMES_UPDATED);
+                intent.putExtra(EXTRA_STATUS, mCurrentStatus);
+                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+
                 mCurrentStatus = oldStatus;
             } catch (Exception e) {
                 e.printStackTrace();
