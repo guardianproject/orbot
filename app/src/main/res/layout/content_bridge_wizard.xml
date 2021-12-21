@@ -30,7 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
-            android:text="@string/request_bridges_from_torproject" />
+            android:text="@string/request_bridges_from_torproject"
+            />
 
         <RadioGroup
             android:layout_width="match_parent"

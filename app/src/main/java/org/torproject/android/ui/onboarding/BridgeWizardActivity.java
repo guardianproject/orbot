@@ -43,10 +43,16 @@ public class BridgeWizardActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
-        findViewById(R.id.btnMoat).setOnClickListener(v -> {
-            startActivityForResult(new Intent(BridgeWizardActivity.this, MoatActivity.class), MOAT_REQUEST_CODE);
-        });
+        if(android.os.Build.VERSION.SDK_INT < 28){
+            findViewById(R.id.btnMoat).setVisibility(View.GONE);
+            findViewById(R.id.btnBridgesSnowflake).setVisibility(View.GONE);
+            findViewById(R.id.btnSnowflakeAmp).setVisibility(View.GONE);
+        }
+        else {
+            findViewById(R.id.btnMoat).setOnClickListener(v -> {
+                startActivityForResult(new Intent(BridgeWizardActivity.this, MoatActivity.class), MOAT_REQUEST_CODE);
+            });
+        }
 
         mBtDirect = findViewById(R.id.btnBridgesDirect);
         mBtDirect.setOnCheckedChangeListener((buttonView, isChecked) -> {
