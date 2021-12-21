@@ -409,6 +409,11 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
      */
     private void stopTor() throws Exception {
 
+        if (shouldUnbindTorService) {
+            unbindService(torServiceConnection);
+            shouldUnbindTorService = false;
+        }
+
         if (conn != null) {
             logNotice("Using control port to shutdown Tor");
 
@@ -418,11 +423,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
             } catch (IOException e) {
                 Log.d(OrbotConstants.TAG, "error shutting down Tor via connection", e);
-            }
-
-            if (shouldUnbindTorService) {
-                unbindService(torServiceConnection);
-                shouldUnbindTorService = false;
             }
 
             conn = null;
