@@ -252,6 +252,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 new IntentFilter(TorServiceConstants.LOCAL_ACTION_LOG));
         lbm.registerReceiver(mLocalBroadcastReceiver,
                 new IntentFilter(TorServiceConstants.LOCAL_ACTION_PORTS));
+        lbm.registerReceiver(mLocalBroadcastReceiver,
+                new IntentFilter(TorServiceConstants.LOCAL_ACTION_V3_NAMES_UPDATED));
 
 
         boolean showFirstTime = mPrefs.getBoolean("connect_first_time", true);
