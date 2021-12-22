@@ -139,7 +139,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     private static String[] parseBridgesFromSettings(String bridgeList) {
         // this regex replaces lines that only contain whitespace with an empty String
         bridgeList = bridgeList.trim().replaceAll("(?m)^[ \t]*\r?\n", "");
-        Log.d("bim", "bridgeList=" + bridgeList);
         return bridgeList.split("\\n");
     }
 
@@ -244,7 +243,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
-        showToolbarNotification("", NOTIFY_ID, R.drawable.ic_stat_tor);
+        if (!mNotificationShowing)
+            showToolbarNotification(getString(R.string.status_disabled), NOTIFY_ID, R.drawable.ic_stat_tor);
 
         if (intent != null)
             mExecutor.execute(new IncomingIntentRouter(intent));
