@@ -10,8 +10,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="org.torproject.android.ui.hiddenservices.HiddenServicesActivity"
-    tools:showIn="@layout/layout_hs_list_view">
+    tools:context="org.torproject.android.ui.v3onionservice.OnionServiceActivity"
+    tools:showIn="@layout/activity_hosted_services">
 
     <RadioGroup
         android:layout_width="match_parent"

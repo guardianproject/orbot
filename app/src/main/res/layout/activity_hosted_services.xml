@@ -2,10 +2,11 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/hostedServiceCoordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="org.torproject.android.ui.hiddenservices.HiddenServicesActivity">
+    tools:context="org.torproject.android.ui.v3onionservice.OnionServiceActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -28,6 +29,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:tint="@android:color/black"
+        app:fabSize="normal"
         app:backgroundTint="@android:color/darker_gray"
         app:srcCompat="@android:drawable/ic_input_add" />
 

@@ -18,8 +18,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.torproject.android.R;
 import org.torproject.android.core.DiskUtils;
@@ -37,16 +39,18 @@ public class OnionServiceActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     private ContentResolver mContentResolver;
     private OnionV3ListAdapter mAdapter;
+    private CoordinatorLayout mLayoutRoot;
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.layout_hs_list_view);
+        setContentView(R.layout.activity_hosted_services);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        mLayoutRoot = findViewById(R.id.hostedServiceCoordinatorLayout);
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(v -> new OnionServiceCreateDialogFragment().show(getSupportFragmentManager(), OnionServiceCreateDialogFragment.class.getSimpleName()));
 
@@ -160,15 +164,19 @@ public class OnionServiceActivity extends AppCompatActivity {
         @Override
         public void onChange(boolean selfChange) {
             filterServices(radioShowUserServices.isChecked()); // updates adapter
-            if (!PermissionManager.isAndroidM()) return;
-            Cursor activeServices = mContentResolver.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION,
-                    OnionServiceContentProvider.OnionService.ENABLED + "=1", null, null);
-            if (activeServices == null) return;
-            if (activeServices.getCount() > 0)
-                PermissionManager.requestBatteryPermissions(OnionServiceActivity.this);
-            else
-                PermissionManager.requestDropBatteryPermissions(OnionServiceActivity.this);
-            activeServices.close();
+            showBatteryOptimizationsMessageIfAppropriate();
         }
+    }
+
+    void showBatteryOptimizationsMessageIfAppropriate() {
+        if (!PermissionManager.isAndroidM()) return;
+        Cursor activeServices = getContentResolver().query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION,
+                OnionServiceContentProvider.OnionService.ENABLED + "=1", null, null);
+        if (activeServices == null) return;
+        if (activeServices.getCount() > 0)
+            PermissionManager.requestBatteryPermissions(this, mLayoutRoot);
+        else
+            PermissionManager.requestDropBatteryPermissions(this, mLayoutRoot);
+        activeServices.close();
     }
 }
