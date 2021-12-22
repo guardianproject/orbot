@@ -293,17 +293,20 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 disableSnowflakeProxy();
 
             stopTor();
+            sendCallbackStatus(STATUS_OFF);
 
             //stop the foreground priority and make sure to remove the persistent notification
             stopForeground(true);
 
             sendCallbackLogMessage(getString(R.string.status_disabled));
+
         } catch (Exception e) {
             logNotice("An error occurred stopping Tor: " + e.getMessage());
             sendCallbackLogMessage(getString(R.string.something_bad_happened));
         }
         clearNotifications();
-        sendCallbackStatus(STATUS_OFF);
+
+        stopSelf();
     }
 
     private void stopTorOnError(String message) {
@@ -414,7 +417,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             shouldUnbindTorService = false;
         }
 
-        stopSelf();
     }
 
     private void requestTorRereadConfig() {
@@ -697,8 +699,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             sendCallbackStatus(STATUS_STARTING);
 
             showToolbarNotification(getString(R.string.status_starting_up), NOTIFY_ID, R.drawable.ic_stat_tor);
-            //sendCallbackLogMessage(getString(R.string.status_starting_up));
-            //logNotice(getString(R.string.status_starting_up));
 
             ArrayList<String> customEnv = new ArrayList<>();
 
@@ -708,6 +708,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 }
 
             startTorService();
+
             if (Prefs.hostOnionServicesEnabled()) {
                 try {
                     updateV3OnionNames();
@@ -750,7 +751,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                  */
                 String oldStatus = mCurrentStatus;
                 Intent intent = new Intent(LOCAL_ACTION_V3_NAMES_UPDATED);
-                intent.putExtra(EXTRA_STATUS, mCurrentStatus);
+            //    intent.putExtra(EXTRA_STATUS, mCurrentStatus);
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 
                 mCurrentStatus = oldStatus;
@@ -831,6 +832,9 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             public void onServiceDisconnected(ComponentName componentName) {
                 if (Prefs.useDebugLogging())
                     Log.d(OrbotConstants.TAG, "TorService: onServiceDisconnected");
+
+                sendCallbackStatus(STATUS_OFF);
+
             }
 
             @Override
@@ -841,6 +845,9 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             @Override
             public void onBindingDied(ComponentName componentName) {
                 Log.w(OrbotConstants.TAG, "TorService: onBindingDied");
+
+                sendCallbackStatus(STATUS_OFF);
+
             }
         };
 
@@ -940,7 +947,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         intent.putExtra("totalRead", totalRead);
         intent.putExtra("lastWritten", lastWritten);
         intent.putExtra("lastRead", lastRead);
-        intent.putExtra(EXTRA_STATUS, mCurrentStatus);
 
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
@@ -949,8 +955,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         mHandler.post(() -> {
             Intent intent = new Intent(LOCAL_ACTION_LOG); // You can also include some extra data.
             intent.putExtra(LOCAL_EXTRA_LOG, logMessage);
-            intent.putExtra(EXTRA_STATUS, mCurrentStatus);
-
             LocalBroadcastManager.getInstance(OrbotService.this).sendBroadcast(intent);
         });
 
