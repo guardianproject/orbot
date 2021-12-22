@@ -160,17 +160,15 @@ public class OnionServiceActivity extends AppCompatActivity {
         @Override
         public void onChange(boolean selfChange) {
             filterServices(radioShowUserServices.isChecked()); // updates adapter
-            if (!PermissionManager.isLollipopOrHigher()) return;
+            if (!PermissionManager.isAndroidM()) return;
             Cursor activeServices = mContentResolver.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION,
                     OnionServiceContentProvider.OnionService.ENABLED + "=1", null, null);
             if (activeServices == null) return;
             if (activeServices.getCount() > 0)
-                PermissionManager.requestBatteryPermissions(OnionServiceActivity.this, getApplicationContext());
+                PermissionManager.requestBatteryPermissions(OnionServiceActivity.this);
             else
-                PermissionManager.requestDropBatteryPermissions(OnionServiceActivity.this, getApplicationContext());
+                PermissionManager.requestDropBatteryPermissions(OnionServiceActivity.this);
             activeServices.close();
         }
     }
-
-
 }
