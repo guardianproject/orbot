@@ -124,7 +124,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     private String mCurrentStatus = STATUS_OFF;
     private TorControlConnection conn = null;
     private ServiceConnection torServiceConnection;
-    private TorService torService;
     private boolean shouldUnbindTorService;
     private NotificationManager mNotificationManager = null;
     private NotificationCompat.Builder mNotifyBuilder;
@@ -294,17 +293,20 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 disableSnowflakeProxy();
 
             stopTor();
+            sendCallbackStatus(STATUS_OFF);
 
             //stop the foreground priority and make sure to remove the persistent notification
             stopForeground(true);
 
             sendCallbackLogMessage(getString(R.string.status_disabled));
+
         } catch (Exception e) {
             logNotice("An error occurred stopping Tor: " + e.getMessage());
             sendCallbackLogMessage(getString(R.string.something_bad_happened));
         }
         clearNotifications();
-        sendCallbackStatus(STATUS_OFF);
+
+        stopSelf();
     }
 
     private void stopTorOnError(String message) {
@@ -409,26 +411,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
      */
     private void stopTor() throws Exception {
 
-        if (conn != null) {
-            logNotice("Using control port to shutdown Tor");
-
-            try {
-                logNotice("sending HALT signal to Tor process");
-                conn.shutdownTor(TorControlCommands.SIGNAL_SHUTDOWN);
-
-            } catch (IOException e) {
-                Log.d(OrbotConstants.TAG, "error shutting down Tor via connection", e);
-            }
-
-            if (shouldUnbindTorService) {
-                unbindService(torServiceConnection);
-                shouldUnbindTorService = false;
-            }
-
-            conn = null;
-        } else {
-            stopSelf();
+       //unbinding from the tor service will stop tor
+        if (shouldUnbindTorService) {
+            unbindService(torServiceConnection);
+            shouldUnbindTorService = false;
         }
+
     }
 
     private void requestTorRereadConfig() {
@@ -711,8 +699,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             sendCallbackStatus(STATUS_STARTING);
 
             showToolbarNotification(getString(R.string.status_starting_up), NOTIFY_ID, R.drawable.ic_stat_tor);
-            //sendCallbackLogMessage(getString(R.string.status_starting_up));
-            //logNotice(getString(R.string.status_starting_up));
 
             ArrayList<String> customEnv = new ArrayList<>();
 
@@ -722,6 +708,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 }
 
             startTorService();
+
             if (Prefs.hostOnionServicesEnabled()) {
                 try {
                     updateV3OnionNames();
@@ -764,7 +751,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                  */
                 String oldStatus = mCurrentStatus;
                 Intent intent = new Intent(LOCAL_ACTION_V3_NAMES_UPDATED);
-                intent.putExtra(EXTRA_STATUS, mCurrentStatus);
+            //    intent.putExtra(EXTRA_STATUS, mCurrentStatus);
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 
                 mCurrentStatus = oldStatus;
@@ -790,16 +777,18 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         torServiceConnection = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-                torService = ((TorService.LocalBinder) iBinder).getService();
 
-                    while ((conn = torService.getTorControlConnection())==null)
-                    {
-                        try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                //moved torService to a local variable, since we only need it once
+                TorService torService = ((TorService.LocalBinder) iBinder).getService();
+
+                while ((conn = torService.getTorControlConnection())==null)
+                {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
+                }
 
                 try {
                     Thread.sleep(1000);
@@ -807,7 +796,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     e.printStackTrace();
                 }
 
-                    mEventHandler = new TorEventHandler(OrbotService.this);
+                mEventHandler = new TorEventHandler(OrbotService.this);
 
                 ArrayList<String> events = new ArrayList<>(Arrays.asList(
                         TorControlCommands.EVENT_OR_CONN_STATUS,
@@ -841,46 +830,26 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
             @Override
             public void onServiceDisconnected(ComponentName componentName) {
-                conn = null;
-                torService = null;
-                mEventHandler = null;
+                if (Prefs.useDebugLogging())
+                    Log.d(OrbotConstants.TAG, "TorService: onServiceDisconnected");
+
+                sendCallbackStatus(STATUS_OFF);
+
             }
 
             @Override
             public void onNullBinding(ComponentName componentName) {
-                stopTorOnError("Tor was unable to start: " + "onNullBinding");
-                conn = null;
-                torService = null;
-                mEventHandler = null;
+                Log.w(OrbotConstants.TAG, "TorService: was unable to bund: onNullBinding");
             }
 
             @Override
             public void onBindingDied(ComponentName componentName) {
-                stopTorOnError("Tor was unable to start: " + "onBindingDied");
-                conn = null;
-                torService = null;
-                mEventHandler = null;
-            }
-        };
+                Log.w(OrbotConstants.TAG, "TorService: onBindingDied");
 
-        /**
-        BroadcastReceiver receiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (TorService.ACTION_STATUS.equals(intent.getAction())
-                        && TorService.STATUS_ON.equals(intent.getStringExtra(TorService.EXTRA_STATUS))) {
-                    initControlConnection();
-                    unregisterReceiver(this);
-                }
+                sendCallbackStatus(STATUS_OFF);
+
             }
         };
-        // run the BroadcastReceiver in its own thread
-        HandlerThread handlerThread = new HandlerThread(receiver.getClass().getSimpleName());
-        handlerThread.start();
-        Looper looper = handlerThread.getLooper();
-        Handler handler = new Handler(looper);
-        registerReceiver(receiver, new IntentFilter(TorService.ACTION_STATUS), null, handler);
-        **/
 
         Intent serviceIntent = new Intent(this, TorService.class);
         if (Build.VERSION.SDK_INT < 29) {
@@ -978,7 +947,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         intent.putExtra("totalRead", totalRead);
         intent.putExtra("lastWritten", lastWritten);
         intent.putExtra("lastRead", lastRead);
-        intent.putExtra(EXTRA_STATUS, mCurrentStatus);
 
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
@@ -987,8 +955,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         mHandler.post(() -> {
             Intent intent = new Intent(LOCAL_ACTION_LOG); // You can also include some extra data.
             intent.putExtra(LOCAL_EXTRA_LOG, logMessage);
-            intent.putExtra(EXTRA_STATUS, mCurrentStatus);
-
             LocalBroadcastManager.getInstance(OrbotService.this).sendBroadcast(intent);
         });
 

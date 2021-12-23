@@ -16,7 +16,7 @@ import java.util.StringTokenizer;
  */
 public class TorEventHandler implements EventHandler, TorServiceConstants {
 
-    private final static int BW_THRESDHOLD = 10000;
+    private final static int BW_THRESDHOLD = 0;
     private final OrbotService mService;
     private long lastRead = -1;
     private long lastWritten = -1;

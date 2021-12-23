@@ -1,3 +1,78 @@
+/** 16.5.2-RC-3 22 Dec 2021 **/
+
+7b68f362 (HEAD -> master) update to 1652200300
+5a1e7a9c (origin/master, origin/HEAD) Merge branch 'master' of github.com:guardianproject/orbot
+f1f4750c Merge pull request #562 from guardianproject/empty_notification
+c208274e (origin/dev_fix_service_leak, dev_fix_service_leak) update tor-android to 0.4.6.9
+69429002 don't always send status with every log entry and update - also slightly change where "stopSelf()" is called in stopTor
+8e5dd0ff lower threshold for showing bandwidth to 0 as smaller bw events were being missed - data display looked like it was often inactive
+594f2976 need to differentiate OrbotService status messages from TorService as it was confusing OrbotMain - collision between status action namespace
+bb0531a0 don't always expect a status with every log update; clean up other UI handling of status and log
+5792d666 (origin/empty_notification) Fixes #398 empty notification
+f47aff18 unbinding from tor service will stop tor; don't need to use conn to do it - also removed old commented out code - also removed making conn and other vars null on service issues, not necessary
+06e2b8d4 Small bug with deleting unconfigured v3s
+da416283 conn may be null, but service may be bound, so make sure it is unbound here
+ec7200b7 (tag: 16.5.2-RC-2-tor.0.4.6.8) update to 1652200200
+c7200b7 (HEAD -> master) update to 1652200200
+816c5825 (origin/master, origin/HEAD) disable MOAT and Snowflake on SDK < 28 since they don't currently work
+03470d46 simplify snowflake strings
+06851dd1 register local v3 name receiver
+9770ce87 removed new translations for strings that were removed from orbot
+b2001961 add comment about how snowlfake bridges may sometimes take a minute
+1ed8efd0 Merge pull request #558 from guardianproject/tor-android-0.4.6.8
+dd723e49 (tag: 16.5.2-RC-1-tor.0.4.6.8, ghdev/master) update to 1652200100
+0ef3500e handle new local action for v3 onion names updating; also don't allow rapid stop/starts to avoid crashes
+ac3d1baf move v3 onion name status to a "local action" instead
+1d47994f update tor to 0.4.6.8w
+5615b751 Merge pull request #542 from weblate/weblate-guardianproject-orbot
+172b0234 Merge branch 'master' into weblate-guardianproject-orbot
+65640ebb Merge branch 'external_app_request_v3'
+1682f7cb (external_app_request_v3) if someone stops during starting, conn could be null
+0e59b55c Merge branch 'master' into external_app_request_v3
+03ef5ef9 Merge branch 'ipt_1_3_0'
+06453716 (origin/tor-android-0.4.6.8, tor-android-0.4.6.8) tor-android 0.4.6.7 -> 0.4.6.8
+d8f6ebb3 (origin/external_app_request_v3) fixed status bug reported in #556
+0c77144e (origin/ipt_1_3_0, ipt_1_3_0) add support for snowflake with amp rendezvous
+bdee3957 removed faulty bridge wizard from bridges page...paving the way to add a new bridge here...
+50ef12d3 Snowflake proxy uses defaults in IPtProxy, displays cute toast when user connects. activity text for snowflake proxy isn't in ALL CAPS anymore
+843effd9 Snowflake animations had a bug; they'd appear if tor connects and the pref is set to true even if proxy wasn't enabled (because bridges were...)
+0123927a Interface for #540
+798ef6eb Experimental show snowflake toast when client connects to proxy...
+c984dcc5 Closes #554, IPtProxy 1.3.0 added
+34f4de6d Merge pull request #551 from guardianproject/fix_549_no_snowflake_and_bridge_ui
+9cf66800 for now, disable snowflake proxy limiting
+1abfd73f Translated using Weblate (Vietnamese)
+3d8182ec Translated using Weblate (Chinese (Simplified))
+32753b41 Translated using Weblate (Ukrainian)
+2f23db85 Translated using Weblate (Turkish)
+41cf5d37 Translated using Weblate (Portuguese (Brazil))
+5bd6165d Translated using Weblate (Lithuanian)
+57f2f7fd Translated using Weblate (Persian)
+a8057ced Translated using Weblate (Vietnamese)
+171ceac1 Translated using Weblate (Indonesian)
+a1d04487 made setEnabled() call null safe
+3fbda179 removed unused v2 constant from OrbotService
+2637e1f0 return val of pluggableTransportsInstall always the same + never used
+2cc79c18 Fixes #549 snowflake preferences are greyed on when bridges are in use also added string res for snowflake proxy category so it can be localized
+f989be3e removed unused FileProvider.xml mentioned in #540
+afc97fe9 Update BUILD.md
+8e5cc3a7 Merge pull request #543 from tladesignz/master
+80e92e9d Fixed some random compiler warnings, while reading through the code.
+68b3104a Merge branch 'master' of gitlab.com:guardianproject/orbot
+84f0be7c (newport/master) Update .gitlab-ci.yml file
+c3b64f85 Update .gitlab-ci.yml file
+515d0e52 Merge branch 'master' of github.com:guardianproject/orbot
+2a114a6a update gitlab CI for Android 30 Java 11
+aa48f6b6 Cleaned up About Dialog: - Gave it andorid material padding so view is centered - Removed redundant "some orbot details" string under "About" - Used consistent colors with other parts of app - Migrated hardcoded english strings to string res so dialog can be better localized
+9c23f79d Closes #537 updated some copy too...
+266ef254 Merge pull request #535 from syphyr/main
+c5dca23d Cleanup dependency implementations and list
+ab1c39a7 Correct typo in orbot error message
+4c27f85f Fix missing dependencies for app-tv
+0393a8f5 Fix typo in dependencies.gradle
+4a8ee89f update changelog for 16.5.2 beta 1
+57add48c move libs.versions.toml to dependencies.gradle makes it easier to work with in Android Studio
+
 /** 16.5.2-BETA 1 26 Oct 2021 **/
 
 57add48c (HEAD -> master, origin/master, origin/HEAD) move libs.versions.toml to dependencies.gradle makes it easier to work with in Android Studio

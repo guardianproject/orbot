@@ -43,7 +43,7 @@ public interface TorServiceConstants {
     /**
      * {@link Intent} send by Orbot with {@code ON/OFF/STARTING/STOPPING} status
      */
-    String ACTION_STATUS = "org.torproject.android.intent.action.STATUS";
+    String ACTION_STATUS = "ORBOT.intent.action.STATUS";
     /**
      * {@code String} that contains a status constant: {@link #STATUS_ON},
      * {@link #STATUS_OFF}, {@link #STATUS_STARTING}, or
