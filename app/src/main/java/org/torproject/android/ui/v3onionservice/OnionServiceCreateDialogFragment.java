@@ -92,7 +92,8 @@ public class OnionServiceCreateDialogFragment extends DialogFragment {
         fields.put(OnionServiceContentProvider.OnionService.CREATED_BY_USER, 1);
         ContentResolver cr = context.getContentResolver();
         cr.insert(OnionServiceContentProvider.CONTENT_URI, fields);
-        Toast.makeText(context, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_SHORT).show();
+        ((OnionServiceActivity) getActivity()).showBatteryOptimizationsMessageIfAppropriate();
     }
 
 }

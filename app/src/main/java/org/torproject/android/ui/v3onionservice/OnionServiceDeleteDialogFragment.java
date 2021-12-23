@@ -37,6 +37,7 @@ public class OnionServiceDeleteDialogFragment extends DialogFragment {
         String localPath = arguments.getString(OnionServiceActivity.BUNDLE_KEY_PATH);
         if (localPath != null)
             DiskUtils.recursivelyDeleteDirectory(new File(base, localPath));
+        ((OnionServiceActivity) getActivity()).showBatteryOptimizationsMessageIfAppropriate();
     }
 
 }

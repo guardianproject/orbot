@@ -168,8 +168,8 @@
     <string name="share_as_qr">Share as QR</string>
     <string name="disable">Disable</string>
     <string name="enable">Enable</string>
-    <string name="consider_disable_battery_optimizations">Consider disable battery optimizations</string>
-    <string name="consider_enable_battery_optimizations">Consider enable battery optimizations</string>
+    <string name="consider_disable_battery_optimizations">Hosted services running, consider disabling battery optimizations</string>
+    <string name="consider_enable_battery_optimizations">No hosted services running, consider enabling battery optimizations</string>
     <string name="pref_isolate_dest">Isolate destination addresses</string>
     <string name="pref_isolate_dest_summary">Use a different circuit for each destination address</string>
     <string name="pref_connection_padding">Connection padding</string>
