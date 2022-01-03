@@ -16,7 +16,7 @@ android {
         applicationId "org.torproject.android"
         versionName getVersionName()
         minSdkVersion 16
-        targetSdkVersion 30
+        targetSdkVersion 31
     }
     lintOptions {
         htmlReport true
@@ -39,7 +39,7 @@ android {
 
             minSdkVersion 16
             applicationId 'org.torproject.android'
-            targetSdkVersion 29
+            targetSdkVersion 30
             versionCode 1652200400
 
             versionName getVersionName()
