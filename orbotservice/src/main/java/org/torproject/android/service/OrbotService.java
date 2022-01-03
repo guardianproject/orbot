@@ -201,7 +201,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     protected void showToolbarNotification(String notifyMsg, int notifyType, int icon) {
         PackageManager pm = getPackageManager();
         Intent intent = pm.getLaunchIntentForPackage(getPackageName());
-        PendingIntent pendIntent = PendingIntent.getActivity(OrbotService.this, 0, intent, 0);
+        PendingIntent pendIntent = PendingIntent.getActivity(OrbotService.this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
         if (mNotifyBuilder == null) {
             mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -216,7 +216,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         mNotifyBuilder.mActions.clear(); // clear out NEWNYM action
         if (conn != null) { // only add new identity action when there is a connection
             Intent intentRefresh = new Intent(TorControlCommands.SIGNAL_NEWNYM);
-            PendingIntent pendingIntentNewNym = PendingIntent.getBroadcast(this, 0, intentRefresh, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntentNewNym = PendingIntent.getBroadcast(this, 0, intentRefresh, PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);
             mNotifyBuilder.addAction(R.drawable.ic_refresh_white_24dp, getString(R.string.menu_new_identity), pendingIntentNewNym);
         }
 
