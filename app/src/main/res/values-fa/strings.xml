@@ -2,9 +2,9 @@
 <resources>
     <string name="app_name">روبات پیازی</string>
     <string name="app_description">روبات پیازی، یک کارهٔ پیشکار آزاد است که دیگر کاره‌ها را در استفاده امن از اینترنت توانمند می‌کند . روبات پیازی برای رمزگذاری شدآمد اینترنتتان و نهفتنش با عبور از میان دنباله‌ای از رایانه‌ها در سراسر جهان، از تور استفاده می‌کند. تور نرم‌افزار آزاد و شبکه‌ای باز است که به شما در برابر شکلی از نظارت شبکه با نام تجزیهٔ شدآمد که محرمانگی و آزادی فردی، فعّالیت‌های تجاری محرمانه و امنیت ملی را تهدید می‌کند، یاری می‌رساند.</string>
-    <string name="status_starting_up">ربات پیازی در حال آغاز است…</string>
-    <string name="status_activated">به شبکهٔ تور متّصل شد</string>
-    <string name="status_disabled">روبات پیازی از کار افتاد</string>
+    <string name="status_starting_up">روبات پیازی در حال آغاز است…</string>
+    <string name="status_activated">وصل شده به شبکهٔ تور</string>
+    <string name="status_disabled">روبات پیازی از کار افتاده</string>
     <string name="status_shutting_down">خدمت تور در حال خاموش شدن است</string>
     <string name="menu_settings">تنظیمات</string>
     <string name="menu_log">گزارش</string>
@@ -15,14 +15,14 @@
     <string name="main_layout_upload">بارگذاری</string>
     <string name="button_about">درباره</string>
     <string name="menu_exit">خروج</string>
-    <string name="menu_scan">پویش کیوآر کد پُل‌ها</string>
-    <string name="menu_share_bridge">هم‌رسانی کیوآر کد پُل‌ها</string>
+    <string name="menu_scan">پویش BridgeQR</string>
+    <string name="menu_share_bridge">هم‌رسانی BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
     <string name="wizard_details_msg">روبات پیازی نرم‌افزاری آزاد است که شامل تور، Obfs4Proxy، BadVPN، Tun2Socks و LibEvent می‌شود. این نرم‌افزار یک پیشکار اچ‌تی‌تی‌پی (۸۱۱۸) و یک پیشکار ساکس (۹۰۵۰) محلّی به شبکهٔ تور فراهم می‌کند.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">عمومی</string>
-    <string name="pref_start_boot_title">ربات پیازی را هنگام راه‌اندازی دستگاه آغاز کن</string>
-    <string name="pref_start_boot_summary">هنگامی که دستگاه اندروید شما راه‌اندازی شد، بصورت خودکار ربات پیازی را اجرا و آن را به شبکهٔ تور متّصل می‌کند</string>
+    <string name="pref_start_boot_title">اجرای روبات پیازی هنگام راه‌اندازی</string>
+    <string name="pref_start_boot_summary">اجرای خودکار روبات پیازی و وصل شدن به تور هنگام راه‌اندازی افزارهٔ اندرویدیتان</string>
     <!--New Wizard Strings-->
     <!--Title Screen-->
     <!--Warning screen-->
@@ -30,7 +30,7 @@
     <!--TipsAndTricks screen-->
     <!--Transparent Proxy screen-->
     <string name="pref_node_configuration">تنظیمات گره</string>
-    <string name="pref_node_configuration_summary">اینها تنظیمات پیشرفته‌ای هستند که ممکن است گمنامی شما را کاهش دهند</string>
+    <string name="pref_node_configuration_summary">این‌ها تنظیمات پیشرفته‌ای هستند که می‌توانند ناشناسیتان را کاهش دهند</string>
     <string name="pref_entrance_node">گره‌های ورودی</string>
     <string name="pref_entrance_node_summary">اثرانگشت‌ها، اسامی مستعار، کشورها و نشانی‌های اولین گره</string>
     <string name="pref_entrance_node_dialog">گره‌های ورودی را وارد کنید</string>
@@ -59,13 +59,13 @@
     <string name="exit_nodes">گره‌های خروجی</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">اثرانگشت‌ها، اسامی مستعار، کشورها و نشانی‌ها برای آخرین گره</string>
     <string name="enter_exit_nodes">گره‌های خروجی را وارد کنید</string>
-    <string name="exclude_nodes">گره‌های محروم</string>
+    <string name="exclude_nodes">دوری از گره‌های</string>
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">اثرانگشت‌ها، اسامی مستعار، کشورها و نشانی‌هایی که نباید استفاده شوند</string>
     <string name="enter_exclude_nodes">گره‌های مستثنی را وارد نمایید</string>
     <string name="strict_nodes">گره‌های محدود</string>
-    <string name="use_only_these_specified_nodes">\"فقط\" از گره‌های مشخص‌شده استفاده می‌کند</string>
-    <string name="bridges">پُل‌ها</string>
-    <string name="use_bridges">استفاده از پُل‌ها</string>
+    <string name="use_only_these_specified_nodes">استفاده *فقط* از گره‌های مشخص شده</string>
+    <string name="bridges">پل‌ها</string>
+    <string name="use_bridges">استفاده از پل‌ها</string>
     <string name="relays">بازپخش کننده‌ها</string>
     <string name="relaying">درحال بازپخش</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">دستگاه خود را برای یک بازپخش کننده غیر-خروجی فعال کنید</string>
@@ -143,8 +143,8 @@
     <string name="share_as_qr">هم‌رسانی با کیوآر کد</string>
     <string name="disable">از کار انداختن</string>
     <string name="enable">به‌کار انداختن</string>
-    <string name="consider_disable_battery_optimizations">غیرفعال کردن بهینه‌سازی باتری را مدنظر قرار دهید</string>
-    <string name="consider_enable_battery_optimizations">فعال کردن بهینه‌سازی باتری را مدنظر قرار دهید</string>
+    <string name="consider_disable_battery_optimizations">خدمات میزبانی شده در حال اجرا هستند. از کار انداختن بهینه‌سازی‌های باتری را در نظر داشته باشید</string>
+    <string name="consider_enable_battery_optimizations">هیچ خدمت میزبانی شده‌ای در حال اجرا نیست. به کار انداختن بهینه‌سازی‌های باتری را در نظر داشته باشید</string>
     <string name="pref_isolate_dest">آدرس‌های مقصد را مجزا کن</string>
     <string name="pref_isolate_dest_summary">برای هر آدرس مقصد از مداری متفاوت استفاده کن</string>
     <string name="pref_connection_padding">پهنای ارتباط</string>
