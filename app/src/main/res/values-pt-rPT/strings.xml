@@ -6,7 +6,7 @@
     <string name="status_activated">Conetado à rede Tor</string>
     <string name="status_disabled">O Orbot está desativado</string>
     <string name="status_shutting_down">O TorService está desligando</string>
-    <string name="menu_settings">Configurações</string>
+    <string name="menu_settings">Definições</string>
     <string name="menu_log">Registo</string>
     <string name="menu_start">Iniciar</string>
     <string name="menu_stop">Parar</string>
