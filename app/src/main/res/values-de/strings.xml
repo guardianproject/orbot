@@ -18,7 +18,7 @@
     <string name="menu_scan">BrückenQR scannen</string>
     <string name="menu_share_bridge">BrückenQR teilen</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details_msg">Orbot ist eine quelloffene Anwendung, die Tor, Obfs4Proxy, BadVPN, Tun2Socks, LibEvent enthält. Sie stellt einen lokalen HTTP-Proxy (Port: 8118) und einen SOCKS-Proxy (Port: 9050) in das Tor-Netzwerk bereit. Auf gerooteten Geräten kann Orbot auch sämtliche Internetverbindungen durch Tor leiten.</string>
+    <string name="wizard_details_msg">Orbot ist eine quelloffene Anwendung, die Tor, Obfs4Proxy, BadVPN, Tun2Socks und LibEvent enthält. Es stellt einen lokalen HTTP-Proxy (Port: 8118) und einen SOCKS-Proxy (Port: 9050) in das Tor-Netzwerk bereit.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Allgemein</string>
     <string name="pref_start_boot_title">Orbot beim Systemstart ausführen</string>
@@ -81,8 +81,8 @@
     <string name="ports_reachable_behind_a_restrictive_firewall">Ports, die hinter einer restriktiven Firewall erreichbar sind</string>
     <string name="enter_ports">Ports eingeben</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Ausgabe des Fehlerprotokolls ermöglichen (benötigt adb oder aLogCat zur Ansicht)</string>
-    <string name="project_home">Internetseite(n) des Projektes:</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
+    <string name="project_home">Internetseite des Projektes:</string>
+    <string name="project_urls">https://orbot.app/</string>
     <string name="third_party_software">Drittanbieteranwendungen:</string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
@@ -199,10 +199,12 @@
     <string name="v3_onion">v3 .onion-Domain</string>
     <string name="v3_key_hash">x25519 Privater Schlüssel in Base32</string>
     <string name="v3_client_auth_activity_title">v3 Client Authorisierung</string>
-    <string name="backup_port_exist">Fehler: Ein anderer Onion-Dienst nutzt bereits Port %s</string>
+    <string name="backup_port_exist">Fehler: Ein Onion-Dienst nutzt bereits Port %s</string>
     <string name="get_bridges_email_request">Brücken via E-Mail anfordern</string>
     <string name="deny">Ablehnen</string>
     <string name="allow">Erlauben</string>
     <string name="be_a_snowflake_desc_limit">Nur wenn das Gerät angeschlossen und mit WLAN verbunden ist</string>
     <string name="paste_bridges">Brücken einfügen</string>
+    <string name="version">Version:</string>
+    <string name="license">Lizenz:</string>
 </resources>
