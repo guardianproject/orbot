@@ -16,7 +16,7 @@ import java.util.StringTokenizer;
  */
 public class TorEventHandler implements EventHandler, TorServiceConstants {
 
-    private final static int BW_THRESDHOLD = 0;
+    private final static int BW_THRESHOLD = 500;
     private final OrbotService mService;
     private long lastRead = -1;
     private long lastWritten = -1;
@@ -81,7 +81,7 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
     @Override
     public void bandwidthUsed(long read, long written) {
 
-        if (lastWritten > BW_THRESDHOLD || lastRead > BW_THRESDHOLD) {
+        if (lastWritten > BW_THRESHOLD || lastRead > BW_THRESHOLD) {
 
             int iconId = R.drawable.ic_stat_tor;
 

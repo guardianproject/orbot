@@ -815,6 +815,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 if (conn != null) {
                     try {
                         conn.setEventHandler(mEventHandler);
+                        conn.authenticate(new byte[0]);
                         conn.setEvents(events);
                         logNotice("SUCCESS added control port event handler");
                     } catch (IOException e) {
