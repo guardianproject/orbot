@@ -115,7 +115,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     private final ExecutorService mExecutor = Executors.newCachedThreadPool();
     @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.LOLLIPOP)
     boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
-    TorEventHandler mEventHandler;
     OrbotRawEventListener mOrbotRawEventListener;
     OrbotVpnManager mVpnManager;
     Handler mHandler;
@@ -176,8 +175,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         if (mNotificationManager != null)
             mNotificationManager.cancelAll();
 
-        if (mEventHandler != null)
-            mEventHandler.getNodes().clear();
+        if (mOrbotRawEventListener != null)
+            mOrbotRawEventListener.getNodes().clear();
 
         mNotificationShowing = false;
     }
@@ -797,7 +796,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     e.printStackTrace();
                 }
 
-                mEventHandler = new TorEventHandler(OrbotService.this);
                 mOrbotRawEventListener = new OrbotRawEventListener(OrbotService.this);
 
                 ArrayList<String> events = new ArrayList<>(Arrays.asList(
@@ -817,7 +815,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 if (conn != null) {
                     try {
                         conn.addRawEventListener(mOrbotRawEventListener);
-                        conn.setEventHandler(mEventHandler);
                         conn.authenticate(new byte[0]);
                         conn.setEvents(events);
                         logNotice("SUCCESS added control port event handler");
