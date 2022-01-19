@@ -290,7 +290,11 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private void sendIntentToService(final String action) {
         Intent intent = new Intent(OrbotMainActivity.this, OrbotService.class);
         intent.setAction(action);
-        startService(intent);
+        try {
+            startService(intent);
+        } catch (IllegalStateException ise) {
+            Log.e(TAG, "Failed to restart Orbot Service app is in background...");
+        }
     }
 
     private boolean waitingToStop = false;
