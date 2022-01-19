@@ -81,7 +81,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-public class OrbotService extends VpnService implements TorServiceConstants, OrbotConstants {
+public class OrbotService extends VpnService implements OrbotServiceConstants {
 
     public final static String BINARY_TOR_VERSION = TorService.VERSION_NAME;
 
@@ -142,7 +142,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     }
 
     public void debug(String msg) {
-        Log.d(OrbotConstants.TAG, msg);
+        Log.d(TAG, msg);
 
         if (Prefs.useDebugLogging()) {
             sendCallbackLogMessage(msg);
@@ -151,7 +151,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     public void logException(String msg, Exception e) {
         if (Prefs.useDebugLogging()) {
-            Log.e(OrbotConstants.TAG, msg, e);
+            Log.e(TAG, msg, e);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             e.printStackTrace(new PrintStream(baos));
 
@@ -248,14 +248,14 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         if (intent != null)
             mExecutor.execute(new IncomingIntentRouter(intent));
         else
-            Log.d(OrbotConstants.TAG, "Got null onStartCommand() intent");
+            Log.d(TAG, "Got null onStartCommand() intent");
 
         return Service.START_STICKY;
     }
 
     @Override
     public void onTaskRemoved(Intent rootIntent) {
-        Log.d(OrbotConstants.TAG, "task removed");
+        Log.d(TAG, "task removed");
         Intent intent = new Intent(this, DummyActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
@@ -432,7 +432,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     protected void logNotice(String msg) {
         if (msg != null && msg.trim().length() > 0) {
             if (Prefs.useDebugLogging())
-                Log.d(OrbotConstants.TAG, msg);
+                Log.d(TAG, msg);
 
             sendCallbackLogMessage(msg);
         }
@@ -459,11 +459,11 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             if (!appCacheHome.exists())
                 appCacheHome.mkdirs();
 
-            mV3OnionBasePath = new File(getFilesDir().getAbsolutePath(), TorServiceConstants.ONION_SERVICES_DIR);
+            mV3OnionBasePath = new File(getFilesDir().getAbsolutePath(), OrbotServiceConstants.ONION_SERVICES_DIR);
             if (!mV3OnionBasePath.isDirectory())
                 mV3OnionBasePath.mkdirs();
 
-            mV3AuthBasePath = new File(getFilesDir().getAbsolutePath(), TorServiceConstants.V3_CLIENT_AUTH_DIR);
+            mV3AuthBasePath = new File(getFilesDir().getAbsolutePath(), OrbotServiceConstants.V3_CLIENT_AUTH_DIR);
             if (!mV3AuthBasePath.isDirectory())
                 mV3AuthBasePath.mkdirs();
 
@@ -489,7 +489,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             }
             catch (IOException io)
             {
-                Log.e(OrbotConstants.TAG, "Error installing geoip files", io);
+                Log.e(TAG, "Error installing geoip files", io);
                 logNotice("There was an error installing geoip files");
             }
 
@@ -501,7 +501,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         } catch (Exception e) {
             //what error here
-            Log.e(OrbotConstants.TAG, "Error setting up Orbot", e);
+            Log.e(TAG, "Error setting up Orbot", e);
             logNotice("There was an error setting up Orbot");
         }
 
@@ -533,14 +533,14 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         extraLines.append("RunAsDaemon 0").append('\n');
         extraLines.append("AvoidDiskWrites 1").append('\n');
 
-        String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS, (TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT));
+        String socksPortPref = prefs.getString(PREF_SOCKS, (OrbotServiceConstants.SOCKS_PROXY_PORT_DEFAULT));
 
         if (socksPortPref.indexOf(':') != -1)
             socksPortPref = socksPortPref.split(":")[1];
 
         socksPortPref = checkPortOrAuto(socksPortPref);
 
-        String httpPortPref = prefs.getString(OrbotConstants.PREF_HTTP, (TorServiceConstants.HTTP_PROXY_PORT_DEFAULT));
+        String httpPortPref = prefs.getString(PREF_HTTP, (OrbotServiceConstants.HTTP_PROXY_PORT_DEFAULT));
 
         if (httpPortPref.indexOf(':') != -1)
             httpPortPref = httpPortPref.split(":")[1];
@@ -548,17 +548,17 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         httpPortPref = checkPortOrAuto(httpPortPref);
 
         String isolate = "";
-        if (prefs.getBoolean(OrbotConstants.PREF_ISOLATE_DEST, false)) {
+        if (prefs.getBoolean(PREF_ISOLATE_DEST, false)) {
             isolate += " IsolateDestAddr ";
         }
 
         String ipv6Pref = "";
 
-        if (prefs.getBoolean(OrbotConstants.PREF_PREFER_IPV6, true)) {
+        if (prefs.getBoolean(PREF_PREFER_IPV6, true)) {
             ipv6Pref += " IPv6Traffic PreferIPv6 ";
         }
 
-        if (prefs.getBoolean(OrbotConstants.PREF_DISABLE_IPV4, false)) {
+        if (prefs.getBoolean(PREF_DISABLE_IPV4, false)) {
             ipv6Pref += " IPv6Traffic NoIPv4Traffic ";
         }
 
@@ -572,26 +572,26 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         extraLines.append("HTTPTunnelPort ").append(httpPortPref).append(isolate).append('\n');
 
-        if (prefs.getBoolean(OrbotConstants.PREF_CONNECTION_PADDING, false)) {
+        if (prefs.getBoolean(PREF_CONNECTION_PADDING, false)) {
             extraLines.append("ConnectionPadding 1").append('\n');
         }
 
-        if (prefs.getBoolean(OrbotConstants.PREF_REDUCED_CONNECTION_PADDING, true)) {
+        if (prefs.getBoolean(PREF_REDUCED_CONNECTION_PADDING, true)) {
             extraLines.append("ReducedConnectionPadding 1").append('\n');
         }
 
-        if (prefs.getBoolean(OrbotConstants.PREF_CIRCUIT_PADDING, true)) {
+        if (prefs.getBoolean(PREF_CIRCUIT_PADDING, true)) {
             extraLines.append("CircuitPadding 1").append('\n');
         } else {
             extraLines.append("CircuitPadding 0").append('\n');
         }
 
-        if (prefs.getBoolean(OrbotConstants.PREF_REDUCED_CIRCUIT_PADDING, true)) {
+        if (prefs.getBoolean(PREF_REDUCED_CIRCUIT_PADDING, true)) {
             extraLines.append("ReducedCircuitPadding 1").append('\n');
         }
 
-        String transPort = prefs.getString("pref_transport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT + "");
-        String dnsPort = prefs.getString("pref_dnsport", TorServiceConstants.TOR_DNS_PORT_DEFAULT + "");
+        String transPort = prefs.getString("pref_transport", OrbotServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT + "");
+        String dnsPort = prefs.getString("pref_dnsport", OrbotServiceConstants.TOR_DNS_PORT_DEFAULT + "");
 
         extraLines.append("TransPort ").append(checkPortOrAuto(transPort)).append('\n');
         extraLines.append("DNSPort ").append(checkPortOrAuto(dnsPort)).append('\n');
@@ -655,10 +655,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     /**
      * Send Orbot's status in reply to an
-     * {@link TorServiceConstants#ACTION_START} {@link Intent}, targeted only to
+     * {@link OrbotServiceConstants#ACTION_START} {@link Intent}, targeted only to
      * the app that sent the initial request. If the user has disabled auto-
      * starts, the reply {@code ACTION_START Intent} will include the extra
-     * {@link TorServiceConstants#STATUS_STARTS_DISABLED}
+     * {@link OrbotServiceConstants#STATUS_STARTS_DISABLED}
      */
     private void replyWithStatus(Intent startRequest) {
         String packageName = startRequest.getStringExtra(EXTRA_PACKAGE_NAME);
@@ -831,7 +831,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             @Override
             public void onServiceDisconnected(ComponentName componentName) {
                 if (Prefs.useDebugLogging())
-                    Log.d(OrbotConstants.TAG, "TorService: onServiceDisconnected");
+                    Log.d(TAG, "TorService: onServiceDisconnected");
 
                 sendCallbackStatus(TorService.STATUS_OFF);
 
@@ -839,12 +839,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
             @Override
             public void onNullBinding(ComponentName componentName) {
-                Log.w(OrbotConstants.TAG, "TorService: was unable to bund: onNullBinding");
+                Log.w(TAG, "TorService: was unable to bund: onNullBinding");
             }
 
             @Override
             public void onBindingDied(ComponentName componentName) {
-                Log.w(OrbotConstants.TAG, "TorService: onBindingDied");
+                Log.w(TAG, "TorService: onBindingDied");
                 sendCallbackStatus(TorService.STATUS_OFF);
 
             }
@@ -1000,8 +1000,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         logNotice(getString(R.string.updating_settings_in_tor_service));
         SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
 
-        boolean becomeRelay = prefs.getBoolean(OrbotConstants.PREF_OR, false);
-        boolean ReachableAddresses = prefs.getBoolean(OrbotConstants.PREF_REACHABLE_ADDRESSES, false);
+        boolean becomeRelay = prefs.getBoolean(PREF_OR, false);
+        boolean ReachableAddresses = prefs.getBoolean(PREF_REACHABLE_ADDRESSES, false);
         boolean enableStrictNodes = prefs.getBoolean("pref_strict_nodes", false);
         String entranceNodes = prefs.getString("pref_entrance_nodes", "");
         String exitNodes = prefs.getString("pref_exit_nodes", "");
@@ -1102,7 +1102,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         try {
             if (ReachableAddresses) {
-                String ReachableAddressesPorts = prefs.getString(OrbotConstants.PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
+                String ReachableAddressesPorts = prefs.getString(PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
                 extraLines.append("ReachableAddresses" + ' ').append(ReachableAddressesPorts).append('\n');
             }
 
@@ -1113,8 +1113,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         try {
             if (becomeRelay && (!Prefs.bridgesEnabled()) && (!ReachableAddresses)) {
-                int ORPort = Integer.parseInt(Objects.requireNonNull(prefs.getString(OrbotConstants.PREF_OR_PORT, "9001")));
-                String nickname = prefs.getString(OrbotConstants.PREF_OR_NICKNAME, "Orbot");
+                int ORPort = Integer.parseInt(Objects.requireNonNull(prefs.getString(PREF_OR_PORT, "9001")));
+                String nickname = prefs.getString(PREF_OR_NICKNAME, "Orbot");
                 String dnsFile = writeDNSFile();
 
                 extraLines.append("ServerDNSResolvConfFile").append(' ').append(dnsFile).append('\n');
@@ -1287,7 +1287,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     conn.setConf("DisableNetwork", "0");
 
                 } catch (Exception ioe) {
-                    Log.e(OrbotConstants.TAG, "Connection exception occured resetting exits", ioe);
+                    Log.e(TAG, "Connection exception occured resetting exits", ioe);
                 }
             }
         } else {
@@ -1308,7 +1308,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     conn.setConf("DisableNetwork", "0");
 
                 } catch (Exception ioe) {
-                    Log.e(OrbotConstants.TAG, "Connection exception occured resetting exits", ioe);
+                    Log.e(TAG, "Connection exception occured resetting exits", ioe);
                 }
             }
         }
@@ -1466,7 +1466,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 } else if (action.equals(CMD_SET_EXIT)) {
                     setExitNode(mIntent.getStringExtra("exit"));
                 } else {
-                    Log.w(OrbotConstants.TAG, "unhandled OrbotService Intent: " + action);
+                    Log.w(TAG, "unhandled OrbotService Intent: " + action);
                 }
             }
         }

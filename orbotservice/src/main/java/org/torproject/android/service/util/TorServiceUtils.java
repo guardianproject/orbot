@@ -2,13 +2,13 @@
 /* See LICENSE for licensing information */
 package org.torproject.android.service.util;
 
-import org.torproject.android.service.TorServiceConstants;
+import org.torproject.android.service.OrbotServiceConstants;
 
 import java.net.ConnectException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-public class TorServiceUtils implements TorServiceConstants {
+public class TorServiceUtils implements OrbotServiceConstants {
 
     public static boolean isPortOpen(final String ip, final int port, final int timeout) {
         try {

@@ -5,7 +5,7 @@ package org.torproject.android.service;
 
 import android.content.Intent;
 
-public interface TorServiceConstants {
+public interface OrbotServiceConstants {
 
     String DIRECTORY_TOR_DATA = "tordata";
 
@@ -37,8 +37,6 @@ public interface TorServiceConstants {
     String ACTION_UPDATE_ONION_NAMES = "org.torproject.android.intent.action.UPDATE_ONION_NAMES";
 
     String ACTION_START_ON_BOOT = "org.torproject.android.intent.action.START_BOOT";
-
-    int REQUEST_VPN = 7777;
 
     /**
      * {@link Intent} send by Orbot with {@code ON/OFF/STARTING/STOPPING} status
@@ -90,5 +88,37 @@ public interface TorServiceConstants {
 
     String ONION_SERVICES_DIR = "v3_onion_services";
     String V3_CLIENT_AUTH_DIR = "v3_client_auth";
+
+    String TAG = "Orbot";
+
+    String PREF_OR = "pref_or";
+    String PREF_OR_PORT = "pref_or_port";
+    String PREF_OR_NICKNAME = "pref_or_nickname";
+    String PREF_REACHABLE_ADDRESSES = "pref_reachable_addresses";
+    String PREF_REACHABLE_ADDRESSES_PORTS = "pref_reachable_addresses_ports";
+
+    String PREF_DISABLE_NETWORK = "pref_disable_network";
+
+    String PREF_TOR_SHARED_PREFS = "org.torproject.android_preferences";
+
+    String PREF_SOCKS = "pref_socks";
+
+    String PREF_HTTP = "pref_http";
+
+    String PREF_ISOLATE_DEST = "pref_isolate_dest";
+
+    String PREF_CONNECTION_PADDING = "pref_connection_padding";
+    String PREF_REDUCED_CONNECTION_PADDING = "pref_reduced_connection_padding";
+    String PREF_CIRCUIT_PADDING = "pref_circuit_padding";
+    String PREF_REDUCED_CIRCUIT_PADDING = "pref_reduced_circuit_padding";
+
+    String PREF_PREFER_IPV6 = "pref_prefer_ipv6";
+    String PREF_DISABLE_IPV4 = "pref_disable_ipv4";
+
+
+    String APP_TOR_KEY = "_app_tor";
+    String APP_DATA_KEY = "_app_data";
+    String APP_WIFI_KEY = "_app_wifi";
+
 
 }

@@ -13,7 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.torproject.android.R;
 import org.torproject.android.service.OrbotService;
-import org.torproject.android.service.TorServiceConstants;
+import org.torproject.android.service.OrbotServiceConstants;
 import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthContentProvider;
 
 import java.io.File;
@@ -143,7 +143,7 @@ public class V3BackupUtils {
     }
 
     private File getV3BasePath() {
-        return new File(mContext.getFilesDir().getAbsolutePath(), TorServiceConstants.ONION_SERVICES_DIR);
+        return new File(mContext.getFilesDir().getAbsolutePath(), OrbotServiceConstants.ONION_SERVICES_DIR);
     }
 
     public void restoreZipBackupV3Legacy(File zipFile) {

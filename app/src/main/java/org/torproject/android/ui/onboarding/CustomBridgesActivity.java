@@ -32,7 +32,6 @@ import org.json.JSONArray;
 import org.torproject.android.R;
 import org.torproject.android.core.ClipboardUtils;
 import org.torproject.android.service.OrbotService;
-import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 
 import java.io.UnsupportedEncodingException;

@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import org.torproject.android.service.util.Prefs;
 
 
-public class StartTorReceiver extends BroadcastReceiver implements TorServiceConstants {
+public class StartTorReceiver extends BroadcastReceiver implements OrbotServiceConstants {
 
     @Override
     public void onReceive(Context context, Intent intent) {

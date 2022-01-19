@@ -3,7 +3,7 @@ package org.torproject.android.service.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import org.torproject.android.service.OrbotConstants;
+import org.torproject.android.service.OrbotServiceConstants;
 
 import java.util.Locale;
 
@@ -141,6 +141,6 @@ public class Prefs {
     }
 
     public static SharedPreferences getSharedPrefs(Context context) {
-        return context.getSharedPreferences(OrbotConstants.PREF_TOR_SHARED_PREFS, Context.MODE_MULTI_PROCESS);
+        return context.getSharedPreferences(OrbotServiceConstants.PREF_TOR_SHARED_PREFS, Context.MODE_MULTI_PROCESS);
     }
 }

@@ -31,7 +31,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.torproject.android.BuildConfig;
 import org.torproject.android.R;
-import org.torproject.android.service.OrbotConstants;
+import org.torproject.android.service.OrbotServiceConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorifiedApp;
 import org.torproject.android.service.vpn.VpnPrefs;
@@ -46,7 +46,7 @@ import java.util.StringTokenizer;
 
 import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
 
-public class AppManagerActivity extends AppCompatActivity implements OnClickListener, OrbotConstants {
+public class AppManagerActivity extends AppCompatActivity implements OnClickListener, OrbotServiceConstants {
 
     static ArrayList<TorifiedApp> mApps = null;
     PackageManager pMgr = null;

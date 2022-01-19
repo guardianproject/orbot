@@ -33,10 +33,9 @@ import android.widget.Toast;
 import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
 import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
-import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.R;
-import org.torproject.android.service.TorServiceConstants;
+import org.torproject.android.service.OrbotServiceConstants;
 import org.torproject.android.service.util.CustomNativeLoader;
 import org.torproject.android.service.util.Prefs;
 
@@ -51,11 +50,11 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.concurrent.TimeoutException;
 
-import static org.torproject.android.service.TorServiceConstants.ACTION_START;
-import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
-import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
-import static org.torproject.android.service.TorServiceConstants.TOR_DNS_PORT_DEFAULT;
-import static org.torproject.android.service.TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT;
+import static org.torproject.android.service.OrbotServiceConstants.ACTION_START;
+import static org.torproject.android.service.OrbotServiceConstants.ACTION_START_VPN;
+import static org.torproject.android.service.OrbotServiceConstants.ACTION_STOP_VPN;
+import static org.torproject.android.service.OrbotServiceConstants.TOR_DNS_PORT_DEFAULT;
+import static org.torproject.android.service.OrbotServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT;
 
 public class OrbotVpnManager implements Handler.Callback {
     private static final String TAG = "OrbotVpnService";
@@ -140,7 +139,7 @@ public class OrbotVpnManager implements Handler.Callback {
                     Log.d(TAG, "stopping VPN");
 
                     stopVPN();
-                } else if (action.equals(TorServiceConstants.LOCAL_ACTION_PORTS)) {
+                } else if (action.equals(OrbotServiceConstants.LOCAL_ACTION_PORTS)) {
                     Log.d(TAG, "setting VPN ports");
 
                     int torSocks = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT, TOR_TRANSPROXY_PORT_DEFAULT);
@@ -341,7 +340,7 @@ public class OrbotVpnManager implements Handler.Callback {
 
         for (TorifiedApp app : apps) {
             if (app.isTorified() && (!app.getPackageName().equals(mService.getPackageName()))) {
-                if (prefs.getBoolean(app.getPackageName() + OrbotConstants.APP_TOR_KEY, true)) {
+                if (prefs.getBoolean(app.getPackageName() + OrbotServiceConstants.APP_TOR_KEY, true)) {
                     builder.addAllowedApplication(app.getPackageName());
                 }
 

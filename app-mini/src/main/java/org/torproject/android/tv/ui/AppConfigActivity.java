@@ -11,8 +11,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+
+import org.torproject.android.service.OrbotServiceConstants;
 import org.torproject.android.tv.R;
-import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorifiedApp;
 
@@ -53,16 +54,16 @@ public class AppConfigActivity extends AppCompatActivity {
         }
         catch (Exception e){}
 
-        mAppTor = mPrefs.getBoolean(pkgId + OrbotConstants.APP_TOR_KEY,true);
-        mAppData = mPrefs.getBoolean(pkgId + OrbotConstants.APP_DATA_KEY,false);
-        mAppWifi = mPrefs.getBoolean(pkgId + OrbotConstants.APP_WIFI_KEY,false);
+        mAppTor = mPrefs.getBoolean(pkgId + OrbotServiceConstants.APP_TOR_KEY,true);
+        mAppData = mPrefs.getBoolean(pkgId + OrbotServiceConstants.APP_DATA_KEY,false);
+        mAppWifi = mPrefs.getBoolean(pkgId + OrbotServiceConstants.APP_WIFI_KEY,false);
 
         Switch switchAppTor = findViewById(R.id.switch_app_tor);
         switchAppTor.setChecked(mAppTor);
         switchAppTor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mPrefs.edit().putBoolean(pkgId + OrbotConstants.APP_TOR_KEY,isChecked).commit();
+                mPrefs.edit().putBoolean(pkgId + OrbotServiceConstants.APP_TOR_KEY,isChecked).commit();
 
                 Intent response = new Intent();
                 setResult(RESULT_OK,response);
@@ -74,7 +75,7 @@ public class AppConfigActivity extends AppCompatActivity {
         switchAppData.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mPrefs.edit().putBoolean(pkgId + OrbotConstants.APP_DATA_KEY,isChecked).commit();
+                mPrefs.edit().putBoolean(pkgId + OrbotServiceConstants.APP_DATA_KEY,isChecked).commit();
 
                 Intent response = new Intent();
                 setResult(RESULT_OK,response);
@@ -87,7 +88,7 @@ public class AppConfigActivity extends AppCompatActivity {
         switchAppWifi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mPrefs.edit().putBoolean(pkgId + OrbotConstants.APP_WIFI_KEY,isChecked).commit();
+                mPrefs.edit().putBoolean(pkgId + OrbotServiceConstants.APP_WIFI_KEY,isChecked).commit();
 
                 Intent response = new Intent();
                 setResult(RESULT_OK,response);

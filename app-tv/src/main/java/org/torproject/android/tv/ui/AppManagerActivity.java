@@ -26,8 +26,9 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import org.torproject.android.service.OrbotServiceConstants;
 import org.torproject.android.tv.R;
-import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorifiedApp;
 
@@ -40,7 +41,7 @@ import java.util.StringTokenizer;
 
 import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
 
-public class AppManagerActivity extends AppCompatActivity implements OnClickListener, OrbotConstants {
+public class AppManagerActivity extends AppCompatActivity implements OnClickListener, OrbotServiceConstants {
 
     private GridView listApps;
     private ListAdapter adapterApps;

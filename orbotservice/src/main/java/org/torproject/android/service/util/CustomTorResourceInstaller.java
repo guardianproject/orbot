@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.util.Log;
 
-import org.torproject.android.service.TorServiceConstants;
+import org.torproject.android.service.OrbotServiceConstants;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -100,8 +100,8 @@ public class CustomTorResourceInstaller {
     public void installGeoIP() throws IOException {
         if (!installFolder.exists())
             installFolder.mkdirs();
-        assetToFile(TorServiceConstants.GEOIP_ASSET_KEY, TorServiceConstants.GEOIP_ASSET_KEY, false, false);
-        assetToFile(TorServiceConstants.GEOIP6_ASSET_KEY, TorServiceConstants.GEOIP6_ASSET_KEY, false, false);
+        assetToFile(OrbotServiceConstants.GEOIP_ASSET_KEY, OrbotServiceConstants.GEOIP_ASSET_KEY, false, false);
+        assetToFile(OrbotServiceConstants.GEOIP6_ASSET_KEY, OrbotServiceConstants.GEOIP6_ASSET_KEY, false, false);
     }
 
     /*

@@ -15,7 +15,7 @@ import java.util.StringTokenizer;
 /**
  * Created by n8fr8 on 9/25/16.
  */
-public class TorEventHandler implements EventHandler, TorServiceConstants {
+public class TorEventHandler implements EventHandler, OrbotServiceConstants {
 
     private final static int BW_THRESDHOLD = 0;
     private final OrbotService mService;

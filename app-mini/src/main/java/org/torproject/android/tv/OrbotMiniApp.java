@@ -6,12 +6,12 @@ import android.content.res.Configuration;
 
 import org.torproject.android.core.Languages;
 import org.torproject.android.core.LocaleHelper;
-import org.torproject.android.service.OrbotConstants;
+import org.torproject.android.service.OrbotServiceConstants;
 import org.torproject.android.service.util.Prefs;
 
 import java.util.Locale;
 
-public class OrbotMiniApp extends Application implements OrbotConstants {
+public class OrbotMiniApp extends Application implements OrbotServiceConstants {
 
     @Override
     public void onCreate() {
