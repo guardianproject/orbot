@@ -290,11 +290,14 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private void sendIntentToService(final String action) {
         Intent intent = new Intent(OrbotMainActivity.this, OrbotService.class);
         intent.setAction(action);
-        try {
+        sendIntentToService(intent);
+    }
+
+    private void sendIntentToService(Intent intent) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            startForegroundService(intent);
+        else
             startService(intent);
-        } catch (IllegalStateException ise) {
-            Log.e(TAG, "Failed to restart Orbot Service app is in background...");
-        }
     }
 
     private boolean waitingToStop = false;
@@ -450,11 +453,9 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     else
                         country = '{' + COUNTRY_CODES[position - 1] + '}';
 
-                    Intent intent = new Intent(OrbotMainActivity.this, OrbotService.class);
-                    intent.setAction(TorServiceConstants.CMD_SET_EXIT);
-                    intent.putExtra("exit", country);
-                    startService(intent);
-
+                    sendIntentToService(new Intent(OrbotMainActivity.this, OrbotService.class)
+                            .setAction(TorServiceConstants.CMD_SET_EXIT)
+                            .putExtra("exit", country));
                 }
 
                 @Override
