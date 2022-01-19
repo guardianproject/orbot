@@ -16,12 +16,7 @@ import java.util.StringTokenizer;
  */
 public class TorEventHandler implements EventHandler, TorServiceConstants {
 
-    private final static int BW_THRESHOLD = 500;
     private final OrbotService mService;
-    private long lastRead = -1;
-    private long lastWritten = -1;
-    private long mTotalTrafficWritten = 0;
-    private long mTotalTrafficRead = 0;
     private final HashMap<String, Node> hmBuiltNodes = new HashMap<>();
 
     public TorEventHandler(OrbotService service) {
@@ -80,29 +75,6 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
 
     @Override
     public void bandwidthUsed(long read, long written) {
-
-        if (lastWritten > BW_THRESHOLD || lastRead > BW_THRESHOLD) {
-
-            int iconId = R.drawable.ic_stat_tor;
-
-            if (read > 0 || written > 0)
-                iconId = R.drawable.ic_stat_tor_xfer;
-
-            String sb = OrbotService.formatBandwidthCount(mService, read) + " \u2193" + " / " +
-                    OrbotService.formatBandwidthCount(mService, written) + " \u2191";
-            mService.showToolbarNotification(sb, OrbotService.NOTIFY_ID, iconId);
-
-            mTotalTrafficWritten += written;
-            mTotalTrafficRead += read;
-
-            mService.sendCallbackBandwidth(written, read, mTotalTrafficWritten, mTotalTrafficRead);
-
-            lastWritten = 0;
-            lastRead = 0;
-        }
-
-        lastWritten += written;
-        lastRead += read;
 
     }
 

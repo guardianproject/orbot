@@ -116,6 +116,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.LOLLIPOP)
     boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     TorEventHandler mEventHandler;
+    OrbotRawEventListener mOrbotRawEventListener;
     OrbotVpnManager mVpnManager;
     Handler mHandler;
     //we should randomly sort alBridges so we don't have the same bridge order each time
@@ -797,6 +798,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 }
 
                 mEventHandler = new TorEventHandler(OrbotService.this);
+                mOrbotRawEventListener = new OrbotRawEventListener(OrbotService.this);
 
                 ArrayList<String> events = new ArrayList<>(Arrays.asList(
                         TorControlCommands.EVENT_OR_CONN_STATUS,
@@ -814,6 +816,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
                 if (conn != null) {
                     try {
+                        conn.addRawEventListener(mOrbotRawEventListener);
                         conn.setEventHandler(mEventHandler);
                         conn.authenticate(new byte[0]);
                         conn.setEvents(events);
