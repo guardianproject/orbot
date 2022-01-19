@@ -6,6 +6,7 @@ import net.freehaven.tor.control.EventHandler;
 
 import org.torproject.android.service.util.ExternalIPFetcher;
 import org.torproject.android.service.util.Prefs;
+import org.torproject.jni.TorService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -109,8 +110,8 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
     public void circuitStatus(String status, String circID, String path) {
 
         /* once the first circuit is complete, then announce that Orbot is on*/
-        if (mService.getCurrentStatus() == STATUS_STARTING && TextUtils.equals(status, "BUILT"))
-            mService.sendCallbackStatus(STATUS_ON);
+        if (mService.getCurrentStatus() == TorService.STATUS_STARTING && TextUtils.equals(status, "BUILT"))
+            mService.sendCallbackStatus(TorService.STATUS_ON);
 
         if (Prefs.useDebugLogging()) {
             StringBuilder sb = new StringBuilder();

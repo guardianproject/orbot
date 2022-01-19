@@ -64,7 +64,8 @@ android {
                 libs.androidx_localbroadcast,
                 libs.apl_appintro,
                 libs.bclogic_pulsator,
-                libs.ipt_proxy
+                libs.ipt_proxy,
+                libs.tor_android
 
         )
         androidTestImplementation libs.fastlane_screengrab

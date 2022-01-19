@@ -50,6 +50,7 @@ import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.ui.dialog.MoatErrorDialogFragment;
+import org.torproject.jni.TorService;
 
 import java.io.File;
 
@@ -102,7 +103,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             if (TextUtils.isEmpty(status)) {
-                status = TorServiceConstants.STATUS_OFF;
+                status = TorService.STATUS_OFF;
             }
 
             setUp(host, port, status);
@@ -406,7 +407,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         switch (status) {
-            case TorServiceConstants.STATUS_OFF:
+            case TorService.STATUS_OFF:
                 // We need the Meek bridge.
                 Prefs.setBridgesList("meek");
                 Prefs.putBridgesEnabled(true);
@@ -415,7 +416,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
 
-            case TorServiceConstants.STATUS_ON:
+            case TorService.STATUS_ON:
                 // Switch to the Meek bridge, if not done, already.
                 Prefs.setBridgesList("meek");
                 Prefs.putBridgesEnabled(true);

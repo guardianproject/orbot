@@ -39,7 +39,8 @@ android {
                 libs.androidx_coordinator,
                 libs.androidx_palette,
                 libs.androidx_recyclerview,
-                libs.apl_appintro
+                libs.apl_appintro,
+                libs.tor_android
         )
         androidTestImplementation libs.fastlane_screengrab
     }

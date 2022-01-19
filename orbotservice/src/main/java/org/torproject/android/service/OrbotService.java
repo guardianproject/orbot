@@ -121,7 +121,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     //we should randomly sort alBridges so we don't have the same bridge order each time
     Random bridgeSelectRandom = new Random(System.nanoTime());
     ActionBroadcastReceiver mActionBroadcastReceiver;
-    private String mCurrentStatus = STATUS_OFF;
+    private String mCurrentStatus = TorService.STATUS_OFF;
     private TorControlConnection conn = null;
     private ServiceConnection torServiceConnection;
     private boolean shouldUnbindTorService;
@@ -280,7 +280,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         debug("stopTor");
 
         try {
-            sendCallbackStatus(STATUS_STOPPING);
+            sendCallbackStatus(TorService.STATUS_STOPPING);
             sendCallbackLogMessage(getString(R.string.status_shutting_down));
 
             if (Prefs.bridgesEnabled()) {
@@ -293,7 +293,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 disableSnowflakeProxy();
 
             stopTor();
-            sendCallbackStatus(STATUS_OFF);
+            sendCallbackStatus(TorService.STATUS_OFF);
 
             //stop the foreground priority and make sure to remove the persistent notification
             stopForeground(true);
@@ -696,7 +696,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 return;
             }
 
-            sendCallbackStatus(STATUS_STARTING);
+            sendCallbackStatus(TorService.STATUS_STARTING);
 
             showToolbarNotification(getString(R.string.status_starting_up), NOTIFY_ID, R.drawable.ic_stat_tor);
 
@@ -833,7 +833,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 if (Prefs.useDebugLogging())
                     Log.d(OrbotConstants.TAG, "TorService: onServiceDisconnected");
 
-                sendCallbackStatus(STATUS_OFF);
+                sendCallbackStatus(TorService.STATUS_OFF);
 
             }
 
@@ -845,8 +845,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             @Override
             public void onBindingDied(ComponentName componentName) {
                 Log.w(OrbotConstants.TAG, "TorService: onBindingDied");
-
-                sendCallbackStatus(STATUS_OFF);
+                sendCallbackStatus(TorService.STATUS_OFF);
 
             }
         };
@@ -909,7 +908,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     }
 
     public void sendSignalActive() {
-        if (conn != null && mCurrentStatus == STATUS_ON) {
+        if (conn != null && mCurrentStatus == TorService.STATUS_ON) {
             try {
                 conn.signal("ACTIVE");
             } catch (IOException e) {
@@ -926,7 +925,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                         int iconId = R.drawable.ic_stat_tor;
 
                         if (conn != null) {
-                            if (mCurrentStatus.equals(STATUS_ON) && Prefs.expandedNotifications())
+                            if (mCurrentStatus.equals(TorService.STATUS_ON) && Prefs.expandedNotifications())
                                 showToolbarNotification(getString(R.string.newnym), NOTIFY_ID, iconId);
 
                             conn.signal(TorControlCommands.SIGNAL_NEWNYM);

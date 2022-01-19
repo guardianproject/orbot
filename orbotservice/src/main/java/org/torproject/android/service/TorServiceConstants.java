@@ -45,9 +45,9 @@ public interface TorServiceConstants {
      */
     String ACTION_STATUS = "ORBOT.intent.action.STATUS";
     /**
-     * {@code String} that contains a status constant: {@link #STATUS_ON},
-     * {@link #STATUS_OFF}, {@link #STATUS_STARTING}, or
-     * {@link #STATUS_STOPPING}
+     * {@code String} that contains a status constant: {@link org.torproject.jni.TorServic#STATUS_ON},
+     * {@link org.torproject.jni.TorServic#STATUS_OFF}, {@link org.torproject.jni.TorService#STATUS_STARTING}, or
+     * {@link org.torproject.jni.TorServic#STATUS_STOPPING}
      */
     String EXTRA_STATUS = "org.torproject.android.intent.extra.STATUS";
     /**
@@ -78,18 +78,6 @@ public interface TorServiceConstants {
     String LOCAL_ACTION_V3_NAMES_UPDATED = "V3_NAMES_UPDATED";
 
     /**
-     * All tor-related services and daemons are stopped
-     */
-    String STATUS_OFF = "OFF";
-
-    /**
-     * All tor-related services and daemons have completed starting
-     */
-    String STATUS_ON = "ON";
-    String STATUS_STARTING = "STARTING";
-    String STATUS_STOPPING = "STOPPING";
-
-    /**
      * The user has disabled the ability for background starts triggered by
      * apps. Fallback to the old {@link Intent} action that brings up Orbot:
      * {@link org.torproject.android.OrbotMainActivity#INTENT_ACTION_REQUEST_START_TOR}
@@ -99,9 +87,6 @@ public interface TorServiceConstants {
     // actions for internal command Intents
     String CMD_SET_EXIT = "setexit";
     String CMD_ACTIVE = "ACTIVE";
-
-    //obfsproxy
-    String OBFSCLIENT_ASSET_KEY = "obfs4proxy";
 
     String ONION_SERVICES_DIR = "v3_onion_services";
     String V3_CLIENT_AUTH_DIR = "v3_client_auth";

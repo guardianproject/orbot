@@ -65,6 +65,7 @@ import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorifiedApp;
 import org.torproject.android.service.vpn.VpnPrefs;
+import org.torproject.jni.TorService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -615,7 +616,7 @@ public class MiniMainActivity extends AppCompatActivity implements OrbotConstant
             }
         } else if (request == REQUEST_VPN_APPS_SELECT) {
             if (response == RESULT_OK &&
-                    torStatus == TorServiceConstants.STATUS_ON) {
+                    torStatus == TorService.STATUS_ON) {
                 refreshVPNApps();
 
                 String newPkgId = data.getStringExtra(Intent.EXTRA_PACKAGE_NAME);
@@ -672,7 +673,7 @@ public class MiniMainActivity extends AppCompatActivity implements OrbotConstant
     private void enableBridges(boolean enable) {
         Prefs.putBridgesEnabled(enable);
 
-        if (torStatus == TorServiceConstants.STATUS_ON) {
+        if (torStatus == TorService.STATUS_ON) {
             String bridgeList = Prefs.getBridgesList();
             if (bridgeList != null && bridgeList.length() > 0) {
                 requestTorRereadConfig();
@@ -694,7 +695,7 @@ public class MiniMainActivity extends AppCompatActivity implements OrbotConstant
         requestTorStatus();
 
         if (torStatus == null)
-            updateStatus("", TorServiceConstants.STATUS_STOPPING);
+            updateStatus("", TorService.STATUS_STOPPING);
         else
             updateStatus(null, torStatus);
 
@@ -762,7 +763,7 @@ public class MiniMainActivity extends AppCompatActivity implements OrbotConstant
         } else
             torStatus = newTorStatus;
 
-        if (torStatus == TorServiceConstants.STATUS_ON) {
+        if (torStatus == TorService.STATUS_ON) {
 
             imgStatus.setImageResource(R.drawable.toron);
 
@@ -777,7 +778,7 @@ public class MiniMainActivity extends AppCompatActivity implements OrbotConstant
 
                 resultIntent.putExtra(
                         TorServiceConstants.EXTRA_STATUS,
-                        torStatus == null ? TorServiceConstants.STATUS_OFF : torStatus
+                        torStatus == null ? TorService.STATUS_OFF : torStatus
                 );
 
                 setResult(RESULT_OK, resultIntent);
@@ -787,7 +788,7 @@ public class MiniMainActivity extends AppCompatActivity implements OrbotConstant
             }
 
 
-        } else if (torStatus == TorServiceConstants.STATUS_STARTING) {
+        } else if (torStatus == TorService.STATUS_STARTING) {
 
             imgStatus.setImageResource(R.drawable.torstarting);
 
@@ -800,7 +801,7 @@ public class MiniMainActivity extends AppCompatActivity implements OrbotConstant
             //    	lblStatus.setText(getString(R.string.status_starting_up));
 
 
-        } else if (torStatus == TorServiceConstants.STATUS_STOPPING) {
+        } else if (torStatus == TorService.STATUS_STOPPING) {
 
             //	  if (torServiceMsg != null && torServiceMsg.contains(TorServiceConstants.LOG_NOTICE_HEADER))
             //    	lblStatus.setText(torServiceMsg);
@@ -808,7 +809,7 @@ public class MiniMainActivity extends AppCompatActivity implements OrbotConstant
             imgStatus.setImageResource(R.drawable.torstarting);
 //            lblStatus.setText(torServiceMsg);
 
-        } else if (torStatus == TorServiceConstants.STATUS_OFF) {
+        } else if (torStatus == TorService.STATUS_OFF) {
 
             imgStatus.setImageResource(R.drawable.toroff);
             //          lblStatus.setText("Tor v" + OrbotService.BINARY_TOR_VERSION);
@@ -840,7 +841,7 @@ public class MiniMainActivity extends AppCompatActivity implements OrbotConstant
 
     public boolean onLongClick(View view) {
 
-        if (torStatus == TorServiceConstants.STATUS_OFF) {
+        if (torStatus == TorService.STATUS_OFF) {
             startTor();
         } else {
             stopTor();
