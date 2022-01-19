@@ -8,10 +8,7 @@ import net.freehaven.tor.control.TorControlCommands;
 class OrbotRawEventListener implements RawEventListener {
 
     private OrbotService mService;
-    private long mLastRead, mLastWritten;
     private long mTotalBandwidthWritten, mTotalBandwidthRead;
-
-    private static final long BANDWIDTH_THRESHOLD = 00;
 
     OrbotRawEventListener(OrbotService orbotService) {
         mService = orbotService;
@@ -22,10 +19,10 @@ class OrbotRawEventListener implements RawEventListener {
     @Override
     public void onEvent(String keyword, String data) {
         String[] payload = data.split(" ");
-        if (keyword.equals(TorControlCommands.EVENT_BANDWIDTH_USED)) {
-            Log.d("bim", "OEL keyword " + keyword);
-            Log.d("bim", "OEL data " + data);
+        if (TorControlCommands.EVENT_BANDWIDTH_USED.equals(keyword)) {
             handleBandwidth(Long.parseLong(payload[0]), Long.parseLong(payload[1]));
+        } else if (TorControlCommands.EVENT_NEW_DESC.equals(keyword)) {
+            handleNewDescriptors(payload);
         }
     }
 
@@ -43,5 +40,11 @@ class OrbotRawEventListener implements RawEventListener {
         mService.sendCallbackBandwidth(written, read, mTotalBandwidthWritten, mTotalBandwidthRead);
 
     }
+
+    private void handleNewDescriptors(String[] descriptors) {
+        for (String descriptor : descriptors)
+            mService.debug("descriptors: " + descriptor);
+    }
+
 
 }

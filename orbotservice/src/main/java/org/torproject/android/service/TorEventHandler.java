@@ -37,10 +37,6 @@ public class TorEventHandler implements EventHandler, TorServiceConstants {
 
     @Override
     public void newDescriptors(List<String> orList) {
-
-        for (String desc : orList)
-            mService.debug("descriptors: " + desc);
-
     }
 
     @Override
