@@ -221,10 +221,14 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         mNotifyBuilder.setContentTitle(title);
 
         mNotifyBuilder.mActions.clear(); // clear out any notification actions, if any
-        if (conn != null) { // only add new identity action when there is a connection
+        if (conn != null && mCurrentStatus.equals(STATUS_ON)) { // only add new identity action when there is a connection
             Intent intentRefresh = new Intent(TorControlCommands.SIGNAL_NEWNYM);
             PendingIntent pendingIntentNewNym = PendingIntent.getBroadcast(this, 0, intentRefresh, PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);
             mNotifyBuilder.addAction(R.drawable.ic_refresh_white_24dp, getString(R.string.menu_new_identity), pendingIntentNewNym);
+        } else if (mCurrentStatus.equals(STATUS_OFF)) {
+            Intent intentConnect = new Intent(ACTION_START);
+            PendingIntent pendingIntentConnect = PendingIntent.getBroadcast(this, 0, intentConnect, PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);
+            mNotifyBuilder.addAction(R.drawable.ic_stat_tor, getString(R.string.connect_to_tor), pendingIntentConnect);
         }
 
         mNotifyBuilder.setContentText(notifyMsg)
@@ -481,6 +485,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             IntentFilter filter = new IntentFilter();
             filter.addAction(TorControlCommands.SIGNAL_NEWNYM);
             filter.addAction(CMD_ACTIVE);
+            filter.addAction(ACTION_START);
             mActionBroadcastReceiver = new ActionBroadcastReceiver();
             registerReceiver(mActionBroadcastReceiver, filter);
 
@@ -1509,6 +1514,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 }
                 case CMD_ACTIVE: {
                     sendSignalActive();
+                    break;
+                }
+                case ACTION_START: {
+                    startTor();
                     break;
                 }
             }

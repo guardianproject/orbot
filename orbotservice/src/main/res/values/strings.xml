@@ -6,6 +6,7 @@
     <string name="status_activated">Connected to the Tor network</string>
     <string name="status_disabled">Orbot is deactivated</string>
     <string name="status_shutting_down">TorService is shutting down</string>
+    <string name="connect_to_tor">Connect to Tor</string>
 
     <string name="couldn_t_start_tor_process_">Couldn\'t start Tor process: </string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">Your ReachableAddresses settings caused an exception!</string>
