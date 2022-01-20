@@ -60,12 +60,10 @@ public class OrbotRawEventListener implements RawEventListener {
     }
 
     private void handleBandwidth(long read, long written) {
-        String sb = OrbotService.formatBandwidthCount(mService, read) + " \u2193" + " / " +
+        String message = OrbotService.formatBandwidthCount(mService, read) + " \u2193" + " / " +
                 OrbotService.formatBandwidthCount(mService, written) + " \u2191";
 
-        int icon = read == 0 && written == 0 ? R.drawable.ic_stat_tor : R.drawable.ic_stat_tor_xfer;
-
-        mService.showToolbarNotification(sb, OrbotService.NOTIFY_ID, icon);
+        mService.showBandwidthNotification(message, read != 0 || written != 0);
 
         mTotalBandwidthWritten += written;
         mTotalBandwidthRead += read;

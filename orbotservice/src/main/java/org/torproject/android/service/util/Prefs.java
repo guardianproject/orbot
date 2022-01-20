@@ -96,7 +96,7 @@ public class Prefs {
         putString(PREF_DEFAULT_LOCALE, value);
     }
 
-    public static boolean expandedNotifications() {
+    public static boolean showExpandedNotifications() {
         return prefs.getBoolean(PREF_EXPANDED_NOTIFICATIONS, true);
     }
 
