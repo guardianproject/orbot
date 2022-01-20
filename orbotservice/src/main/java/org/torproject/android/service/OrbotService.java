@@ -238,6 +238,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         if (!Prefs.persistNotifications())
             mNotifyBuilder.setPriority(Notification.PRIORITY_LOW);
 
+        if (Prefs.showExpandedNotifications() && mCurrentStatus.equals(STATUS_ON)) {
+            mNotifyBuilder.setSubText("127.0.0.1 (Canada)");
+        } else {
+            mNotifyBuilder.setSubText("");
+        }
+
         Notification notification = mNotifyBuilder.build();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -933,12 +939,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             new Thread() {
                 public void run() {
                     try {
-                        int iconId = R.drawable.ic_stat_tor;
-
-                        if (conn != null) {
-                            if (mCurrentStatus.equals(STATUS_ON) && Prefs.showExpandedNotifications())
-                                showToolbarNotification(getString(R.string.newnym), NOTIFY_ID, iconId);
-
+                        if (conn != null && mCurrentStatus.equals(STATUS_ON)) {
+                            showToolbarNotification(getString(R.string.newnym), NOTIFY_ID, R.drawable.ic_stat_tor);
                             conn.signal(TorControlCommands.SIGNAL_NEWNYM);
                         }
 
