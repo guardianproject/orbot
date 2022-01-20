@@ -412,12 +412,20 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             ArrayList<String> cList = new ArrayList<>();
             cList.add(0, getString(R.string.vpn_default_world));
 
-            for (int i = 0; i < COUNTRY_CODES.length; i++) {
-                Locale locale = new Locale("", COUNTRY_CODES[i]);
-                cList.add(locale.getDisplayCountry());
 
-                if (currentExit.contains(COUNTRY_CODES[i]))
-                    selIdx = i + 1;
+            Map<String, Locale> sortedCountries = new TreeMap<>(); // tree map sorts by key...
+            for (String countryCode : COUNTRY_CODES) {
+                Locale locale = new Locale("", countryCode);
+                sortedCountries.put(locale.getDisplayCountry(), locale);
+            }
+
+            int index = 0;
+
+            for (String countryDisplayName : sortedCountries.keySet()) {
+                cList.add(countryDisplayName);
+                if (currentExit.contains(sortedCountries.get(countryDisplayName).getCountry()))
+                    selIdx =  index + 1;
+                index++;
             }
 
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cList);
@@ -441,21 +449,21 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                     String country;
 
+                    Object[] countries = sortedCountries.keySet().toArray();
+
                     if (position == 0)
                         country = "";
                     else
-                        country = '{' + COUNTRY_CODES[position - 1] + '}';
+                        country = '{' + sortedCountries.get(countries[position -1].toString()).getCountry() + '}';
 
                     Intent intent = new Intent(OrbotMainActivity.this, OrbotService.class);
                     intent.setAction(TorServiceConstants.CMD_SET_EXIT);
                     intent.putExtra("exit", country);
                     startService(intent);
-
                 }
 
                 @Override
                 public void onNothingSelected(AdapterView<?> parentView) {
-                    // your code here
                 }
 
             });
