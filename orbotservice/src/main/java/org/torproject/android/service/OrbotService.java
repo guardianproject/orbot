@@ -208,9 +208,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             mNotifyBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
                     .setSmallIcon(R.drawable.ic_stat_tor)
                     .setContentIntent(pendIntent)
-                    .setCategory(Notification.CATEGORY_SERVICE)
-                    .setOngoing(Prefs.persistNotifications());
+                    .setCategory(Notification.CATEGORY_SERVICE);
         }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            mNotifyBuilder.setOngoing(true);
+        else mNotifyBuilder.setOngoing(Prefs.persistNotifications());
 
         String title = getString(R.string.status_disabled);
         if (mCurrentStatus.equals(STATUS_STARTING))
@@ -235,7 +238,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 .setSmallIcon(icon)
                 .setTicker(notifyType != NOTIFY_ID ? notifyMsg : null);
 
-        if (!Prefs.persistNotifications())
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O && !Prefs.persistNotifications())
             mNotifyBuilder.setPriority(Notification.PRIORITY_LOW);
 
         if (!mCurrentStatus.equals(STATUS_ON)) {
@@ -246,7 +249,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForeground(NOTIFY_ID, notification);
-        } else if (Prefs.persistNotifications() && (!mNotificationShowing)) {
+        } else if (Prefs.persistNotifications() && !mNotificationShowing) {
             startForeground(NOTIFY_ID, notification);
             logNotice("Set background service to FOREGROUND");
         } else {

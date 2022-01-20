@@ -3,6 +3,7 @@ package org.torproject.android.core.ui
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.preference.*
 import android.preference.Preference.OnPreferenceChangeListener
@@ -36,6 +37,14 @@ class SettingsPreferencesActivity : PreferenceActivity() {
         findPreference("pref_be_a_snowflake")?.isEnabled = !bridgesEnabled
         findPreference("pref_be_a_snowflake_limit")?.isEnabled = !bridgesEnabled
         findPreference("pref_show_snowflake_proxy_msg")?.isEnabled = !bridgesEnabled
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // if defined in XML, disable the persistent notification preference on Oreo+
+            findPreference("pref_persistent_notifications")?.let {
+                preferenceScreen?.removePreference(it)
+            }
+        }
+
     }
 
     override fun attachBaseContext(newBase: Context) = super.attachBaseContext(LocaleHelper.onAttach(newBase))
