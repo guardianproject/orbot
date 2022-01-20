@@ -115,6 +115,7 @@ public class OrbotRawEventListener implements RawEventListener {
             String fingerprint = exit.split("~")[0].substring(1);
             exitNodeMap.put((int) id, new ExitNode(fingerprint));
         } else if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_CLOSED)) {
+
             exitNodeMap.remove(Integer.parseInt(circuitId));
         }
     }

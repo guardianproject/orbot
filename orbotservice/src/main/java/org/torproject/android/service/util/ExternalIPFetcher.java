@@ -26,6 +26,7 @@ public class ExternalIPFetcher implements Runnable {
         mLocalHttpProxyPort = localProxyPort;
     }
 
+    @Override
     public void run() {
         try {
             Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", mLocalHttpProxyPort));
@@ -56,7 +57,7 @@ public class ExternalIPFetcher implements Runnable {
                 mNode.country = jsonRelays.getJSONObject(0).getString("country_name");
                 mNode.organization = jsonRelays.getJSONObject(0).getString("as_name");
 
-                StringBuffer sbInfo = new StringBuffer();
+                StringBuilder sbInfo = new StringBuilder();
                 sbInfo.append(mNode.name).append("(");
                 sbInfo.append(mNode.ipAddress).append(")");
 
