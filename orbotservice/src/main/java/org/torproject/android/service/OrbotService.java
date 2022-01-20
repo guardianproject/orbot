@@ -942,6 +942,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 public void run() {
                     try {
                         if (conn != null && mCurrentStatus.equals(STATUS_ON)) {
+                            mNotifyBuilder.setSubText(null); // clear previous exit node info if present
                             showToolbarNotification(getString(R.string.newnym), NOTIFY_ID, R.drawable.ic_stat_tor);
                             conn.signal(TorControlCommands.SIGNAL_NEWNYM);
                         }

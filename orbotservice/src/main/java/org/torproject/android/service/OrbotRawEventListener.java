@@ -1,8 +1,5 @@
 package org.torproject.android.service;
 
-import static org.torproject.jni.TorService.STATUS_ON;
-import static org.torproject.jni.TorService.STATUS_STARTING;
-
 import android.text.TextUtils;
 
 import net.freehaven.tor.control.RawEventListener;
@@ -11,6 +8,7 @@ import net.freehaven.tor.control.TorControlCommands;
 import org.torproject.android.service.util.ExpandedNotificationExitNodeResolver;
 import org.torproject.android.service.util.ExternalIPFetcher;
 import org.torproject.android.service.util.Prefs;
+import org.torproject.jni.TorService;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -130,15 +128,15 @@ public class OrbotRawEventListener implements RawEventListener {
         } else if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_CLOSED)) {
             exitNodeMap.remove(id);
             ignoredInternalCircuits.remove(id);
-        } else if (circuitStatus.equals(TorControlCommands.CIRC_STATUS_FAILED)) {
+        } else if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_FAILED)) {
             ignoredInternalCircuits.remove(id);
         }
     }
 
     private void handleCircuitStatus(String circuitStatus, String circuitId, String path) {
         /* once the first circuit is complete, then announce that Orbot is on*/
-        if (mService.getCurrentStatus().equals(STATUS_STARTING) && circuitStatus.equals(TorControlCommands.CIRC_EVENT_BUILT))
-            mService.sendCallbackStatus(STATUS_ON);
+        if (mService.getCurrentStatus().equals(TorService.STATUS_STARTING) && circuitStatus.equals(TorControlCommands.CIRC_EVENT_BUILT))
+            mService.sendCallbackStatus(TorService.STATUS_ON);
 
         if (!Prefs.useDebugLogging()) return;
 
@@ -195,23 +193,19 @@ public class OrbotRawEventListener implements RawEventListener {
             if (st.hasMoreTokens())
                 sb.append(" > ");
 
-            if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_EXTENDED)) {
+            if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_EXTENDED) && isFirstNode) {
+                hmBuiltNodes.put(node.id, node);
 
-                if (isFirstNode) {
-                    hmBuiltNodes.put(node.id, node);
-
-                    if (node.ipAddress == null && (!node.isFetchingInfo) && Prefs.useDebugLogging()) {
-                        node.isFetchingInfo = true;
-                        mService.exec(new ExternalIPFetcher(mService, node, OrbotService.mPortHTTP));
-                    }
-
-                    isFirstNode = false;
+                if (node.ipAddress == null && (!node.isFetchingInfo) && Prefs.useDebugLogging()) {
+                    node.isFetchingInfo = true;
+                    mService.exec(new ExternalIPFetcher(mService, node, OrbotService.mPortHTTP));
                 }
+
+                isFirstNode = false;
             } else if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_LAUNCHED)) {
                 if (Prefs.useDebugLogging() && nodeCount > 3)
                     mService.debug(sb.toString());
             } else if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_CLOSED)) {
-                //  mService.logNotice(sb.toString());
                 hmBuiltNodes.remove(node.id);
             }
 
