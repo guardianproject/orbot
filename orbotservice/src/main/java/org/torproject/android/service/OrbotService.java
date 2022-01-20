@@ -76,7 +76,6 @@ import java.util.concurrent.TimeoutException;
 
 import IPtProxy.IPtProxy;
 import IPtProxy.SnowflakeClientConnected;
-import androidx.annotation.ChecksSdkIntAtLeast;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -113,8 +112,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     public static File appBinHome;
     public static File appCacheHome;
     private final ExecutorService mExecutor = Executors.newCachedThreadPool();
-    @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.LOLLIPOP)
-    boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     OrbotRawEventListener mOrbotRawEventListener;
     OrbotVpnManager mVpnManager;
     Handler mHandler;
@@ -717,10 +714,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
             ArrayList<String> customEnv = new ArrayList<>();
 
-            if (Prefs.bridgesEnabled())
-                if (Prefs.useVpn() && !mIsLollipop) {
-                    customEnv.add("TOR_PT_PROXY=socks5://" + OrbotVpnManager.sSocksProxyLocalhost + ":" + OrbotVpnManager.sSocksProxyServerPort);
-                }
+            if (Prefs.bridgesEnabled() && Prefs.useVpn())
+                customEnv.add("TOR_PT_PROXY=socks5://" + OrbotVpnManager.sSocksProxyLocalhost + ":" + OrbotVpnManager.sSocksProxyServerPort);
 
             startTorService();
 
@@ -1027,11 +1022,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         if (!Prefs.bridgesEnabled()) {
             extraLines.append("UseBridges 0").append('\n');
             if (Prefs.useVpn()) { //set the proxy here if we aren't using a bridge
-                if (!mIsLollipop) {
-                    String proxyType = "socks5";
-                    extraLines.append(proxyType + "Proxy" + ' ' + OrbotVpnManager.sSocksProxyLocalhost + ':' + OrbotVpnManager.sSocksProxyServerPort).append('\n');
-                }
-
+                String proxyType = "socks5";
+                extraLines.append(proxyType + "Proxy" + ' ' + OrbotVpnManager.sSocksProxyLocalhost + ':' + OrbotVpnManager.sSocksProxyServerPort).append('\n');
             } else {
                 String proxyType = prefs.getString("pref_proxy_type", null);
                 if (proxyType != null && proxyType.length() > 0) {

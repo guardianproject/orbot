@@ -2,6 +2,7 @@ package org.torproject.android.service.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 
 import org.torproject.android.service.OrbotConstants;
 
@@ -117,6 +118,7 @@ public class Prefs {
     }
 
     public static boolean useVpn() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return false;
         return prefs.getBoolean(PREF_USE_VPN, false);
     }
 
