@@ -2,10 +2,12 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</string>
-    <string name="status_starting_up">Orbot is starting&#8230;</string>
-    <string name="status_activated">Connected to the Tor network</string>
-    <string name="status_disabled">Orbot is deactivated</string>
-    <string name="status_shutting_down">TorService is shutting down</string>
+    <string name="status_starting_up">Orbot is Starting&#8230;</string>
+    <string name="status_activated">Connected to the Tor Network</string>
+    <string name="status_disabled">Orbot is Deactivated</string>
+    <string name="open_orbot_to_connect_to_tor">Open Orbot to Connect to Tor</string>
+    <string name="status_shutting_down">Orbot is Shutting Down</string>
+    <string name="connect_to_tor">Connect to Tor</string>
 
     <string name="couldn_t_start_tor_process_">Couldn\'t start Tor process: </string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">Your ReachableAddresses settings caused an exception!</string>
