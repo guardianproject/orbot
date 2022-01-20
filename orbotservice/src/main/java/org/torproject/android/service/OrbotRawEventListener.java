@@ -13,7 +13,9 @@ import org.torproject.android.service.util.ExternalIPFetcher;
 import org.torproject.android.service.util.Prefs;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 public class OrbotRawEventListener implements RawEventListener {
@@ -21,6 +23,10 @@ public class OrbotRawEventListener implements RawEventListener {
     private long mTotalBandwidthWritten, mTotalBandwidthRead;
     private final Map<String, Node> hmBuiltNodes;
     private Map<Integer, ExitNode> exitNodeMap;
+    private Set<Integer> ignoredInternalCircuits;
+
+    private static final String CIRCUIT_BUILD_FLAG_IS_INTERNAL = "IS_INTERNAL";
+    private static final String CIRCUIT_BUILD_FLAG_ONE_HOP_TUNNEL = "ONEHOP_TUNNEL";
 
     OrbotRawEventListener(OrbotService orbotService) {
         mService = orbotService;
@@ -28,8 +34,10 @@ public class OrbotRawEventListener implements RawEventListener {
         mTotalBandwidthWritten = 0;
         hmBuiltNodes = new HashMap<>();
 
-        if (Prefs.showExpandedNotifications())
+        if (Prefs.showExpandedNotifications()) {
             exitNodeMap = new HashMap<>();
+            ignoredInternalCircuits = new HashSet<>();
+        }
     }
 
     @Override
@@ -52,8 +60,13 @@ public class OrbotRawEventListener implements RawEventListener {
                 path = "";
             else path = payload[2];
             handleCircuitStatus(status, circuitId, path);
-            if (Prefs.showExpandedNotifications())
+            if (Prefs.showExpandedNotifications()) {
+                // don't bother looking up internal circuits that Orbot clients won't directly use
+                if (data.contains(CIRCUIT_BUILD_FLAG_ONE_HOP_TUNNEL) || data.contains(CIRCUIT_BUILD_FLAG_IS_INTERNAL)) {
+                    ignoredInternalCircuits.add(Integer.parseInt(circuitId));
+                }
                 handleCircuitStatusExpandedNotifications(status, circuitId, path);
+            }
         } else if (TorControlCommands.EVENT_OR_CONN_STATUS.equals(keyword)) {
             handleConnectionStatus(payload[1], payload[0]);
         } else if (TorControlCommands.EVENT_DEBUG_MSG.equals(keyword) || TorControlCommands.EVENT_INFO_MSG.equals(keyword) ||
@@ -107,16 +120,18 @@ public class OrbotRawEventListener implements RawEventListener {
     }
 
     private void handleCircuitStatusExpandedNotifications(String circuitStatus, String circuitId, String path) {
+        int id = Integer.parseInt(circuitId);
         if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_BUILT)) {
-            if (!Prefs.showExpandedNotifications()) return;
-            long id = Long.parseLong(circuitId);
+            if (ignoredInternalCircuits.contains(id)) return; // this circuit won't be used by user clients
             String[] nodes = path.split(",");
             String exit = nodes[nodes.length - 1];
             String fingerprint = exit.split("~")[0].substring(1);
-            exitNodeMap.put((int) id, new ExitNode(fingerprint));
+            exitNodeMap.put(id, new ExitNode(fingerprint));
         } else if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_CLOSED)) {
-
-            exitNodeMap.remove(Integer.parseInt(circuitId));
+            exitNodeMap.remove(id);
+            ignoredInternalCircuits.remove(id);
+        } else if (circuitStatus.equals(TorControlCommands.CIRC_STATUS_FAILED)) {
+            ignoredInternalCircuits.remove(id);
         }
     }
 
