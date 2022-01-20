@@ -89,6 +89,7 @@ import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP;
+import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_FOREGROUND_TASK;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
 import static org.torproject.android.service.TorServiceConstants.DIRECTORY_TOR_DATA;
 import static org.torproject.android.service.TorServiceConstants.STATUS_OFF;
@@ -303,13 +304,11 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private boolean waitingToStop = false;
 
     private void stopTor() {
-
-        if (torStatus.equals(TorServiceConstants.STATUS_ON))
-        {
+        if (torStatus.equals(TorServiceConstants.STATUS_ON)) {
             if (mBtnVPN.isChecked()) sendIntentToService(ACTION_STOP_VPN);
             sendIntentToService(ACTION_STOP);
         }
-        else if (torStatus.equals(STATUS_STARTING)||torStatus.equals(STATUS_STOPPING)) {
+        else if (torStatus.equals(STATUS_STARTING) || torStatus.equals(STATUS_STOPPING)) {
 
             if (!waitingToStop) {
                 waitingToStop = true;
@@ -322,12 +321,13 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                 }, 3000);
             }
+        } else { // tor isn't running, but we need to stop the service
+            sendIntentToService(ACTION_STOP_FOREGROUND_TASK);
         }
 
         SnowfallView sv = findViewById(R.id.snowflake_view);
         sv.setVisibility(View.GONE);
         sv.stopFalling();
-
     }
 
     private void doLayout() {
@@ -488,7 +488,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             Intent intent = SettingsPreferencesActivity.createIntent(this, R.xml.preferences);
             startActivityForResult(intent, REQUEST_SETTINGS);
         } else if (item.getItemId() == R.id.menu_exit) {
-            doExit(); // exit app
+            doExit();
         } else if (item.getItemId() == R.id.menu_about) {
             new AboutDialogFragment().show(getSupportFragmentManager(), AboutDialogFragment.TAG);
         } else if (item.getItemId() == R.id.menu_v3_onion_services) {

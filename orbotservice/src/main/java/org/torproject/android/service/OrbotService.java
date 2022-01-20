@@ -264,13 +264,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     @Override
     public void onDestroy() {
         try {
-            //   unregisterReceiver(mNetworkStateReceiver);
             unregisterReceiver(mActionBroadcastReceiver);
         } catch (IllegalArgumentException iae) {
             //not registered yet
         }
-
-
 
         super.onDestroy();
     }
@@ -1414,7 +1411,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                         else if (useIPtSnowflakeProxyAMPRendezvous())
                             startSnowflakeClientAmpRendezvous();
                     } else if (Prefs.beSnowflakeProxy()) {
-//                        if (Prefs.limitSnowflakeProxying()) {
                             enableSnowflakeProxy();
                     }
 
@@ -1440,6 +1436,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     stopTorAsync();
                 } else if (action.equals(ACTION_UPDATE_ONION_NAMES)) {
                     updateV3OnionNames();
+                } else if (action.equals(ACTION_STOP_FOREGROUND_TASK)) {
+                    stopForeground(true);
                 }
                 else if (action.equals(ACTION_START_VPN)) {
                     if (mVpnManager != null && (!mVpnManager.isStarted())) {

@@ -31,6 +31,9 @@ public interface TorServiceConstants {
     String ACTION_START = "org.torproject.android.intent.action.START";
     String ACTION_STOP = "org.torproject.android.intent.action.STOP";
 
+    // needed when Orbot exits and tor is not running, but the notification is still active
+    String ACTION_STOP_FOREGROUND_TASK = "org.torproject.android.intent.action.STOP_FOREGROUND_TASK";
+
     String ACTION_START_VPN = "org.torproject.android.intent.action.START_VPN";
     String ACTION_STOP_VPN = "org.torproject.android.intent.action.STOP_VPN";
 
