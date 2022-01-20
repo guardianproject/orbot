@@ -254,7 +254,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (!mNotificationShowing)
-            showToolbarNotification(getString(R.string.status_disabled), NOTIFY_ID, R.drawable.ic_stat_tor);
+            showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor);
 
         if (intent != null)
             mExecutor.execute(new IncomingIntentRouter(intent));

@@ -5,6 +5,7 @@
     <string name="status_starting_up">Orbot is starting&#8230;</string>
     <string name="status_activated">Connected to the Tor network</string>
     <string name="status_disabled">Orbot is deactivated</string>
+    <string name="open_orbot_to_connect_to_tor">Open Orbot to Connect to Tor</string>
     <string name="status_shutting_down">TorService is shutting down</string>
     <string name="connect_to_tor">Connect to Tor</string>
 
