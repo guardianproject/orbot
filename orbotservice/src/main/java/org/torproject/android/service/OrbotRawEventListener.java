@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import net.freehaven.tor.control.RawEventListener;
 import net.freehaven.tor.control.TorControlCommands;
 
+import org.torproject.android.service.util.ExpandedNotificationExitNodeResolver;
 import org.torproject.android.service.util.ExternalIPFetcher;
 import org.torproject.android.service.util.Prefs;
 
@@ -16,18 +17,19 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class OrbotRawEventListener implements RawEventListener {
-
-    private OrbotService mService;
+    private final OrbotService mService;
     private long mTotalBandwidthWritten, mTotalBandwidthRead;
-
     private final Map<String, Node> hmBuiltNodes;
-
+    private Map<Integer, ExitNode> exitNodeMap;
 
     OrbotRawEventListener(OrbotService orbotService) {
         mService = orbotService;
         mTotalBandwidthRead = 0;
         mTotalBandwidthWritten = 0;
         hmBuiltNodes = new HashMap<>();
+
+        if (Prefs.showExpandedNotifications())
+            exitNodeMap = new HashMap<>();
     }
 
     @Override
@@ -38,7 +40,10 @@ public class OrbotRawEventListener implements RawEventListener {
         } else if (TorControlCommands.EVENT_NEW_DESC.equals(keyword)) {
             handleNewDescriptors(payload);
         } else if (TorControlCommands.EVENT_STREAM_STATUS.equals(keyword)) {
-            handleStreamStatus(payload[1], payload[0], payload[3]);
+            if (Prefs.showExpandedNotifications())
+                handleStreamEventExpandedNotifications(payload[1], payload[3], payload[2], payload[4]);
+            if (Prefs.useDebugLogging())
+                handleStreamEventsDebugLogging(payload[1], payload[0]);
         } else if (TorControlCommands.EVENT_CIRCUIT_STATUS.equals(keyword)) {
             String status = payload[1];
             String circuitId = payload[0];
@@ -47,6 +52,8 @@ public class OrbotRawEventListener implements RawEventListener {
                 path = "";
             else path = payload[2];
             handleCircuitStatus(status, circuitId, path);
+            if (Prefs.showExpandedNotifications())
+                handleCircuitStatusExpandedNotifications(status, circuitId, path);
         } else if (TorControlCommands.EVENT_OR_CONN_STATUS.equals(keyword)) {
             handleConnectionStatus(payload[1], payload[0]);
         } else if (TorControlCommands.EVENT_DEBUG_MSG.equals(keyword) || TorControlCommands.EVENT_INFO_MSG.equals(keyword) ||
@@ -77,14 +84,44 @@ public class OrbotRawEventListener implements RawEventListener {
             mService.debug("descriptors: " + descriptor);
     }
 
-    private void handleStreamStatus(String status, String streamId, String target) {
-        String streamStatusMessage = "StreamStatus (" + streamId + "): " + status;
-        mService.debug(streamStatusMessage);
+    private void handleStreamEventExpandedNotifications(String status, String target, String circuitId, String clientProtocol) {
+        if (!status.equals(TorControlCommands.STREAM_EVENT_SUCCEEDED)) return;
+        if (!clientProtocol.contains("SOCKS5")) return;
+        int id = Integer.parseInt(circuitId);
+        if (target.contains(".onion")) return; // don't display to users exit node info for onion addresses!
+        ExitNode node = exitNodeMap.get(id);
+        if (node != null) {
+            if (node.country == null && !node.querying) {
+                node.querying = true;
+                mService.exec(new ExpandedNotificationExitNodeResolver(mService, OrbotService.mPortHTTP, node));
+            } else {
+                if (node.country != null)
+                    mService.setNotificationSubtext(node.ipAddress + " | " + node.country);
+                else mService.setNotificationSubtext(null);
+            }
+        }
+    }
+
+    private void handleStreamEventsDebugLogging(String streamId, String status) {
+        mService.debug("StreamStatus (" + streamId + "): " + status);
+    }
+
+    private void handleCircuitStatusExpandedNotifications(String circuitStatus, String circuitId, String path) {
+        if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_BUILT)) {
+            if (!Prefs.showExpandedNotifications()) return;
+            long id = Long.parseLong(circuitId);
+            String[] nodes = path.split(",");
+            String exit = nodes[nodes.length - 1];
+            String fingerprint = exit.split("~")[0].substring(1);
+            exitNodeMap.put((int) id, new ExitNode(fingerprint));
+        } else if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_CLOSED)) {
+            exitNodeMap.remove(Integer.parseInt(circuitId));
+        }
     }
 
     private void handleCircuitStatus(String circuitStatus, String circuitId, String path) {
         /* once the first circuit is complete, then announce that Orbot is on*/
-        if (mService.getCurrentStatus() == STATUS_STARTING && TextUtils.equals(circuitStatus, "BUILT"))
+        if (mService.getCurrentStatus().equals(STATUS_STARTING) && circuitStatus.equals(TorControlCommands.CIRC_EVENT_BUILT))
             mService.sendCallbackStatus(STATUS_ON);
 
         if (!Prefs.useDebugLogging()) return;
@@ -142,7 +179,7 @@ public class OrbotRawEventListener implements RawEventListener {
             if (st.hasMoreTokens())
                 sb.append(" > ");
 
-            if (circuitStatus.equals("EXTENDED")) {
+            if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_EXTENDED)) {
 
                 if (isFirstNode) {
                     hmBuiltNodes.put(node.id, node);
@@ -154,12 +191,10 @@ public class OrbotRawEventListener implements RawEventListener {
 
                     isFirstNode = false;
                 }
-            } else if (circuitStatus.equals("BUILT")) {
-                //   mService.logNotice(sb.toString());
-
+            } else if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_LAUNCHED)) {
                 if (Prefs.useDebugLogging() && nodeCount > 3)
                     mService.debug(sb.toString());
-            } else if (circuitStatus.equals("CLOSED")) {
+            } else if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_CLOSED)) {
                 //  mService.logNotice(sb.toString());
                 hmBuiltNodes.remove(node.id);
             }
@@ -183,6 +218,20 @@ public class OrbotRawEventListener implements RawEventListener {
         return hmBuiltNodes;
     }
 
+    /**
+     * Used to store metadata about an exit node if expanded notifications are turned on
+     */
+    public static class ExitNode {
+        ExitNode(String fingerPrint) {
+            this.fingerPrint = fingerPrint;
+        }
+        public String fingerPrint;
+        public String country;
+        public String ipAddress;
+        boolean querying = false;
+    }
+
+
     public static class Node {
         public String status;
         public String id;
@@ -203,5 +252,4 @@ public class OrbotRawEventListener implements RawEventListener {
         }
         return node;
     }
-
 }

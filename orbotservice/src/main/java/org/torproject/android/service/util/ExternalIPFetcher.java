@@ -15,10 +15,10 @@ import java.net.URLConnection;
 
 public class ExternalIPFetcher implements Runnable {
 
-    private final static String ONIONOO_BASE_URL = "https://onionoo.torproject.org/details?fields=country_name,as_name,or_addresses&lookup=";
-    private OrbotService mService;
-    private OrbotRawEventListener.Node mNode;
-    private int mLocalHttpProxyPort = 8118;
+    private static final String ONIONOO_BASE_URL = "https://onionoo.torproject.org/details?fields=country_name,as_name,or_addresses&lookup=";
+    private final OrbotService mService;
+    private final OrbotRawEventListener.Node mNode;
+    private final int mLocalHttpProxyPort;
 
     public ExternalIPFetcher(OrbotService service, OrbotRawEventListener.Node node, int localProxyPort) {
         mService = service;
@@ -28,11 +28,8 @@ public class ExternalIPFetcher implements Runnable {
 
     public void run() {
         try {
-
-            URLConnection conn;
-
             Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", mLocalHttpProxyPort));
-            conn = new URL(ONIONOO_BASE_URL + mNode.id).openConnection(proxy);
+            URLConnection conn = new URL(ONIONOO_BASE_URL + mNode.id).openConnection(proxy);
 
             conn.setRequestProperty("Connection", "Close");
             conn.setConnectTimeout(60000);
@@ -44,7 +41,7 @@ public class ExternalIPFetcher implements Runnable {
 
             // getting JSON string from URL
 
-            StringBuffer json = new StringBuffer();
+            StringBuilder json = new StringBuilder();
             String line;
 
             while ((line = reader.readLine()) != null)
@@ -70,15 +67,11 @@ public class ExternalIPFetcher implements Runnable {
                     sbInfo.append(" (").append(mNode.organization).append(')');
 
                 mService.debug(sbInfo.toString());
-
             }
 
             reader.close();
             is.close();
-
-
         } catch (Exception e) {
-
             //    mService.debug ("Error getting node details from onionoo: " + e.getMessage());
         }
     }

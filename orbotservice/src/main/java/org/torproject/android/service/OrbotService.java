@@ -507,7 +507,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             mVpnManager = new OrbotVpnManager(this);
 
             loadCdnFronts(this);
-
         } catch (Exception e) {
             //what error here
             Log.e(OrbotConstants.TAG, "Error setting up Orbot", e);
@@ -820,6 +819,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     events.add(TorControlCommands.EVENT_DEBUG_MSG);
                     events.add(TorControlCommands.EVENT_INFO_MSG);
                 }
+                if (Prefs.useDebugLogging() || Prefs.showExpandedNotifications())
+                    events.add(TorControlCommands.EVENT_STREAM_STATUS);
 
                 if (conn != null) {
                     try {
@@ -933,12 +934,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             new Thread() {
                 public void run() {
                     try {
-                        int iconId = R.drawable.ic_stat_tor;
-
-                        if (conn != null) {
-                            if (mCurrentStatus.equals(STATUS_ON) && Prefs.showExpandedNotifications())
-                                showToolbarNotification(getString(R.string.newnym), NOTIFY_ID, iconId);
-
+                        if (conn != null && mCurrentStatus.equals(STATUS_ON)) {
+                            showToolbarNotification(getString(R.string.newnym), NOTIFY_ID, R.drawable.ic_stat_tor);
                             conn.signal(TorControlCommands.SIGNAL_NEWNYM);
                         }
 
@@ -1271,6 +1268,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             case TRIM_MEMORY_UI_HIDDEN:
                 debug("trim memory requested: app is not showing UI anymore");
                 break;
+        }
+    }
+
+    public void setNotificationSubtext(String message) {
+        if (mNotifyBuilder != null) {
+            mNotifyBuilder.setSubText(message);
         }
     }
 
