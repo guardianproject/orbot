@@ -249,7 +249,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             startForeground(NOTIFY_ID, notification);
         } else if (Prefs.persistNotifications() && !mNotificationShowing) {
             startForeground(NOTIFY_ID, notification);
-            logNotice("Set background service to FOREGROUND");
+            Log.d(OrbotConstants.TAG, "Set background service to FOREGROUND");
         } else {
             mNotificationManager.notify(NOTIFY_ID, notification);
         }
@@ -289,7 +289,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     }
 
     private void stopTorAsync() {
-
         debug("stopTor");
 
         try {
