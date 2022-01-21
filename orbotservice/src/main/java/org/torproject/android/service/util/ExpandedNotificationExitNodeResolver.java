@@ -17,7 +17,7 @@ import java.net.URLConnection;
 
 public class ExpandedNotificationExitNodeResolver implements Runnable {
 
-    private static final String ONIONOO_BASE_URL = "https://onionoo.torproject.org/details?fields=country_name,or_addresses&lookup=";
+    private static final String ONIONOO_BASE_URL = "https://onionoo.torproject.org/details?fields=country,country_name,or_addresses&lookup=";
     private static final int CONNECTION_TIMEOUT_MS = 60000;
     private final OrbotService mService;
     private final int mLocalHttpProxyPort;
@@ -53,7 +53,12 @@ public class ExpandedNotificationExitNodeResolver implements Runnable {
             JSONArray jsonRelays = jsonNodeInfo.getJSONArray("relays");
 
             if (jsonRelays.length() > 0) {
-                exitNode.country = jsonRelays.getJSONObject(0).getString("country_name");
+                String countryCode = jsonRelays.getJSONObject(0).getString("country").toUpperCase();
+                String countryName = jsonRelays.getJSONObject(0).getString("country_name");
+                if (countryCode.length() == 2) {
+                    countryName = convertCountryCodeToFlagEmoji(countryCode) + " " + countryName;
+                }
+                exitNode.country = countryName;
                 exitNode.ipAddress = jsonRelays.getJSONObject(0).getJSONArray("or_addresses").getString(0).split(":")[0];
                 mService.setNotificationSubtext(exitNode.ipAddress + " | " + exitNode.country);
             }
@@ -64,5 +69,14 @@ public class ExpandedNotificationExitNodeResolver implements Runnable {
             Log.d(ExpandedNotificationExitNodeResolver.class.getSimpleName(), "error fingerprint=" + exitNode.fingerPrint);
             Log.d(ExpandedNotificationExitNodeResolver.class.getSimpleName(), e.getMessage());
         }
+    }
+
+    private static String convertCountryCodeToFlagEmoji(String countryCode) {
+        int flagOffset = 0x1F1E6;
+        int asciiOffset = 0x41;
+        int firstChar = Character.codePointAt(countryCode, 0) - asciiOffset + flagOffset;
+        int secondChar = Character.codePointAt(countryCode, 1) - asciiOffset + flagOffset;
+        return new String(Character.toChars(firstChar)) + new String(Character.toChars(secondChar));
+
     }
 }

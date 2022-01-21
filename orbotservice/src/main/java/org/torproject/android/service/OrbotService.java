@@ -160,6 +160,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     }
 
     private void showConnectedToTorNetworkNotification() {
+        mNotifyBuilder.setProgress(0, 0, false);
         showToolbarNotification(getString(R.string.status_activated), NOTIFY_ID, R.drawable.ic_stat_tor);
     }
 
