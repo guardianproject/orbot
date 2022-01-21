@@ -392,6 +392,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     /*
     This is to host a snowflake entrance node / bridge
      */
+    @SuppressWarnings("ConstantConditions")
     private void enableSnowflakeProxy () {
         int capacity = 1;
         String broker = null; // "https://snowflake-broker.bamsoftware.com/";
@@ -1219,6 +1220,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 }
             } catch (Exception e) {
                 Log.e(TAG, "error adding v3 client auth...");
+            } finally {
+                v3auths.close();
             }
         }
     }
