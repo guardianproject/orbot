@@ -846,7 +846,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
 
                     initControlConnection();
-                    showConnectedToTorNetworkNotification();
                 }
 
             }
