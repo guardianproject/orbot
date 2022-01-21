@@ -972,7 +972,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         if (logMessage.indexOf(LOG_NOTICE_HEADER) != -1) {
             notificationMessage = notificationMessage.substring(LOG_NOTICE_HEADER.length());
         }
-        if (mCurrentStatus.equals(STATUS_ON))
+        if (mCurrentStatus.equals(STATUS_ON) && Prefs.showExpandedNotifications())
             showToolbarNotification(notificationMessage, NOTIFY_ID, R.drawable.ic_stat_tor);
         mHandler.post(() -> {
             Intent intent = new Intent(LOCAL_ACTION_LOG); // You can also include some extra data.
