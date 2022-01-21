@@ -1023,8 +1023,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         if (!Prefs.bridgesEnabled()) {
             extraLines.append("UseBridges 0").append('\n');
             if (Prefs.useVpn()) { //set the proxy here if we aren't using a bridge
-                String proxyType = "socks5";
-                extraLines.append(proxyType + "Proxy" + ' ' + OrbotVpnManager.sSocksProxyLocalhost + ':' + OrbotVpnManager.sSocksProxyServerPort).append('\n');
+                if (OrbotVpnManager.sSocksProxyLocalhost != null) {
+                    String proxyType = "socks5";
+                    extraLines.append(proxyType + "Proxy" + ' ' + OrbotVpnManager.sSocksProxyLocalhost + ':' + OrbotVpnManager.sSocksProxyServerPort).append('\n');
+                }
             } else {
                 String proxyType = prefs.getString("pref_proxy_type", null);
                 if (proxyType != null && proxyType.length() > 0) {
