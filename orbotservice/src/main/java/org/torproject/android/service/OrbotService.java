@@ -26,10 +26,8 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.net.VpnService;
-import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
@@ -72,7 +70,6 @@ import java.util.StringTokenizer;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeoutException;
 
 import IPtProxy.IPtProxy;
 import IPtProxy.SnowflakeClientConnected;
@@ -81,6 +78,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+@SuppressWarnings("StringConcatenationInsideStringBufferAppend")
 public class OrbotService extends VpnService implements TorServiceConstants, OrbotConstants {
 
     public final static String BINARY_TOR_VERSION = TorService.VERSION_NAME;
@@ -337,13 +335,11 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     }
 
     private static boolean useIPtSnowflakeProxyDomainFronting() {
-        String bridgeList = Prefs.getBridgesList();
-        return bridgeList.equals("snowflake");
+        return Prefs.getBridgesList().equals("snowflake");
     }
 
     private static boolean useIPtSnowflakeProxyAMPRendezvous() {
-        String bridgeList = Prefs.getBridgesList();
-        return bridgeList.equals("snowflake-amp");
+        return Prefs.getBridgesList().equals("snowflake-amp");
     }
 
     private static HashMap<String,String> mFronts;
@@ -378,9 +374,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         String target = getCdnFront("snowflake-target");
         String front = getCdnFront("snowflake-front");
         String stunServer = getCdnFront("snowflake-stun");
-        String ampCache = null;
 
-        IPtProxy.startSnowflake(stunServer, target, front, ampCache,
+        IPtProxy.startSnowflake(stunServer, target, front, null,
                  null, true, false, false, 1);
     }
 
@@ -416,12 +411,11 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         logNotice("Snowflake Proxy mode ENABLED");
     }
 
-    private void disableSnowflakeProxy () {
+    private void disableSnowflakeProxy() {
         IPtProxy.stopSnowflakeProxy();
-
         logNotice("Snowflake Proxy mode DISABLED");
-
     }
+
     /**
      * if someone stops during startup, we may have to wait for the conn port to be setup, so we can properly shutdown tor
      */
@@ -539,7 +533,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         debug("IPtProxy state: " + fileTestState);
     }
 
-    private File updateTorrcCustomFile() throws IOException, TimeoutException {
+    private File updateTorrcCustomFile() throws IOException {
         SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
 
         StringBuffer extraLines = new StringBuffer();
@@ -660,13 +654,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         return portString;
     }
 
-    public boolean updateTorConfigCustom(File fileTorRcCustom, String extraLines) throws IOException {
+    public void updateTorConfigCustom(File fileTorRcCustom, String extraLines) throws IOException {
         FileWriter fos = new FileWriter(fileTorRcCustom, false);
         PrintWriter ps = new PrintWriter(fos);
         ps.print(extraLines);
         ps.flush();
         ps.close();
-        return true;
     }
 
     /**
@@ -767,7 +760,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                  */
                 String oldStatus = mCurrentStatus;
                 Intent intent = new Intent(LOCAL_ACTION_V3_NAMES_UPDATED);
-            //    intent.putExtra(EXTRA_STATUS, mCurrentStatus);
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 
                 mCurrentStatus = oldStatus;
@@ -853,7 +845,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     Log.d(OrbotConstants.TAG, "TorService: onServiceDisconnected");
 
                 sendCallbackStatus(STATUS_OFF);
-
             }
 
             @Override
@@ -866,7 +857,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 Log.w(OrbotConstants.TAG, "TorService: onBindingDied");
 
                 sendCallbackStatus(STATUS_OFF);
-
             }
         };
 
@@ -928,7 +918,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     }
 
     public void sendSignalActive() {
-        if (conn != null && mCurrentStatus == STATUS_ON) {
+        if (conn != null && mCurrentStatus.equals(STATUS_ON)) {
             try {
                 conn.signal("ACTIVE");
             } catch (IOException e) {
@@ -969,7 +959,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     private void sendCallbackLogMessage(final String logMessage) {
         String notificationMessage = logMessage;
-        if (logMessage.indexOf(LOG_NOTICE_HEADER) != -1) {
+        if (logMessage.contains(LOG_NOTICE_HEADER)) {
             notificationMessage = notificationMessage.substring(LOG_NOTICE_HEADER.length());
         }
         showToolbarNotification(notificationMessage, NOTIFY_ID, R.drawable.ic_stat_tor);
@@ -1008,8 +998,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
      * @see {@link ContextWrapper#sendBroadcast(Intent)}
      * @see {@link LocalBroadcastManager}
      */
-    private boolean sendBroadcastOnlyToOrbot(Intent intent) {
-        return LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+    private void sendBroadcastOnlyToOrbot(Intent intent) {
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 
     private Intent getActionStatusIntent(String currentStatus) {
@@ -1322,7 +1312,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     conn.setConf("DisableNetwork", "0");
 
                 } catch (Exception ioe) {
-                    Log.e(OrbotConstants.TAG, "Connection exception occured resetting exits", ioe);
+                    Log.e(OrbotConstants.TAG, "Connection exception occurred resetting exits", ioe);
                 }
             }
         } else {
@@ -1343,7 +1333,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     conn.setConf("DisableNetwork", "0");
 
                 } catch (Exception ioe) {
-                    Log.e(OrbotConstants.TAG, "Connection exception occured resetting exits", ioe);
+                    Log.e(OrbotConstants.TAG, "Connection exception occurred resetting exits", ioe);
                 }
             }
         }
@@ -1506,20 +1496,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 }
             }
         }
-    }
-
-    public static boolean isChargingAndWifi(Context context) {
-        Intent intent = context.registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-        int plugged = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
-        boolean isCharging = plugged == BatteryManager.BATTERY_PLUGGED_AC || plugged == BatteryManager.BATTERY_PLUGGED_USB || plugged == BatteryManager.BATTERY_PLUGGED_WIRELESS;
-
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        boolean isUnmetered = cm.getActiveNetworkInfo() != null
-                && cm.getActiveNetworkInfo().isConnected()
-                && (!cm.isActiveNetworkMetered());
-
-        return isCharging && isUnmetered;
     }
 
     private class ActionBroadcastReceiver extends BroadcastReceiver {
