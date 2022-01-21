@@ -92,6 +92,7 @@ import static org.torproject.android.service.TorServiceConstants.ACTION_STOP;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_FOREGROUND_TASK;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
 import static org.torproject.android.service.TorServiceConstants.DIRECTORY_TOR_DATA;
+import static org.torproject.android.service.TorServiceConstants.LOG_NOTICE_BOOTSTRAPPED;
 import static org.torproject.android.service.TorServiceConstants.STATUS_OFF;
 import static org.torproject.android.service.TorServiceConstants.STATUS_ON;
 import static org.torproject.android.service.TorServiceConstants.STATUS_STARTING;
@@ -837,7 +838,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
         if (!TextUtils.isEmpty(torServiceMsg)) {
             if (torServiceMsg.contains(TorServiceConstants.LOG_NOTICE_HEADER)) {
-                lblStatus.setText(torServiceMsg);
+                    if (!(torServiceMsg.contains(LOG_NOTICE_BOOTSTRAPPED) && torServiceMsg.contains("100%")))
+                        lblStatus.setText(torServiceMsg);
             }
 
             mTxtOrbotLog.append(torServiceMsg + '\n');

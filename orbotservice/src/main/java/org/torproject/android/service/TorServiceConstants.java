@@ -22,7 +22,7 @@ public interface TorServiceConstants {
     String SOCKS_PROXY_PORT_DEFAULT = "9050";
 
     //control port
-    String LOG_NOTICE_HEADER = "NOTICE";
+    String LOG_NOTICE_HEADER = "NOTICE: ";
     String LOG_NOTICE_BOOTSTRAPPED = "Bootstrapped";
 
     /**

@@ -968,7 +968,11 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     }
 
     private void sendCallbackLogMessage(final String logMessage) {
-        showToolbarNotification(logMessage, NOTIFY_ID, R.drawable.ic_stat_tor);
+        String notificationMessage = logMessage;
+        if (logMessage.indexOf(LOG_NOTICE_HEADER) != -1) {
+            notificationMessage = notificationMessage.substring(LOG_NOTICE_HEADER.length());
+        }
+        showToolbarNotification(notificationMessage, NOTIFY_ID, R.drawable.ic_stat_tor);
         mHandler.post(() -> {
             Intent intent = new Intent(LOCAL_ACTION_LOG); // You can also include some extra data.
             intent.putExtra(LOCAL_EXTRA_LOG, logMessage);
