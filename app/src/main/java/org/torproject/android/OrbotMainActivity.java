@@ -838,7 +838,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
         if (!TextUtils.isEmpty(torServiceMsg)) {
             if (torServiceMsg.contains(TorServiceConstants.LOG_NOTICE_HEADER)) {
-                if (torServiceMsg.contains(LOG_NOTICE_BOOTSTRAPPED) && mBtnStart.getText().equals(getString(R.string.menu_stop)))
+                if (torServiceMsg.contains(LOG_NOTICE_BOOTSTRAPPED) && !mBtnStart.getText().equals(getString(R.string.menu_stop)))
                     lblStatus.setText(torServiceMsg);
             }
 
