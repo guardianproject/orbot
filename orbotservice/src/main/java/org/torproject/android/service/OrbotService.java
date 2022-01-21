@@ -1277,6 +1277,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     public void setNotificationSubtext(String message) {
         if (mNotifyBuilder != null) {
+            // stop showing expanded notifications if the user changed the after starting Orbot
+            if (!Prefs.showExpandedNotifications()) message = null;
             mNotifyBuilder.setSubText(message);
         }
     }
