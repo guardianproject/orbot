@@ -76,6 +76,7 @@ import java.util.concurrent.TimeoutException;
 
 import IPtProxy.IPtProxy;
 import IPtProxy.SnowflakeClientConnected;
+import androidx.annotation.ChecksSdkIntAtLeast;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -112,6 +113,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     public static File appBinHome;
     public static File appCacheHome;
     private final ExecutorService mExecutor = Executors.newCachedThreadPool();
+    @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.LOLLIPOP)
+    boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     OrbotRawEventListener mOrbotRawEventListener;
     OrbotVpnManager mVpnManager;
     Handler mHandler;
@@ -715,8 +718,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
             ArrayList<String> customEnv = new ArrayList<>();
 
-            if (Prefs.bridgesEnabled() && Prefs.useVpn())
-                customEnv.add("TOR_PT_PROXY=socks5://" + OrbotVpnManager.sSocksProxyLocalhost + ":" + OrbotVpnManager.sSocksProxyServerPort);
+            if (Prefs.bridgesEnabled())
+                if (Prefs.useVpn() && !mIsLollipop) {
+                    customEnv.add("TOR_PT_PROXY=socks5://" + OrbotVpnManager.sSocksProxyLocalhost + ":" + OrbotVpnManager.sSocksProxyServerPort);
+                }
 
             startTorService();
 
@@ -963,7 +968,11 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     }
 
     private void sendCallbackLogMessage(final String logMessage) {
-        showToolbarNotification(logMessage, NOTIFY_ID, R.drawable.ic_stat_tor);
+        String notificationMessage = logMessage;
+        if (logMessage.indexOf(LOG_NOTICE_HEADER) != -1) {
+            notificationMessage = notificationMessage.substring(LOG_NOTICE_HEADER.length());
+        }
+        showToolbarNotification(notificationMessage, NOTIFY_ID, R.drawable.ic_stat_tor);
         mHandler.post(() -> {
             Intent intent = new Intent(LOCAL_ACTION_LOG); // You can also include some extra data.
             intent.putExtra(LOCAL_EXTRA_LOG, logMessage);
@@ -1023,7 +1032,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         if (!Prefs.bridgesEnabled()) {
             extraLines.append("UseBridges 0").append('\n');
             if (Prefs.useVpn()) { //set the proxy here if we aren't using a bridge
-                if (OrbotVpnManager.sSocksProxyLocalhost != null) {
+                if (!mIsLollipop) {
                     String proxyType = "socks5";
                     extraLines.append(proxyType + "Proxy" + ' ' + OrbotVpnManager.sSocksProxyLocalhost + ':' + OrbotVpnManager.sSocksProxyServerPort).append('\n');
                 }
