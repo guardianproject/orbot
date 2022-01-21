@@ -6,7 +6,7 @@
     <string name="status_activated">Conetado à rede Tor</string>
     <string name="status_disabled">O Orbot está desativado</string>
     <string name="status_shutting_down">O TorService está desligando</string>
-    <string name="menu_settings">Configurações</string>
+    <string name="menu_settings">Definições</string>
     <string name="menu_log">Registo</string>
     <string name="menu_start">Iniciar</string>
     <string name="menu_stop">Parar</string>
@@ -148,7 +148,7 @@
     <string name="pref_disable_network_title">Sem Rede, Modo de Latência Automática</string>
     <string name="pref_use_expanded_notifications">Mostrar as notificação expandida com o Tor, país de saída e o IP</string>
     <string name="pref_use_persistent_notifications">Mantenha sempre um ícone na barra de ferramentas quando o Orbot estiver conectado</string>
-    <string name="hidden_service_request">Uma app quer abrir uma porta no servidor onion %1$d para a rede Tor. É seguro caso confie nesta app.</string>
+    <string name="hidden_service_request">Uma app quer abrir uma porta no servidor onion %1$s para a rede Tor. É seguro caso confie nesta app.</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Ativar os registos de depuração para saída (deve usar adb ou aLogCat para ver)</string>

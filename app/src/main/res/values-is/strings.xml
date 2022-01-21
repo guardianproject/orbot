@@ -18,7 +18,7 @@
     <string name="menu_scan">Skanna BridgeQR</string>
     <string name="menu_share_bridge">Deila BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details_msg">Orbot er opinn og frjáls hugbúnaður sem inniheldur Tor, Obfs4Proxy, BadVPN, Tun2Socks og LibEvent. Það sér um að útbúa staðværan HTTP-milliþjón (8118) og SOCKS-milliþjón (9050) inn á Tor-netið. Orbot getur einnig, á tækjum með rótaraðgangi, sent alla internetumferð í gegnum Tor.</string>
+    <string name="wizard_details_msg">Orbot er opinn og frjáls hugbúnaður sem inniheldur Tor, Obfs4Proxy, BadVPN, Tun2Socks og LibEvent. Það sér um að útbúa staðværan HTTP-milliþjón (8118) og SOCKS-milliþjón (9050) inn á Tor-netið.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Almennt</string>
     <string name="pref_start_boot_title">Virkja Orbot í ræsingu</string>
@@ -82,7 +82,7 @@
     <string name="enter_ports">Settu inn gáttir</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">virkja gerð villuskráningar á úttaki (verður að nota adb eða aLogCat til að skoða)</string>
     <string name="project_home">Heimili verkefnisins:</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
+    <string name="project_urls">https://orbot.app/</string>
     <string name="third_party_software">Hugbúnaður frá 3ja aðila:</string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
@@ -143,8 +143,8 @@
     <string name="share_as_qr">Deila sem QR-kóða</string>
     <string name="disable">Gera óvirkt</string>
     <string name="enable">Virkja</string>
-    <string name="consider_disable_battery_optimizations">Íhugaðu að gera bestun fyrir rafhlöðu óvirka</string>
-    <string name="consider_enable_battery_optimizations">Íhugaðu að virkja bestun fyrir rafhlöðu</string>
+    <string name="consider_disable_battery_optimizations">Hýstar þjónustur í gangi, íhugaðu að gera bestun fyrir rafhlöðu óvirka</string>
+    <string name="consider_enable_battery_optimizations">Engar hýstar þjónustur í gangi, íhugaðu að virkja bestun fyrir rafhlöðu</string>
     <string name="pref_isolate_dest">Einangra markvistfang</string>
     <string name="pref_isolate_dest_summary">Nota mismunandi rás fyrir hvert markvistfang</string>
     <string name="pref_connection_padding">Bólstrun tengingar (padding)</string>
@@ -173,7 +173,7 @@
     <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="refresh_apps">Endurlesa forrit</string>
     <string name="in_a_browser">Í vafra, farðu á %s og ýttu á Ná í brýr &gt; Gefðu mér bara brýrnar!</string>
-    <string name="bridge_snowflake">Tengjast í gegnum aðra Tor-jafningja (á tilraunastigi)</string>
+    <string name="bridge_snowflake">Tengjast í gegnum aðra Tor-jafningja með Snowflake (aðferð 1 - Fastly)</string>
     <string name="use_qr_code">Nota QR-kóða</string>
     <string name="paste_bridges">Líma brýr</string>
     <string name="use_custom_bridges">Nota sérsniðnar brýr</string>
@@ -194,7 +194,7 @@
     <string name="testing_tor_direct">Prófa tengingu við Tor…</string>
     <string name="get_bridges_email_request">Biðja um brýr með tölvupósti</string>
     <string name="mebibyte">MiB</string>
-    <string name="be_a_snowflake_desc">Leyfa öðrum Tor-notendum að tengjast Tor í gegnum tækið þitt</string>
+    <string name="be_a_snowflake_desc">Leyfa öðrum Tor-notendum að tengjast Tor í gegnum tækið þitt. (Þetta er ekki hægt að nota ef þú tengist líka með brúm)</string>
     <string name="be_a_snowflake_title">Keyra Snowflake-milliþjón</string>
     <string name="backup_port_exist">Villa: Önnur onion-þjónusta er þegar að nota gátt %s</string>
     <string name="confirm">Staðfesta</string>
@@ -211,7 +211,13 @@
     <string name="v3_hosted_services">Hýstar v3 onion-þjónustur</string>
     <string name="deny">Hafna</string>
     <string name="allow">Leyfa</string>
-    <string name="snowflake_proxy_enabled">SNOWFLAKE-MILLIÞJÓNSHAMUR VIRKUR</string>
+    <string name="snowflake_proxy_enabled">Snowflake milliþjónustuhamur virkur</string>
     <string name="be_a_snowflake_desc_limit">Aðeins þegar tækið er tengt við rafmagn og á Wi-Fi neti</string>
     <string name="be_a_snowflake_title_limit">Takmörk Snowflake-milliþjóns</string>
+    <string name="version">Útgáfa:</string>
+    <string name="license">Notkunarleyfi:</string>
+    <string name="bridge_snowflake_amp">Tengjast í gegnum aðra Tor-notendur með Snowflake (aðferð 2 - AMP)</string>
+    <string name="snowflake_proxy_pref_category">Snowflake milliþjónn (á tilraunastigi)</string>
+    <string name="snowflake_proxy_msg_title">Birta tilkynningu um tengingu</string>
+    <string name="snowflake_proxy_msg_description">Birta skilaboð þegar Snowflake-tilvikið þitt hjálpar einhverjum að komast framhjá ritskoðun</string>
 </resources>

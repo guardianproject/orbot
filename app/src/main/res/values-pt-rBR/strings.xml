@@ -163,8 +163,8 @@
     <string name="pref_connection_padding">Preenchimento da conexão</string>
     <string name="pref_isolate_dest_summary">Use um circuito diferente para cada endereço de destino</string>
     <string name="pref_isolate_dest">Isole os endereços do destino</string>
-    <string name="consider_enable_battery_optimizations">Considere ativar as otimizações da bateria</string>
-    <string name="consider_disable_battery_optimizations">Considere a desativação das otimizações da bateria</string>
+    <string name="consider_enable_battery_optimizations">Não há serviços hospedados em execução, considere a ativação das otimizações da bateria</string>
+    <string name="consider_disable_battery_optimizations">Os serviços hospedados estão em execução, considere a desativação das otimizações da bateria</string>
     <string name="onion">.onion</string>
     <string name="start_tor_again_for_finish_the_process">Inicie o Tor novamente para encerrar o processo</string>
     <string name="pref_http_dialog">Configuração da Porta HTTP</string>
@@ -172,7 +172,7 @@
     <string name="pref_http_title">HTTP do Tor</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Permita que os pares Wi-Fi, dispositivos com fio e que qualquer outra pessoa possa se conectar ao seu IP para acessar o Tor</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Abra o Proxy em Todas as Interfaces</string>
-    <string name="bridge_snowflake">Conecte através dos outros pares Tor (experimental)</string>
+    <string name="bridge_snowflake">Conecte-se através de outros usuários do Tor usando o snowflake (Método 1 - Rápido)</string>
     <string name="use_qr_code">Use um Código QR</string>
     <string name="paste_bridges">Colar as Pontes</string>
     <string name="in_a_browser">Visite o %s com um navegador e toque no Get Bridges &gt; Just Give Me Bridges!</string>
@@ -194,7 +194,7 @@
     <string name="get_bridges_email_request">Solicite Pontes através do E-mail</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
-    <string name="be_a_snowflake_desc">Permita que os outros usuários do Tor se conectem ao Tor através do seu dispositivo</string>
+    <string name="be_a_snowflake_desc">Permita que os outros usuários do Tor se conectem ao Tor através do seu dispositivo. (Isso não pode ser usado caso se conecte em conjunto de pontes)</string>
     <string name="be_a_snowflake_title">Execute o proxy Snowflake</string>
     <string name="confirm">Confirme</string>
     <string name="v3_import_auth_private">Importe o .auth_private</string>
@@ -211,9 +211,13 @@
     <string name="deny">Negue</string>
     <string name="allow">Permita</string>
     <string name="backup_port_exist">Erro: Um serviço Onion já está usando a porta %s</string>
-    <string name="be_a_snowflake_desc_limit">Somente quando o dispositivo está conectado e na rede Wi-Fi</string>
+    <string name="be_a_snowflake_desc_limit">Somente quando o dispositivo está conectado e está na rede wifi</string>
     <string name="be_a_snowflake_title_limit">Limites do proxy snowflake</string>
     <string name="snowflake_proxy_enabled">Modo proxy snowflake ativado</string>
     <string name="version">Versão:</string>
     <string name="license">Licença:</string>
+    <string name="bridge_snowflake_amp">Conecte-se através de outros usuários do Tor usando snowflake (Método 2 - AMP)</string>
+    <string name="snowflake_proxy_pref_category">Proxy Snowflake (Experimental)</string>
+    <string name="snowflake_proxy_msg_title">Mostra a notificação da conexão</string>
+    <string name="snowflake_proxy_msg_description">Mostra uma mensagem quando o seu snowflake ajuda alguém a contornar a censura</string>
 </resources>

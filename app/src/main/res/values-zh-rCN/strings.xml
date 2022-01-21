@@ -141,8 +141,8 @@
     <string name="share_as_qr">以 QR 码形式分享</string>
     <string name="disable">禁用</string>
     <string name="enable">启用</string>
-    <string name="consider_disable_battery_optimizations">考虑禁用电池优化</string>
-    <string name="consider_enable_battery_optimizations">考虑启用电池优化</string>
+    <string name="consider_disable_battery_optimizations">托管服务正在运行，考虑禁用电池优化</string>
+    <string name="consider_enable_battery_optimizations">没有托管服务正在运行，考虑启用电池优化</string>
     <string name="pref_disable_ipv4">禁用 IPv4 连接</string>
     <string name="app_shortcuts">启用 Tor 的应用</string>
     <string name="bridge_direct_connect">直接连接到 Tor（最佳）</string>
@@ -172,7 +172,7 @@
     <string name="hidden_service_request">一个应用程序想要在端口 %1$s上打开到 Tor 网络的洋葱服务器。如果你信任这个应用程序，这是安全的。</string>
     <string name="pref_connection_padding">连接填充</string>
     <string name="onion">.onion 地址</string>
-    <string name="bridge_snowflake">通过其他 Tor 对等端连接 (实验性)</string>
+    <string name="bridge_snowflake">使用 Snowflake 通过其他 Tor 用户连接（方法 1 - 快速）</string>
     <string name="use_qr_code">使用二维码</string>
     <string name="paste_bridges">粘贴网桥</string>
     <string name="in_a_browser">在浏览器中访问 %s并点击 Get Bridges &gt; Just Give Me Bridges!</string>
@@ -194,7 +194,7 @@
     <string name="get_bridges_email_request">通过电子邮件请求网桥</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
-    <string name="be_a_snowflake_desc">允许其他 Tor 用户通过你的设备连接到 Tor</string>
+    <string name="be_a_snowflake_desc">允许其他 Tor 用户通过你的设备连接到 Tor。（如您同时通过网桥连接，则无法使用该方法）</string>
     <string name="be_a_snowflake_title">运行 Snowflake 代理</string>
     <string name="confirm">确认</string>
     <string name="v3_import_auth_private">导入 .auth_private</string>
@@ -216,4 +216,8 @@
     <string name="snowflake_proxy_enabled">SNOWFLAKE 代理模式已启用</string>
     <string name="license">许可证：</string>
     <string name="version">版本：</string>
+    <string name="snowflake_proxy_pref_category">Snowflake 代理（实验性）</string>
+    <string name="bridge_snowflake_amp">使用 Snowflake 通过其他 Tor 用户连接（方法 2 - AMP）</string>
+    <string name="snowflake_proxy_msg_title">显示连接通知</string>
+    <string name="snowflake_proxy_msg_description">当您的 Snowflake 帮助某人规避审查时显示一条消息</string>
 </resources>

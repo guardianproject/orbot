@@ -88,7 +88,7 @@
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
-    <string name="hidden_service_request">Aplikazio batek ezkutuko zerbitzariko %1$d ataka ireki nau du Tor sarera. Segurua da aplikazioaz fidatzen bazara.</string>
+    <string name="hidden_service_request">Aplikazio batek ezkutuko zerbitzariko %1$s ataka ireki nau du Tor sarera. Segurua da aplikazioaz fidatzen bazara.</string>
     <string name="found_existing_tor_process">aurreko Tor prozesu bat aurkitu da…</string>
     <string name="something_bad_happened">Zerbait txarra gertatu da. Begiratu egunkarian</string>
     <string name="unable_to_start_tor">Ezin izan da Tor hasi:</string>

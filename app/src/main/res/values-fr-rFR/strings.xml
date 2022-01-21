@@ -119,7 +119,7 @@
     <string name="wizard_details_msg">Orbot est une application à code source ouvert qui comprend Tor, Obfs4Proxy, BadVPN, Tun2Socks et LibEvent. Elle fournit un mandataire HTTP local (8118) et un mandataire SOCKS (9050) vers le réseau Tor. Sur un appareil débridé, Orbot peut aussi faire passer tout le trafic Internet par Tor.</string>
     <string name="obfsproxy_version">Obfs4proxy : https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL : http://www.openssl.org</string>
-    <string name="hidden_service_request">Une appli veut ouvrir le serveur onion sur le port %1$s au réseau Tor. Cette action est sûre si vous faites confiance à cette appli.</string>
+    <string name="hidden_service_request">Une appli veut ouvrir le serveur onion sur le port %1$s au réseau Tor. Cette action est sûre si vous faites confiance à cette appli.</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Ouvrir le mandataire sur toutes les interfaces</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Autoriser l’accès à Tor aux pairs Wi-Fi, aux appareils qui utilisent la fonction modem et à quiconque peut se connecter à votre IP</string>
     <string name="pref_http_title">HTTP Tor</string>
@@ -213,4 +213,11 @@
     <string name="v3_onion">Domaine .onion v3</string>
     <string name="be_a_snowflake_desc_limit">Seulement quand l’appareil est branché et sur le Wi-Fi</string>
     <string name="be_a_snowflake_title_limit">Limites du mandataire Snowflake</string>
+    <string name="version">Version :</string>
+    <string name="license">Licence :</string>
+    <string formatted="true" name="snowflake_proxy_enabled">Le mode mandataire Snowflake est activé</string>
+    <string name="bridge_snowflake_amp">Se connecter par d’autres utilisateurs de Tor grâce à Snowflake (méthode 2 – AMP)</string>
+    <string name="snowflake_proxy_pref_category">Mandataire Snowflake (expérimental)</string>
+    <string name="snowflake_proxy_msg_title">Afficher la notification de connexion</string>
+    <string name="snowflake_proxy_msg_description">Afficher un message quand votre Snowflake aide quelqu’un à contourner la censure</string>
 </resources>

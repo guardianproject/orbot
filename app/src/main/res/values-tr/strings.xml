@@ -143,8 +143,8 @@
     <string name="share_as_qr">QR Olarak Paylaş</string>
     <string name="disable">Devre Dışı Bırak</string>
     <string name="enable">Etkinleştir</string>
-    <string name="consider_disable_battery_optimizations">Pil kullanımı iyileştirmelerini devre dışı bırakmayı düşünün</string>
-    <string name="consider_enable_battery_optimizations">Pil kullanımı iyileştirmelerini etkinleştirmeyi düşünün</string>
+    <string name="consider_disable_battery_optimizations">Sunucu hizmetleri çalışıyor, pil iyileştirmelerini devre dışı bırakmayı düşünün</string>
+    <string name="consider_enable_battery_optimizations">Çalışan hiçbir sunucu hizmeti yok, pil iyileştirmelerini etkinleştirmeyi düşünün</string>
     <string name="pref_isolate_dest">Hedef adresleri yalıtılsın</string>
     <string name="pref_isolate_dest_summary">Her hedef adres için farklı bir devre kullanın</string>
     <string name="pref_connection_padding">Bağlantı yastıklama</string>
@@ -172,7 +172,7 @@
     <string name="app_services">Uygulama hizmetleri</string>
     <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="refresh_apps">Uygulamaları Yenile</string>
-    <string name="bridge_snowflake">Diğer Tor eşleri aracılığıyla bağlan (deneysel)</string>
+    <string name="bridge_snowflake">Snowflake kullanarak diğer Tor kullanıcıları aracılığıyla bağlanın (Yöntem 1 - Hızlı)</string>
     <string name="use_qr_code">QR Kodu Kullan</string>
     <string name="paste_bridges">Köprüleri Yapıştır</string>
     <string name="in_a_browser">Bir tarayıcıda %s adresini ziyaret edin ve Get Bridges &gt; Just Give Me Bridges! seçeneğine dokunun!</string>
@@ -194,7 +194,7 @@
     <string name="get_bridges_email_request">Köprüleri E-postayla İste</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
-    <string name="be_a_snowflake_desc">Diğer Tor kullanıcılarının aygıtınız üzerinden Tor\'a bağlanmasına izin verin</string>
+    <string name="be_a_snowflake_desc">Diğer Tor kullanıcılarının aygıtınız üzerinden Tor\'a bağlanmasına izin verin. (Köprülerle birlikte bağlanırsanız bu kullanılamaz)</string>
     <string name="be_a_snowflake_title">Snowflake Vekil Sunucusu Çalıştır</string>
     <string name="confirm">Onayla</string>
     <string name="v3_import_auth_private">.auth_private içe aktar</string>
@@ -216,4 +216,8 @@
     <string name="snowflake_proxy_enabled">Snowflake vekil modu etkin</string>
     <string name="version">Sürüm:</string>
     <string name="license">Lisans:</string>
+    <string name="snowflake_proxy_pref_category">Snowflake Vekil Sunucusu (Deneysel)</string>
+    <string name="bridge_snowflake_amp">Snowflake kullanarak diğer Tor kullanıcıları aracılığıyla bağlanın (Yöntem 2 - AMP)</string>
+    <string name="snowflake_proxy_msg_title">Bağlantı Bildirimi Göster</string>
+    <string name="snowflake_proxy_msg_description">Snowflake sayesinde birinin sansürü atlatmasına yardımcı olunduğunda bir mesaj göster</string>
 </resources>

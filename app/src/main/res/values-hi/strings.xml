@@ -89,7 +89,7 @@
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
-    <string name="hidden_service_request">एक ऐप Tor नेटवर्क पर %1$dछिपा सर्वर पोर्ट खोलना चाहता है। यदि आप ऐप पर विश्वास करते हैं, तो यह सुरक्षित है</string>
+    <string name="hidden_service_request">एक ऐप Tor नेटवर्क पर %1$sछिपा सर्वर पोर्ट खोलना चाहता है। यदि आप ऐप पर विश्वास करते हैं, तो यह सुरक्षित है</string>
     <string name="found_existing_tor_process">मौजूदा तोर प्रक्रिया पाया …</string>
     <string name="something_bad_happened">कुछ बुरा हो गया। लॉग की जांच करें</string>
     <string name="unable_to_start_tor">टो शुरू करने में असमर्थ:</string>
