@@ -1357,7 +1357,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 }
             }
         }
-
     }
 
     private void loadBridgeDefaults() {
