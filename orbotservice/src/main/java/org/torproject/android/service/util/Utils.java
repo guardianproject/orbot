@@ -10,8 +10,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -24,7 +22,7 @@ public class Utils {
     public static String readString(InputStream stream) {
         String line;
 
-        StringBuffer out = new StringBuffer();
+        StringBuilder out = new StringBuilder();
 
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
@@ -35,74 +33,25 @@ public class Utils {
 
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         return out.toString();
+    }
 
+    public static String convertCountryCodeToFlagEmoji(String countryCode) {
+        int flagOffset = 0x1F1E6;
+        int asciiOffset = 0x41;
+        int firstChar = Character.codePointAt(countryCode, 0) - asciiOffset + flagOffset;
+        int secondChar = Character.codePointAt(countryCode, 1) - asciiOffset + flagOffset;
+        return new String(Character.toChars(firstChar)) + new String(Character.toChars(secondChar));
     }
 
     /*
-     * Load the log file text
-     */
-    public static String loadTextFile(String path) {
-        String line;
-
-        StringBuffer out = new StringBuffer();
-
-        try {
-            BufferedReader reader = new BufferedReader((new FileReader(new File(path))));
-
-            while ((line = reader.readLine()) != null) {
-                out.append(line);
-                out.append('\n');
-
-            }
-
-            reader.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return out.toString();
-
-    }
-
-
-    /*
-     * Load the log file text
-     */
-    public static boolean saveTextFile(String path, String contents) {
-
-        try {
-
-            FileWriter writer = new FileWriter(path, false);
-            writer.write(contents);
-
-            writer.close();
-
-
-            return true;
-
-        } catch (IOException e) {
-            //	Log.d(TAG, "error writing file: " + path, e);
-            e.printStackTrace();
-            return false;
-        }
-
-
-    }
-
-
-    /*
-     *
      * Zips a file at a location and places the resulting zip file at the toLocation
      * Example: zipFileAtPath("downloads/myfolder", "downloads/myFolder.zip");
      */
-
-    public static boolean zipFileAtPath(String sourcePath, String toLocation) {
+    public static void zipFileAtPath(String sourcePath, String toLocation) {
         final int BUFFER = 2048;
 
         File sourceFile = new File(sourcePath);
@@ -128,20 +77,14 @@ public class Utils {
             out.close();
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
     }
 
     /*
-     *
      * Zips a subfolder
-     *
      */
-
     private static void zipSubFolder(ZipOutputStream out, File folder,
                                      int basePathLength) throws IOException {
-
         final int BUFFER = 2048;
 
         File[] fileList = folder.listFiles();

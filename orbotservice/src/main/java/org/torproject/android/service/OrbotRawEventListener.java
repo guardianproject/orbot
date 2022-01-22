@@ -108,7 +108,7 @@ public class OrbotRawEventListener implements RawEventListener {
                 mService.exec(new ExpandedNotificationExitNodeResolver(mService, node));
             } else {
                 if (node.country != null)
-                    mService.setNotificationSubtext(node.ipAddress + " " + node.country);
+                    mService.setNotificationSubtext(node.toString());
                 else mService.setNotificationSubtext(null);
             }
         }
@@ -240,6 +240,11 @@ public class OrbotRawEventListener implements RawEventListener {
         public String country;
         public String ipAddress;
         boolean querying = false;
+
+        @Override
+        public String toString() {
+            return ipAddress + " " + country;
+        }
     }
 
 
