@@ -105,10 +105,10 @@ public class OrbotRawEventListener implements RawEventListener {
         if (node != null) {
             if (node.country == null && !node.querying) {
                 node.querying = true;
-                mService.exec(new ExpandedNotificationExitNodeResolver(mService, OrbotService.mPortHTTP, node));
+                mService.exec(new ExpandedNotificationExitNodeResolver(mService, node));
             } else {
                 if (node.country != null)
-                    mService.setNotificationSubtext(node.ipAddress + " | " + node.country);
+                    mService.setNotificationSubtext(node.ipAddress + " " + node.country);
                 else mService.setNotificationSubtext(null);
             }
         }

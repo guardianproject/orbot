@@ -20,19 +20,17 @@ public class ExpandedNotificationExitNodeResolver implements Runnable {
     private static final String ONIONOO_BASE_URL = "https://onionoo.torproject.org/details?fields=country,country_name,or_addresses&lookup=";
     private static final int CONNECTION_TIMEOUT_MS = 60000;
     private final OrbotService mService;
-    private final int mLocalHttpProxyPort;
     private final OrbotRawEventListener.ExitNode exitNode;
 
-    public ExpandedNotificationExitNodeResolver(OrbotService service, int localProxyPort, OrbotRawEventListener.ExitNode exitNode) {
+    public ExpandedNotificationExitNodeResolver(OrbotService service, OrbotRawEventListener.ExitNode exitNode) {
         mService = service;
-        mLocalHttpProxyPort = localProxyPort;
         this.exitNode = exitNode;
     }
 
     @Override
     public void run() {
         try {
-            Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", mLocalHttpProxyPort));
+            Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", OrbotService.mPortHTTP));
             URLConnection conn = new URL(ONIONOO_BASE_URL + exitNode.fingerPrint).openConnection(proxy);
 
             conn.setRequestProperty("Connection", "Close");
@@ -60,7 +58,7 @@ public class ExpandedNotificationExitNodeResolver implements Runnable {
                 }
                 exitNode.country = countryName;
                 exitNode.ipAddress = jsonRelays.getJSONObject(0).getJSONArray("or_addresses").getString(0).split(":")[0];
-                mService.setNotificationSubtext(exitNode.ipAddress + " | " + exitNode.country);
+                mService.setNotificationSubtext(exitNode.ipAddress + " " + exitNode.country);
             }
 
             reader.close();
