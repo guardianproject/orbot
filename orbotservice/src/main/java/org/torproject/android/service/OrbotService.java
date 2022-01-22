@@ -120,7 +120,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     Random bridgeSelectRandom = new Random(System.nanoTime());
     ActionBroadcastReceiver mActionBroadcastReceiver;
     private String mCurrentStatus = STATUS_OFF;
-    private TorControlConnection conn = null;
+    TorControlConnection conn = null;
     private ServiceConnection torServiceConnection;
     private boolean shouldUnbindTorService;
     private NotificationManager mNotificationManager = null;

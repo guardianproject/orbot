@@ -5,13 +5,14 @@ import android.text.TextUtils;
 import net.freehaven.tor.control.RawEventListener;
 import net.freehaven.tor.control.TorControlCommands;
 
-import org.torproject.android.service.util.ExpandedNotificationExitNodeResolver;
 import org.torproject.android.service.util.ExternalIPFetcher;
 import org.torproject.android.service.util.Prefs;
+import org.torproject.android.service.util.Utils;
 import org.torproject.jni.TorService;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -105,7 +106,18 @@ public class OrbotRawEventListener implements RawEventListener {
         if (node != null) {
             if (node.country == null && !node.querying) {
                 node.querying = true;
-                mService.exec(new ExpandedNotificationExitNodeResolver(mService, node));
+                mService.exec(() -> {
+                    try {
+                        String[] networkStatus = mService.conn.getInfo("ns/id/$" + node.fingerPrint).split(" ");
+                        node.ipAddress = networkStatus[6];
+                        String countryCode = mService.conn.getInfo("ip-to-country/" + node.ipAddress).toUpperCase();
+                        String emoji = Utils.convertCountryCodeToFlagEmoji(countryCode);
+                        String countryName = new Locale("", countryCode).getDisplayName();
+                        node.country = emoji + " " + countryName;
+                        mService.setNotificationSubtext(node.toString());
+                    } catch (Exception e) {
+                    }
+                });
             } else {
                 if (node.country != null)
                     mService.setNotificationSubtext(node.toString());
