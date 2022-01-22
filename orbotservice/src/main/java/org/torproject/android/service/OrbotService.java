@@ -422,8 +422,18 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
        //unbinding from the tor service will stop tor
         if (shouldUnbindTorService) {
-            unbindService(torServiceConnection);
-            shouldUnbindTorService = false;
+
+            try {
+                unbindService(torServiceConnection);
+            }
+            catch (Exception e)
+            {
+                Log.d(OrbotService.TAG,"Error unbinding service: " + e);
+            }
+            finally {
+                shouldUnbindTorService = false;
+                torServiceConnection = null;
+            }
         }
 
     }

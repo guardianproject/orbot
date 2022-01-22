@@ -40,14 +40,8 @@ public class Tun2Socks {
     private static final String TAG = Tun2Socks.class.getSimpleName();
     private static final boolean LOGD = true;
 
-    private static ParcelFileDescriptor mVpnInterfaceFileDescriptor;
-    private static int mVpnInterfaceMTU;
-    private static String mVpnIpAddress;
-    private static String mVpnNetMask;
-    private static String mSocksServerAddress;
-    private static String mUdpgwServerAddress;
-    private static boolean mUdpgwTransparentDNS;
     private static HashMap<Integer, String> mAppUidBlacklist = new HashMap<>();
+
 
     static {
         System.loadLibrary("tun2socks");
@@ -69,23 +63,16 @@ public class Tun2Socks {
             String udpgwServerAddress,
             boolean udpgwTransparentDNS) {
 
-        mVpnInterfaceFileDescriptor = vpnInterfaceFileDescriptor;
-        mVpnInterfaceMTU = vpnInterfaceMTU;
-        mVpnIpAddress = vpnIpAddress;
-        mVpnNetMask = vpnNetMask;
-        mSocksServerAddress = socksServerAddress;
-        mUdpgwServerAddress = udpgwServerAddress;
-        mUdpgwTransparentDNS = udpgwTransparentDNS;
+        if (vpnInterfaceFileDescriptor != null)
+                runTun2Socks(
+                        vpnInterfaceFileDescriptor.detachFd(),
+                        vpnInterfaceMTU,
+                        vpnIpAddress,
+                        vpnNetMask,
+                        socksServerAddress,
+                        udpgwServerAddress,
+                        udpgwTransparentDNS ? 1 : 0);
 
-        if (mVpnInterfaceFileDescriptor != null)
-            runTun2Socks(
-                    mVpnInterfaceFileDescriptor.detachFd(),
-                    mVpnInterfaceMTU,
-                    mVpnIpAddress,
-                    mVpnNetMask,
-                    mSocksServerAddress,
-                    mUdpgwServerAddress,
-                    mUdpgwTransparentDNS ? 1 : 0);
     }
 
     public static void Stop() {
