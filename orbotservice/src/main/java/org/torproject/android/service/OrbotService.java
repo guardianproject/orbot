@@ -42,7 +42,6 @@ import net.freehaven.tor.control.TorControlConnection;
 import org.torproject.android.service.util.CustomTorResourceInstaller;
 import org.torproject.android.service.util.DummyActivity;
 import org.torproject.android.service.util.Prefs;
-import org.torproject.android.service.util.TorServiceUtils;
 import org.torproject.android.service.util.Utils;
 import org.torproject.android.service.vpn.OrbotVpnManager;
 import org.torproject.android.service.vpn.VpnPrefs;
@@ -652,7 +651,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             int port = Integer.parseInt(portString);
 
             while (isPortUsed) {
-                isPortUsed = TorServiceUtils.isPortOpen("127.0.0.1", port, 500);
+                isPortUsed = Utils.isPortOpen("127.0.0.1", port, 500);
 
                 if (isPortUsed) //the specified port is not available, so let Tor find one instead
                     port++;
