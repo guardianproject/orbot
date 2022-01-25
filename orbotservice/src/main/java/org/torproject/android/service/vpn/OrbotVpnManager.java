@@ -52,7 +52,6 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeoutException;
 
 import static org.torproject.android.service.TorServiceConstants.ACTION_START;
-import static org.torproject.android.service.TorServiceConstants.ACTION_STOP;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
 import static org.torproject.android.service.TorServiceConstants.TOR_DNS_PORT_DEFAULT;
@@ -67,6 +66,7 @@ public class OrbotVpnManager implements Handler.Callback {
     public static String sSocksProxyLocalhost = null;
     boolean isStarted = false;
     File filePdnsPid;
+    private Thread mThreadVPN;
     private final static String mSessionName = "OrbotVPN";
     private ParcelFileDescriptor mInterface;
     private int mTorSocks = -1;
@@ -77,8 +77,6 @@ public class OrbotVpnManager implements Handler.Callback {
     private boolean isRestart = false;
     private final VpnService mService;
     private final SharedPreferences prefs;
-    private Handler mHandler = new Handler();
-
 
     public OrbotVpnManager(VpnService service) {
         mService = service;
@@ -124,6 +122,10 @@ public class OrbotVpnManager implements Handler.Callback {
 
                     isStarted = true;
 
+                    // Stop the previous session by interrupting the thread.
+                    if (mThreadVPN != null && mThreadVPN.isAlive())
+                        stopVPN();
+
                     if (mTorSocks != -1) {
                         if (!mIsLollipop) {
                             startSocksBypass();
@@ -132,7 +134,7 @@ public class OrbotVpnManager implements Handler.Callback {
                         setupTun2Socks(builder);
                     }
 
-                } else if (action.equals(ACTION_STOP_VPN)|| action.equals(ACTION_STOP)) {
+                } else if (action.equals(ACTION_STOP_VPN)) {
                     isStarted = false;
 
                     Log.d(TAG, "stopping VPN");
@@ -210,7 +212,7 @@ public class OrbotVpnManager implements Handler.Callback {
     }
 
     private void stopVPN() {
-        if (!mIsLollipop)
+        if (mIsLollipop)
             stopSocksBypass();
 
         Tun2Socks.Stop();
@@ -228,8 +230,8 @@ public class OrbotVpnManager implements Handler.Callback {
                 Log.d(TAG, "error stopping tun2socks", e);
             }
         }
-
         stopDns();
+        mThreadVPN = null;
     }
 
     @Override
@@ -240,9 +242,25 @@ public class OrbotVpnManager implements Handler.Callback {
         return true;
     }
 
-    private synchronized void setupTun2Socks(final VpnService.Builder builder)  {
+    private synchronized void setupTun2Socks(final VpnService.Builder builder) {
+        if (mInterface != null) //stop tun2socks now to give it time to clean up
+        {
+            isRestart = true;
+            Tun2Socks.Stop();
 
-        try {
+            stopDns();
+
+        }
+
+        mThreadVPN = new Thread() {
+
+            public void run() {
+                try {
+
+                    if (isRestart) {
+                        Log.d(TAG, "is a restart... let's wait for a few seconds");
+                        Thread.sleep(3000);
+                    }
 
                     final String vpnName = "OrbotVPN";
                     final String localhost = "127.0.0.1";
@@ -283,6 +301,12 @@ public class OrbotVpnManager implements Handler.Callback {
                             .setConfigureIntent(null) // previously this was set to a null member variable
                             .establish();
 
+                    if (mInterface != null) {
+                        Log.d(TAG, "Stopping existing VPN interface");
+                        mInterface.close();
+                        mInterface = null;
+                    }
+
                     mInterface = newInterface;
 
                     isRestart = false;
@@ -300,8 +324,11 @@ public class OrbotVpnManager implements Handler.Callback {
                 } catch (Exception e) {
                     Log.d(TAG, "tun2Socks has stopped", e);
                 }
+            }
 
+        };
 
+        mThreadVPN.start();
 
     }
 
