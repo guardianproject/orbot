@@ -53,13 +53,17 @@ import java.util.concurrent.TimeoutException;
 
 import static org.torproject.android.service.TorServiceConstants.ACTION_START;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
+import static org.torproject.android.service.TorServiceConstants.ACTION_STOP;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
 import static org.torproject.android.service.TorServiceConstants.TOR_DNS_PORT_DEFAULT;
 import static org.torproject.android.service.TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT;
 
+import androidx.annotation.ChecksSdkIntAtLeast;
+
 public class OrbotVpnManager implements Handler.Callback {
     private static final String TAG = "OrbotVpnService";
     private final static int VPN_MTU = 1500;
+    @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.LOLLIPOP)
     private final static boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     private final static String PDNSD_BIN = "pdnsd";
     public static int sSocksProxyServerPort = -1;
@@ -82,7 +86,6 @@ public class OrbotVpnManager implements Handler.Callback {
         mService = service;
         prefs = Prefs.getSharedPrefs(mService.getApplicationContext());
         filePdnsd = CustomNativeLoader.loadNativeBinary(service.getApplicationContext(), PDNSD_BIN, new File(service.getFilesDir(), PDNSD_BIN));
-        Tun2Socks.init();
     }
 
     public static File makePdnsdConf(Context context, File fileDir, String torDnsHost, int torDnsPort, String pdnsdHost, int pdnsdPort, String pdnsdDebug) throws IOException {
@@ -134,7 +137,7 @@ public class OrbotVpnManager implements Handler.Callback {
                         setupTun2Socks(builder);
                     }
 
-                } else if (action.equals(ACTION_STOP_VPN)) {
+                } else if (action.equals(ACTION_STOP_VPN) || action.equals(ACTION_STOP)) {
                     isStarted = false;
 
                     Log.d(TAG, "stopping VPN");
@@ -212,7 +215,7 @@ public class OrbotVpnManager implements Handler.Callback {
     }
 
     private void stopVPN() {
-        if (mIsLollipop)
+        if (!mIsLollipop)
             stopSocksBypass();
 
         Tun2Socks.Stop();
@@ -318,7 +321,7 @@ public class OrbotVpnManager implements Handler.Callback {
                         startDNS(filePdnsd.getCanonicalPath(), localhost, mTorDns, virtualGateway, pdnsdPort);
                         final boolean localDnsTransparentProxy = true;
 
-                        Tun2Socks.Start(mService, mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks, virtualGateway + ":" + pdnsdPort, localDnsTransparentProxy);
+                        Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks, virtualGateway + ":" + pdnsdPort, localDnsTransparentProxy);
                     }
 
                 } catch (Exception e) {

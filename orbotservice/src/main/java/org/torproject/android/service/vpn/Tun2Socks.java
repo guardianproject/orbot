@@ -40,27 +40,17 @@ public class Tun2Socks {
     private static final String TAG = Tun2Socks.class.getSimpleName();
     private static final boolean LOGD = true;
 
-    private static ParcelFileDescriptor mVpnInterfaceFileDescriptor;
-    private static int mVpnInterfaceMTU;
-    private static String mVpnIpAddress;
-    private static String mVpnNetMask;
-    private static String mSocksServerAddress;
-    private static String mUdpgwServerAddress;
-    private static boolean mUdpgwTransparentDNS;
     private static HashMap<Integer, String> mAppUidBlacklist = new HashMap<>();
 
     static {
         System.loadLibrary("tun2socks");
     }
 
-    public static void init() {
-    }
     // Note: this class isn't a singleton, but you can't run more
     // than one instance due to the use of global state (the lwip
     // module, etc.) in the native code.
 
     public static void Start(
-            Context context,
             ParcelFileDescriptor vpnInterfaceFileDescriptor,
             int vpnInterfaceMTU,
             String vpnIpAddress,
@@ -69,29 +59,19 @@ public class Tun2Socks {
             String udpgwServerAddress,
             boolean udpgwTransparentDNS) {
 
-        mVpnInterfaceFileDescriptor = vpnInterfaceFileDescriptor;
-        mVpnInterfaceMTU = vpnInterfaceMTU;
-        mVpnIpAddress = vpnIpAddress;
-        mVpnNetMask = vpnNetMask;
-        mSocksServerAddress = socksServerAddress;
-        mUdpgwServerAddress = udpgwServerAddress;
-        mUdpgwTransparentDNS = udpgwTransparentDNS;
-
-        if (mVpnInterfaceFileDescriptor != null)
+        if (vpnInterfaceFileDescriptor != null)
             runTun2Socks(
-                    mVpnInterfaceFileDescriptor.detachFd(),
-                    mVpnInterfaceMTU,
-                    mVpnIpAddress,
-                    mVpnNetMask,
-                    mSocksServerAddress,
-                    mUdpgwServerAddress,
-                    mUdpgwTransparentDNS ? 1 : 0);
+                    vpnInterfaceFileDescriptor.detachFd(),
+                    vpnInterfaceMTU,
+                    vpnIpAddress,
+                    vpnNetMask,
+                    socksServerAddress,
+                    udpgwServerAddress,
+                    udpgwTransparentDNS ? 1 : 0);
     }
 
     public static void Stop() {
-
         terminateTun2Socks();
-
     }
 
     public static void logTun2Socks(

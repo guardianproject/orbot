@@ -48,6 +48,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -295,10 +296,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     }
 
     private void sendIntentToService(Intent intent) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            startForegroundService(intent);
-        else
-            startService(intent);
+        ContextCompat.startForegroundService(this, intent);
     }
 
     private boolean waitingToStop = false;
