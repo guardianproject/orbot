@@ -108,14 +108,16 @@ public class OrbotRawEventListener implements RawEventListener {
                 node.querying = true;
                 mService.exec(() -> {
                     try {
-                        String[] networkStatus = mService.conn.getInfo("ns/id/$" + node.fingerPrint).split(" ");
+                        String[] networkStatus = mService.conn.getInfo("ns/id/" + node.fingerPrint).split(" ");
                         node.ipAddress = networkStatus[6];
                         String countryCode = mService.conn.getInfo("ip-to-country/" + node.ipAddress).toUpperCase();
-                        String emoji = Utils.convertCountryCodeToFlagEmoji(countryCode);
-                        String countryName = new Locale("", countryCode).getDisplayName();
-                        node.country = emoji + " " + countryName;
+                        if (!countryCode.equals(TOR_CONTROLLER_COUNTRY_CODE_UNKNOWN)) {
+                            String emoji = Utils.convertCountryCodeToFlagEmoji(countryCode);
+                            String countryName = new Locale("", countryCode).getDisplayName();
+                            node.country = emoji + " " + countryName;
+                        } else node.country = "";
                         mService.setNotificationSubtext(node.toString());
-                    } catch (Exception e) {
+                    } catch (Exception ignored) {
                     }
                 });
             } else {
@@ -125,6 +127,8 @@ public class OrbotRawEventListener implements RawEventListener {
             }
         }
     }
+
+    private static final String TOR_CONTROLLER_COUNTRY_CODE_UNKNOWN = "??";
 
     private void handleStreamEventsDebugLogging(String streamId, String status) {
         mService.debug("StreamStatus (" + streamId + "): " + status);
@@ -136,7 +140,7 @@ public class OrbotRawEventListener implements RawEventListener {
             if (ignoredInternalCircuits.contains(id)) return; // this circuit won't be used by user clients
             String[] nodes = path.split(",");
             String exit = nodes[nodes.length - 1];
-            String fingerprint = exit.split("~")[0].substring(1);
+            String fingerprint = exit.split("~")[0];
             exitNodeMap.put(id, new ExitNode(fingerprint));
         } else if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_CLOSED)) {
             exitNodeMap.remove(id);
