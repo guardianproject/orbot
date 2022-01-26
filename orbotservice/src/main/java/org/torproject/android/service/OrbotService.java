@@ -874,7 +874,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         }
     }
 
-    public void exec(Runnable runn) {
+    protected void exec(Runnable runn) {
         mExecutor.execute(runn);
     }
 

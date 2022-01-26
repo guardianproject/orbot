@@ -15,29 +15,10 @@ git submodule update --init --recursive
 ```
 
 You then need to run "ndk-build" and the following commands to compile and prepare Orbot's native code:
-
-## UNIX based 
-
 ```bash
 cd orbotservice/src/main
 ndk-build #(located in Android/Sdk/ndk/VERSION/)
-mv libs/armeabi-v7a/pdnsd libs/armeabi-v7a/libpdnsd.so
-mv libs/arm64-v8a/pdnsd libs/arm64-v8a/libpdnsd.so
-mv libs/x86/pdnsd libs/x86/libpdnsd.so
-mv libs/x86_64/pdnsd libs/x86_64/libpdnsd.so
 ```
-
-## Windows
-
-```bat
-cd orbotservice\src\main
-ndk-build.cmd (located in Android\Sdk\ndk\VERSION\) 
-ren libs\armeabi-v7a\pdnsd libpdnsd.so
-ren libs\arm64-v8a\pdnsd libpdnsd.so
-ren libs\x86\pdnsd libpdnsd.so
-ren libs\x86_64\pdnsd libpdnsd.so
-```
-
 
 Now build the Android app using Android Studio/gradle
 

@@ -228,10 +228,10 @@ public class OrbotVpnManager implements Handler.Callback {
                     .setConfigureIntent(null) // previously this was set to a null member variable
                     .establish();
 
-            var pdnsdPort = 8153;
-            startDNS(localhost, mTorDns, virtualGateway, pdnsdPort);
+            var dnsProxyPort = 8153;
+            startDNS(localhost, mTorDns, virtualGateway, dnsProxyPort);
 
-            Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks, virtualGateway + ":" + pdnsdPort, true);
+            Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks, virtualGateway + ":" + dnsProxyPort, true);
 
         } catch (Exception e) {
             Log.d(TAG, "tun2Socks has stopped", e);
@@ -264,9 +264,9 @@ public class OrbotVpnManager implements Handler.Callback {
 
     DNSProxy mDnsProxy;
 
-    private void startDNS(String torDnsHost, int torDnsPort, String pdnsdHost, int pdnsdPort) throws UnknownHostException, IOException {
+    private void startDNS(String torDnsHost, int torDnsPort, String dnsProxyHost, int dnsProxyPort) throws UnknownHostException, IOException {
         mDnsProxy = new DNSProxy(torDnsHost, torDnsPort);
-        mDnsProxy.startProxy(pdnsdHost, pdnsdPort);
+        mDnsProxy.startProxy(dnsProxyHost, dnsProxyPort);
     }
 
     private void stopDns() {
