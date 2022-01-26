@@ -105,8 +105,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     public static int mPortSOCKS = -1;
     public static int mPortHTTP = -1;
-    public static int mPortDns = TOR_DNS_PORT_DEFAULT;
-    public static int mPortTrans = TOR_TRANSPROXY_PORT_DEFAULT;
+    public static int mPortDns = -1;
+    public static int mPortTrans = -1;
     public static File appBinHome;
     public static File appCacheHome;
     private final ExecutorService mExecutor = Executors.newCachedThreadPool();
@@ -315,6 +315,11 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
             sendCallbackLogMessage(getString(R.string.status_disabled));
 
+            mPortDns = -1;
+            mPortSOCKS = -1;
+            mPortHTTP = -1;
+            mPortTrans = -1;
+
         } catch (Exception e) {
             logNotice("An error occurred stopping Tor: " + e.getMessage());
             sendCallbackLogMessage(getString(R.string.something_bad_happened));
@@ -423,7 +428,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
      */
     private void stopTor() throws Exception {
 
-       //unbinding from the tor service will stop tor
+        //unbinding from the tor service will stop tor
         if (shouldUnbindTorService) {
             unbindService(torServiceConnection);
             shouldUnbindTorService = false;
