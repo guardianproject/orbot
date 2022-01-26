@@ -119,7 +119,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     Random bridgeSelectRandom = new Random(System.nanoTime());
     ActionBroadcastReceiver mActionBroadcastReceiver;
     private String mCurrentStatus = STATUS_OFF;
-    private TorControlConnection conn = null;
+    TorControlConnection conn = null;
     private ServiceConnection torServiceConnection;
     private boolean shouldUnbindTorService;
     private NotificationManager mNotificationManager = null;
@@ -159,6 +159,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     }
 
     private void showConnectedToTorNetworkNotification() {
+        mNotifyBuilder.setProgress(0, 0, false);
         showToolbarNotification(getString(R.string.status_activated), NOTIFY_ID, R.drawable.ic_stat_tor);
     }
 
@@ -185,7 +186,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         CharSequence name = getString(R.string.app_name); // The user-visible name of the channel.
         String description = getString(R.string.app_description); // The user-visible description of the channel.
         NotificationChannel mChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, name, NotificationManager.IMPORTANCE_LOW);
-        // Configure the notification channel.
         mChannel.setDescription(description);
         mChannel.enableLights(false);
         mChannel.enableVibration(false);
@@ -240,6 +240,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         if (!mCurrentStatus.equals(STATUS_ON)) {
             mNotifyBuilder.setSubText(null);
+        }
+
+        if (!mCurrentStatus.equals(STATUS_STARTING)) {
+            mNotifyBuilder.setProgress(0, 0, false); // removes progress bar
         }
 
         Notification notification = mNotifyBuilder.build();
@@ -421,18 +425,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
        //unbinding from the tor service will stop tor
         if (shouldUnbindTorService) {
-
-            try {
-                unbindService(torServiceConnection);
-            }
-            catch (Exception e)
-            {
-                Log.d(OrbotService.TAG,"Error unbinding service: " + e);
-            }
-            finally {
-                shouldUnbindTorService = false;
-                torServiceConnection = null;
-            }
+            unbindService(torServiceConnection);
+            shouldUnbindTorService = false;
         }
 
     }
@@ -708,14 +702,14 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         try {
             if (torServiceConnection != null && conn != null)
             {
-                showConnectedToTorNetworkNotification();
                 sendCallbackLogMessage("Ignoring start request, already started.");
+                showConnectedToTorNetworkNotification();
                 return;
             }
 
             sendCallbackStatus(STATUS_STARTING);
-
-            showToolbarNotification(getString(R.string.status_starting_up), NOTIFY_ID, R.drawable.ic_stat_tor);
+            mNotifyBuilder.setProgress(100, 0, false);
+            showToolbarNotification("", NOTIFY_ID, R.drawable.ic_stat_tor);
 
             ArrayList<String> customEnv = new ArrayList<>();
 
@@ -842,7 +836,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
 
                     initControlConnection();
-                    showConnectedToTorNetworkNotification();
                 }
 
             }
@@ -969,6 +962,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         String notificationMessage = logMessage;
         if (logMessage.contains(LOG_NOTICE_HEADER)) {
             notificationMessage = notificationMessage.substring(LOG_NOTICE_HEADER.length());
+            if (notificationMessage.contains(LOG_NOTICE_BOOTSTRAPPED)) {
+                String percent = notificationMessage.substring(LOG_NOTICE_BOOTSTRAPPED.length());
+                percent = percent.substring(0, percent.indexOf('%')).trim();
+                mNotifyBuilder.setProgress(100, Integer.parseInt(percent), false);
+                notificationMessage = notificationMessage.substring(notificationMessage.indexOf('%') + 1).trim();
+            }
         }
         showToolbarNotification(notificationMessage, NOTIFY_ID, R.drawable.ic_stat_tor);
         mHandler.post(() -> {
@@ -1347,7 +1346,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 }
             }
         }
-
     }
 
     private void loadBridgeDefaults() {

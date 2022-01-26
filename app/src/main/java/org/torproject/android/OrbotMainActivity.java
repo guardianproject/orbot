@@ -48,6 +48,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -286,7 +287,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             if (Prefs.useDebugLogging())
                 exportTorData();
         }
-
     }
 
     private void sendIntentToService(final String action) {
@@ -296,10 +296,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     }
 
     private void sendIntentToService(Intent intent) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            startForegroundService(intent);
-        else
-            startService(intent);
+        ContextCompat.startForegroundService(this, intent);
     }
 
     private boolean waitingToStop = false;
@@ -430,8 +427,9 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             int index = 0;
 
             for (String countryDisplayName : sortedCountries.keySet()) {
-                cList.add(countryDisplayName);
-                if (currentExit.contains(sortedCountries.get(countryDisplayName).getCountry()))
+                String countryCode = sortedCountries.get(countryDisplayName).getCountry();
+                cList.add(Utils.convertCountryCodeToFlagEmoji(countryCode) + " " + countryDisplayName);
+                if (currentExit.contains(countryCode))
                     selIdx =  index + 1;
                 index++;
             }
@@ -448,20 +446,15 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                 @Override
                 public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                    // your code here
-
                     if (mOldPosition == position)
                         return;
 
                     mOldPosition = position; //new position!
 
-                    String country;
-
+                    String country = "";
                     Object[] countries = sortedCountries.keySet().toArray();
 
-                    if (position == 0)
-                        country = "";
-                    else
+                    if (position != 0)
                         country = '{' + sortedCountries.get(countries[position -1].toString()).getCountry() + '}';
 
                     sendIntentToService(new Intent(OrbotMainActivity.this, OrbotService.class)
@@ -732,7 +725,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     }
 
     public void promptSetupBridges() {
-
         if (mBtnBridges.isChecked()) {
             Prefs.putBridgesEnabled(true);
 
@@ -740,7 +732,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         } else {
             enableBridges(false);
         }
-
     }
 
     private void enableBridges(boolean enable) {
@@ -780,7 +771,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
         //now you can handle the intents properly
         handleIntents();
-
     }
 
     /**
@@ -1079,7 +1069,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     }
 
     private static class MainActivityStatusUpdateHandler extends Handler {
-        private WeakReference<OrbotMainActivity> ref;
+        private final WeakReference<OrbotMainActivity> ref;
 
         MainActivityStatusUpdateHandler(OrbotMainActivity oma) {
             ref = new WeakReference<>(oma);

@@ -98,7 +98,7 @@
     <string name="unable_to_start_tor">Unable to start Tor:</string>
     <string name="pref_use_persistent_notifications">Always keep the icon in toolbar when Orbot is connected</string>
     <string name="pref_use_persistent_notifications_title">Always-On Notifications</string>
-    <string name="pref_use_expanded_notifications">Show expanded notification with Tor exit country and IP</string>
+    <string name="pref_use_expanded_notifications">Display in the notification the country and IP Address of your tor exit node when available</string>
     <string name="pref_use_expanded_notifications_title">Expanded Notifications</string>
     <string name="set_locale_title">Language</string>
     <string name="pref_disable_network_title">No Network Auto-Sleep</string>

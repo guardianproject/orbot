@@ -2,10 +2,5 @@
     package="org.torproject.android.service">
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <application>
-    <service android:name="org.torproject.jni.TorService"/>
 
-
-
-    </application>
 </manifest>

@@ -42,19 +42,15 @@ public class Tun2Socks {
 
     private static HashMap<Integer, String> mAppUidBlacklist = new HashMap<>();
 
-
     static {
         System.loadLibrary("tun2socks");
     }
 
-    public static void init() {
-    }
     // Note: this class isn't a singleton, but you can't run more
     // than one instance due to the use of global state (the lwip
     // module, etc.) in the native code.
 
     public static void Start(
-            Context context,
             ParcelFileDescriptor vpnInterfaceFileDescriptor,
             int vpnInterfaceMTU,
             String vpnIpAddress,
@@ -64,21 +60,18 @@ public class Tun2Socks {
             boolean udpgwTransparentDNS) {
 
         if (vpnInterfaceFileDescriptor != null)
-                runTun2Socks(
-                        vpnInterfaceFileDescriptor.detachFd(),
-                        vpnInterfaceMTU,
-                        vpnIpAddress,
-                        vpnNetMask,
-                        socksServerAddress,
-                        udpgwServerAddress,
-                        udpgwTransparentDNS ? 1 : 0);
-
+            runTun2Socks(
+                    vpnInterfaceFileDescriptor.detachFd(),
+                    vpnInterfaceMTU,
+                    vpnIpAddress,
+                    vpnNetMask,
+                    socksServerAddress,
+                    udpgwServerAddress,
+                    udpgwTransparentDNS ? 1 : 0);
     }
 
     public static void Stop() {
-
         terminateTun2Socks();
-
     }
 
     public static void logTun2Socks(

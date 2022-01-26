@@ -5,13 +5,14 @@ import android.text.TextUtils;
 import net.freehaven.tor.control.RawEventListener;
 import net.freehaven.tor.control.TorControlCommands;
 
-import org.torproject.android.service.util.ExpandedNotificationExitNodeResolver;
 import org.torproject.android.service.util.ExternalIPFetcher;
 import org.torproject.android.service.util.Prefs;
+import org.torproject.android.service.util.Utils;
 import org.torproject.jni.TorService;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -105,14 +106,29 @@ public class OrbotRawEventListener implements RawEventListener {
         if (node != null) {
             if (node.country == null && !node.querying) {
                 node.querying = true;
-                mService.exec(new ExpandedNotificationExitNodeResolver(mService, OrbotService.mPortHTTP, node));
+                mService.exec(() -> {
+                    try {
+                        String[] networkStatus = mService.conn.getInfo("ns/id/" + node.fingerPrint).split(" ");
+                        node.ipAddress = networkStatus[6];
+                        String countryCode = mService.conn.getInfo("ip-to-country/" + node.ipAddress).toUpperCase();
+                        if (!countryCode.equals(TOR_CONTROLLER_COUNTRY_CODE_UNKNOWN)) {
+                            String emoji = Utils.convertCountryCodeToFlagEmoji(countryCode);
+                            String countryName = new Locale("", countryCode).getDisplayName();
+                            node.country = emoji + " " + countryName;
+                        } else node.country = "";
+                        mService.setNotificationSubtext(node.toString());
+                    } catch (Exception ignored) {
+                    }
+                });
             } else {
                 if (node.country != null)
-                    mService.setNotificationSubtext(node.ipAddress + " | " + node.country);
+                    mService.setNotificationSubtext(node.toString());
                 else mService.setNotificationSubtext(null);
             }
         }
     }
+
+    private static final String TOR_CONTROLLER_COUNTRY_CODE_UNKNOWN = "??";
 
     private void handleStreamEventsDebugLogging(String streamId, String status) {
         mService.debug("StreamStatus (" + streamId + "): " + status);
@@ -124,7 +140,7 @@ public class OrbotRawEventListener implements RawEventListener {
             if (ignoredInternalCircuits.contains(id)) return; // this circuit won't be used by user clients
             String[] nodes = path.split(",");
             String exit = nodes[nodes.length - 1];
-            String fingerprint = exit.split("~")[0].substring(1);
+            String fingerprint = exit.split("~")[0];
             exitNodeMap.put(id, new ExitNode(fingerprint));
         } else if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_CLOSED)) {
             exitNodeMap.remove(id);
@@ -240,6 +256,11 @@ public class OrbotRawEventListener implements RawEventListener {
         public String country;
         public String ipAddress;
         boolean querying = false;
+
+        @Override
+        public String toString() {
+            return ipAddress + " " + country;
+        }
     }
 
 
