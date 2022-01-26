@@ -146,11 +146,11 @@ public class OrbotVpnManager implements Handler.Callback {
                 } else if (action.equals(TorServiceConstants.LOCAL_ACTION_PORTS)) {
                     Log.d(TAG, "setting VPN ports");
 
-                    int torSocks = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT, TOR_TRANSPROXY_PORT_DEFAULT);
-                    int torDns = intent.getIntExtra(OrbotService.EXTRA_DNS_PORT, TOR_DNS_PORT_DEFAULT);
+                    int torSocks = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT, -1);
+                    int torDns = intent.getIntExtra(OrbotService.EXTRA_DNS_PORT, -1);
 
                     //if running, we need to restart
-                    if ((torSocks != mTorSocks || torDns != mTorDns)) {
+                    if ((torSocks != mTorSocks && torDns != mTorDns)) {
 
                         mTorSocks = torSocks;
                         mTorDns = torDns;
