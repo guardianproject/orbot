@@ -16,12 +16,14 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.SocketException;
 import java.net.UnknownHostException;
 
 public class DNSProxy {
 
-    private boolean keepRunning = false;
     private final SimpleResolver mResolver;
+    private DatagramSocket serverSocket;
+    private Thread mThread;
 
     public DNSProxy (String localDns, int localPort) throws UnknownHostException, IOException {
         mResolver = new SimpleResolver(localDns);
@@ -29,33 +31,41 @@ public class DNSProxy {
     }
 
     public void startProxy (String serverHost, int serverPort) {
-        keepRunning = true;
-
-        Thread mThread = new Thread() {
+        mThread = new Thread() {
+            @Override
             public void run() {
                 startProxyImpl(serverHost, serverPort);
+            }
+
+            @Override
+            public void interrupt() {
+                super.interrupt();
+                if (serverSocket != null) {
+                    serverSocket.close();
+                }
             }
         };
 
         mThread.start();
     }
 
-    public void stopProxy () {
-        keepRunning = false;
+    public void stopProxy() {
+        if (mThread != null) {
+            mThread.interrupt();
+        }
     }
 
     private void startProxyImpl (String serverHost, int serverPort) {
         try {
-            DatagramSocket server_socket = new DatagramSocket(serverPort, InetAddress.getByName(serverHost));
+            serverSocket = new DatagramSocket(serverPort, InetAddress.getByName(serverHost));
 
             byte[] receive_data = new byte[1024];
 
-
-            while(keepRunning) {   //waiting for a client request...
+            while (true) {   //waiting for a client request...
                 try {
                     //receiving the udp packet of data from client and turning them to string to print them
                     DatagramPacket receive_packet = new DatagramPacket(receive_data, receive_data.length);
-                    server_socket.receive(receive_packet);
+                    serverSocket.receive(receive_packet);
 
                     Message msgRequest = new Message(receive_data);
                     String given_hostname = msgRequest.getQuestion().getName().toString();
@@ -74,9 +84,12 @@ public class DNSProxy {
                     InetAddress client_address = receive_packet.getAddress();
                     int client_port = receive_packet.getPort();
                     DatagramPacket send_packet = new DatagramPacket(send_data, send_data.length, client_address, client_port);
-                    server_socket.send(send_packet);
+                    serverSocket.send(send_packet);
                 }
-                catch (Exception e) {
+                catch (SocketException e) {
+                    if (e.toString().contains("Socket closed")) {
+                        break;
+                    }
                     Log.e("DNSProxy","error resolving host",e);
                 }
             }

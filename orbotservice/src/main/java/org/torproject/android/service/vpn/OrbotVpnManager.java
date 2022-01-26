@@ -64,6 +64,7 @@ public class OrbotVpnManager implements Handler.Callback {
     private ProxyServer mSocksProxyServer;
     private final VpnService mService;
     private final SharedPreferences prefs;
+    private DNSProxy mDnsProxy;
 
     public OrbotVpnManager(OrbotService service) {
         mService = service;
@@ -100,7 +101,6 @@ public class OrbotVpnManager implements Handler.Callback {
 
                         mTorSocks = torSocks;
                         mTorDns = torDns;
-                        Log.d("bim", "mTorDns=" + mTorDns);
 
                         if (!mIsLollipop) {
                          //   stopSocksBypass();
@@ -111,9 +111,7 @@ public class OrbotVpnManager implements Handler.Callback {
                     }
                 }
             }
-
         }
-
 
         return Service.START_STICKY;
     }
@@ -262,15 +260,15 @@ public class OrbotVpnManager implements Handler.Callback {
 
     }
 
-    DNSProxy mDnsProxy;
-
     private void startDNS(String torDnsHost, int torDnsPort, String dnsProxyHost, int dnsProxyPort) throws UnknownHostException, IOException {
         mDnsProxy = new DNSProxy(torDnsHost, torDnsPort);
         mDnsProxy.startProxy(dnsProxyHost, dnsProxyPort);
     }
 
     private void stopDns() {
-        mDnsProxy.stopProxy();
+        if (mDnsProxy != null) {
+            mDnsProxy.stopProxy();
+        }
     }
 
     public boolean isStarted() {
