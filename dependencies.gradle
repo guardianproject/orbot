@@ -49,6 +49,7 @@ ext {
             guardian_jtorctl               : "info.guardianproject:jtorctl:$versions.guardian_jtorctl",
             ipt_proxy                      : "com.github.tladesignz:IPtProxy:$versions.ipt_proxy",
             portmapper                     : "com.offbynull.portmapper:portmapper:$versions.portmapper",
-            tor_android                    : "info.guardianproject:tor-android:$versions.tor_android"
+            tor_android                    : "info.guardianproject:tor-android:$versions.tor_android",
+            dns_java                       : "dnsjava:dnsjava:3.4.3"
     ]
 }

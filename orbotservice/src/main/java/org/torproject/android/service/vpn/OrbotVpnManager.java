@@ -70,15 +70,13 @@ public class OrbotVpnManager implements Handler.Callback {
     public static String sSocksProxyLocalhost = null;
     boolean isStarted = false;
     File filePdnsPid;
-    private Thread mThreadVPN;
     private final static String mSessionName = "OrbotVPN";
     private ParcelFileDescriptor mInterface;
     private int mTorSocks = -1;
     private int mTorDns = -1;
-    private int pdnsdPort = 8091;
+    private int pdnsdPort = 8153;
     private ProxyServer mSocksProxyServer;
     private final File filePdnsd;
-    private boolean isRestart = false;
     private final VpnService mService;
     private final SharedPreferences prefs;
 
@@ -126,16 +124,16 @@ public class OrbotVpnManager implements Handler.Callback {
                     isStarted = true;
 
                     // Stop the previous session by interrupting the thread.
-                    if (mThreadVPN != null && mThreadVPN.isAlive())
-                        stopVPN();
+                    //stopVPN();
 
+                    /**
                     if (mTorSocks != -1) {
                         if (!mIsLollipop) {
                             startSocksBypass();
                         }
 
                         setupTun2Socks(builder);
-                    }
+                    }**/
 
                 } else if (action.equals(ACTION_STOP_VPN) || action.equals(ACTION_STOP)) {
                     isStarted = false;
@@ -156,7 +154,7 @@ public class OrbotVpnManager implements Handler.Callback {
                         mTorDns = torDns;
 
                         if (!mIsLollipop) {
-                            stopSocksBypass();
+                         //   stopSocksBypass();
                             startSocksBypass();
                         }
 
@@ -234,7 +232,6 @@ public class OrbotVpnManager implements Handler.Callback {
             }
         }
         stopDns();
-        mThreadVPN = null;
     }
 
     @Override
@@ -246,92 +243,62 @@ public class OrbotVpnManager implements Handler.Callback {
     }
 
     private synchronized void setupTun2Socks(final VpnService.Builder builder) {
-        if (mInterface != null) //stop tun2socks now to give it time to clean up
-        {
-            isRestart = true;
-            Tun2Socks.Stop();
 
-            stopDns();
+        try {
 
-        }
+            final String vpnName = "OrbotVPN";
+            final String localhost = "127.0.0.1";
 
-        mThreadVPN = new Thread() {
+            final String virtualGateway = "172.16.0.1";
+            final String virtualIP = "172.16.0.2";
+            final String virtualNetMask = "255.255.255.0";
+            final String dummyDNS = "1.1.1.1"; //this is intercepted by the tun2socks library, but we must put in a valid DNS to start
+            final String defaultRoute = "0.0.0.0";
 
-            public void run() {
-                try {
+            final String localSocks = localhost + ':' + mTorSocks;
 
-                    if (isRestart) {
-                        Log.d(TAG, "is a restart... let's wait for a few seconds");
-                        Thread.sleep(3000);
-                    }
+            builder.setMtu(VPN_MTU);
+            builder.addAddress(virtualGateway, 32);
 
-                    final String vpnName = "OrbotVPN";
-                    final String localhost = "127.0.0.1";
+            builder.setSession(vpnName);
 
-                    final String virtualGateway = "192.168.200.1";
-                    final String virtualIP = "192.168.200.2";
-                    final String virtualNetMask = "255.255.255.0";
-                    final String dummyDNS = "1.1.1.1"; //this is intercepted by the tun2socks library, but we must put in a valid DNS to start
-                    final String defaultRoute = "0.0.0.0";
+            //route all traffic through VPN (we might offer country specific exclude lists in the future)
+            builder.addRoute(defaultRoute, 0);
 
-                    final String localSocks = localhost + ':' + mTorSocks;
+            builder.addDnsServer(dummyDNS);
+            builder.addRoute(dummyDNS, 32);
 
-                    builder.setMtu(VPN_MTU);
-                    builder.addAddress(virtualGateway, 32);
+            //handle ipv6
+            //builder.addAddress("fdfe:dcba:9876::1", 126);
+            //builder.addRoute("::", 0);
 
-                    builder.setSession(vpnName);
+            if (mIsLollipop)
+                doLollipopAppRouting(builder);
 
-                    //route all traffic through VPN (we might offer country specific exclude lists in the future)
-                    builder.addRoute(defaultRoute, 0);
-
-                    builder.addDnsServer(dummyDNS);
-                    builder.addRoute(dummyDNS, 32);
-
-                    //handle ipv6
-                    //builder.addAddress("fdfe:dcba:9876::1", 126);
-                    //builder.addRoute("::", 0);
-
-                    if (mIsLollipop)
-                        doLollipopAppRouting(builder);
-
-                    // https://developer.android.com/reference/android/net/VpnService.Builder#setMetered(boolean)
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                        builder.setMetered(false);
-                    }
-
-                    // Create a new interface using the builder and save the parameters.
-                    ParcelFileDescriptor newInterface = builder.setSession(mSessionName)
-                            .setConfigureIntent(null) // previously this was set to a null member variable
-                            .establish();
-
-                    if (mInterface != null) {
-                        Log.d(TAG, "Stopping existing VPN interface");
-                        mInterface.close();
-                        mInterface = null;
-                    }
-
-                    mInterface = newInterface;
-
-                    isRestart = false;
-
-                    //start PDNSD daemon pointing to actual DNS
-                    if (filePdnsd != null) {
-
-                        pdnsdPort++;
-                        startDNS(filePdnsd.getCanonicalPath(), localhost, mTorDns, virtualGateway, pdnsdPort);
-                        final boolean localDnsTransparentProxy = true;
-
-                        Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks, virtualGateway + ":" + pdnsdPort, localDnsTransparentProxy);
-                    }
-
-                } catch (Exception e) {
-                    Log.d(TAG, "tun2Socks has stopped", e);
-                }
+            // https://developer.android.com/reference/android/net/VpnService.Builder#setMetered(boolean)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                builder.setMetered(false);
             }
 
-        };
+            // Create a new interface using the builder and save the parameters.
+            ParcelFileDescriptor newInterface = builder.setSession(mSessionName)
+                    .setConfigureIntent(null) // previously this was set to a null member variable
+                    .establish();
 
-        mThreadVPN.start();
+            mInterface = newInterface;
+
+            startDNS(localhost, mTorDns, virtualGateway, pdnsdPort);
+            final boolean localDnsTransparentProxy = true;
+
+            Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks, virtualGateway + ":" + pdnsdPort, localDnsTransparentProxy);
+
+
+        } catch (Exception e) {
+            Log.d(TAG, "tun2Socks has stopped", e);
+        }
+
+
+
 
     }
 
@@ -361,7 +328,18 @@ public class OrbotVpnManager implements Handler.Callback {
 
     }
 
-    private void startDNS(String pdnsPath, String torDnsHost, int torDnsPort, String pdnsdHost, int pdnsdPort) throws IOException, TimeoutException {
+
+    private Process mProcDns;
+
+    DNSProxy mDnsProxy;
+
+    private void startDNS(String torDnsHost, int torDnsPort, String pdnsdHost, int pdnsdPort) throws IOException, TimeoutException {
+
+        mDnsProxy = new DNSProxy(torDnsHost, torDnsPort);
+
+        mDnsProxy.startProxy(pdnsdHost, pdnsdPort);
+
+        /**
         String debugEnabledConf = "off";
         if (Prefs.useDebugLogging()) {
             debugEnabledConf = "on";
@@ -372,32 +350,50 @@ public class OrbotVpnManager implements Handler.Callback {
         String[] cmdString = {pdnsPath, "-c", fileConf.toString(), "-v2"};
         ProcessBuilder pb = new ProcessBuilder(cmdString);
         pb.redirectErrorStream(true);
-        Process proc = pb.start();
+        mProcDns = pb.start();
         try {
-            proc.waitFor();
+            mProcDns.waitFor();
         } catch (Exception e) {
         }
 
-        Log.i(TAG, "PDNSD: " + proc.exitValue());
+        Log.i(TAG, "PDNSD: " + mProcDns.exitValue());
 
-        if (proc.exitValue() != 0) {
-            BufferedReader br = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+        if (mProcDns.exitValue() != 0) {
+            BufferedReader br = new BufferedReader(new InputStreamReader(mProcDns.getInputStream()));
 
             String line;
             while ((line = br.readLine()) != null) {
                 Log.d(TAG, "pdnsd: " + line);
             }
 
-            br = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+            br = new BufferedReader(new InputStreamReader(mProcDns.getErrorStream()));
             while ((line = br.readLine()) != null) {
                 Log.d(TAG, "pdnsd ERROR: " + line);
             }
         }
+        *///
 
 
     }
 
     private void stopDns() {
+
+        mDnsProxy.stopProxy();
+
+        /**
+        if (mProcDns != null)
+        {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                mProcDns.destroyForcibly();
+            }
+            else
+            {
+                mProcDns.destroy();
+            }
+
+        }
+
+
         if (filePdnsPid != null && filePdnsPid.exists()) {
             ArrayList<String> lines = new ArrayList<>();
             try {
@@ -414,7 +410,7 @@ public class OrbotVpnManager implements Handler.Callback {
             } catch (Exception e) {
                 Log.e("OrbotVPN", "error killing dns process", e);
             }
-        }
+        }**/
     }
 
     public boolean isStarted() {

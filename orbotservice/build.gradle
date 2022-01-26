@@ -48,6 +48,7 @@ dependencies {
             libs.guardian_jsocks,
             libs.guardian_geoip,
             libs.portmapper,
-            libs.tor_android
+            libs.tor_android,
+            libs.dns_java
     )
 }
