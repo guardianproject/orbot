@@ -17,6 +17,10 @@ android {
         versionName getVersionName()
         minSdkVersion 16
         targetSdkVersion 31
+        multiDexEnabled true
+    }
+    compileOptions {
+        coreLibraryDesugaringEnabled true
     }
     lintOptions {
         htmlReport true
@@ -65,8 +69,9 @@ android {
                 libs.apl_appintro,
                 libs.bclogic_pulsator,
                 libs.ipt_proxy
-
         )
         androidTestImplementation libs.fastlane_screengrab
+        coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+
     }
 }

@@ -1,10 +1,7 @@
 package org.torproject.android.service.vpn;
 
-import static org.xbill.DNS.Section.ANSWER;
-
 import android.util.Log;
 
-import org.torproject.android.service.OrbotService;
 import org.xbill.DNS.DClass;
 import org.xbill.DNS.Message;
 import org.xbill.DNS.Name;
