@@ -18,7 +18,6 @@ package org.torproject.android.service.vpn;
 
 import android.annotation.TargetApi;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -35,28 +34,18 @@ import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
-import org.torproject.android.service.R;
 import org.torproject.android.service.TorServiceConstants;
-import org.torproject.android.service.util.CustomNativeLoader;
 import org.torproject.android.service.util.Prefs;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.concurrent.TimeoutException;
 
 import static org.torproject.android.service.TorServiceConstants.ACTION_START;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
-import static org.torproject.android.service.TorServiceConstants.TOR_DNS_PORT_DEFAULT;
-import static org.torproject.android.service.TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT;
 
 import androidx.annotation.ChecksSdkIntAtLeast;
 
@@ -65,54 +54,21 @@ public class OrbotVpnManager implements Handler.Callback {
     private final static int VPN_MTU = 1500;
     @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.LOLLIPOP)
     private final static boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
-    private final static String PDNSD_BIN = "pdnsd";
     public static int sSocksProxyServerPort = -1;
     public static String sSocksProxyLocalhost = null;
     boolean isStarted = false;
-    File filePdnsPid;
-    private Thread mThreadVPN;
     private final static String mSessionName = "OrbotVPN";
     private ParcelFileDescriptor mInterface;
     private int mTorSocks = -1;
     private int mTorDns = -1;
-    private int pdnsdPort = 8091;
     private ProxyServer mSocksProxyServer;
-    private final File filePdnsd;
-    private boolean isRestart = false;
     private final VpnService mService;
     private final SharedPreferences prefs;
+    private DNSProxy mDnsProxy;
 
-    public OrbotVpnManager(VpnService service) {
+    public OrbotVpnManager(OrbotService service) {
         mService = service;
         prefs = Prefs.getSharedPrefs(mService.getApplicationContext());
-        filePdnsd = CustomNativeLoader.loadNativeBinary(service.getApplicationContext(), PDNSD_BIN, new File(service.getFilesDir(), PDNSD_BIN));
-    }
-
-    public static File makePdnsdConf(Context context, File fileDir, String torDnsHost, int torDnsPort, String pdnsdHost, int pdnsdPort, String pdnsdDebug) throws IOException {
-        String conf = String.format(context.getString(R.string.pdnsd_conf),
-                torDnsHost, torDnsPort, fileDir.getAbsolutePath(), pdnsdHost, pdnsdPort, pdnsdDebug);
-
-        Log.d(TAG, "pdsnd conf:" + conf);
-
-        File fPid = new File(fileDir, "pdnsd.conf");
-
-        if (fPid.exists()) {
-            fPid.delete();
-        }
-
-        PrintWriter ps = new PrintWriter(new FileWriter(fPid, false));
-        ps.write(conf);
-        ps.close();
-
-        File cache = new File(fileDir, "pdnsd.cache");
-
-        if (!cache.exists()) {
-            try {
-                cache.createNewFile();
-            } catch (Exception e) {
-            }
-        }
-        return fPid;
     }
 
     public int handleIntent(VpnService.Builder builder, Intent intent) {
@@ -126,16 +82,7 @@ public class OrbotVpnManager implements Handler.Callback {
                     isStarted = true;
 
                     // Stop the previous session by interrupting the thread.
-                    if (mThreadVPN != null && mThreadVPN.isAlive())
-                        stopVPN();
-
-                    if (mTorSocks != -1) {
-                        if (!mIsLollipop) {
-                            startSocksBypass();
-                        }
-
-                        setupTun2Socks(builder);
-                    }
+                    //stopVPN();
 
                 } else if (action.equals(ACTION_STOP_VPN) || action.equals(ACTION_STOP)) {
                     isStarted = false;
@@ -156,7 +103,7 @@ public class OrbotVpnManager implements Handler.Callback {
                         mTorDns = torDns;
 
                         if (!mIsLollipop) {
-                            stopSocksBypass();
+                         //   stopSocksBypass();
                             startSocksBypass();
                         }
 
@@ -164,9 +111,7 @@ public class OrbotVpnManager implements Handler.Callback {
                     }
                 }
             }
-
         }
-
 
         return Service.START_STICKY;
     }
@@ -185,7 +130,6 @@ public class OrbotVpnManager implements Handler.Callback {
                     } catch (Exception e) {
                         Log.e(TAG, "Unable to access localhost", e);
                         throw new RuntimeException("Unable to access localhost: " + e);
-
                     }
 
                 }
@@ -234,7 +178,6 @@ public class OrbotVpnManager implements Handler.Callback {
             }
         }
         stopDns();
-        mThreadVPN = null;
     }
 
     @Override
@@ -246,99 +189,56 @@ public class OrbotVpnManager implements Handler.Callback {
     }
 
     private synchronized void setupTun2Socks(final VpnService.Builder builder) {
-        if (mInterface != null) //stop tun2socks now to give it time to clean up
-        {
-            isRestart = true;
-            Tun2Socks.Stop();
+        try {
 
-            stopDns();
+            final String vpnName = "OrbotVPN";
+            final String localhost = "127.0.0.1";
 
-        }
+            final String virtualGateway = "172.16.0.1";
+            final String virtualIP = "172.16.0.2";
+            final String virtualNetMask = "255.255.255.0";
+            final String defaultRoute = "0.0.0.0";
 
-        mThreadVPN = new Thread() {
+            final String localSocks = localhost + ':' + mTorSocks;
 
-            public void run() {
-                try {
+            builder.setMtu(VPN_MTU);
+            builder.addAddress(virtualGateway, 32);
 
-                    if (isRestart) {
-                        Log.d(TAG, "is a restart... let's wait for a few seconds");
-                        Thread.sleep(3000);
-                    }
+            builder.setSession(vpnName);
 
-                    final String vpnName = "OrbotVPN";
-                    final String localhost = "127.0.0.1";
+            //route all traffic through VPN (we might offer country specific exclude lists in the future)
+            builder.addRoute(defaultRoute, 0);
 
-                    final String virtualGateway = "192.168.200.1";
-                    final String virtualIP = "192.168.200.2";
-                    final String virtualNetMask = "255.255.255.0";
-                    final String dummyDNS = "1.1.1.1"; //this is intercepted by the tun2socks library, but we must put in a valid DNS to start
-                    final String defaultRoute = "0.0.0.0";
+            //handle ipv6
+            //builder.addAddress("fdfe:dcba:9876::1", 126);
+            //builder.addRoute("::", 0);
 
-                    final String localSocks = localhost + ':' + mTorSocks;
+            if (mIsLollipop)
+                doLollipopAppRouting(builder);
 
-                    builder.setMtu(VPN_MTU);
-                    builder.addAddress(virtualGateway, 32);
-
-                    builder.setSession(vpnName);
-
-                    //route all traffic through VPN (we might offer country specific exclude lists in the future)
-                    builder.addRoute(defaultRoute, 0);
-
-                    builder.addDnsServer(dummyDNS);
-                    builder.addRoute(dummyDNS, 32);
-
-                    //handle ipv6
-                    //builder.addAddress("fdfe:dcba:9876::1", 126);
-                    //builder.addRoute("::", 0);
-
-                    if (mIsLollipop)
-                        doLollipopAppRouting(builder);
-
-                    // https://developer.android.com/reference/android/net/VpnService.Builder#setMetered(boolean)
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                        builder.setMetered(false);
-                    }
-
-                    // Create a new interface using the builder and save the parameters.
-                    ParcelFileDescriptor newInterface = builder.setSession(mSessionName)
-                            .setConfigureIntent(null) // previously this was set to a null member variable
-                            .establish();
-
-                    if (mInterface != null) {
-                        Log.d(TAG, "Stopping existing VPN interface");
-                        mInterface.close();
-                        mInterface = null;
-                    }
-
-                    mInterface = newInterface;
-
-                    isRestart = false;
-
-                    //start PDNSD daemon pointing to actual DNS
-                    if (filePdnsd != null) {
-
-                        pdnsdPort++;
-                        startDNS(filePdnsd.getCanonicalPath(), localhost, mTorDns, virtualGateway, pdnsdPort);
-                        final boolean localDnsTransparentProxy = true;
-
-                        Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks, virtualGateway + ":" + pdnsdPort, localDnsTransparentProxy);
-                    }
-
-                } catch (Exception e) {
-                    Log.d(TAG, "tun2Socks has stopped", e);
-                }
+            // https://developer.android.com/reference/android/net/VpnService.Builder#setMetered(boolean)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                builder.setMetered(false);
             }
 
-        };
+            // Create a new interface using the builder and save the parameters.
+            mInterface = builder.setSession(mSessionName)
+                    .setConfigureIntent(null) // previously this was set to a null member variable
+                    .establish();
 
-        mThreadVPN.start();
+            var dnsProxyPort = 8153;
+            startDNS(localhost, mTorDns, virtualGateway, dnsProxyPort);
 
+            Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks, virtualGateway + ":" + dnsProxyPort, true);
+
+        } catch (Exception e) {
+            Log.d(TAG, "tun2Socks has stopped", e);
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void doLollipopAppRouting(VpnService.Builder builder) throws NameNotFoundException {
         ArrayList<TorifiedApp> apps = TorifiedApp.getApps(mService, prefs);
-
 
         boolean perAppEnabled = false;
 
@@ -349,7 +249,6 @@ public class OrbotVpnManager implements Handler.Callback {
                 }
 
                 perAppEnabled = true;
-
             }
         }
 
@@ -361,59 +260,14 @@ public class OrbotVpnManager implements Handler.Callback {
 
     }
 
-    private void startDNS(String pdnsPath, String torDnsHost, int torDnsPort, String pdnsdHost, int pdnsdPort) throws IOException, TimeoutException {
-        String debugEnabledConf = "off";
-        if (Prefs.useDebugLogging()) {
-            debugEnabledConf = "on";
-        }
-
-        File fileConf = makePdnsdConf(mService, mService.getFilesDir(), torDnsHost, torDnsPort, pdnsdHost, pdnsdPort, debugEnabledConf);
-
-        String[] cmdString = {pdnsPath, "-c", fileConf.toString(), "-v2"};
-        ProcessBuilder pb = new ProcessBuilder(cmdString);
-        pb.redirectErrorStream(true);
-        Process proc = pb.start();
-        try {
-            proc.waitFor();
-        } catch (Exception e) {
-        }
-
-        Log.i(TAG, "PDNSD: " + proc.exitValue());
-
-        if (proc.exitValue() != 0) {
-            BufferedReader br = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-
-            String line;
-            while ((line = br.readLine()) != null) {
-                Log.d(TAG, "pdnsd: " + line);
-            }
-
-            br = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
-            while ((line = br.readLine()) != null) {
-                Log.d(TAG, "pdnsd ERROR: " + line);
-            }
-        }
-
-
+    private void startDNS(String torDnsHost, int torDnsPort, String dnsProxyHost, int dnsProxyPort) throws UnknownHostException, IOException {
+        mDnsProxy = new DNSProxy(torDnsHost, torDnsPort);
+        mDnsProxy.startProxy(dnsProxyHost, dnsProxyPort);
     }
 
     private void stopDns() {
-        if (filePdnsPid != null && filePdnsPid.exists()) {
-            ArrayList<String> lines = new ArrayList<>();
-            try {
-                BufferedReader reader = new BufferedReader(new FileReader(filePdnsPid));
-
-                String line = null;
-                while ((line = reader.readLine())!= null)
-                    lines.add(line);
-
-                String dnsPid = lines.get(0);
-                VpnUtils.killProcess(dnsPid, "");
-                filePdnsPid.delete();
-                filePdnsPid = null;
-            } catch (Exception e) {
-                Log.e("OrbotVPN", "error killing dns process", e);
-            }
+        if (mDnsProxy != null) {
+            mDnsProxy.stopProxy();
         }
     }
 
