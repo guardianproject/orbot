@@ -2,54 +2,38 @@ package org.torproject.android.service.vpn;
 
 import static org.xbill.DNS.Section.ANSWER;
 
-import android.os.Build;
+import android.util.Log;
 
-import org.xbill.DNS.ARecord;
 import org.xbill.DNS.DClass;
-import org.xbill.DNS.Flags;
 import org.xbill.DNS.Message;
 import org.xbill.DNS.Name;
-import org.xbill.DNS.Rcode;
 import org.xbill.DNS.Record;
-import org.xbill.DNS.Resolver;
-import org.xbill.DNS.Section;
 import org.xbill.DNS.SimpleResolver;
-import org.xbill.DNS.TSIG;
-import org.xbill.DNS.TSIGRecord;
 import org.xbill.DNS.Type;
 
-import java.io.PrintWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.SocketException;
 import java.net.UnknownHostException;
-import java.util.Hashtable;
 
 public class DNSProxy {
 
     private boolean keepRunning = false;
-    private Thread mThread;
-    private String mLocalDns;
-    private int mLocalPort;
 
-    private SimpleResolver mResolver;
+    private final SimpleResolver mResolver;
 
     public DNSProxy (String localDns, int localPort) throws UnknownHostException {
-        mLocalDns = localDns;
-        mLocalPort = localPort;
 
-        mResolver = new SimpleResolver(mLocalDns);
-        mResolver.setPort(mLocalPort);
+        mResolver = new SimpleResolver(localDns);
+        mResolver.setPort(localPort);
     }
 
     public void startProxy (String serverHost, int serverPort)
     {
         keepRunning = true;
 
-        mThread = new Thread () {
-            public void run ()
-            {
+        Thread mThread = new Thread() {
+            public void run() {
                 startProxyImpl(serverHost, serverPort);
             }
         };
@@ -68,7 +52,7 @@ public class DNSProxy {
             DatagramSocket server_socket = new DatagramSocket(serverPort, InetAddress.getByName(serverHost));
 
             byte[] receive_data = new byte[1024];
-            byte[] send_data = new byte[1024];
+            byte[] send_data;
 
 
             while(keepRunning)     //waiting for a client request...
@@ -81,14 +65,12 @@ public class DNSProxy {
                     Message msgRequest = new Message(receive_data);
                     String given_hostname = msgRequest.getQuestion().getName().toString();
 
-                    String found_address = "-1";
-
                     Record queryRecord = Record.newRecord(Name.fromString(given_hostname), Type.A, DClass.IN);
                     Message queryMessage = Message.newQuery(queryRecord);
 
-
                     Message answer = mResolver.send(queryMessage);
-                    found_address = answer.getSection(ANSWER).get(0).rdataToString();
+                  //  String found_address = answer.getSection(ANSWER).get(0).rdataToString();
+                   // Log.d("DNSProxy","resolved " + given_hostname + " to " + found_address);
 
                     answer.getHeader().setID(msgRequest.getHeader().getID());
                     send_data = answer.toWire();
@@ -102,12 +84,13 @@ public class DNSProxy {
                 }
                 catch (Exception e)
                 {
-                    e.printStackTrace();
+                    Log.e("DNSProxy","error resolving host",e);
                 }
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("DNSProxy","error running DNSProxy server",e);
+
         }
     }
 }
