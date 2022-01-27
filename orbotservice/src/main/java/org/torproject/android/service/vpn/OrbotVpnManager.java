@@ -116,6 +116,17 @@ public class OrbotVpnManager implements Handler.Callback {
         return Service.START_STICKY;
     }
 
+    public void restartVPN (VpnService.Builder builder) {
+        stopVPN();
+
+        if (!mIsLollipop) {
+            //   stopSocksBypass();
+            startSocksBypass();
+        }
+
+        setupTun2Socks(builder);
+    }
+
     private void startSocksBypass() {
         new Thread() {
             public void run() {

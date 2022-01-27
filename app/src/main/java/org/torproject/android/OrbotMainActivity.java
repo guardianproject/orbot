@@ -87,6 +87,7 @@ import java.util.TreeMap;
 
 import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
+import static org.torproject.android.service.TorServiceConstants.ACTION_RESTART_VPN;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP;
@@ -536,8 +537,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     }
 
     private void refreshVPNApps() {
-        sendIntentToService(ACTION_STOP_VPN);
-        sendIntentToService(ACTION_START_VPN);
+        sendIntentToService(ACTION_RESTART_VPN);
     }
 
     private void enableVPN(boolean enable) {

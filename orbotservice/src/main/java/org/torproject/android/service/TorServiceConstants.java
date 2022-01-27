@@ -36,6 +36,8 @@ public interface TorServiceConstants {
 
     String ACTION_START_VPN = "org.torproject.android.intent.action.START_VPN";
     String ACTION_STOP_VPN = "org.torproject.android.intent.action.STOP_VPN";
+    String ACTION_RESTART_VPN = "org.torproject.android.intent.action.RESTART_VPN";
+
 
     String ACTION_UPDATE_ONION_NAMES = "org.torproject.android.intent.action.UPDATE_ONION_NAMES";
 
