@@ -1,3 +1,101 @@
+
+/** 16.5.3-RC-1 (tor 0.4.6.9) 27 Jan 2022 **/
+
+* Improve notification display with exit IP, country, and reliable up/down throughput display (bim!)
+* Major improvement to VPN reliability through replacing pdnsd daemon with more reliable DNS layer (n8fr8, bim)
+* Multiple small fixes, tweaks to startup/shutdown/restart reliability (bim, n8fr8)
+* Updates to latest iptproxy release for small improvements to obfs4 and snowflake
+
+01f9d49d (HEAD -> master, tag: 16.5.3-RC-1-tor.0.4.6.9) update version code to 1653300200
+4406882d (origin/master, origin/HEAD, newport/master) fix lint issue with unused javax package
+abbbe9c9 add new clean VPN restarts for when you change apps #587
+e186167a have lint ignore missing javax package referenced from dnsjava library
+c4727c08 Merge branch 'dev_dnsproxy'
+44ef2133 (origin/dev_dnsproxy, dev_dnsproxy) Added desugaring to support java 8 java.time on android API < 26
+679a0611 Interrupt thread on stopDNS() + close socket ~ also nullcheck on mDNSProxy to avoid NPE on rapid start + stop
+e2587786 removed pdnsd native and build script
+feb2691e Cleaned up pdnsd code, DNS resolution is working in VPN
+150c32db cleanup dnsproxy class
+0ceed73f switch to new DNSProxy java server instead of PDNSD
+23ea7b34 ensure both socks and DNS values are set before tun2socks is started - this stops multiple starts/stops of VPN interface and tun2socks which causes crashes
+80cac1ef set port values all to -1 as default; will always get them from the control port
+0402c981 Merge branch 'notification_progress'
+9abf1dd5 (notification_progress) Merge branch 'master' into notification_progress
+a6be7628 (origin/notification_progress) added back code from reverted commit that wasnt causing bug
+e9e084d7 Revert "cleanup start/stop of tun2socks for VPN; improves reliabiliy, reduces race conditions"
+418afded Handle case where controller gives ?? for country code
+d8f3365d Merge branch 'master' of github.com:guardianproject/orbot
+2b3ddadf Control port is used to resolve exit ip + country; not Onionoo
+f2fdd67d Consolidated all util methods in service to one class
+c64e8332 Use same flag emojis from notification in exit node dropdown
+b8046fd7 moved country code to flag emoji method for utils to use it elsewhere in orbot
+606c0678 better copy
+64d9c096 convert country code to flag emoji in notification
+ed4c3a5b Connected to tor network was shown prematurely, it'll show on its own after circuits are built
+963c234c Show a progress bar in the notification when Orbot is starting
+c2b9a5e3 (tag: 16.5.3-BETA-1-tor.0.4.6.9) update version to 1653100100 16.5.3 beta 1
+3a548c29 cleanup start/stop of tun2socks for VPN; improves reliabiliy, reduces race conditions
+5906ab12 fix git mistake...
+ff1582c7 Fix race condition with showing bootstrap on main activity after tor strats
+6c349cca Only show bandwidth info in notification if a circuits built, otherwise it fights for notification real estate with the bootstrap events
+0a0861e3 Fix infinite loop regression introduced on devices < API 26 #582
+0c6b07a1 added small UI check pertaining to #582
+13936218 Fixed + suppressed lots of inconsequential warnings in OrbotService
+924d1084 Closes #320
+7c22b0f9 Merge pull request #560 from weblate/weblate-guardianproject-orbot
+bd607f49 (new_work) Merge branch 'new_work' of github.com:guardianproject/orbot into new_work
+960a6ce5 update gradle
+9cfdf495 only use the local socks proxy if it is set (this is for older devices)
+b498f411 add playstore launcher graphic
+389cc8f0 update icon to mipmap higher-res
+62580332 (origin/new_work) tiny UI status stuff
+57c6e6a3 Revert "OrbotService doens't need mIsLollipop"
+1c8025a8 annotation to suppress snowflake warnings + closed a hanging cursor
+31da7721 OrbotService doens't need mIsLollipop
+2acd1a3e Merge branch 'expanded_notification' into testinggg
+825a21a3 Merge branch 'rapid_start_stop_crash' into testinggg
+64b95a73 Merge branch 'sorted_countries' into testinggg
+0113981d (origin/expanded_notification) cleaned up
+9cf705f5 Remove relay lookups for internal + one-hop circuits
+6ead3a53 Remove persistent notification preference on Oreo+
+71079ae0 Cleaned up warngins and dev code from last commit
+af400e84 Merge branch 'expanded_notification' of https://github.com/guardianproject/orbot into expanded_notification
+2f776be2 Closes #538 Expanded Notifications show exit node info
+c1ba4826 Use Camel Casing on Notification Strings Show newnym even if expanded notifications are disabled (that's not what that preference is for!)
+4331a4da New message for when orbot isnt connected to tor
+107ecf7d start tor from notification when disconnected
+719e387b - Notification title doesn't say Orbot, instead it shows the status - Notification text shows state as orbot is starting - Bandwidth transfer only shows once there's an active tor connection
+ebe49ba8 (origin/rapid_start_stop_crash) added extra action to call stopforeground, used when the user quits orbot but there is no tor logic to stop...
+7adb1dd6 use startForegroundService on API 26+
+2a116d8c catch illegal state exception in sendIntentToService()
+43f40119 (origin/sorted_countries) countries are sorted by current locale diplay name
+3f1cef77 (origin/raw_event_listener) migrated remaining events, removed TorEventListener
+963aa1f4 migrated NEWDESC event to raw event listener
+777c70b1 moved bandwidth BW event to raw event listener
+aa000a75 (origin/fix_573_no_bandwidth_updates) Fixes #573
+edb88800 Translated using Weblate (French)
+0d665d1c Translated using Weblate (Portuguese (Portugal))
+81784a15 Translated using Weblate (Chinese (Traditional))
+641e95b5 Translated using Weblate (Icelandic)
+f8858c02 Translated using Weblate (Persian)
+54f3de1b Translated using Weblate (Persian)
+49b8b5dd Translated using Weblate (Portuguese (Brazil))
+714e3949 Translated using Weblate (Chinese (Simplified))
+593f030d Translated using Weblate (Turkish)
+25b3354d Translated using Weblate (Persian)
+24c5e98f Translated using Weblate (Ukrainian)
+043cb9ce Translated using Weblate (German)
+300d88c7 Translated using Weblate (Bengali)
+3b1b88ca update short description for arabic
+f83c9c57 (tag: 16.5.2-RC-5-tor.0.4.6.9) update version code to 1652200500
+7db9759b update target to sdk 31 and update notification IMMUTABLE flag
+6c165648 update to target sdk 31 to address #565
+3238bf39 (tag: 16.5.2-RC-4-tor.0.4.6.9) update to 1652200400
+34c807ca Merge branch 'battery_bugs'
+53efce0e Merge branch 'master' into battery_bugs
+ 
+
+
 /** 16.5.2-RC-3 22 Dec 2021 **/
 
 7b68f362 (HEAD -> master) update to 1652200300
