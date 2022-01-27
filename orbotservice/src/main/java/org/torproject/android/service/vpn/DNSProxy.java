@@ -66,9 +66,7 @@ public class DNSProxy {
 
                     Message msgRequest = new Message(receive_data);
                     String given_hostname = msgRequest.getQuestion().getName().toString();
-
-                    Record queryRecord = Record.newRecord(Name.fromString(given_hostname), Type.A, DClass.IN);
-                    Message queryMessage = Message.newQuery(queryRecord);
+                    Message queryMessage = Message.newQuery(msgRequest.getQuestion());
 
                     Message answer = mResolver.send(queryMessage);
 //                     String found_address = answer.getSection(ANSWER).get(0).rdataToString();
