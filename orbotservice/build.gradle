@@ -31,6 +31,7 @@ android {
         xmlReport false
         textReport false
         lintConfig file("../lint.xml")
+        disable "InvalidPackage"
     }
 
     packagingOptions {
