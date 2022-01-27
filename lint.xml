@@ -11,13 +11,15 @@
     <issue id="UnusedResources" severity="warning"/>
     <issue id="WrongConstant" severity="warning"/>
 
+    <!-- this is being triggered by a javax package that is not used, so we are making it a warning -->
+    <issue id="InvalidPackage" severity="warning"/>
+
     <!-- These are important to us, so promote from warning to error -->
     <issue id="AppCompatMethod" severity="error"/>
     <issue id="DefaultLocale" severity="error"/>
     <issue id="GetInstance" severity="error"/>
     <issue id="HardwareIds" severity="error"/>
     <issue id="ImpliedQuantity" severity="error"/>
-    <issue id="InvalidPackage" severity="error"/>
     <issue id="LocaleFolder" severity="error"/>>
     <issue id="NestedScrolling" severity="error"/>
     <issue id="NewApi" severity="error"/>
