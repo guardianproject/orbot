@@ -37,10 +37,14 @@ import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.torproject.android.service.TorServiceConstants.ACTION_START;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
@@ -48,6 +52,10 @@ import static org.torproject.android.service.TorServiceConstants.ACTION_STOP;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
 
 import androidx.annotation.ChecksSdkIntAtLeast;
+import androidx.annotation.Nullable;
+
+import IPtProxy.IPtProxy;
+import IPtProxy.PacketFlow;
 
 public class OrbotVpnManager implements Handler.Callback {
     private static final String TAG = "OrbotVpnService";
@@ -61,6 +69,7 @@ public class OrbotVpnManager implements Handler.Callback {
     private ParcelFileDescriptor mInterface;
     private int mTorSocks = -1;
     private int mTorDns = -1;
+    private int mTorHttp = -1;
     private ProxyServer mSocksProxyServer;
     private final VpnService mService;
     private final SharedPreferences prefs;
@@ -94,6 +103,7 @@ public class OrbotVpnManager implements Handler.Callback {
                     Log.d(TAG, "setting VPN ports");
 
                     int torSocks = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT, -1);
+                    int torHttp = intent.getIntExtra(OrbotService.EXTRA_HTTP_PROXY_PORT,-1);
                     int torDns = intent.getIntExtra(OrbotService.EXTRA_DNS_PORT, -1);
 
                     //if running, we need to restart
@@ -101,6 +111,7 @@ public class OrbotVpnManager implements Handler.Callback {
 
                         mTorSocks = torSocks;
                         mTorDns = torDns;
+                        mTorHttp = torHttp;
 
                         if (!mIsLollipop) {
                          //   stopSocksBypass();
@@ -173,7 +184,7 @@ public class OrbotVpnManager implements Handler.Callback {
         if (!mIsLollipop)
             stopSocksBypass();
 
-        Tun2Socks.Stop();
+//        JTun2Socks.Stop();
 
         if (mInterface != null) {
             try {
@@ -215,10 +226,23 @@ public class OrbotVpnManager implements Handler.Callback {
             builder.setMtu(VPN_MTU);
             builder.addAddress(virtualGateway, 32);
 
+            /**
+             * // can't use this since Tor's HTTP port is CONNECT only and not a full PROXY for http traffic
+            if (mTorHttp != -1) {
+                //extra capability to set local http proxy
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    builder.setHttpProxy(ProxyInfo.buildDirectProxy("127.0.0.1", 8118));
+                }
+            }**/
+
             builder.setSession(vpnName);
 
             //route all traffic through VPN (we might offer country specific exclude lists in the future)
-            builder.addRoute(defaultRoute, 0);
+            builder.addRoute(defaultRoute, 32);
+
+           // String tmpDns = "1.1.1.1";
+         //   builder.addDnsServer(tmpDns); //just setting a value here so DNS is captured by TUN interface
+       //     builder.addRoute(tmpDns,32);
 
             //handle ipv6
             //builder.addAddress("fdfe:dcba:9876::1", 126);
@@ -232,15 +256,79 @@ public class OrbotVpnManager implements Handler.Callback {
                 builder.setMetered(false);
             }
 
-            // Create a new interface using the builder and save the parameters.
-            mInterface = builder.setSession(mSessionName)
-                    .setConfigureIntent(null) // previously this was set to a null member variable
-                    .establish();
 
-            var dnsProxyPort = 8153;
-            startDNS(localhost, mTorDns, virtualGateway, dnsProxyPort);
 
-            Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks, virtualGateway + ":" + dnsProxyPort, true);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mInterface = builder.setSession(mSessionName)
+                        .setConfigureIntent(null) // previously this was set to a null member variable
+                      //  .setBlocking(true)
+                        .establish();
+            }
+            else
+            {
+                mInterface = builder.setSession(mSessionName)
+                        .setConfigureIntent(null) // previously this was set to a null member variable
+                        .establish();
+            }
+
+
+            FileInputStream fis = new FileInputStream(mInterface.getFileDescriptor());
+            FileOutputStream fos = new FileOutputStream(mInterface.getFileDescriptor());
+
+            //int dnsProxyPort = 8153;
+            //startDNS(localhost, mTorDns, virtualGateway, dnsProxyPort);
+
+            //Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks, virtualGateway + ":" + dnsProxyPort, true);
+
+            PacketFlow pFlow = new PacketFlow() {
+                @Override
+                public void writePacket(byte[] packet) {
+                    try {
+                        fos.write(packet);
+                    } catch (IOException e) {
+                        Log.e(TAG, "error writing to VPN fd", e);
+
+                    }
+                }
+            };
+
+            IPtProxy.startSocks(pFlow,virtualGateway,mTorSocks);
+
+            new Thread ()
+            {
+                public void run ()
+                {
+                    byte[] packetIn = new byte[32767*2];
+
+                    while (true)
+                    {
+                        try {
+
+                            int pLen = fis.read(packetIn);
+                            if (pLen > 0)
+                            {
+                                byte[] packet = Arrays.copyOfRange(packetIn,0, pLen);
+                                IPtProxy.inputPacket(packet);
+
+                                /**
+                                if (pLen == 66)
+                                {
+                                    byte[] resp = mDnsProxy.processDNS(packet);
+                                    pFlow.writePacket(resp);
+                                }
+                                else {
+                                    IPtProxy.inputPacket(packet);
+                                }**/
+
+                            }
+                        } catch (IOException e) {
+                            Log.e(TAG, "error reading from VPN fd", e);
+                        }
+                    }
+
+                }
+            }.start();
 
         } catch (Exception e) {
             Log.d(TAG, "tun2Socks has stopped", e);
@@ -272,7 +360,7 @@ public class OrbotVpnManager implements Handler.Callback {
     }
 
     private void startDNS(String torDnsHost, int torDnsPort, String dnsProxyHost, int dnsProxyPort) throws UnknownHostException, IOException {
-        mDnsProxy = new DNSProxy(torDnsHost, torDnsPort);
+        mDnsProxy = new DNSProxy(torDnsHost, torDnsPort, mService);
         mDnsProxy.startProxy(dnsProxyHost, dnsProxyPort);
     }
 
