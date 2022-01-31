@@ -223,8 +223,9 @@ public class OrbotVpnManager implements Handler.Callback {
 
             final String localSocks = localhost + ':' + mTorSocks;
 
-            builder.setMtu(VPN_MTU);
+         //   builder.setMtu(VPN_MTU);
             builder.addAddress(virtualGateway, 32);
+            builder.addRoute(defaultRoute,0);
 
             /**
              * // can't use this since Tor's HTTP port is CONNECT only and not a full PROXY for http traffic
@@ -237,11 +238,12 @@ public class OrbotVpnManager implements Handler.Callback {
 
             builder.setSession(vpnName);
 
-            //route all traffic through VPN (we might offer country specific exclude lists in the future)
-            builder.addRoute(defaultRoute, 32);
 
-           // String tmpDns = "1.1.1.1";
-         //   builder.addDnsServer(tmpDns); //just setting a value here so DNS is captured by TUN interface
+            //route all traffic through VPN (we might offer country specific exclude lists in the future)
+        //    builder.addRoute(defaultRoute, 0);
+
+             String tmpDns = "8.8.8.8";
+             builder.addDnsServer(tmpDns); //just setting a value here so DNS is captured by TUN interface
        //     builder.addRoute(tmpDns,32);
 
             //handle ipv6
@@ -262,7 +264,8 @@ public class OrbotVpnManager implements Handler.Callback {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 mInterface = builder.setSession(mSessionName)
                         .setConfigureIntent(null) // previously this was set to a null member variable
-                      //  .setBlocking(true)
+                        .setBlocking(true)
+                        .setMtu(1500)
                         .establish();
             }
             else
@@ -279,8 +282,6 @@ public class OrbotVpnManager implements Handler.Callback {
             //int dnsProxyPort = 8153;
             //startDNS(localhost, mTorDns, virtualGateway, dnsProxyPort);
 
-            //Tun2Socks.Start(mInterface, VPN_MTU, virtualIP, virtualNetMask, localSocks, virtualGateway + ":" + dnsProxyPort, true);
-
             PacketFlow pFlow = new PacketFlow() {
                 @Override
                 public void writePacket(byte[] packet) {
@@ -293,7 +294,7 @@ public class OrbotVpnManager implements Handler.Callback {
                 }
             };
 
-            IPtProxy.startSocks(pFlow,virtualGateway,mTorSocks);
+            IPtProxy.startSocks(pFlow,localhost,mTorSocks);
 
             new Thread ()
             {
