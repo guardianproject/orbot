@@ -199,7 +199,9 @@ public class OrbotVpnManager implements Handler.Callback {
                 Log.d(TAG, "error stopping tun2socks", e);
             }
         }
-        stopDns();
+
+        if (mDnsProxy != null)
+            mDnsProxy.stopProxy();
     }
 
     @Override
@@ -217,11 +219,9 @@ public class OrbotVpnManager implements Handler.Callback {
             final String localhost = "127.0.0.1";
 
             final String virtualGateway = "172.16.0.1";
-            final String virtualIP = "172.16.0.2";
-            final String virtualNetMask = "255.255.255.0";
             final String defaultRoute = "0.0.0.0";
 
-            final String localSocks = localhost + ':' + mTorSocks;
+            String tmpDns = "1.1.1.1";
 
          //   builder.setMtu(VPN_MTU);
             builder.addAddress(virtualGateway, 32);
@@ -242,7 +242,6 @@ public class OrbotVpnManager implements Handler.Callback {
             //route all traffic through VPN (we might offer country specific exclude lists in the future)
         //    builder.addRoute(defaultRoute, 0);
 
-             String tmpDns = "8.8.8.8";
              builder.addDnsServer(tmpDns); //just setting a value here so DNS is captured by TUN interface
        //     builder.addRoute(tmpDns,32);
 
@@ -279,9 +278,11 @@ public class OrbotVpnManager implements Handler.Callback {
             FileInputStream fis = new FileInputStream(mInterface.getFileDescriptor());
             FileOutputStream fos = new FileOutputStream(mInterface.getFileDescriptor());
 
-            //int dnsProxyPort = 8153;
-            //startDNS(localhost, mTorDns, virtualGateway, dnsProxyPort);
+            int dnsProxyPort = 8153;
+            mDnsProxy = new DNSProxy(localhost, mTorDns, mService);
+            //mDnsProxy.startProxy(localhost, dnsProxyPort);
 
+            //write packets back out to TUN
             PacketFlow pFlow = new PacketFlow() {
                 @Override
                 public void writePacket(byte[] packet) {
@@ -296,31 +297,25 @@ public class OrbotVpnManager implements Handler.Callback {
 
             IPtProxy.startSocks(pFlow,localhost,mTorSocks);
 
+            //read packets from TUN and send to go-tun2socks
             new Thread ()
             {
                 public void run ()
                 {
-                    byte[] packetIn = new byte[32767*2];
+
+                    // Allocate the buffer for a single packet.
+                    ByteBuffer packet = ByteBuffer.allocate(32767);
 
                     while (true)
                     {
                         try {
 
-                            int pLen = fis.read(packetIn);
+                            int pLen = fis.read(packet.array());
                             if (pLen > 0)
                             {
-                                byte[] packet = Arrays.copyOfRange(packetIn,0, pLen);
-                                IPtProxy.inputPacket(packet);
-
-                                /**
-                                if (pLen == 66)
-                                {
-                                    byte[] resp = mDnsProxy.processDNS(packet);
-                                    pFlow.writePacket(resp);
-                                }
-                                else {
-                                    IPtProxy.inputPacket(packet);
-                                }**/
+                                packet.limit(pLen);
+                                IPtProxy.inputPacket(packet.array());
+                                packet.clear();
 
                             }
                         } catch (IOException e) {
@@ -358,17 +353,6 @@ public class OrbotVpnManager implements Handler.Callback {
                 builder.addDisallowedApplication(packageName);
         }
 
-    }
-
-    private void startDNS(String torDnsHost, int torDnsPort, String dnsProxyHost, int dnsProxyPort) throws UnknownHostException, IOException {
-        mDnsProxy = new DNSProxy(torDnsHost, torDnsPort, mService);
-        mDnsProxy.startProxy(dnsProxyHost, dnsProxyPort);
-    }
-
-    private void stopDns() {
-        if (mDnsProxy != null) {
-            mDnsProxy.stopProxy();
-        }
     }
 
     public boolean isStarted() {

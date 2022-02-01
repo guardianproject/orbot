@@ -60,24 +60,28 @@ public class DNSProxy {
     public byte[] processDNS (byte[] receive_data) throws IOException {
         DatagramPacket receive_packet = new DatagramPacket(receive_data, receive_data.length);
 
-        Message msgRequest = new Message(receive_data);
-        String given_hostname = msgRequest.getQuestion().getName().toString();
-        Message queryMessage = Message.newQuery(msgRequest.getQuestion());
+        Message msgRequest = new Message(receive_packet.getData());
 
-        Message answer = mResolver.send(queryMessage);
-//                     String found_address = answer.getSection(ANSWER).get(0).rdataToString();
-//                     Log.d("DNSProxy","resolved " + given_hostname + " to " + found_address);
+        if (msgRequest.getQuestion() != null) {
+            Message queryMessage = Message.newQuery(msgRequest.getQuestion());
 
-        answer.getHeader().setID(msgRequest.getHeader().getID());
+            Message answer = mResolver.send(queryMessage);
+            //                     String found_address = answer.getSection(ANSWER).get(0).rdataToString();
+            //                     Log.d("DNSProxy","resolved " + given_hostname + " to " + found_address);
 
-        final byte[] send_data = answer.toWire();
+            answer.getHeader().setID(msgRequest.getHeader().getID());
 
-        //getting the address and port of client
-        InetAddress client_address = receive_packet.getAddress();
-        int client_port = receive_packet.getPort();
-        DatagramPacket send_packet = new DatagramPacket(send_data, send_data.length, client_address, client_port);
+            final byte[] send_data = answer.toWire();
 
-        return send_packet.getData();
+            //getting the address and port of client
+            InetAddress client_address = receive_packet.getAddress();
+            int client_port = receive_packet.getPort();
+            DatagramPacket send_packet = new DatagramPacket(send_data, send_data.length, client_address, client_port);
+
+            return send_packet.getData();
+        }
+        else
+            return null;
     }
 
     private void startProxyImpl (String serverHost, int serverPort) {
