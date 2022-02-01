@@ -81,7 +81,7 @@
     <string name="enter_ports">输入端口</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">启用调试日志输出（必须使用 adb 或 aLogCat 查看）</string>
     <string name="project_home">项目主页(们)：</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
+    <string name="project_urls">https://orbot.app/</string>
     <string name="third_party_software">第三方软件：</string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
@@ -90,7 +90,7 @@
     <string name="unable_to_start_tor">无法启动 Tor：</string>
     <string name="pref_use_persistent_notifications">Orbot 连接后始终在通知栏显示图标</string>
     <string name="pref_use_persistent_notifications_title">始终显示通知</string>
-    <string name="pref_use_expanded_notifications">显示扩展的通知，有关 Tor 出口的国家和 IP</string>
+    <string name="pref_use_expanded_notifications">当可用时，在通知中显示 tor 出口节点的国家和 IP 地址</string>
     <string name="pref_use_expanded_notifications_title">扩展的通知</string>
     <string name="set_locale_title">语言</string>
     <string name="pref_disable_network_title">无网络自动休眠</string>
