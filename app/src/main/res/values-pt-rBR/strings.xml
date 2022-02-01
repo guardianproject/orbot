@@ -94,7 +94,7 @@
     <string name="unable_to_start_tor">Não é possível iniciar o Tor:</string>
     <string name="pref_use_persistent_notifications">Mantenha sempre um ícone na barra de ferramentas quando o Orbot estiver conectado</string>
     <string name="pref_use_persistent_notifications_title">Notificações Sempre Ligadas</string>
-    <string name="pref_use_expanded_notifications">Mostrar as notificação expandida com o Tor, país de saída e o IP</string>
+    <string name="pref_use_expanded_notifications">Exibe na notificação o país e o endereço IP do seu nó de saída do tor quando estiver disponível</string>
     <string name="pref_use_expanded_notifications_title">Notificações Expandidas</string>
     <string name="set_locale_title">Idioma</string>
     <string name="pref_disable_network_title">Sem Rede, Modo de Espera Automático</string>
