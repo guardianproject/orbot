@@ -94,7 +94,7 @@
     <string name="unable_to_start_tor">Get ekki ræst Tor:</string>
     <string name="pref_use_persistent_notifications">Alltaf hafa táknmynd í verkfærastiku þegar Orbot er tengt</string>
     <string name="pref_use_persistent_notifications_title">Alltaf-á tilkynningar</string>
-    <string name="pref_use_expanded_notifications">Birta útflettar tilkynningar varðandi Tor-útgangsland og IP-vistfang</string>
+    <string name="pref_use_expanded_notifications">Birta land og IP-vistfang útgangspunkts í tilkynningum þegar slíkt er tiltækt</string>
     <string name="pref_use_expanded_notifications_title">Útflettar tilkynningar</string>
     <string name="set_locale_title">Tungumál</string>
     <string name="pref_disable_network_title">Engin sjálfvirk svæfing netkerfis</string>
