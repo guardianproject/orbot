@@ -1,4 +1,4 @@
-Orbot başka uygulamaların İnterneti daha güvenli olarak kullanmasını sağlayan özgür bir vekil sunucu uygulamasıdır. Orbot, Tor kullanarak İnternet trafiğinizi şifreler ve dünya üzerindeki pek çok farklı bilgisayardan geçirerek gizler. Tor kişisel özgürlüğünüze ve bilgilerinize, gizli ticari işlemlerinize ve ilişkilerinize, devlet güvenliğine karşı tehdit oluşturan ve trafik analizi olarak bilinen ağ izlemelerine karşı koruma sağlayan bir özgür yazılım ve açık ağdır.
+Orbot başka uygulamaların İnterneti daha güvenli olarak kullanmasını sağlayan özgür bir vekil sunucu uygulamasıdır. Orbot, Tor kullanarak İnternet trafiğinizi şifreler ve dünya üzerindeki pek çok farklı bilgisayardan geçirerek gizler. Tor, kişisel özgürlüğünüze ve bilgilerinize, gizli ticari işlemlerinize ve ilişkilerinize, devlet güvenliğine karşı tehdit oluşturan ve trafik analizi olarak bilinen ağ izlemelerine karşı koruma sağlayan bir özgür yazılım ve açık ağdır.
 
 Orbot, gerçekten özel bir internet bağlantısı oluşturan tek uygulamadır. New York Times'ın yazdığı gibi, “bir iletişim Tor üzerinden gerçekleştiğinde, nereden ve kimden geldiğini asla bilemezsiniz.”
 
@@ -10,7 +10,7 @@ Tor, 2012 Electronic Frontier Foundation (EFF) Pioneer Ödülü'nü kazandı.
 
 *** Geri Bildirimi Seviyoruz ***
 ★ HAKKIMIZDA: Guardian Project, daha iyi bir yarın için güvenli mobil uygulamalar ve açık kaynaklı kodlar yazan bir geliştirici grubudur.
-★ AÇIK-KAYNAK: Orbot özgür bir yazılımdır. Kaynak kodumuza bir göz atın veya daha iyi hale getirmek için topluluğa katılın: https://github.com/guardianproject/orbot veya https://gitweb.torproject.org/orbot.git
+★ AÇIK-KAYNAK: Orbot özgür bir yazılımdır. Kaynak kodumuza bir göz atın veya daha iyi hale getirmek için topluluğa katılın: https://github.com/guardianproject/orbot
 ★ BİZE MESAJ GÖNDERİN: En sevdiğiniz özellik eksik mi? Can sıkıcı bir hata mı buldunuz? Duymak isteriz! Bize bir e-posta gönderin: support@guardianproject.info
 
 *** Sorumluluk reddi ***
