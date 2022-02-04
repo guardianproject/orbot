@@ -1,11 +1,8 @@
 package org.torproject.android.service;
 
-import android.text.TextUtils;
-
 import net.freehaven.tor.control.RawEventListener;
 import net.freehaven.tor.control.TorControlCommands;
 
-import org.torproject.android.service.util.ExternalIPFetcher;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.Utils;
 import org.torproject.jni.TorService;
@@ -20,7 +17,7 @@ import java.util.StringTokenizer;
 public class OrbotRawEventListener implements RawEventListener {
     private final OrbotService mService;
     private long mTotalBandwidthWritten, mTotalBandwidthRead;
-    private final Map<String, Node> hmBuiltNodes;
+    private final Map<String, DebugLoggingNode> hmBuiltNodes;
     private Map<Integer, ExitNode> exitNodeMap;
     private Set<Integer> ignoredInternalCircuits;
 
@@ -165,7 +162,7 @@ public class OrbotRawEventListener implements RawEventListener {
         sb.append(": ");
 
         StringTokenizer st = new StringTokenizer(path, ",");
-        Node node;
+        DebugLoggingNode node;
 
         boolean isFirstNode = true;
         int nodeCount = st.countTokens();
@@ -195,7 +192,7 @@ public class OrbotRawEventListener implements RawEventListener {
             node = hmBuiltNodes.get(nodeId);
 
             if (node == null) {
-                node = new Node();
+                node = new DebugLoggingNode();
                 node.id = nodeId;
                 node.name = nodeName;
             }
@@ -204,20 +201,11 @@ public class OrbotRawEventListener implements RawEventListener {
 
             sb.append(node.name);
 
-            if (!TextUtils.isEmpty(node.ipAddress))
-                sb.append("(").append(node.ipAddress).append(")");
-
             if (st.hasMoreTokens())
                 sb.append(" > ");
 
             if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_EXTENDED) && isFirstNode) {
                 hmBuiltNodes.put(node.id, node);
-
-                if (node.ipAddress == null && (!node.isFetchingInfo) && Prefs.useDebugLogging()) {
-                    node.isFetchingInfo = true;
-                    mService.exec(new ExternalIPFetcher(mService, node, OrbotService.mPortHTTP));
-                }
-
                 isFirstNode = false;
             } else if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_LAUNCHED)) {
                 if (Prefs.useDebugLogging() && nodeCount > 3)
@@ -241,7 +229,7 @@ public class OrbotRawEventListener implements RawEventListener {
             mService.logNotice(severity + ": " + message);
     }
 
-    public Map<String, Node> getNodes() {
+    public Map<String, DebugLoggingNode> getNodes() {
         return hmBuiltNodes;
     }
 
@@ -264,15 +252,10 @@ public class OrbotRawEventListener implements RawEventListener {
     }
 
 
-    public static class Node {
+    public static class DebugLoggingNode {
         public String status;
         public String id;
         public String name;
-        public String ipAddress;
-        public String country;
-        public String organization;
-
-        public boolean isFetchingInfo = false;
     }
 
 
