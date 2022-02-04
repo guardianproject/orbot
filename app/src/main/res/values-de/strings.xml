@@ -94,7 +94,7 @@
     <string name="unable_to_start_tor">Tor kann nicht gestartet werden:</string>
     <string name="pref_use_persistent_notifications">Symbol immer in der Statusleiste lassen, wenn Orbot verbunden ist</string>
     <string name="pref_use_persistent_notifications_title">Aktivitätsanzeige</string>
-    <string name="pref_use_expanded_notifications">Erweiterte Benachrichtigung mit Tor-Ausgangsland und IP anzeigen</string>
+    <string name="pref_use_expanded_notifications">In der Benachrichtigung, wenn vorhanden, das Land und die IP-Adresse des Tor-Ausgangsknotens anzeigen</string>
     <string name="pref_use_expanded_notifications_title">Erweiterte Benachrichtigungen</string>
     <string name="set_locale_title">Sprache</string>
     <string name="pref_disable_network_title">Kein Automatischer Netzwerk-Ruhezustand</string>
@@ -143,8 +143,8 @@
     <string name="share_as_qr">Als QR-Code teilen</string>
     <string name="disable">Deaktivieren</string>
     <string name="enable">Aktivieren</string>
-    <string name="consider_disable_battery_optimizations">Deaktivieren Sie die Akku-Optimierung</string>
-    <string name="consider_enable_battery_optimizations">Aktivieren Sie die Akku-Optimierung</string>
+    <string name="consider_disable_battery_optimizations">Laufende Host-Dienste, erwägen Sie die Deaktivierung der Akku-Optimierung</string>
+    <string name="consider_enable_battery_optimizations">Keine laufenden Host-Dienste, erwägen Sie die Aktivierung der Akku-Optimierung</string>
     <string name="pref_isolate_dest">Isolierte Zieladressen</string>
     <string name="pref_isolate_dest_summary">Für jeden Netzwerk-Kreislauf eine andere Zieladresse verwenden</string>
     <string name="pref_connection_padding">Verbindungsauffüllung</string>
@@ -176,7 +176,7 @@
     <string name="confirm">Bestätigen</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
-    <string name="pref_reduced_circuit_padding_summary">Nutze Padding-Algorithmen für geringeren Overhead um Daten- und Batterie-Verbrauch zu senken</string>
+    <string name="pref_reduced_circuit_padding_summary">Schwächere Overhead-Padding-Algorithmen verwenden, um Daten- und Batterie-Verbrauch zu senken</string>
     <string name="use_custom_bridges">Nutze personalisierte Brücken</string>
     <string name="configure_custom_bridges">Konfiguriere personalisierte Brücken</string>
     <string name="custom_bridges">Personalisierte Brücken</string>
@@ -207,4 +207,14 @@
     <string name="paste_bridges">Brücken einfügen</string>
     <string name="version">Version:</string>
     <string name="license">Lizenz:</string>
+    <string name="snowflake_proxy_pref_category">Snowflake Proxy (Experimentell)</string>
+    <string name="be_a_snowflake_title">Snowflake Proxy betreiben</string>
+    <string name="be_a_snowflake_desc">Anderen Tor-Nutzern erlauben, sich über Ihr Gerät mit Tor zu verbinden. (Kann nicht verwendet werden, wenn Sie über Brücken verbunden sind)</string>
+    <string name="be_a_snowflake_title_limit">Grenzen des Snowflake Proxy</string>
+    <string formatted="true" name="snowflake_proxy_enabled">Snowflake-Proxy-Modus aktiviert</string>
+    <string name="snowflake_proxy_msg_description">Eine Meldung anzeigen, wenn Snowflake jemandem hilft, die Zensur zu umgehen</string>
+    <string name="in_a_browser">Im Browser %s aufrufen und auf Get Bridges &gt; Just Give Me Bridges tippen!</string>
+    <string name="snowflake_proxy_msg_title">Verbindungsbenachrichtigung anzeigen</string>
+    <string name="bridge_snowflake">Mittels Snowflake über andere Tor-Nutzer verbinden (Methode 1 - Schnell)</string>
+    <string name="bridge_snowflake_amp">Mittels Snowflake über andere Tor-Nutzer verbinden (Methode 2 - AMP)</string>
 </resources>

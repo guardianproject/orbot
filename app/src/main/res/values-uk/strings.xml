@@ -94,7 +94,7 @@
     <string name="unable_to_start_tor">Неможливо запустити Tor:</string>
     <string name="pref_use_persistent_notifications">Завжди показувати піктограму на панелі інструментів коли Orbot підʼєднано</string>
     <string name="pref_use_persistent_notifications_title">Постійне сповіщення про роботу</string>
-    <string name="pref_use_expanded_notifications">Показати розширене сповіщення з країною виходу Tor та IP</string>
+    <string name="pref_use_expanded_notifications">Показ, за наявності, країни та IP-адреси вузла виходу tor у сповіщенні</string>
     <string name="pref_use_expanded_notifications_title">Розгорнуті сповіщення</string>
     <string name="set_locale_title">Мова</string>
     <string name="pref_disable_network_title">Переходити в режим сну без мережі</string>
