@@ -1,8 +1,6 @@
 package org.torproject.android.service.util;
 
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
-import android.util.Log;
 
 import org.torproject.android.service.TorServiceConstants;
 
@@ -16,20 +14,12 @@ import java.util.zip.ZipInputStream;
 
 public class CustomTorResourceInstaller {
 
-    private static final String TAG = "CustomTorResourceInstaller";
-
-    private File installFolder;
-    private Context context;
+    private final File installFolder;
+    private final Context context;
 
     public CustomTorResourceInstaller(Context context, File installFolder) {
         this.installFolder = installFolder;
         this.context = context;
-    }
-
-    // Return Full path to the directory where native JNI libraries are stored.
-    private static String getNativeLibraryDir(Context context) {
-        ApplicationInfo appInfo = context.getApplicationInfo();
-        return appInfo.nativeLibraryDir;
     }
 
     /*
@@ -47,13 +37,10 @@ public class CustomTorResourceInstaller {
             zis = new ZipInputStream(stm);
             ZipEntry ze = zis.getNextEntry();
             stm = zis;
-
         }
 
         while ((bytecount = stm.read(buffer)) > 0) {
-
             stmOut.write(buffer, 0, bytecount);
-
         }
 
         stmOut.close();
@@ -64,34 +51,6 @@ public class CustomTorResourceInstaller {
 
 
         return true;
-
-    }
-
-
-
-
-    /*
-     * Extract the Tor binary from the APK file using ZIP
-     */
-
-    private static File[] listf(String directoryName) {
-
-        // .............list file
-        File directory = new File(directoryName);
-
-        // get all the files from a directory
-        File[] fList = directory.listFiles();
-
-        if (fList != null)
-            for (File file : fList) {
-                if (file.isFile()) {
-                    Log.d(TAG, file.getAbsolutePath());
-                } else if (file.isDirectory()) {
-                    listf(file.getAbsolutePath());
-                }
-            }
-
-        return fList;
     }
 
     /*
