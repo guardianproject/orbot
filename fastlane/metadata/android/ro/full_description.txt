@@ -10,7 +10,7 @@ Tor a câștigat în 2012 premiul pentru pionieri al Electronic Frontier Foundat
 
 ***Ne place feedback-ul***
 ★ DESPRE NOI: Guardian Project este un grup de dezvoltatori care realizează aplicații mobile sigure și coduri open-source pentru un viitor mai bun.
-★ OPEN-SOURCE: Orbot este un software liber. Aruncați o privire la codul nostru sursă sau alăturați-vă comunității pentru a-l face mai bun: https://github.com/guardianproject/orbot sau https://gitweb.torproject.org/orbot.git
+★ OPEN-SOURCE: Orbot este un software liber. Aruncați o privire la codul nostru sursă sau alăturați-vă comunității pentru a-l face mai bun: https://github.com/guardianproject/orbot
 ★ TRIMITEȚI-NE UN MESAJ: Ne lipsește caracteristica ta preferată? Ați găsit un bug enervant? Ne-ar face plăcere să avem vești de la tine! Trimiteți-ne un e-mail: support@guardianproject.info
 
 ***Disclaimer***
