@@ -94,7 +94,7 @@
     <string name="unable_to_start_tor">ناتوان در آغاز تور:</string>
     <string name="pref_use_persistent_notifications">نگه‌داری همیشگی نقشک در نوار ابزار هنگام وصل بودن روبات پیازی</string>
     <string name="pref_use_persistent_notifications_title">آگاهی‌های همیشه روشن</string>
-    <string name="pref_use_expanded_notifications">نمایش آگاهی گسترده با کشور خروجی و آی‌پی</string>
+    <string name="pref_use_expanded_notifications">نمایش کشور و نشانی آی‌پی گره خروجی تورتان در آگاهی هنگام موحود بودن</string>
     <string name="pref_use_expanded_notifications_title">آگاهی‌های گسترده</string>
     <string name="set_locale_title">زبان</string>
     <string name="pref_disable_network_title">خاموش کردن در صورت عدم وجود شبکه</string>
