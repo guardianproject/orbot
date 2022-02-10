@@ -291,7 +291,7 @@ public class OrbotVpnManager implements Handler.Callback {
             //write packets back out to TUN
             PacketFlow pFlow = new PacketFlow() {
                 @Override
-                public void writePacket(byte[] packet) {
+                public synchronized void writePacket(byte[] packet) {
                     try {
                         fos.write(packet);
                     } catch (IOException e) {
@@ -321,10 +321,9 @@ public class OrbotVpnManager implements Handler.Callback {
                             {
                                 packet.limit(pLen);
                                 byte[] pdata = packet.array();
+                                IpV4Packet ipPacket = IpV4Packet.newPacket(pdata,0,pdata.length);
 
-                                IpV4Packet ipPacket = null;
-
-                                if ((ipPacket = mDnsProxy.isDNS(pdata)) != null)
+                                if ((ipPacket = mDnsProxy.isDNS(ipPacket)) != null)
                                 {
                                     try {
                                         UdpPacket udpPacket = (UdpPacket)ipPacket.getPayload();
@@ -333,17 +332,22 @@ public class OrbotVpnManager implements Handler.Callback {
 
                                         if (dnsResp != null) {
 
-                                            DnsPacket dnsPacket = DnsPacket.newPacket(dnsResp,0,dnsResp.length);
+                                            DnsPacket dnsRequest = (DnsPacket) udpPacket.getPayload();
+
+                                            DnsPacket dnsResponse = DnsPacket.newPacket(dnsResp,0,dnsResp.length);
+
                                             DnsPacket.Builder dnsBuilder = new DnsPacket.Builder();
-                                            dnsBuilder.answers(dnsPacket.getHeader().getAnswers());
-                                            dnsBuilder.questions(dnsPacket.getHeader().getQuestions());
-                                            dnsBuilder.response(dnsPacket.getHeader().isResponse());
-                                            dnsBuilder.additionalInfo(dnsPacket.getHeader().getAdditionalInfo());
-                                            dnsBuilder.anCount(dnsPacket.getHeader().getAnCount());
-                                            dnsBuilder.arCount(dnsPacket.getHeader().getArCount());
-                                            dnsBuilder.id(dnsPacket.getHeader().getId());
-                                            dnsBuilder.opCode(dnsPacket.getHeader().getOpCode());
-                                            dnsBuilder.rCode(dnsPacket.getHeader().getrCode());
+                                            dnsBuilder.answers(dnsResponse.getHeader().getAnswers());
+                                            dnsBuilder.questions(dnsResponse.getHeader().getQuestions());
+                                            dnsBuilder.response(dnsResponse.getHeader().isResponse());
+                                            dnsBuilder.additionalInfo(dnsResponse.getHeader().getAdditionalInfo());
+                                            dnsBuilder.anCount(dnsResponse.getHeader().getAnCount());
+                                            dnsBuilder.arCount(dnsResponse.getHeader().getArCount());
+                                            dnsBuilder.id(dnsRequest.getHeader().getId());
+                                            dnsBuilder.opCode(dnsResponse.getHeader().getOpCode());
+                                            dnsBuilder.rCode(dnsResponse.getHeader().getrCode());
+                                            dnsBuilder.authenticData(dnsResponse.getHeader().isAuthenticData());
+                                            dnsBuilder.authoritativeAnswer(dnsResponse.getHeader().isAuthoritativeAnswer());
 
                                             UdpPacket.Builder udpBuilder = new UdpPacket.Builder(udpPacket)
                                                     .srcPort(udpPacket.getHeader().getDstPort())
@@ -364,8 +368,10 @@ public class OrbotVpnManager implements Handler.Callback {
                                                     .correctLengthAtBuild(true)
                                                     .payloadBuilder(udpBuilder);
 
-                                            byte[] rawResponse = ipv4Builder.build().getRawData();
-                                            fos.write(rawResponse);
+                                            IpV4Packet respPacket = ipv4Builder.build();
+
+                                            byte[] rawResponse = respPacket.getRawData();
+                                            pFlow.writePacket(rawResponse);
                                         }
 
                                     }
@@ -382,8 +388,8 @@ public class OrbotVpnManager implements Handler.Callback {
                                 packet.clear();
 
                             }
-                        } catch (IOException e) {
-                            Log.e(TAG, "error reading from VPN fd", e);
+                        } catch (Exception e) {
+                            Log.d(TAG, "error reading from VPN fd: " +  e.getLocalizedMessage());
                         }
                     }
 

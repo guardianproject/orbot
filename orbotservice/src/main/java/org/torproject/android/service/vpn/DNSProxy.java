@@ -67,9 +67,7 @@ public class DNSProxy {
 
         if (msgRequest.getQuestion() != null) {
             Message queryMessage = Message.newQuery(msgRequest.getQuestion());
-
             Message answer = mResolver.send(queryMessage);
-            answer.getHeader().setID(msgRequest.getHeader().getID());
             byte[] respData = answer.toWire();
             return respData;
 
@@ -133,24 +131,19 @@ public class DNSProxy {
         //Packet.recalcTCPCheckSum(packet, 0, ip.tot_len);
     }
 
-    public IpV4Packet isDNS (byte[] packet)
+    public IpV4Packet isDNS (IpV4Packet p)
     {
-        try {
-            IpV4Packet p = IpV4Packet.newPacket(packet,0,packet.length);
-            if (p.getHeader().getProtocol()== IpNumber.UDP) {
-                UdpPacket up = (UdpPacket) p.getPayload();
 
-               // Log.d(TAG,"dest address: " + p.getHeader().getDstAddr().toString());
+        if (p.getHeader().getProtocol()== IpNumber.UDP) {
+            UdpPacket up = (UdpPacket) p.getPayload();
 
-                if (up.getHeader().getDstPort() == UdpPort.DOMAIN)
-                    return p;
+            // Log.d(TAG,"dest address: " + p.getHeader().getDstAddr().toString());
+
+            if (up.getHeader().getDstPort() == UdpPort.DOMAIN)
+                return p;
 
 
-                //return up.getHeader().getDstPort().value() == 53;
-            }
-
-        } catch (IllegalRawDataException e) {
-            e.printStackTrace();
+            //return up.getHeader().getDstPort().value() == 53;
         }
 
         return null;
