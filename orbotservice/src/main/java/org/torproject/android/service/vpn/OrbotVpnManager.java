@@ -35,9 +35,11 @@ import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 import org.pcap4j.packet.DnsPacket;
 import org.pcap4j.packet.IpV4Packet;
 import org.pcap4j.packet.IpV4Rfc791Tos;
+import org.pcap4j.packet.TcpPacket;
 import org.pcap4j.packet.UdpPacket;
 import org.pcap4j.packet.namednumber.IpNumber;
 import org.pcap4j.packet.namednumber.IpVersion;
+import org.pcap4j.util.Inet4NetworkAddress;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
@@ -46,6 +48,7 @@ import org.torproject.android.service.util.Prefs;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
@@ -291,7 +294,7 @@ public class OrbotVpnManager implements Handler.Callback {
             //write packets back out to TUN
             PacketFlow pFlow = new PacketFlow() {
                 @Override
-                public synchronized void writePacket(byte[] packet) {
+                public void writePacket(byte[] packet) {
                     try {
                         fos.write(packet);
                     } catch (IOException e) {
@@ -302,6 +305,13 @@ public class OrbotVpnManager implements Handler.Callback {
             };
 
             IPtProxy.startSocks(pFlow,localhost,mTorSocks);
+
+            Inet4Address loopback;
+            try {
+                loopback = (Inet4Address)Inet4Address.getByAddress(new byte[]{127,0,0,1});
+            } catch (UnknownHostException e) {
+                throw new RuntimeException();
+            }
 
             //read packets from TUN and send to go-tun2socks
             new Thread ()
@@ -323,7 +333,7 @@ public class OrbotVpnManager implements Handler.Callback {
                                 byte[] pdata = packet.array();
                                 IpV4Packet ipPacket = IpV4Packet.newPacket(pdata,0,pdata.length);
 
-                                if ((ipPacket = mDnsProxy.isDNS(ipPacket)) != null)
+                                if ((mDnsProxy.isDNS(ipPacket)) != null)
                                 {
                                     try {
                                         UdpPacket udpPacket = (UdpPacket)ipPacket.getPayload();
@@ -337,33 +347,40 @@ public class OrbotVpnManager implements Handler.Callback {
                                             DnsPacket dnsResponse = DnsPacket.newPacket(dnsResp,0,dnsResp.length);
 
                                             DnsPacket.Builder dnsBuilder = new DnsPacket.Builder();
+                                            dnsBuilder.questions(dnsRequest.getHeader().getQuestions());
+                                            dnsBuilder.id(dnsRequest.getHeader().getId());
+
                                             dnsBuilder.answers(dnsResponse.getHeader().getAnswers());
-                                            dnsBuilder.questions(dnsResponse.getHeader().getQuestions());
                                             dnsBuilder.response(dnsResponse.getHeader().isResponse());
                                             dnsBuilder.additionalInfo(dnsResponse.getHeader().getAdditionalInfo());
                                             dnsBuilder.anCount(dnsResponse.getHeader().getAnCount());
                                             dnsBuilder.arCount(dnsResponse.getHeader().getArCount());
-                                            dnsBuilder.id(dnsRequest.getHeader().getId());
                                             dnsBuilder.opCode(dnsResponse.getHeader().getOpCode());
                                             dnsBuilder.rCode(dnsResponse.getHeader().getrCode());
                                             dnsBuilder.authenticData(dnsResponse.getHeader().isAuthenticData());
                                             dnsBuilder.authoritativeAnswer(dnsResponse.getHeader().isAuthoritativeAnswer());
+                                            dnsBuilder.authorities(dnsResponse.getHeader().getAuthorities());
 
                                             UdpPacket.Builder udpBuilder = new UdpPacket.Builder(udpPacket)
                                                     .srcPort(udpPacket.getHeader().getDstPort())
                                                     .dstPort(udpPacket.getHeader().getSrcPort())
                                                     .srcAddr(ipPacket.getHeader().getDstAddr())
+                                                    .dstAddr(ipPacket.getHeader().getSrcAddr())
                                                     .correctChecksumAtBuild(true)
                                                     .correctLengthAtBuild(true)
-                                                    .dstAddr(ipPacket.getHeader().getSrcAddr()).payloadBuilder(dnsBuilder);
+                                                            .payloadBuilder(dnsBuilder);
 
                                             IpV4Packet.Builder ipv4Builder = new IpV4Packet.Builder();
                                             ipv4Builder
-                                                        .version(IpVersion.IPV4)
-                                                        .protocol(IpNumber.UDP)
-                                                    .tos(IpV4Rfc791Tos.newInstance((byte) 0))
+                                                        .version(ipPacket.getHeader().getVersion())
+                                                        .protocol(ipPacket.getHeader().getProtocol())
+                                                    .tos(ipPacket.getHeader().getTos())
                                                     .srcAddr(ipPacket.getHeader().getDstAddr())
-                                                        .dstAddr(ipPacket.getHeader().getSrcAddr())
+                                                //        .dstAddr(ipPacket.getHeader().getSrcAddr())
+                                                    .dstAddr(loopback)
+                                                    .options(ipPacket.getHeader().getOptions())
+                                                    .dontFragmentFlag(ipPacket.getHeader().getDontFragmentFlag())
+                                                    .identification(ipPacket.getHeader().getIdentification())
                                                     .correctChecksumAtBuild(true)
                                                     .correctLengthAtBuild(true)
                                                     .payloadBuilder(udpBuilder);
