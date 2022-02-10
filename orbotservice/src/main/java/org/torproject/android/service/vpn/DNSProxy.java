@@ -10,6 +10,7 @@ import org.pcap4j.packet.IllegalRawDataException;
 import org.pcap4j.packet.IpV4Packet;
 import org.pcap4j.packet.UdpPacket;
 import org.pcap4j.packet.namednumber.IpNumber;
+import org.pcap4j.packet.namednumber.UdpPort;
 import org.xbill.DNS.Message;
 import org.xbill.DNS.SimpleResolver;
 
@@ -70,8 +71,7 @@ public class DNSProxy {
             Message answer = mResolver.send(queryMessage);
             answer.getHeader().setID(msgRequest.getHeader().getID());
             byte[] respData = answer.toWire();
-            DatagramPacket resp = new DatagramPacket(respData, respData.length, InetAddress.getLocalHost(),8883);
-            return resp.getData();
+            return respData;
 
         }
         else
@@ -133,17 +133,17 @@ public class DNSProxy {
         //Packet.recalcTCPCheckSum(packet, 0, ip.tot_len);
     }
 
-    public UdpPacket isDNS (byte[] packet)
+    public IpV4Packet isDNS (byte[] packet)
     {
         try {
             IpV4Packet p = IpV4Packet.newPacket(packet,0,packet.length);
             if (p.getHeader().getProtocol()== IpNumber.UDP) {
-                UdpPacket up = UdpPacket.newPacket(packet, 0, packet.length);
+                UdpPacket up = (UdpPacket) p.getPayload();
 
                // Log.d(TAG,"dest address: " + p.getHeader().getDstAddr().toString());
 
-                if (p.getHeader().getDstAddr().toString().contains(FAKE_DNS))
-                    return up;
+                if (up.getHeader().getDstPort() == UdpPort.DOMAIN)
+                    return p;
 
 
                 //return up.getHeader().getDstPort().value() == 53;

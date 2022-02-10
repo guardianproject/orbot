@@ -32,7 +32,12 @@ import android.widget.Toast;
 import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
 import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
+import org.pcap4j.packet.DnsPacket;
+import org.pcap4j.packet.IpV4Packet;
+import org.pcap4j.packet.IpV4Rfc791Tos;
 import org.pcap4j.packet.UdpPacket;
+import org.pcap4j.packet.namednumber.IpNumber;
+import org.pcap4j.packet.namednumber.IpVersion;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
@@ -317,20 +322,56 @@ public class OrbotVpnManager implements Handler.Callback {
                                 packet.limit(pLen);
                                 byte[] pdata = packet.array();
 
-                                UdpPacket pDns = null;
+                                IpV4Packet ipPacket = null;
 
-                                if ((pDns = mDnsProxy.isDNS(pdata)) != null)
+                                if ((ipPacket = mDnsProxy.isDNS(pdata)) != null)
                                 {
                                     try {
-                                        byte[] resp = mDnsProxy.processDNS(pDns.getPayload().getRawData());
-                                        if (resp != null)
-                                         fos.write(resp);
+                                        UdpPacket udpPacket = (UdpPacket)ipPacket.getPayload();
+
+                                        byte[] dnsResp = mDnsProxy.processDNS(udpPacket.getPayload().getRawData());
+
+                                        if (dnsResp != null) {
+
+                                            DnsPacket dnsPacket = DnsPacket.newPacket(dnsResp,0,dnsResp.length);
+                                            DnsPacket.Builder dnsBuilder = new DnsPacket.Builder();
+                                            dnsBuilder.answers(dnsPacket.getHeader().getAnswers());
+                                            dnsBuilder.questions(dnsPacket.getHeader().getQuestions());
+                                            dnsBuilder.response(dnsPacket.getHeader().isResponse());
+                                            dnsBuilder.additionalInfo(dnsPacket.getHeader().getAdditionalInfo());
+                                            dnsBuilder.anCount(dnsPacket.getHeader().getAnCount());
+                                            dnsBuilder.arCount(dnsPacket.getHeader().getArCount());
+                                            dnsBuilder.id(dnsPacket.getHeader().getId());
+                                            dnsBuilder.opCode(dnsPacket.getHeader().getOpCode());
+                                            dnsBuilder.rCode(dnsPacket.getHeader().getrCode());
+
+                                            UdpPacket.Builder udpBuilder = new UdpPacket.Builder(udpPacket)
+                                                    .srcPort(udpPacket.getHeader().getDstPort())
+                                                    .dstPort(udpPacket.getHeader().getSrcPort())
+                                                    .srcAddr(ipPacket.getHeader().getDstAddr())
+                                                    .correctChecksumAtBuild(true)
+                                                    .correctLengthAtBuild(true)
+                                                    .dstAddr(ipPacket.getHeader().getSrcAddr()).payloadBuilder(dnsBuilder);
+
+                                            IpV4Packet.Builder ipv4Builder = new IpV4Packet.Builder();
+                                            ipv4Builder
+                                                        .version(IpVersion.IPV4)
+                                                        .protocol(IpNumber.UDP)
+                                                    .tos(IpV4Rfc791Tos.newInstance((byte) 0))
+                                                    .srcAddr(ipPacket.getHeader().getDstAddr())
+                                                        .dstAddr(ipPacket.getHeader().getSrcAddr())
+                                                    .correctChecksumAtBuild(true)
+                                                    .correctLengthAtBuild(true)
+                                                    .payloadBuilder(udpBuilder);
+
+                                            byte[] rawResponse = ipv4Builder.build().getRawData();
+                                            fos.write(rawResponse);
+                                        }
 
                                     }
-                                    catch (IOException ioe)
+                                    catch (Exception ioe)
                                     {
-                                        Log.d(TAG, "could not parse DNS packet: " + ioe);
-                                        IPtProxy.inputPacket(pdata);
+                                        Log.e(TAG, "could not parse DNS packet: " + ioe);
                                     }
                                 }
                                 else
