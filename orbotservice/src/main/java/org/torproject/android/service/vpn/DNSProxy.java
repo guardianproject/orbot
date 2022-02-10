@@ -6,6 +6,10 @@ import static org.torproject.android.service.vpn.OrbotVpnManager.FAKE_DNS_HEX;
 import android.net.VpnService;
 import android.util.Log;
 
+import org.pcap4j.packet.IllegalRawDataException;
+import org.pcap4j.packet.IpV4Packet;
+import org.pcap4j.packet.UdpPacket;
+import org.pcap4j.packet.namednumber.IpNumber;
 import org.xbill.DNS.Message;
 import org.xbill.DNS.SimpleResolver;
 
@@ -18,6 +22,8 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 
 public class DNSProxy {
+
+    private static final String TAG = "DNSProxy";
 
     private final SimpleResolver mResolver;
     private DatagramSocket serverSocket;
@@ -54,12 +60,8 @@ public class DNSProxy {
         }
     }
 
-    public byte[] processDNS (byte[] packet) throws IOException {
-        //DatagramPacket receive_packet = new DatagramPacket(receive_data, receive_data.length);
-        Packet.IP ip = new Packet.IP(packet, 0, packet.length);
+    public byte[] processDNS (byte[] payload) throws IOException {
 
-        debugPacket(ip,null);
-        byte[] payload = Arrays.copyOfRange(packet,ip.ihl,packet.length-ip.ihl);
         Message msgRequest = new Message(payload);
 
         if (msgRequest.getQuestion() != null) {
@@ -131,11 +133,33 @@ public class DNSProxy {
         //Packet.recalcTCPCheckSum(packet, 0, ip.tot_len);
     }
 
-    public boolean isDNS (byte[] packet)
+    public UdpPacket isDNS (byte[] packet)
     {
+        try {
+            IpV4Packet p = IpV4Packet.newPacket(packet,0,packet.length);
+            if (p.getHeader().getProtocol()== IpNumber.UDP) {
+                UdpPacket up = UdpPacket.newPacket(packet, 0, packet.length);
+
+               // Log.d(TAG,"dest address: " + p.getHeader().getDstAddr().toString());
+
+                if (p.getHeader().getDstAddr().toString().contains(FAKE_DNS))
+                    return up;
+
+
+                //return up.getHeader().getDstPort().value() == 53;
+            }
+
+        } catch (IllegalRawDataException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+        /**
         Packet.IP ip = new Packet.IP(packet, 0, packet.length);
         //return ip.protocol == 17;
         return Integer.toString(ip.daddr,16).equals(FAKE_DNS_HEX);
+         **/
 
     }
 

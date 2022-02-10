@@ -32,6 +32,7 @@ import android.widget.Toast;
 import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
 import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
+import org.pcap4j.packet.UdpPacket;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
@@ -316,10 +317,12 @@ public class OrbotVpnManager implements Handler.Callback {
                                 packet.limit(pLen);
                                 byte[] pdata = packet.array();
 
-                                if (mDnsProxy.isDNS(pdata))
+                                UdpPacket pDns = null;
+
+                                if ((pDns = mDnsProxy.isDNS(pdata)) != null)
                                 {
                                     try {
-                                        byte[] resp = mDnsProxy.processDNS(pdata);
+                                        byte[] resp = mDnsProxy.processDNS(pDns.getPayload().getRawData());
                                         if (resp != null)
                                          fos.write(resp);
 
