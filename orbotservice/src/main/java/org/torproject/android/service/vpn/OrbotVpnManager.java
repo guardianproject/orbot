@@ -184,8 +184,6 @@ public class OrbotVpnManager implements Handler.Callback {
         if (!mIsLollipop)
             stopSocksBypass();
 
-//        JTun2Socks.Stop();
-
         if (mInterface != null) {
             try {
                 Log.d(TAG, "closing interface, destroying VPN interface");
@@ -212,6 +210,9 @@ public class OrbotVpnManager implements Handler.Callback {
         return true;
     }
 
+    public final static String FAKE_DNS = "10.10.10.10";
+    public final static String FAKE_DNS_HEX= "a0a0a0a";
+
     private synchronized void setupTun2Socks(final VpnService.Builder builder) {
         try {
 
@@ -221,7 +222,7 @@ public class OrbotVpnManager implements Handler.Callback {
             final String virtualGateway = "172.16.0.1";
             final String defaultRoute = "0.0.0.0";
 
-            String tmpDns = "1.1.1.1";
+            int dnsProxyPort = 8153;
 
          //   builder.setMtu(VPN_MTU);
             builder.addAddress(virtualGateway, 32);
@@ -242,7 +243,7 @@ public class OrbotVpnManager implements Handler.Callback {
             //route all traffic through VPN (we might offer country specific exclude lists in the future)
         //    builder.addRoute(defaultRoute, 0);
 
-             builder.addDnsServer(tmpDns); //just setting a value here so DNS is captured by TUN interface
+             builder.addDnsServer(FAKE_DNS); //just setting a value here so DNS is captured by TUN interface
        //     builder.addRoute(tmpDns,32);
 
             //handle ipv6
@@ -278,9 +279,8 @@ public class OrbotVpnManager implements Handler.Callback {
             FileInputStream fis = new FileInputStream(mInterface.getFileDescriptor());
             FileOutputStream fos = new FileOutputStream(mInterface.getFileDescriptor());
 
-            int dnsProxyPort = 8153;
             mDnsProxy = new DNSProxy(localhost, mTorDns, mService);
-            //mDnsProxy.startProxy(localhost, dnsProxyPort);
+      //      mDnsProxy.startProxy(localhost, dnsProxyPort);
 
             //write packets back out to TUN
             PacketFlow pFlow = new PacketFlow() {
@@ -314,7 +314,27 @@ public class OrbotVpnManager implements Handler.Callback {
                             if (pLen > 0)
                             {
                                 packet.limit(pLen);
-                                IPtProxy.inputPacket(packet.array());
+                                byte[] pdata = packet.array();
+
+                                if (mDnsProxy.isDNS(pdata))
+                                {
+                                    try {
+                                        byte[] resp = mDnsProxy.processDNS(pdata);
+                                        if (resp != null)
+                                         fos.write(resp);
+
+                                    }
+                                    catch (IOException ioe)
+                                    {
+                                        Log.d(TAG, "could not parse DNS packet: " + ioe);
+                                        IPtProxy.inputPacket(pdata);
+                                    }
+                                }
+                                else
+                                {
+                                    IPtProxy.inputPacket(pdata);
+                                }
+
                                 packet.clear();
 
                             }
