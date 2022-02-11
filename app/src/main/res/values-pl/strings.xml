@@ -147,7 +147,7 @@
     <string name="hidden_service_request">Aplikacja chce otworzyć port serwera cebulowego %1$s do sieci Tor. Jest to bezpieczne, jeśli zaufasz aplikacji.</string>
     <string name="auth_cookie">Autoryzacja cookie</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jeśli twoja sieć komórkowa aktywnie blokuje Tor, możesz użyć „Serwer mostkowy” jako alternatywnego sposobu wejścia. Wybierz jedną z opcji, aby skonfigurować i przetestować …</string>
-    <string name="wizard_details_msg">Orbot to aplikacja typu open source, która zawiera Tor, Obfs4Proxy, BadVPN, Tun2Socks i LibEvent. Zapewnia lokalny serwer proxy HTTP (8118) i serwer proxy SOCKS (9050) do sieci Tor. Orbot ma również możliwość, na zrootowanym urządzeniu, wysyłania całego ruchu internetowego przez Tor.</string>
+    <string name="wizard_details_msg">Orbot to aplikacja typu open source, która zawiera Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks i LibEvent. Zapewnia lokalny serwer proxy HTTP (8118) i serwer proxy SOCKS (9050) do sieci Tor. Orbot ma również możliwość, na zrootowanym urządzeniu, wysyłania całego ruchu internetowego przez Tor.</string>
     <string name="refresh_apps">Odśwież aplikacje</string>
     <string name="app_services">Usługi aplikacji</string>
     <string name="user_services">Usługi użytkownika</string>

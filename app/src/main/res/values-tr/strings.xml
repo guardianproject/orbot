@@ -18,7 +18,7 @@
     <string name="menu_scan">QR kodu tara</string>
     <string name="menu_share_bridge">QR kodu paylaş</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details_msg">Orbot; Tor, Obfs4Proxy, BadVPN, Tun2Socks, LibEvent yapılarını kapsayan açık kaynaklı bir uygulamadır. Tor ağına bağlanmak için bir yerel HTTP vekil sunucu (8118) ve bir SOCKS vekil sunucu (9050) sağlar.</string>
+    <string name="wizard_details_msg">Orbot; Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, LibEvent yapılarını kapsayan açık kaynaklı bir uygulamadır. Tor ağına bağlanmak için bir yerel HTTP vekil sunucu (8118) ve bir SOCKS vekil sunucu (9050) sağlar.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Genel</string>
     <string name="pref_start_boot_title">Orbot Açılışta Başlatılsın</string>

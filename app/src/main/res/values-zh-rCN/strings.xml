@@ -117,7 +117,7 @@
     <string name="save">保存</string>
     <string name="name">名称</string>
     <string name="please_restart_Orbot_to_enable_the_changes">请重启 Orbot 以使变更生效</string>
-    <string name="wizard_details_msg">Orbot是一个开源应用程序，包含Tor、Obfs4Proxy、BadVPN、Tun2Socks、LibEvent。它为Tor网络提供了一个本地HTTP代理(8118)和一个SOCKS代理(9050)。Orbot还能在获取根权限的设备上通过Tor发送所有的网络流量。</string>
+    <string name="wizard_details_msg">Orbot是一个开源应用程序，包含Tor、IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks,LibEvent。它为Tor网络提供了一个本地HTTP代理(8118)和一个SOCKS代理(9050)。Orbot还能在获取根权限的设备上通过Tor发送所有的网络流量。</string>
     <string name="obfsproxy_version">Obfs4proxy 项目仓库: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL 网站: http://www.openssl.org</string>
     <string name="pref_open_proxy_on_all_interfaces_title">在所有接口上打开代理</string>

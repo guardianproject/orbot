@@ -18,7 +18,7 @@
     <string name="menu_scan">Jalakipañ QR waruqaña</string>
     <string name="menu_share_bridge">Jalakipañ QR ch\'iqiyaña</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details_msg">Orbot wakichawix inakiwa ukatx Tor ukaniwa, Obfs4Proxy, BadVPN, Tun2Socks ukhamarak LibEvent. Proxy HTTP (8118) ukhamarak mä proxy SOCKS (9050) Tor taypin utjayi. Mä rooteat atamirinx Orbotax Tor tuqiw taqpach llika yatiyäwinak  apayarakispawa.</string>
+    <string name="wizard_details_msg">Orbot wakichawix inakiwa ukatx Tor ukaniwa, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, ukhamarak LibEvent. Proxy HTTP (8118) ukhamarak mä proxy SOCKS (9050) Tor taypin utjayi. Mä rooteat atamirinx Orbotax Tor tuqiw taqpach llika yatiyäwinak  apayarakispawa.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Wakiskiri</string>
     <string name="pref_start_boot_title">Orbot qhantaykas qalltaña</string>

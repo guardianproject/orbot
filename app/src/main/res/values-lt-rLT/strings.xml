@@ -190,7 +190,7 @@
     <string name="pref_open_proxy_on_all_interfaces_summary">Leisti „Wi-Fi“ poroms, pririštiems įrenginiams ir visiems kitiems, kurie gali prisijungti prie jūsų IP, pasiekti „Tor“</string>
     <string name="hidden_service_request">Programėlė nori atidaryti „Tor“ tinklo prievado %1$s onion serverį. Tai saugu, jei pasitikite programėle.</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jei jūsų mobiliojo ryšio tinklas aktyviai blokuoja „Tor“, galite naudoti „tilto serverį“ kaip alternatyvų prisijungimo būdą. Pasirinkite vieną iš parinkčių, kad galėtumėte konfigūruoti ir išbandyti…</string>
-    <string name="wizard_details_msg">„Orbot“ yra atvirojo kodo programa, kurią sudaro „Tor“, „Obfs4Proxy“, „BadVPN“, „Tun2Socks“ ir „LibEvent“. Ji suteikia vietinį HTTP įgaliotąjį (proxy) serverį (8118) ir SOCKS įgaliotąjį serverį (9050) į „Tor“ tinklą.</string>
+    <string name="wizard_details_msg">„Orbot“ yra atvirojo kodo programa, kurią sudaro „Tor“, „Obfs4Proxy“, „Go-Tun2Socks“ ir „LibEvent“. Ji suteikia vietinį HTTP įgaliotąjį (proxy) serverį (8118) ir SOCKS įgaliotąjį serverį (9050) į „Tor“ tinklą.</string>
     <string name="relaying">Perdavimas</string>
     <string name="pref_general_group">Bendrieji</string>
     <string name="menu_log">Žurnalas</string>

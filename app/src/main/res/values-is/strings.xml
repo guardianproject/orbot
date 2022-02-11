@@ -18,7 +18,7 @@
     <string name="menu_scan">Skanna BridgeQR</string>
     <string name="menu_share_bridge">Deila BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details_msg">Orbot er opinn og frjáls hugbúnaður sem inniheldur Tor, Obfs4Proxy, BadVPN, Tun2Socks og LibEvent. Það sér um að útbúa staðværan HTTP-milliþjón (8118) og SOCKS-milliþjón (9050) inn á Tor-netið.</string>
+    <string name="wizard_details_msg">Orbot er opinn og frjáls hugbúnaður sem inniheldur Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, og LibEvent. Það sér um að útbúa staðværan HTTP-milliþjón (8118) og SOCKS-milliþjón (9050) inn á Tor-netið.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Almennt</string>
     <string name="pref_start_boot_title">Virkja Orbot í ræsingu</string>

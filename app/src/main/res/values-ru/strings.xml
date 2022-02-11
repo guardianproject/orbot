@@ -18,7 +18,7 @@
     <string name="menu_scan">Сканировать QR-код моста</string>
     <string name="menu_share_bridge">Опубликовать QR-код моста</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details_msg">Orbot - это приложение с открытым исходным кодом, которое содержит Tor, Obfs4Proxy, BadVPN, Tun2Socks и LibEvent. Оно предоставляет локальный HTTP-прокси (8118) и SOCKS-прокси (9050) в сеть Tor. Orbot также имеет возможность на рутированном устройстве отправлять весь интернет-трафик через Tor.</string>
+    <string name="wizard_details_msg">Orbot - это приложение с открытым исходным кодом, которое содержит Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, и LibEvent. Оно предоставляет локальный HTTP-прокси (8118) и SOCKS-прокси (9050) в сеть Tor. Orbot также имеет возможность на рутированном устройстве отправлять весь интернет-трафик через Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Общие</string>
     <string name="pref_start_boot_title">Запускать Orbot при загрузке</string>

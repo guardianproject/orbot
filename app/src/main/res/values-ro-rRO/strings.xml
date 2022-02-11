@@ -27,7 +27,7 @@
     <string name="pref_node_configuration">Configurația nodului</string>
     <string name="pref_start_boot_summary">Pornește automat Orbot și conectează Tor atunci când dispozitivul tău Android pornește</string>
     <string name="pref_start_boot_title">Porniți Orbot la pornire</string>
-    <string name="wizard_details_msg">Orbot este o aplicație open-source care conține Tor, Obfs4Proxy, BadVPN, Tun2Socks și LibEvent. Acesta oferă un proxy HTTP local (8118) și un proxy SOCKS (9050) în rețeaua Tor. Orbot are, de asemenea, capacitatea, pe dispozitivul înrădăcinat, de a trimite tot traficul de internet prin Tor.</string>
+    <string name="wizard_details_msg">Orbot este o aplicație open-source care conține Tor, OIPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks și LibEvent. Acesta oferă un proxy HTTP local (8118) și un proxy SOCKS (9050) în rețeaua Tor. Orbot are, de asemenea, capacitatea, pe dispozitivul înrădăcinat, de a trimite tot traficul de internet prin Tor.</string>
     <string name="menu_share_bridge">Distribuie BridgeQR</string>
     <string name="menu_scan">Scanare BridgeQR</string>
     <string name="main_layout_upload">Încărcați</string>

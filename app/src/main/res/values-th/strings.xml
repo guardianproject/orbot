@@ -18,7 +18,7 @@
     <string name="menu_scan">สแกน BridgeQR</string>
     <string name="menu_share_bridge">แชร์ BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details_msg">Orbot เป็นแอปพลิเคชันโอเพ่นซอร์สที่ประกอบด้วย Tor, Obfs4Proxy, BadVPN, Tun2Socks และ LibEvent โดย Orbot จะสร้างพร็อกซี (8118) และพร็อกซี SOCKS (9050) ในเครื่อง ภายในเครือข่าย Tor Orbot ยังสามารถทำการรับส่งข้อมูลทั้งหมดส่งผ่าน Tor ได้บนอุปกรณ์ที่ได้ทำการ root แล้ว</string>
+    <string name="wizard_details_msg">Orbot เป็นแอปพลิเคชันโอเพ่นซอร์สที่ประกอบด้วย Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, และ LibEvent โดย Orbot จะสร้างพร็อกซี (8118) และพร็อกซี SOCKS (9050) ในเครื่อง ภายในเครือข่าย Tor Orbot ยังสามารถทำการรับส่งข้อมูลทั้งหมดส่งผ่าน Tor ได้บนอุปกรณ์ที่ได้ทำการ root แล้ว</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">ทั่วไป</string>
     <string name="pref_start_boot_title">เริ่ม Orbot เมื่อเปิดระบบ</string>

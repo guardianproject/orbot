@@ -18,7 +18,7 @@
     <string name="menu_scan">Escanear um BridgeQR</string>
     <string name="menu_share_bridge">Compartilhar o BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details_msg">O Orbot é um software de código aberto que contem Tor, Obfs4Proxy, BadVPN, Tun2Socks, LibEvent. Ele fornece um proxy local HTTP (8118) e um proxy SOCKS (9050) como acesso a rede Tor.</string>
+    <string name="wizard_details_msg">O Orbot é um software de código aberto que contem Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, LibEvent. Ele fornece um proxy local HTTP (8118) e um proxy SOCKS (9050) como acesso a rede Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Geral</string>
     <string name="pref_start_boot_title">Iniciar o Orbot durante o Boot</string>

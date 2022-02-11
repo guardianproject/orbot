@@ -18,7 +18,7 @@
     <string name="menu_scan">Скенирај QR на мост</string>
     <string name="menu_share_bridge">Сподели QR на мост</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details_msg">Orbot e апликација со отворен код која содржи Tor Obfs4Proxy, BadVPN, Tun2Socks и LibEvent. Овозможува локален HTTP прокси (8118) и SOCKS прокси (9050) во Tor мрежата. Orbot исто така има можност, на уред со root пристап, да го испраќа целиот интернет сообраќај преку Tor.</string>
+    <string name="wizard_details_msg">Orbot e апликација со отворен код која содржи Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, и LibEvent. Овозможува локален HTTP прокси (8118) и SOCKS прокси (9050) во Tor мрежата. Orbot исто така има можност, на уред со root пристап, да го испраќа целиот интернет сообраќај преку Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Општо</string>
     <string name="pref_start_boot_title">Стартувај го Orbot на бутирање</string>
