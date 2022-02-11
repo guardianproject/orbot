@@ -43,8 +43,6 @@ public interface TorServiceConstants {
 
     String ACTION_START_ON_BOOT = "org.torproject.android.intent.action.START_BOOT";
 
-    int REQUEST_VPN = 7777;
-
     /**
      * {@link Intent} send by Orbot with {@code ON/OFF/STARTING/STOPPING} status
      */
@@ -104,9 +102,6 @@ public interface TorServiceConstants {
     // actions for internal command Intents
     String CMD_SET_EXIT = "setexit";
     String CMD_ACTIVE = "ACTIVE";
-
-    //obfsproxy
-    String OBFSCLIENT_ASSET_KEY = "obfs4proxy";
 
     String ONION_SERVICES_DIR = "v3_onion_services";
     String V3_CLIENT_AUTH_DIR = "v3_client_auth";

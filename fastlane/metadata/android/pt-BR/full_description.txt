@@ -14,7 +14,7 @@ Tor ganhou em 2012 o prêmio Electronic Frontier Foundation (EFF) Pioneer Award.
 
 *** Nós amamos comentários ***
 ★ QUEM SOMOS: O Guardian Project é um grupo de desenvolvedores que fazem aplicações móveis seguras e de código aberto para um amanhã melhor.
-★ CÓDIGO ABERTO: O Orbot é um software livre. Dê uma olhada em nosso código fonte, ou juntar-se a nossa comunidade para torná-lo ainda melhor: https://github.com/guardianproject/orbot ou https://gitweb.torproject.org/orbot.git
+★ CÓDIGO ABERTO: O Orbot é um software livre. Dê uma olhada em nosso código fonte, ou juntar-se a nossa comunidade para torná-lo ainda melhor: https://github.com/guardianproject/orbot
 SOBRE O PROJETO Tor: https://TorProject.org
 ★ MANDE-NOS UMA MENSAGEM: Será que estamos desprezando o seu recurso favorito? Encontrou algum bug chato? Gostaríamos muito de ouvir de você! Envie-nos um e-mail: root@guardianproject.info
 
