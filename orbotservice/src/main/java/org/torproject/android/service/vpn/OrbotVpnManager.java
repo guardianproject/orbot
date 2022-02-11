@@ -35,6 +35,7 @@ import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
 import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
 import org.pcap4j.packet.DnsPacket;
+import org.pcap4j.packet.IllegalRawDataException;
 import org.pcap4j.packet.IpPacket;
 import org.pcap4j.packet.IpSelector;
 import org.pcap4j.packet.IpV4Packet;
@@ -46,6 +47,7 @@ import org.pcap4j.packet.UdpPacket;
 import org.pcap4j.packet.UnknownPacket;
 import org.pcap4j.packet.namednumber.IpNumber;
 import org.pcap4j.packet.namednumber.IpVersion;
+import org.pcap4j.packet.namednumber.UdpPort;
 import org.pcap4j.util.Inet4NetworkAddress;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
@@ -356,7 +358,26 @@ public class OrbotVpnManager implements Handler.Callback {
                             {
                                 buffer.limit(pLen);
                                 byte[] pdata = buffer.array();
-                                mExec.execute(new RequestPacketHandler(pdata, pFlow, mDnsProxy));
+                                IpPacket packet = null;
+                                try {
+                                    packet = (IpPacket) IpSelector.newPacket(pdata,0,pdata.length);
+                                    boolean isDNS = false;
+
+                                    if (packet.getHeader().getProtocol()== IpNumber.UDP) {
+                                        UdpPacket up = (UdpPacket) packet.getPayload();
+                                        if (up.getHeader().getDstPort() == UdpPort.DOMAIN)
+                                            isDNS = true;
+                                    }
+
+                                    if (isDNS)
+                                        mExec.execute(new RequestPacketHandler(packet, pFlow, mDnsProxy));
+                                    else
+                                        IPtProxy.inputPacket(pdata);
+
+
+                                } catch (IllegalRawDataException e) {
+                                    return;
+                                }
                                 buffer.clear();
 
                             }

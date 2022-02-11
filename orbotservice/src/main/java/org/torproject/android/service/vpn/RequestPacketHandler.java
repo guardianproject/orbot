@@ -22,34 +22,19 @@ import IPtProxy.IPtProxy;
 
 public class RequestPacketHandler implements Runnable {
 
-    byte[] pdata = null;
+    IpPacket packet;
     PacketFlow pFlow;
     DNSProxy mDnsProxy;
 
-    public RequestPacketHandler (byte[] pdata, PacketFlow pFLow, DNSProxy dnsProxy)
+    public RequestPacketHandler (IpPacket packet, PacketFlow pFLow, DNSProxy dnsProxy)
     {
-        this.pdata = pdata;
+        this.packet = packet;
         this.pFlow = pFLow;
         this.mDnsProxy = dnsProxy;
     }
     public void run() {
 
-        IpPacket packet = null;
-        try {
-            packet = (IpPacket) IpSelector.newPacket(pdata,0,pdata.length);
-        } catch (IllegalRawDataException e) {
-            return;
-        }
 
-        boolean isDNS = false;
-
-        if (packet.getHeader().getProtocol()== IpNumber.UDP) {
-            UdpPacket up = (UdpPacket) packet.getPayload();
-            if (up.getHeader().getDstPort() == UdpPort.DOMAIN)
-               isDNS = true;
-        }
-
-        if (isDNS) {
             try {
                 UdpPacket udpPacket = (UdpPacket) packet.getPayload();
 
@@ -127,9 +112,7 @@ public class RequestPacketHandler implements Runnable {
             } catch (Exception ioe) {
                 Log.e("DNS", "could not parse DNS packet: " + ioe);
             }
-        } else {
-            IPtProxy.inputPacket(pdata);
-        }
+
 
     }
 }
