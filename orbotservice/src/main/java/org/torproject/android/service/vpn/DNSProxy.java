@@ -7,7 +7,9 @@ import android.net.VpnService;
 import android.util.Log;
 
 import org.pcap4j.packet.IllegalRawDataException;
+import org.pcap4j.packet.IpPacket;
 import org.pcap4j.packet.IpV4Packet;
+import org.pcap4j.packet.Packet;
 import org.pcap4j.packet.UdpPacket;
 import org.pcap4j.packet.namednumber.IpNumber;
 import org.pcap4j.packet.namednumber.UdpPort;
@@ -122,73 +124,21 @@ public class DNSProxy {
         }
     }
 
-    public void processPacket (byte[] packet)
-    {
-        Packet.IP ip = new Packet.IP(packet, 0, packet.length);
-        Packet.TCP tcp = new Packet.TCP(packet, ip.ihl, packet.length - ip.ihl);
 
-       // Packet.recalcIPCheckSum(packet, 0, ip.ihl);
-        //Packet.recalcTCPCheckSum(packet, 0, ip.tot_len);
-    }
 
-    public IpV4Packet isDNS (IpV4Packet p)
+    public boolean isDNS (IpPacket p)
     {
 
         if (p.getHeader().getProtocol()== IpNumber.UDP) {
             UdpPacket up = (UdpPacket) p.getPayload();
-
-            // Log.d(TAG,"dest address: " + p.getHeader().getDstAddr().toString());
-
             if (up.getHeader().getDstPort() == UdpPort.DOMAIN)
-                return p;
-
-
-            //return up.getHeader().getDstPort().value() == 53;
+                return true;
         }
 
-        return null;
-
-        /**
-        Packet.IP ip = new Packet.IP(packet, 0, packet.length);
-        //return ip.protocol == 17;
-        return Integer.toString(ip.daddr,16).equals(FAKE_DNS_HEX);
-         **/
+        return false;
 
     }
 
 
-    private void debugPacket (Packet.IP ip, Packet.TCP tcp)
-    {
-        System.out.format("version: %d\n", ip.version);
-        System.out.format("ihl: %d\n", ip.ihl);
-        System.out.format("tos: %X\n", ip.tos);
-        System.out.format("tot_len: %d\n", ip.tot_len);
-        System.out.format("id: %X\n", ip.id);
-        System.out.format("frag_off: %X\n", ip.frag_off);
-        System.out.format("ttl: %d\n", ip.ttl);
-        System.out.format("protocol: %d\n", ip.protocol);
-        System.out.format("check: %X\n", ip.check);
-        System.out.format("saddr: %X\n", ip.saddr);
-        System.out.format("daddr: %X\n", ip.daddr);
 
-        if (tcp != null ) {
-            System.out.format("source: %d\n", tcp.source);
-            System.out.format("dest: %d\n", tcp.dest);
-            System.out.format("seq: %d\n", tcp.seq);
-            System.out.format("ack_seq: %d\n", tcp.ack_seq);
-            System.out.format("doff: %d\n", tcp.doff);
-            System.out.format("res1: %X\n", tcp.res1);
-            System.out.format("cwr: %d\n", tcp.cwr);
-            System.out.format("ecn: %d\n", tcp.ecn);
-            System.out.format("urg: %d\n", tcp.urg);
-            System.out.format("ack: %d\n", tcp.ack);
-            System.out.format("psh: %d\n", tcp.psh);
-            System.out.format("rst: %d\n", tcp.rst);
-            System.out.format("syn: %d\n", tcp.syn);
-            System.out.format("fin: %d\n", tcp.fin);
-            System.out.format("window: %d\n", tcp.window);
-            System.out.format("tcp check: %X\n", tcp.check);
-            System.out.format("urg_ptr: %X\n", tcp.urg_ptr);
-        }
-    }
 }

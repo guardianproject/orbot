@@ -33,8 +33,12 @@ import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
 import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
 import org.pcap4j.packet.DnsPacket;
+import org.pcap4j.packet.IpPacket;
+import org.pcap4j.packet.IpSelector;
 import org.pcap4j.packet.IpV4Packet;
 import org.pcap4j.packet.IpV4Rfc791Tos;
+import org.pcap4j.packet.IpV6Packet;
+import org.pcap4j.packet.Packet;
 import org.pcap4j.packet.TcpPacket;
 import org.pcap4j.packet.UdpPacket;
 import org.pcap4j.packet.namednumber.IpNumber;
@@ -49,6 +53,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.Inet4Address;
+import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
@@ -253,7 +258,7 @@ public class OrbotVpnManager implements Handler.Callback {
         //    builder.addRoute(defaultRoute, 0);
 
              builder.addDnsServer(FAKE_DNS); //just setting a value here so DNS is captured by TUN interface
-       //     builder.addRoute(tmpDns,32);
+             builder.addRoute(FAKE_DNS,32);
 
             //handle ipv6
             //builder.addAddress("fdfe:dcba:9876::1", 126);
@@ -320,23 +325,22 @@ public class OrbotVpnManager implements Handler.Callback {
                 {
 
                     // Allocate the buffer for a single packet.
-                    ByteBuffer packet = ByteBuffer.allocate(32767);
+                    ByteBuffer buffer = ByteBuffer.allocate(32767);
 
                     while (true)
                     {
                         try {
 
-                            int pLen = fis.read(packet.array());
+                            int pLen = fis.read(buffer.array());
                             if (pLen > 0)
                             {
-                                packet.limit(pLen);
-                                byte[] pdata = packet.array();
-                                IpV4Packet ipPacket = IpV4Packet.newPacket(pdata,0,pdata.length);
+                                buffer.limit(pLen);
+                                byte[] pdata = buffer.array();
+                                IpPacket packet = (IpPacket)IpSelector.newPacket(pdata,0,pdata.length);
 
-                                if ((mDnsProxy.isDNS(ipPacket)) != null)
-                                {
+                                if ((mDnsProxy.isDNS(packet))) {
                                     try {
-                                        UdpPacket udpPacket = (UdpPacket)ipPacket.getPayload();
+                                        UdpPacket udpPacket = (UdpPacket) packet.getPayload();
 
                                         byte[] dnsResp = mDnsProxy.processDNS(udpPacket.getPayload().getRawData());
 
@@ -344,7 +348,7 @@ public class OrbotVpnManager implements Handler.Callback {
 
                                             DnsPacket dnsRequest = (DnsPacket) udpPacket.getPayload();
 
-                                            DnsPacket dnsResponse = DnsPacket.newPacket(dnsResp,0,dnsResp.length);
+                                            DnsPacket dnsResponse = DnsPacket.newPacket(dnsResp, 0, dnsResp.length);
 
                                             DnsPacket.Builder dnsBuilder = new DnsPacket.Builder();
                                             dnsBuilder.questions(dnsRequest.getHeader().getQuestions());
@@ -364,45 +368,59 @@ public class OrbotVpnManager implements Handler.Callback {
                                             UdpPacket.Builder udpBuilder = new UdpPacket.Builder(udpPacket)
                                                     .srcPort(udpPacket.getHeader().getDstPort())
                                                     .dstPort(udpPacket.getHeader().getSrcPort())
-                                                    .srcAddr(ipPacket.getHeader().getDstAddr())
-                                                    .dstAddr(ipPacket.getHeader().getSrcAddr())
+                                                    .srcAddr(packet.getHeader().getDstAddr())
+                                                    .dstAddr(packet.getHeader().getSrcAddr())
                                                     .correctChecksumAtBuild(true)
                                                     .correctLengthAtBuild(true)
-                                                            .payloadBuilder(dnsBuilder);
+                                                    .payloadBuilder(dnsBuilder);
 
-                                            IpV4Packet.Builder ipv4Builder = new IpV4Packet.Builder();
-                                            ipv4Builder
+                                            IpPacket respPacket = null;
+
+                                            if (packet instanceof IpV4Packet) {
+
+                                                IpV4Packet ipPacket = (IpV4Packet)packet;
+                                                IpV4Packet.Builder ipv4Builder = new IpV4Packet.Builder();
+                                                ipv4Builder
                                                         .version(ipPacket.getHeader().getVersion())
                                                         .protocol(ipPacket.getHeader().getProtocol())
-                                                    .tos(ipPacket.getHeader().getTos())
-                                                    .srcAddr(ipPacket.getHeader().getDstAddr())
-                                                //        .dstAddr(ipPacket.getHeader().getSrcAddr())
-                                                    .dstAddr(loopback)
-                                                    .options(ipPacket.getHeader().getOptions())
-                                                    .dontFragmentFlag(ipPacket.getHeader().getDontFragmentFlag())
-                                                    .identification(ipPacket.getHeader().getIdentification())
-                                                    .correctChecksumAtBuild(true)
-                                                    .correctLengthAtBuild(true)
-                                                    .payloadBuilder(udpBuilder);
+                                                        .tos(ipPacket.getHeader().getTos())
+                                                        .srcAddr(ipPacket.getHeader().getDstAddr())
+                                                        //        .dstAddr(ipPacket.getHeader().getSrcAddr())
+                                                        .dstAddr(loopback)
+                                                        .options(ipPacket.getHeader().getOptions())
+                                                        .dontFragmentFlag(ipPacket.getHeader().getDontFragmentFlag())
+                                                        .identification(ipPacket.getHeader().getIdentification())
+                                                        .correctChecksumAtBuild(true)
+                                                        .correctLengthAtBuild(true)
+                                                        .payloadBuilder(udpBuilder);
 
-                                            IpV4Packet respPacket = ipv4Builder.build();
+                                                respPacket = ipv4Builder.build();
+
+                                            }
+                                            else if (packet instanceof IpV6Packet)
+                                            {
+                                                respPacket = new IpV6Packet.Builder((IpV6Packet) packet)
+                                                        .srcAddr((Inet6Address) packet.getHeader().getDstAddr())
+                                                        .dstAddr((Inet6Address) packet.getHeader().getSrcAddr())
+                                                        .correctLengthAtBuild(true)
+                                                        .payloadBuilder(udpBuilder)
+                                                        .build();
+                                            }
+
 
                                             byte[] rawResponse = respPacket.getRawData();
                                             pFlow.writePacket(rawResponse);
                                         }
 
-                                    }
-                                    catch (Exception ioe)
-                                    {
+                                    } catch (Exception ioe) {
                                         Log.e(TAG, "could not parse DNS packet: " + ioe);
                                     }
-                                }
-                                else
-                                {
+                                } else {
                                     IPtProxy.inputPacket(pdata);
                                 }
 
-                                packet.clear();
+
+                                buffer.clear();
 
                             }
                         } catch (Exception e) {
