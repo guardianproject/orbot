@@ -1,4 +1,57 @@
 
+/** 16.6.0-BETA-1 (tor 0.4.6.9) 11 Feb 2022 **/
+
+MAJOR overhaul of VPN/tun traffic handling
+- migrated to go-tun2socks
+- implemented new routing of DNS traffic to Tor DNS port
+- removed badvpn/tun2socks, jsocks and other legacy code
+
+e0cfeda3 (HEAD -> master, tag: 16.6.0-BETA-1-tor.0.4.6.9) update to 1660200100 16.6.0 beta 1
+6eb98807 (origin/master, origin/HEAD) Merge branch 'master' of github.com:guardianproject/orbot
+540d9271 (origin/dev_gotun2socks, dev_gotun2socks) update BUILD with info about IPtProxy
+b5ef5f98 remove submodule and ndk-build info since no longer needed
+b2f80d2f remove jsocks and badvpn submodules
+71e9d3b7 update all strings with new dependency info (remove badvpn)
+7ebb0de8 remove mention of badvpn in english strings
+d2161ad9 if not DNS, don't use a thread (performance tweak)
+2691c706 use runnable, executor to thread read/write and also make sure to set response TTL
+77055a6e remove unused local Packet class, and add basic support for IPv6
+965d9ea3 some more tweaks to packet handling
+dcbf2cbc fully build response packets
+c5cbef7b use pcap4j to construct DNS response packet
+0815cbb7 use pcap4j to parse packets
+41610769 add DNS packet detection
+9fcf1315 IPtProxy 1.4.0 -> 1.5.0
+2668cfb8 Merge pull request #592 from syphyr/remove_jsocks
+c8f83931 Merge pull request #597 from weblate/weblate-guardianproject-orbot
+483adbee Translated using Weblate (Persian)
+f805b1c6 Translated using Weblate (Romanian)
+7ba4b2d9 Merge pull request #596 from weblate/weblate-guardianproject-orbot
+b65b9ca4 Translated using Weblate (Romanian)
+e7505b4b misc cleanup
+afd1b46f Removed more unused OrbotService utils, methods that were replaced with tor-android package
+1a9aa57c remove long unused NativeLoader.java
+bd7ef016 Don't make Onionoo requests when debug logging is on
+59a0ae35 Merge pull request #595 from weblate/weblate-guardianproject-orbot
+39ed2ee7 Translated using Weblate (Chinese (Simplified))
+329bb01b Translated using Weblate (Ukrainian)
+f6b259e3 Translated using Weblate (Turkish)
+312cc510 Translated using Weblate (Portuguese (Brazil))
+280f482c Translated using Weblate (Icelandic)
+499ee64b Translated using Weblate (Hebrew)
+3d2472b9 Translated using Weblate (German)
+9672ed62 update packet handling - also don't use local java dns proxy anymore
+a90a6646 update iptproxy
+e98bef15 Merge pull request #593 from weblate/weblate-guardianproject-orbot
+b89787f8 proxying now working, though DNS resolution may not be local
+6cf67623 add new IPTProxy with go-tun2socks incorporated https://github.com/n8fr8/IPtProxy/commit/40fe03b3fb868abf855a640583e38626eb16b75e
+a913c5df remove tun2socks, badvpn, jni code
+9527ea25 Translated using Weblate (Romanian)
+bb8a379a Remove unused jsocks submodule
+81396a13 IPtProxy 1.3.0 -> 1.4.0
+33ebd2de for #589 don't assume A record, as some apps use SRV - pass along the question record, instead of recreating the A record
+
+
 /** 16.5.3-RC-1 (tor 0.4.6.9) 27 Jan 2022 **/
 
 * Improve notification display with exit IP, country, and reliable up/down throughput display (bim!)
