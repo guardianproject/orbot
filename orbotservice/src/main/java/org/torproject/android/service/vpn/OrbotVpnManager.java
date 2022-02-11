@@ -17,6 +17,7 @@
 package org.torproject.android.service.vpn;
 
 import android.annotation.TargetApi;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,6 +27,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.os.ParcelFileDescriptor;
+import android.system.OsConstants;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -41,6 +43,7 @@ import org.pcap4j.packet.IpV6Packet;
 import org.pcap4j.packet.Packet;
 import org.pcap4j.packet.TcpPacket;
 import org.pcap4j.packet.UdpPacket;
+import org.pcap4j.packet.UnknownPacket;
 import org.pcap4j.packet.namednumber.IpNumber;
 import org.pcap4j.packet.namednumber.IpVersion;
 import org.pcap4j.util.Inet4NetworkAddress;
@@ -49,6 +52,7 @@ import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 
+import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -59,6 +63,9 @@ import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static org.torproject.android.service.TorServiceConstants.ACTION_START;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
@@ -88,6 +95,9 @@ public class OrbotVpnManager implements Handler.Callback {
     private final VpnService mService;
     private final SharedPreferences prefs;
     private DNSProxy mDnsProxy;
+
+    private ExecutorService mExec = Executors.newFixedThreadPool(10);
+
 
     public OrbotVpnManager(OrbotService service) {
         mService = service;
@@ -232,15 +242,15 @@ public class OrbotVpnManager implements Handler.Callback {
 
             final String vpnName = "OrbotVPN";
             final String localhost = "127.0.0.1";
-
-            final String virtualGateway = "172.16.0.1";
             final String defaultRoute = "0.0.0.0";
+            final String virtualGateway = "192.168.50.1";
 
-            int dnsProxyPort = 8153;
+            builder.setMtu(VPN_MTU);
+         //   builder.addAddress(virtualGateway, 32);
+            builder.addAddress(virtualGateway, 24);
 
-         //   builder.setMtu(VPN_MTU);
-            builder.addAddress(virtualGateway, 32);
             builder.addRoute(defaultRoute,0);
+
 
             /**
              * // can't use this since Tor's HTTP port is CONNECT only and not a full PROXY for http traffic
@@ -257,8 +267,8 @@ public class OrbotVpnManager implements Handler.Callback {
             //route all traffic through VPN (we might offer country specific exclude lists in the future)
         //    builder.addRoute(defaultRoute, 0);
 
-             builder.addDnsServer(FAKE_DNS); //just setting a value here so DNS is captured by TUN interface
-             builder.addRoute(FAKE_DNS,32);
+            builder.addDnsServer(FAKE_DNS); //just setting a value here so DNS is captured by TUN interface
+            builder.addRoute(FAKE_DNS,32);
 
             //handle ipv6
             //builder.addAddress("fdfe:dcba:9876::1", 126);
@@ -270,16 +280,23 @@ public class OrbotVpnManager implements Handler.Callback {
             // https://developer.android.com/reference/android/net/VpnService.Builder#setMetered(boolean)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 builder.setMetered(false);
+
+
+                /**
+                // Allow applications to bypass the VPN
+                builder.allowBypass();
+
+                // Explictly allow both families, so we do not block
+                // traffic for ones without DNS servers (issue 129).
+                builder.allowFamily(OsConstants.AF_INET);
+                builder.allowFamily(OsConstants.AF_INET6);
+                 **/
             }
-
-
-
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 mInterface = builder.setSession(mSessionName)
                         .setConfigureIntent(null) // previously this was set to a null member variable
                         .setBlocking(true)
-                        .setMtu(1500)
                         .establish();
             }
             else
@@ -291,7 +308,7 @@ public class OrbotVpnManager implements Handler.Callback {
 
 
             FileInputStream fis = new FileInputStream(mInterface.getFileDescriptor());
-            FileOutputStream fos = new FileOutputStream(mInterface.getFileDescriptor());
+            DataOutputStream fos = new DataOutputStream(new FileOutputStream(mInterface.getFileDescriptor()));
 
             mDnsProxy = new DNSProxy(localhost, mTorDns, mService);
       //      mDnsProxy.startProxy(localhost, dnsProxyPort);
@@ -311,12 +328,15 @@ public class OrbotVpnManager implements Handler.Callback {
 
             IPtProxy.startSocks(pFlow,localhost,mTorSocks);
 
+            /**
             Inet4Address loopback;
             try {
                 loopback = (Inet4Address)Inet4Address.getByAddress(new byte[]{127,0,0,1});
             } catch (UnknownHostException e) {
                 throw new RuntimeException();
-            }
+            }**/
+
+
 
             //read packets from TUN and send to go-tun2socks
             new Thread ()
@@ -336,90 +356,7 @@ public class OrbotVpnManager implements Handler.Callback {
                             {
                                 buffer.limit(pLen);
                                 byte[] pdata = buffer.array();
-                                IpPacket packet = (IpPacket)IpSelector.newPacket(pdata,0,pdata.length);
-
-                                if ((mDnsProxy.isDNS(packet))) {
-                                    try {
-                                        UdpPacket udpPacket = (UdpPacket) packet.getPayload();
-
-                                        byte[] dnsResp = mDnsProxy.processDNS(udpPacket.getPayload().getRawData());
-
-                                        if (dnsResp != null) {
-
-                                            DnsPacket dnsRequest = (DnsPacket) udpPacket.getPayload();
-
-                                            DnsPacket dnsResponse = DnsPacket.newPacket(dnsResp, 0, dnsResp.length);
-
-                                            DnsPacket.Builder dnsBuilder = new DnsPacket.Builder();
-                                            dnsBuilder.questions(dnsRequest.getHeader().getQuestions());
-                                            dnsBuilder.id(dnsRequest.getHeader().getId());
-
-                                            dnsBuilder.answers(dnsResponse.getHeader().getAnswers());
-                                            dnsBuilder.response(dnsResponse.getHeader().isResponse());
-                                            dnsBuilder.additionalInfo(dnsResponse.getHeader().getAdditionalInfo());
-                                            dnsBuilder.anCount(dnsResponse.getHeader().getAnCount());
-                                            dnsBuilder.arCount(dnsResponse.getHeader().getArCount());
-                                            dnsBuilder.opCode(dnsResponse.getHeader().getOpCode());
-                                            dnsBuilder.rCode(dnsResponse.getHeader().getrCode());
-                                            dnsBuilder.authenticData(dnsResponse.getHeader().isAuthenticData());
-                                            dnsBuilder.authoritativeAnswer(dnsResponse.getHeader().isAuthoritativeAnswer());
-                                            dnsBuilder.authorities(dnsResponse.getHeader().getAuthorities());
-
-                                            UdpPacket.Builder udpBuilder = new UdpPacket.Builder(udpPacket)
-                                                    .srcPort(udpPacket.getHeader().getDstPort())
-                                                    .dstPort(udpPacket.getHeader().getSrcPort())
-                                                    .srcAddr(packet.getHeader().getDstAddr())
-                                                    .dstAddr(packet.getHeader().getSrcAddr())
-                                                    .correctChecksumAtBuild(true)
-                                                    .correctLengthAtBuild(true)
-                                                    .payloadBuilder(dnsBuilder);
-
-                                            IpPacket respPacket = null;
-
-                                            if (packet instanceof IpV4Packet) {
-
-                                                IpV4Packet ipPacket = (IpV4Packet)packet;
-                                                IpV4Packet.Builder ipv4Builder = new IpV4Packet.Builder();
-                                                ipv4Builder
-                                                        .version(ipPacket.getHeader().getVersion())
-                                                        .protocol(ipPacket.getHeader().getProtocol())
-                                                        .tos(ipPacket.getHeader().getTos())
-                                                        .srcAddr(ipPacket.getHeader().getDstAddr())
-                                                        //        .dstAddr(ipPacket.getHeader().getSrcAddr())
-                                                        .dstAddr(loopback)
-                                                        .options(ipPacket.getHeader().getOptions())
-                                                        .dontFragmentFlag(ipPacket.getHeader().getDontFragmentFlag())
-                                                        .identification(ipPacket.getHeader().getIdentification())
-                                                        .correctChecksumAtBuild(true)
-                                                        .correctLengthAtBuild(true)
-                                                        .payloadBuilder(udpBuilder);
-
-                                                respPacket = ipv4Builder.build();
-
-                                            }
-                                            else if (packet instanceof IpV6Packet)
-                                            {
-                                                respPacket = new IpV6Packet.Builder((IpV6Packet) packet)
-                                                        .srcAddr((Inet6Address) packet.getHeader().getDstAddr())
-                                                        .dstAddr((Inet6Address) packet.getHeader().getSrcAddr())
-                                                        .correctLengthAtBuild(true)
-                                                        .payloadBuilder(udpBuilder)
-                                                        .build();
-                                            }
-
-
-                                            byte[] rawResponse = respPacket.getRawData();
-                                            pFlow.writePacket(rawResponse);
-                                        }
-
-                                    } catch (Exception ioe) {
-                                        Log.e(TAG, "could not parse DNS packet: " + ioe);
-                                    }
-                                } else {
-                                    IPtProxy.inputPacket(pdata);
-                                }
-
-
+                                mExec.execute(new RequestPacketHandler(pdata, pFlow, mDnsProxy));
                                 buffer.clear();
 
                             }
@@ -463,4 +400,5 @@ public class OrbotVpnManager implements Handler.Callback {
     public boolean isStarted() {
         return isStarted;
     }
+
 }
