@@ -26,13 +26,6 @@ android {
         }
     }
 
-    packagingOptions {
-        exclude 'lib/x86/obfs4proxy.so'
-        exclude 'lib/x86_64/obfs4proxy.so'
-        exclude 'lib/arm64-v8a/obfs4proxy.so'
-        exclude 'lib/armeabi-v7a/obfs4proxy.so'
-        exclude 'lib/armeabi/obfs4proxy.so'
-    }
 }
 
 dependencies {

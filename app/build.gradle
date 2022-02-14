@@ -69,9 +69,7 @@ android {
                 libs.androidx_localbroadcast,
                 libs.apl_appintro,
                 libs.bclogic_pulsator,
-                implementation(name:'IPtProxy', ext:'aar')
-
-                //    libs.ipt_proxy
+                libs.ipt_proxy
         )
         androidTestImplementation libs.fastlane_screengrab
         coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'

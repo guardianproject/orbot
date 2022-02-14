@@ -21,7 +21,7 @@ ext {
             guardian_geoip               : "20191217",
             guardian_jsocks              : "1.0.4",
             guardian_jtorctl             : "0.4.5.7",
-            ipt_proxy                    : "1.5.0",
+            ipt_proxy                    : "1.0.0",
             portmapper                   : "2.0.5",
             tor_android                  : "0.4.6.9"
     ]
@@ -49,7 +49,7 @@ ext {
             guardian_geoip                 : "info.guardianproject:geoip:$versions.guardian_geoip",
             guardian_jsocks                : "com.gitlab.guardianproject:jsocksandroid:$versions.guardian_jsocks",
             guardian_jtorctl               : "info.guardianproject:jtorctl:$versions.guardian_jtorctl",
-            ipt_proxy                      : "com.github.tladesignz:IPtProxy:$versions.ipt_proxy",
+            ipt_proxy                      : "com.github.bitmold:OrbotIPtProxy:$versions.ipt_proxy",
             portmapper                     : "com.offbynull.portmapper:portmapper:$versions.portmapper",
             tor_android                    : "info.guardianproject:tor-android:$versions.tor_android",
             dns_java                       : "dnsjava:dnsjava:3.4.3"
