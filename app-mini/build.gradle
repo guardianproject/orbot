@@ -6,6 +6,7 @@ android {
         applicationId "org.torproject.android.mini"
         minSdkVersion 16
         targetSdkVersion 31
+        multiDexEnabled true
     }
 
     flavorDimensions "freemini"
@@ -37,6 +38,7 @@ android {
                 libs.android_material,
                 libs.androidx_constraint,
                 libs.androidx_coordinator,
+                libs.androidx_multidex,
                 libs.androidx_palette,
                 libs.androidx_recyclerview,
                 libs.apl_appintro
