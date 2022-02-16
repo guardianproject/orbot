@@ -166,6 +166,7 @@
             android:name=".service.OrbotService"
             android:enabled="true"
             android:permission="android.permission.BIND_VPN_SERVICE"
+            android:foregroundServiceType="dataSync"
             android:stopWithTask="false"
             android:exported="true">
             <intent-filter>
