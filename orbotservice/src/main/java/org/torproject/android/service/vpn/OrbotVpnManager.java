@@ -338,20 +338,18 @@ public class OrbotVpnManager implements Handler.Callback {
                 public void run ()
                 {
 
-                    // Allocate the buffer for a single packet.
-                    ByteBuffer buffer = ByteBuffer.allocate(32767);
-
+                    byte[] buffer = new byte[32767*2]; //64k
                     keepRunningPacket = true;
                     while (keepRunningPacket)
                     {
                         try {
 
-                            int pLen = fis.read(buffer.array());
+                            int pLen = fis.read(buffer);
                             if (pLen > 0)
                             {
-                                buffer.limit(pLen);
-                                byte[] pdata = buffer.array();
-                                Packet packet = null;
+                                byte[] pdata = Arrays.copyOf(buffer, pLen);
+                                Packet packet;
+
                                 try {
                                     packet = (Packet) IpSelector.newPacket(pdata,0,pdata.length);
 
@@ -375,7 +373,6 @@ public class OrbotVpnManager implements Handler.Callback {
                                 } catch (IllegalRawDataException e) {
                                     return;
                                 }
-                                buffer.clear();
 
                             }
                         } catch (Exception e) {
