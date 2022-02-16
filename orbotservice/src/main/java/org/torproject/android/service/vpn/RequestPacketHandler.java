@@ -3,34 +3,27 @@ package org.torproject.android.service.vpn;
 import android.util.Log;
 
 import org.pcap4j.packet.DnsPacket;
-import org.pcap4j.packet.IllegalRawDataException;
 import org.pcap4j.packet.IpPacket;
-import org.pcap4j.packet.IpSelector;
 import org.pcap4j.packet.IpV4Packet;
 import org.pcap4j.packet.IpV6Packet;
-import org.pcap4j.packet.Packet;
 import org.pcap4j.packet.UdpPacket;
-import org.pcap4j.packet.UnknownPacket;
-import org.pcap4j.packet.namednumber.IpNumber;
-import org.pcap4j.packet.namednumber.UdpPort;
 
 import java.net.Inet6Address;
 
 import IPtProxy.PacketFlow;
-import IPtProxy.IPtProxy;
 
 
 public class RequestPacketHandler implements Runnable {
 
     IpPacket packet;
     PacketFlow pFlow;
-    DNSProxy mDnsProxy;
+    DNSResolver mDnsResolver;
 
-    public RequestPacketHandler (IpPacket packet, PacketFlow pFLow, DNSProxy dnsProxy)
+    public RequestPacketHandler (IpPacket packet, PacketFlow pFLow, DNSResolver dnsResolver)
     {
         this.packet = packet;
         this.pFlow = pFLow;
-        this.mDnsProxy = dnsProxy;
+        this.mDnsResolver = dnsResolver;
     }
     public void run() {
 
@@ -38,7 +31,7 @@ public class RequestPacketHandler implements Runnable {
             try {
                 UdpPacket udpPacket = (UdpPacket) packet.getPayload();
 
-                byte[] dnsResp = mDnsProxy.processDNS(udpPacket.getPayload().getRawData());
+                byte[] dnsResp = mDnsResolver.processDNS(udpPacket.getPayload().getRawData());
 
                 if (dnsResp != null) {
 

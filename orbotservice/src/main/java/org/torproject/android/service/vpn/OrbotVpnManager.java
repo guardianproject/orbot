@@ -79,7 +79,7 @@ public class OrbotVpnManager implements Handler.Callback {
     private ProxyServer mSocksProxyServer;
     private final VpnService mService;
     private final SharedPreferences prefs;
-    private DNSProxy mDnsProxy;
+    private DNSResolver mDnsResolver;
 
     private final ExecutorService mExec = Executors.newFixedThreadPool(10);
     private Thread mThreadPacket;
@@ -210,11 +210,6 @@ public class OrbotVpnManager implements Handler.Callback {
             }
         }
 
-        if (mDnsProxy != null) {
-            mDnsProxy.stopProxy();
-            mDnsProxy = null;
-        }
-
         if (mThreadPacket != null && mThreadPacket.isAlive()) {
             mThreadPacket.interrupt();
         }
@@ -294,7 +289,7 @@ public class OrbotVpnManager implements Handler.Callback {
             FileInputStream fis = new FileInputStream(mInterface.getFileDescriptor());
             DataOutputStream fos = new DataOutputStream(new FileOutputStream(mInterface.getFileDescriptor()));
 
-            mDnsProxy = new DNSProxy(localhost, mTorDns);
+            mDnsResolver = new DNSResolver(localhost, mTorDns);
 
             //write packets back out to TUN
             PacketFlow pFlow = (PacketFlow) packet -> {
@@ -327,7 +322,7 @@ public class OrbotVpnManager implements Handler.Callback {
                                     if (packet instanceof IpPacket) {
                                         IpPacket ipPacket = (IpPacket) packet;
                                         if (isPacketDNS(ipPacket))
-                                            mExec.execute(new RequestPacketHandler(ipPacket, pFlow, mDnsProxy));
+                                            mExec.execute(new RequestPacketHandler(ipPacket, pFlow, mDnsResolver));
                                         else
                                             IPtProxy.inputPacket(pdata);
                                     }
