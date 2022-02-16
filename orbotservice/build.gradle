@@ -51,7 +51,7 @@ dependencies {
             libs.portmapper,
             libs.tor_android,
             libs.dns_java,
-            "org.pcap4j:pcap4j-core:1.8.2",
-            "org.pcap4j:pcap4j-packetfactory-static:1.8.2"
+            libs.pcap_core,
+            libs.pcap_factory
     )
 }

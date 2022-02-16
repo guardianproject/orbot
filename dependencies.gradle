@@ -23,7 +23,10 @@ ext {
             guardian_jtorctl             : "0.4.5.7",
             ipt_proxy                    : "1.0.0",
             portmapper                   : "2.0.5",
-            tor_android                  : "0.4.6.9"
+            tor_android                  : "0.4.6.9",
+            dns_java                     : "3.4.3",
+            pcap_core                    : "1.8.2",
+            pcap_factory                 : "1.8.2"
     ]
 
     libs = [
@@ -52,6 +55,8 @@ ext {
             ipt_proxy                      : "com.github.bitmold:OrbotIPtProxy:$versions.ipt_proxy",
             portmapper                     : "com.offbynull.portmapper:portmapper:$versions.portmapper",
             tor_android                    : "info.guardianproject:tor-android:$versions.tor_android",
-            dns_java                       : "dnsjava:dnsjava:3.4.3"
+            dns_java                       : "dnsjava:dnsjava:$versions.dns_java",
+            pcap_core                      : "org.pcap4j:pcap4j-core:$versions.pcap_core",
+            pcap_factory                   : "org.pcap4j:pcap4j-packetfactory-static:$versions.pcap_factory"
     ]
 }
