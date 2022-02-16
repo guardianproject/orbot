@@ -17,7 +17,6 @@
 package org.torproject.android.service.vpn;
 
 import android.annotation.TargetApi;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,28 +26,19 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.os.ParcelFileDescriptor;
-import android.system.OsConstants;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
 import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
-import org.pcap4j.packet.DnsPacket;
 import org.pcap4j.packet.IllegalRawDataException;
 import org.pcap4j.packet.IpPacket;
 import org.pcap4j.packet.IpSelector;
-import org.pcap4j.packet.IpV4Packet;
-import org.pcap4j.packet.IpV4Rfc791Tos;
-import org.pcap4j.packet.IpV6Packet;
 import org.pcap4j.packet.Packet;
-import org.pcap4j.packet.TcpPacket;
 import org.pcap4j.packet.UdpPacket;
-import org.pcap4j.packet.UnknownPacket;
 import org.pcap4j.packet.namednumber.IpNumber;
-import org.pcap4j.packet.namednumber.IpVersion;
 import org.pcap4j.packet.namednumber.UdpPort;
-import org.pcap4j.util.Inet4NetworkAddress;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.TorServiceConstants;
@@ -58,14 +48,9 @@ import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.Inet4Address;
-import java.net.Inet6Address;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -75,7 +60,6 @@ import static org.torproject.android.service.TorServiceConstants.ACTION_STOP;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
 
 import androidx.annotation.ChecksSdkIntAtLeast;
-import androidx.annotation.Nullable;
 
 import IPtProxy.IPtProxy;
 import IPtProxy.PacketFlow;
@@ -97,7 +81,7 @@ public class OrbotVpnManager implements Handler.Callback {
     private final SharedPreferences prefs;
     private DNSProxy mDnsProxy;
 
-    private ExecutorService mExec = Executors.newFixedThreadPool(10);
+    private final ExecutorService mExec = Executors.newFixedThreadPool(10);
     private Thread mThreadPacket;
     private boolean keepRunningPacket = false;
 
@@ -231,12 +215,9 @@ public class OrbotVpnManager implements Handler.Callback {
             mDnsProxy = null;
         }
 
-        if (mThreadPacket != null && mThreadPacket.isAlive())
-        {
+        if (mThreadPacket != null && mThreadPacket.isAlive()) {
             mThreadPacket.interrupt();
         }
-
-
     }
 
     @Override
@@ -290,7 +271,7 @@ public class OrbotVpnManager implements Handler.Callback {
                 // Allow applications to bypass the VPN
                 builder.allowBypass();
 
-                // Explictly allow both families, so we do not block
+                // Explicitly allow both families, so we do not block
                 // traffic for ones without DNS servers (issue 129).
                 builder.allowFamily(OsConstants.AF_INET);
                 builder.allowFamily(OsConstants.AF_INET6);
@@ -303,8 +284,7 @@ public class OrbotVpnManager implements Handler.Callback {
                         .setBlocking(true)
                         .establish();
             }
-            else
-            {
+            else {
                 mInterface = builder.setSession(mSessionName)
                         .setConfigureIntent(null) // previously this was set to a null member variable
                         .establish();
@@ -314,29 +294,22 @@ public class OrbotVpnManager implements Handler.Callback {
             FileInputStream fis = new FileInputStream(mInterface.getFileDescriptor());
             DataOutputStream fos = new DataOutputStream(new FileOutputStream(mInterface.getFileDescriptor()));
 
-            mDnsProxy = new DNSProxy(localhost, mTorDns, mService);
-      //      mDnsProxy.startProxy(localhost, dnsProxyPort);
+            mDnsProxy = new DNSProxy(localhost, mTorDns);
 
             //write packets back out to TUN
-            PacketFlow pFlow = new PacketFlow() {
-                @Override
-                public void writePacket(byte[] packet) {
-                    try {
-                        fos.write(packet);
-                    } catch (IOException e) {
-                        Log.e(TAG, "error writing to VPN fd", e);
-
-                    }
+            PacketFlow pFlow = (PacketFlow) packet -> {
+                try {
+                    fos.write(packet);
+                } catch (IOException e) {
+                    Log.e(TAG, "error writing to VPN fd", e);
                 }
             };
 
             IPtProxy.startSocks(pFlow,localhost,mTorSocks);
 
             //read packets from TUN and send to go-tun2socks
-            mThreadPacket = new Thread ()
-            {
-                public void run ()
-                {
+            mThreadPacket = new Thread() {
+                public void run () {
 
                     // Allocate the buffer for a single packet.
                     ByteBuffer buffer = ByteBuffer.allocate(32767);
@@ -351,22 +324,13 @@ public class OrbotVpnManager implements Handler.Callback {
                             {
                                 buffer.limit(pLen);
                                 byte[] pdata = buffer.array();
-                                Packet packet = null;
+                                Packet packet;
                                 try {
                                     packet = (Packet) IpSelector.newPacket(pdata,0,pdata.length);
 
                                     if (packet instanceof IpPacket) {
-                                        boolean isDNS = false;
-
                                         IpPacket ipPacket = (IpPacket) packet;
-
-                                        if (ipPacket.getHeader().getProtocol() == IpNumber.UDP) {
-                                            UdpPacket up = (UdpPacket) packet.getPayload();
-                                            if (up.getHeader().getDstPort() == UdpPort.DOMAIN)
-                                                isDNS = true;
-                                        }
-
-                                        if (isDNS)
+                                        if (isPacketDNS(ipPacket))
                                             mExec.execute(new RequestPacketHandler(ipPacket, pFlow, mDnsProxy));
                                         else
                                             IPtProxy.inputPacket(pdata);
@@ -382,7 +346,6 @@ public class OrbotVpnManager implements Handler.Callback {
                             Log.d(TAG, "error reading from VPN fd: " +  e.getLocalizedMessage());
                         }
                     }
-
                 }
             };
             mThreadPacket.start();
@@ -390,6 +353,14 @@ public class OrbotVpnManager implements Handler.Callback {
         } catch (Exception e) {
             Log.d(TAG, "tun2Socks has stopped", e);
         }
+    }
+
+    private static boolean isPacketDNS(IpPacket p) {
+        if (p.getHeader().getProtocol()== IpNumber.UDP) {
+            UdpPacket up = (UdpPacket) p.getPayload();
+            return up.getHeader().getDstPort() == UdpPort.DOMAIN;
+        }
+        return false;
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -419,5 +390,4 @@ public class OrbotVpnManager implements Handler.Callback {
     public boolean isStarted() {
         return isStarted;
     }
-
 }

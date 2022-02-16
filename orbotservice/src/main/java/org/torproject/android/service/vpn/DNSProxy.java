@@ -1,18 +1,7 @@
 package org.torproject.android.service.vpn;
 
-import static org.torproject.android.service.vpn.OrbotVpnManager.FAKE_DNS;
-import static org.torproject.android.service.vpn.OrbotVpnManager.FAKE_DNS_HEX;
-
-import android.net.VpnService;
 import android.util.Log;
 
-import org.pcap4j.packet.IllegalRawDataException;
-import org.pcap4j.packet.IpPacket;
-import org.pcap4j.packet.IpV4Packet;
-import org.pcap4j.packet.Packet;
-import org.pcap4j.packet.UdpPacket;
-import org.pcap4j.packet.namednumber.IpNumber;
-import org.pcap4j.packet.namednumber.UdpPort;
 import org.xbill.DNS.Message;
 import org.xbill.DNS.SimpleResolver;
 
@@ -21,8 +10,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.net.UnknownHostException;
-import java.util.Arrays;
 
 public class DNSProxy {
 
@@ -31,13 +18,11 @@ public class DNSProxy {
     private final SimpleResolver mResolver;
     private DatagramSocket serverSocket;
     private Thread mThread;
-    private VpnService mVpnService;
     private boolean keepRunning = false;
 
-    public DNSProxy (String localDns, int localPort, VpnService service) throws UnknownHostException, IOException {
+    public DNSProxy (String localDns, int localPort) throws IOException {
         mResolver = new SimpleResolver(localDns);
         mResolver.setPort(localPort);
-        mVpnService = service;
     }
 
     public void startProxy (String serverHost, int serverPort) {
@@ -68,24 +53,20 @@ public class DNSProxy {
     }
 
     public byte[] processDNS (byte[] payload) throws IOException {
-
         Message msgRequest = new Message(payload);
 
         if (msgRequest.getQuestion() != null) {
             Message queryMessage = Message.newQuery(msgRequest.getQuestion());
             Message answer = mResolver.send(queryMessage);
-            byte[] respData = answer.toWire();
-            return respData;
-
+            return answer.toWire();
         }
-        else
-            return null;
+
+        return null;
     }
 
     private void startProxyImpl (String serverHost, int serverPort) {
         try {
             serverSocket = new DatagramSocket(serverPort, InetAddress.getByName(serverHost));
-          //  mVpnService.protect(serverSocket);
 
             byte[] receive_data = new byte[1024];
 
@@ -98,7 +79,6 @@ public class DNSProxy {
                     serverSocket.receive(receive_packet);
 
                     Message msgRequest = new Message(receive_data);
-                    String given_hostname = msgRequest.getQuestion().getName().toString();
                     Message queryMessage = Message.newQuery(msgRequest.getQuestion());
 
                     Message answer = mResolver.send(queryMessage);
@@ -114,9 +94,6 @@ public class DNSProxy {
                     int client_port = receive_packet.getPort();
                     DatagramPacket send_packet = new DatagramPacket(send_data, send_data.length, client_address, client_port);
                     serverSocket.send(send_packet);
-
-                  //  byte[] pData = send_packet.getData();
-
                 }
                 catch (SocketException e) {
                     if (e.toString().contains("Socket closed")) {
@@ -129,22 +106,4 @@ public class DNSProxy {
             Log.e("DNSProxy","error running DNSProxy server",e);
         }
     }
-
-
-
-    public boolean isDNS (IpPacket p)
-    {
-
-        if (p.getHeader().getProtocol()== IpNumber.UDP) {
-            UdpPacket up = (UdpPacket) p.getPayload();
-            if (up.getHeader().getDstPort() == UdpPort.DOMAIN)
-                return true;
-        }
-
-        return false;
-
-    }
-
-
-
 }

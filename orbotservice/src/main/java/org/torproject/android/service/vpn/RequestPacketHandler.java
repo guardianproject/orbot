@@ -89,7 +89,7 @@ public class RequestPacketHandler implements Runnable {
                                 .dontFragmentFlag(ipPacket.getHeader().getDontFragmentFlag())
                                 .reservedFlag(ipPacket.getHeader().getReservedFlag())
                                 .moreFragmentFlag(ipPacket.getHeader().getMoreFragmentFlag())
-                                .ttl(new Integer(64).byteValue())
+                                .ttl(Integer.valueOf(64).byteValue())
                                 .payloadBuilder(udpBuilder);
 
                         respPacket = ipv4Builder.build();
