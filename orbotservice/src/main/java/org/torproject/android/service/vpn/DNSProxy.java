@@ -32,6 +32,8 @@ public class DNSProxy {
     private DatagramSocket serverSocket;
     private Thread mThread;
     private VpnService mVpnService;
+    private boolean keepRunning = false;
+
     public DNSProxy (String localDns, int localPort, VpnService service) throws UnknownHostException, IOException {
         mResolver = new SimpleResolver(localDns);
         mResolver.setPort(localPort);
@@ -58,6 +60,8 @@ public class DNSProxy {
     }
 
     public void stopProxy() {
+        keepRunning = false;
+
         if (mThread != null) {
             mThread.interrupt();
         }
@@ -85,7 +89,9 @@ public class DNSProxy {
 
             byte[] receive_data = new byte[1024];
 
-            while (true) {   //waiting for a client request...
+            keepRunning = true;
+
+            while (keepRunning) {   //waiting for a client request...
                 try {
                     //receiving the udp packet of data from client and turning them to string to print them
                     DatagramPacket receive_packet = new DatagramPacket(receive_data, receive_data.length);

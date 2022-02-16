@@ -92,14 +92,14 @@ public class OrbotVpnManager implements Handler.Callback {
     private ParcelFileDescriptor mInterface;
     private int mTorSocks = -1;
     private int mTorDns = -1;
-    private int mTorHttp = -1;
     private ProxyServer mSocksProxyServer;
     private final VpnService mService;
     private final SharedPreferences prefs;
     private DNSProxy mDnsProxy;
 
     private ExecutorService mExec = Executors.newFixedThreadPool(10);
-
+    private Thread mThreadPacket;
+    private boolean keepRunningPacket = false;
 
     public OrbotVpnManager(OrbotService service) {
         mService = service;
@@ -133,11 +133,11 @@ public class OrbotVpnManager implements Handler.Callback {
                     int torDns = intent.getIntExtra(OrbotService.EXTRA_DNS_PORT, -1);
 
                     //if running, we need to restart
-                    if ((torSocks != mTorSocks && torDns != mTorDns)) {
+                    if ((torSocks != -1 && torSocks != mTorSocks
+                            && torDns != -1 && torDns != mTorDns)) {
 
                         mTorSocks = torSocks;
                         mTorDns = torDns;
-                        mTorHttp = torHttp;
 
                         if (!mIsLollipop) {
                          //   stopSocksBypass();
@@ -210,6 +210,8 @@ public class OrbotVpnManager implements Handler.Callback {
         if (!mIsLollipop)
             stopSocksBypass();
 
+        keepRunningPacket = false;
+
         if (mInterface != null) {
             try {
                 Log.d(TAG, "closing interface, destroying VPN interface");
@@ -224,8 +226,17 @@ public class OrbotVpnManager implements Handler.Callback {
             }
         }
 
-        if (mDnsProxy != null)
+        if (mDnsProxy != null) {
             mDnsProxy.stopProxy();
+            mDnsProxy = null;
+        }
+
+        if (mThreadPacket != null && mThreadPacket.isAlive())
+        {
+            mThreadPacket.interrupt();
+        }
+
+
     }
 
     @Override
@@ -253,15 +264,6 @@ public class OrbotVpnManager implements Handler.Callback {
 
             builder.addRoute(defaultRoute,0);
 
-
-            /**
-             * // can't use this since Tor's HTTP port is CONNECT only and not a full PROXY for http traffic
-            if (mTorHttp != -1) {
-                //extra capability to set local http proxy
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    builder.setHttpProxy(ProxyInfo.buildDirectProxy("127.0.0.1", 8118));
-                }
-            }**/
 
             builder.setSession(vpnName);
 
@@ -330,18 +332,8 @@ public class OrbotVpnManager implements Handler.Callback {
 
             IPtProxy.startSocks(pFlow,localhost,mTorSocks);
 
-            /**
-            Inet4Address loopback;
-            try {
-                loopback = (Inet4Address)Inet4Address.getByAddress(new byte[]{127,0,0,1});
-            } catch (UnknownHostException e) {
-                throw new RuntimeException();
-            }**/
-
-
-
             //read packets from TUN and send to go-tun2socks
-            new Thread ()
+            mThreadPacket = new Thread ()
             {
                 public void run ()
                 {
@@ -349,7 +341,8 @@ public class OrbotVpnManager implements Handler.Callback {
                     // Allocate the buffer for a single packet.
                     ByteBuffer buffer = ByteBuffer.allocate(32767);
 
-                    while (true)
+                    keepRunningPacket = true;
+                    while (keepRunningPacket)
                     {
                         try {
 
@@ -358,22 +351,26 @@ public class OrbotVpnManager implements Handler.Callback {
                             {
                                 buffer.limit(pLen);
                                 byte[] pdata = buffer.array();
-                                IpPacket packet = null;
+                                Packet packet = null;
                                 try {
-                                    packet = (IpPacket) IpSelector.newPacket(pdata,0,pdata.length);
-                                    boolean isDNS = false;
+                                    packet = (Packet) IpSelector.newPacket(pdata,0,pdata.length);
 
-                                    if (packet.getHeader().getProtocol()== IpNumber.UDP) {
-                                        UdpPacket up = (UdpPacket) packet.getPayload();
-                                        if (up.getHeader().getDstPort() == UdpPort.DOMAIN)
-                                            isDNS = true;
+                                    if (packet instanceof IpPacket) {
+                                        boolean isDNS = false;
+
+                                        IpPacket ipPacket = (IpPacket) packet;
+
+                                        if (ipPacket.getHeader().getProtocol() == IpNumber.UDP) {
+                                            UdpPacket up = (UdpPacket) packet.getPayload();
+                                            if (up.getHeader().getDstPort() == UdpPort.DOMAIN)
+                                                isDNS = true;
+                                        }
+
+                                        if (isDNS)
+                                            mExec.execute(new RequestPacketHandler(ipPacket, pFlow, mDnsProxy));
+                                        else
+                                            IPtProxy.inputPacket(pdata);
                                     }
-
-                                    if (isDNS)
-                                        mExec.execute(new RequestPacketHandler(packet, pFlow, mDnsProxy));
-                                    else
-                                        IPtProxy.inputPacket(pdata);
-
 
                                 } catch (IllegalRawDataException e) {
                                     return;
@@ -387,7 +384,8 @@ public class OrbotVpnManager implements Handler.Callback {
                     }
 
                 }
-            }.start();
+            };
+            mThreadPacket.start();
 
         } catch (Exception e) {
             Log.d(TAG, "tun2Socks has stopped", e);
