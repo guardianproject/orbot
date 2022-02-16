@@ -1,4 +1,22 @@
 
+/** 16.6.0-RC-1-tor.0.4.6.9 16 Feb 2022 **/
+
+- update to use @bim https://github.com/bitmold/OrbotIPtProxy clean new IPtProxy + Go-tun2socks library
+- fix small issues for Android 12
+- clean-up Locale, byte reading, and a few other small bits and pieces
+ 
+b2bed029 (origin/master, origin/HEAD) clean-up byte reading code, and simplify
+4231a8f3 (newport/master) ensure we specify Locale to use
+9507e70c ensure threads are cleaned up, handle "UnknownPacket" types - this may help resolve onBoot issues with VPN
+79aee400 identify foreground service type for Android 12
+56e48419 Translated using Weblate (German)
+978a5d20 remove unused IPtProxy.aar local file
+5fda2139 (origin/OrbotIPtProxy, OrbotIPtProxy) Update BUILD.md
+884aa982 remove local AARs, use new jitpack OrbotIPtProxy
+33e8f3cd Add multidex support
+ca799988 Fix resolving IPtProxy for app-mini and appcore
+
+
 /** 16.6.0-BETA-1 (tor 0.4.6.9) 11 Feb 2022 **/
 
 MAJOR overhaul of VPN/tun traffic handling
