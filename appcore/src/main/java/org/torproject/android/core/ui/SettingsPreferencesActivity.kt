@@ -41,7 +41,7 @@ class SettingsPreferencesActivity : PreferenceActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // if defined in XML, disable the persistent notification preference on Oreo+
             findPreference("pref_persistent_notifications")?.let {
-                preferenceScreen?.removePreference(it)
+                it.parent?.removePreference(it)
             }
         }
 
