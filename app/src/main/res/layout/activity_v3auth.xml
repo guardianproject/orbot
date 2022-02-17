@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="org.torproject.android.ui.hiddenservices.ClientCookiesActivity">
+    tools:context="org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

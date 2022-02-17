@@ -18,8 +18,8 @@ import org.torproject.android.R;
 public class ClientAuthListAdapter extends CursorAdapter {
     private final LayoutInflater mLayoutInflator;
 
-    ClientAuthListAdapter(Context context, Cursor cursor, int flags) {
-        super(context, cursor, flags);
+    ClientAuthListAdapter(Context context, Cursor cursor) {
+        super(context, cursor, 0);
         mLayoutInflator = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 

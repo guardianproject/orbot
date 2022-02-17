@@ -35,7 +35,7 @@ public class V3BackupUtils {
         mResolver = mContext.getContentResolver();
     }
 
-    public String createV3ZipBackup(String port, String relativePath, Uri zipFile) {
+    public String createV3ZipBackup(String relativePath, Uri zipFile) {
         String[] files = createFilesForZippingV3(relativePath);
         ZipUtilities zip = new ZipUtilities(files, zipFile, mResolver);
         if (!zip.zip()) return null;

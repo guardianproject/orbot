@@ -9,7 +9,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class CustomTorResourceInstaller {
@@ -25,7 +24,7 @@ public class CustomTorResourceInstaller {
     /*
      * Write the inputstream contents to the file
      */
-    private static boolean streamToFile(InputStream stm, File outFile, boolean append, boolean zip) throws IOException {
+    private static void streamToFile(InputStream stm, File outFile, boolean append, boolean zip) throws IOException {
         byte[] buffer = new byte[1024];
 
         int bytecount;
@@ -35,7 +34,7 @@ public class CustomTorResourceInstaller {
 
         if (zip) {
             zis = new ZipInputStream(stm);
-            ZipEntry ze = zis.getNextEntry();
+            zis.getNextEntry();
             stm = zis;
         }
 
@@ -48,9 +47,6 @@ public class CustomTorResourceInstaller {
 
         if (zis != null)
             zis.close();
-
-
-        return true;
     }
 
     /*

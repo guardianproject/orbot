@@ -232,7 +232,7 @@ public class TCPSourceApp {
                             return sAddr;
                     } else {
                         if (!isIPv4) {
-                            if (sAddr.startsWith("fe80") || sAddr.startsWith("FE80")) // skipping link-local addresses
+                            if (sAddr.startsWith("FE80")) // skipping link-local addresses
                                 continue;
 
                             int delim = sAddr.indexOf('%'); // drop ip6 port suffix
@@ -260,9 +260,9 @@ public class TCPSourceApp {
      */
     public static class AppDescriptor {
 
-        private String packageName;
-        private String version;
-        private int uid;
+        private final String packageName;
+        private final String version;
+        private final int uid;
 
         public AppDescriptor(int uid, String pName, String ver) {
             this.uid = uid;

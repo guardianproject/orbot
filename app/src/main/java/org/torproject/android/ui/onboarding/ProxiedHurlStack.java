@@ -22,15 +22,6 @@ public class ProxiedHurlStack extends HurlStack {
     private final String mUsername;
     private final String mPassword;
 
-    public ProxiedHurlStack(String host, int port) {
-        super();
-
-        mHost = host;
-        mPort = port;
-        mUsername = null;
-        mPassword = null;
-    }
-
     public ProxiedHurlStack(String host, int port, String username, String password) {
         super();
 

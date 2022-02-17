@@ -85,10 +85,9 @@ public class OnionServiceActionsDialogFragment extends DialogFragment {
     }
 
     private void attemptToWriteBackup(Uri outputFile) {
-        String port = getArguments().getString(OnionServiceActivity.BUNDLE_KEY_PORT);
         String relativePath = getArguments().getString(OnionServiceActivity.BUNDLE_KEY_PATH);
         V3BackupUtils v3BackupUtils = new V3BackupUtils(getContext());
-        String backup = v3BackupUtils.createV3ZipBackup(port, relativePath, outputFile);
+        String backup = v3BackupUtils.createV3ZipBackup(relativePath, outputFile);
         Toast.makeText(getContext(), backup != null ? R.string.backup_saved_at_external_storage : R.string.error, Toast.LENGTH_LONG).show();
         dismiss();
     }

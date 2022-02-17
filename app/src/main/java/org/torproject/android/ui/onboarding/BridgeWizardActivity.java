@@ -49,9 +49,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
             findViewById(R.id.btnSnowflakeAmp).setVisibility(View.GONE);
         }
         else {
-            findViewById(R.id.btnMoat).setOnClickListener(v -> {
-                startActivityForResult(new Intent(BridgeWizardActivity.this, MoatActivity.class), MOAT_REQUEST_CODE);
-            });
+            findViewById(R.id.btnMoat).setOnClickListener(v -> startActivityForResult(new Intent(BridgeWizardActivity.this, MoatActivity.class), MOAT_REQUEST_CODE));
         }
 
         mBtDirect = findViewById(R.id.btnBridgesDirect);

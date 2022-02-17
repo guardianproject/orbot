@@ -111,12 +111,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     public static File appCacheHome;
     private final ExecutorService mExecutor = Executors.newCachedThreadPool();
     @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.LOLLIPOP)
-    boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+    final boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     OrbotRawEventListener mOrbotRawEventListener;
     OrbotVpnManager mVpnManager;
     Handler mHandler;
     //we should randomly sort alBridges so we don't have the same bridge order each time
-    Random bridgeSelectRandom = new Random(System.nanoTime());
+    final Random bridgeSelectRandom = new Random(System.nanoTime());
     ActionBroadcastReceiver mActionBroadcastReceiver;
     private String mCurrentStatus = STATUS_OFF;
     TorControlConnection conn = null;
@@ -715,13 +715,6 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             sendCallbackStatus(STATUS_STARTING);
             mNotifyBuilder.setProgress(100, 0, false);
             showToolbarNotification("", NOTIFY_ID, R.drawable.ic_stat_tor);
-
-            ArrayList<String> customEnv = new ArrayList<>();
-
-            if (Prefs.bridgesEnabled())
-                if (Prefs.useVpn() && !mIsLollipop) {
-                    customEnv.add("TOR_PT_PROXY=socks5://" + OrbotVpnManager.sSocksProxyLocalhost + ":" + OrbotVpnManager.sSocksProxyServerPort);
-                }
 
             startTorService();
 
@@ -1431,7 +1424,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     }
 
     private class IncomingIntentRouter implements Runnable {
-        Intent mIntent;
+        final Intent mIntent;
 
         public IncomingIntentRouter(Intent intent) {
             mIntent = intent;

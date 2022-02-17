@@ -13,7 +13,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.ConnectException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.zip.ZipEntry;
@@ -27,9 +26,6 @@ public class Utils {
             socket.connect(new InetSocketAddress(ip, port), timeout);
             socket.close();
             return true;
-        } catch (ConnectException ce) {
-            //ce.printStackTrace();
-            return false;
         } catch (Exception ex) {
             //ex.printStackTrace();
             return false;

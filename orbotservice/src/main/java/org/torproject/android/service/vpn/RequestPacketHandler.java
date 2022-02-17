@@ -15,19 +15,16 @@ import IPtProxy.PacketFlow;
 
 public class RequestPacketHandler implements Runnable {
 
-    IpPacket packet;
-    PacketFlow pFlow;
-    DNSResolver mDnsResolver;
+    final IpPacket packet;
+    final PacketFlow pFlow;
+    final DNSResolver mDnsResolver;
 
-    public RequestPacketHandler (IpPacket packet, PacketFlow pFLow, DNSResolver dnsResolver)
-    {
+    public RequestPacketHandler (IpPacket packet, PacketFlow pFLow, DNSResolver dnsResolver) {
         this.packet = packet;
         this.pFlow = pFLow;
         this.mDnsResolver = dnsResolver;
     }
     public void run() {
-
-
             try {
                 UdpPacket udpPacket = (UdpPacket) packet.getPayload();
 
@@ -36,8 +33,6 @@ public class RequestPacketHandler implements Runnable {
                 if (dnsResp != null) {
 
                      DnsPacket dnsRequest = (DnsPacket) udpPacket.getPayload();
-
-
                      DnsPacket dnsResponse = DnsPacket.newPacket(dnsResp, 0, dnsResp.length);
 
                      DnsPacket.Builder dnsBuilder = new DnsPacket.Builder();
@@ -105,7 +100,5 @@ public class RequestPacketHandler implements Runnable {
             } catch (Exception ioe) {
                 Log.e("DNS", "could not parse DNS packet: " + ioe);
             }
-
-
     }
 }

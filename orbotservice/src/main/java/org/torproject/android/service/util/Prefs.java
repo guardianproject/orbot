@@ -136,10 +136,6 @@ public class Prefs {
         return prefs.getString(PREF_EXIT_NODES, "");
     }
 
-    public static void setExitNodes(String exits) {
-        putString(PREF_EXIT_NODES, exits);
-    }
-
     public static SharedPreferences getSharedPrefs(Context context) {
         return context.getSharedPreferences(OrbotConstants.PREF_TOR_SHARED_PREFS, Context.MODE_MULTI_PROCESS);
     }

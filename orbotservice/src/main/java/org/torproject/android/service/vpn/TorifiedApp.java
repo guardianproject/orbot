@@ -111,11 +111,7 @@ public class TorifiedApp implements Comparable {
             //app.setIcon(pMgr.getApplicationIcon(aInfo));
 
             // check if this application is allowed
-            if (Arrays.binarySearch(tordApps, app.getPackageName()) >= 0) {
-                app.setTorified(true);
-            } else {
-                app.setTorified(false);
-            }
+            app.setTorified(Arrays.binarySearch(tordApps, app.getPackageName()) >= 0);
         }
 
         Collections.sort(apps);

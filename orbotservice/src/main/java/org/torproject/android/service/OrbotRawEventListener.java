@@ -240,7 +240,7 @@ public class OrbotRawEventListener implements RawEventListener {
         ExitNode(String fingerPrint) {
             this.fingerPrint = fingerPrint;
         }
-        public String fingerPrint;
+        public final String fingerPrint;
         public String country;
         public String ipAddress;
         boolean querying = false;

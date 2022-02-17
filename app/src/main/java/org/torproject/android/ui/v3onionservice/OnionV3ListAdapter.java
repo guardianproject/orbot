@@ -19,8 +19,8 @@ public class OnionV3ListAdapter extends CursorAdapter {
 
     private final LayoutInflater mLayoutInflater;
 
-    OnionV3ListAdapter(Context context, Cursor cursor, int flags) {
-        super(context, cursor, flags);
+    OnionV3ListAdapter(Context context, Cursor cursor) {
+        super(context, cursor, 0);
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 

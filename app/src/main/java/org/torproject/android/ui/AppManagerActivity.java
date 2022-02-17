@@ -173,16 +173,12 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                 convertView.setFocusable(true);
                 convertView.setFocusableInTouchMode(true);
 
-                convertView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                    @Override
-                    public void onFocusChange(View v, boolean hasFocus) {
-
-                        if (hasFocus)
-                            v.setBackgroundColor(getResources().getColor(R.color.dark_purple));
-                        else
-                        {
-                            v.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                        }
+                convertView.setOnFocusChangeListener((v, hasFocus) -> {
+                    if (hasFocus)
+                        v.setBackgroundColor(getResources().getColor(R.color.dark_purple));
+                    else
+                    {
+                        v.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                     }
                 });
 
@@ -253,11 +249,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
 
             // check if this application is allowed
-            if (Arrays.binarySearch(tordApps, app.getPackageName()) >= 0) {
-                app.setTorified(true);
-            } else {
-                app.setTorified(false);
-            }
+            app.setTorified(Arrays.binarySearch(tordApps, app.getPackageName()) >= 0);
 
         }
 
@@ -308,7 +300,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
     private static class ReloadAppsAsyncTask extends AsyncTask<Void, Void, Void> {
 
-        private WeakReference<AppManagerActivity> activity;
+        private final WeakReference<AppManagerActivity> activity;
 
         ReloadAppsAsyncTask(AppManagerActivity activity) {
             this.activity = new WeakReference<>(activity);
