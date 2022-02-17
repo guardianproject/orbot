@@ -3,8 +3,7 @@
   <string name="app_name">Orbot</string>
     <string name="status_starting_up">Orbot ŝaltiĝas...</string>
   <string name="status_activated">Konektita al Tor-reto</string>
-  <string name="status_disabled">Orbot estas malaktivigita</string>
-    <string name="menu_settings">Agordoj</string>
+  <string name="menu_settings">Agordoj</string>
   <string name="menu_log">Protokolo</string>
     <string name="menu_start">Starti</string>
   <string name="menu_stop">Halti</string>
@@ -46,10 +45,8 @@
   <string name="pref_proxy_password_title">Pasvorto de la elira prokurilo</string>
   <string name="pref_proxy_password_summary">Pasvorto de la prokurilo (Malnepra)</string>
   <string name="pref_proxy_password_dialog">Entajpu pasvorton</string>
-    <string name="couldn_t_start_tor_process_">Tor-procedo ne sukcesis stariĝi:</string>
     <string name="error">Eraro</string>
-  <string name="your_relay_settings_caused_an_exception_">Via agordo de relajso kaŭzis escepton!</string>
-  <string name="exit_nodes">Finnodoj</string>
+    <string name="exit_nodes">Finnodoj</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Fingrospuroj, kaŝnomoj, landoj kaj adresoj por la lasta hopo</string>
   <string name="enter_exit_nodes">Entajpu finnofojn</string>
   <string name="use_only_these_specified_nodes">Uzi *nur* tiujn ĉi nodojn</string>
@@ -66,9 +63,7 @@
   <string name="ports_reachable_behind_a_restrictive_firewall">Pordoj, kiuj atingeblas tra la restrikta fajromuro</string>
   <string name="enter_ports">Entajpu pordojn</string>
     <string name="project_home">Retpaĝaro(j) de la Projekto:</string>
-    <string name="found_existing_tor_process">trovi ekzistantan Tor-procedon...</string>
-    <string name="unable_to_start_tor">Ne eblas startigi Tor:</string>
-    <string name="set_locale_title">Lingvo</string>
+  <string name="set_locale_title">Lingvo</string>
     <string name="activate">Aktivi</string>
   <string name="save">Konservi</string>
   <string name="name">Nomo</string>

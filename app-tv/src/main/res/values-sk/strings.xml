@@ -4,7 +4,6 @@
   <string name="app_description">Orbot je bezplatná proxy aplikácia, ktorá umožňuje ostatným aplikáciam používať internet bezpečnejšie. Orbot používa Tor pre šifrovanie vašej internetovej komunikácie, ktorú následne schová za sériu náhodných počítačov z celého sveta. Tor je bezplatný software a otvorená sieť, ktorá pomáha chrániť proti sledovaniu sietí, ktoré ohrozuje osobnú slobodu a súkromie, dôverné pracovné aktivity a vzťahy a tiež bezpečnosť štátov známu ako analýza prevádzky.</string>
     <string name="status_starting_up">Orbot sa spúšťa…</string>
   <string name="status_activated">Pripojený do siete Tor</string>
-  <string name="status_disabled">Orbot je deaktivovaný</string>
   <string name="status_shutting_down">TorService sa vypína</string>
   <string name="menu_settings">Nastavenia</string>
   <string name="menu_log">Podrobnosti</string>
@@ -53,10 +52,7 @@
   <string name="pref_proxy_password_title">Heslo odchádzajúcej proxy</string>
   <string name="pref_proxy_password_summary">Heslo proxy (voliteľné)</string>
   <string name="pref_proxy_password_dialog">Zadajte heslo proxy</string>
-    <string name="couldn_t_start_tor_process_">Nebolo možné spustiť Tor proces:</string>
-    <string name="error">Chyba</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">Vaše nastavenie dostupných adries ReachableAddresses spôsobilo chybu!</string>
-  <string name="your_relay_settings_caused_an_exception_">Vaše nastavenie relácií spôsobilo chybu!</string>
+  <string name="error">Chyba</string>
   <string name="exit_nodes">Výstupné uzly</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Otlačky, prezývky, krajiny a adresy pre posledný skok</string>
   <string name="enter_exit_nodes">Zadajte výstupné uzly</string>
@@ -89,10 +85,7 @@
     <string name="third_party_software">Software tretích strán:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="found_existing_tor_process">nájdený iný proces Tor...</string>
-  <string name="something_bad_happened">Deje sa niečo zlé. Skontrolujte podrobnosti.</string>
-    <string name="unable_to_start_tor">Nemožné spustiť Tor:</string>
-    <string name="pref_use_persistent_notifications">Vždy ponechať ikonu v stavovom riadku, keď je Orbot pripojený</string>
+  <string name="pref_use_persistent_notifications">Vždy ponechať ikonu v stavovom riadku, keď je Orbot pripojený</string>
   <string name="pref_use_persistent_notifications_title">Vždy zapnuté upozornenia</string>
   <string name="pref_use_expanded_notifications">Zobraziť rozšírené upozornenie s výstupnou krajinou a IP adresou siete Tor</string>
   <string name="pref_use_expanded_notifications_title">Rozšírené upozornenia</string>
@@ -100,8 +93,7 @@
   <string name="pref_disable_network_title">Automatický spánok</string>
   <string name="pref_disable_network_summary">Uspať Tor, keď internet nie je dostupný</string>
   <string name="newnym">Prepli ste na novú Tor identitu!</string>
-  <string name="updating_settings_in_tor_service">aktualizujem nastavenie v službe Tor</string>
-  <string name="pref_socks_title">Tor SOCKS</string>
+    <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Port, na ktorom Tor poskytuje SOCKS proxy (prednastavené 9050 alebo 0 pre deaktiváciu)</string>
   <string name="pref_socks_dialog">Nastavenia portu SOCKS</string>
   <string name="pref_transport_title">Tor TransProxy port</string>

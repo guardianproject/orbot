@@ -3,8 +3,7 @@
   <string name="app_name">Orbot</string>
     <string name="status_starting_up">Orbot está iniciándose…</string>
   <string name="status_activated">Conectado a la red Tor</string>
-  <string name="status_disabled">\"Orbot está Desactivado</string>
-  <string name="status_shutting_down">Orbot se está apagando</string>
+    <string name="status_shutting_down">Orbot se está apagando</string>
     <string name="menu_settings">Configuración</string>
   <string name="menu_log">Registro</string>
     <string name="menu_start">Iniciar</string>

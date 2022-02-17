@@ -3,7 +3,6 @@
     <string name="app_name">Orbot</string>
     <string name="status_starting_up">O Orbot está a iniciar…</string>
     <string name="status_activated">Conetado à rede Tor</string>
-    <string name="status_disabled">O Orbot está desativado</string>
     <string name="menu_settings">Configurações</string>
     <string name="menu_log">Registo</string>
     <string name="menu_start">Iniciar</string>
@@ -42,7 +41,6 @@
     <string name="pref_proxy_password_title">Palavra-passe do proxy de saída</string>
     <string name="pref_proxy_password_summary">Palavra-passe do Proxy (Opcional)</string>
     <string name="pref_proxy_password_dialog">Inserir palavra-passe do proxy</string>
-    <string name="couldn_t_start_tor_process_">Não foi possível iniciar o processo Tor: </string>
     <string name="error">Erro</string>
     <string name="bridges">Pontes</string>
     <string name="use_bridges">Usar Pontes</string>
@@ -55,14 +53,10 @@
     <string name="third_party_software">Programas de Terceiros: </string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="found_existing_tor_process">processo Tor existente foi encontrado…</string>
-    <string name="something_bad_happened">Aconteceu algo de mau. Verifique o registo de eventos</string>
-    <string name="unable_to_start_tor">Não é possível iniciar o Tor:</string>
     <string name="pref_use_persistent_notifications_title">Notificações Sempre Ativadas</string>
     <string name="pref_use_expanded_notifications_title">Notificações Estendidas</string>
     <string name="set_locale_title">Idioma</string>
     <string name="newnym">Mudou para uma nova identidade do Tor!</string>
-    <string name="updating_settings_in_tor_service">a atualizar as definições no serviço Tor</string>
     <string name="pref_socks_title">SOCKS Tor</string>
     <string name="pref_dnsport_title">Porta DNS Tor</string>
     <string name="bridges_updated">Pontes Atualizadas</string>
@@ -160,8 +154,6 @@
     <string name="enter_exit_nodes">Digite os Nós de Saída</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Impressões digitais, apelidos, países e endereços para a última etapa</string>
     <string name="exit_nodes">Nós de Saída</string>
-    <string name="your_relay_settings_caused_an_exception_">As suas configurações de retransmissão causaram uma exceção!</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">As suas configurações de Endereços Acessíveis causou uma exceção!</string>
     <string name="pref_allow_background_starts_summary">Deixar uma app informar o Orbot para iniciar o Tor e os seus serviços relacionados</string>
     <string name="pref_allow_background_starts_title">Permitir Inicializações em Segundo Plano</string>
     <string name="pref_entrance_node_dialog">Digite os Nós de Entrada</string>

@@ -38,7 +38,6 @@
     <string name="menu_scan">ব্রিজকিউআর চেক করো</string>
     <string name="main_layout_upload">আপলোড</string>
     <string name="status_shutting_down">টর সার্ভিস বন্ধ করা হচ্ছে</string>
-    <string name="status_disabled">অরবট নিষ্ক্রিয় করা হয়েছে</string>
     <string name="status_activated">টর নেটওয়ার্কের সাথে সংযুক্ত হয়েছে</string>
     <string name="project_urls">https://www.torproject.org/docs/android
 \nhttps://guardianproject.info/apps/orbot/</string>

@@ -4,7 +4,6 @@
   <string name="app_description">Orbot ir starpniekserveru bezmaksas lietotne, kas sniedz iespēju citām lietotnēm drošāk lietot internetu. Orbot izmanto Tor, lai šifrētu Jūsu interneta datplūsmu, tad to paslēpj, pārsūtot to caur daudziem datoriem visā pasaulē. Tor ir bezmaksas programmatūra un atvērts tīkls, kas palīdz Jums aizsargāties pret tīkla uzraudzības veidu - datplūsmas analīzi -, ar kuras palīdzību tiek apdraudēta personiskā brīvība un privātums, konfidenciālas lietišķas darbības un attiecības, kā arī valsts drošība.  </string>
     <string name="status_starting_up">Orbot startē…</string>
   <string name="status_activated">Izveidots savienojums ar tīklu Tor</string>
-  <string name="status_disabled">Orbot ir deaktivēts</string>
   <string name="status_shutting_down">TorService izslēdzas</string>
   <string name="menu_settings">Iestatījumi</string>
   <string name="menu_log">Žurnāls</string>
@@ -51,10 +50,7 @@
   <string name="pref_proxy_password_title">Ārvērstā starpnieka parole</string>
   <string name="pref_proxy_password_summary">Starpnieka parole (neobligāti)</string>
   <string name="pref_proxy_password_dialog">Ievadīt starpnieka paroli</string>
-    <string name="couldn_t_start_tor_process_">Neizdevās palaist Tor\'a procesu:</string>
-    <string name="error">Kļūda</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">Jūsu ReachableAddresses iestatījumi izraisīja izņēmuma stāvokli!</string>
-  <string name="your_relay_settings_caused_an_exception_">Jūsu retranslatora iestatījumi izraisīja izņēmuma situāciju!</string>
+  <string name="error">Kļūda</string>
   <string name="exit_nodes">Izejas mezgli</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Pēdējā lēkuma ciparvirknes, segvārdi, valstis un adreses</string>
   <string name="enter_exit_nodes">Ievadiet izejas mezglus</string>
@@ -85,10 +81,7 @@
     <string name="third_party_software">Trešo personu programmatūra:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="found_existing_tor_process">Atrada esošu Tor procesu…</string>
-  <string name="something_bad_happened">Nav labi. Pārbaudiet žurnālu</string>
-    <string name="unable_to_start_tor">Nevar startēt Tor:</string>
-    <string name="pref_use_persistent_notifications">Vienmēr paturēt ikonu rīkjoslā, kad Orbot ir savienots</string>
+  <string name="pref_use_persistent_notifications">Vienmēr paturēt ikonu rīkjoslā, kad Orbot ir savienots</string>
   <string name="pref_use_persistent_notifications_title">Vienmēr ieslēgtie paziņojumi</string>
   <string name="pref_use_expanded_notifications">Rādīt paplašinātus paziņojumus, kur norādīts IP un Tor izejas valsts</string>
   <string name="pref_use_expanded_notifications_title">Paplašināti paziņojumi</string>
@@ -96,8 +89,7 @@
   <string name="pref_disable_network_title">Neizmantot tīkla automātiskā miega režīmu</string>
   <string name="pref_disable_network_summary">Kad nav interneta, pārslēgt Tor\'u uz miega režīmu</string>
   <string name="newnym">Jūs pārslēdzāties uz jaunu Tor\'a identitāti!</string>
-  <string name="updating_settings_in_tor_service">atjaunina Tor pakalpojuma iestatījumus </string>
-  <string name="pref_socks_title">Tor SOCKS</string>
+    <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Ports, uz kura Tor piedāvā savu SOCKS starpniekserveri (noklusējumvērtība: 9050 vai 0 lai atspējotu)</string>
   <string name="pref_socks_dialog">SOCKS Port Config</string>
   <string name="pref_transport_title">Tor TransProxy Port</string>

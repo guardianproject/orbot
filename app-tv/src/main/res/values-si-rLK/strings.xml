@@ -4,8 +4,7 @@
   <string name="app_description">Orbot යනු අනෙකුත් අැප්ස් හට වඩා අාරක්ෂාකාරීව අන්තර්ජාලෙය් සැරිසැරීමට ඉඩ සලසාදෙන  නොමිලේ ලබාදෙන්නාවූ ප්රොක්සි සේවාවකි. එය Tor යොදාගනිමින් ඔබගේ අන්තර්ජාල ගනුදෙනු ඛේතනය කරයි එමෙන්ම එය ලොව වටා වූ අනෙකුත් සමාන්තර පරිගනක හරහා ගෙනයමින්  ඔබගේ අන්තර්ජාල ගනුදෙනු සඟවා තබාගනී. Tor යනු </string>
     <string name="status_starting_up">Orbot ආරම්භ කරමින්…</string>
   <string name="status_activated">Tor ජාලයට සබැදියි</string>
-  <string name="status_disabled">Orbot ක්‍රියාවිරහිත කර ඇත </string>
-    <string name="menu_settings">සිටවුම්</string>
+  <string name="menu_settings">සිටවුම්</string>
   <string name="menu_log">ලොගය </string>
     <string name="menu_start">අරඹන්න</string>
   <string name="menu_stop">නවත්වන්න</string>
@@ -42,10 +41,7 @@
   <string name="pref_proxy_port_title">Outbound නියුතු පොර්ටයකි </string>
   <string name="pref_proxy_port_summary">නියුතු සේවාදායක පෝටය</string>
   <string name="pref_proxy_port_dialog">නියුතු සේවා පෝටය ඇතුළු කරන්න </string>
-    <string name="couldn_t_start_tor_process_">Tor ක්‍රියාවලින් ආරම්භ කිරීමට නොහැකි විය:</string>
     <string name="error">දෝෂයකි</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">ඔබේ සේන්දුවන ලිපිනයෙහි සිටුවම්වල ව්‍යතිරේකයක් හටගෙන ඇත!</string>
-  <string name="your_relay_settings_caused_an_exception_">ඔබේ ප්‍රතියෝජක සිටුවම්වල ව්‍යතිරේකයක් හටගෙන ඇත!</string>
   <string name="exit_nodes">පිටවුම් නෝඩු</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">පළමු hop සදහා අගිලිසලකුණු, nicks, රටවල් හා ලිපිනයන්</string>
   <string name="enter_exit_nodes">පිටවුම් නොඩුවලට පිවිසෙන්න</string>
@@ -75,10 +71,7 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">නිදොස් කිරීමේ ලොගය ප්‍රතිදානය සදහා සබල කරන්න (නැරඹීම සදහා adb or aLogCat භාවිතා කරන්න)</string>
   <string name="project_home">ව්‍යාපෘති නිවහන(න්):</string>
     <string name="third_party_software">3 වන පාර්ශව මෘදුකාංග</string>
-  <string name="found_existing_tor_process">පවතින Tor ක්‍රියාවලි හමුවිය...</string>
-  <string name="something_bad_happened">යම් නොමනා දෙයක් සිදුවිය. ලොගය පරික්ෂා කර බලන්න </string>
-    <string name="unable_to_start_tor">Tor ආරම්භ කිරීමට නොහැකිය:</string>
-    <string name="pref_use_persistent_notifications">Orbot සම්බන්ධ වී ඇති සැමවිටම විට මෙවලම් තීරුවේ නිරූපකය තබාගන්න</string>
+  <string name="pref_use_persistent_notifications">Orbot සම්බන්ධ වී ඇති සැමවිටම විට මෙවලම් තීරුවේ නිරූපකය තබාගන්න</string>
   <string name="pref_use_persistent_notifications_title">නිවේදන ලැබීමට සලස්වන්න </string>
     <string name="set_locale_title">භාෂාව</string>
     <string name="kb">KB</string>

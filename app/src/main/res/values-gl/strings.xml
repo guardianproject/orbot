@@ -4,7 +4,6 @@
     <string name="app_description">Orbot é unha aplicación de proxy libre que permite a outras aplicacións usar a internet dun xeito máis seguro. Orbot usa Tor para encriptar o teu tráfico de internet ocultando e rebotándoo a través dunha serie de ordenadores ao redor do mundo. Tor é software libre e unha rede aberta que axuda a defenderte contra unha forma de vixiancia na rede que ameaza a liberdade e privacidade persoal, actividades confidenciáis de negocios e relacións, e estado de seguridade coñecido como análise de tráfico.</string>
     <string name="status_starting_up">Orbot está a se iniciar…</string>
     <string name="status_activated">Conectado á rede Tor</string>
-    <string name="status_disabled">Orbot está desactivado</string>
     <string name="status_shutting_down">O ServizoTor estase pechando</string>
     <string name="menu_settings">Axustes</string>
     <string name="menu_log">Rexistro (log)</string>
@@ -52,10 +51,7 @@
     <string name="pref_proxy_password_title">Contrasinal do Proxy de Saída</string>
     <string name="pref_proxy_password_summary">Contrasinal do Proxy (Opcional)</string>
     <string name="pref_proxy_password_dialog">Introduza Contrasinal do Proxy</string>
-    <string name="couldn_t_start_tor_process_">No se pudio inciar o proceso Tor:</string>
     <string name="error">Erro</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">O seu axuste de ReachableAddresses causou unha excepción!</string>
-    <string name="your_relay_settings_caused_an_exception_">Os seus axustes de relay causou unha excepción!</string>
     <string name="exit_nodes">Nodos de Saída</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Huellas, alias, países e direccións para o último salto</string>
     <string name="enter_exit_nodes">Introduza Nodos de Saída</string>
@@ -89,9 +85,6 @@
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Unha aplicación quere abrir o porto oculto de servidor %1$s a rede Tor. Esto é seguro se vostede confía na app.</string>
-    <string name="found_existing_tor_process">atopado proceso Tor existente…</string>
-    <string name="something_bad_happened">Algo malo pasou. Comprobe o rexistro</string>
-    <string name="unable_to_start_tor">Incapaz de arrancar Tor</string>
     <string name="pref_use_persistent_notifications">Mostrar sempre a icona na barra de ferramentas cando Orbot estea conectado</string>
     <string name="pref_use_persistent_notifications_title">Notificacións Sempre Acesas</string>
     <string name="pref_use_expanded_notifications">Mostar notificación extendida co país de saída de Tor e IP</string>
@@ -100,7 +93,6 @@
     <string name="pref_disable_network_title">Auto-Parado Sen Rede</string>
     <string name="pref_disable_network_summary">Parar Tor cando non hai conexión a internet</string>
     <string name="newnym">Cambiou a unha nova identidade Tor!</string>
-    <string name="updating_settings_in_tor_service">actualizando axustes no servizo Tor</string>
     <string name="pref_socks_title">SOCKS de Tor</string>
     <string name="pref_socks_summary">Porto no que Tor ofrece o seu proxy SOCKS (por omisión: 9050 ou 0 para desactivar)</string>
     <string name="pref_socks_dialog">Axuste do porto SOCKS</string>

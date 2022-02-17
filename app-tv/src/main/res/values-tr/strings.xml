@@ -4,7 +4,6 @@
   <string name="app_description">Orbot başka uygulamaların İnterneti daha güvenli olarak kullanmasını sağlayan ücretsiz bir vekil sunucu uygulamasıdır. Orbot Tor yazılımını kullanarak İnternet trafiğinizi şifreler ve dünya üzerindeki pek çok farklı bilgisayardan geçirerek gizler. Tor kişisel özgürlüğünüze, kişisel bilgilerinize, gizli ticari işlemlerinize ve ilişkilerinize karşı tehdit oluşturan ve devlet güvenliği olarak bilinen ağ izlemelerine karşı koruma sağlayan bir özgür yazılım ve açık ağ yazılımıdır.</string>
   <string name="status_starting_up">Orbot başlatılıyor...</string>
   <string name="status_activated">Tor ağına bağlandı</string>
-  <string name="status_disabled">Orbot devre dışı bırakıldı</string>
   <string name="status_shutting_down">Tor hizmeti kapatılıyor</string>
   <string name="menu_settings">Ayarlar</string>
   <string name="menu_log">Günlük</string>
@@ -54,10 +53,7 @@
   <string name="pref_proxy_password_title">Giden Vekil Sunucu Parolası</string>
   <string name="pref_proxy_password_summary">Vekil Sunucu Parolası (İsteğe Bağlı)</string>
   <string name="pref_proxy_password_dialog">Vekil Sunucu Parolasını Yazın</string>
-  <string name="couldn_t_start_tor_process_">Tor işlemi başlatılamadı:</string>
   <string name="error">Hata</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">ErişilebilirAdresler ayarlarınız bir soruna yol açtı!</string>
-  <string name="your_relay_settings_caused_an_exception_">Aktarıcı ayarlarınız bir soruna yol açtı!</string>
   <string name="exit_nodes">Çıkış Düğümleri</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Son sıçrama noktası için parmak izleri, kısaltmalar, ülkeler ve adresler</string>
   <string name="enter_exit_nodes">Çıkış Düğümlerini Yazın</string>
@@ -94,9 +90,6 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Bir uygulama Tor ağına %1$d gizli sunucu kapısını açmak istiyor. Uygulamaya güveniyorsanız bu işlem güvenlidir.</string>
-  <string name="found_existing_tor_process">varolan bir Tor işlemi bulundu...</string>
-  <string name="something_bad_happened">Bir şeyler ters gitti. Günlük kayıtlarına bakın</string>
-    <string name="unable_to_start_tor">Tor başlatılamadı:</string>
   <string name="pref_use_persistent_notifications">Orbot bağlı olduğu sürece simge araç çubuğunda görüntülensin</string>
   <string name="pref_use_persistent_notifications_title">Bildirimler Her Zaman Açık</string>
   <string name="pref_use_expanded_notifications">Tor çıkış ülkesi ve IP adresi ile ilgili ayrıntılı bildirim görüntülensin</string>
@@ -105,8 +98,7 @@
   <string name="pref_disable_network_title">Bağlantı Olmadığında Otomatik Uyku</string>
   <string name="pref_disable_network_summary">İnternet bağlantısı olmadığında Tor uyku kipine geçsin</string>
   <string name="newnym">Yeni bir Tor kimliğine geçiş yaptınız!</string>
-  <string name="updating_settings_in_tor_service">Tor hizmet ayarları güncelleniyor</string>
-  <string name="pref_socks_title">Tor SOCKS</string>
+    <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Tor SOCKS vekil sunucusu için kullanılacak kapı numarası (Varsayılan 9050, devre dışı bırakmak için 0)</string>
   <string name="pref_socks_dialog">SOCKS Kapı Numarası Ayarı</string>
   <string name="pref_transport_title">Tor Aktarım Vekil Sunucusu Kapı Numarası</string>

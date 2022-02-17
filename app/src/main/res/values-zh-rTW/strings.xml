@@ -4,7 +4,6 @@
     <string name="app_description">Orbot 是一款免費的網絡代理應用程式，用來保護其他應用程式的上網安全。Orbot 使用 Tor 在全球一系列的電腦間跳躍，達到加密並隱藏網路流量。Tor 是個自由軟體也是個開放網路，能幫您抵禦流量分析這種網路監控模式，它威脅到個人的自由與隱私、商業機密活動與商務關係、甚至威脅國家安全。</string>
     <string name="status_starting_up">Orbot 正在啟動中…</string>
     <string name="status_activated">已連線至 Tor 網路</string>
-    <string name="status_disabled">Orbot 已停用</string>
     <string name="status_shutting_down">Tor服務 正在關閉</string>
     <string name="menu_settings">設定</string>
     <string name="menu_log">記錄檔</string>
@@ -52,10 +51,7 @@
     <string name="pref_proxy_password_title">對外網路的代理伺服器密碼</string>
     <string name="pref_proxy_password_summary">代理伺服器的密碼（如果有）</string>
     <string name="pref_proxy_password_dialog">往內流量的代理伺服器密碼</string>
-    <string name="couldn_t_start_tor_process_">無法啟動 Tor 程序</string>
     <string name="error">錯誤</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">您的可存取位址設定引發錯誤！</string>
-    <string name="your_relay_settings_caused_an_exception_">您的中繼設定出現錯誤！</string>
     <string name="exit_nodes">出口節點</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">最後一個節點的指紋、暱稱、國家或位址</string>
     <string name="enter_exit_nodes">出口節點的條件</string>
@@ -89,9 +85,6 @@
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">有一個應用要開啟隱藏的伺服器端口 %1$s 到 Tor 網路,如果信得過此應用才進行此操作</string>
-    <string name="found_existing_tor_process">發現已有 Tor 程序運行中 …</string>
-    <string name="something_bad_happened">發生錯誤。檢視日誌檔</string>
-    <string name="unable_to_start_tor">無法啟動 Tor：</string>
     <string name="pref_use_persistent_notifications">當 Orbot 連線成功時，總是在工具列顯示它的圖示</string>
     <string name="pref_use_persistent_notifications_title">總是顯示連線通知</string>
     <string name="pref_use_expanded_notifications">在通知中顯示 Tor 出口點的國家和 IP</string>
@@ -100,7 +93,6 @@
     <string name="pref_disable_network_title">無網路時自動休眠</string>
     <string name="pref_disable_network_summary">當沒有網路可用時，讓 Tor 休眠</string>
     <string name="newnym">您已切換到新的 Tor 身分！</string>
-    <string name="updating_settings_in_tor_service">更新 Tor 的設定</string>
     <string name="pref_socks_title">Tor SOCKS 代理</string>
     <string name="pref_socks_summary">Tor 提供 SOCKS 代理的連接埠 (預設：9050，若設為 0 則關閉)</string>
     <string name="pref_socks_dialog">設定 SOCKS 連接埠</string>

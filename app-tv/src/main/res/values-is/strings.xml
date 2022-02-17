@@ -4,7 +4,6 @@
   <string name="app_description">Orbot er frjálst og ókeypis milliþjónsforrit (proxy) sem gerir öðrum forritum kleift að nota veraldarvefinn á öruggari hátt. Orbot notar Tor til að dulkóða umferð þína á netinu og felur hana svo með að hoppa í gegnum fjölda tölva um allan heim. Tor er frjáls hugbúnaður og opið net sem aðstoðar þig við að verjast eftirliti á netinu sem vinnur gegn frelsi einkalífsins og friðhelgi; vinnur gegn viðkvæmum viðskiptamálum og samböndum og þeirri tegund ríkisöryggis sem þekkt er sem umferðargreining.</string>
     <string name="status_starting_up">Orbot er að ræsa...</string>
   <string name="status_activated">Tengdur við Tor netið</string>
-  <string name="status_disabled">Orbot er óvirkt</string>
   <string name="status_shutting_down">TorService er að slökkva á sér</string>
   <string name="menu_settings">Stillingar</string>
   <string name="menu_log">Atvikaskráning</string>
@@ -54,10 +53,7 @@
   <string name="pref_proxy_password_title">Lykilorð fyrir milliþjón á útleið</string>
   <string name="pref_proxy_password_summary">Lykilorð á milliþjóni (valfrjálst)</string>
   <string name="pref_proxy_password_dialog">Settu inn lykilorð á milliþjóni</string>
-    <string name="couldn_t_start_tor_process_">Gat ekki kveikt á Tor-ferli:</string>
-    <string name="error">Villa</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">Stillingar þínar á ReachableAddresses framkölluðu kerfisfrávik!</string>
-  <string name="your_relay_settings_caused_an_exception_">Stillingar þínar á endurvarpi (relay) framkölluðu kerfisfrávik!</string>
+  <string name="error">Villa</string>
   <string name="exit_nodes">Útgangspunktar</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Fingraför, gælunöfn, lönd og heimilisföng fyrir síðasta hoppið</string>
   <string name="enter_exit_nodes">Settu inn útgangspunkta</string>
@@ -94,10 +90,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Forrit vill opna földu vefgáttina %1$d inn á Tor-netið. Þetta er öruggt ef þú treystir forritinu.</string>
-  <string name="found_existing_tor_process">fann annað Tor-ferli...</string>
-  <string name="something_bad_happened">Eitthvað slæmt gerðist. Athugaðu atvikakráninguna</string>
-    <string name="unable_to_start_tor">Get ekki ræst Tor:</string>
-    <string name="pref_use_persistent_notifications">Alltaf hafa táknmynd í verkfærastiku þegar Orbot er tengt</string>
+  <string name="pref_use_persistent_notifications">Alltaf hafa táknmynd í verkfærastiku þegar Orbot er tengt</string>
   <string name="pref_use_persistent_notifications_title">Alltaf-á tilkynningar</string>
   <string name="pref_use_expanded_notifications">Birta útflettar tilkynningar varðandi Tor-útgangsland og IP-vistfang</string>
   <string name="pref_use_expanded_notifications_title">Útflettar tilkynningar</string>
@@ -105,8 +98,7 @@
   <string name="pref_disable_network_title">Engin sjálfvirk svæfing netkerfis</string>
   <string name="pref_disable_network_summary">Svæfa Tor þegar engin internettenging er til staðar</string>
   <string name="newnym">Þú ert komin með nýtt Tor-auðkenni!</string>
-  <string name="updating_settings_in_tor_service">uppfæri stillingar í Tor þjónustu</string>
-  <string name="pref_socks_title">Tor SOCKS</string>
+    <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Gátt sem Tor býður SOCKS milliþjón á (sjálfgefið: 9050 eða 0 til að gera óvirkt)</string>
   <string name="pref_socks_dialog">Stilling á SOCKS-gátt</string>
   <string name="pref_transport_title">Gátt fyrir Tor TransProxy</string>

@@ -4,7 +4,6 @@
     <string name="app_description">Orbot TV is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</string>
     <string name="status_starting_up">Orbot TV is starting&#8230;</string>
     <string name="status_activated">Connected to the Tor network</string>
-    <string name="status_disabled">Orbot is deactivated</string>
     <string name="status_shutting_down">TorService is shutting down</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_log">Log</string>
@@ -62,10 +61,7 @@
     <string name="pref_proxy_password_dialog">Enter Proxy Password</string>
 
 
-    <string name="couldn_t_start_tor_process_">Couldn\'t start Tor process: </string>
     <string name="error">Error</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">Your ReachableAddresses settings caused an exception!</string>
-    <string name="your_relay_settings_caused_an_exception_">Your relay settings caused an exception!</string>
     <string name="exit_nodes">Exit Nodes</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Fingerprints, nicks, countries and addresses for the last hop</string>
     <string name="enter_exit_nodes">Enter Exit Nodes</string>
@@ -102,9 +98,6 @@
     <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
     <string name="hidden_service_request">An app wants to open onion server port %1$d to the Tor network. This is safe if you trust the app.</string>
-    <string name="found_existing_tor_process">found existing Tor process&#8230;</string>
-    <string name="something_bad_happened">Something bad happened. Check the log</string>
-    <string name="unable_to_start_tor">Unable to start Tor:</string>
 
     <string name="pref_use_persistent_notifications">Always keep the icon in toolbar when Orbot is connected</string>
     <string name="pref_use_persistent_notifications_title">Always-On Notifications</string>
@@ -119,8 +112,6 @@
 
     <string name="pref_open_proxy_on_all_interfaces_title">Open Proxy on All Interfaces</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Allow Wi-Fi peers, tethered devices and anyone else who can connect to your IP, to access Tor</string>
-
-    <string name="updating_settings_in_tor_service">updating settings in Tor service</string>
 
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">Port that Tor offers its SOCKS proxy on (default: 9050 or 0 to disable)</string>

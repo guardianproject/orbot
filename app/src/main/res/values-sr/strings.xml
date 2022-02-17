@@ -4,7 +4,6 @@
     <string name="app_description">Орбот је бесплатна прокси апликација која даје моћ другим апликацијама да безбедније користе интернет. Орбот користи Тор за шифровање вашег интернет саобраћаја и онда га скрива слањем кроз низ рачунара широм света. Тор је слободан софтвер и отворена мрежа која помаже да се одбраните од разних облика надзора мрежа који угрожавају личну слободу и приватност, поверљиве пословне активности и личне односе и државне безбедности познате као анализа саобраћаја.</string>
     <string name="status_starting_up">Орбот се покреће…</string>
     <string name="status_activated">Повезан са Тор мрежом</string>
-    <string name="status_disabled">Орбот је деактивиран</string>
     <string name="status_shutting_down">Гашење Тор Сервиса</string>
     <string name="menu_settings">Подешавања</string>
     <string name="menu_log">Логови</string>
@@ -52,10 +51,7 @@
     <string name="pref_proxy_password_title">Шифра на проксију за одлазећи промет</string>
     <string name="pref_proxy_password_summary">Шифра проксија (необавезно)</string>
     <string name="pref_proxy_password_dialog">Унесите шифру проксија</string>
-    <string name="couldn_t_start_tor_process_">Није могуће покренути Тор процес:</string>
     <string name="error">Грешка</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">Ваше ReachableAddresses поставке су изазвале изузетак!</string>
-    <string name="your_relay_settings_caused_an_exception_">Ваше поставке релеја су изазвале изузетак!</string>
     <string name="exit_nodes">Излазни чворови</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Отисци, надимци, државе и адресе задњег скока</string>
     <string name="enter_exit_nodes">Унесите излазне чворове</string>
@@ -87,9 +83,6 @@
     <string name="tor_version">Toр: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="hidden_service_request">Апликација жели да отвори сакривен порт%1$s на серверу за Тор мрежу. Ово је сигуран потез уколико верујете апликацији.</string>
-    <string name="found_existing_tor_process">нађен покренути Тор процес…</string>
-    <string name="something_bad_happened">Нешто лоше се догодило. Прегледајте логове</string>
-    <string name="unable_to_start_tor">Тор није у могућности да се покрене:</string>
     <string name="pref_use_persistent_notifications">Увек прикажи икону у тулбару када је Орбот конектован</string>
     <string name="pref_use_persistent_notifications_title">Стално укључене нотификације</string>
     <string name="pref_use_expanded_notifications">Прикажи опширно обавештење Тор излаза државе и IP-ја</string>
@@ -98,7 +91,6 @@
     <string name="pref_disable_network_title">Без Мреже Auto-Sleep</string>
     <string name="pref_disable_network_summary">Умири Тор када је недоступан интернет</string>
     <string name="newnym">Прешли сте на нови Тор идентитет!</string>
-    <string name="updating_settings_in_tor_service">ажурирање подешавања Тор мреже</string>
     <string name="pref_socks_title">Toр SOCKS</string>
     <string name="pref_socks_summary">Port који Тор нуди је SOCKS прокси укључен (уобичајено: 9050 или 0 за искључивање)</string>
     <string name="pref_socks_dialog">SOCKS Port Подешавања</string>

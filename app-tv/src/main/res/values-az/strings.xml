@@ -3,7 +3,6 @@
   <string name="app_description">Pulsuz proksi tətbiqetməsi olan Orbot başqa tətbiqetmələrə internetdən daha təhlükəsiz istifadə etmək imkanı verir. Orbot sizin internet trafikinizi şifrələmək üçün Tordan istifadə edir və dünyanın hər yerində kompüterlərin birindən o birinə sıçramaqla bunu gizlədir. Tor pulsuz proqram təminatıdır, eyni zamanda sizin şəxsi azadlığınız və təhlükəsizliyinizə, gizli biznes fəaliyyəti və əlaqələrə, o cümlədən trafik analiz adlanan dövlət təhlükəsizliyinə xələl gətirə biləcək şəbəkə nəzarəti formalarından müdafiə olunmağa yardım edən açıq şəbəkədir.</string>
     <string name="status_starting_up">Orbot başlayır...</string>
   <string name="status_activated">Tor şəbəkəsinə bağlandı</string>
-  <string name="status_disabled">Orbot deaktivasiya edildi</string>
   <string name="status_shutting_down">Tor xidməti işini başa vurur</string>
   <string name="menu_settings">Quraşdırmalar</string>
   <string name="menu_log">Jurnal</string>
@@ -52,10 +51,7 @@
   <string name="pref_proxy_password_title">İxrac Edilən Proksi Şifrə</string>
   <string name="pref_proxy_password_summary">Proksi Şifrə (istəyə bağlı)</string>
   <string name="pref_proxy_password_dialog">Proksi Şifrə Daxil et</string>
-    <string name="couldn_t_start_tor_process_">Tor prosesi başlana bilmədi:</string>
-    <string name="error">Xəta</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">Sənin ƏlçatanÜnvanlar seçimin istisnaya səbəb oldu!</string>
-  <string name="your_relay_settings_caused_an_exception_">Sənin keçid seçimlərin istisnaya səbəb oldu!</string>
+  <string name="error">Xəta</string>
   <string name="exit_nodes">Kəsişmələri Xaric Et</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Son sıçrayış üçün barmaq izləri, nişanlar, ölkələr və ünvanlar</string>
   <string name="enter_exit_nodes">Çıxış Kəsişmələrini Daxil Et</string>
@@ -90,10 +86,7 @@
 Tor: https://www.torproject.org</string>
   <string name="libevent_version">
 LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="found_existing_tor_process">mövcud Tor prosesi tapıldı...</string>
-  <string name="something_bad_happened">Nə isə pis bir şey oldu. Girişi yoxla</string>
-    <string name="unable_to_start_tor">Tor-un başlanmasını dayandır:</string>
-    <string name="pref_use_persistent_notifications">Həmişə Orbot qoşulduğu hallarda nişanı alətlət panelində saxla</string>
+  <string name="pref_use_persistent_notifications">Həmişə Orbot qoşulduğu hallarda nişanı alətlət panelində saxla</string>
   <string name="pref_use_persistent_notifications_title">Həmişə Açıq Xəbərdarlıqlar</string>
   <string name="pref_use_expanded_notifications">Torla birlikdə ətraflı bildirişi göstərib ölkə və IP-dən çıxın. </string>
   <string name="pref_use_expanded_notifications_title">Ətraflı bildirişlər</string>
@@ -101,8 +94,7 @@ LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="pref_disable_network_title">Avto-Yuxu Şəbəkəsi Yoxdur</string>
   <string name="pref_disable_network_summary">İnternet olmadıqda icazə ver Tor yatsın</string>
   <string name="newnym">Yeni Tor oxşarına qoşuldun!</string>
-  <string name="updating_settings_in_tor_service">Tor xidmətində quraşdırmalar yüklənir</string>
-  <string name="pref_socks_title">Tor SOCKS</string>
+    <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Torun təklif etdiyi Port SOCKS proksi işləyir (standart: 9050, yaxud söndürmək üçün 0) </string>
   <string name="pref_socks_dialog">SOCKS Port Config</string>
   <string name="pref_transport_title">Tor TransProxy Port</string>

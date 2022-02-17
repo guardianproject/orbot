@@ -4,7 +4,6 @@
   <string name="app_description">Orbot — це вільна програма для проксі-з\'єднань, яка дозволяє іншим додаткам безпечніше використовувати інтернет-з\'єднання. Orbot використовує Tor для шифрування інтернет-трафіку, який далі приховується під час пересилання через кілька комп\'ютерів у різних частинах планети. Tor є вільним програмним забезпеченням, а також відкритою мережею, що допомагає захиститися від мережевого стеження, яке загрожує особистій свободі та приватному життю, конфіденційній бізнес-діяльності і контактам, а також державної програми безпеки, що відома як аналіз трафіку.</string>
     <string name="status_starting_up">Запуск Orbot...</string>
   <string name="status_activated">Під\'єднаний до мережі Tor</string>
-  <string name="status_disabled">«Orbot» від\'єднаний</string>
   <string name="status_shutting_down">Сервіси Тор деактивовані</string>
   <string name="menu_settings">Налаштування</string>
   <string name="menu_log">Журнал</string>
@@ -54,10 +53,7 @@
   <string name="pref_proxy_password_title">Пароль вихідного проксі-з\'єднання</string>
   <string name="pref_proxy_password_summary">Пароль проксі-з\'єднання (вказувати не обов\'язково)</string>
   <string name="pref_proxy_password_dialog">Введіть пароль проксі-з\'єднання</string>
-    <string name="couldn_t_start_tor_process_">Неможливо запустити Tor: </string>
-    <string name="error">Помилка</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">Ваші налаштування Доступних Адрес викликали виключення!</string>
-  <string name="your_relay_settings_caused_an_exception_">Налаштування вашого ретранслятора викликали виключення!</string>
+  <string name="error">Помилка</string>
   <string name="exit_nodes">Вихідні Вузли</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Відбитки, ніки, країни та адреси для останнього стрибка</string>
   <string name="enter_exit_nodes">Введіть Вихідні Вузли</string>
@@ -94,10 +90,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Програма хоче відкрити прихований серверний порт %1$d у мережу Tor. Це безпечно, якщо ви довіряєте застосунку.</string>
-  <string name="found_existing_tor_process">знайдено існуючий процес Tor...</string>
-  <string name="something_bad_happened">Виникла якась помилка. Перевірте лог</string>
-    <string name="unable_to_start_tor">Неможливо запустити Tor:</string>
-    <string name="pref_use_persistent_notifications">Завжди показувати іконку в панелі завдань коли Orbot підключений</string>
+  <string name="pref_use_persistent_notifications">Завжди показувати іконку в панелі завдань коли Orbot підключений</string>
   <string name="pref_use_persistent_notifications_title">Сповіщення про постійну роботу</string>
   <string name="pref_use_expanded_notifications">Показати розширене сповіщення з країною виходу Tor та IP</string>
   <string name="pref_use_expanded_notifications_title">Розширені сповіщення</string>
@@ -105,8 +98,7 @@
   <string name="pref_disable_network_title">Не використовувати режим сну</string>
   <string name="pref_disable_network_summary">Переводити в режим сну при відсутності інтернет-з\'єднання</string>
   <string name="newnym">Ви перемкнулись на новий ідентифікатор Tor!</string>
-  <string name="updating_settings_in_tor_service">оновлення налаштувань у сервісі Tor</string>
-  <string name="pref_socks_title">Tor SOCKS</string>
+    <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Порт, який Tor надає своєму SOCKS-проксі (за замовчуванням: 9050 або 0 для вимкнення)</string>
   <string name="pref_socks_dialog">Налаштування порту SOCKS</string>
   <string name="pref_transport_title">Порт Tor TransProxy</string>

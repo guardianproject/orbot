@@ -4,7 +4,6 @@
     <string name="app_description">Orbot är en gratis proxyapp som möjliggör andra appar att använda internet mer säkert. Orbot använder Tor för att kryptera din internettrafik och döljer den genom att den studsar genom ett antal datorer världen över. Tor är fri programvara och ett öppet nätverk som hjälper dig att skydda dig mot en form av nätverksövervakning som hotar personlig integritet och frihet, hemliga affärsaktiviteter och relationer, och skyddar mot statlig övervakning även kallad trafikanalys.</string>
     <string name="status_starting_up">Orbot startar…</string>
     <string name="status_activated">Uppkopplad till Tor-nätverket</string>
-    <string name="status_disabled">Orbot är inaktiverad</string>
     <string name="status_shutting_down">TorService avslutas</string>
     <string name="menu_settings">Inställningar</string>
     <string name="menu_log">Logg</string>
@@ -52,10 +51,7 @@
     <string name="pref_proxy_password_title">Utgående proxy lösenord</string>
     <string name="pref_proxy_password_summary">Proxylösenord (Valfri)</string>
     <string name="pref_proxy_password_dialog">Ange proxylösenord</string>
-    <string name="couldn_t_start_tor_process_">Kunde inte starta Tor-process:</string>
     <string name="error">Fel</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">Din NåbaraAdresser inställning orsakade ett undantag!</string>
-    <string name="your_relay_settings_caused_an_exception_">Din relä-inställning orsakade ett undantag!</string>
     <string name="exit_nodes">Utgångsnoder</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Fingeravtryck, nicks, länder, och adresser för sista hoppet</string>
     <string name="enter_exit_nodes">Skriv in Exit Noder</string>
@@ -89,9 +85,6 @@
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">En app vill öppna dold serverport %1$s till Tor-nätverket. Det här är säkert om du litar på appen.</string>
-    <string name="found_existing_tor_process">hittade existerande Tor process…</string>
-    <string name="something_bad_happened">Något dåligt hände. Kolla loggen</string>
-    <string name="unable_to_start_tor">Kan inte starta Tor:</string>
     <string name="pref_use_persistent_notifications">Behåll alltid ikonen i verktygsfältet när Orbot är ansluten</string>
     <string name="pref_use_persistent_notifications_title">Alltid-På Notifikationer</string>
     <string name="pref_use_expanded_notifications">Visa utökad notis med Tors utgångsland och IP</string>
@@ -100,7 +93,6 @@
     <string name="pref_disable_network_title">Ingen auto-sömn för nätverket</string>
     <string name="pref_disable_network_summary">Låt Tor sova när inget internet finns tillgängligt</string>
     <string name="newnym">Du har bytt till en ny Tor identitet!</string>
-    <string name="updating_settings_in_tor_service">uppdaterar inställningar i Tor-tjänsten</string>
     <string name="pref_socks_title">Tor-SOCKS</string>
     <string name="pref_socks_summary">Port som Tor erbjuder sin SOCKS-proxy på (standard: 9050 eller 0 för att inaktivera)</string>
     <string name="pref_socks_dialog">SOCKS-port-inställningar</string>

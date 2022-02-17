@@ -4,7 +4,6 @@
     <string name="app_description">روبات پیازی، یک کارهٔ پیشکار آزاد است که دیگر کاره‌ها را در استفاده امن از اینترنت توانمند می‌کند . روبات پیازی برای رمزگذاری شدآمد اینترنتتان و نهفتنش با عبور از میان دنباله‌ای از رایانه‌ها در سراسر جهان، از تور استفاده می‌کند. تور نرم‌افزار آزاد و شبکه‌ای باز است که به شما در برابر شکلی از نظارت شبکه با نام تجزیهٔ شدآمد که محرمانگی و آزادی فردی، فعّالیت‌های تجاری محرمانه و امنیت ملی را تهدید می‌کند، یاری می‌رساند.</string>
     <string name="status_starting_up">روبات پیازی در حال آغاز است…</string>
     <string name="status_activated">وصل شده به شبکهٔ تور</string>
-    <string name="status_disabled">روبات پیازی از کار افتاده</string>
     <string name="status_shutting_down">خدمت تور در حال خاموش شدن است</string>
     <string name="menu_settings">تنظیمات</string>
     <string name="menu_log">گزارش</string>
@@ -52,10 +51,7 @@
     <string name="pref_proxy_password_title">گذرواژهٔ پیشکار خروجی</string>
     <string name="pref_proxy_password_summary">گذرواژهٔ پیشکار (اختیاری)</string>
     <string name="pref_proxy_password_dialog">گذرواژهٔ پیشکار را وارد نمایید</string>
-    <string name="couldn_t_start_tor_process_">نمی‌توان فرآیند تور را آغاز کرد:</string>
     <string name="error">خطا</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">تنظیمات آدرس‌های قابل دسترسی شما باعث ایجاد خطا شده‌اند!</string>
-    <string name="your_relay_settings_caused_an_exception_">تنظیمات رله‌تان موجب خطایی شده!</string>
     <string name="exit_nodes">گره‌های خروجی</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">اثرانگشت‌ها، اسامی مستعار، کشورها و نشانی‌ها برای آخرین گره</string>
     <string name="enter_exit_nodes">گره‌های خروجی را وارد کنید</string>
@@ -89,9 +85,6 @@
     <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
     <string name="hidden_service_request">کاره‌ای می‌خواهد کارساز پیازی روی درگاه %1$s را به شبکهٔ تور بگشاید. اگر به برنامه اطمینان دارید، امن است.</string>
-    <string name="found_existing_tor_process">یک فرآیند تور درحال اجرا پیدا شد…</string>
-    <string name="something_bad_happened">اتّفاق بدی افتاد. گزارش‌ها را بررسی کنید</string>
-    <string name="unable_to_start_tor">ناتوان در آغاز تور:</string>
     <string name="pref_use_persistent_notifications">نگه‌داری همیشگی نقشک در نوار ابزار هنگام وصل بودن روبات پیازی</string>
     <string name="pref_use_persistent_notifications_title">آگاهی‌های همیشه روشن</string>
     <string name="pref_use_expanded_notifications">نمایش کشور و نشانی آی‌پی گره خروجی تورتان در آگاهی هنگام موحود بودن</string>
@@ -100,7 +93,6 @@
     <string name="pref_disable_network_title">خاموش کردن در صورت عدم وجود شبکه</string>
     <string name="pref_disable_network_summary">در صورتی که شبکه وجود نداشته باشد خاموش شود</string>
     <string name="newnym">به هویت تور جدیدی منتقل شدید!</string>
-    <string name="updating_settings_in_tor_service">به‌روز رسانی تنظیمات در خدمت تور</string>
     <string name="pref_socks_title">تور ساکس</string>
     <string name="pref_socks_summary">درگاهی که تور پیشکار ساکس را رویش ارائه می‌دهد (پیش‌گزیده: ۹۰۵۰ یا برای از کار انداختن، ۰)</string>
     <string name="pref_socks_dialog">پیکربندی درگاه ساکس</string>

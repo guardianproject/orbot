@@ -4,7 +4,6 @@
   <string name="app_description">Az Orbot egy ingyenes proxy alkalmazás, ami képessé tesz alkalmazásokat, hogy biztonságosabban használhassák az internetet. Az Orbot Tor-t használ, hogy titkosítsa az internetforgalmadat és elrejtse azáltal, hogy pattogtatja számítógépek sorozatain keresztül a világ körül. A Tor ingyenes szoftver és nyitott hálózat, ami segít megvédeni a hálózati felügyelettől, ami fenyegeti a személyi szabadságot és magánéletet, a bizalmas céges tevékenységeket és kapcsolatokat, és állambiztonság címén a forgalomelemzéstől.</string>
     <string name="status_starting_up">Az Orbot indul...</string>
   <string name="status_activated">Csatlakozva a Tor hálózathoz</string>
-  <string name="status_disabled">Az Orbot deaktiválva</string>
   <string name="status_shutting_down">A TorService leáll</string>
   <string name="menu_settings">Beállítások</string>
   <string name="menu_log">Log</string>
@@ -54,10 +53,7 @@
   <string name="pref_proxy_password_title">Kimenő proxy jelszó</string>
   <string name="pref_proxy_password_summary">Proxy jelszó (választható)</string>
   <string name="pref_proxy_password_dialog">Add meg a proxy jelszót</string>
-    <string name="couldn_t_start_tor_process_">Nem indítható el a Tor folyamat:</string>
-    <string name="error">Hiba</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">Az elérhető címeid beállításai kivételt okoztak!</string>
-  <string name="your_relay_settings_caused_an_exception_">Az átjátszód beállításai kivételt okoztak!</string>
+  <string name="error">Hiba</string>
   <string name="exit_nodes">Kilépési csomópontok</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Ujjlenyomatok, becenevek, országok és címek az utolsó ugráshoz</string>
   <string name="enter_exit_nodes">Kilépési csomópontok megadása</string>
@@ -94,10 +90,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Egy app egy rejtett szerver portot %1$d nyitna a Tor hálózatra. Ez biztonságos, ha megbízik az appban.</string>
-  <string name="found_existing_tor_process">létező Tor folyamat találva...</string>
-  <string name="something_bad_happened">Valami rossz történt. Nézd meg a naplót.</string>
-    <string name="unable_to_start_tor">A Tor indítása sikertelen:</string>
-    <string name="pref_use_persistent_notifications">Mindig tartsa az ikont az eszköztáron, ha az Orbot csatlakoztatva van.</string>
+  <string name="pref_use_persistent_notifications">Mindig tartsa az ikont az eszköztáron, ha az Orbot csatlakoztatva van.</string>
   <string name="pref_use_persistent_notifications_title">Mindig-bekapcsolt értesítések</string>
   <string name="pref_use_expanded_notifications">Mutassa a bővített értesítést a Tor kilépő országgal és IP-vel</string>
   <string name="pref_use_expanded_notifications_title">Bővített értesítések</string>
@@ -105,8 +98,7 @@
   <string name="pref_disable_network_title">Nincs hálózati auto-alvás</string>
   <string name="pref_disable_network_summary">A Tor alvó módba helyezése, ha internet nem elérhető</string>
   <string name="newnym">Új Tor identitásra váltottál!</string>
-  <string name="updating_settings_in_tor_service">a Tor szolgáltatás beállításainak frissítése</string>
-  <string name="pref_socks_title">Tor SOCKS</string>
+    <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Port amelyen a Tor a SOCKS proxyt biztosítja (alapértelmezett: 9050 vagy 0 a tiltáshoz)</string>
   <string name="pref_socks_dialog">SOCKS port konfiguráció</string>
   <string name="pref_transport_title">Tor TransProxy port</string>

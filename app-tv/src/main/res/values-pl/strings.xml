@@ -4,7 +4,6 @@
   <string name="app_description">Orbot jest darmową aplikacją proxy która wspomaga inne aplikacje do używania internetu bezpiecznie. Orbot używa Tora do szyfrowania Twojego ruchu internetowego i następnie przepuszczania go przez wiele innych komputereów pororzucanych na całym świecie. Tor jest darmowym oprogramowaniem i otwartą siecią która pomaga Tobie w obronie przed monitoringiem sieci która zagrarza osobistej wolności i prywatności, poufnym biznesowym aktywnościom.</string>
     <string name="status_starting_up">Orbot startuje...</string>
   <string name="status_activated">Podłączony do sieci Tor</string>
-  <string name="status_disabled">Orbot wyłączony</string>
   <string name="status_shutting_down">TorService wyłącza się</string>
   <string name="menu_settings">Ustawienia</string>
   <string name="menu_log">Logi</string>
@@ -53,10 +52,7 @@
   <string name="pref_proxy_password_title">Hasło Wychodzącego Proxy</string>
   <string name="pref_proxy_password_summary">Hasło Proxy (opcjonalne)</string>
   <string name="pref_proxy_password_dialog">Wpisz hasło Proxy</string>
-    <string name="couldn_t_start_tor_process_">Nie można było zainicjować procesu Tora:</string>
-    <string name="error">Błąd</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">Twoje ustawienia dostępnych adresów spowodowały wyjątek!</string>
-  <string name="your_relay_settings_caused_an_exception_">Ustawienia Twojego przekaźnika spowodowały wyjątek!</string>
+  <string name="error">Błąd</string>
   <string name="exit_nodes">Węzły Wyjściowe</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Odciski palców, nicki, państwa i adresy na ostatni skok</string>
   <string name="enter_exit_nodes">Wpisz węzły wyjściowe.</string>
@@ -89,10 +85,7 @@
     <string name="third_party_software">Oprogramowanie 3rd-Party</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="found_existing_tor_process">znaleziono istniejący proces Tora...</string>
-  <string name="something_bad_happened">Coś nie poszło nie tak. Sprawdź logi</string>
-    <string name="unable_to_start_tor">Nie można wystartować aplikacji Tor:</string>
-    <string name="pref_use_persistent_notifications">Zawsze trzymaj ikonę w pasku powiadomień gdy Orbot jest połączony</string>
+  <string name="pref_use_persistent_notifications">Zawsze trzymaj ikonę w pasku powiadomień gdy Orbot jest połączony</string>
   <string name="pref_use_persistent_notifications_title">Powiadomienia zawsze aktywne</string>
   <string name="pref_use_expanded_notifications">Pokaż rozszerzone powiadomienie z krajem Tor exit node oraz jego IP</string>
   <string name="pref_use_expanded_notifications_title">Rozszerzone Powiadomienia</string>
@@ -100,8 +93,7 @@
   <string name="pref_disable_network_title">Brak Auto-Uśpienia Sieci</string>
   <string name="pref_disable_network_summary">Ustaw Tor\'a w tryb uśpienia kiedy połączenie internetowe będzie niedostępne</string>
   <string name="newnym">Nowa tożsamość Tor\'a została zmieniona!</string>
-  <string name="updating_settings_in_tor_service">aktualizowanie ustawień w serwisie Tor</string>
-  <string name="pref_socks_title">Tor SOCKS</string>
+    <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Port który oferuje SOCKS proxy (domyślnie: 9050 lub 0, aby wyłączyć)</string>
   <string name="pref_socks_dialog">Konfiguracja portu SOCKS</string>
   <string name="pref_transport_title">Tor TransProxy Port</string>

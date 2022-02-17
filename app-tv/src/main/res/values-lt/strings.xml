@@ -4,8 +4,7 @@
   <string name="app_description">Orbot yra tarpinė (proxy) programėlė, kuri leidžia kitoms programėlėms naudotis internetu žymiai saugiau. Orbot naudoja Tor, taip užšifruodama interneto srautą ir jį paslepia šokinėdama tarp daugybės kompiuterių adresų iš viso pasaulio. Tor yra nemokama programa bei atviras tinklas, kuris leidžia apsisaugoti nuo tinklo stebėjimų, kurie kelia grėsmę asmeninei laisvei ir privatumui, konfidencialumui, taip leidžianti išvengti tinklo srauto analizavimo.</string>
     <string name="status_starting_up">Paleidžiama Orbot…</string>
   <string name="status_activated">Prisijungta prie Tor tinklo</string>
-  <string name="status_disabled">Orbot išjungtas</string>
-  <string name="status_shutting_down">TorService išjungiamas</string>
+    <string name="status_shutting_down">TorService išjungiamas</string>
     <string name="menu_settings">Nustatymai</string>
   <string name="menu_log">Žurnalas</string>
     <string name="menu_start">Pradėti</string>

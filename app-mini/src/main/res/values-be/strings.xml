@@ -3,7 +3,6 @@
   <string name="app_description">Orbot — гэта свабодная праграма для проксі-злучэнняў, яна дазваляе іншым дадаткам больш бяспечна выкарыстоўваць інтэрнэт-злучэнне. Orbot ужывае Tor для шыфравання інтэрнэт-трафіка, які потым хаваецца падчас перасылання праз некалькі кампутараў у розных частках планеты. Tor з\'яўляецца свабодным праграмным дадаткам, а таксама адкрытай сеткай, якая дапамагае абараніцца ад сачэння ў сетках, якая пагражае асабістай волі і прыватным жыцці, прыватнасці бізнес-дзейнасці і кантактаў, а таксама дзяржаўнай праграме бяспекі, вядомай як аналіз трафіка.</string>
   <string name="status_starting_up">Orbot запускаецца...</string>
   <string name="status_activated">Падлучаны да сеткі Tor</string>
-  <string name="status_disabled">Orbot адключаны</string>
   <string name="status_shutting_down">Служба Tor выключаецца</string>
   <string name="menu_settings">Налады</string>
   <string name="menu_log">Журнал</string>
@@ -53,10 +52,7 @@
   <string name="pref_proxy_password_title">Пароль карыстальніка проксі</string>
   <string name="pref_proxy_password_summary">Пароль карыстальніка проксі-сервера (неабавязкова)</string>
   <string name="pref_proxy_password_dialog">Увядзіце пароль карыстальніка проксі</string>
-  <string name="couldn_t_start_tor_process_">Немагчыма запусціць Tor: </string>
   <string name="error">Памылка</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">Вашы налады даступных адрасоў выклікалі вынятак!</string>
-  <string name="your_relay_settings_caused_an_exception_">Вашы налады рэтранслятара выклікалі вынятак!</string>
   <string name="exit_nodes">Выходныя вузлы</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Адбіткі, псеўданімы, краіны і адрасы для апошняга скоку</string>
   <string name="enter_exit_nodes">Увядзіце выходныя вузлы</string>
@@ -93,9 +89,6 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Дадатак хоча адкрыць схаваны порт сервера %1$d сеткі Tor. Гэта бяспечна, калі вы давяраеце дадзенаму дадатку.</string>
-  <string name="found_existing_tor_process">знойдзены існавалы працэс Tor...</string>
-  <string name="something_bad_happened">Адбылася нейкая памылка. Праверце журнал.</string>
-    <string name="unable_to_start_tor">Немагчыма запусціць Tor:</string>
   <string name="pref_use_persistent_notifications">Заўсёды адлюстроўваць іконку у панэлі заданняў калі Orbot падключаны</string>
   <string name="pref_use_persistent_notifications_title">Нязменнае апавяшчэнне пра працу</string>
   <string name="pref_use_expanded_notifications">Паказаць пашыранае апавяшчэнне Tor з краінай выхаду і IP</string>
@@ -104,8 +97,7 @@
   <string name="pref_disable_network_title">Аўтазасынанне без сеткі</string>
   <string name="pref_disable_network_summary">Пераводзіць Tor у спячы рэжым пры немені інтэрнэту</string>
   <string name="newnym">Вы перамкнуліся на новы ідэнтыфікатар Tor!</string>
-  <string name="updating_settings_in_tor_service">абнаўленне налад у сэрвісе Tor</string>
-  <string name="pref_socks_title">Tor SOCKS</string>
+    <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Порт, на якім Tor прапануе свой SOCKS-проксі (па змаўчанні: 9050, 0 - для адключэння)</string>
   <string name="pref_socks_dialog">Налада порта SOCKS</string>
   <string name="pref_transport_title">Порт празрыстага проксі Tor</string>

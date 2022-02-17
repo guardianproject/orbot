@@ -4,7 +4,6 @@
   <string name="app_description">Orbot este o aplicaţie gratuită de proxy care permite altor aplicaţii să folosească internetul în siguranţă. Orbot foloseşte Tor pentru a cripta traficul de internet după care îl ascunde printr-o serie de calculatoare din întreaga lume. Tor este un program gratuit si o reţea deschisă care te ajută să te aperi de monitorizarea reţelelor, lucru care ameninţă libertatea personală şi intimitatea, activităţi confidenţiale legate de afaceri si relaţii personale şi de analiza traficului.</string>
     <string name="status_starting_up">Orbot porneşte...</string>
   <string name="status_activated">Conectat la reţeaua Tor</string>
-  <string name="status_disabled">Orbot este dezactivat</string>
   <string name="status_shutting_down">ServiciulTor se opreşte</string>
   <string name="menu_settings">Setări</string>
   <string name="menu_log">log</string>
@@ -53,10 +52,7 @@
   <string name="pref_proxy_password_title">Parola pentru proxy-ul de iesire</string>
   <string name="pref_proxy_password_summary">Parola pentru proxy (optional)</string>
   <string name="pref_proxy_password_dialog">Introdu parola pentru proxy</string>
-    <string name="couldn_t_start_tor_process_">Nu am putut porni procesul Tor:</string>
-    <string name="error">Eroare</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">Setările tale pentru adrese accesibile au cauzat o exceptie!</string>
-  <string name="your_relay_settings_caused_an_exception_">Setările tale de relay au cauzat o excepţie!</string>
+  <string name="error">Eroare</string>
   <string name="exit_nodes">Noduri de ieşire</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Amprente, nick name-uri, tari si adrese pentru ultimul hop</string>
   <string name="enter_exit_nodes">Introdu noduri de ieşire</string>
@@ -89,10 +85,7 @@
     <string name="third_party_software">Aplicatii tertiare:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="found_existing_tor_process">găsit proces Tor existent...</string>
-  <string name="something_bad_happened">Ceva rău s-a întâmplat. Verifică log-ul</string>
-    <string name="unable_to_start_tor">Nu am reuşit să pornesc Tor:</string>
-    <string name="pref_use_persistent_notifications">Arată tot timpul icoana în bară când Orbot este conectat</string>
+  <string name="pref_use_persistent_notifications">Arată tot timpul icoana în bară când Orbot este conectat</string>
   <string name="pref_use_persistent_notifications_title">Notificări active tot timpul</string>
   <string name="pref_use_expanded_notifications">Arată notificări extinse cu Tor exit country şi IP</string>
   <string name="pref_use_expanded_notifications_title">Notificare Extinsă</string>
@@ -100,8 +93,7 @@
   <string name="pref_disable_network_title">Fără adormirea automată a rețelei</string>
   <string name="pref_disable_network_summary">Pune Tor să doarmă dacă nu este internet disponibil</string>
   <string name="newnym">Ați comutat la o nouă identitate Tor!</string>
-  <string name="updating_settings_in_tor_service">se actualizează configurările în serviciul Tor</string>
-  <string name="pref_socks_title">Tor SOCKS</string>
+    <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Porturi pe care Tor oferă SOCKurile proxy active (principal:9050 sau 0 pentru dezactivare)</string>
   <string name="pref_socks_dialog">Configurare SOCKuri la Port</string>
   <string name="pref_transport_title">Portul Tor TransProxy </string>

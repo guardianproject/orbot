@@ -36,7 +36,6 @@
     <string name="menu_start">Start</string>
     <string name="menu_log">Jurnal</string>
     <string name="status_shutting_down">TorService se oprește</string>
-    <string name="status_disabled">Orbot este dezactivat</string>
     <string name="status_activated">Conectat la rețeaua Tor</string>
     <string name="status_starting_up">Orbot începe…</string>
     <string name="app_description">Orbot este o aplicație proxy gratuită care permite altor aplicații să utilizeze internetul în condiții de mai mare siguranță. Orbot folosește Tor pentru a vă cripta traficul de internet și apoi îl ascunde trecând printr-o serie de calculatoare din întreaga lume. Tor este un software gratuit și o rețea deschisă care vă ajută să vă apărați împotriva unei forme de supraveghere a rețelei care amenință libertatea și intimitatea personală, activitățile și relațiile de afaceri confidențiale și securitatea statului, cunoscută sub numele de analiză a traficului.</string>
@@ -149,7 +148,6 @@
     <string name="pref_socks_dialog">Configurarea portului SOCKS</string>
     <string name="pref_socks_summary">Portul pe care Tor își oferă proxy-ul SOCKS (implicit: 9050 sau 0 pentru dezactivare)</string>
     <string name="pref_socks_title">Tor SOCKS</string>
-    <string name="updating_settings_in_tor_service">actualizarea setărilor în serviciul Tor</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Permiteți colegilor Wi-Fi, dispozitivelor conectate și oricui altcuiva care se poate conecta la IP-ul dvs. să acceseze Tor</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Deschideți Proxy pe toate interfețele</string>
     <string name="newnym">Ați trecut la o nouă identitate Tor!</string>
@@ -160,9 +158,6 @@
     <string name="pref_use_expanded_notifications">Afișați în notificare țara și adresa IP a nodului de ieșire tor, atunci când sunt disponibile</string>
     <string name="pref_use_persistent_notifications_title">Notificări Always-On</string>
     <string name="pref_use_persistent_notifications">Păstrați întotdeauna pictograma în bara de instrumente atunci când Orbot este conectat</string>
-    <string name="unable_to_start_tor">Nu se poate porni Tor:</string>
-    <string name="something_bad_happened">S-a întâmplat ceva rău. Verifică jurnalul</string>
-    <string name="found_existing_tor_process">a găsit procesul Tor existent…</string>
     <string name="deny">Refuzați</string>
     <string name="allow">Permiteți</string>
     <string name="hidden_service_request">O aplicație dorește să deschidă un server de onion pe portul %1$s în rețeaua Tor. Acest lucru este sigur dacă aveți încredere în aplicație.</string>
@@ -198,9 +193,6 @@
     <string name="enter_exit_nodes">Noduri de intrare și ieșire</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Amprentele digitale, muchiile, țările și adresele pentru ultimul salt</string>
     <string name="exit_nodes">Noduri de ieșire</string>
-    <string name="your_relay_settings_caused_an_exception_">Setările releului dvs. au provocat o excepție!</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">Setările dumneavoastră ReachableAddresses au cauzat o excepție!</string>
-    <string name="couldn_t_start_tor_process_">Nu am putut începe procesul Tor:</string>
     <string name="pref_proxy_password_dialog">Introduceți parola Proxy</string>
     <string name="pref_proxy_password_summary">Parolă Proxy (opțional)</string>
     <string name="pref_proxy_password_title">Parolă Proxy de ieșire</string>

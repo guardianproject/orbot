@@ -4,7 +4,6 @@
   <string name="app_description">Orbot es una aplicación de proxy gratuita que le permite a otras aplicaciones utilizar Internet de forma segura. Tor encripta tu trafico de Internet y lo oculta rebotandolo a través de una serie de ordenadores alrededor del mundo. Tor es un software gratuito y una red abierta que te ayuda a defenderte contra una forma de vigilancia de red que amenaza la libertad personal y la privacidad, actividades confidenciales de negocios y relaciones, y la seguridad de estado conocida como análisis de trafico.</string>
     <string name="status_starting_up">Orbot está iniciándose…</string>
   <string name="status_activated">Conectado a la red Tor</string>
-  <string name="status_disabled">Orbot está desactivado</string>
   <string name="status_shutting_down">El servicio de Tor se esta cerrando</string>
   <string name="menu_settings">Configuración</string>
   <string name="menu_log">Registro</string>
@@ -52,10 +51,7 @@
   <string name="pref_proxy_password_title">contraseña de proxy de salida</string>
   <string name="pref_proxy_password_summary">contraseña de proxy (opcional)</string>
   <string name="pref_proxy_password_dialog">Ingrese contraseña Proxy</string>
-    <string name="couldn_t_start_tor_process_">no se pudo iniciar Tor</string>
     <string name="error">Error</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">La configuración de las direcciones alcanzables causó una excepción.</string>
-  <string name="your_relay_settings_caused_an_exception_">Su configuración de retransmisión provocó una excepción.</string>
   <string name="exit_nodes">nodos de salida</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">huellas dactilares, apodos, paises y direcciones para el último salto</string>
   <string name="enter_exit_nodes">ingrese nodos de salida</string>
@@ -89,10 +85,7 @@
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Una aplicación quiere abrir el puerto del servidor oculto %1$d a la red de tor. Esto es seguro si confías en la aplicación</string>
-  <string name="found_existing_tor_process">encontrado el proceso tor existente</string>
-  <string name="something_bad_happened">algo malo ha ocurrido. verifica el registro.</string>
-  <string name="unable_to_start_tor">No se puede iniciar Tor:</string>
-    <string name="set_locale_title">Idioma</string>
+  <string name="set_locale_title">Idioma</string>
     <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_dnsport_title">Puerto DNS Tor</string>
   <string name="pref_dnsport_dialog">Configuración del Puerto DNS</string>

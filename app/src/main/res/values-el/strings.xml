@@ -4,7 +4,6 @@
     <string name="app_description">Το Orbot είναι μια δωρεάν εφαρμογή μεσολάβησης που επιτρέπει σε άλλες εφαρμογές να χρησιμοποιούν το Διαδίκτυο με περισσότερη ασφάλεια. Το Orbot χρησιμοποιεί τον Tor για την κρυπτογράφηση της διαδικτυακής σας κίνησης και στη συνέχεια την κρύβει αναπηδώντας μέσω μιας σειράς υπολογιστών σε όλο τον κόσμο. Το Tor είναι ελεύθερο λογισμικό και ένα ανοιχτό δίκτυο που σας βοηθά να σταθείτε ενάντια σε μια μορφή επιτήρησης δικτύου που απειλεί την προσωπική ελευθερία και ιδιωτικότητα, εμπιστευτικές επιχειρηματικές δραστηριότητες και σχέσεις, και την κρατική ασφάλεια γνωστή ως traffic analysis.</string>
     <string name="status_starting_up">Το Orbot ξεκινά</string>
     <string name="status_activated">Συνδέθηκε στο δίκτυο Tor</string>
-    <string name="status_disabled">\"Το Orbot είναι Απενεργοποιημένο</string>
     <string name="status_shutting_down">Η υπηρεσία Tor τερματίζεται</string>
     <string name="menu_settings">Ρυθμίσεις</string>
     <string name="menu_log">Καταγραφή</string>
@@ -52,10 +51,7 @@
     <string name="pref_proxy_password_title">Κωδικός για τον Διακομιστή Μεσολάβησης εξερχόμενων δεδομένων</string>
     <string name="pref_proxy_password_summary">Κωδικός για τον Διακομιστή Μεσολάβησης (Προαιρετικό)</string>
     <string name="pref_proxy_password_dialog">Εισάγετε τον Κωδικό για τον Διακομιστή Μεσολάβησης</string>
-    <string name="couldn_t_start_tor_process_">Αδυναμία εκκίνησης της διεργασίας Tor:</string>
     <string name="error">Σφάλμα</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">Οι ρυθμίσεις ReachableAddresses προκάλεσαν μια εξαίρεση!</string>
-    <string name="your_relay_settings_caused_an_exception_">Οι ρυθμίσεις αναμεταδότη σας προκάλεσαν μια εξαίρεση!</string>
     <string name="exit_nodes">Κόμβοι εξόδου</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Αποτυπώματα, ψευδώνυμα, χώρες και διευθύνσεις της τελευταίας σύνδεσης</string>
     <string name="enter_exit_nodes">Εισάγετε κόμβους εξόδου</string>
@@ -89,9 +85,6 @@
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Κάποια εφαρμογή προσπαθεί να ανοίξει την κρυφή θύρα διακομιστή %1$s dστο δίκτυο Tor. Πρόκειται για ασφαλή ενέργεια, εφόσον γνωρίζετε την εφαρμογή.</string>
-    <string name="found_existing_tor_process">αναζήτηση διεργασιών Tor…</string>
-    <string name="something_bad_happened">Κάτι κακό συνέβη. Ελέγξτε τις καταγραφές</string>
-    <string name="unable_to_start_tor">Αδυναμία εκκίνησης του Tor:</string>
     <string name="pref_use_persistent_notifications">Να διατηρείται πάντοτε το εικονίδιο στην γραμμή εργαλείων όταν το Orbot συνδέεται</string>
     <string name="pref_use_persistent_notifications_title">Ειδοποιήσεις διαρκούς σύνδεσης</string>
     <string name="pref_use_expanded_notifications">Εμφάνιση εκτεταμένης ειδοποίησης με τη χώρα εξόδου του Tor και τη διεύθυνση IP</string>
@@ -100,7 +93,6 @@
     <string name="pref_disable_network_title">Χωρίς Αυτόματη Αναστολή Δικτύου</string>
     <string name="pref_disable_network_summary">Θέσε το Tor σε λειτουργία sleep όταν δεν υπάρχει διαθέσιμη σύνδεση Ιnternet</string>
     <string name="newnym">Έχετε αλλάξει επιτυχώς την ταυτότητα σας στο Tor! </string>
-    <string name="updating_settings_in_tor_service">ενημέρωση ρυθμίσεων στην υπηρεσία Tor</string>
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">Θύρα που προσφέρει ο Tor στο SOCKS proxy του (προεπιλογή: 9050 ή 0 για απενεργοποίηση)</string>
     <string name="pref_socks_dialog">Διάρθρωση Θύρας SOCKS</string>

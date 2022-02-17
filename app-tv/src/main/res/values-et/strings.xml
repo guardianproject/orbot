@@ -4,7 +4,6 @@
   <string name="app_description">Orbot on vabalt kasutatav proxy rakendus, mis võimaldab teistel rakendustel Interneti turvalisemat kasutust. Orbot krüpteerib ja peidab teie Internetiliikluse Tor abil paljude maailma arvutite vahel põrgatades. Tor on vaba tarkvara ja vaba võrgustik mis aitab teil kaitsta oma privaatsust, vabadust, konfidentsiaalset äritegevust, suhteid ja riiklikku julgeolekut arvutivõrgus toimuva liikluse analüüsi eest.</string>
     <string name="status_starting_up">Orbot käivitub...</string>
   <string name="status_activated">Ühendatud Tor võrgustikku</string>
-  <string name="status_disabled">Orbot deaktiveeritud</string>
   <string name="status_shutting_down">Orbot lülitub välja</string>
     <string name="menu_settings">Seaded</string>
   <string name="menu_log">Logi</string>
@@ -49,10 +48,7 @@
   <string name="pref_proxy_password_title">Väljuva proxy salasõna</string>
   <string name="pref_proxy_password_summary">Proxy salasõna (Valikuline)</string>
   <string name="pref_proxy_password_dialog">Sisestage proxy salasõna</string>
-    <string name="couldn_t_start_tor_process_">Tor protsessi käivitamine ebaõnnestus:</string>
     <string name="error">Viga</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">Teie ReachableAddresses seadistus põhjustas ekse!</string>
-  <string name="your_relay_settings_caused_an_exception_">Teie releeseadistus põhjustas ekse!</string>
   <string name="exit_nodes">Väljundsõlmed</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Sõrmejäljed, hüüdnimed, riigid ja aadressid viimase hüppe jaoks</string>
   <string name="enter_exit_nodes">Sisestage väljundsõlmed</string>
@@ -82,10 +78,7 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">lubage väljastatav silumislogi (vaatamiseks peab kasutama kas adb või aLogCat utiliite) </string>
   <string name="project_home">Projekti kodu(d):</string>
     <string name="third_party_software">Kolmanda osapoole tarkvara:</string>
-  <string name="found_existing_tor_process">leidus töötav Tor protsess...</string>
-  <string name="something_bad_happened">Juhtus midagi halba. Kontrollige logi</string>
-    <string name="unable_to_start_tor">Tor käivitamine ebaõnnestus:</string>
-    <string name="pref_use_persistent_notifications">Ühendatud Orbot korral näidata katkematult ikoonide tööriistariba</string>
+  <string name="pref_use_persistent_notifications">Ühendatud Orbot korral näidata katkematult ikoonide tööriistariba</string>
   <string name="pref_use_persistent_notifications_title">Pidevalt kuvatavad teated</string>
     <string name="pref_disable_network_title">Pole võrgu auto-und</string>
   <string name="pref_disable_network_summary">Pane Tor magama kui Internetiühendus puudub</string>

@@ -4,7 +4,6 @@
   <string name="app_description">Orbotは他のアプリがインターネットをより安全に使うことを可能にするフリーのプロキシアプリです。Orbotでは、Torを用いてあなたの端末のトラフィックを暗号化し、世界中のコンピューターを中継することで、そのトラフィックを隠します。Torはフリーのソフトウェアとオープンなネットワークであり、ユーザーの自由とプライバシーを脅かす監視活動や、機密のビジネス活動、国家によるトラフィック分析から身を守ることを助けてくれます。</string>
     <string name="status_starting_up">Orbotが開始されています...</string>
   <string name="status_activated">Torネットワークに接続しています</string>
-  <string name="status_disabled">\"Orbotが解除されました</string>
   <string name="status_shutting_down">TorServiceが終了しています</string>
   <string name="menu_settings">設定</string>
   <string name="menu_log">履歴</string>
@@ -54,10 +53,7 @@
   <string name="pref_proxy_password_title">外方向プロキシのパスワード</string>
   <string name="pref_proxy_password_summary">プロキシのパスワード (オプション)</string>
   <string name="pref_proxy_password_dialog">プロキシのパスワードを入力してください</string>
-    <string name="couldn_t_start_tor_process_">Torプロセスの起動に失敗:</string>
-    <string name="error">エラー</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">あなたのReachableAddresses設定により例外が発生しました!</string>
-  <string name="your_relay_settings_caused_an_exception_">あなたのリレー設定により例外が発生しました!</string>
+  <string name="error">エラー</string>
   <string name="exit_nodes">出口ノード</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">最後のホップのためのデジタル指紋、ニックネーム、国とIPアドレス</string>
   <string name="enter_exit_nodes">出口ノードを入力</string>
@@ -94,10 +90,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">アプリが非公開サーバーポート %1$d をTorネットワークに開放しようとしています。信頼できるアプリであればこれは安全です。</string>
-  <string name="found_existing_tor_process">Torプロセスを発見</string>
-  <string name="something_bad_happened">何かが起こりました。ログを確認してください。</string>
-    <string name="unable_to_start_tor">Torを実行できませんでした</string>
-    <string name="pref_use_persistent_notifications">Orbotが接続中はアイコンを常にツールバーに表示</string>
+  <string name="pref_use_persistent_notifications">Orbotが接続中はアイコンを常にツールバーに表示</string>
   <string name="pref_use_persistent_notifications_title">通知を常に有効化</string>
   <string name="pref_use_expanded_notifications">拡張通知で、Torの出口の国とIPを表示します</string>
   <string name="pref_use_expanded_notifications_title">拡張通知</string>
@@ -105,8 +98,7 @@
   <string name="pref_disable_network_title">ネットワークなし時オートスリープ</string>
   <string name="pref_disable_network_summary">ネット接続がない時 Tor をスリープさせる</string>
   <string name="newnym">新たな Tor の身元に切り替えました。</string>
-  <string name="updating_settings_in_tor_service">Torサービスの設定を更新中</string>
-  <string name="pref_socks_title">Tor SOCKS</string>
+    <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">TorがSOCKSプロキシを提供するポート (デフォルト: 9050、0にすると無効)</string>
   <string name="pref_socks_dialog">SOCKS ポート設定</string>
   <string name="pref_transport_title">Tor透過プロキシポート</string>

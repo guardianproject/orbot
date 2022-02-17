@@ -4,7 +4,6 @@
     <string name="app_description">اوربوت هو تطبيق الوكيل-البروكسي الحر الذي يمكّن تطبيقات أخرى لاستخدام الإنترنت بأمان أكثر . يُستخدم اوربوت تور لتشفير تحركات مرورك على الإنترنت ، ثم يخفيك ويجعلك وهمي من خلال سلسلة من أجهزة الكمبيوتر في جميع أنحاء العالم . تور هو تطبيق حر وشبكة مفتوحة والتي تساعدك على حماية نفسك من مراقبة الشبكات التي تهدد الحرية الشخصية والخصوصية ، والأنشطة التجارية السرية والعلاقات ، وأمن الدولة والحكومات القمعيّة والتي تستخدم مايعرف باسم تحليل حركة مرور البيانات .</string>
     <string name="status_starting_up">جاري تشغيل اوربوت…</string>
     <string name="status_activated">متصل بشبكة تور</string>
-    <string name="status_disabled">تم إيقاف اوربوت</string>
     <string name="status_shutting_down">جاري ايقاف خدمة تور</string>
     <string name="menu_settings">إعدادات</string>
     <string name="menu_log">السجل</string>
@@ -51,10 +50,7 @@
     <string name="pref_proxy_password_title">كلمة مرور بروكسي الشبكة الصادرة</string>
     <string name="pref_proxy_password_summary">كلمة مرور البروكسي (اختياري)</string>
     <string name="pref_proxy_password_dialog">ادخل كلمة مرور البروكسي</string>
-    <string name="couldn_t_start_tor_process_">لقد تعذر بدء تشغيل تور:</string>
     <string name="error">خطأ</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">إعدادات العنوان القابل للاتصال لديك تسببت بخطأ!</string>
-    <string name="your_relay_settings_caused_an_exception_">إعدادات المرحلات لديك تسببت بخطأ!</string>
     <string name="exit_nodes">نقاط الخروج</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">البصمات، الاسماء المستعارة، البلدان و العناوين لآخر نقطة اتصال</string>
     <string name="enter_exit_nodes">أدخل نقاط الخروج</string>
@@ -87,9 +83,6 @@
     <string name="libevent_version">لب إيفينت النسخة http://www.monkey.org/~provos/libevent/ :v2.0.21</string>
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
-    <string name="found_existing_tor_process">عُثر علي عملية تور سابقة تعمل…</string>
-    <string name="something_bad_happened">حصل خطأ ما. افحص السجل</string>
-    <string name="unable_to_start_tor">غير قادر على بدء تور:</string>
     <string name="pref_use_persistent_notifications">دائما ضع الأيقونة في شريط الأدوات عندما يكون اوربوت متصلاً</string>
     <string name="pref_use_persistent_notifications_title">تنبيهات دائمة</string>
     <string name="pref_use_expanded_notifications">قم بأظهار التنبيه بشكل موسع بأستخدام تور. أخرج من البلد ورقم الآي بي رقم العنوان على الشبكة</string>
@@ -98,7 +91,6 @@
     <string name="pref_disable_network_title">لاتوجد شبكة نوم-آلي</string>
     <string name="pref_disable_network_summary">ضع تور في وضعية النوم عند عدم وجود الأنترنت</string>
     <string name="newnym">لقد تحولت الى هوية تور جديدة</string>
-    <string name="updating_settings_in_tor_service">تحديث الاعدادات في خدمات تور</string>
     <string name="pref_socks_title">تور  سوكس</string>
     <string name="pref_socks_summary">منفذ الشبكات الحاسوبية او بورت الذي يقدمه تور الى وحدة الخدمة النائبة البروكسي في سوكس. (الوضعية الأصلية: 9050 او 0 للتعطيل)</string>
     <string name="pref_socks_dialog">ترتيبات منفذ الشبكات الحاسوبية بورت الخاص ب سوكس</string>

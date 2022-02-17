@@ -3,7 +3,6 @@
   <string name="app_name">Orbot</string>
     <string name="status_starting_up">Nagsisimula na ang Orbot…</string>
   <string name="status_activated">Konektado sa Tor network</string>
-  <string name="status_disabled">Naka-deactivate ang Orbot</string>
   <string name="menu_settings">Settings</string>
   <string name="menu_log">Tala</string>
     <string name="menu_start">Simulan</string>
@@ -48,10 +47,7 @@
   <string name="pref_proxy_password_title">Outbound Proxy Password</string>
   <string name="pref_proxy_password_summary">Proxy Password (Optional)</string>
   <string name="pref_proxy_password_dialog">Ilagay ang Proxy Password</string>
-    <string name="couldn_t_start_tor_process_">Hindi ma umpisahan ang proseso ng Tor:</string>
     <string name="error">Error</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">Ang iyong ReachableAddresses settings ay nag sanhi ng exception!</string>
-  <string name="your_relay_settings_caused_an_exception_">Ang iyong relay settings ay nag sanhi ng exception!</string>
   <string name="exit_nodes">Exit Nodes</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Fingerprints, nicks, mga bansa at address para sa huling talon</string>
   <string name="enter_exit_nodes">Enter Exit Nodes</string>
@@ -83,10 +79,7 @@
     <string name="third_party_software">3rd-Party-Software:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="found_existing_tor_process"> nakakita ng umiiral na Tor process…</string>
-  <string name="something_bad_happened">May nangyaring masama. Tingnan ang log</string>
-    <string name="unable_to_start_tor">Hindi masimulan ang Tor:</string>
-    <string name="pref_use_persistent_notifications">Palaging panatilihin ang icon sa toolbar kapag ang Orbot ay naka-connect</string>
+  <string name="pref_use_persistent_notifications">Palaging panatilihin ang icon sa toolbar kapag ang Orbot ay naka-connect</string>
   <string name="pref_use_persistent_notifications_title">Palaging i-On ang Notifications</string>
   <string name="pref_use_expanded_notifications">Ipakita ang pinalaking notification kasama ng Tor exit country at IP</string>
   <string name="pref_use_expanded_notifications_title">Pinalawak na Notifications</string>

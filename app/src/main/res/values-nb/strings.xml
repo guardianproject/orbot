@@ -4,7 +4,6 @@
     <string name="app_description">Orbot er et friprog-mellomtjeningsprogram som gjør det mulig for andre programmer å bruke Internett sikrere. Orbot bruker Tor for å kryptere din Internettrafikk, og skjuler da din trafikk ved å sende trafikken gjennom en lang rekke datamaskiner over hele verden. Tor er fri programvare, og et åpent nettverk som hjelper deg å forsvare deg mot en form for nettverksovervåking som truer din personlige frihet og privatliv, konfidensiell bedriftsvirksomhet og relasjoner, og statlig snoking kjent som trafikkanalyse.</string>
     <string name="status_starting_up">Orbot starter…</string>
     <string name="status_activated">Koblet til Tor-nettverket</string>
-    <string name="status_disabled">Orbot er deaktivert</string>
     <string name="status_shutting_down">Tor-tjenesten avsluttes</string>
     <string name="menu_settings">Innstillinger</string>
     <string name="menu_log">Logg</string>
@@ -51,10 +50,7 @@
     <string name="pref_proxy_password_title">Passord for utgående mellomtjener</string>
     <string name="pref_proxy_password_summary">Passord for mellomtjener (valgfritt)</string>
     <string name="pref_proxy_password_dialog">Skriv inn passord for mellomtjener</string>
-    <string name="couldn_t_start_tor_process_">Kunne ikke starte Tor prosessen:</string>
     <string name="error">Feil</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">Dine \"adresser som kan nås\"-innstillinger forårsaket et unntak!</string>
-    <string name="your_relay_settings_caused_an_exception_">Dine relé-innstillinger forårsaket et unntak!</string>
     <string name="exit_nodes">Utgangsnoder</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Fingeravtrykk, kallenavn, land og adresser for siste hopp</string>
     <string name="enter_exit_nodes">Skriv inn utgående noder</string>
@@ -87,9 +83,6 @@
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: https://www.openssl.org</string>
-    <string name="found_existing_tor_process">fant eksisterende Tor-prosess…</string>
-    <string name="something_bad_happened">Noe alvorlig skjedde. Sjekk loggen.</string>
-    <string name="unable_to_start_tor">Klarte ikke å starte Tor:</string>
     <string name="pref_use_persistent_notifications">Alltid behold ikonet i verktøyslinjen når Orbot er tilkoblet</string>
     <string name="pref_use_persistent_notifications_title">Alltid-På -varslinger</string>
     <string name="pref_use_expanded_notifications">Vis utvidede merknader med land og IP for utgangstrafikk fra Tor</string>
@@ -98,7 +91,6 @@
     <string name="pref_disable_network_title">Inget automatisk hvilemodus for nettverk</string>
     <string name="pref_disable_network_summary">Legg Tor i hvilemodus når nettilkobling til Internett ikke er tilgjengelig</string>
     <string name="newnym">Du har byttet til en ny Tor-identitet!</string>
-    <string name="updating_settings_in_tor_service">Oppdaterer innstillinger i Tor service</string>
     <string name="pref_socks_title">Tor-SOCKS</string>
     <string name="pref_socks_summary">Port som Tor tilbyr er SOCKS proxy på (standard: 9050 eller 0 for å slå av)</string>
     <string name="pref_socks_dialog">Portoppsett for SOCKS</string>

@@ -4,7 +4,6 @@
     <string name="app_description">Orbot ist eine kostenlose Proxy-App, die andere Apps in die Lage versetzt, das Internet sicherer zu nutzen. Orbot verwendet Tor, um Ihren Traffic im Internet zu verschlüsseln, und verbirgt ihn dann, indem er ihn durch eine Reihe von Computern auf der ganzen Welt hüpfen lässt. Tor ist freie Software und ein offenes Netzwerk, das dabei hilft, sich vor Formen der Netzüberwachung zu schützen, die persönliche Freiheiten und Privatsphäre, vertrauliche Geschäftsaktivitäten und -beziehungen bedrohen, sowie vor Maßnahmen der Staatssicherheit, die als Traffic-Analyse bekannt sind.</string>
     <string name="status_starting_up">Orbot startet …</string>
     <string name="status_activated">Verbunden mit dem Tor-Netzwerk</string>
-    <string name="status_disabled">Orbot ist deaktiviert</string>
     <string name="status_shutting_down">TorService wird heruntergefahren</string>
     <string name="menu_settings">Einstellungen</string>
     <string name="menu_log">Protokoll</string>
@@ -52,10 +51,7 @@
     <string name="pref_proxy_password_title">Ausgehendes Proxy-Passwort</string>
     <string name="pref_proxy_password_summary">Proxy-Passwort (Optional)</string>
     <string name="pref_proxy_password_dialog">Proxy-Passwort eingeben</string>
-    <string name="couldn_t_start_tor_process_">Tor-Prozess konnte nicht gestartet werden:</string>
     <string name="error">Fehler</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">Ihre eingestellten ErreichbarenAdressen haben einen Ausnahmefehler verursacht!</string>
-    <string name="your_relay_settings_caused_an_exception_">Ihre Relais-Einstellungen haben einen Ausnahmefehler verursacht!</string>
     <string name="exit_nodes">Ausgangs-Netzknoten</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Fingerabdrücke, Spitznamen, Länder und Adressen für den letzten Knotenpunkt</string>
     <string name="enter_exit_nodes">Ausgangs-Netzknoten eingeben</string>
@@ -89,9 +85,6 @@
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Eine Anwendung möchte den Onion Server auf Port %1$s zum Tor-Netzwerk öffnen. Dies ist sicher, wenn Sie der Anwendung vertrauen.</string>
-    <string name="found_existing_tor_process">bestehenden Tor-Prozess gefunden …</string>
-    <string name="something_bad_happened">Etwas ist schief gelaufen. Bitte Protokoll überprüfen</string>
-    <string name="unable_to_start_tor">Tor kann nicht gestartet werden:</string>
     <string name="pref_use_persistent_notifications">Symbol immer in der Statusleiste lassen, wenn Orbot verbunden ist</string>
     <string name="pref_use_persistent_notifications_title">Aktivitätsanzeige</string>
     <string name="pref_use_expanded_notifications">In der Benachrichtigung, wenn vorhanden, das Land und die IP-Adresse des Tor-Ausgangsknotens anzeigen</string>
@@ -100,7 +93,6 @@
     <string name="pref_disable_network_title">Kein Automatischer Netzwerk-Ruhezustand</string>
     <string name="pref_disable_network_summary">Tor in den Ruhezustand versetzen, wenn kein Internet verfügbar ist</string>
     <string name="newnym">Sie haben zu einer neuen Tor-Identität gewechselt!</string>
-    <string name="updating_settings_in_tor_service">Aktualisierung der Einstellungen für den Tor-Dienst</string>
     <string name="pref_socks_title">Tor-SOCKS</string>
     <string name="pref_socks_summary">Port, der den SOCKS-Proxy von Tor bereitstellt (Standard: 9050 oder 0, um ihn zu deaktivieren)</string>
     <string name="pref_socks_dialog">SOCKS-Port-Konfiguration</string>

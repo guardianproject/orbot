@@ -4,7 +4,6 @@
   <string name="app_description">Orbot คือแอปพร็อกซีฟรีที่ช่วยเพิ่มประสิทธิภาพให้กับแอปอื่นๆ ให้สามารถใช้งานอินเตอร์เน็ตได้อย่างปลอดภัยมากขึ้น Orbot ใช้ Tor ในการเข้ารหัสการรับส่งข้อมูลทางอินเตอร์เน็ตของคุณและทำการซ่อนข้อมูลโดยการสะท้อนการเชื่อมต่อผ่านกลุ่มของเครื่องคอมพิวเตอร์ทั่วโลก Tor เป็นซอฟท์แวร์ฟรีและเป็นเครือข่ายแบบเปิดที่ช่วยปกป้องคุณจากการสอดส่องเครือข่ายที่คุกคามอิสรภาพและความเป็นส่วนตัวของผู้คน รักษาความลับทางธุรกิจและความสัมพันธ์ และการสร้างความปลอดภัยโดยการวิเคราะห์การรับส่งข้อมูล</string>
     <string name="status_starting_up">Orbot กำลังเริ่มต้น...</string>
   <string name="status_activated">เชื่อมต่อกับเครือข่าย Tor แล้ว</string>
-  <string name="status_disabled">ปิดการใช้งาน Orbot</string>
   <string name="status_shutting_down">กำลังปิดการทำงาน TorService </string>
   <string name="menu_settings">การตั้งค่า</string>
   <string name="menu_log">บันทึก</string>
@@ -54,10 +53,7 @@
   <string name="pref_proxy_password_title">รหัสผ่านพร็อกซีขาออก</string>
   <string name="pref_proxy_password_summary">รหัสผ่านพร็อกซี (ระบุหรือไม่ก็ได้)</string>
   <string name="pref_proxy_password_dialog">ใส่รหัสผ่านพร็อกซี</string>
-    <string name="couldn_t_start_tor_process_">ไม่สามารถเริ่มกระบวนการของ Tor</string>
-    <string name="error">ผิดพลาด</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">การตั้งค่า ReachableAddresses ของคุณทำให้เกิดข้อผิดพลาด</string>
-  <string name="your_relay_settings_caused_an_exception_">การตั้งค่ารีเลย์ของคุณทำให้เกิดข้อผิดพลาด</string>
+  <string name="error">ผิดพลาด</string>
   <string name="exit_nodes">โหนดทางออก</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">ลายนิ้วมือ ชื่อเล่น ประเทศ และที่อยู่ของฮอพสุดท้าย</string>
   <string name="enter_exit_nodes">ระบุโหนดทางออก</string>
@@ -94,10 +90,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">โปรแกรมต้องการเปิดพอร์ต %1$d ที่ซ่อนอยู่ของเซิร์ฟเวอร์ให้เชื่อมกับเครือข่าย Tor การกระทำนี้ปลอดภัยถ้าคุณเชื่อถือโปรแกรมนั้น</string>
-  <string name="found_existing_tor_process">พบกระบวนการ Tor ที่มีอยู่แล้ว...</string>
-  <string name="something_bad_happened">เกิดอะไรไม่ดีสักอย่าง ให้ตรวจดูจากบันทึก</string>
-    <string name="unable_to_start_tor">ไม่สามารถเริ่ม Tor:</string>
-    <string name="pref_use_persistent_notifications">แสดงไอคอนในทูลบาร์เสมอเมื่อ Orbot เชื่อมต่ออยู่</string>
+  <string name="pref_use_persistent_notifications">แสดงไอคอนในทูลบาร์เสมอเมื่อ Orbot เชื่อมต่ออยู่</string>
   <string name="pref_use_persistent_notifications_title">การแจ้งเตือนแบบตลอดเวลา</string>
   <string name="pref_use_expanded_notifications">แสดงการแจ้งเตือนแบบขยายที่ระบุประเทศปลายทางและ IP ของ Tor</string>
   <string name="pref_use_expanded_notifications_title">การแจ้งเตือนแบบขยาย</string>
@@ -105,8 +98,7 @@
   <string name="pref_disable_network_title">ไม่พบเครือข่าย พักการใช้งานอัตโนมัติ</string>
   <string name="pref_disable_network_summary">พักการใช้งาน Tor เมื่อไม่มีอินเทอร์เน็ต</string>
   <string name="newnym">คุณได้เปลี่ยนมาใช้ตัวตน Tor ใหม่แล้ว</string>
-  <string name="updating_settings_in_tor_service">ปรับปรุงการตั้งค่าในบริการ Tor</string>
-  <string name="pref_socks_title">Tor SOCKS</string>
+    <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">พอร์ตที่ Tor ให้บริการพร็อกซี SOCKS (ค่าเริ่มต้น: 9050 หรือ 0 ไปถึงไม่เปิดใช้งาน)</string>
   <string name="pref_socks_dialog">กำหนดค่าพอร์ต SOCKS</string>
   <string name="pref_transport_title">พอร์ตพร็อกซีแบบ Transparent ของ Tor</string>

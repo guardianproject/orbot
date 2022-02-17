@@ -4,7 +4,6 @@
     <string name="app_description">Orbot 是一款免费的代理应用，能够让其他应用更安全地使用互联网。通过在位于世界各地的一系列计算机之间进行跳转，Orbot 可利用 Tor 对网络通信进行加密并隐藏。Tor 是一款免费的软件，并且是一个开放的网络。它可以保护用户免受流量分析的危害，这种网络监控可对个人自由与隐私、商业机密活动和关系以及国家安全造成威胁。</string>
     <string name="status_starting_up">Orbot 正在启动…</string>
     <string name="status_activated">已连接到 Tor 网络</string>
-    <string name="status_disabled">Orbot 已停用</string>
     <string name="status_shutting_down">Tor服务 正在关闭</string>
     <string name="menu_settings">设置</string>
     <string name="menu_log">日志</string>
@@ -51,10 +50,7 @@
     <string name="pref_proxy_password_title">出站代理密码</string>
     <string name="pref_proxy_password_summary">代理密码（可选）</string>
     <string name="pref_proxy_password_dialog">请输入代理密码</string>
-    <string name="couldn_t_start_tor_process_">无法启动 Tor 进程：</string>
     <string name="error">错误</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">可访问地址设置导致异常！</string>
-    <string name="your_relay_settings_caused_an_exception_">中继设置导致异常！</string>
     <string name="exit_nodes">出口节点</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">最后跳转的密钥指纹、昵称、国家与地址</string>
     <string name="enter_exit_nodes">输入出口节点</string>
@@ -85,9 +81,6 @@
     <string name="third_party_software">第三方软件：</string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="found_existing_tor_process">发现现有的Tor进程…</string>
-    <string name="something_bad_happened">发生错误，请检查日志</string>
-    <string name="unable_to_start_tor">无法启动 Tor：</string>
     <string name="pref_use_persistent_notifications">Orbot 连接后始终在通知栏显示图标</string>
     <string name="pref_use_persistent_notifications_title">始终显示通知</string>
     <string name="pref_use_expanded_notifications">当可用时，在通知中显示 tor 出口节点的国家和 IP 地址</string>
@@ -96,7 +89,6 @@
     <string name="pref_disable_network_title">无网络自动休眠</string>
     <string name="pref_disable_network_summary">没有网络连接时，暂时停用 Tor</string>
     <string name="newnym">已切换为新的 Tor 标识！</string>
-    <string name="updating_settings_in_tor_service">正在更新 Tor 服务中的设置</string>
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">Tor 提供其 SOCKS 代理的端口 (默认: 9050, 0 禁用)</string>
     <string name="pref_socks_dialog">SOCKS 端口配置</string>

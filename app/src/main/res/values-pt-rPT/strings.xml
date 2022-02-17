@@ -4,7 +4,6 @@
     <string name="app_description">Orbot é uma aplicação de proxy livre que capacita outras aplicações a usar a internet com mais segurança. O Orbot usa o Tor para criptografar o seu tráfego na internet e então o esconde \"saltando\" entre uma série de computadores ao redor do mundo. Tor é um software livre e de rede aberta que ajuda a se defender de certas formas de vigilância que ameaçam privacidade e liberdade pessoais, atividades e relações comerciais confidenciais e segurança estatal conhecida como análise de tráfego.</string>
     <string name="status_starting_up">O Orbot está a iniciar…</string>
     <string name="status_activated">Conetado à rede Tor</string>
-    <string name="status_disabled">O Orbot está desativado</string>
     <string name="status_shutting_down">O TorService está desligando</string>
     <string name="menu_settings">Definições</string>
     <string name="menu_log">Registo</string>
@@ -67,7 +66,6 @@
     <string name="pref_connection_padding_summary">Sempre ativa o preenchimento de conexão para se defender de algumas formas de análise de tráfego. Predefinição: auto</string>
     <string name="pref_isolate_dest">Isolar os endereços de destino</string>
     <string name="pref_disable_ipv4_summary">Diz às saídas para não se conectarem a endereços IPv4</string>
-    <string name="found_existing_tor_process">processo Tor existente foi encontrado…</string>
     <string name="app_services">Serviços de app</string>
     <string name="pref_reduced_connection_padding">Preenchimento de conexão reduzido</string>
     <string name="start_tor_again_for_finish_the_process">Reiniciar o Tor para terminar o processo</string>
@@ -79,7 +77,6 @@
     <string name="onion">.onion</string>
     <string name="pref_prefer_ipv6_summary">Diz às saídas que os endereços IPv6 são preferidos</string>
     <string name="pref_prefer_ipv6">Preferir conexões IPv6</string>
-    <string name="something_bad_happened">Aconteceu algo de mau. Verifique o registo de eventos</string>
     <string name="pref_http_summary">Porta em que o Tor oferece o seu proxy HTTP (predefinição: 8118 ou 0 para desativar)</string>
     <string name="pref_connection_padding">Preenchimento de conexão</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Abrir o Proxy em Todas as Interfaces</string>
@@ -89,7 +86,6 @@
     <string name="ports_reachable_behind_a_restrictive_firewall">Portas alcançáveis por detrás de uma Firewal restritiva</string>
     <string name="pref_proxy_username_title">Nome do Utilizador do Proxy de Saída</string>
     <string name="pref_proxy_host_summary">Nome do Hospedeiro do Servidor Proxy</string>
-    <string name="updating_settings_in_tor_service">a atualizar as definições no serviço Tor</string>
     <string name="menu_hidden_services">Serviços ocultos</string>
     <string name="pref_proxy_type_summary">Protocolo para usar para o servidor proxy: HTTP, HTTPS, Socks4, Socks5</string>
     <string name="pref_proxy_port_summary">Porta do Servidor Proxy</string>
@@ -106,8 +102,6 @@
     <string name="hidden_services">Serviços ocultos</string>
     <string name="newnym">Mudou para uma nova identidade do Tor!</string>
     <string name="reachable_ports">Portas alcançáveis</string>
-    <string name="couldn_t_start_tor_process_">Não foi possível iniciar o processo Tor:</string>
-    <string name="unable_to_start_tor">Não é possível iniciar o Tor:</string>
     <string name="enter_or_port">Inserir OU porta</string>
     <string name="pref_use_persistent_notifications_title">Notificações Sempre Ativadas</string>
     <string name="full_device_vpn">VPN Para Todo o Aparelho</string>
@@ -164,8 +158,6 @@
     <string name="strict_nodes">Nós Estritos</string>
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Impressões digitais, apelidos, países e endereços para excluir</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Impressões digitais, apelidos, países e endereços para a última etapa</string>
-    <string name="your_relay_settings_caused_an_exception_">As suas configurações de retransmissão causaram uma exceção!</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">As suas configurações de Endereços Acessíveis causou uma exceção!</string>
     <string name="pref_allow_background_starts_summary">Deixar uma app informar o Orbot para iniciar o Tor e os seus serviços relacionados</string>
     <string name="pref_allow_background_starts_title">Permitir Inicializações em Segundo Plano</string>
     <string name="pref_entrance_node_dialog">Digite os Nós de Entrada</string>

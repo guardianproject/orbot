@@ -12,7 +12,6 @@
     <string name="status_activated">Prisijungta prie Tor tinklo</string>
     <string name="app_name">Orbot</string>
     <string name="enter_exclude_nodes">Įveskite neįtrauktinus mazgus</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">Jūsų pasiekiamų adresų nustatymai sukėlė išimtį!</string>
     <string name="be_a_snowflake_desc_limit">Tik tada, kai įrenginys kraunasi ir naudoja „Wi-Fi“</string>
     <string name="be_a_snowflake_desc">Leisti kitiems „Tor“ vartotojams prisijungti prie „Tor“ per jūsų įrenginį</string>
     <string name="pref_disable_ipv4_summary">Nurodo išėjimams nesijungti prie IPv4 adresų</string>
@@ -43,7 +42,6 @@
     <string name="testing_tor_direct_success">Sėkmė. „Tor“ jungtis yra gera!</string>
     <string name="bridge_direct_connect">Prisijungti tiesiogiai prie „Tor“ (geriausia)</string>
     <string name="backup_saved_at_external_storage">Atsarginė kopija išsaugota išorinėje saugykloje</string>
-    <string name="updating_settings_in_tor_service">atnaujinami „Tor“ paslaugos nustatymai</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Atidaryti įgaliotąjį serverį visose sąsajose</string>
     <string name="enter_a_custom_relay_nickname">Įveskite pasirinktinės relės slapyvardį</string>
     <string name="use_only_these_specified_nodes">Naudoti *tik* šiuos nurodytus mazgus</string>
@@ -60,9 +58,6 @@
     <string name="consider_disable_battery_optimizations">Apsvarstykite galimybę išjungti baterijos optimizavimą</string>
     <string name="create_a_backup_first">Pirmiausia sukurkite atsarginę kopiją</string>
     <string name="copy_address_to_clipboard">Kopijuoti adresą į iškarpinę</string>
-    <string name="unable_to_start_tor">Nepavyko paleisti „Tor“:</string>
-    <string name="found_existing_tor_process">rastas esamas „Tor“ procesas…</string>
-    <string name="couldn_t_start_tor_process_">Nepavyko paleisti „Tor“ proceso:</string>
     <string name="pref_proxy_title">Išeinančio tinklo įgaliotasis serveris (pasirinktinai)</string>
     <string name="pref_start_boot_title">Paleisti „Orbot“ paleidimo metu</string>
     <string name="status_shutting_down">„TorService“ išsijungia</string>
@@ -104,7 +99,6 @@
     <string name="pref_proxy_type_title">Išeinančio įgaliotojo serverio tipas</string>
     <string name="pref_allow_background_starts_title">Leisti paleisti fone</string>
     <string name="pref_entrance_node_dialog">Įveskite įėjimo mazgus</string>
-    <string name="status_disabled">„Orbot“ yra išjungtas</string>
     <string name="status_starting_up">„Orbot“ paleidžiama…</string>
     <string name="v3_import_auth_private">Importuoti .auth_private</string>
     <string name="v3_backup_name_hint">Atsarginės kopijos failo pavadinimas…</string>
@@ -164,9 +158,7 @@
     <string name="captcha">Captcha</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
-    <string name="something_bad_happened">Nutiko kažkas blogo. Patikrinkite žurnalą</string>
     <string name="the_nickname_for_your_tor_relay">Jūsų „Tor“ relės slapyvardis</string>
-    <string name="your_relay_settings_caused_an_exception_">Jūsų relės nustatymai sukėlė išimtį!</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Paleiskite „Orbot“ iš naujo, kad įgalintumėte pakeitimus</string>
     <string name="start_tor_again_for_finish_the_process">Norėdami užbaigti procesą, vėl paleiskite „Tor“</string>
     <string name="restart_orbot_to_use_this_bridge_">Paleiskite „Orbot“ iš naujo, kad įgalintumėte pakeitimus</string>

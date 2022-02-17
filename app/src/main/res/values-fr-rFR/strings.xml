@@ -4,7 +4,6 @@
     <string name="app_description">Orbot est une appli libre de serveur mandataire qui permet aux applis d’utiliser Internet avec une sécurité accrue. Orbot utilise Tor pour chiffrer votre trafic Internet et le cache ensuite en le relayant au travers d’ordinateurs de par le monde. Tor est un logiciel libre et un réseau ouvert qui vous aident à vous défendre contre une forme de surveillance réseau qui menace la liberté personnelle et la protection des données personnelles, les activités professionnelles confidentielles et les relations, et l’analyse du trafic des gouvernements.</string>
     <string name="status_starting_up">Orbot démarre…</string>
     <string name="status_activated">Connecté au réseau Tor</string>
-    <string name="status_disabled">Orbot est désactivé</string>
     <string name="status_shutting_down">TorService est en cours de fermeture</string>
     <string name="menu_settings">Paramètres</string>
     <string name="menu_log">Journal</string>
@@ -51,10 +50,7 @@
     <string name="pref_proxy_password_title">Mot de passe du mandataire sortant</string>
     <string name="pref_proxy_password_summary">Mot de passe du mandataire (facultatif)</string>
     <string name="pref_proxy_password_dialog">Saisir le mot de passe du mandataire</string>
-    <string name="couldn_t_start_tor_process_">Impossible de lancer le processus Tor :</string>
     <string name="error">Erreur</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">Vos paramètres ReachableAddresses (adresses accessibles) ont causé une exception</string>
-    <string name="your_relay_settings_caused_an_exception_">Vos paramètres de relais ont causé une exception</string>
     <string name="exit_nodes">Nœuds de sortie</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Empreintes, pseudos, pays et adresses pour le dernier saut</string>
     <string name="enter_exit_nodes">Saisir les nœuds de sortie</string>
@@ -85,9 +81,6 @@
     <string name="third_party_software">Logiciels tiers :</string>
     <string name="tor_version">Tor : https://www.torproject.org/fr</string>
     <string name="libevent_version">LibEvent v2.0.21 : http://www.monkey.org/~provos/libevent/</string>
-    <string name="found_existing_tor_process">un processus Tor existant a été trouvé…</string>
-    <string name="something_bad_happened">Une problème est survenu. Consultez le journal</string>
-    <string name="unable_to_start_tor">Impossible de démarrer Tor :</string>
     <string name="pref_use_persistent_notifications">Toujours conserver l’icône dans la barre d’outils quand Orbot est connecté</string>
     <string name="pref_use_persistent_notifications_title">Notifications toujours actives</string>
     <string name="pref_use_expanded_notifications">Afficher des notifications plus détaillées avec le pays de sortie et l’IP de Tor</string>
@@ -96,7 +89,6 @@
     <string name="pref_disable_network_title">Aucune mise en veille automatique du réseau</string>
     <string name="pref_disable_network_summary">Mettre Tor en veille quand Internet est inaccessible</string>
     <string name="newnym">Vous avez basculé vers une nouvelle identité Tor</string>
-    <string name="updating_settings_in_tor_service">mise à jour des paramètres dans le service Tor</string>
     <string name="pref_socks_title">SOCKS Tor</string>
     <string name="pref_socks_summary">Port sur lequel Tor offre son mandataire SOCKS (par défaut : 9050 ou 0 pour le désactiver)</string>
     <string name="pref_socks_dialog">Configuration du part SOCKS</string>

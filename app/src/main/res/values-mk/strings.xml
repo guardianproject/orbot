@@ -4,7 +4,6 @@
     <string name="app_description">Orbot е слободна прокси апликација која им овозможува на другите апликации да го користат Интернетот побезбедно. Orbot користи Tor за енкриптирање на интернет сообраќајот, а потоа го сокрива и го потскокнува преку серија компјутери низ целиот свет. Tor е слободен софтвер и отворена мрежа кој ви помага да се одбарните од форми на надзор на мрежата кој им се заканува на вашата лична слобода и приватност, доверливите деловни активности и односи, и државната безбедност позната како анализа на сообраќајот.</string>
     <string name="status_starting_up">Орбот се стартува…</string>
     <string name="status_activated">Поврзан на мрежата на Tor</string>
-    <string name="status_disabled">Орбот е деактивиран</string>
     <string name="status_shutting_down">Tor-Сервисот се исклучува</string>
     <string name="menu_settings">Поставки</string>
     <string name="menu_log">Дневник</string>
@@ -52,10 +51,7 @@
     <string name="pref_proxy_password_title">Лозинка на излезен прокси</string>
     <string name="pref_proxy_password_summary">Лозинка на прокси (незадолжително)</string>
     <string name="pref_proxy_password_dialog">Внесете лозинка на прокси</string>
-    <string name="couldn_t_start_tor_process_">Не може да започне Tor-процесот:</string>
     <string name="error">Грешка</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">Вашите поставки за достапните адреси предизвикаа грешка!</string>
-    <string name="your_relay_settings_caused_an_exception_">Вашите поставки за реле предизвикаа грешка!</string>
     <string name="exit_nodes">Излезни јазли</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Отпечатоци од прсти, прекари, држави и адреси за последниот скок.</string>
     <string name="enter_exit_nodes">Внесете излезни јазли</string>
@@ -89,9 +85,6 @@
     <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Апликација сака да отвори сокриена серверска порта %1$s кон Tor мрежата. Ова е безбедно доколку и верувате на апликацијата.</string>
-    <string name="found_existing_tor_process">Пронајден постоечки Tor-процес …</string>
-    <string name="something_bad_happened">Се случи грешка. Проверете го дневникот</string>
-    <string name="unable_to_start_tor">Tor не може да се стартува:</string>
     <string name="pref_use_persistent_notifications">Секогаш чувајте ја иконата во лентата со алатки кога Orbot е поврзан</string>
     <string name="pref_use_persistent_notifications_title">Известувања секогаш вклучени</string>
     <string name="pref_use_expanded_notifications">Прикажи проширено известување со излезната држава и IP на Tor</string>
@@ -100,7 +93,6 @@
     <string name="pref_disable_network_title">Нема Автоматско-спиење на мрежата</string>
     <string name="pref_disable_network_summary">Ставете го Тор на режим на спиење кога Интернетот не е достапен</string>
     <string name="newnym">Се префрливте на нов идентитет на Tor!</string>
-    <string name="updating_settings_in_tor_service">ажурирање на поставките во Tor сервисот </string>
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">Порта на која Тор и го нуди својот SOCKS-прокси (стандардно: 9050 или 0 за да се исклучи)</string>
     <string name="pref_socks_dialog">Поставување на портата за SOCKS</string>

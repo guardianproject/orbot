@@ -3,7 +3,6 @@
   <string name="app_name">Orbot</string>
     <string name="status_starting_up">Orbot telah dimulakan..</string>
   <string name="status_activated">Bersambung ke rangkaian Tor</string>
-  <string name="status_disabled">\"Orbot telah dinyah-aktifkan</string>
   <string name="status_shutting_down">Orbot sedang ditutup</string>
     <string name="menu_settings">Tetapan</string>
   <string name="menu_log">Log</string>
@@ -39,10 +38,7 @@
   <string name="pref_proxy_port_title">Port Proxy</string>
   <string name="pref_proxy_port_summary">Port pelayan proxy</string>
   <string name="pref_proxy_port_dialog">Masukkan port Proxy</string>
-    <string name="couldn_t_start_tor_process_">Tidak boleh memulakan proses Tor:</string>
     <string name="error">Ralat</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">Tetapan ReachableAddresses anda menyebabkan pengecualian!</string>
-  <string name="your_relay_settings_caused_an_exception_">Tetapan relay anda menyebabkan pengecualian!</string>
   <string name="exit_nodes">Keluar Nod</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Cap jari, nama samaran, negara, dan alamat untuk lompatan terakhir</string>
   <string name="enter_exit_nodes">Masukkan Nod Keluar</string>
@@ -73,10 +69,7 @@
   <string name="project_home">Rumah Projek(s):</string>
   <string name="project_urls">https://www.torproject.org/docs/android⏎ https://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">3rd-Party-Software: </string>
-  <string name="found_existing_tor_process">Proses Tor sedia ada ditemui..</string>
-  <string name="something_bad_happened">Sesuatu yang buruk berlaku. Semak log.</string>
-    <string name="unable_to_start_tor">Tidak dapat memulakan Tor:</string>
-    <string name="pref_use_persistent_notifications">Sentiasa biar ikon pada toolbar apabila Orbot bersambung</string>
+  <string name="pref_use_persistent_notifications">Sentiasa biar ikon pada toolbar apabila Orbot bersambung</string>
   <string name="pref_use_persistent_notifications_title">Sentiasa On Notifikasi</string>
     <string name="set_locale_title">Tetapan Tempatan</string>
     <string name="save">Simpan</string>

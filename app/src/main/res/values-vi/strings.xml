@@ -4,7 +4,6 @@
     <string name="app_description">Orbot là một ứng dụng proxy miễn phí làm cho các ứng dụng khác sử dụng internet một cách bảo mật hơn. Orbot sử dụng Tor để mã hóa lưu lượng Internet rồi ẩn nó bằng cách đưa qua một loạt máy tính trên khắp thế giới. Tor là phần mềm tự do và là một mạng lưới mở giúp bạn chống lại một dạng của sự giám sát trên mạng đe dọa quyền riêng tư và tự do cá nhân, những hoạt động và mối quan hệ bí mật trong kinh doanh, và an ninh tiểu bang được biết đến là phân tích lưu lượng mạng.</string>
     <string name="status_starting_up">Orbot đang khởi động…</string>
     <string name="status_activated">Đã kết nối với mạng Tor</string>
-    <string name="status_disabled">Orbot đã được vô hiệu hóa</string>
     <string name="status_shutting_down">Đang tắt dịch vụ Tor</string>
     <string name="menu_settings">Cài đặt</string>
     <string name="menu_log">Nhật ký</string>
@@ -51,10 +50,7 @@
     <string name="pref_proxy_password_title">Mật khẩu Proxy ngõ ra</string>
     <string name="pref_proxy_password_summary">Mật khẩu proxy (tùy chọn)</string>
     <string name="pref_proxy_password_dialog">Nhập mật khẩu proxy</string>
-    <string name="couldn_t_start_tor_process_">Không thể khởi động tiến trình Tor:</string>
     <string name="error">Lỗi</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">Thiết lập ReachableAddresses đã gây ra một vấn đề! </string>
-    <string name="your_relay_settings_caused_an_exception_">Thiết lập relay của bạn đã gây ra một vấn đề!</string>
     <string name="exit_nodes">Nút cuối (Exit Nodes)</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Dấu theo dõi, biệt hiệu, quốc gia và địa chỉ cho nút cuối cùng</string>
     <string name="enter_exit_nodes">Nhập thông tin nút cuối</string>
@@ -85,9 +81,6 @@
     <string name="third_party_software">Phần mềm bên thứ 3:</string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="found_existing_tor_process">tìm ra tiến trình hiện hành của Tor…</string>
-    <string name="something_bad_happened">Có gì đó không ổn. Xin xem lại nhật ký</string>
-    <string name="unable_to_start_tor">Không thể khởi động Tor được: </string>
     <string name="pref_use_persistent_notifications">Luôn giữ thông báo trong thanh trạng thái khi Orbot được kết nối</string>
     <string name="pref_use_persistent_notifications_title">Thông báo thường trực</string>
     <string name="pref_use_expanded_notifications">Hiển thị thông báo mở rộng với IP và quốc gia của nút cuối (Tor exit-node)</string>
@@ -96,7 +89,6 @@
     <string name="pref_disable_network_title">Tự động \"ngủ\" khi không có mạng</string>
     <string name="pref_disable_network_summary">Chuyển Tor sang chế độ ngủ nếu không có Internet</string>
     <string name="newnym">Bạn đã chuyển sang một mạch Tor mới!</string>
-    <string name="updating_settings_in_tor_service">đang cập nhật cài đặt dịch vụ Tor</string>
     <string name="pref_socks_title">Cổng SOCKS</string>
     <string name="pref_socks_summary">Cổng để Tor đặt proxy SOCKS lên (mặc định: 9050 hoặc 0 để vô hiệu hóa)</string>
     <string name="pref_socks_dialog">Cấu hình cổng SOCKS</string>

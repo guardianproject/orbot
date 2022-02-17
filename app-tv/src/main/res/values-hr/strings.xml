@@ -4,7 +4,6 @@
   <string name="app_description">Orbot je besplatna proxy aplikacija koja omogućuje ostalim aplikacijama da koriste internet sigurnije. Orbot koristi Tor za enkripciju Vašeg Internet prometa, a zatim ga skriva šaljući ga kroz seriju računala diljem svijeta. Tor je besplatan software i otvorena mreža koja pomaže u borbi protiv nadzora mreže koji ugrožava osobne slobode i privatnost, povjerljive poslovne aktivnosti i odnose, te pomaže u borbi protiv analize prometa.</string>
   <string name="status_starting_up">Orbot se pokreće...</string>
   <string name="status_activated">Spojen na Tor mrežu</string>
-  <string name="status_disabled">Orbot je deaktiviran</string>
   <string name="status_shutting_down">TorService se gasi</string>
   <string name="menu_settings">Postavke</string>
   <string name="menu_log">Dnevnik</string>
@@ -53,10 +52,7 @@
   <string name="pref_proxy_password_title">Proxy izlazna lozinka</string>
   <string name="pref_proxy_password_summary">Proxy lozinka (Opcionalno)</string>
   <string name="pref_proxy_password_dialog">Unesite Proxy lozinku</string>
-  <string name="couldn_t_start_tor_process_">Nije moguće započeti Tor proces:</string>
   <string name="error">Greška</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">Vaše ReachableAddresses postavke su uzrokovale iznimku!</string>
-  <string name="your_relay_settings_caused_an_exception_">Vaše postavke releja su uzrokovale iznimku!</string>
   <string name="exit_nodes">Izlazni Čvorovi</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Otisci prstiju, nadimci, države i adrese za zadnji skok</string>
   <string name="enter_exit_nodes">Unesi Izlazne Čvorove</string>
@@ -89,9 +85,6 @@
   <string name="third_party_software">Software treće strane:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="found_existing_tor_process">pronađeni postojeći Tor procesi...</string>
-  <string name="something_bad_happened">Nešto loše se dogodilo. Provjerite dnevnik</string>
-    <string name="unable_to_start_tor">Nije moguće pokrenuti Tor:</string>
   <string name="pref_use_persistent_notifications">Uvjek drži ikonu na alatnoj traci kad je Orbot spojen</string>
   <string name="pref_use_persistent_notifications_title">Obavijesti o stalnoj pokrenutosti</string>
   <string name="pref_use_expanded_notifications">Prikaži proširene obavijesti s Tor izlaznom državom i IP-em</string>
@@ -100,8 +93,7 @@
   <string name="pref_disable_network_title">Nema mrežnog auto-spavanja</string>
   <string name="pref_disable_network_summary">Stavi Tor na spavanje kad internet nije dostupan</string>
   <string name="newnym">Prebacili ste se na nov Tor identitet!</string>
-  <string name="updating_settings_in_tor_service">ažuriram postavke u Tor usluzi</string>
-  <string name="pref_socks_title">Tor SOCKS</string>
+    <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Port na kojem Tor pruža svoj SOCKS proxy (zadano: 9050, 0 za onemogućavanje)</string>
   <string name="pref_socks_dialog">Konfiguracija SOCKS porta </string>
   <string name="pref_transport_title">Tor TransProxy Port</string>

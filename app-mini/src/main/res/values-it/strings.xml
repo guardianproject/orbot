@@ -4,7 +4,6 @@
   <string name="app_description">Orbot è un\'applicazione proxy che permette alle altre applicazioni di accedere a internet in maniera più sicura. Orbot usa Tor per cifrare il  traffico internet e lo nasconde poi facendolo rimbalzare attraverso una serie di computer attorno al mondo. Tor è un software libero e una rete aperta che aiuta a difendersi da una forma di sorveglianza della rete conosciuta come analisi del traffico. Quest\'ultima minaccia libertà e privacy personale, attività commerciali riservate, rapporti interpersonali, e persino la sicurezza di stato.</string>
     <string name="status_starting_up">Orbot è in esecuzione...</string>
   <string name="status_activated">Connesso alla rete Tor</string>
-  <string name="status_disabled">Orbot è disattivato</string>
   <string name="status_shutting_down">TorService si sta spegnendo</string>
   <string name="menu_settings">Impostazioni</string>
   <string name="menu_log">Log</string>
@@ -54,10 +53,7 @@
   <string name="pref_proxy_password_title">Password del Proxy in Uscita</string>
   <string name="pref_proxy_password_summary">Password del Proxy (Facoltativo)</string>
   <string name="pref_proxy_password_dialog">Inserisci Password Proxy</string>
-    <string name="couldn_t_start_tor_process_">Impossibile avviare il processo Tor:</string>
-    <string name="error">Errore</string>
-  <string name="your_reachableaddresses_settings_caused_an_exception_">La tua configurazione dell\'indirizzo raggiungibile ha causato un\'eccezione!</string>
-  <string name="your_relay_settings_caused_an_exception_">La configurazione del tuo relay ha causato un\'eccezione!</string>
+  <string name="error">Errore</string>
   <string name="exit_nodes">Nodi di uscita</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Identificatori, nicknames, paesi ed indirizzi per l\'ultimo hop</string>
   <string name="enter_exit_nodes">Inserire i nodi d\'uscita</string>
@@ -94,10 +90,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Un\'app vuole aprire la porta %1$d del server nascosto alla rete Tor. È un\'azione sicura se ti fidi dell\'app.</string>
-  <string name="found_existing_tor_process">trovato un processo Tor esistente...</string>
-  <string name="something_bad_happened">E\' accaduto un evento indesiderato. Controllare i log.</string>
-    <string name="unable_to_start_tor">Impossibile avviare Tor:</string>
-    <string name="pref_use_persistent_notifications">Mantieni sempre l\'icona nella barra degli strumenti quando Orbot è connesso.</string>
+  <string name="pref_use_persistent_notifications">Mantieni sempre l\'icona nella barra degli strumenti quando Orbot è connesso.</string>
   <string name="pref_use_persistent_notifications_title">Notifiche sempre attive</string>
   <string name="pref_use_expanded_notifications">Visualizza notifica espansa con nazione e ip dell\'nodo d\'uscita Tor</string>
   <string name="pref_use_expanded_notifications_title">Espandi notifiche</string>
@@ -105,8 +98,7 @@
   <string name="pref_disable_network_title">impedire spegnimento automatico della rete</string>
   <string name="pref_disable_network_summary">Stand-by di Tor quando non c\'è un collegamento a internet disponibile</string>
   <string name="newnym">Sei passato a una nuova identità Tor!</string>
-  <string name="updating_settings_in_tor_service">aggiornamento impostazioni nel servizio Tor</string>
-  <string name="pref_socks_title">Tor SOCKS</string>
+    <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_summary">Porta sulla quale Tor offre il proxy SOCKS (default: 9050 o 0 per disabilitare)</string>
   <string name="pref_socks_dialog">Configurazione Porta SOCKS</string>
   <string name="pref_transport_title">Porta TransProxy Tor</string>

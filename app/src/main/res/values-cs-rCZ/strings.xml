@@ -4,7 +4,6 @@
     <string name="app_description">Orbot je bezplatný proxy server, který umožňuje bezpečnější použití internetu v ostatních apklikacích. Orbot používá Tor pro šifrování internetového provozu a skrývá se díky předávání provozu přes více počítačů po celém světě. Tor je bezplatný software a otevřená síť, která vám pomáhá chránit se před sledováním sítě, které ohrožuje osobní svobodu, bezpečnost, důvěrné obchodní aktivity a vztahy a před státním sledováním, označovaným jako anylýza provozu.</string>
     <string name="status_starting_up">Orbot se spouští…</string>
     <string name="status_activated">Připojen k síti Tor</string>
-    <string name="status_disabled">Orbot je deaktivován</string>
     <string name="status_shutting_down">TorService se vypíná…</string>
     <string name="menu_settings">Nastavení</string>
     <string name="menu_log">Log</string>
@@ -51,10 +50,7 @@
     <string name="pref_proxy_password_title">Heslo odchozí proxy</string>
     <string name="pref_proxy_password_summary">Proxy heslo (volitelné)</string>
     <string name="pref_proxy_password_dialog">Zadejte Proxy heslo</string>
-    <string name="couldn_t_start_tor_process_">Nelze spustit Tor proces:</string>
     <string name="error">Chyba</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">Vaše nastavení dostupných adres (ReachableAddresses) způsobilo chybu!</string>
-    <string name="your_relay_settings_caused_an_exception_">Vaše nastavení relace způsobilo výjimku!</string>
     <string name="exit_nodes">Výstupní nody</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Otisky (fingerprints), přezdívky serveru (nicks), státy a adresy pro poslední skok (hop)</string>
     <string name="enter_exit_nodes">Zadejte výstupní nody</string>
@@ -84,9 +80,6 @@
     <string name="third_party_software">Software třetích stran:</string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="found_existing_tor_process">nalezev existující Tor proces…</string>
-    <string name="something_bad_happened">Stalo se něco špatného. Zkontrolujte log</string>
-    <string name="unable_to_start_tor">Nelze spustit Tor:</string>
     <string name="pref_use_persistent_notifications">Vždy zobrazit ikonu ve stavovém řádku, pokud je Orbot připojen.</string>
     <string name="pref_use_persistent_notifications_title">Notifikace vždy zapnuté</string>
     <string name="pref_use_expanded_notifications">Zobrazit rozšířené oznánemí s Tor výstupní zemí a IP</string>
@@ -95,7 +88,6 @@
     <string name="pref_disable_network_title">Vypnout uspávání sítě</string>
     <string name="pref_disable_network_summary">Uspat Tor když není k dispozici přístup k Internetu</string>
     <string name="newnym">Vaše identita na Toru byla změněna!</string>
-    <string name="updating_settings_in_tor_service">aktualizuji nastavení služby Tor</string>
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">Port, na kterém Tor nabízí SOCKS proxy (default: 9050, 0 pro zakázání)</string>
     <string name="pref_socks_dialog">SOCKS nastavení portu</string>

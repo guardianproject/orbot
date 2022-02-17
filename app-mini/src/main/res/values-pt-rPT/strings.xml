@@ -6,8 +6,7 @@
 </string>
     <string name="status_starting_up">Orbot está a iniciar…</string>
   <string name="status_activated">Ligado à rede Tor</string>
-  <string name="status_disabled">Orbot está desativado</string>
-  <string name="status_shutting_down">TorService está a encerrar</string>
+    <string name="status_shutting_down">TorService está a encerrar</string>
     <string name="menu_settings">Definições</string>
   <string name="menu_log">Registo</string>
     <string name="menu_start">Iniciar</string>

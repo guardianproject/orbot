@@ -4,8 +4,7 @@
   <string name="app_description">Orbot הינה אפליקציית פרוקסי חינמית המאפשרת לאפליקציות אחרות להשתמש באינטרנט בבטחה. Orbot נעזרת ב-Tor כדי להצפין את תעבורת האינטרנט שלך ולהסוותה באמצעותה ניתובה דרך מספר מחשבים ברחבי העולם. Tor היא תוכנה חופשית ורשת פתוחה המסייעת לך להתגונן מפני סוגים מסוימים של אמצעי ניטור ומעקב אחר רשת האינטרנט המאיימים על הפרטיות, החירות האישית, פעילויות עסקיות ומערכות יחסים חשאיות.</string>
     <string name="status_starting_up">Orbot מתחיל…</string>
   <string name="status_activated">מחובר לרשת Tor</string>
-  <string name="status_disabled">Orbot כבוי</string>
-    <string name="menu_settings">הגדרות</string>
+  <string name="menu_settings">הגדרות</string>
   <string name="menu_log">רישום</string>
     <string name="menu_start">התחל</string>
   <string name="menu_stop">עצור</string>
@@ -50,8 +49,7 @@
   <string name="pref_proxy_password_title">סיסמא של Outbound Proxy</string>
   <string name="pref_proxy_password_summary">סיסמת פרוקסי (רשות)</string>
   <string name="pref_proxy_password_dialog">הזן סיסמת פרוקסי</string>
-    <string name="couldn_t_start_tor_process_">אין אפשרות להתחיל תהליך Tor:</string>
-    <string name="error">שגיאה</string>
+  <string name="error">שגיאה</string>
   <string name="exit_nodes">צמתי יציאה</string>
   <string name="enter_exit_nodes">הזן צמתי יציאה</string>
   <string name="exclude_nodes">צמתים מוצאים</string>
@@ -79,15 +77,11 @@
     <string name="third_party_software">תוכנה-צד-ג׳: </string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="found_existing_tor_process">נמצא תהליך Tor קיים…</string>
-  <string name="something_bad_happened">משהו רע התרחש. בדוק את היומן</string>
-    <string name="unable_to_start_tor">לא מסוגל להתחיל את Tor:</string>
-    <string name="pref_use_persistent_notifications">לשמור תמיד את האיקון בסרגל כלים כשאורבוט מחובר</string>
+  <string name="pref_use_persistent_notifications">לשמור תמיד את האיקון בסרגל כלים כשאורבוט מחובר</string>
     <string name="set_locale_title">שפה</string>
   <string name="pref_disable_network_summary">כבה את Tor כאשר אין חיבור לאינטרנט</string>
   <string name="newnym">החלפת אל זהות Tor חדשה!</string>
-  <string name="updating_settings_in_tor_service">מעדכן הגדרות Tor במכשיר</string>
-  <string name="pref_socks_title">Tor SOCKS</string>
+    <string name="pref_socks_title">Tor SOCKS</string>
   <string name="pref_socks_dialog">הגדרות SOCKS Port </string>
   <string name="pref_transport_title">Tor TransProxy Port</string>
   <string name="pref_transport_dialog">הגדרת הפורט של TransProxy</string>
