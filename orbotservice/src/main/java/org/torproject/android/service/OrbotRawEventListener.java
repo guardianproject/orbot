@@ -107,7 +107,7 @@ public class OrbotRawEventListener implements RawEventListener {
                     try {
                         String[] networkStatus = mService.conn.getInfo("ns/id/" + node.fingerPrint).split(" ");
                         node.ipAddress = networkStatus[6];
-                        String countryCode = mService.conn.getInfo("ip-to-country/" + node.ipAddress).toUpperCase(Locale.ENGLISH);
+                        String countryCode = mService.conn.getInfo("ip-to-country/" + node.ipAddress).toUpperCase(Locale.getDefault());
                         if (!countryCode.equals(TOR_CONTROLLER_COUNTRY_CODE_UNKNOWN)) {
                             String emoji = Utils.convertCountryCodeToFlagEmoji(countryCode);
                             String countryName = new Locale("", countryCode).getDisplayName();
