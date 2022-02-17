@@ -23,7 +23,7 @@ public class ClientAuthActionsDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog ad = new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.v3_client_auth)
+                .setTitle(R.string.v3_client_auth_activity_title)
                 .setItems(new CharSequence[]{
                         Html.fromHtml(getString(R.string.v3_backup_key)),
                         getString(R.string.v3_delete_client_authorization)

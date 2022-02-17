@@ -120,7 +120,6 @@
     <string name="v3_onion">v3 .onion Domeniu</string>
     <string name="v3_key_hash">x25519 Cheie privată în baza32</string>
     <string name="v3_client_auth_activity_title">Autorizare client v3</string>
-    <string name="v3_client_auth">v3 Onion Service Autorizare client</string>
     <string name="v3_hosted_services">Servicii găzduite v3 Onion</string>
     <string name="hidden_services">Onion Servicii</string>
     <string name="vpn_default_world">Nivel global (Auto)</string>

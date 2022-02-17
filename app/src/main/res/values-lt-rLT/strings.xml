@@ -38,7 +38,6 @@
     <string name="solve_captcha_instruction">Išspręskite CAPTCHA, kad galėtumėte prašyti tiltų.</string>
     <string name="ports_reachable_behind_a_restrictive_firewall">Prievadai, pasiekiami už ribojančiosios ugniasienės</string>
     <string name="listening_port_for_your_tor_relay">„Tor“ relės klausymo prievadas</string>
-    <string name="v3_client_auth">v3 „Onion Service“ kliento autorizavimas</string>
     <string name="testing_tor_direct_success">Sėkmė. „Tor“ jungtis yra gera!</string>
     <string name="bridge_direct_connect">Prisijungti tiesiogiai prie „Tor“ (geriausia)</string>
     <string name="backup_saved_at_external_storage">Atsarginė kopija išsaugota išorinėje saugykloje</string>

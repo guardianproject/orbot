@@ -196,7 +196,6 @@
     <string name="v3_backup_key_warning">Avertissement : Votre clé pourrait être exposée à d’autres applis</string>
     <string name="v3_key_hash">Clé privée x25519 en Base32</string>
     <string name="v3_client_auth_activity_title">Autorisation client v3</string>
-    <string name="v3_client_auth">Autorisation client Onion Service v3</string>
     <string name="v3_hosted_services">Services Onion v3 hébergés</string>
     <string name="deny">Refuser</string>
     <string name="allow">Autoriser</string>

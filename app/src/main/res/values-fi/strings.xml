@@ -201,7 +201,6 @@
     <string name="v3_backup_key_warning">Varoitus: Tämä voi paljastaa avaimesi toisille sovelluksille</string>
     <string name="v3_onion">v3 .onion-verkkotunnus</string>
     <string name="v3_client_auth_activity_title">v3 Asiakasohjelman todentaminen</string>
-    <string name="v3_client_auth">v3 Onion Service asiakasohjelman todentaminen</string>
     <string name="v3_hosted_services">Ylläpidetty v3 Onion Services</string>
     <string name="get_bridges_email_request">Pyydä siltoja sähköpostitse</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Salli Wi-Fi -vertaisten, yhdistettyjen laitteiden ja kenen tahansa, joka voi yhdistää sinun IP-osoitteeseesi, yhdistää Tor-verkkoon.</string>

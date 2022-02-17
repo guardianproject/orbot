@@ -27,7 +27,7 @@
 
             <item
                 android:id="@+id/menu_v3_onion_client_auth"
-                android:title="@string/v3_client_auth"
+                android:title="@string/v3_client_auth_activity_title"
                 yourapp:showAsAction="never" />
 
         </menu>

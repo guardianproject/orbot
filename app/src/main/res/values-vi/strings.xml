@@ -178,7 +178,6 @@
     <string name="v3_onion">Miền .onion v3</string>
     <string name="v3_key_hash">Mã khoá riêng tư x25519 trong Base 32</string>
     <string name="v3_client_auth_activity_title">Uỷ quyền khách v3</string>
-    <string name="v3_client_auth">Uỷ quyền khách cho dịch vụ Onion v3</string>
     <string name="v3_hosted_services">Dịch vụ Onion v3 được lưu trữ</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>

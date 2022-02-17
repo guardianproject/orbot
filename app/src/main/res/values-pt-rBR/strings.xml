@@ -198,7 +198,6 @@
     <string name="v3_onion">Domínio v3 .onion</string>
     <string name="v3_key_hash">Chave privada x25519 na Base 32</string>
     <string name="v3_client_auth_activity_title">Autorização v3 do cliente</string>
-    <string name="v3_client_auth">Autorização do cliente do serviço Onion v3</string>
     <string name="v3_hosted_services">Serviços Onion v3 hospedados</string>
     <string name="deny">Negue</string>
     <string name="allow">Permita</string>

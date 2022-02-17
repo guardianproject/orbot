@@ -198,7 +198,6 @@
     <string name="v3_onion">v3 Домен .onion</string>
     <string name="v3_key_hash">x25519 Закрытый ключ в базе 32</string>
     <string name="v3_client_auth_activity_title">v3 Авторизация клиента</string>
-    <string name="v3_client_auth">v3 Onion Service Авторизация Клиента</string>
     <string name="v3_hosted_services">Хостинг v3 Onion Services</string>
     <string name="get_bridges_email_request">Запросить мосты по электронной почте</string>
     <string name="mebibyte">MiB</string>

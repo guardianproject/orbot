@@ -175,7 +175,6 @@
     <string name="v3_onion">Dominio .onion v3</string>
     <string name="v3_key_hash">Chiave privata x25519 in Base 32</string>
     <string name="v3_client_auth_activity_title">Autorizzazione client v3</string>
-    <string name="v3_client_auth">Autorizzazione client servizio nascosto v3</string>
     <string name="v3_hosted_services">Servizi nascosti v3 ospitati</string>
     <string name="get_bridges_email_request">Richiedi bridge via email</string>
     <string name="mebibyte">MiB</string>

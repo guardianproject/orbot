@@ -198,7 +198,6 @@
     <string name="v3_onion">Домен .onion v3</string>
     <string name="v3_key_hash">x25519 Закритий ключ у Base32</string>
     <string name="v3_client_auth_activity_title">Авторизація клієнта v3</string>
-    <string name="v3_client_auth">Авторизація клієнта служби Onion v3</string>
     <string name="v3_hosted_services">Хостинг служб Onion v3</string>
     <string name="deny">Заборонити</string>
     <string name="allow">Дозволити</string>

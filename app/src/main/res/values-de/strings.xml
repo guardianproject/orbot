@@ -183,7 +183,6 @@
     <string name="v3_import_auth_private">Importiere .auth_private</string>
     <string name="v3_backup_name_hint">Sicherungsdateiname …</string>
     <string name="v3_delete_client_authorization_confirm">Entferne Client Authorisierung</string>
-    <string name="v3_client_auth">v3 Onion Dienst Client Authorisierung</string>
     <string name="v3_hosted_services">Gehostete v3 Onion Dienste</string>
     <string name="v3_delete_client_authorization">Entferne Client Authorisierungs-Schlüssel</string>
     <string name="v3_backup_key_warning">Warnung: Dadurch könnten Ihre Schlüssel anderen Apps zugänglich gemacht werden</string>

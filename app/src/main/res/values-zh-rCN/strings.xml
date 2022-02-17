@@ -198,7 +198,6 @@
     <string name="v3_onion">v3 .onion 域名</string>
     <string name="v3_key_hash">Base 32 编码的 x25519 私钥</string>
     <string name="v3_client_auth_activity_title">v3 客户端授权</string>
-    <string name="v3_client_auth">v3 Onion 服务客户端授权</string>
     <string name="v3_hosted_services">托管的 v3 Onion 服务</string>
     <string name="deny">拒绝</string>
     <string name="allow">允许</string>
