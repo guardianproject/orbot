@@ -13,6 +13,7 @@ public interface VpnPrefs {
     String[] BYPASS_VPN_PACKAGES = new String[] {
             "org.torproject.torbrowser_alpha",
             "org.torproject.torbrowser",
+            "org.onionshare.android", // issue #618
             "org.briarproject.briar.android" // https://github.com/guardianproject/orbot/issues/474
     };
 }
