@@ -53,18 +53,12 @@ import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static org.torproject.android.service.TorServiceConstants.ACTION_START;
-import static org.torproject.android.service.TorServiceConstants.ACTION_START_ON_BOOT;
-import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
-import static org.torproject.android.service.TorServiceConstants.ACTION_STOP;
-import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
-
 import androidx.annotation.ChecksSdkIntAtLeast;
 
 import IPtProxy.IPtProxy;
 import IPtProxy.PacketFlow;
 
-public class OrbotVpnManager implements Handler.Callback {
+public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     private static final String TAG = "OrbotVpnService";
     private final static int VPN_MTU = 1500;
     @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.LOLLIPOP)
