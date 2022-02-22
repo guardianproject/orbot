@@ -34,7 +34,6 @@ import org.torproject.android.R;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorifiedApp;
-import org.torproject.android.service.vpn.VpnPrefs;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -43,8 +42,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
-
-import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
 
 public class AppManagerActivity extends AppCompatActivity implements OnClickListener, OrbotConstants {
 
@@ -57,11 +54,11 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
     /**
      * @return true if the app is "enabled", not Orbot, and not in
-     * {@link org.torproject.android.service.vpn.VpnPrefs#BYPASS_VPN_PACKAGES}
+     * {@link #BYPASS_VPN_PACKAGES}
      */
     public static boolean includeAppInUi(ApplicationInfo applicationInfo) {
         if (!applicationInfo.enabled) return false;
-        if (Arrays.binarySearch(VpnPrefs.BYPASS_VPN_PACKAGES, applicationInfo.packageName) >= 0) return false;
+        if (Arrays.binarySearch(BYPASS_VPN_PACKAGES, applicationInfo.packageName) >= 0) return false;
         return !BuildConfig.APPLICATION_ID.equals(applicationInfo.packageName);
     }
 

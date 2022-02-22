@@ -78,7 +78,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 @SuppressWarnings("StringConcatenationInsideStringBufferAppend")
-public class OrbotService extends VpnService implements TorServiceConstants, OrbotConstants {
+public class OrbotService extends VpnService implements OrbotConstants {
 
     public final static String BINARY_TOR_VERSION = TorService.VERSION_NAME;
 
@@ -476,11 +476,11 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             if (!appCacheHome.exists())
                 appCacheHome.mkdirs();
 
-            mV3OnionBasePath = new File(getFilesDir().getAbsolutePath(), TorServiceConstants.ONION_SERVICES_DIR);
+            mV3OnionBasePath = new File(getFilesDir().getAbsolutePath(), ONION_SERVICES_DIR);
             if (!mV3OnionBasePath.isDirectory())
                 mV3OnionBasePath.mkdirs();
 
-            mV3AuthBasePath = new File(getFilesDir().getAbsolutePath(), TorServiceConstants.V3_CLIENT_AUTH_DIR);
+            mV3AuthBasePath = new File(getFilesDir().getAbsolutePath(), V3_CLIENT_AUTH_DIR);
             if (!mV3AuthBasePath.isDirectory())
                 mV3AuthBasePath.mkdirs();
 
@@ -550,14 +550,14 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         extraLines.append("RunAsDaemon 0").append('\n');
         extraLines.append("AvoidDiskWrites 1").append('\n');
 
-        String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS, (TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT));
+        String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS, SOCKS_PROXY_PORT_DEFAULT);
 
         if (socksPortPref.indexOf(':') != -1)
             socksPortPref = socksPortPref.split(":")[1];
 
         socksPortPref = checkPortOrAuto(socksPortPref);
 
-        String httpPortPref = prefs.getString(OrbotConstants.PREF_HTTP, (TorServiceConstants.HTTP_PROXY_PORT_DEFAULT));
+        String httpPortPref = prefs.getString(OrbotConstants.PREF_HTTP, HTTP_PROXY_PORT_DEFAULT);
 
         if (httpPortPref.indexOf(':') != -1)
             httpPortPref = httpPortPref.split(":")[1];
@@ -607,8 +607,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             extraLines.append("ReducedCircuitPadding 1").append('\n');
         }
 
-        String transPort = prefs.getString("pref_transport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT + "");
-        String dnsPort = prefs.getString("pref_dnsport", TorServiceConstants.TOR_DNS_PORT_DEFAULT + "");
+        String transPort = prefs.getString("pref_transport", TOR_TRANSPROXY_PORT_DEFAULT + "");
+        String dnsPort = prefs.getString("pref_dnsport", TOR_DNS_PORT_DEFAULT + "");
 
         extraLines.append("TransPort ").append(checkPortOrAuto(transPort)).append('\n');
         extraLines.append("DNSPort ").append(checkPortOrAuto(dnsPort)).append('\n');
@@ -671,10 +671,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     /**
      * Send Orbot's status in reply to an
-     * {@link TorServiceConstants#ACTION_START} {@link Intent}, targeted only to
+     * {@link #ACTION_START} {@link Intent}, targeted only to
      * the app that sent the initial request. If the user has disabled auto-
      * starts, the reply {@code ACTION_START Intent} will include the extra
-     * {@link TorServiceConstants#STATUS_STARTS_DISABLED}
+     * {@link #STATUS_STARTS_DISABLED}
      */
     private void replyWithStatus(Intent startRequest) {
         String packageName = startRequest.getStringExtra(EXTRA_PACKAGE_NAME);
@@ -895,7 +895,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     confDns = st.nextToken().split(":")[1];
                     confDns = confDns.substring(0, confDns.length() - 1);
                     mPortDns = Integer.parseInt(confDns);
-                    Prefs.getSharedPrefs(getApplicationContext()).edit().putInt(VpnPrefs.PREFS_DNS_PORT, mPortDns).apply();
+                    Prefs.getSharedPrefs(getApplicationContext()).edit().putInt(PREFS_DNS_PORT, mPortDns).apply();
                 }
 
                 String confTrans = conn.getInfo("net/listeners/trans");
