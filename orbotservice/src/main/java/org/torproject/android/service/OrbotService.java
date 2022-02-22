@@ -269,7 +269,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         else
             Log.d(OrbotConstants.TAG, "Got null onStartCommand() intent");
 
-        return Service.START_STICKY;
+        return Service.START_REDELIVER_INTENT;
     }
 
     @Override
