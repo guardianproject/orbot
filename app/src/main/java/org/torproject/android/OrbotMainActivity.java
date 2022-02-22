@@ -63,7 +63,6 @@ import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.Utils;
-import org.torproject.android.service.vpn.VpnPrefs;
 import org.torproject.android.ui.AppManagerActivity;
 import org.torproject.android.ui.dialog.AboutDialogFragment;
 import org.torproject.android.ui.v3onionservice.PermissionManager;

@@ -93,9 +93,6 @@ public class Utils {
         }
     }
 
-    /*
-     * Zips a subfolder
-     */
     private static void zipSubFolder(ZipOutputStream out, File folder,
                                      int basePathLength) throws IOException {
         final int BUFFER = 2048;

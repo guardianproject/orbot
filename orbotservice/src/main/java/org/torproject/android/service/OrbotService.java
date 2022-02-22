@@ -44,7 +44,6 @@ import org.torproject.android.service.util.DummyActivity;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.Utils;
 import org.torproject.android.service.vpn.OrbotVpnManager;
-import org.torproject.android.service.vpn.VpnPrefs;
 import org.torproject.jni.TorService;
 
 import java.io.BufferedReader;
