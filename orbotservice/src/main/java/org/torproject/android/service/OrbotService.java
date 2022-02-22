@@ -165,7 +165,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        logNotice("Low Memory Warning!");
+        logNotice(getString(R.string.log_notice_low_memory_warning));
     }
 
     private void clearNotifications() {
@@ -320,7 +320,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             mPortTrans = -1;
 
         } catch (Exception e) {
-            logNotice("An error occurred stopping Tor: " + e.getMessage());
+            logNotice(getString(R.string.couldn_t_start_tor_process_) + e.getMessage());
             sendCallbackLogMessage(getString(R.string.something_bad_happened));
         }
         clearNotifications();
@@ -414,12 +414,12 @@ public class OrbotService extends VpnService implements OrbotConstants {
             };
         }
         IPtProxy.startSnowflakeProxy(capacity, broker, relay, stun, natProbe, logFile, keepLocalAddresses, unsafeLogging, callback);
-        logNotice("Snowflake Proxy mode ENABLED");
+        logNotice(getString(R.string.log_notice_snowflake_proxy_enabled));
     }
 
     private void disableSnowflakeProxy() {
         IPtProxy.stopSnowflakeProxy();
-        logNotice("Snowflake Proxy mode DISABLED");
+        logNotice(getString(R.string.log_notice_snowflake_proxy_disabled));
     }
 
     /**
@@ -634,7 +634,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         extraLines.append('\n');
         extraLines.append(prefs.getString("pref_custom_torrc", "")).append('\n');
 
-        logNotice("updating torrc custom configuration...");
+        logNotice(getString(R.string.log_notice_updating_torrc));
 
         debug("torrc.custom=" + extraLines.toString());
 
@@ -721,7 +721,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 try {
                     updateV3OnionNames();
                 } catch (SecurityException se) {
-                    logNotice("unable to upload v3 onion names");
+                    logNotice(getString(R.string.log_notice_unable_to_update_onions));
                 }
             }
         } catch (Exception e) {
@@ -826,7 +826,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                         conn.addRawEventListener(mOrbotRawEventListener);
                         conn.authenticate(new byte[0]);
                         conn.setEvents(events);
-                        logNotice("SUCCESS added control port event handler");
+                        logNotice(getString(R.string.log_notice_added_event_handler));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -872,7 +872,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     private void initControlConnection() {
         if (conn != null) {
-            logNotice("SUCCESS connected to Tor control port.");
+            logNotice(getString(R.string.log_notice_connected_to_tor_control_port));
             try {
                 String confSocks = conn.getInfo("net/listeners/socks");
                 StringTokenizer st = new StringTokenizer(confSocks, " ");
