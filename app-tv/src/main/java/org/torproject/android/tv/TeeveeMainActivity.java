@@ -61,7 +61,6 @@ import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorifiedApp;
-import org.torproject.android.service.vpn.VpnPrefs;
 
 import java.io.BufferedReader;
 import java.io.IOException;
