@@ -55,6 +55,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import static org.torproject.android.service.TorServiceConstants.ACTION_START;
+import static org.torproject.android.service.TorServiceConstants.ACTION_START_ON_BOOT;
 import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP;
 import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
@@ -95,7 +96,7 @@ public class OrbotVpnManager implements Handler.Callback {
             String action = intent.getAction();
 
             if (action != null) {
-                if (action.equals(ACTION_START_VPN) || action.equals(ACTION_START)) {
+                if (action.equals(ACTION_START_VPN) || action.equals(ACTION_START) || action.equals(ACTION_START_ON_BOOT) ) {
                     Log.d(TAG, "starting VPN");
 
                     isStarted = true;
@@ -224,7 +225,6 @@ public class OrbotVpnManager implements Handler.Callback {
     }
 
     public final static String FAKE_DNS = "10.10.10.10";
-    public final static String FAKE_DNS_HEX= "a0a0a0a";
 
     private synchronized void setupTun2Socks(final VpnService.Builder builder) {
         try {
@@ -234,12 +234,11 @@ public class OrbotVpnManager implements Handler.Callback {
             final String defaultRoute = "0.0.0.0";
             final String virtualGateway = "192.168.50.1";
 
-            builder.setMtu(VPN_MTU);
+        //    builder.setMtu(VPN_MTU);
          //   builder.addAddress(virtualGateway, 32);
             builder.addAddress(virtualGateway, 24);
 
             builder.addRoute(defaultRoute,0);
-
 
             builder.setSession(vpnName);
 
@@ -273,17 +272,11 @@ public class OrbotVpnManager implements Handler.Callback {
                  **/
             }
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mInterface = builder.setSession(mSessionName)
-                        .setConfigureIntent(null) // previously this was set to a null member variable
-                        .setBlocking(true)
-                        .establish();
-            }
-            else {
-                mInterface = builder.setSession(mSessionName)
-                        .setConfigureIntent(null) // previously this was set to a null member variable
-                        .establish();
-            }
+            // previously this was set to a null member variable
+            mInterface = builder.setSession(mSessionName)
+                    .setConfigureIntent(null) // previously this was set to a null member variable
+                  //  .setBlocking(true)
+                    .establish();
 
 
             FileInputStream fis = new FileInputStream(mInterface.getFileDescriptor());
