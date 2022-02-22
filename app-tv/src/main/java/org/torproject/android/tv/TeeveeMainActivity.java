@@ -16,7 +16,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -36,7 +35,6 @@ import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -61,7 +59,6 @@ import org.torproject.android.tv.ui.AppManagerActivity;
 import org.torproject.android.tv.ui.onboarding.OnboardingActivity;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
-import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorifiedApp;
 import org.torproject.android.service.vpn.VpnPrefs;
@@ -74,8 +71,6 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.StringTokenizer;
-
-import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
 
 public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLongClickListener {
 
@@ -166,13 +161,13 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
             if (action == null)
                 return;
 
-            if (action.equals(TorServiceConstants.LOCAL_ACTION_LOG)) {
+            if (action.equals(LOCAL_ACTION_LOG)) {
                 Message msg = mStatusUpdateHandler.obtainMessage(STATUS_UPDATE);
-                msg.obj = intent.getStringExtra(TorServiceConstants.LOCAL_EXTRA_LOG);
-                msg.getData().putString("status", intent.getStringExtra(TorServiceConstants.EXTRA_STATUS));
+                msg.obj = intent.getStringExtra(LOCAL_EXTRA_LOG);
+                msg.getData().putString("status", intent.getStringExtra(EXTRA_STATUS));
                 mStatusUpdateHandler.sendMessage(msg);
 
-            } else if (action.equals(TorServiceConstants.LOCAL_ACTION_BANDWIDTH)) {
+            } else if (action.equals(LOCAL_ACTION_BANDWIDTH)) {
                 long upload = intent.getLongExtra("up", 0);
                 long download = intent.getLongExtra("down", 0);
                 long written = intent.getLongExtra("written", 0);
@@ -183,18 +178,18 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
                 msg.getData().putLong("upload", upload);
                 msg.getData().putLong("readTotal", read);
                 msg.getData().putLong("writeTotal", written);
-                msg.getData().putString("status", intent.getStringExtra(TorServiceConstants.EXTRA_STATUS));
+                msg.getData().putString("status", intent.getStringExtra(EXTRA_STATUS));
 
                 mStatusUpdateHandler.sendMessage(msg);
 
-            } else if (action.equals(TorServiceConstants.ACTION_STATUS)) {
+            } else if (action.equals(ACTION_STATUS)) {
                 lastStatusIntent = intent;
 
                 Message msg = mStatusUpdateHandler.obtainMessage(STATUS_UPDATE);
-                msg.getData().putString("status", intent.getStringExtra(TorServiceConstants.EXTRA_STATUS));
+                msg.getData().putString("status", intent.getStringExtra(EXTRA_STATUS));
 
                 mStatusUpdateHandler.sendMessage(msg);
-            } else if (action.equals(TorServiceConstants.LOCAL_ACTION_PORTS)) {
+            } else if (action.equals(LOCAL_ACTION_PORTS)) {
 
                 Message msg = mStatusUpdateHandler.obtainMessage(MESSAGE_PORTS);
                 msg.getData().putInt("socks", intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT, -1));
@@ -290,13 +285,13 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
          * info to this app */
         LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
         lbm.registerReceiver(mLocalBroadcastReceiver,
-                new IntentFilter(TorServiceConstants.ACTION_STATUS));
+                new IntentFilter(ACTION_STATUS));
         lbm.registerReceiver(mLocalBroadcastReceiver,
-                new IntentFilter(TorServiceConstants.LOCAL_ACTION_BANDWIDTH));
+                new IntentFilter(LOCAL_ACTION_BANDWIDTH));
         lbm.registerReceiver(mLocalBroadcastReceiver,
-                new IntentFilter(TorServiceConstants.LOCAL_ACTION_LOG));
+                new IntentFilter(LOCAL_ACTION_LOG));
         lbm.registerReceiver(mLocalBroadcastReceiver,
-                new IntentFilter(TorServiceConstants.LOCAL_ACTION_PORTS));
+                new IntentFilter(LOCAL_ACTION_PORTS));
 
 
         boolean showFirstTime = mPrefs.getBoolean("connect_first_time", true);
@@ -308,11 +303,8 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
             startActivity(new Intent(this, OnboardingActivity.class));
         }
 
-        /**
-         * Resets previous DNS Port to the default
-         */
-        mPrefs.edit().putInt(VpnPrefs.PREFS_DNS_PORT, TorServiceConstants.TOR_DNS_PORT_DEFAULT).apply();
-
+        //Resets previous DNS Port to the default
+        mPrefs.edit().putInt(PREFS_DNS_PORT, TOR_DNS_PORT_DEFAULT).apply();
     }
 
     private void sendIntentToService(final String action) {
@@ -320,11 +312,9 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
         Intent intent = new Intent(TeeveeMainActivity.this, OrbotService.class);
         intent.setAction(action);
         startService(intent);
-
     }
 
     private void stopTor() {
-
         Intent intent = new Intent(TeeveeMainActivity.this, OrbotService.class);
         stopService(intent);
 
@@ -355,17 +345,11 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
         mBtnVPN.setFocusable(true);
         mBtnVPN.setFocusableInTouchMode(true);
 
-        mBtnVPN.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-
-                if (hasFocus)
-                    v.setBackgroundColor(getColor(R.color.dark_purple));
-                else
-                {
-                    v.setBackgroundColor(getColor(R.color.med_gray));
-                }
-            }
+        mBtnVPN.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus)
+                v.setBackgroundColor(getColor(R.color.dark_purple));
+            else
+                v.setBackgroundColor(getColor(R.color.med_gray));
         });
 
 
@@ -374,43 +358,27 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
 
         //auto start VPN if VPN is enabled
         if (useVPN) {
-            sendIntentToService(TorServiceConstants.ACTION_START_VPN);
+            sendIntentToService(ACTION_START_VPN);
         }
 
-        mBtnVPN.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                enableVPN(isChecked);
-            }
-        });
+        mBtnVPN.setOnCheckedChangeListener((buttonView, isChecked) -> enableVPN(isChecked));
 
         mBtnSnowflake = findViewById(R.id.btnSnowflake);
         mBtnSnowflake.setFocusable(true);
         mBtnSnowflake.setFocusableInTouchMode(true);
 
-        mBtnSnowflake.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-
-                if (hasFocus)
-                    v.setBackgroundColor(getColor(R.color.dark_purple));
-                else
-                {
-                    v.setBackgroundColor(getColor(R.color.med_gray));
-                }
-            }
+        mBtnSnowflake.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus)
+                v.setBackgroundColor(getColor(R.color.dark_purple));
+            else
+                v.setBackgroundColor(getColor(R.color.med_gray));
         });
 
 
         boolean beASnowflake = Prefs.beSnowflakeProxy();
         mBtnSnowflake.setChecked(beASnowflake);
 
-        mBtnSnowflake.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-               Prefs.setBeSnowflakeProxy(isChecked);
-            }
-        });
+        mBtnSnowflake.setOnCheckedChangeListener((buttonView, isChecked) -> Prefs.setBeSnowflakeProxy(isChecked));
 
         rv = findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -418,8 +386,6 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
         rv.setLayoutManager(llm);
         rv.setFocusable(true);
         rv.setFocusableInTouchMode(true);
-
-
     }
 
     @Override
@@ -427,10 +393,6 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
         super.attachBaseContext(LocaleHelper.onAttach(base));
     }
 
-    /*
-     * Create the UI Options Menu (non-Javadoc)
-     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -441,7 +403,6 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         if (item.getItemId() == R.id.menu_newnym) {
             requestNewTorIdentity();
         } else if (item.getItemId() == R.id.menu_settings) {
@@ -467,10 +428,10 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
             version = "Version Not Found";
         }
 
-        TextView versionName = (TextView) view.findViewById(R.id.versionName);
+        TextView versionName = view.findViewById(R.id.versionName);
         versionName.setText(version);
 
-        TextView aboutOther = (TextView) view.findViewById(R.id.aboutother);
+        TextView aboutOther = view.findViewById(R.id.aboutother);
 
         try {
             String aboutText = readFromAssets(this, "LICENSE");
@@ -512,8 +473,8 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
 
 
     private void refreshVPNApps() {
-        sendIntentToService(TorServiceConstants.ACTION_STOP_VPN);
-        sendIntentToService(TorServiceConstants.ACTION_START_VPN);
+        sendIntentToService(ACTION_STOP_VPN);
+        sendIntentToService(ACTION_START_VPN);
     }
 
     private void enableVPN(boolean enable) {
@@ -530,11 +491,11 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
                 if (intentVPN != null) {
                     startActivityForResult(intentVPN, REQUEST_VPN);
                 } else {
-                    sendIntentToService(TorServiceConstants.ACTION_START);
-                    sendIntentToService(TorServiceConstants.ACTION_START_VPN);
+                    sendIntentToService(ACTION_START);
+                    sendIntentToService(ACTION_START_VPN);
                 }
             } else {
-                sendIntentToService(TorServiceConstants.ACTION_STOP_VPN);
+                sendIntentToService(ACTION_STOP_VPN);
                 stopTor(); // todo this call isn't in the main Orbot app, is it needed?
             }
         }
@@ -652,14 +613,14 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
             }
         } else if (request == REQUEST_VPN_APPS_SELECT) {
             if (response == RESULT_OK &&
-                    torStatus == TorServiceConstants.STATUS_ON) {
+                    torStatus == STATUS_ON) {
                 refreshVPNApps();
 
                 String newPkgId = data.getStringExtra(Intent.EXTRA_PACKAGE_NAME);
                 //add new entry
             }
         } else if (request == REQUEST_VPN && response == RESULT_OK) {
-            sendIntentToService(TorServiceConstants.ACTION_START_VPN);
+            sendIntentToService(ACTION_START_VPN);
         } else if (request == REQUEST_VPN && response == RESULT_CANCELED) {
             mBtnVPN.setChecked(false);
             Prefs.putUseVpn(false);
@@ -709,7 +670,7 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
     private void enableBridges(boolean enable) {
         Prefs.putBridgesEnabled(enable);
 
-        if (torStatus == TorServiceConstants.STATUS_ON) {
+        if (torStatus == STATUS_ON) {
             String bridgeList = Prefs.getBridgesList();
             if (bridgeList != null && bridgeList.length() > 0) {
                 requestTorRereadConfig();
@@ -731,7 +692,7 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
         requestTorStatus();
 
         if (torStatus == null)
-            updateStatus("", TorServiceConstants.STATUS_STOPPING);
+            updateStatus("", STATUS_STOPPING);
         else
             updateStatus(null, torStatus);
 
@@ -785,7 +746,7 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
     private void updateStatus(String torServiceMsg, String newTorStatus) {
 
         if (!TextUtils.isEmpty(torServiceMsg)) {
-            if (torServiceMsg.contains(TorServiceConstants.LOG_NOTICE_HEADER)) {
+            if (torServiceMsg.contains(LOG_NOTICE_HEADER)) {
                 //     lblStatus.setText(torServiceMsg);
             }
 
@@ -799,7 +760,7 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
         } else
             torStatus = newTorStatus;
 
-        if (torStatus == TorServiceConstants.STATUS_ON) {
+        if (torStatus == STATUS_ON) {
 
             imgStatus.setImageResource(R.drawable.toron);
 
@@ -810,12 +771,9 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
                 Intent resultIntent = lastStatusIntent;
 
                 if (resultIntent == null)
-                    resultIntent = new Intent(TorServiceConstants.ACTION_START);
+                    resultIntent = new Intent(ACTION_START);
 
-                resultIntent.putExtra(
-                        TorServiceConstants.EXTRA_STATUS,
-                        torStatus == null ? TorServiceConstants.STATUS_OFF : torStatus
-                );
+                resultIntent.putExtra(EXTRA_STATUS, torStatus == null ? STATUS_OFF : torStatus);
 
                 setResult(RESULT_OK, resultIntent);
 
@@ -823,31 +781,24 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
                 Log.d(TAG, "autoStartFromIntent finish");
             }
 
-            if (Prefs.beSnowflakeProxy())
-            {
-
-
+            if (Prefs.beSnowflakeProxy()) {
                 SnowfallView sv = findViewById(R.id.snowflake_view);
                 sv.setVisibility(View.VISIBLE);
                 sv.restartFalling();
 
             }
-            else
-            {
+            else {
                 SnowfallView sv = findViewById(R.id.snowflake_view);
                 sv.setVisibility(View.GONE);
                 sv.stopFalling();
-
-
             }
 
-
-        } else if (torStatus == TorServiceConstants.STATUS_STARTING) {
+        } else if (torStatus == STATUS_STARTING) {
 
             imgStatus.setImageResource(R.drawable.torstarting);
 
             if (torServiceMsg != null) {
-                if (torServiceMsg.contains(TorServiceConstants.LOG_NOTICE_BOOTSTRAPPED)) {
+                if (torServiceMsg.contains(LOG_NOTICE_BOOTSTRAPPED)) {
                     //        		lblStatus.setText(torServiceMsg);
                 }
             }
@@ -855,7 +806,7 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
             //    	lblStatus.setText(getString(R.string.status_starting_up));
 
 
-        } else if (torStatus == TorServiceConstants.STATUS_STOPPING) {
+        } else if (torStatus == STATUS_STOPPING) {
 
             //	  if (torServiceMsg != null && torServiceMsg.contains(TorServiceConstants.LOG_NOTICE_HEADER))
             //    	lblStatus.setText(torServiceMsg);
@@ -863,7 +814,7 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
             imgStatus.setImageResource(R.drawable.torstarting);
 //            lblStatus.setText(torServiceMsg);
 
-        } else if (torStatus == TorServiceConstants.STATUS_OFF) {
+        } else if (torStatus == STATUS_OFF) {
 
             imgStatus.setImageResource(R.drawable.toroff);
             //          lblStatus.setText("Tor v" + OrbotService.BINARY_TOR_VERSION);
@@ -876,26 +827,26 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
 
     /**
      * Starts tor and related daemons by sending an
-     * {@link TorServiceConstants#ACTION_START} {@link Intent} to
+     * {@link #ACTION_START} {@link Intent} to
      * {@link OrbotService}
      */
     private void startTor() {
-        sendIntentToService(TorServiceConstants.ACTION_START);
+        sendIntentToService(ACTION_START);
         mTxtOrbotLog.setText("");
     }
 
     /**
      * Request tor status without starting it
-     * {@link TorServiceConstants#ACTION_START} {@link Intent} to
+     * {@link #ACTION_START} {@link Intent} to
      * {@link OrbotService}
      */
     private void requestTorStatus() {
-        sendIntentToService(TorServiceConstants.ACTION_STATUS);
+        sendIntentToService(ACTION_STATUS);
     }
 
     public boolean onLongClick(View view) {
 
-        if (torStatus == TorServiceConstants.STATUS_OFF) {
+        if (torStatus == STATUS_OFF) {
             startTor();
         } else {
             stopTor();
@@ -1014,33 +965,18 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
 
                     avh.iv.setVisibility(View.VISIBLE);
 
-                    avh.parent.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+                    avh.parent.setOnClickListener(v -> showAppConfig(pkgId));
 
-                            showAppConfig(pkgId);
+                    avh.parent.setOnFocusChangeListener((v, hasFocus) -> {
+                        if (hasFocus)
+                            v.setBackgroundColor(getColor(R.color.dark_purple));
+                        else {
+                            Palette.generateAsync(drawableToBitmap(app.getIcon()), palette -> {
+                                // Do something with colors...
+                                int color = palette.getVibrantColor(0x000000);
+                                avh.parent.setBackgroundColor(color);
 
-                        }
-                    });
-
-                    avh.parent.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                        @Override
-                        public void onFocusChange(View v, boolean hasFocus) {
-
-                            if (hasFocus)
-                                v.setBackgroundColor(getColor(R.color.dark_purple));
-                            else
-                            {
-                                Palette.generateAsync(drawableToBitmap(app.getIcon()), new Palette.PaletteAsyncListener() {
-                                    public void onGenerated(Palette palette) {
-                                        // Do something with colors...
-
-                                        int color = palette.getVibrantColor(0x000000);
-                                        avh.parent.setBackgroundColor(color);
-
-                                    }
-                                });
-                            }
+                            });
                         }
                     });
 
@@ -1050,25 +986,12 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
             } else {
                 avh.iv.setVisibility(View.INVISIBLE);
                 avh.tv.setText("+ ADD APP");
-                avh.parent.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        showAppPicker();
-
-                    }
-                });
-                avh.parent.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                    @Override
-                    public void onFocusChange(View v, boolean hasFocus) {
-
-                        if (hasFocus)
-                            v.setBackgroundColor(getColor(R.color.dark_purple));
-                        else
-                        {
-                            v.setBackgroundColor(getColor(R.color.med_gray));
-                        }
-                    }
+                avh.parent.setOnClickListener(v -> showAppPicker());
+                avh.parent.setOnFocusChangeListener((v, hasFocus) -> {
+                    if (hasFocus)
+                        v.setBackgroundColor(getColor(R.color.dark_purple));
+                    else
+                        v.setBackgroundColor(getColor(R.color.med_gray));
                 });
             }
         }

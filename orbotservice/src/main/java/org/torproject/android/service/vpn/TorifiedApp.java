@@ -8,14 +8,14 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 
+import org.torproject.android.service.OrbotConstants;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
-
-import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
 
 public class TorifiedApp implements Comparable {
 
@@ -35,7 +35,7 @@ public class TorifiedApp implements Comparable {
 
     public static ArrayList<TorifiedApp> getApps(Context context, SharedPreferences prefs) {
 
-        String tordAppString = prefs.getString(PREFS_KEY_TORIFIED, "");
+        String tordAppString = prefs.getString(OrbotConstants.PREFS_KEY_TORIFIED, "");
         String[] tordApps;
 
         StringTokenizer st = new StringTokenizer(tordAppString, "|");
@@ -66,7 +66,7 @@ public class TorifiedApp implements Comparable {
             app = new TorifiedApp();
             try {
                 PackageInfo pInfo = pMgr.getPackageInfo(aInfo.packageName, PackageManager.GET_PERMISSIONS);
-                if (Arrays.binarySearch(VpnPrefs.BYPASS_VPN_PACKAGES, aInfo.packageName) >= 0) {
+                if (Arrays.binarySearch(OrbotConstants.BYPASS_VPN_PACKAGES, aInfo.packageName) >= 0) {
                     app.setUsesInternet(false);
                 } else if (pInfo != null && pInfo.requestedPermissions != null) {
                     for (String permInfo : pInfo.requestedPermissions) {
@@ -140,100 +140,58 @@ public class TorifiedApp implements Comparable {
         this.usesInternet = usesInternet;
     }
 
-    /**
-     * @return the torified
-     */
     public boolean isTorified() {
         return torified;
     }
 
-    /**
-     * @param torified the torified to set
-     */
     public void setTorified(boolean torified) {
         this.torified = torified;
     }
 
-    /**
-     * @return the enabledPorts
-     */
     public int[] getEnabledPorts() {
         return enabledPorts;
     }
 
-    /**
-     * @param enabledPorts the enabledPorts to set
-     */
     public void setEnabledPorts(int[] enabledPorts) {
         this.enabledPorts = enabledPorts;
     }
 
-    /**
-     * @return the enabled
-     */
     public boolean isEnabled() {
         return enabled;
     }
 
-    /**
-     * @param enabled the enabled to set
-     */
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 
-    /**
-     * @return the uid
-     */
     public int getUid() {
         return uid;
     }
 
-    /**
-     * @param uid the uid to set
-     */
     public void setUid(int uid) {
         this.uid = uid;
     }
 
-    /**
-     * @return the username
-     */
     public String getUsername() {
         return username;
     }
 
-    /**
-     * @param username the username to set
-     */
     public void setUsername(String username) {
         this.username = username;
     }
 
-    /**
-     * @return the procname
-     */
     public String getProcname() {
         return procname;
     }
 
-    /**
-     * @param procname the procname to set
-     */
     public void setProcname(String procname) {
         this.procname = procname;
     }
 
-    /**
-     * @return the name
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * @param name the name to set
-     */
     public void setName(String name) {
         this.name = name;
     }
