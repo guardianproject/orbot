@@ -64,7 +64,7 @@ import androidx.annotation.ChecksSdkIntAtLeast;
 import IPtProxy.IPtProxy;
 import IPtProxy.PacketFlow;
 
-public class OrbotVpnManager implements Handler.Callback {
+public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     private static final String TAG = "OrbotVpnService";
     private final static int VPN_MTU = 1500;
     @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.LOLLIPOP)
