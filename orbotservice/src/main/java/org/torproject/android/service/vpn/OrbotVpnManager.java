@@ -41,7 +41,6 @@ import org.pcap4j.packet.namednumber.IpNumber;
 import org.pcap4j.packet.namednumber.UdpPort;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
-import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 
 import java.io.DataOutputStream;
@@ -54,10 +53,10 @@ import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static org.torproject.android.service.TorServiceConstants.ACTION_START;
-import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
-import static org.torproject.android.service.TorServiceConstants.ACTION_STOP;
-import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
+import static org.torproject.android.service.OrbotConstants.ACTION_START;
+import static org.torproject.android.service.OrbotConstants.ACTION_START_VPN;
+import static org.torproject.android.service.OrbotConstants.ACTION_STOP;
+import static org.torproject.android.service.OrbotConstants.ACTION_STOP_VPN;
 
 import androidx.annotation.ChecksSdkIntAtLeast;
 
@@ -109,7 +108,7 @@ public class OrbotVpnManager implements Handler.Callback {
                     Log.d(TAG, "stopping VPN");
 
                     stopVPN();
-                } else if (action.equals(TorServiceConstants.LOCAL_ACTION_PORTS)) {
+                } else if (action.equals(OrbotConstants.LOCAL_ACTION_PORTS)) {
                     Log.d(TAG, "setting VPN ports");
 
                     int torSocks = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT, -1);
@@ -371,7 +370,7 @@ public class OrbotVpnManager implements Handler.Callback {
 
         if (!perAppEnabled) {
             builder.addDisallowedApplication(mService.getPackageName());
-            for (String packageName : VpnPrefs.BYPASS_VPN_PACKAGES)
+            for (String packageName : OrbotConstants.BYPASS_VPN_PACKAGES)
                 builder.addDisallowedApplication(packageName);
         }
 

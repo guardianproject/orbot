@@ -4,14 +4,14 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.OrbotService
-import org.torproject.android.service.TorServiceConstants
 import org.torproject.android.service.util.Prefs
 
 class OnBootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         if (Prefs.startOnBoot() && !sReceivedBoot) {
-            startService(TorServiceConstants.ACTION_START_ON_BOOT, context)
+            startService(OrbotConstants.ACTION_START_ON_BOOT, context)
             sReceivedBoot = true
         }
     }

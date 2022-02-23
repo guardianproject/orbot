@@ -1,0 +1,4 @@
+* Snowflake Bridge-Unterstützung hinzugefügt
+* Obsf4 und Meek Bridge-Unterstützung aktualisiert
+* Geschwindigkeit der "Neue Bridges erfragen" Funktion verbessert
+* Tor zu 0.4.4.6 aktualisiert

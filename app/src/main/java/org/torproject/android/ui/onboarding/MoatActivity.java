@@ -45,8 +45,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.torproject.android.R;
+import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
-import org.torproject.android.service.TorServiceConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.ui.dialog.MoatErrorDialogFragment;
 
@@ -90,18 +90,18 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         public void onReceive(Context context, Intent intent) {
             String host = intent.getStringExtra(OrbotService.EXTRA_SOCKS_PROXY_HOST);
             int port = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT, -1);
-            String status = intent.getStringExtra(TorServiceConstants.EXTRA_STATUS);
+            String status = intent.getStringExtra(OrbotConstants.EXTRA_STATUS);
 
             if (TextUtils.isEmpty(host)) {
-                host = TorServiceConstants.IP_LOCALHOST;
+                host = OrbotConstants.IP_LOCALHOST;
             }
 
             if (port < 1) {
-                port = Integer.parseInt(TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT);
+                port = Integer.parseInt(OrbotConstants.SOCKS_PROXY_PORT_DEFAULT);
             }
 
             if (TextUtils.isEmpty(status)) {
-                status = TorServiceConstants.STATUS_OFF;
+                status = OrbotConstants.STATUS_OFF;
             }
 
             setUp(host, port, status);
@@ -152,7 +152,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         LocalBroadcastManager.getInstance(this).registerReceiver(mBroadcastReceiver,
-                new IntentFilter(TorServiceConstants.ACTION_STATUS));
+                new IntentFilter(OrbotConstants.ACTION_STATUS));
 
         OrbotService.loadCdnFronts(this);
     }
@@ -405,16 +405,16 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         switch (status) {
-            case TorServiceConstants.STATUS_OFF:
+            case OrbotConstants.STATUS_OFF:
                 // We need the Meek bridge.
                 Prefs.setBridgesList("meek");
                 Prefs.putBridgesEnabled(true);
 
-                sendIntentToService(TorServiceConstants.ACTION_START);
+                sendIntentToService(OrbotConstants.ACTION_START);
 
                 break;
 
-            case TorServiceConstants.STATUS_ON:
+            case OrbotConstants.STATUS_ON:
                 // Switch to the Meek bridge, if not done, already.
                 Prefs.setBridgesList("meek");
                 Prefs.putBridgesEnabled(true);
