@@ -18,7 +18,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
@@ -38,9 +37,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
-
-public class AppManagerActivity extends AppCompatActivity implements OnClickListener, OrbotConstants {
+public class AppManagerActivity extends AppCompatActivity implements OrbotConstants {
 
     private GridView listApps;
     private ListAdapter adapterApps;
@@ -152,7 +149,19 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
                     try {
                         entry.icon.setImageDrawable(pMgr.getApplicationIcon(app.getPackageName()));
-                        entry.icon.setOnClickListener(AppManagerActivity.this);
+                        entry.icon.setOnClickListener(v -> {
+                            final TorifiedApp tApp = (TorifiedApp) v.getTag();
+                            if (tApp != null) {
+                                tApp.setTorified(!app.isTorified());
+
+
+                                Intent data = new Intent();
+                                data.putExtra(Intent.EXTRA_PACKAGE_NAME,tApp.getPackageName());
+                                setResult(RESULT_OK,data);
+                                saveAppSettings();
+                                finish();
+                            }
+                        });
                         entry.icon.setTag(app);
                     }
                     catch (Exception e)
@@ -294,24 +303,5 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         edit.commit();
 
         setResult(RESULT_OK,response);
-    }
-
-
-    public void onClick(View v) {
-
-        final TorifiedApp app = (TorifiedApp) v.getTag();
-        if (app != null) {
-            app.setTorified(!app.isTorified());
-
-
-            Intent data = new Intent();
-            data.putExtra(Intent.EXTRA_PACKAGE_NAME,app.getPackageName());
-            setResult(RESULT_OK,data);
-            saveAppSettings();
-
-            finish();
-        }
-
-
     }
 }

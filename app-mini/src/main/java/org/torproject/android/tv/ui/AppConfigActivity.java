@@ -16,8 +16,8 @@ import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorifiedApp;
 
+import static org.torproject.android.service.OrbotConstants.PREFS_KEY_TORIFIED;
 import static org.torproject.android.tv.MiniMainActivity.getApp;
-import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
 
 public class AppConfigActivity extends AppCompatActivity {
 

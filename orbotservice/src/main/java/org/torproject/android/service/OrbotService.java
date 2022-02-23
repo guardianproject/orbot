@@ -44,7 +44,6 @@ import org.torproject.android.service.util.DummyActivity;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.Utils;
 import org.torproject.android.service.vpn.OrbotVpnManager;
-import org.torproject.android.service.vpn.VpnPrefs;
 import org.torproject.jni.TorService;
 
 import java.io.BufferedReader;
@@ -78,7 +77,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 @SuppressWarnings("StringConcatenationInsideStringBufferAppend")
-public class OrbotService extends VpnService implements TorServiceConstants, OrbotConstants {
+public class OrbotService extends VpnService implements OrbotConstants {
 
     public final static String BINARY_TOR_VERSION = TorService.VERSION_NAME;
 
@@ -166,7 +165,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        logNotice("Low Memory Warning!");
+        logNotice(getString(R.string.log_notice_low_memory_warning));
     }
 
     private void clearNotifications() {
@@ -321,7 +320,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             mPortTrans = -1;
 
         } catch (Exception e) {
-            logNotice("An error occurred stopping Tor: " + e.getMessage());
+            logNotice(getString(R.string.couldn_t_start_tor_process_) + e.getMessage());
             sendCallbackLogMessage(getString(R.string.something_bad_happened));
         }
         clearNotifications();
@@ -415,12 +414,12 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             };
         }
         IPtProxy.startSnowflakeProxy(capacity, broker, relay, stun, natProbe, logFile, keepLocalAddresses, unsafeLogging, callback);
-        logNotice("Snowflake Proxy mode ENABLED");
+        logNotice(getString(R.string.log_notice_snowflake_proxy_enabled));
     }
 
     private void disableSnowflakeProxy() {
         IPtProxy.stopSnowflakeProxy();
-        logNotice("Snowflake Proxy mode DISABLED");
+        logNotice(getString(R.string.log_notice_snowflake_proxy_disabled));
     }
 
     /**
@@ -476,11 +475,11 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             if (!appCacheHome.exists())
                 appCacheHome.mkdirs();
 
-            mV3OnionBasePath = new File(getFilesDir().getAbsolutePath(), TorServiceConstants.ONION_SERVICES_DIR);
+            mV3OnionBasePath = new File(getFilesDir().getAbsolutePath(), ONION_SERVICES_DIR);
             if (!mV3OnionBasePath.isDirectory())
                 mV3OnionBasePath.mkdirs();
 
-            mV3AuthBasePath = new File(getFilesDir().getAbsolutePath(), TorServiceConstants.V3_CLIENT_AUTH_DIR);
+            mV3AuthBasePath = new File(getFilesDir().getAbsolutePath(), V3_CLIENT_AUTH_DIR);
             if (!mV3AuthBasePath.isDirectory())
                 mV3AuthBasePath.mkdirs();
 
@@ -550,14 +549,14 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         extraLines.append("RunAsDaemon 0").append('\n');
         extraLines.append("AvoidDiskWrites 1").append('\n');
 
-        String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS, (TorServiceConstants.SOCKS_PROXY_PORT_DEFAULT));
+        String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS, SOCKS_PROXY_PORT_DEFAULT);
 
         if (socksPortPref.indexOf(':') != -1)
             socksPortPref = socksPortPref.split(":")[1];
 
         socksPortPref = checkPortOrAuto(socksPortPref);
 
-        String httpPortPref = prefs.getString(OrbotConstants.PREF_HTTP, (TorServiceConstants.HTTP_PROXY_PORT_DEFAULT));
+        String httpPortPref = prefs.getString(OrbotConstants.PREF_HTTP, HTTP_PROXY_PORT_DEFAULT);
 
         if (httpPortPref.indexOf(':') != -1)
             httpPortPref = httpPortPref.split(":")[1];
@@ -607,8 +606,8 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
             extraLines.append("ReducedCircuitPadding 1").append('\n');
         }
 
-        String transPort = prefs.getString("pref_transport", TorServiceConstants.TOR_TRANSPROXY_PORT_DEFAULT + "");
-        String dnsPort = prefs.getString("pref_dnsport", TorServiceConstants.TOR_DNS_PORT_DEFAULT + "");
+        String transPort = prefs.getString("pref_transport", TOR_TRANSPROXY_PORT_DEFAULT + "");
+        String dnsPort = prefs.getString("pref_dnsport", TOR_DNS_PORT_DEFAULT + "");
 
         extraLines.append("TransPort ").append(checkPortOrAuto(transPort)).append('\n');
         extraLines.append("DNSPort ").append(checkPortOrAuto(dnsPort)).append('\n');
@@ -635,7 +634,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
         extraLines.append('\n');
         extraLines.append(prefs.getString("pref_custom_torrc", "")).append('\n');
 
-        logNotice("updating torrc custom configuration...");
+        logNotice(getString(R.string.log_notice_updating_torrc));
 
         debug("torrc.custom=" + extraLines.toString());
 
@@ -671,10 +670,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     /**
      * Send Orbot's status in reply to an
-     * {@link TorServiceConstants#ACTION_START} {@link Intent}, targeted only to
+     * {@link #ACTION_START} {@link Intent}, targeted only to
      * the app that sent the initial request. If the user has disabled auto-
      * starts, the reply {@code ACTION_START Intent} will include the extra
-     * {@link TorServiceConstants#STATUS_STARTS_DISABLED}
+     * {@link #STATUS_STARTS_DISABLED}
      */
     private void replyWithStatus(Intent startRequest) {
         String packageName = startRequest.getStringExtra(EXTRA_PACKAGE_NAME);
@@ -722,7 +721,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                 try {
                     updateV3OnionNames();
                 } catch (SecurityException se) {
-                    logNotice("unable to upload v3 onion names");
+                    logNotice(getString(R.string.log_notice_unable_to_update_onions));
                 }
             }
         } catch (Exception e) {
@@ -827,7 +826,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                         conn.addRawEventListener(mOrbotRawEventListener);
                         conn.authenticate(new byte[0]);
                         conn.setEvents(events);
-                        logNotice("SUCCESS added control port event handler");
+                        logNotice(getString(R.string.log_notice_added_event_handler));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -873,7 +872,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
     private void initControlConnection() {
         if (conn != null) {
-            logNotice("SUCCESS connected to Tor control port.");
+            logNotice(getString(R.string.log_notice_connected_to_tor_control_port));
             try {
                 String confSocks = conn.getInfo("net/listeners/socks");
                 StringTokenizer st = new StringTokenizer(confSocks, " ");
@@ -895,7 +894,7 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
                     confDns = st.nextToken().split(":")[1];
                     confDns = confDns.substring(0, confDns.length() - 1);
                     mPortDns = Integer.parseInt(confDns);
-                    Prefs.getSharedPrefs(getApplicationContext()).edit().putInt(VpnPrefs.PREFS_DNS_PORT, mPortDns).apply();
+                    Prefs.getSharedPrefs(getApplicationContext()).edit().putInt(PREFS_DNS_PORT, mPortDns).apply();
                 }
 
                 String confTrans = conn.getInfo("net/listeners/trans");

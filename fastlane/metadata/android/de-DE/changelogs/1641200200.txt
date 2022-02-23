@@ -1,0 +1,4 @@
+* Unterstützung für OnionServices v3
+* Verbesserungen in der Bridge-Konfiguration
+* Versichert, dass der VPN-Modus als "ungemessene Verbindung" behandelt wird
+* Experimenteller Modus ???

@@ -38,8 +38,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import static org.torproject.android.service.vpn.VpnPrefs.PREFS_KEY_TORIFIED;
-
 public class AppManagerActivity extends AppCompatActivity implements OnClickListener, OrbotConstants {
 
     private GridView listApps;
