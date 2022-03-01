@@ -24,6 +24,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.VpnService;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
@@ -43,6 +44,7 @@ import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.util.Prefs;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -53,11 +55,6 @@ import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static org.torproject.android.service.TorServiceConstants.ACTION_START;
-import static org.torproject.android.service.TorServiceConstants.ACTION_START_ON_BOOT;
-import static org.torproject.android.service.TorServiceConstants.ACTION_START_VPN;
-import static org.torproject.android.service.TorServiceConstants.ACTION_STOP;
-import static org.torproject.android.service.TorServiceConstants.ACTION_STOP_VPN;
 
 import androidx.annotation.ChecksSdkIntAtLeast;
 
@@ -95,7 +92,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
             String action = intent.getAction();
 
             if (action != null) {
-                if (action.equals(ACTION_START_VPN) || action.equals(ACTION_START) || action.equals(ACTION_START_ON_BOOT) ) {
+                if (action.equals(ACTION_START_VPN) || action.equals(ACTION_START) ) {
                     Log.d(TAG, "starting VPN");
 
                     isStarted = true;
@@ -200,6 +197,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
             try {
                 Log.d(TAG, "closing interface, destroying VPN interface");
 
+
                 mInterface.close();
                 mInterface = null;
 
@@ -233,20 +231,20 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
             final String defaultRoute = "0.0.0.0";
             final String virtualGateway = "192.168.50.1";
 
-        //    builder.setMtu(VPN_MTU);
-         //   builder.addAddress(virtualGateway, 32);
+            //    builder.setMtu(VPN_MTU);
+            //   builder.addAddress(virtualGateway, 32);
             builder.addAddress(virtualGateway, 24);
 
-            builder.addRoute(defaultRoute,0);
+            builder.addRoute(defaultRoute, 0);
 
             builder.setSession(vpnName);
 
 
             //route all traffic through VPN (we might offer country specific exclude lists in the future)
-        //    builder.addRoute(defaultRoute, 0);
+            //    builder.addRoute(defaultRoute, 0);
 
             builder.addDnsServer(FAKE_DNS); //just setting a value here so DNS is captured by TUN interface
-            builder.addRoute(FAKE_DNS,32);
+            builder.addRoute(FAKE_DNS, 32);
 
             //handle ipv6
             //builder.addAddress("fdfe:dcba:9876::1", 126);
@@ -261,30 +259,55 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
 
 
                 /**
-                // Allow applications to bypass the VPN
-                builder.allowBypass();
+                 // Allow applications to bypass the VPN
+                 builder.allowBypass();
 
-                // Explicitly allow both families, so we do not block
-                // traffic for ones without DNS servers (issue 129).
-                builder.allowFamily(OsConstants.AF_INET);
-                builder.allowFamily(OsConstants.AF_INET6);
+                 // Explicitly allow both families, so we do not block
+                 // traffic for ones without DNS servers (issue 129).
+                 builder.allowFamily(OsConstants.AF_INET);
+                 builder.allowFamily(OsConstants.AF_INET6);
                  **/
             }
 
             // previously this was set to a null member variable
             mInterface = builder.setSession(mSessionName)
                     .setConfigureIntent(null) // previously this was set to a null member variable
-                  //  .setBlocking(true)
+                    //  .setBlocking(true)
                     .establish();
 
 
-            FileInputStream fis = new FileInputStream(mInterface.getFileDescriptor());
-            DataOutputStream fos = new DataOutputStream(new FileOutputStream(mInterface.getFileDescriptor()));
-
             mDnsResolver = new DNSResolver(localhost, mTorDns);
 
+            final Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //Do something after 10s
+                    try {
+                        startListeningToFD(localhost);
+                    } catch (IOException e) {
+                        Log.d(TAG, "VPN tun listening has stopped", e);
+
+                    }
+                }
+            }, 5000);
+
+        } catch (Exception e) {
+            Log.d(TAG, "VPN tun setup has stopped", e);
+        }
+    }
+
+
+    DataInputStream fis;
+    DataOutputStream fos;
+
+    private void startListeningToFD (String localhost) throws IOException {
+
+            fis = new DataInputStream(new FileInputStream(mInterface.getFileDescriptor()));
+            fos = new DataOutputStream(new FileOutputStream(mInterface.getFileDescriptor()));
+
             //write packets back out to TUN
-            PacketFlow pFlow = (PacketFlow) packet -> {
+            PacketFlow pFlow = packet -> {
                 try {
                     fos.write(packet);
                 } catch (IOException e) {
@@ -332,9 +355,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
             };
             mThreadPacket.start();
 
-        } catch (Exception e) {
-            Log.d(TAG, "tun2Socks has stopped", e);
-        }
+
     }
 
     private static boolean isPacketDNS(IpPacket p) {
