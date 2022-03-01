@@ -1432,7 +1432,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         public void run() {
             String action = mIntent.getAction();
             if (!TextUtils.isEmpty(action)) {
-                if (action.equals(ACTION_START) || action.equals(ACTION_START_ON_BOOT)) {
+                if (action.equals(ACTION_START)) {
 
                     if (Prefs.bridgesEnabled()) {
                         if (useIPtObfsMeekProxy())
