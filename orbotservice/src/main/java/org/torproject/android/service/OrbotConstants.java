@@ -73,8 +73,6 @@ public interface OrbotConstants {
 
     String ACTION_UPDATE_ONION_NAMES = "org.torproject.android.intent.action.UPDATE_ONION_NAMES";
 
-    String ACTION_START_ON_BOOT = "org.torproject.android.intent.action.START_BOOT";
-
     /**
      * {@link Intent} send by Orbot with {@code ON/OFF/STARTING/STOPPING} status
      */
