@@ -24,6 +24,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.VpnService;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
@@ -43,6 +44,7 @@ import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.util.Prefs;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -53,19 +55,14 @@ import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static org.torproject.android.service.OrbotConstants.ACTION_START;
-import static org.torproject.android.service.OrbotConstants.ACTION_START_VPN;
-import static org.torproject.android.service.OrbotConstants.ACTION_STOP;
-import static org.torproject.android.service.OrbotConstants.ACTION_STOP_VPN;
 
 import androidx.annotation.ChecksSdkIntAtLeast;
 
 import IPtProxy.IPtProxy;
 import IPtProxy.PacketFlow;
 
-public class OrbotVpnManager implements Handler.Callback {
+public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     private static final String TAG = "OrbotVpnService";
-    private final static int VPN_MTU = 1500;
     @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.LOLLIPOP)
     private final static boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     public static int sSocksProxyServerPort = -1;
@@ -84,6 +81,8 @@ public class OrbotVpnManager implements Handler.Callback {
     private Thread mThreadPacket;
     private boolean keepRunningPacket = false;
 
+    private static final int DELAY_FD_LISTEN_MS = 5000;
+
     public OrbotVpnManager(OrbotService service) {
         mService = service;
         prefs = Prefs.getSharedPrefs(mService.getApplicationContext());
@@ -94,7 +93,7 @@ public class OrbotVpnManager implements Handler.Callback {
             String action = intent.getAction();
 
             if (action != null) {
-                if (action.equals(ACTION_START_VPN) || action.equals(ACTION_START)) {
+                if (action.equals(ACTION_START_VPN) || action.equals(ACTION_START) ) {
                     Log.d(TAG, "starting VPN");
 
                     isStarted = true;
@@ -199,6 +198,7 @@ public class OrbotVpnManager implements Handler.Callback {
             try {
                 Log.d(TAG, "closing interface, destroying VPN interface");
 
+
                 mInterface.close();
                 mInterface = null;
 
@@ -223,7 +223,6 @@ public class OrbotVpnManager implements Handler.Callback {
     }
 
     public final static String FAKE_DNS = "10.10.10.10";
-    public final static String FAKE_DNS_HEX= "a0a0a0a";
 
     private synchronized void setupTun2Socks(final VpnService.Builder builder) {
         try {
@@ -233,21 +232,20 @@ public class OrbotVpnManager implements Handler.Callback {
             final String defaultRoute = "0.0.0.0";
             final String virtualGateway = "192.168.50.1";
 
-            builder.setMtu(VPN_MTU);
-         //   builder.addAddress(virtualGateway, 32);
+            //    builder.setMtu(VPN_MTU);
+            //   builder.addAddress(virtualGateway, 32);
             builder.addAddress(virtualGateway, 24);
 
-            builder.addRoute(defaultRoute,0);
-
+            builder.addRoute(defaultRoute, 0);
 
             builder.setSession(vpnName);
 
 
             //route all traffic through VPN (we might offer country specific exclude lists in the future)
-        //    builder.addRoute(defaultRoute, 0);
+            //    builder.addRoute(defaultRoute, 0);
 
             builder.addDnsServer(FAKE_DNS); //just setting a value here so DNS is captured by TUN interface
-            builder.addRoute(FAKE_DNS,32);
+            builder.addRoute(FAKE_DNS, 32);
 
             //handle ipv6
             //builder.addAddress("fdfe:dcba:9876::1", 126);
@@ -262,36 +260,49 @@ public class OrbotVpnManager implements Handler.Callback {
 
 
                 /**
-                // Allow applications to bypass the VPN
-                builder.allowBypass();
+                 // Allow applications to bypass the VPN
+                 builder.allowBypass();
 
-                // Explicitly allow both families, so we do not block
-                // traffic for ones without DNS servers (issue 129).
-                builder.allowFamily(OsConstants.AF_INET);
-                builder.allowFamily(OsConstants.AF_INET6);
+                 // Explicitly allow both families, so we do not block
+                 // traffic for ones without DNS servers (issue 129).
+                 builder.allowFamily(OsConstants.AF_INET);
+                 builder.allowFamily(OsConstants.AF_INET6);
                  **/
             }
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mInterface = builder.setSession(mSessionName)
-                        .setConfigureIntent(null) // previously this was set to a null member variable
-                        .setBlocking(true)
-                        .establish();
-            }
-            else {
-                mInterface = builder.setSession(mSessionName)
-                        .setConfigureIntent(null) // previously this was set to a null member variable
-                        .establish();
-            }
+            // previously this was set to a null member variable
+            mInterface = builder.setSession(mSessionName)
+                    .setConfigureIntent(null) // previously this was set to a null member variable
+                    //  .setBlocking(true)
+                    .establish();
 
-
-            FileInputStream fis = new FileInputStream(mInterface.getFileDescriptor());
-            DataOutputStream fos = new DataOutputStream(new FileOutputStream(mInterface.getFileDescriptor()));
 
             mDnsResolver = new DNSResolver(localhost, mTorDns);
 
+            final Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(() -> {
+                //Do something after 5s
+                try {
+                    startListeningToFD(localhost);
+                } catch (IOException e) {
+                    Log.d(TAG, "VPN tun listening has stopped", e);
+
+                }
+            }, DELAY_FD_LISTEN_MS);
+
+        } catch (Exception e) {
+            Log.d(TAG, "VPN tun setup has stopped", e);
+        }
+    }
+
+
+    private void startListeningToFD(String localhost) throws IOException {
+
+            DataInputStream fis = new DataInputStream(new FileInputStream(mInterface.getFileDescriptor()));
+            DataOutputStream fos = new DataOutputStream(new FileOutputStream(mInterface.getFileDescriptor()));
+
             //write packets back out to TUN
-            PacketFlow pFlow = (PacketFlow) packet -> {
+            PacketFlow pFlow = packet -> {
                 try {
                     fos.write(packet);
                 } catch (IOException e) {
@@ -307,8 +318,7 @@ public class OrbotVpnManager implements Handler.Callback {
 
                     byte[] buffer = new byte[32767*2]; //64k
                     keepRunningPacket = true;
-                    while (keepRunningPacket)
-                    {
+                    while (keepRunningPacket) {
                         try {
 
                             int pLen = fis.read(buffer);
@@ -316,7 +326,7 @@ public class OrbotVpnManager implements Handler.Callback {
                                 byte[] pdata = Arrays.copyOf(buffer, pLen);
                                 Packet packet;
                                 try {
-                                    packet = (Packet) IpSelector.newPacket(pdata,0,pdata.length);
+                                    packet = IpSelector.newPacket(pdata,0,pdata.length);
 
                                     if (packet instanceof IpPacket) {
                                         IpPacket ipPacket = (IpPacket) packet;
@@ -338,10 +348,6 @@ public class OrbotVpnManager implements Handler.Callback {
                 }
             };
             mThreadPacket.start();
-
-        } catch (Exception e) {
-            Log.d(TAG, "tun2Socks has stopped", e);
-        }
     }
 
     private static boolean isPacketDNS(IpPacket p) {
