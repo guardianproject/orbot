@@ -63,7 +63,6 @@ import IPtProxy.PacketFlow;
 
 public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     private static final String TAG = "OrbotVpnService";
-    private final static int VPN_MTU = 1500;
     @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.LOLLIPOP)
     private final static boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     public static int sSocksProxyServerPort = -1;
@@ -81,6 +80,8 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     private final ExecutorService mExec = Executors.newFixedThreadPool(10);
     private Thread mThreadPacket;
     private boolean keepRunningPacket = false;
+
+    private static final int DELAY_FD_LISTEN_MS = 5000;
 
     public OrbotVpnManager(OrbotService service) {
         mService = service;
@@ -279,18 +280,15 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
             mDnsResolver = new DNSResolver(localhost, mTorDns);
 
             final Handler handler = new Handler(Looper.getMainLooper());
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    //Do something after 10s
-                    try {
-                        startListeningToFD(localhost);
-                    } catch (IOException e) {
-                        Log.d(TAG, "VPN tun listening has stopped", e);
+            handler.postDelayed(() -> {
+                //Do something after 5s
+                try {
+                    startListeningToFD(localhost);
+                } catch (IOException e) {
+                    Log.d(TAG, "VPN tun listening has stopped", e);
 
-                    }
                 }
-            }, 5000);
+            }, DELAY_FD_LISTEN_MS);
 
         } catch (Exception e) {
             Log.d(TAG, "VPN tun setup has stopped", e);
@@ -298,13 +296,10 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     }
 
 
-    DataInputStream fis;
-    DataOutputStream fos;
+    private void startListeningToFD(String localhost) throws IOException {
 
-    private void startListeningToFD (String localhost) throws IOException {
-
-            fis = new DataInputStream(new FileInputStream(mInterface.getFileDescriptor()));
-            fos = new DataOutputStream(new FileOutputStream(mInterface.getFileDescriptor()));
+            DataInputStream fis = new DataInputStream(new FileInputStream(mInterface.getFileDescriptor()));
+            DataOutputStream fos = new DataOutputStream(new FileOutputStream(mInterface.getFileDescriptor()));
 
             //write packets back out to TUN
             PacketFlow pFlow = packet -> {
@@ -323,8 +318,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
 
                     byte[] buffer = new byte[32767*2]; //64k
                     keepRunningPacket = true;
-                    while (keepRunningPacket)
-                    {
+                    while (keepRunningPacket) {
                         try {
 
                             int pLen = fis.read(buffer);
@@ -332,7 +326,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                                 byte[] pdata = Arrays.copyOf(buffer, pLen);
                                 Packet packet;
                                 try {
-                                    packet = (Packet) IpSelector.newPacket(pdata,0,pdata.length);
+                                    packet = IpSelector.newPacket(pdata,0,pdata.length);
 
                                     if (packet instanceof IpPacket) {
                                         IpPacket ipPacket = (IpPacket) packet;
@@ -354,8 +348,6 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                 }
             };
             mThreadPacket.start();
-
-
     }
 
     private static boolean isPacketDNS(IpPacket p) {
