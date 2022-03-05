@@ -38,6 +38,9 @@ class OnBootReceiver : BroadcastReceiver() {
         if (context == null) return false
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            if (connectivityManager.isDefaultNetworkActive)
+                return true
+
             val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
             if (capabilities != null) {
                 when {
