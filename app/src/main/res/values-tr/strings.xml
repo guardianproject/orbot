@@ -197,8 +197,8 @@
     <string name="v3_backup_key">İstemci Yetkilendirme Anahtarını Yedekle</string>
     <string name="v3_onion">v3 .onion Etki Alanı</string>
     <string name="v3_key_hash">Base 32 olarak x25519 Özel Anahtarı</string>
-    <string name="v3_client_auth_activity_title">v3 İstemci Yetkilendirmesi</string>
-    <string name="v3_hosted_services">Barındırılan v3 Onion Hizmetleri</string>
+    <string name="v3_client_auth_activity_title">İstemci Yetkilendirmesi</string>
+    <string name="v3_hosted_services">Barındırılan Onion Hizmetleri</string>
     <string name="deny">Reddet</string>
     <string name="allow">İzin ver</string>
     <string name="backup_port_exist">Hata: Bir Onion hizmeti zaten %s bağlantı noktasını kullanıyor</string>
