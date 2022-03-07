@@ -21,7 +21,7 @@ ext {
             guardian_geoip               : "20191217",
             guardian_jsocks              : "1.0.4",
             guardian_jtorctl             : "0.4.5.7",
-            ipt_proxy                    : "1.1.51",
+            ipt_proxy                    : "1.1.52",
             portmapper                   : "2.0.5",
             tor_android                  : "0.4.6.9",
             dns_java                     : "3.4.3",

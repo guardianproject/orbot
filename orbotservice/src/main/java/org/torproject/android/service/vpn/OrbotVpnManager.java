@@ -198,6 +198,17 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
             try {
                 Log.d(TAG, "closing interface, destroying VPN interface");
 
+                IPtProxy.stopSocks();
+
+                if (fis != null) {
+                    fis.close();
+                    fis = null;
+                }
+
+                if (fos != null) {
+                    fos.close();
+                    fos = null;
+                }
 
                 mInterface.close();
                 mInterface = null;
@@ -295,11 +306,12 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
         }
     }
 
+    DataInputStream fis;
+    DataOutputStream fos;
 
     private void startListeningToFD(String localhost) throws IOException {
-
-            DataInputStream fis = new DataInputStream(new FileInputStream(mInterface.getFileDescriptor()));
-            DataOutputStream fos = new DataOutputStream(new FileOutputStream(mInterface.getFileDescriptor()));
+            fis = new DataInputStream(new FileInputStream(mInterface.getFileDescriptor()));
+            fos = new DataOutputStream(new FileOutputStream(mInterface.getFileDescriptor()));
 
             //write packets back out to TUN
             PacketFlow pFlow = packet -> {
@@ -337,7 +349,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                                     }
 
                                 } catch (IllegalRawDataException e) {
-                                    return;
+                                    Log.e(TAG, e.getLocalizedMessage());
                                 }
 
                             }
