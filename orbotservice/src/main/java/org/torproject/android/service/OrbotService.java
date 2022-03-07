@@ -70,7 +70,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import IPtProxy.IPtProxy;
-import IPtProxy.SnowflakeClientConnected;
 import androidx.annotation.ChecksSdkIntAtLeast;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
@@ -126,6 +125,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     private boolean mNotificationShowing = false;
     private File mV3OnionBasePath, mV3AuthBasePath;
     private ArrayList<Bridge> alBridges = null;
+    private int snowflakeClientsConnected;
 
     /**
      * @param bridgeList bridges that were manually entered into Orbot settings
@@ -214,8 +214,12 @@ public class OrbotService extends VpnService implements OrbotConstants {
         String title = getString(R.string.status_disabled);
         if (mCurrentStatus.equals(STATUS_STARTING))
             title = getString(R.string.status_starting_up);
-        else if (mCurrentStatus.equals(STATUS_ON))
+        else if (mCurrentStatus.equals(STATUS_ON)) {
             title = getString(R.string.status_activated);
+            if (IPtProxy.isSnowflakeProxyRunning()) {
+                title += " (" + SNOWFLAKE_EMOJI + " " + snowflakeClientsConnected + ")";
+            }
+        }
 
         mNotifyBuilder.setContentTitle(title);
 
@@ -393,27 +397,19 @@ public class OrbotService extends VpnService implements OrbotConstants {
         IPtProxy.startSnowflake(stunServers, target, front, ampCache, null, true, false, false, 1);
     }
 
-    /*
-    This is to host a snowflake entrance node / bridge
-     */
+    private static final String SNOWFLAKE_EMOJI = "❄️";
+
     @SuppressWarnings("ConstantConditions")
-    private void enableSnowflakeProxy () {
+    private void enableSnowflakeProxy () { // This is to host a snowflake entrance node / bridge
         int capacity = 1;
-        String broker = null; // "https://snowflake-broker.bamsoftware.com/";
-        String relay =  null; // "wss://snowflake.bamsoftware.com/";
-        String stun = null; // "stun:stun.stunprotocol.org:3478";
-        String natProbe = null;
-        String logFile = null;
         boolean keepLocalAddresses = true;
         boolean unsafeLogging = false;
-        SnowflakeClientConnected callback = null;
-        if (Prefs.showSnowflakeProxyMessage()) {
-            callback = (SnowflakeClientConnected) () -> {
-                String message = String.format(getString(R.string.snowflake_proxy_client_connected_msg), "❄️", "❄️");
-                new Handler(getMainLooper()).post(() -> Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show());
-            };
-        }
-        IPtProxy.startSnowflakeProxy(capacity, broker, relay, stun, natProbe, logFile, keepLocalAddresses, unsafeLogging, callback);
+        IPtProxy.startSnowflakeProxy(capacity, null, null, null, null, null, keepLocalAddresses, unsafeLogging, () -> {
+            snowflakeClientsConnected++;
+            if (!Prefs.showSnowflakeProxyMessage()) return;
+            String message = String.format(getString(R.string.snowflake_proxy_client_connected_msg), SNOWFLAKE_EMOJI, SNOWFLAKE_EMOJI);
+            new Handler(getMainLooper()).post(() -> Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show());
+        });
         logNotice(getString(R.string.log_notice_snowflake_proxy_enabled));
     }
 
@@ -520,6 +516,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
             Log.e(OrbotConstants.TAG, "Error setting up Orbot", e);
             logNotice("There was an error setting up Orbot");
         }
+
+        snowflakeClientsConnected = 0;
 
         Log.i("OrbotService", "onCreate end");
     }
