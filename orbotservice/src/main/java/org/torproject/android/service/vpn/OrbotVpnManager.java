@@ -81,6 +81,9 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     private Thread mThreadPacket;
     private boolean keepRunningPacket = false;
 
+    private FileInputStream fis;
+    private DataOutputStream fos;
+
     private static final int DELAY_FD_LISTEN_MS = 5000;
 
     public OrbotVpnManager(OrbotService service) {
@@ -153,7 +156,6 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                 //generate the proxy port that the
                 if (sSocksProxyServerPort == -1) {
                     try {
-
                         sSocksProxyLocalhost = "127.0.0.1";// InetAddress.getLocalHost().getHostAddress();
                         sSocksProxyServerPort = (int) ((Math.random() * 1000) + 10000);
 
@@ -308,9 +310,6 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
         }
     }
 
-    FileInputStream fis;
-    DataOutputStream fos;
-
     private void startListeningToFD(String localhost) throws IOException {
         if (mInterface == null) return; // Prepare hasn't been called yet
 
@@ -355,7 +354,6 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                             } catch (IllegalRawDataException e) {
                                 Log.e(TAG, e.getLocalizedMessage());
                             }
-
                         }
                     } catch (Exception e) {
                         Log.d(TAG, "error reading from VPN fd: " +  e.getLocalizedMessage());
@@ -367,7 +365,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     }
 
     private static boolean isPacketDNS(IpPacket p) {
-        if (p.getHeader().getProtocol()== IpNumber.UDP) {
+        if (p.getHeader().getProtocol() == IpNumber.UDP) {
             UdpPacket up = (UdpPacket) p.getPayload();
             return up.getHeader().getDstPort() == UdpPort.DOMAIN;
         }
@@ -377,7 +375,6 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void doLollipopAppRouting(VpnService.Builder builder) throws NameNotFoundException {
         ArrayList<TorifiedApp> apps = TorifiedApp.getApps(mService, prefs);
-
         boolean perAppEnabled = false;
 
         for (TorifiedApp app : apps) {
@@ -395,7 +392,6 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
             for (String packageName : OrbotConstants.BYPASS_VPN_PACKAGES)
                 builder.addDisallowedApplication(packageName);
         }
-
     }
 
     public boolean isStarted() {

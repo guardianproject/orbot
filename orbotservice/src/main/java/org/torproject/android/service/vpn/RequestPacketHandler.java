@@ -19,6 +19,8 @@ public class RequestPacketHandler implements Runnable {
     final PacketFlow pFlow;
     final DNSResolver mDnsResolver;
 
+    private static final String TAG = "RequestPacketHandler";
+
     public RequestPacketHandler (IpPacket packet, PacketFlow pFLow, DNSResolver dnsResolver) {
         this.packet = packet;
         this.pFlow = pFLow;
@@ -83,8 +85,7 @@ public class RequestPacketHandler implements Runnable {
                         respPacket = ipv4Builder.build();
 
                     }
-                    else if (packet instanceof IpV6Packet)
-                    {
+                    else if (packet instanceof IpV6Packet) {
                         respPacket = new IpV6Packet.Builder((IpV6Packet) packet)
                                 .srcAddr((Inet6Address) packet.getHeader().getDstAddr())
                                 .dstAddr((Inet6Address) packet.getHeader().getSrcAddr())
@@ -98,7 +99,7 @@ public class RequestPacketHandler implements Runnable {
                 }
 
             } catch (Exception ioe) {
-                Log.e("DNS", "could not parse DNS packet: " + ioe);
+                Log.e(TAG, "could not parse DNS packet: " + ioe);
             }
     }
 }
