@@ -83,6 +83,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
+import IPtProxy.IPtProxy;
 import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
 public class OrbotMainActivity extends AppCompatActivity implements OrbotConstants {
@@ -120,6 +121,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private Spinner spnCountries;
     private DrawerLayout mDrawer;
     private TextView tvVpnAppStatus;
+    private SnowfallView snowfallView;
     /* Some tracking bits */
     private String torStatus = null; //latest status reported from the tor service
     private Intent lastStatusIntent;  // the last ACTION_STATUS Intent received
@@ -308,9 +310,17 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             sendIntentToService(ACTION_STOP_FOREGROUND_TASK);
         }
 
-        SnowfallView sv = findViewById(R.id.snowflake_view);
-        sv.setVisibility(View.GONE);
-        sv.stopFalling();
+        setSnowfallAnimation(false);
+    }
+
+    private void setSnowfallAnimation(boolean isSnowing) {
+        if (isSnowing) {
+            snowfallView.setVisibility(View.VISIBLE);
+            snowfallView.restartFalling();
+        } else {
+            snowfallView.setVisibility(View.GONE);
+            snowfallView.stopFalling();
+        }
     }
 
     private void doLayout() {
@@ -368,6 +378,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         mPulsator = findViewById(R.id.pulsator);
         tvVpnAppStatus = findViewById(R.id.tvVpnAppStatus);
         findViewById(R.id.ivAppVpnSettings).setOnClickListener(v -> startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT));
+        snowfallView = findViewById(R.id.snowflake_view);
     }
 
     private void resetBandwidthStatTextviews() {
@@ -755,6 +766,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
         //now you can handle the intents properly
         handleIntents();
+
+        setSnowfallAnimation(IPtProxy.isSnowflakeProxyRunning());
     }
 
     /**
@@ -839,16 +852,10 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     if (Prefs.beSnowflakeProxy()) {
                         lblStatus.setText(getString(R.string.status_activated) + "\n"
                                 + getString(R.string.snowflake_proxy_enabled));
-
-                        SnowfallView sv = findViewById(R.id.snowflake_view);
-                        sv.setVisibility(View.VISIBLE);
-                        sv.restartFalling();
-
+                        setSnowfallAnimation(true);
                     } else {
                         lblStatus.setText(getString(R.string.status_activated));
-                        SnowfallView sv = findViewById(R.id.snowflake_view);
-                        sv.setVisibility(View.GONE);
-                        sv.stopFalling();
+                        setSnowfallAnimation(false);
                     }
 
                     // if new onion hostnames are generated, update local DB
