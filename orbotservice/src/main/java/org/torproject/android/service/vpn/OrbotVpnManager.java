@@ -281,11 +281,13 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                  **/
             }
 
-            // previously this was set to a null member variable
-            mInterface = builder.setSession(mSessionName)
-                    .setConfigureIntent(null) // previously this was set to a null member variable
-                    //  .setBlocking(true)
-                    .establish();
+             builder.setSession(mSessionName)
+                    .setConfigureIntent(null); // previously this was set to a null member variable
+
+            if (mIsLollipop)
+                builder.setBlocking(true);
+
+            mInterface = builder.establish();
 
 
             mDnsResolver = new DNSResolver(localhost, mTorDns);
@@ -306,12 +308,13 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
         }
     }
 
-    DataInputStream fis;
+    FileInputStream fis;
     DataOutputStream fos;
 
     private void startListeningToFD(String localhost) throws IOException {
         if (mInterface == null) return; // Prepare hasn't been called yet
-        fis = new DataInputStream(new FileInputStream(mInterface.getFileDescriptor()));
+
+        fis = new FileInputStream(mInterface.getFileDescriptor());
         fos = new DataOutputStream(new FileOutputStream(mInterface.getFileDescriptor()));
 
         //write packets back out to TUN
@@ -333,8 +336,8 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                 keepRunningPacket = true;
                 while (keepRunningPacket) {
                     try {
+                        int pLen = fis.read(buffer); // will block on API 21+
 
-                        int pLen = fis.read(buffer);
                         if (pLen > 0) {
                             byte[] pdata = Arrays.copyOf(buffer, pLen);
                             Packet packet;
