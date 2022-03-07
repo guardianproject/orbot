@@ -32,10 +32,8 @@
         android:layout_height="match_parent">
 
         <ScrollView
-
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -88,17 +86,16 @@
 
                 <TextView
                     android:id="@+id/lblStatus"
+                    android:textStyle="bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/frameMain"
                     android:layout_gravity="top|center"
-                    android:layout_margin="12dp"
+                    android:layout_marginTop="10dp"
                     android:ellipsize="end"
                     android:fontFamily="sans-serif-light"
                     android:gravity="center"
-                    android:lines="2"
                     android:maxLines="2"
-                    android:text="[             ]"
                     android:textSize="14sp" />
 
                 <TextView
@@ -180,9 +177,12 @@
                         android:layout_gravity="center"
                         android:layout_margin="3dp"
                         android:layout_weight="1"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <TextView
+                            android:textColor="@android:color/white"
+                            android:layout_gravity="center"
+                            android:textStyle="bold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="3dp"
@@ -191,10 +191,10 @@
                             android:lines="1"
                             android:text="@string/main_layout_download" />
 
-
                         <TextView
+                            android:layout_gravity="center"
                             android:id="@+id/trafficDown"
-                            android:layout_width="125dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="3dp"
                             android:fontFamily="sans-serif-light"
@@ -210,9 +210,12 @@
                         android:layout_gravity="center"
                         android:layout_margin="3dp"
                         android:layout_weight="1"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <TextView
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="3dp"
@@ -221,8 +224,9 @@
                             android:text="@string/main_layout_upload" />
 
                         <TextView
+                            android:layout_gravity="center"
                             android:id="@+id/trafficUp"
-                            android:layout_width="125dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="3dp"
                             android:fontFamily="sans-serif-light"
