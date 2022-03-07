@@ -310,56 +310,57 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     DataOutputStream fos;
 
     private void startListeningToFD(String localhost) throws IOException {
-            fis = new DataInputStream(new FileInputStream(mInterface.getFileDescriptor()));
-            fos = new DataOutputStream(new FileOutputStream(mInterface.getFileDescriptor()));
+        if (mInterface == null) return; // Prepare hasn't been called yet
+        fis = new DataInputStream(new FileInputStream(mInterface.getFileDescriptor()));
+        fos = new DataOutputStream(new FileOutputStream(mInterface.getFileDescriptor()));
 
-            //write packets back out to TUN
-            PacketFlow pFlow = packet -> {
-                try {
-                    fos.write(packet);
-                } catch (IOException e) {
-                    Log.e(TAG, "error writing to VPN fd", e);
-                }
-            };
+        //write packets back out to TUN
+        PacketFlow pFlow = packet -> {
+            try {
+                fos.write(packet);
+            } catch (IOException e) {
+                Log.e(TAG, "error writing to VPN fd", e);
+            }
+        };
 
-            IPtProxy.startSocks(pFlow,localhost,mTorSocks);
+        IPtProxy.startSocks(pFlow,localhost,mTorSocks);
 
-            //read packets from TUN and send to go-tun2socks
-            mThreadPacket = new Thread() {
-                public void run () {
+        //read packets from TUN and send to go-tun2socks
+        mThreadPacket = new Thread() {
+            public void run () {
 
-                    byte[] buffer = new byte[32767*2]; //64k
-                    keepRunningPacket = true;
-                    while (keepRunningPacket) {
-                        try {
+                byte[] buffer = new byte[32767*2]; //64k
+                keepRunningPacket = true;
+                while (keepRunningPacket) {
+                    try {
 
-                            int pLen = fis.read(buffer);
-                            if (pLen > 0) {
-                                byte[] pdata = Arrays.copyOf(buffer, pLen);
-                                Packet packet;
-                                try {
-                                    packet = IpSelector.newPacket(pdata,0,pdata.length);
+                        int pLen = fis.read(buffer);
+                        if (pLen > 0) {
+                            byte[] pdata = Arrays.copyOf(buffer, pLen);
+                            Packet packet;
+                            try {
+                                packet = IpSelector.newPacket(pdata,0,pdata.length);
 
-                                    if (packet instanceof IpPacket) {
-                                        IpPacket ipPacket = (IpPacket) packet;
-                                        if (isPacketDNS(ipPacket))
-                                            mExec.execute(new RequestPacketHandler(ipPacket, pFlow, mDnsResolver));
-                                        else
-                                            IPtProxy.inputPacket(pdata);
-                                    }
-
-                                } catch (IllegalRawDataException e) {
-                                    Log.e(TAG, e.getLocalizedMessage());
+                                if (packet instanceof IpPacket) {
+                                    IpPacket ipPacket = (IpPacket) packet;
+                                    if (isPacketDNS(ipPacket))
+                                        mExec.execute(new RequestPacketHandler(ipPacket, pFlow, mDnsResolver));
+                                    else
+                                        IPtProxy.inputPacket(pdata);
                                 }
 
+                            } catch (IllegalRawDataException e) {
+                                Log.e(TAG, e.getLocalizedMessage());
                             }
-                        } catch (Exception e) {
-                            Log.d(TAG, "error reading from VPN fd: " +  e.getLocalizedMessage());
+
                         }
+                    } catch (Exception e) {
+                        Log.d(TAG, "error reading from VPN fd: " +  e.getLocalizedMessage());
                     }
                 }
-            };
-            mThreadPacket.start();
+            }
+        };
+        mThreadPacket.start();
     }
 
     private static boolean isPacketDNS(IpPacket p) {
