@@ -702,9 +702,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
      */
     private void startTor() {
         try {
-            if (torServiceConnection != null && conn != null)
-            {
-                sendCallbackLogMessage("Ignoring start request, already started.");
+            if (torServiceConnection != null && conn != null) {
+                sendCallbackLogMessage(getString(R.string.log_notice_ignoring_start_request));
                 showConnectedToTorNetworkNotification();
                 return;
             }
@@ -723,7 +722,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 }
             }
         } catch (Exception e) {
-            logException("Unable to start Tor: " + e.toString(), e);
+            logException(getString(R.string.unable_to_start_tor) +  " " + e.getLocalizedMessage(), e);
             stopTorOnError(e.getLocalizedMessage());
         }
     }
