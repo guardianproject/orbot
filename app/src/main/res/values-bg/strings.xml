@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name"/>
     <string name="app_description">Orbot е безплатно приложение-посредник, което дава възможност на други приложения да използват интерент по-сигурно. Orbot използва Tor, за да криптира трафика, който се предава интернет и след това го скрива като го препраща през няколко компютъра по целия свят. Tor е безплатен софтуер и отворена мрежа, която помага да се предпазите от шпиониране по мрежата, което заплашва свободата и личното пространство, конфиденциални бизнес отношения и връзки, и от вид правителствено следене наречено анализ на трафика.</string>
     <string name="status_starting_up">Orbot стартира…</string>
     <string name="status_activated">Свързан към мрежата на Тор</string>
@@ -81,7 +81,7 @@
     <string name="enter_ports">Въведи портове</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">включи запис на дебъг доклади (трябва да ползвате aLogCat или adb, за да ги разглеждаш)</string>
     <string name="project_home">Станица на проекта:</string>
-    <string name="project_urls"></string>
+    <string name="project_urls"/>
     <string name="third_party_software">Софтуер на трети страни: </string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
@@ -125,4 +125,20 @@
     <string name="license">Лиценз:</string>
     <string name="deny">Отказване</string>
     <string name="menu_new_identity">Нова самоличност</string>
+    <string name="v3_key_hash">Частен ключ на x25519 в Base32</string>
+    <string name="v3_client_auth_activity_title">Удостоверяване на клиента</string>
+    <string name="v3_import_auth_private">Внасяне на .auth_private</string>
+    <string name="confirm">Потвърждаване</string>
+    <string name="local_port">Местен порт</string>
+    <string name="done">Готово!</string>
+    <string name="copy_address_to_clipboard">Копиране на адреса в междинната памет</string>
+    <string name="delete_service">Премахване на услугата</string>
+    <string name="service_type">Вид на услугата</string>
+    <string name="share_as_qr">Споделяне като QR</string>
+    <string name="trouble_connecting">Има проблем с връзката\?</string>
+    <string name="pref_open_proxy_on_all_interfaces_title">Прокси на всички интерфейси</string>
+    <string name="pref_http_dialog">Настройка на порта на HTTP</string>
+    <string name="apps_mode">Режим на VPN</string>
+    <string name="vpn_default_world">Света (авто)</string>
+    <string name="pref_isolate_dest">Изолиране на целевия адрес</string>
 </resources>
