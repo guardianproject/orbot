@@ -42,6 +42,7 @@ import org.pcap4j.packet.namednumber.IpNumber;
 import org.pcap4j.packet.namednumber.UdpPort;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
+import org.torproject.android.service.R;
 import org.torproject.android.service.util.Prefs;
 
 import java.io.DataInputStream;
@@ -240,7 +241,6 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     private synchronized void setupTun2Socks(final VpnService.Builder builder) {
         try {
 
-            final String vpnName = "OrbotVPN";
             final String localhost = "127.0.0.1";
             final String defaultRoute = "0.0.0.0";
             final String virtualGateway = "192.168.50.1";
@@ -251,7 +251,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
 
             builder.addRoute(defaultRoute, 0);
 
-            builder.setSession(vpnName);
+            builder.setSession(mService.getString(R.string.orbot_vpn));
 
 
             //route all traffic through VPN (we might offer country specific exclude lists in the future)
