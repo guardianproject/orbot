@@ -23,12 +23,11 @@ public class OrbotApp extends Application implements OrbotConstants {
         }
 
         deleteDatabase("hidden_services"); // if exists remove v2 onion service data
-
+        Prefs.setContext(this);
     }
 
     @Override
     protected void attachBaseContext(Context base) {
-        Prefs.setContext(base);
         super.attachBaseContext(LocaleHelper.onAttach(base));
     }
 
