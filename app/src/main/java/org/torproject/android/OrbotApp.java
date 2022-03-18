@@ -16,6 +16,9 @@ public class OrbotApp extends Application implements OrbotConstants {
     @Override
     public void onCreate() {
         super.onCreate();
+        Prefs.setContext(this);
+        LocaleHelper.onAttach(this);
+
         Languages.setup(OrbotMainActivity.class, R.string.menu_settings);
 
         if (!Prefs.getDefaultLocale().equals(Locale.getDefault().getLanguage())) {
@@ -23,12 +26,7 @@ public class OrbotApp extends Application implements OrbotConstants {
         }
 
         deleteDatabase("hidden_services"); // if exists remove v2 onion service data
-        Prefs.setContext(this);
-    }
 
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(LocaleHelper.onAttach(base));
     }
 
     @Override
