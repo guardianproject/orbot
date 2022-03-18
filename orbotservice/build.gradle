@@ -50,7 +50,6 @@ dependencies {
             libs.guardian_geoip,
             libs.portmapper,
             libs.tor_android,
-            libs.dns_java,
             libs.pcap_core,
             libs.pcap_factory
     )

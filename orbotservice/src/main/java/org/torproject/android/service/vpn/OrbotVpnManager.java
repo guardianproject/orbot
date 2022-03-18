@@ -291,8 +291,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
 
             mInterface = builder.establish();
 
-
-            mDnsResolver = new DNSResolver(localhost, mTorDns);
+            mDnsResolver = new DNSResolver(mTorDns);
 
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(() -> {
