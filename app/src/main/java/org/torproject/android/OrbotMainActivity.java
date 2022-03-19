@@ -100,7 +100,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private static final int MESSAGE_PORTS = 3;
     private static final float ROTATE_FROM = 0.0f;
     private static final float ROTATE_TO = 360.0f * 4f;// 3.141592654f * 32.0f;
-    private static final String[] COUNTRY_CODES = {"DE", "AT", "SE", "CH", "IS", "CA", "US", "ES", "FR", "BG", "PL", "AU", "BR", "CZ", "DK", "FI", "GB", "HU", "NL", "JP", "RO", "RU", "SG", "SK"};
+    private static final String[] COUNTRY_CODES = {"DE", "AT", "SE", "CH", "IS", "CA", "US", "ES", "FR", "BG", "PL", "AU", "BR", "CZ", "DK", "FI", "GB", "HU", "NL", "JP", "RO", "RU", "SG", "SK", "PT"};
     private static final String URL_TOR_CHECK = "https://check.torproject.org";
 
     // this is what takes messages or values from the callback threads or other non-mainUI threads
