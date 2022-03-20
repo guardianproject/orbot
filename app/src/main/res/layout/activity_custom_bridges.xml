@@ -56,7 +56,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
-                android:lines="5"
+                android:lines="15"
+                android:overScrollMode="always"
+                android:scrollbars="vertical"
+                android:scrollbarStyle="insideInset"
                 android:inputType="textMultiLine|textNoSuggestions"
                 tools:ignore="Autofill,LabelFor" />
 
