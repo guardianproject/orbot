@@ -76,6 +76,7 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
 import java.net.URLDecoder;
+import java.text.Collator;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -414,7 +415,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             cList.add(0, getString(R.string.vpn_default_world));
 
 
-            Map<String, Locale> sortedCountries = new TreeMap<>(); // tree map sorts by key...
+            Map<String, Locale> sortedCountries = new TreeMap<>(Collator.getInstance()); // tree map sorts by key...
             for (String countryCode : COUNTRY_CODES) {
                 Locale locale = new Locale("", countryCode);
                 sortedCountries.put(locale.getDisplayCountry(), locale);
