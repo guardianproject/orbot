@@ -1129,7 +1129,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 String nickname = prefs.getString(OrbotConstants.PREF_OR_NICKNAME, "Orbot");
                 String dnsFile = writeDNSFile();
 
-                extraLines.append("ServerDNSResolvConfFile").append(' ').append(dnsFile).append('\n');
+                extraLines.append("ServerDNSResolvConfFile").append(' ').append(dnsFile).append('\n'); // DNSResolv is not a typo
                 extraLines.append("ORPort").append(' ').append(ORPort).append('\n');
                 extraLines.append("Nickname").append(' ').append(nickname).append('\n');
                 extraLines.append("ExitPolicy").append(' ').append("reject *:*").append('\n');
