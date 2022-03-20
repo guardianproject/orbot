@@ -11,7 +11,6 @@
 
     <item
         android:id="@+id/menu_settings"
-        android:icon="@drawable/ic_action_settings"
         android:title="@string/menu_settings"
         yourapp:showAsAction="never" />
 
@@ -35,13 +34,11 @@
 
     <item
         android:id="@+id/menu_about"
-        android:icon="@drawable/ic_menu_about"
         android:title="@string/menu_about"
         yourapp:showAsAction="never" />
 
     <item
         android:id="@+id/menu_exit"
-        android:icon="@drawable/ic_menu_exit"
         android:title="@string/menu_exit"
         yourapp:showAsAction="never" />
 
