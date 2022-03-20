@@ -4,7 +4,6 @@
     <string name="app_description">Orbot е безплатно приложение-посредник, което дава възможност на други приложения да използват интерент по-сигурно. Orbot използва Tor, за да криптира трафика, който се предава интернет и след това го скрива като го препраща през няколко компютъра по целия свят. Tor е безплатен софтуер и отворена мрежа, която помага да се предпазите от шпиониране по мрежата, което заплашва свободата и личното пространство, конфиденциални бизнес отношения и връзки, и от вид правителствено следене наречено анализ на трафика.</string>
     <string name="status_starting_up">Orbot стартира…</string>
     <string name="status_activated">Има връзка с мрежата на Tor</string>
-    <string name="status_disabled">Орбот е изключен</string>
     <string name="status_shutting_down">Услугата на Tor спира</string>
     <string name="menu_settings">Настройки</string>
     <string name="menu_log">Дневник</string>
@@ -51,10 +50,7 @@
     <string name="pref_proxy_password_title">Парола за изходящия сървър за прокси</string>
     <string name="pref_proxy_password_summary">Парола за сървъра за прокси (незадължително)</string>
     <string name="pref_proxy_password_dialog">Въведете паролата за сървъра за прокси</string>
-    <string name="couldn_t_start_tor_process_">Грешка при стартиране на Tor:</string>
     <string name="error">Грешка</string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">Настройката ReachableAddresses предизвиква изключение!</string>
-    <string name="your_relay_settings_caused_an_exception_">Настройките за препращане предизвикват изключение!</string>
     <string name="exit_nodes">Изходни възли</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Отпечатъци, псевдоними, държави и адреси за последния хоп</string>
     <string name="enter_exit_nodes">Въведете изходни възли</string>
@@ -84,9 +80,6 @@
     <string name="third_party_software">Софтуер от трети страни:</string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="found_existing_tor_process">намерил си съвместим Tor проект…</string>
-    <string name="something_bad_happened">Нещо лошо се случи. Проверете лога</string>
-    <string name="unable_to_start_tor">Не може да стартира Тор:</string>
     <string name="pref_use_persistent_notifications">Когато Orbot е свързан винаги да се показва икона в лентата със задачи</string>
     <string name="pref_use_persistent_notifications_title">Винаги включени известия</string>
     <string name="pref_use_expanded_notifications">Известието съдържа държавата и адреса по IP на изходния възел на Tor ако са налични</string>
@@ -95,7 +88,6 @@
     <string name="pref_disable_network_title">Без автоматично заспиване на мрежата</string>
     <string name="pref_disable_network_summary">При липса на интернет Tor преминава в режим на сън</string>
     <string name="newnym">Сменихте самоличността си в Тор!</string>
-    <string name="updating_settings_in_tor_service">обновяване на настройките в Tor услугата</string>
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">Порт, на който Tor предлага прокси на SOCKS (подразбиран: 9050 или 0 за изключване)</string>
     <string name="pref_socks_dialog">SOCKS Port Config</string>
