@@ -95,11 +95,6 @@
          is along the minor axis (that is the screen is portrait).  This may
          be either a fraction or a dimension. -->
 
-    <!-- The width of the big icons in notifications. -->
-    <dimen name="notification_large_icon_width">64dp</dimen>
-    <!-- The width of the big icons in notifications. -->
-    <dimen name="notification_large_icon_height">64dp</dimen>
-
     <!-- Minimum width of the search view text entry area. -->
 
     <!-- Preferred width of the search view. -->
@@ -155,7 +150,6 @@
     <!-- Size of notification text (see TextAppearance.StatusBar.EventContent) -->
     <!-- Size of notification text titles (see TextAppearance.StatusBar.EventContent.Title) -->
     <!-- Size of smaller notification text (see TextAppearance.StatusBar.EventContent.Line2, Info, Time) -->
-    <dimen name="notification_subtext_size">12dp</dimen>
 
     <!-- Keyguard dimensions -->
     <!-- TEMP -->
