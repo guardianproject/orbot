@@ -54,8 +54,7 @@
   <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Sõrmejäljed, hüüdnimed, riigid ja aadressid mida välistada</string>
   <string name="enter_exclude_nodes">Sisestage välistatavad sõlmed</string>
   <string name="strict_nodes">Kindlad sõlmed</string>
-  <string name="use_only_these_specified_nodes">Kasuta *ainult* neid märgitud sõlmi</string>
-  <string name="bridges">Sillad</string>
+    <string name="bridges">Sillad</string>
   <string name="use_bridges">Kasuta sildu</string>
   <string name="relays">Edastajad</string>
   <string name="relaying">Edastamine</string>

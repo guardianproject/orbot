@@ -58,8 +58,7 @@
   <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Amprente, nume, ţări şi adrese de exclus</string>
   <string name="enter_exclude_nodes">Introdu noduri de exclus</string>
   <string name="strict_nodes">Noduri stricte</string>
-  <string name="use_only_these_specified_nodes">Foloseste *doar* nodurile specificate</string>
-  <string name="bridges">Punţi</string>
+    <string name="bridges">Punţi</string>
   <string name="use_bridges">Foloseşte punţi</string>
   <string name="relays">Comutatoare</string>
   <string name="relaying">Comutare</string>

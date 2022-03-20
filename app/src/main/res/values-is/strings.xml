@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Fingraför, gælunöfn, lönd og heimilisföng til að útiloka</string>
     <string name="enter_exclude_nodes">Settu inn punkta sem á að útiloka</string>
     <string name="strict_nodes">Ófrávíkjanlegir punktar</string>
-    <string name="use_only_these_specified_nodes">Nota *aðeins* þessa tilteknu punkta</string>
     <string name="bridges">Brýr</string>
     <string name="use_bridges">Nota brýr</string>
     <string name="relays">Endurvarpar</string>

@@ -58,8 +58,7 @@
   <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Izslēdzamās ciparvirknes, segvārdi, valstis un adreses</string>
   <string name="enter_exclude_nodes">Ievadīt Neiekļaujamos mezglus</string>
   <string name="strict_nodes">Precīzie mezgli</string>
-  <string name="use_only_these_specified_nodes">Izmantojiet *vienīgi* šos norādītos mezglus</string>
-  <string name="bridges">Tilti</string>
+    <string name="bridges">Tilti</string>
   <string name="use_bridges">Lietot tiltus</string>
   <string name="relays">Retranslatori</string>
   <string name="relaying">Retranslēšana</string>

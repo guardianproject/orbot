@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Reglas de identificación de repetidores a evitar en la red Tor, mediante huellas de validación de claves (fingerprints), alias (nicks), códigos de país y direcciones (o rangos)</string>
     <string name="enter_exclude_nodes">Introduzca repetidores a evitar</string>
     <string name="strict_nodes">Hacer estricta la exclusión de nodos (incluso si falla la comunicación)</string>
-    <string name="use_only_these_specified_nodes">Usar *sólo* estos nodos especificados</string>
     <string name="bridges">Bridges (repetidores puente) </string>
     <string name="use_bridges">Usar bridges</string>
     <string name="relays">Repetidores</string>

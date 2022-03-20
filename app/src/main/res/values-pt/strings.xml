@@ -146,7 +146,6 @@
     <string name="enable_your_device_to_be_a_non_exit_relay">Ativar o seu aparelho para ser um retransmissor de sem saída</string>
     <string name="relaying">Retransmitindo</string>
     <string name="relays">Retransmissores</string>
-    <string name="use_only_these_specified_nodes">Use *somente* estes nós específicos</string>
     <string name="strict_nodes">Nós Estritos</string>
     <string name="enter_exclude_nodes">Digite Nós Excluídos</string>
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Impressões digitais, apelidos, países e endereços para excluir</string>

@@ -58,7 +58,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Vältettävät sormenjäljet, nimimerkit, maat ja osoitteet</string>
     <string name="enter_exclude_nodes">Kirjoita vältettävät solmut</string>
     <string name="strict_nodes">Tarkat solmukohdat</string>
-    <string name="use_only_these_specified_nodes">Käytä *vain* näitä solmuja</string>
     <string name="bridges">Sillat</string>
     <string name="use_bridges">Käytä siltoja</string>
     <string name="relays">Releet</string>

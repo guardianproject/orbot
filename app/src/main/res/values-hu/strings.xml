@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Kizárandó ujjlenyomatok, becenevek, országok és címek</string>
     <string name="enter_exclude_nodes">Add meg a kizárandó csomópontokat</string>
     <string name="strict_nodes">Szigorú csomópontok</string>
-    <string name="use_only_these_specified_nodes">*Csak* ezeknek a megadott csomópontoknak a használata</string>
     <string name="bridges">Hidak</string>
     <string name="use_bridges">Hidak használata</string>
     <string name="relays">Átjátszók</string>

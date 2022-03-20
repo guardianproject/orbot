@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">ลายนิ้วมือ ชื่อเล่น ประเทศ และที่อยู่ที่ละเว้น</string>
     <string name="enter_exclude_nodes">ระบุโหนดยกเว้น</string>
     <string name="strict_nodes">โหนดเข้มงวด</string>
-    <string name="use_only_these_specified_nodes">ใช้ *เฉพาะ* โหนดที่ระบุเหล่านี้เท่านั้น</string>
     <string name="bridges">Bridges</string>
     <string name="use_bridges">ใช้งาน Bridges</string>
     <string name="relays">รีเลย์</string>

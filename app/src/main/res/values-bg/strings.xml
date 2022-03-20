@@ -62,7 +62,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Отпечатъци, псевдоними, държави и адреси, които да не бъдат ползвани</string>
     <string name="enter_exclude_nodes">Въведете изключените възли</string>
     <string name="strict_nodes">Задължителни възли</string>
-    <string name="use_only_these_specified_nodes">Използват се *само* изброените възли</string>
     <string name="bridges">Мостове</string>
     <string name="use_bridges">Използване на мостове</string>
     <string name="relays">Препращане</string>

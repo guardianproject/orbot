@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Отисци, надимци, државе и адресе за одстрањење</string>
     <string name="enter_exclude_nodes">Унесите чворове за одстрањење</string>
     <string name="strict_nodes">Стриктни чворови</string>
-    <string name="use_only_these_specified_nodes">Користи САМО ове наведене чворове</string>
     <string name="bridges">Мостови</string>
     <string name="use_bridges">Користи bridge</string>
     <string name="relays">Релеји</string>

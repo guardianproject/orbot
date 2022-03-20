@@ -58,7 +58,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Otisky (fingerprints), přezdívky serveru (nicks), státy a adresy pro vyloučené nody</string>
     <string name="enter_exclude_nodes">Zadejte nody k vyloučení</string>
     <string name="strict_nodes">Striktní nody</string>
-    <string name="use_only_these_specified_nodes">Použít *pouze* tyto specifické nody</string>
     <string name="bridges">Bridge</string>
     <string name="use_bridges">Použít bridge</string>
     <string name="relays">Relé</string>

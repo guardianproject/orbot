@@ -184,7 +184,6 @@
     <string name="relays">Relee</string>
     <string name="use_bridges">Utilizați poduri</string>
     <string name="bridges">Poduri</string>
-    <string name="use_only_these_specified_nodes">Utilizați *numai* aceste noduri specificate</string>
     <string name="strict_nodes">Noduri stricte</string>
     <string name="enter_exclude_nodes">Introduceți Noduri de excludere</string>
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Amprentele digitale, crestăturile, țările și adresele de exclus</string>

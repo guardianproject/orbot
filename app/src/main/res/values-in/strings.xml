@@ -58,7 +58,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Pengecualian fingerprints,nama, negara dan alamat</string>
     <string name="enter_exclude_nodes">Memasuki Node Pengecualian</string>
     <string name="strict_nodes">Node Terlarang</string>
-    <string name="use_only_these_specified_nodes">Pakai *hanya* spesifik node</string>
     <string name="bridges">Bridges</string>
     <string name="use_bridges">Pakai Bridges</string>
     <string name="relays">Relays</string>

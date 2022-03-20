@@ -53,7 +53,6 @@
     <string name="exclude_nodes">צמתים מוחרגים</string>
     <string name="enter_exclude_nodes">הזן צמתים מוחרגים</string>
     <string name="strict_nodes">צמתים קפדנים</string>
-    <string name="use_only_these_specified_nodes">השתמש *רק* בצמתים מצוינים אלו</string>
     <string name="bridges">גשרים</string>
     <string name="use_bridges">השתמש בגשרים</string>
     <string name="relays">ממסרים</string>

@@ -55,8 +55,7 @@
   <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Fingerprints, nicks, mga bansa at mga address na hindi isasama</string>
   <string name="enter_exclude_nodes">Enter Exclude Nodes</string>
   <string name="strict_nodes">Strict Nodes</string>
-  <string name="use_only_these_specified_nodes">Gumamit ng *only* sa mga ispesipikong nodes </string>
-  <string name="bridges">Bridges</string>
+    <string name="bridges">Bridges</string>
   <string name="use_bridges">Gumamit ng Bridges</string>
   <string name="relays">Relays</string>
   <string name="relaying">Relaying</string>

@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">اثرانگشت‌ها، اسامی مستعار، کشورها و نشانی‌هایی که نباید استفاده شوند</string>
     <string name="enter_exclude_nodes">گره‌های مستثنی را وارد نمایید</string>
     <string name="strict_nodes">گره‌های محدود</string>
-    <string name="use_only_these_specified_nodes">استفاده *فقط* از گره‌های مشخص شده</string>
     <string name="bridges">پل‌ها</string>
     <string name="use_bridges">استفاده از پل‌ها</string>
     <string name="relays">بازپخش کننده‌ها</string>

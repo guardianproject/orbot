@@ -58,8 +58,7 @@
   <string name="fingerprints_nicks_countries_and_addresses_to_exclude">İxrac üçün barmaq izləri, nişanlar, ölkələr və ünvanlar</string>
   <string name="enter_exclude_nodes">İxrac Kəsişmələrini Daxil Et</string>
   <string name="strict_nodes">Kəskin Kəsişmələr</string>
-  <string name="use_only_these_specified_nodes">*Yalnız* bu xüsusi kəsişmələri istifadə et</string>
-  <string name="bridges">Körpülər</string>
+    <string name="bridges">Körpülər</string>
   <string name="use_bridges">Körpü İstifadə Et</string>
   <string name="relays">Keçidlər</string>
   <string name="relaying">Keçidləmə</string>

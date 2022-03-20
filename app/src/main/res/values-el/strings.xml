@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Αποτυπώματα, ψευδώνυμα, χώρες και διευθύνσεις προς εξαίρεση</string>
     <string name="enter_exclude_nodes">Εισάγετε Εξαιρετέους κόμβους</string>
     <string name="strict_nodes">Αποκλειστικοί κόμβοι</string>
-    <string name="use_only_these_specified_nodes">Χρήση *μόνον* αυτών των συγκεκριμένων κόμβων</string>
     <string name="bridges">Γέφυρες</string>
     <string name="use_bridges">Χρήση γεφυρών</string>
     <string name="relays">Αναμεταδότες</string>

@@ -52,7 +52,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Cap jari, nama samaran, negara dan alamat untuk dikeluarkan</string>
     <string name="enter_exclude_nodes">Masukkan Nod Keluar</string>
     <string name="strict_nodes">Nod Ketat</string>
-    <string name="use_only_these_specified_nodes">Guna *hanya* nod-nod ini</string>
     <string name="bridges">Jambatan</string>
     <string name="use_bridges">Guna Jambatan</string>
     <string name="relays">Relays</string>

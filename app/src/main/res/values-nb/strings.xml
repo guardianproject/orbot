@@ -58,7 +58,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Fineravtrykk, kallenavn, land og adresser som skal ekskluderes</string>
     <string name="enter_exclude_nodes">Skriv inn ekskluderte noder</string>
     <string name="strict_nodes">Strict noder</string>
-    <string name="use_only_these_specified_nodes">Bruk *bare* disse angitte nodene</string>
     <string name="bridges">Broer</string>
     <string name="use_bridges">Bruk broer</string>
     <string name="relays">Reléer</string>

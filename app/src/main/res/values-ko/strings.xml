@@ -58,8 +58,7 @@
   <string name="fingerprints_nicks_countries_and_addresses_to_exclude">차단할 핑거프린트, 별칭, 나라와 주소</string>
   <string name="enter_exclude_nodes">차단할 노드 입력</string>
   <string name="strict_nodes">노드 선택</string>
-  <string name="use_only_these_specified_nodes">이 특정한 노드*만* 사용합니다.</string>
-  <string name="bridges">중계서버</string>
+    <string name="bridges">중계서버</string>
   <string name="use_bridges">중계서버 사용</string>
   <string name="relays">중계서버</string>
   <string name="relaying">중계</string>

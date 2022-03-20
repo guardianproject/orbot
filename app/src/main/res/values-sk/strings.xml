@@ -58,8 +58,7 @@
   <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Otlačky, prezývky, krajiny a adresy pre vylúčenie</string>
   <string name="enter_exclude_nodes">Zadajte vylúčené uzly</string>
   <string name="strict_nodes">Striktné uzly</string>
-  <string name="use_only_these_specified_nodes">Použiť *len* tieto špecifikované uzly</string>
-  <string name="bridges">Premostenia</string>
+    <string name="bridges">Premostenia</string>
   <string name="use_bridges">Použiť premostenia</string>
   <string name="relays">Relé</string>
   <string name="relaying">Postúpenie relé</string>

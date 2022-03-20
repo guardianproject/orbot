@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Fingeravtryck, nicks, länder och adresser att exkludera</string>
     <string name="enter_exclude_nodes">Skriv in Exkluderade Noder</string>
     <string name="strict_nodes">Strikta Noder</string>
-    <string name="use_only_these_specified_nodes">Använd *enbart* dessa specificerade noder</string>
     <string name="bridges">Broar</string>
     <string name="use_bridges">Använd Broar</string>
     <string name="relays">Reläer</string>

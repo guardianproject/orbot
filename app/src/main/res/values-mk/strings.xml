@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Отпечатоци од прсти, прекари, држави и адреси кои треба да се исклучат</string>
     <string name="enter_exclude_nodes">Внесете ги исклучните јазли</string>
     <string name="strict_nodes">Задолжителни јазли</string>
-    <string name="use_only_these_specified_nodes">Користете ги *само* овие наведени јазли</string>
     <string name="bridges">Мостови</string>
     <string name="use_bridges">Користи мостови</string>
     <string name="relays">Релеи</string>

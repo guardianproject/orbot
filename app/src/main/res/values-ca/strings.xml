@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Empremtes, àlies, països i adreces per excloure</string>
     <string name="enter_exclude_nodes">Introduïu nodes per excloure</string>
     <string name="strict_nodes">Nodes estrictes</string>
-    <string name="use_only_these_specified_nodes">Utilitza *només* aquests nodes especificats</string>
     <string name="bridges">Ponts</string>
     <string name="use_bridges">Utilitza ponts</string>
     <string name="relays">Reemissors</string>

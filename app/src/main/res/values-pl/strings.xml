@@ -58,7 +58,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Odciski palców, nicki, państwa i adresy do wykluczenia</string>
     <string name="enter_exclude_nodes">Wprowadź Wykluczone Węzły</string>
     <string name="strict_nodes">Ścisłe węzły</string>
-    <string name="use_only_these_specified_nodes">Użyj *tylko* tych określonych węzłów</string>
     <string name="bridges">Mostki</string>
     <string name="use_bridges">Użyj mostków</string>
     <string name="relays">Przekaźniki</string>

@@ -47,7 +47,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">අත්හරින අගිලිසලකුණු, nicks, රටවල් හා ලිපිනයන්</string>
     <string name="enter_exclude_nodes">අත්හරින නොඩුඩුවලට පිවිසෙන්න</string>
     <string name="strict_nodes">දැඩි නොඩු </string>
-    <string name="use_only_these_specified_nodes">ඉහත සදහන් නොඩු *පමණක්* භාවිතා කරන්න </string>
     <string name="bridges">සේතු</string>
     <string name="use_bridges">සේතු භාවිතා කරන්න </string>
     <string name="relays">ප්‍රතියෝජකය</string>

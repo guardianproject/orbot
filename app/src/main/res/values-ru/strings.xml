@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Отпечатки, псевдонимы, страны и адреса для исключения</string>
     <string name="enter_exclude_nodes">Введите исключённые узлы</string>
     <string name="strict_nodes">Точные узлы</string>
-    <string name="use_only_these_specified_nodes">Использовать *только* эти заданные узлы</string>
     <string name="bridges">Мосты</string>
     <string name="use_bridges">Использовать мосты</string>
     <string name="relays">Ретрансляторы</string>

@@ -58,7 +58,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">بصمات، الأسماء المستعارة، البلدان و العناوين ليتم استثنائها</string>
     <string name="enter_exclude_nodes">أدخل النقاط المستثناه</string>
     <string name="strict_nodes">النقاط المشددة</string>
-    <string name="use_only_these_specified_nodes">استخدم فقط تلك النقاط المحددة</string>
     <string name="bridges">الجسور</string>
     <string name="use_bridges">استخدم الجسور</string>
     <string name="relays">المرحلات</string>

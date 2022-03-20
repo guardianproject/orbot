@@ -59,7 +59,7 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Fingerprints, nicks, countries and addresses to exclude</string>
     <string name="enter_exclude_nodes">Enter Exclude Nodes</string>
     <string name="strict_nodes">Strict Nodes</string>
-    <string name="use_only_these_specified_nodes">Use *only* these specified nodes</string>
+    <string name="strict_nodes_description">Treat Exclude Nodes settings as a requirement for building all circuits. This may break functionality if no circuits are able to be generated with your Exclude Nodes settings.</string>
     <string name="bridges">Bridges</string>
     <string name="use_bridges">Use Bridges</string>
     <string name="relays">Relays</string>

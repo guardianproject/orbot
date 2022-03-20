@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">排除節點的指紋、暱稱、國家或位址</string>
     <string name="enter_exclude_nodes">排除節點的條件</string>
     <string name="strict_nodes">嚴格限制節點</string>
-    <string name="use_only_these_specified_nodes">｢只｣使用這些節點</string>
     <string name="bridges">網橋（Bridges）</string>
     <string name="use_bridges">使用網橋</string>
     <string name="relays">中繼（Relays）</string>

@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Katılmayacak parmak izleri, kısaltmalar, ülkeler ve adresler</string>
     <string name="enter_exclude_nodes">Hariç Tutulacak Düğümleri Girin</string>
     <string name="strict_nodes">Değişmeyen Düğümler</string>
-    <string name="use_only_these_specified_nodes">*Yalnız* bu düğümler kullanılsın</string>
     <string name="bridges">Köprüler</string>
     <string name="use_bridges">Köprüleri Kullan</string>
     <string name="relays">Aktarıcılar</string>

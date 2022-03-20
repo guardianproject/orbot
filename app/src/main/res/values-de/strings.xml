@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Fingerabdrücke, Spitznamen, Länder und Adressen, die ausgeschlossen werden sollen</string>
     <string name="enter_exclude_nodes">Auszuschließende Netzknoten eingeben</string>
     <string name="strict_nodes"> Strikte Netzknoten</string>
-    <string name="use_only_these_specified_nodes">*Nur* diese angegebenen Netzknoten nutzen</string>
     <string name="bridges">Brücken</string>
     <string name="use_bridges">Brücken benutzen</string>
     <string name="relays">Relais</string>

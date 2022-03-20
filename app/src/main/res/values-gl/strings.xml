@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Huellas, alias, países e direccións a excluír</string>
     <string name="enter_exclude_nodes">Introduza Nodos Excluídos</string>
     <string name="strict_nodes">Nodos Estritos</string>
-    <string name="use_only_these_specified_nodes">Usar *só* este nodos específicos</string>
     <string name="bridges">Pontes</string>
     <string name="use_bridges">Usar Pontes</string>
     <string name="relays">Reenvíos</string>

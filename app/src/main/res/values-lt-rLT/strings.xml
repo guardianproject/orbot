@@ -43,7 +43,6 @@
     <string name="backup_saved_at_external_storage">Atsarginė kopija išsaugota išorinėje saugykloje</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Atidaryti įgaliotąjį serverį visose sąsajose</string>
     <string name="enter_a_custom_relay_nickname">Įveskite pasirinktinės relės slapyvardį</string>
-    <string name="use_only_these_specified_nodes">Naudoti *tik* šiuos nurodytus mazgus</string>
     <string name="v3_delete_client_authorization">Ištrinti kliento autorizavimo raktą</string>
     <string name="v3_backup_key">Padaryti kliento autorizavimo rakto atsarginę kopiją</string>
     <string name="request_bridges_from_torproject">Prašyti tiltų iš torproject.org</string>

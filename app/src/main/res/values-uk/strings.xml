@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Відбитки, ніки, країни та адреси на виключення</string>
     <string name="enter_exclude_nodes">Введіть виключені вузли</string>
     <string name="strict_nodes">Точні вузли</string>
-    <string name="use_only_these_specified_nodes">Використовувати *лише* ці вказані вузли</string>
     <string name="bridges">Мости</string>
     <string name="use_bridges">Використовувати мости</string>
     <string name="relays">Ретранслятори</string>

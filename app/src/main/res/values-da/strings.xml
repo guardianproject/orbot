@@ -57,8 +57,7 @@
   <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Fingeraftryk, servernavne, lande og adresser der skal ekskluderes</string>
   <string name="enter_exclude_nodes">Indtast noder at ekskludere</string>
   <string name="strict_nodes">Strikte punkter</string>
-  <string name="use_only_these_specified_nodes">Brug *kun* disse specificerede punkter</string>
-  <string name="bridges">Broer</string>
+    <string name="bridges">Broer</string>
   <string name="use_bridges">Brug broer</string>
   <string name="relays">Relæer</string>
   <string name="relaying">Relæfunktion</string>

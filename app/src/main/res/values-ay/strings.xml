@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Ampar luk\'an chimpunaka, ñanqha sutinaka, markanaka, chiqawjanaka, jan Tor llikar mantayañataki</string>
     <string name="enter_exclude_nodes">Puriñawjanak uñanuqut qillqantam</string>
     <string name="strict_nodes">Sum uñjat puriñawjanaka</string>
-    <string name="use_only_these_specified_nodes">Aka sutiñchat puriñawjanakak apnaqam</string>
     <string name="bridges">Jalakipañanaka</string>
     <string name="use_bridges">Jalakipañanak apnaqaña</string>
     <string name="relays">Ch\'iqiyirinaka</string>

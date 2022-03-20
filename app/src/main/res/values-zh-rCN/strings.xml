@@ -58,7 +58,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">排除的密钥指纹、昵称、国家与地址</string>
     <string name="enter_exclude_nodes">输入排除节点</string>
     <string name="strict_nodes">限制节点</string>
-    <string name="use_only_these_specified_nodes">仅使用这些指定节点</string>
     <string name="bridges">网桥</string>
     <string name="use_bridges">使用网桥</string>
     <string name="relays">中继</string>

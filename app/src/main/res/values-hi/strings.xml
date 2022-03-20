@@ -60,7 +60,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">फ़िंगरप्रिंट, निकल्स, देश और पते को बाहर करने के लिए</string>
     <string name="enter_exclude_nodes">बहिष्कृत नोड्स दर्ज करें</string>
     <string name="strict_nodes">सख्त नोड्स</string>
-    <string name="use_only_these_specified_nodes">* केवल * इन निर्दिष्ट नोड्स का उपयोग करें</string>
     <string name="bridges">पुल</string>
     <string name="use_bridges">पुल का उपयोग करें</string>
     <string name="relays">रिले</string>
