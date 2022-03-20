@@ -1428,46 +1428,23 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
         public void run() {
             String action = mIntent.getAction();
-            if (!TextUtils.isEmpty(action)) {
-                if (action.equals(ACTION_START)) {
-
-                    if (Prefs.bridgesEnabled()) {
-                        if (useIPtObfsMeekProxy())
-                            IPtProxy.startObfs4Proxy("DEBUG", false, false, null);
-                        else if (useIPtSnowflakeProxyDomainFronting())
-                            startSnowflakeClientDomainFronting();
-                        else if (useIPtSnowflakeProxyAMPRendezvous())
-                            startSnowflakeClientAmpRendezvous();
-                    } else if (Prefs.beSnowflakeProxy()) {
-                            enableSnowflakeProxy();
-                    }
-
-                    startTor();
-                    replyWithStatus(mIntent);
-
-                    if (Prefs.useVpn()) {
-                        if (mVpnManager != null
-                                && (!mVpnManager.isStarted())) {
-                            //start VPN here
-                            Intent vpnIntent = VpnService.prepare(OrbotService.this);
-                            if (vpnIntent == null) //then we can run the VPN
-                            {
-                                mVpnManager.handleIntent(new Builder(), mIntent);
-
-                            }
-                        }
-
-                        if (mPortSOCKS != -1 && mPortHTTP != -1)
-                            sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
-                    }
-                } else if (action.equals(ACTION_STOP)) {
-                    stopTorAsync();
-                } else if (action.equals(ACTION_UPDATE_ONION_NAMES)) {
-                    updateV3OnionNames();
-                } else if (action.equals(ACTION_STOP_FOREGROUND_TASK)) {
-                    stopForeground(true);
+            if (TextUtils.isEmpty(action)) return;
+            if (action.equals(ACTION_START)) {
+                if (Prefs.bridgesEnabled()) {
+                    if (useIPtObfsMeekProxy())
+                        IPtProxy.startObfs4Proxy("DEBUG", false, false, null);
+                    else if (useIPtSnowflakeProxyDomainFronting())
+                        startSnowflakeClientDomainFronting();
+                    else if (useIPtSnowflakeProxyAMPRendezvous())
+                        startSnowflakeClientAmpRendezvous();
+                } else if (Prefs.beSnowflakeProxy()) {
+                        enableSnowflakeProxy();
                 }
-                else if (action.equals(ACTION_START_VPN)) {
+
+                startTor();
+                replyWithStatus(mIntent);
+
+                if (Prefs.useVpn()) {
                     if (mVpnManager != null && (!mVpnManager.isStarted())) {
                         //start VPN here
                         Intent vpnIntent = VpnService.prepare(OrbotService.this);
@@ -1478,29 +1455,47 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
                     if (mPortSOCKS != -1 && mPortHTTP != -1)
                         sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
-
-
-                } else if (action.equals(ACTION_STOP_VPN)) {
-                    if (mVpnManager != null)
-                        mVpnManager.handleIntent(new Builder(), mIntent);
-                } else if (action.equals(ACTION_RESTART_VPN)) {
-
-                    if (mVpnManager != null)
-                        mVpnManager.restartVPN(new Builder());
-
-                } if (action.equals(ACTION_STATUS)) {
-                    replyWithStatus(mIntent);
-                } else if (action.equals(TorControlCommands.SIGNAL_RELOAD)) {
-                    requestTorRereadConfig();
-                } else if (action.equals(TorControlCommands.SIGNAL_NEWNYM)) {
-                    newIdentity();
-                } else if (action.equals(CMD_ACTIVE)) {
-                    sendSignalActive();
-                } else if (action.equals(CMD_SET_EXIT)) {
-                    setExitNode(mIntent.getStringExtra("exit"));
-                } else {
-                    Log.w(OrbotConstants.TAG, "unhandled OrbotService Intent: " + action);
                 }
+            } else if (action.equals(ACTION_STOP)) {
+                stopTorAsync();
+            } else if (action.equals(ACTION_UPDATE_ONION_NAMES)) {
+                updateV3OnionNames();
+            } else if (action.equals(ACTION_STOP_FOREGROUND_TASK)) {
+                stopForeground(true);
+            }
+            else if (action.equals(ACTION_START_VPN)) {
+                if (mVpnManager != null && (!mVpnManager.isStarted())) {
+                    //start VPN here
+                    Intent vpnIntent = VpnService.prepare(OrbotService.this);
+                    if (vpnIntent == null) { //then we can run the VPN
+                        mVpnManager.handleIntent(new Builder(), mIntent);
+                    }
+                }
+
+                if (mPortSOCKS != -1 && mPortHTTP != -1)
+                    sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
+
+
+            } else if (action.equals(ACTION_STOP_VPN)) {
+                if (mVpnManager != null)
+                    mVpnManager.handleIntent(new Builder(), mIntent);
+            } else if (action.equals(ACTION_RESTART_VPN)) {
+
+                if (mVpnManager != null)
+                    mVpnManager.restartVPN(new Builder());
+
+            } if (action.equals(ACTION_STATUS)) {
+                replyWithStatus(mIntent);
+            } else if (action.equals(TorControlCommands.SIGNAL_RELOAD)) {
+                requestTorRereadConfig();
+            } else if (action.equals(TorControlCommands.SIGNAL_NEWNYM)) {
+                newIdentity();
+            } else if (action.equals(CMD_ACTIVE)) {
+                sendSignalActive();
+            } else if (action.equals(CMD_SET_EXIT)) {
+                setExitNode(mIntent.getStringExtra("exit"));
+            } else {
+                Log.w(OrbotConstants.TAG, "unhandled OrbotService Intent: " + action);
             }
         }
     }
