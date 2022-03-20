@@ -199,8 +199,7 @@
                             android:layout_margin="3dp"
                             android:fontFamily="sans-serif-light"
                             android:gravity="center_vertical"
-                            android:lines="1"
-                            android:text="0" />
+                            android:lines="1"/>
                     </LinearLayout>
 
 
@@ -231,8 +230,7 @@
                             android:layout_margin="3dp"
                             android:fontFamily="sans-serif-light"
                             android:gravity="center_vertical"
-                            android:lines="1"
-                            android:text="0" />
+                            android:lines="1"/>
 
                     </LinearLayout>
 
