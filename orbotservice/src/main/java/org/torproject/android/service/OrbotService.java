@@ -207,7 +207,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             PendingIntent pendingIntentNewNym = PendingIntent.getBroadcast(this, 0, intentRefresh, PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);
             mNotifyBuilder.addAction(R.drawable.ic_refresh_white_24dp, getString(R.string.menu_new_identity), pendingIntentNewNym);
         } else if (mCurrentStatus.equals(STATUS_OFF)) {
-            Intent intentConnect = new Intent(ACTION_START);
+            Intent intentConnect = new Intent(LOCAL_ACTION_NOTIFICATION_START);
             PendingIntent pendingIntentConnect = PendingIntent.getBroadcast(this, 0, intentConnect, PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);
             mNotifyBuilder.addAction(R.drawable.ic_stat_tor, getString(R.string.connect_to_tor), pendingIntentConnect);
         }
@@ -429,6 +429,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             IntentFilter filter = new IntentFilter(TorControlCommands.SIGNAL_NEWNYM);
             filter.addAction(CMD_ACTIVE);
             filter.addAction(ACTION_STATUS);
+            filter.addAction(LOCAL_ACTION_NOTIFICATION_START);
 
             mActionBroadcastReceiver = new ActionBroadcastReceiver();
             registerReceiver(mActionBroadcastReceiver, filter);
@@ -793,7 +794,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     private void sendLocalStatusOffBroadcast() {
-        Log.d("bim", "sending local sttus off");
         var localOffStatus = new Intent(LOCAL_ACTION_STATUS).putExtra(EXTRA_STATUS, STATUS_OFF);
         LocalBroadcastManager.getInstance(this).sendBroadcast(localOffStatus);
     }
@@ -1380,7 +1380,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
                     mVpnManager.restartVPN(new Builder());
 
             } else if (action.equals(ACTION_STATUS)) {
-                Log.d("bim", "got action status...");
                 if (mCurrentStatus.equals(STATUS_OFF))
                     showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor);
                 replyWithStatus(mIntent);
@@ -1410,9 +1409,12 @@ public class OrbotService extends VpnService implements OrbotConstants {
                     sendSignalActive();
                     break;
                 }
+                case LOCAL_ACTION_NOTIFICATION_START: {
+                    startTor();
+                    break;
+                }
                 case ACTION_STATUS: {
                     mCurrentStatus = intent.getStringExtra(EXTRA_STATUS);
-                    Log.d("bim", "service " + mCurrentStatus);
                     var localStatus = new Intent(LOCAL_ACTION_STATUS).putExtra(EXTRA_STATUS, mCurrentStatus);
                     LocalBroadcastManager.getInstance(OrbotService.this).sendBroadcast(localStatus); // update the activity with what's new
                     break;

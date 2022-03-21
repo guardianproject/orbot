@@ -282,17 +282,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private boolean waitingToStop = false;
 
     private void stopTor() {
-        stopOrbotService(false);
-    }
-
-    private void stopOrbotService(boolean userIsQuittingOrbot) {
-        if (userIsQuittingOrbot) {
-            var killIntent = new Intent(this, OrbotService.class)
-                    .setAction(ACTION_STOP)
-                    .putExtra(ACTION_STOP_FOREGROUND_TASK, true);
-            startService(killIntent);
-            return;
-        }
         if (torStatus.equals(STATUS_ON)) {
             if (mBtnVPN.isChecked()) sendIntentToService(ACTION_STOP_VPN);
             sendIntentToService(ACTION_STOP);
@@ -496,7 +485,11 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     }
 
     private void doExit() {
-        stopOrbotService(true);
+        var killIntent = new Intent(this, OrbotService.class)
+                .setAction(ACTION_STOP)
+                .putExtra(ACTION_STOP_FOREGROUND_TASK, true);
+        if (mBtnVPN.isChecked()) sendIntentToService(ACTION_STOP_VPN);
+        startService(killIntent);
         finish();
     }
 
