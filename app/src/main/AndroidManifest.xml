@@ -59,17 +59,8 @@
                 <data android:scheme="bridge" />
             </intent-filter>
             <intent-filter>
-                <action android:name="org.torproject.android.REQUEST_HS_PORT" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <intent-filter>
                 <action android:name="org.torproject.android.REQUEST_V3_ONION_SERVICE"/>
                 <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="org.torproject.android.START_TOR" />
-
-                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 

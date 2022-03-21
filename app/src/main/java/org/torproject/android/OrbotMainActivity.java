@@ -89,7 +89,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
     private static final String INTENT_ACTION_REQUEST_V3_ONION_SERVICE = "org.torproject.android.REQUEST_V3_ONION_SERVICE";
     private static final String INTENT_EXTRA_REQUESTED_V3_HOSTNAME = "org.torproject.android.REQUESTED_V3_HOSTNAME";
-    private static final String INTENT_ACTION_REQUEST_START_TOR = "org.torproject.android.START_TOR";
     private static final int REQUEST_VPN = 8888;
     private static final int REQUEST_SETTINGS = 0x9874;
     private static final int REQUEST_VPN_APPS_SELECT = 8889;
@@ -121,7 +120,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private TextView tvVpnAppStatus;
     /* Some tracking bits */
     private String torStatus = null; //latest status reported from the tor service
-    private Intent lastStatusIntent;  // the last LOCAL_ACTION_STATUS Intent received
 
     // used when apps request a new v3 service
     private long lastInsertedOnionServiceRowId = -1;
@@ -190,8 +188,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     OrbotMainActivity.this.finish();
                     break;
                 case LOCAL_ACTION_STATUS: {
-                    lastStatusIntent = intent;
-
                     Message msg = mStatusUpdateHandler.obtainMessage(STATUS_UPDATE);
 
                     if (!TextUtils.isEmpty(status))
@@ -221,7 +217,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         }
     };
     private SharedPreferences mPrefs = null;
-    private boolean autoStartFromIntent = false;
 
     /**
      * Called when the activity is first created.
@@ -510,7 +505,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         Prefs.putUseVpn(enable);
         drawAppShortcuts(false);
         if (enable) {
-
             Intent intentVPN = VpnService.prepare(this);
             if (intentVPN != null)
                 startActivityForResult(intentVPN, REQUEST_VPN);
@@ -519,10 +513,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             }
 
         } else {
-            //stop the VPN here
-            sendIntentToService(ACTION_STOP_VPN);
+            sendIntentToService(ACTION_STOP_VPN); // stop the VPN here
         }
-
     }
 
     private void startVpn() {
@@ -575,11 +567,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                         })
                         .show();
                 return;
-
-            case INTENT_ACTION_REQUEST_START_TOR:
-                autoStartFromIntent = true;
-                startTor();
-                break;
 
             case Intent.ACTION_VIEW:
                 String urlString = intent.getDataString();
@@ -807,18 +794,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     // if new onion hostnames are generated, update local DB
                     sendIntentToService(ACTION_UPDATE_ONION_NAMES);
 
-                    if (autoStartFromIntent) {
-                        autoStartFromIntent = false;
-                        Intent resultIntent = lastStatusIntent;
-
-                        if (resultIntent == null)
-                            resultIntent = new Intent(ACTION_START);
-
-                        resultIntent.putExtra(EXTRA_STATUS, torStatus == null ? STATUS_OFF : torStatus);
-
-                        setResult(RESULT_OK, resultIntent);
-                        finish();
-                    }
                     break;
 
                 case STATUS_STARTING:
