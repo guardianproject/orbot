@@ -122,7 +122,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private TextView tvVpnAppStatus;
     /* Some tracking bits */
     private String torStatus = null; //latest status reported from the tor service
-    private Intent lastStatusIntent;  // the last ACTION_STATUS Intent received
+    private Intent lastStatusIntent;  // the last LOCAL_ACTION_STATUS Intent received
 
     // used when apps request a new v3 service
     private long lastInsertedOnionServiceRowId = -1;
@@ -143,7 +143,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 return;
 
             switch (action) {
-                case OrbotConstants.LOCAL_ACTION_LOG: {
+                case LOCAL_ACTION_LOG: {
                     Message msg = mStatusUpdateHandler.obtainMessage(STATUS_UPDATE);
                     msg.obj = intent.getStringExtra(OrbotConstants.LOCAL_EXTRA_LOG);
 
@@ -154,7 +154,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                     break;
                 }
-                case OrbotConstants.LOCAL_ACTION_BANDWIDTH: {
+                case LOCAL_ACTION_BANDWIDTH: {
                     long totalWritten = intent.getLongExtra("totalWritten", 0);
                     long totalRead = intent.getLongExtra("totalRead", 0);
                     long lastWritten = intent.getLongExtra("lastWritten", 0);
@@ -173,7 +173,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                     break;
                 }
-                case OrbotConstants.LOCAL_ACTION_V3_NAMES_UPDATED:
+                case LOCAL_ACTION_V3_NAMES_UPDATED:
                     if (lastInsertedOnionServiceRowId == -1) break; // another app did not request an onion service
                     ContentResolver cr = getContentResolver();
                     String where = OnionServiceContentProvider.OnionService._ID + "=" + lastInsertedOnionServiceRowId;
@@ -193,7 +193,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     OrbotMainActivity.this.setResult(RESULT_OK, response);
                     OrbotMainActivity.this.finish();
                     break;
-                case OrbotConstants.ACTION_STATUS: {
+                case LOCAL_ACTION_STATUS: {
                     lastStatusIntent = intent;
 
                     Message msg = mStatusUpdateHandler.obtainMessage(STATUS_UPDATE);
@@ -243,16 +243,11 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
          * status broadcasts to prevent other apps from sending fake/wrong status
          * info to this app */
         LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
-        lbm.registerReceiver(mLocalBroadcastReceiver,
-                new IntentFilter(OrbotConstants.ACTION_STATUS));
-        lbm.registerReceiver(mLocalBroadcastReceiver,
-                new IntentFilter(OrbotConstants.LOCAL_ACTION_BANDWIDTH));
-        lbm.registerReceiver(mLocalBroadcastReceiver,
-                new IntentFilter(OrbotConstants.LOCAL_ACTION_LOG));
-        lbm.registerReceiver(mLocalBroadcastReceiver,
-                new IntentFilter(OrbotConstants.LOCAL_ACTION_PORTS));
-        lbm.registerReceiver(mLocalBroadcastReceiver,
-                new IntentFilter(OrbotConstants.LOCAL_ACTION_V3_NAMES_UPDATED));
+        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(OrbotConstants.LOCAL_ACTION_STATUS));
+        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(OrbotConstants.LOCAL_ACTION_BANDWIDTH));
+        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(OrbotConstants.LOCAL_ACTION_LOG));
+        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(OrbotConstants.LOCAL_ACTION_PORTS));
+        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(OrbotConstants.LOCAL_ACTION_V3_NAMES_UPDATED));
 
 
         boolean showFirstTime = mPrefs.getBoolean("connect_first_time", true);
@@ -292,17 +287,15 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             sendIntentToService(ACTION_STOP);
         }
         else if (torStatus.equals(STATUS_STARTING) || torStatus.equals(STATUS_STOPPING)) {
-
             if (!waitingToStop) {
                 waitingToStop = true;
-                updateStatus("...", STATUS_STOPPING);
+                updateStatus(getString(R.string.status_shutting_down), STATUS_STOPPING);
                 mStatusUpdateHandler.postDelayed(() -> {
 
                     if (mBtnVPN.isChecked()) sendIntentToService(ACTION_STOP_VPN);
                     sendIntentToService(ACTION_STOP);
                     waitingToStop = false;
-
-                }, 3000);
+                }, 1000);
             }
         } else { // tor isn't running, but we need to stop the service
             sendIntentToService(ACTION_STOP_FOREGROUND_TASK);
@@ -380,7 +373,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     }
 
     private void toggleTor() { // UI entry point for  (dis)connecting to Tor
-        if (torStatus.equals(OrbotConstants.STATUS_OFF)) {
+        if (torStatus.equals(STATUS_OFF)) {
             lblStatus.setText(getString(R.string.status_starting_up));
             startTor();
         } else {
@@ -813,6 +806,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
      * Update the layout_main UI based on the status of {@link OrbotService}.
      * {@code torServiceMsg} must never be {@code null}
      */
+    @SuppressLint("SetTextI18n")
     private void updateStatus(String torServiceMsg, String newTorStatus) {
 
         if (!TextUtils.isEmpty(torServiceMsg)) {
@@ -832,12 +826,9 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 torStatus = newTorStatus;
             }
 
-
             switch (torStatus) {
-                case OrbotConstants.STATUS_ON:
-
+                case STATUS_ON:
                     imgStatus.setImageResource(R.drawable.toron);
-
                     mBtnStart.setText(R.string.menu_stop);
                     mPulsator.stop();
 
@@ -849,8 +840,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     setTitleForSnowflakeProxy();
 
                     // if new onion hostnames are generated, update local DB
-                    sendIntentToService(OrbotConstants.ACTION_UPDATE_ONION_NAMES);
-
+                    sendIntentToService(ACTION_UPDATE_ONION_NAMES);
 
                     if (autoStartFromIntent) {
                         autoStartFromIntent = false;
@@ -859,35 +849,28 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                         if (resultIntent == null)
                             resultIntent = new Intent(ACTION_START);
 
-                        resultIntent.putExtra(
-                                OrbotConstants.EXTRA_STATUS,
-                                torStatus == null ? OrbotConstants.STATUS_OFF : torStatus
-                        );
+                        resultIntent.putExtra(OrbotConstants.EXTRA_STATUS, torStatus == null ? OrbotConstants.STATUS_OFF : torStatus);
 
                         setResult(RESULT_OK, resultIntent);
-
                         finish();
                     }
 
                     break;
 
-                case OrbotConstants.STATUS_STARTING:
-
+                case STATUS_STARTING:
                     imgStatus.setImageResource(R.drawable.torstarting);
+                    mBtnStart.setText("...");
 
                     if (torServiceMsg != null) {
-                        if (torServiceMsg.contains(OrbotConstants.LOG_NOTICE_BOOTSTRAPPED))
+                        if (torServiceMsg.contains(LOG_NOTICE_BOOTSTRAPPED))
                             lblStatus.setText(torServiceMsg);
                     } else {
                         lblStatus.setText(getString(R.string.status_starting_up));
                     }
 
-                    mBtnStart.setText("...");
-
                     break;
 
-                case OrbotConstants.STATUS_STOPPING:
-
+                case STATUS_STOPPING:
                     if (torServiceMsg != null && torServiceMsg.contains(OrbotConstants.LOG_NOTICE_HEADER))
                         lblStatus.setText(torServiceMsg);
 
@@ -896,8 +879,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                     break;
 
-                case OrbotConstants.STATUS_OFF:
-
+                case STATUS_OFF:
                     imgStatus.setImageResource(R.drawable.toroff);
                     lblStatus.setText(String.format("Tor v%s", OrbotService.BINARY_TOR_VERSION));
                     mBtnStart.setText(R.string.menu_start);
@@ -905,7 +887,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     resetBandwidthStatTextviews();
                     setTitleForSnowflakeProxy();
                     break;
-
             }
         }
     }
@@ -926,7 +907,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
      * {@link OrbotService}
      */
     private void requestTorStatus() {
-        sendIntentToService(OrbotConstants.ACTION_STATUS);
+        sendIntentToService(ACTION_STATUS);
     }
 
     @Override

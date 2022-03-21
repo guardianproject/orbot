@@ -148,10 +148,6 @@ public class OrbotRawEventListener implements RawEventListener {
     }
 
     private void handleCircuitStatus(String circuitStatus, String circuitId, String path) {
-        /* once the first circuit is complete, then announce that Orbot is on*/
-        if (mService.getCurrentStatus().equals(TorService.STATUS_STARTING) && circuitStatus.equals(TorControlCommands.CIRC_EVENT_BUILT))
-            mService.sendCallbackStatus(TorService.STATUS_ON);
-
         if (!Prefs.useDebugLogging()) return;
 
         StringBuilder sb = new StringBuilder();

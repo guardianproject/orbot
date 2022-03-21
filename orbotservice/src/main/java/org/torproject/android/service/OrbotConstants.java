@@ -76,7 +76,7 @@ public interface OrbotConstants {
     /**
      * {@link Intent} send by Orbot with {@code ON/OFF/STARTING/STOPPING} status
      */
-    String ACTION_STATUS = "ORBOT.intent.action.STATUS";
+    String ACTION_STATUS = "org.torproject.android.intent.action.STATUS";
     /**
      * {@code String} that contains a status constant: {@link #STATUS_ON},
      * {@link #STATUS_OFF}, {@link #STATUS_STARTING}, or
@@ -105,6 +105,7 @@ public interface OrbotConstants {
     String EXTRA_TRANS_PORT = "org.torproject.android.intent.extra.TRANS_PORT";
 
     String LOCAL_ACTION_LOG = "log";
+    String LOCAL_ACTION_STATUS = "status";
     String LOCAL_ACTION_BANDWIDTH = "bandwidth";
     String LOCAL_EXTRA_LOG = "log";
     String LOCAL_ACTION_PORTS = "ports";

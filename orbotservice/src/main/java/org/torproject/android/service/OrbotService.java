@@ -246,43 +246,35 @@ public class OrbotService extends VpnService implements OrbotConstants {
         } catch (IllegalArgumentException iae) {
             //not registered yet
         }
-
         super.onDestroy();
     }
 
     private void stopTorAsync() {
         debug("stopTor");
 
-        try {
-            sendCallbackStatus(STATUS_STOPPING);
-            sendCallbackLogMessage(getString(R.string.status_shutting_down));
+        sendCallbackLogMessage(getString(R.string.status_shutting_down));
 
-            if (Prefs.bridgesEnabled()) {
-                if (useIPtObfsMeekProxy())
-                    IPtProxy.stopObfs4Proxy();
-                else if (useIPtSnowflakeProxyDomainFronting())
-                    IPtProxy.stopSnowflake();
-            }
-            else if (Prefs.beSnowflakeProxy())
-                disableSnowflakeProxy();
-
-            stopTor();
-            sendCallbackStatus(STATUS_OFF);
-
-            //stop the foreground priority and make sure to remove the persistent notification
-            stopForeground(true);
-
-            sendCallbackLogMessage(getString(R.string.status_disabled));
-
-            mPortDns = -1;
-            mPortSOCKS = -1;
-            mPortHTTP = -1;
-            mPortTrans = -1;
-
-        } catch (Exception e) {
-            logNotice(getString(R.string.couldn_t_start_tor_process_) + e.getMessage());
-            sendCallbackLogMessage(getString(R.string.something_bad_happened));
+        if (Prefs.bridgesEnabled()) {
+            if (useIPtObfsMeekProxy())
+                IPtProxy.stopObfs4Proxy();
+            else if (useIPtSnowflakeProxyDomainFronting())
+                IPtProxy.stopSnowflake();
         }
+        else if (Prefs.beSnowflakeProxy())
+            disableSnowflakeProxy();
+
+        stopTor();
+
+        //stop the foreground priority and make sure to remove the persistent notification
+        stopForeground(true);
+
+        sendCallbackLogMessage(getString(R.string.status_disabled));
+
+        mPortDns = -1;
+        mPortSOCKS = -1;
+        mPortHTTP = -1;
+        mPortTrans = -1;
+
         clearNotifications();
 
         stopSelf();
@@ -372,16 +364,14 @@ public class OrbotService extends VpnService implements OrbotConstants {
         logNotice(getString(R.string.log_notice_snowflake_proxy_disabled));
     }
 
-    /**
-     * if someone stops during startup, we may have to wait for the conn port to be setup, so we can properly shutdown tor
-     */
-    private void stopTor() throws Exception {
-        //unbinding from the tor service will stop tor
+    // if someone stops during startup, we may have to wait for the conn port to be setup, so we can properly shutdown tor
+    private void stopTor()  {
         if (shouldUnbindTorService) {
-            unbindService(torServiceConnection);
+            unbindService(torServiceConnection); //unbinding from the tor service will stop tor
             shouldUnbindTorService = false;
+        } else {
+            sendLocalStatusOffBroadcast();
         }
-
     }
 
     private void requestTorRereadConfig() {
@@ -411,7 +401,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         try {
             mHandler = new Handler();
 
-            appBinHome = getFilesDir();//getDir(TorServiceConstants.DIRECTORY_TOR_BINARY, Application.MODE_PRIVATE);
+            appBinHome = getFilesDir();
             if (!appBinHome.exists())
                 appBinHome.mkdirs();
 
@@ -436,25 +426,21 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             }
 
-            //    IntentFilter mNetworkStateFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-            //  registerReceiver(mNetworkStateReceiver , mNetworkStateFilter);
-
-            IntentFilter filter = new IntentFilter();
-            filter.addAction(TorControlCommands.SIGNAL_NEWNYM);
+            IntentFilter filter = new IntentFilter(TorControlCommands.SIGNAL_NEWNYM);
             filter.addAction(CMD_ACTIVE);
-            filter.addAction(ACTION_START);
+            filter.addAction(ACTION_STATUS);
+
             mActionBroadcastReceiver = new ActionBroadcastReceiver();
             registerReceiver(mActionBroadcastReceiver, filter);
 
-            if (Build.VERSION.SDK_INT >= 26)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
                 createNotificationChannel();
 
             try {
                 CustomTorResourceInstaller installer = new CustomTorResourceInstaller(this, appBinHome);
                 installer.installGeoIP();
             }
-            catch (IOException io)
-            {
+            catch (IOException io) {
                 Log.e(OrbotConstants.TAG, "Error installing geoip files", io);
                 logNotice("There was an error installing geoip files");
             }
@@ -465,7 +451,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
             loadCdnFronts(this);
         } catch (Exception e) {
-            //what error here
             Log.e(OrbotConstants.TAG, "Error setting up Orbot", e);
             logNotice("There was an error setting up Orbot");
         }
@@ -653,7 +638,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 return;
             }
 
-            sendCallbackStatus(STATUS_STARTING);
             mNotifyBuilder.setProgress(100, 0, false);
             showToolbarNotification("", NOTIFY_ID, R.drawable.ic_stat_tor);
 
@@ -783,8 +767,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
             public void onServiceDisconnected(ComponentName componentName) {
                 if (Prefs.useDebugLogging())
                     Log.d(OrbotConstants.TAG, "TorService: onServiceDisconnected");
-
-                sendCallbackStatus(STATUS_OFF);
+                sendLocalStatusOffBroadcast();
+                // sendCallbackStatus(STATUS_OFF); TODO this seems important
             }
 
             @Override
@@ -795,8 +779,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
             @Override
             public void onBindingDied(ComponentName componentName) {
                 Log.w(OrbotConstants.TAG, "TorService: onBindingDied");
-
-                sendCallbackStatus(STATUS_OFF);
+                sendLocalStatusOffBroadcast();
+//                sendCallbackStatus(STATUS_OFF); TODO this one seems important
             }
         };
 
@@ -806,6 +790,12 @@ public class OrbotService extends VpnService implements OrbotConstants {
         } else {
             shouldUnbindTorService = bindService(serviceIntent, BIND_AUTO_CREATE, mExecutor, torServiceConnection);
         }
+    }
+
+    private void sendLocalStatusOffBroadcast() {
+        Log.d("bim", "sending local sttus off");
+        var localOffStatus = new Intent(LOCAL_ACTION_STATUS).putExtra(EXTRA_STATUS, STATUS_OFF);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(localOffStatus);
     }
 
     protected void exec(Runnable runn) {
@@ -920,27 +910,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
         if (Prefs.useVpn() && mVpnManager != null)
             mVpnManager.handleIntent(new Builder(), intent);
-    }
-
-    protected void sendCallbackStatus(String currentStatus) {
-        mCurrentStatus = currentStatus;
-        var intent = getActionStatusIntent(currentStatus);
-        sendBroadcastOnlyToOrbot(intent); // send for Orbot internals, using secure local broadcast
-        sendBroadcast(intent); // send for any apps that are interested
-    }
-
-    /**
-     * Send a secure broadcast only to Orbot itself
-     *
-     * @see {@link LocalBroadcastManager}
-     */
-    private void sendBroadcastOnlyToOrbot(Intent intent) {
-        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-    }
-
-    private Intent getActionStatusIntent(String currentStatus) {
-        return new Intent(ACTION_STATUS)
-            .putExtra(EXTRA_STATUS, currentStatus);
     }
 
     private StringBuffer processSettingsImpl(StringBuffer extraLines) throws IOException {
@@ -1371,8 +1340,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 replyWithStatus(mIntent);
 
                 if (Prefs.useVpn()) {
-                    if (mVpnManager != null && (!mVpnManager.isStarted())) {
-                        //start VPN here
+                    if (mVpnManager != null && (!mVpnManager.isStarted())) { // start VPN here
                         Intent vpnIntent = VpnService.prepare(OrbotService.this);
                         if (vpnIntent == null) { //then we can run the VPN
                             mVpnManager.handleIntent(new Builder(), mIntent);
@@ -1411,7 +1379,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
                     mVpnManager.restartVPN(new Builder());
 
             } else if (action.equals(ACTION_STATUS)) {
+                Log.d("bim", "got action status...");
+                if (mCurrentStatus.equals(STATUS_OFF))
+                    showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor);
                 replyWithStatus(mIntent);
+
             } else if (action.equals(TorControlCommands.SIGNAL_RELOAD)) {
                 requestTorRereadConfig();
             } else if (action.equals(TorControlCommands.SIGNAL_NEWNYM)) {
@@ -1421,7 +1393,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             } else if (action.equals(CMD_SET_EXIT)) {
                 setExitNode(mIntent.getStringExtra("exit"));
             } else {
-                Log.w(OrbotConstants.TAG, "unhandled OrbotService Intent: " + action);
+                Log.w(TAG, "unhandled OrbotService Intent: " + action);
             }
         }
     }
@@ -1437,8 +1409,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
                     sendSignalActive();
                     break;
                 }
-                case ACTION_START: {
-                    startTor();
+                case ACTION_STATUS: {
+                    mCurrentStatus = intent.getStringExtra(EXTRA_STATUS);
+                    Log.d("bim", "service " + mCurrentStatus);
+                    var localStatus = new Intent(LOCAL_ACTION_STATUS).putExtra(EXTRA_STATUS, mCurrentStatus);
+                    LocalBroadcastManager.getInstance(OrbotService.this).sendBroadcast(localStatus); // update the activity with what's new
                     break;
                 }
             }
