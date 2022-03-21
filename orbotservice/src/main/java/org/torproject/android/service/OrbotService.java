@@ -1484,7 +1484,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 if (mVpnManager != null)
                     mVpnManager.restartVPN(new Builder());
 
-            } if (action.equals(ACTION_STATUS)) {
+            } else if (action.equals(ACTION_STATUS)) {
                 replyWithStatus(mIntent);
             } else if (action.equals(TorControlCommands.SIGNAL_RELOAD)) {
                 requestTorRereadConfig();
