@@ -249,10 +249,10 @@ public class OrbotService extends VpnService implements OrbotConstants {
         super.onDestroy();
     }
 
-    private void stopTorAsync() {
+    private void stopTorAsync(boolean showNotification) {
         debug("stopTor");
 
-        sendCallbackLogMessage(getString(R.string.status_shutting_down));
+        if (showNotification) sendCallbackLogMessage(getString(R.string.status_shutting_down));
 
         if (Prefs.bridgesEnabled()) {
             if (useIPtObfsMeekProxy())
@@ -268,7 +268,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         //stop the foreground priority and make sure to remove the persistent notification
         stopForeground(true);
 
-        sendCallbackLogMessage(getString(R.string.status_disabled));
+        if (showNotification) sendCallbackLogMessage(getString(R.string.status_disabled));
 
         mPortDns = -1;
         mPortSOCKS = -1;
@@ -281,7 +281,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     private void stopTorOnError(String message) {
-        stopTorAsync();
+        stopTorAsync(false);
         showToolbarNotification(
                 getString(R.string.unable_to_start_tor) + ": " + message,
                 ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
@@ -1351,7 +1351,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
                         sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
                 }
             } else if (action.equals(ACTION_STOP)) {
-                stopTorAsync();
+                var userIsQuittingOrbot = mIntent.getBooleanExtra(ACTION_STOP_FOREGROUND_TASK, false);
+                stopTorAsync(!userIsQuittingOrbot);
             } else if (action.equals(ACTION_UPDATE_ONION_NAMES)) {
                 updateV3OnionNames();
             } else if (action.equals(ACTION_STOP_FOREGROUND_TASK)) {

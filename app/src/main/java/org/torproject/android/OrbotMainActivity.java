@@ -282,7 +282,18 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private boolean waitingToStop = false;
 
     private void stopTor() {
-        if (torStatus.equals(OrbotConstants.STATUS_ON)) {
+        stopOrbotService(false);
+    }
+
+    private void stopOrbotService(boolean userIsQuittingOrbot) {
+        if (userIsQuittingOrbot) {
+            var killIntent = new Intent(this, OrbotService.class)
+                    .setAction(ACTION_STOP)
+                    .putExtra(ACTION_STOP_FOREGROUND_TASK, true);
+            startService(killIntent);
+            return;
+        }
+        if (torStatus.equals(STATUS_ON)) {
             if (mBtnVPN.isChecked()) sendIntentToService(ACTION_STOP_VPN);
             sendIntentToService(ACTION_STOP);
         }
@@ -484,14 +495,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * This is our attempt to REALLY exit Orbot, and stop the background service
-     * However, Android doesn't like people "quitting" apps, and/or our code may
-     * not be quite right b/c no matter what we do, it seems like the OrbotService
-     * still exists
-     **/
     private void doExit() {
-        stopTor();
+        stopOrbotService(true);
         finish();
     }
 
