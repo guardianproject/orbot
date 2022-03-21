@@ -124,7 +124,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     public void debug(String msg) {
-        Log.d(OrbotConstants.TAG, msg);
+        Log.d(TAG, msg);
 
         if (Prefs.useDebugLogging()) {
             sendCallbackLogMessage(msg);
@@ -133,7 +133,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     public void logException(String msg, Exception e) {
         if (Prefs.useDebugLogging()) {
-            Log.e(OrbotConstants.TAG, msg, e);
+            Log.e(TAG, msg, e);
             var baos = new ByteArrayOutputStream();
             e.printStackTrace(new PrintStream(baos));
 
@@ -234,7 +234,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         if (intent != null)
             mExecutor.execute(new IncomingIntentRouter(intent));
         else
-            Log.d(OrbotConstants.TAG, "Got null onStartCommand() intent");
+            Log.d(TAG, "Got null onStartCommand() intent");
 
         return Service.START_REDELIVER_INTENT;
     }
@@ -386,9 +386,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     protected void logNotice(String msg) {
         if (msg != null && msg.trim().length() > 0) {
-            if (Prefs.useDebugLogging())
-                Log.d(OrbotConstants.TAG, msg);
-
+            if (Prefs.useDebugLogging()) Log.d(TAG, msg);
             sendCallbackLogMessage(msg);
         }
     }
@@ -442,8 +440,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 installer.installGeoIP();
             }
             catch (IOException io) {
-                Log.e(OrbotConstants.TAG, "Error installing geoip files", io);
-                logNotice("There was an error installing geoip files");
+                Log.e(TAG, "Error installing geoip files", io);
+                logNotice(getString(R.string.log_notice_geoip_error));
             }
 
             pluggableTransportInstall();
@@ -452,8 +450,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
             loadCdnFronts(this);
         } catch (Exception e) {
-            Log.e(OrbotConstants.TAG, "Error setting up Orbot", e);
-            logNotice("There was an error setting up Orbot");
+            Log.e(TAG, "Error setting up Orbot", e);
+            logNotice(getString(R.string.couldn_t_start_tor_process_) + " " + e.getClass().getSimpleName());
         }
 
         snowflakeClientsConnected = 0;
@@ -482,29 +480,29 @@ public class OrbotService extends VpnService implements OrbotConstants {
         extraLines.append("RunAsDaemon 0").append('\n');
         extraLines.append("AvoidDiskWrites 1").append('\n');
 
-        var socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS, SOCKS_PROXY_PORT_DEFAULT);
+        var socksPortPref = prefs.getString(PREF_SOCKS, SOCKS_PROXY_PORT_DEFAULT);
         if (socksPortPref.indexOf(':') != -1)
             socksPortPref = socksPortPref.split(":")[1];
 
         socksPortPref = checkPortOrAuto(socksPortPref);
 
-        var httpPortPref = prefs.getString(OrbotConstants.PREF_HTTP, HTTP_PROXY_PORT_DEFAULT);
+        var httpPortPref = prefs.getString(PREF_HTTP, HTTP_PROXY_PORT_DEFAULT);
         if (httpPortPref.indexOf(':') != -1)
             httpPortPref = httpPortPref.split(":")[1];
 
         httpPortPref = checkPortOrAuto(httpPortPref);
 
         var isolate = "";
-        if (prefs.getBoolean(OrbotConstants.PREF_ISOLATE_DEST, false)) {
+        if (prefs.getBoolean(PREF_ISOLATE_DEST, false)) {
             isolate += " IsolateDestAddr ";
         }
 
         var ipv6Pref = "";
-        if (prefs.getBoolean(OrbotConstants.PREF_PREFER_IPV6, true)) {
+        if (prefs.getBoolean(PREF_PREFER_IPV6, true)) {
             ipv6Pref += " IPv6Traffic PreferIPv6 ";
         }
 
-        if (prefs.getBoolean(OrbotConstants.PREF_DISABLE_IPV4, false)) {
+        if (prefs.getBoolean(PREF_DISABLE_IPV4, false)) {
             ipv6Pref += " IPv6Traffic NoIPv4Traffic ";
         }
 
@@ -518,21 +516,21 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
         extraLines.append("HTTPTunnelPort ").append(httpPortPref).append(isolate).append('\n');
 
-        if (prefs.getBoolean(OrbotConstants.PREF_CONNECTION_PADDING, false)) {
+        if (prefs.getBoolean(PREF_CONNECTION_PADDING, false)) {
             extraLines.append("ConnectionPadding 1").append('\n');
         }
 
-        if (prefs.getBoolean(OrbotConstants.PREF_REDUCED_CONNECTION_PADDING, true)) {
+        if (prefs.getBoolean(PREF_REDUCED_CONNECTION_PADDING, true)) {
             extraLines.append("ReducedConnectionPadding 1").append('\n');
         }
 
-        if (prefs.getBoolean(OrbotConstants.PREF_CIRCUIT_PADDING, true)) {
+        if (prefs.getBoolean(PREF_CIRCUIT_PADDING, true)) {
             extraLines.append("CircuitPadding 1").append('\n');
         } else {
             extraLines.append("CircuitPadding 0").append('\n');
         }
 
-        if (prefs.getBoolean(OrbotConstants.PREF_REDUCED_CIRCUIT_PADDING, true)) {
+        if (prefs.getBoolean(PREF_REDUCED_CIRCUIT_PADDING, true)) {
             extraLines.append("ReducedCircuitPadding 1").append('\n');
         }
 
@@ -767,21 +765,19 @@ public class OrbotService extends VpnService implements OrbotConstants {
             @Override
             public void onServiceDisconnected(ComponentName componentName) {
                 if (Prefs.useDebugLogging())
-                    Log.d(OrbotConstants.TAG, "TorService: onServiceDisconnected");
+                    Log.d(TAG, "TorService: onServiceDisconnected");
                 sendLocalStatusOffBroadcast();
-                // sendCallbackStatus(STATUS_OFF); TODO this seems important
             }
 
             @Override
             public void onNullBinding(ComponentName componentName) {
-                Log.w(OrbotConstants.TAG, "TorService: was unable to bund: onNullBinding");
+                Log.w(TAG, "TorService: was unable to bind: onNullBinding");
             }
 
             @Override
             public void onBindingDied(ComponentName componentName) {
-                Log.w(OrbotConstants.TAG, "TorService: onBindingDied");
+                Log.w(TAG, "TorService: onBindingDied");
                 sendLocalStatusOffBroadcast();
-//                sendCallbackStatus(STATUS_OFF); TODO this one seems important
             }
         };
 
@@ -915,7 +911,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
     private StringBuffer processSettingsImpl(StringBuffer extraLines) throws IOException {
         logNotice(getString(R.string.updating_settings_in_tor_service));
         var prefs = Prefs.getSharedPrefs(getApplicationContext());
-
         var becomeRelay = prefs.getBoolean(OrbotConstants.PREF_OR, false);
         var ReachableAddresses = prefs.getBoolean(OrbotConstants.PREF_REACHABLE_ADDRESSES, false);
         var enableStrictNodes = prefs.getBoolean("pref_strict_nodes", false);
@@ -1016,7 +1011,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
         try {
             if (ReachableAddresses) {
-                var ReachableAddressesPorts = prefs.getString(OrbotConstants.PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
+                var ReachableAddressesPorts = prefs.getString(PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
                 extraLines.append("ReachableAddresses" + ' ').append(ReachableAddressesPorts).append('\n');
             }
 
@@ -1027,8 +1022,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
         try {
             if (becomeRelay && (!Prefs.bridgesEnabled()) && (!ReachableAddresses)) {
-                var ORPort = Integer.parseInt(Objects.requireNonNull(prefs.getString(OrbotConstants.PREF_OR_PORT, "9001")));
-                var nickname = prefs.getString(OrbotConstants.PREF_OR_NICKNAME, "Orbot");
+                var ORPort = Integer.parseInt(Objects.requireNonNull(prefs.getString(PREF_OR_PORT, "9001")));
+                var nickname = prefs.getString(PREF_OR_NICKNAME, "Orbot");
                 var dnsFile = writeDNSFile();
 
                 extraLines.append("ServerDNSResolvConfFile").append(' ').append(dnsFile).append('\n'); // DNSResolv is not a typo
@@ -1215,7 +1210,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                     conn.setConf("DisableNetwork", "0");
 
                 } catch (Exception ioe) {
-                    Log.e(OrbotConstants.TAG, "Connection exception occurred resetting exits", ioe);
+                    Log.e(TAG, "Connection exception occurred resetting exits", ioe);
                 }
             }
         } else {
@@ -1234,7 +1229,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                     conn.setConf("DisableNetwork", "0");
 
                 } catch (Exception ioe) {
-                    Log.e(OrbotConstants.TAG, "Connection exception occurred resetting exits", ioe);
+                    Log.e(TAG, "Connection exception occurred resetting exits", ioe);
                 }
             }
         }

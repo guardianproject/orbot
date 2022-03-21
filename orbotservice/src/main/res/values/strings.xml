@@ -22,7 +22,7 @@
     <string name="updating_settings_in_tor_service">updating settings in Tor service</string>
 
     <string name="menu_new_identity">New Identity</string>
-    <string name="waiting_for_control_port">Waiting for control port...</string>
+    <string name="waiting_for_control_port">Waiting for control port…</string>
     <string name="connecting_to_control_port">Connecting to control port:</string>
 
     <string name="kibibyte_per_second">KiB/s</string>
@@ -38,6 +38,7 @@
     <string name="log_notice_added_event_handler">Added control port event handler</string>
     <string name="log_notice_connected_to_tor_control_port">Connected to tor control port</string>
     <string name="log_notice_ignoring_start_request">Ignoring start request, already started.</string>
+    <string name="log_notice_geoip_error">There was an error installing geoip files</string>
 
 </resources>
 

@@ -138,14 +138,14 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            String status =  intent.getStringExtra(OrbotConstants.EXTRA_STATUS);
+            String status =  intent.getStringExtra(EXTRA_STATUS);
             if (action == null)
                 return;
 
             switch (action) {
                 case LOCAL_ACTION_LOG: {
                     Message msg = mStatusUpdateHandler.obtainMessage(STATUS_UPDATE);
-                    msg.obj = intent.getStringExtra(OrbotConstants.LOCAL_EXTRA_LOG);
+                    msg.obj = intent.getStringExtra(LOCAL_EXTRA_LOG);
 
                     if (!TextUtils.isEmpty(status))
                         msg.getData().putString("status", status);
@@ -204,7 +204,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     mStatusUpdateHandler.sendMessage(msg);
                     break;
                 }
-                case OrbotConstants.LOCAL_ACTION_PORTS: {
+                case LOCAL_ACTION_PORTS: {
 
                     Message msg = mStatusUpdateHandler.obtainMessage(MESSAGE_PORTS);
                     msg.getData().putInt("socks", intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT, -1));
@@ -235,19 +235,17 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
         mPrefs = Prefs.getSharedPrefs(getApplicationContext());
 
-        /* Create the widgets before registering for broadcasts to guarantee
-         * that the widgets exist when the status updates try to update them */
-        doLayout();
+        doLayout(); // Create widgets before registering for broadcasts
 
         /* receive the internal status broadcasts, which are separate from the public
          * status broadcasts to prevent other apps from sending fake/wrong status
          * info to this app */
         LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
-        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(OrbotConstants.LOCAL_ACTION_STATUS));
-        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(OrbotConstants.LOCAL_ACTION_BANDWIDTH));
-        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(OrbotConstants.LOCAL_ACTION_LOG));
-        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(OrbotConstants.LOCAL_ACTION_PORTS));
-        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(OrbotConstants.LOCAL_ACTION_V3_NAMES_UPDATED));
+        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(LOCAL_ACTION_STATUS));
+        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(LOCAL_ACTION_BANDWIDTH));
+        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(LOCAL_ACTION_LOG));
+        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(LOCAL_ACTION_PORTS));
+        lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(LOCAL_ACTION_V3_NAMES_UPDATED));
 
 
         boolean showFirstTime = mPrefs.getBoolean("connect_first_time", true);
@@ -260,8 +258,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         }
 
         // Resets previous DNS Port to the default.
-        Prefs.getSharedPrefs(getApplicationContext()).edit().putInt(PREFS_DNS_PORT,
-                OrbotConstants.TOR_DNS_PORT_DEFAULT).apply();
+        Prefs.getSharedPrefs(getApplicationContext()).edit().putInt(PREFS_DNS_PORT, TOR_DNS_PORT_DEFAULT).apply();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (Prefs.useDebugLogging())
@@ -439,7 +436,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                         country = '{' + sortedCountries.get(countries[position -1].toString()).getCountry() + '}';
 
                     sendIntentToService(new Intent(OrbotMainActivity.this, OrbotService.class)
-                            .setAction(OrbotConstants.CMD_SET_EXIT)
+                            .setAction(CMD_SET_EXIT)
                             .putExtra("exit", country));
                 }
 
@@ -555,7 +552,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         lastInsertedOnionServiceRowId = ContentUris.parseId(contentResolver.insert(OnionServiceContentProvider.CONTENT_URI, fields));
 
 
-        if (torStatus.equals(OrbotConstants.STATUS_OFF)) {
+        if (torStatus.equals(STATUS_OFF)) {
             startTor();
         } else {
             stopTor();
@@ -691,8 +688,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
             }
         } else if (request == REQUEST_VPN_APPS_SELECT) {
-            if (response == RESULT_OK &&
-                    torStatus.equals(OrbotConstants.STATUS_ON))
+            if (response == RESULT_OK && torStatus.equals(STATUS_ON))
                 refreshVPNApps();
 
         } else if (request == REQUEST_VPN && response == RESULT_OK) {
@@ -715,7 +711,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private void enableBridges(boolean enable) {
         Prefs.putBridgesEnabled(enable);
 
-        if (torStatus.equals(OrbotConstants.STATUS_ON)) {
+        if (torStatus.equals(STATUS_ON)) {
             String bridgeList = Prefs.getBridgesList();
             if (bridgeList != null && bridgeList.length() > 0) {
                 requestTorRereadConfig();
@@ -731,7 +727,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     protected void onResume() {
         super.onResume();
 
-        sendIntentToService(OrbotConstants.CMD_ACTIVE);
+        sendIntentToService(CMD_ACTIVE);
 
         mBtnBridges.setChecked(Prefs.bridgesEnabled());
         refreshVpnState();
@@ -808,7 +804,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private void updateStatus(String torServiceMsg, String newTorStatus) {
 
         if (!TextUtils.isEmpty(torServiceMsg)) {
-            if (torServiceMsg.contains(OrbotConstants.LOG_NOTICE_HEADER)) {
+            if (torServiceMsg.contains(LOG_NOTICE_HEADER)) {
                 if (torServiceMsg.contains(LOG_NOTICE_BOOTSTRAPPED) && !mBtnStart.getText().equals(getString(R.string.menu_stop)))
                     lblStatus.setText(torServiceMsg);
             }
@@ -847,7 +843,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                         if (resultIntent == null)
                             resultIntent = new Intent(ACTION_START);
 
-                        resultIntent.putExtra(OrbotConstants.EXTRA_STATUS, torStatus == null ? OrbotConstants.STATUS_OFF : torStatus);
+                        resultIntent.putExtra(EXTRA_STATUS, torStatus == null ? STATUS_OFF : torStatus);
 
                         setResult(RESULT_OK, resultIntent);
                         finish();
@@ -869,7 +865,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     break;
 
                 case STATUS_STOPPING:
-                    if (torServiceMsg != null && torServiceMsg.contains(OrbotConstants.LOG_NOTICE_HEADER))
+                    if (torServiceMsg != null && torServiceMsg.contains(LOG_NOTICE_HEADER))
                         lblStatus.setText(torServiceMsg);
 
                     imgStatus.setImageResource(R.drawable.torstarting);
@@ -889,21 +885,13 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         }
     }
 
-    /**
-     * Starts tor and related daemons by sending an
-     * {@link OrbotConstants#ACTION_START} {@link Intent} to
-     * {@link OrbotService}
-     */
+    // Starts tor and related daemons
     private void startTor() {
         sendIntentToService(ACTION_START);
         mTxtOrbotLog.setText("");
     }
 
-    /**
-     * Request tor status without starting it
-     * {@link OrbotConstants#ACTION_START} {@link Intent} to
-     * {@link OrbotService}
-     */
+    // Request tor status without starting
     private void requestTorStatus() {
         sendIntentToService(ACTION_STATUS);
     }
@@ -911,7 +899,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mLocalBroadcastReceiver);
     }
 
