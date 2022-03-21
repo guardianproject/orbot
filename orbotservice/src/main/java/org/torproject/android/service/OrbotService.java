@@ -619,7 +619,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             sendBroadcast(reply);
         }
 
-        LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(reply.setAction(LOCAL_ACTION_STATUS));
 
         if (mPortSOCKS != -1 && mPortHTTP != -1)
             sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
@@ -731,14 +731,10 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 mOrbotRawEventListener = new OrbotRawEventListener(OrbotService.this);
 
                 ArrayList<String> events = new ArrayList<>(Arrays.asList(
-                        TorControlCommands.EVENT_OR_CONN_STATUS,
-                        TorControlCommands.EVENT_CIRCUIT_STATUS,
-                        TorControlCommands.EVENT_NOTICE_MSG,
-                        TorControlCommands.EVENT_WARN_MSG,
-                        TorControlCommands.EVENT_ERR_MSG,
-                        TorControlCommands.EVENT_BANDWIDTH_USED,
-                        TorControlCommands.EVENT_NEW_DESC,
-                        TorControlCommands.EVENT_ADDRMAP));
+                        TorControlCommands.EVENT_OR_CONN_STATUS, TorControlCommands.EVENT_CIRCUIT_STATUS,
+                        TorControlCommands.EVENT_NOTICE_MSG, TorControlCommands.EVENT_WARN_MSG,
+                        TorControlCommands.EVENT_ERR_MSG, TorControlCommands.EVENT_BANDWIDTH_USED,
+                        TorControlCommands.EVENT_NEW_DESC, TorControlCommands.EVENT_ADDRMAP));
                 if (Prefs.useDebugLogging()) {
                     events.add(TorControlCommands.EVENT_DEBUG_MSG);
                     events.add(TorControlCommands.EVENT_INFO_MSG);
@@ -794,12 +790,21 @@ public class OrbotService extends VpnService implements OrbotConstants {
         LocalBroadcastManager.getInstance(this).sendBroadcast(localOffStatus);
     }
 
-    protected void exec(Runnable runn) {
-        mExecutor.execute(runn);
+    protected void exec(Runnable run) {
+        mExecutor.execute(run);
     }
 
     private void initControlConnection() {
         if (conn != null) {
+
+            /* todo this is a kludge workaround for a bug in tor-android where sometimes TorService
+                gets stuck waiting for a lock... this will at least update the app to the starting
+                state so users can stop and then restart orbot
+
+                see: https://github.com/guardianproject/tor-android/issues/67
+             */
+            var localStartingStatus = new Intent(LOCAL_ACTION_STATUS).putExtra(EXTRA_STATUS, STATUS_STARTING);
+            LocalBroadcastManager.getInstance(this).sendBroadcast(localStartingStatus);
             logNotice(getString(R.string.log_notice_connected_to_tor_control_port));
             try {
                 String confSocks = conn.getInfo("net/listeners/socks");
@@ -1410,11 +1415,16 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 }
                 case ACTION_STATUS: {
                     mCurrentStatus = intent.getStringExtra(EXTRA_STATUS);
-                    var localStatus = new Intent(LOCAL_ACTION_STATUS).putExtra(EXTRA_STATUS, mCurrentStatus);
-                    LocalBroadcastManager.getInstance(OrbotService.this).sendBroadcast(localStatus); // update the activity with what's new
+                    sendStatusToOrbotActivity();
                     break;
                 }
             }
         }
     }
+
+    private void sendStatusToOrbotActivity() {
+        var localStatus = new Intent(LOCAL_ACTION_STATUS).putExtra(EXTRA_STATUS, mCurrentStatus);
+        LocalBroadcastManager.getInstance(OrbotService.this).sendBroadcast(localStatus); // update the activity with what's new
+    }
+
 }

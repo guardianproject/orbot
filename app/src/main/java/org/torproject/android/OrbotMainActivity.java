@@ -107,7 +107,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private final Handler mStatusUpdateHandler = new MainActivityStatusUpdateHandler(this);
     PulsatorLayout mPulsator;
     AlertDialog aDialog;
-    /* Useful UI bits */
     private TextView lblStatus; //the main text display widget
     private TextView lblPorts;
     private ImageView imgStatus; //the main touchable image for activating Orbot
@@ -130,8 +129,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     /**
      * The state and log info from {@link OrbotService} are sent to the UI here in
      * the form of a local broadcast. Regular broadcasts can be sent by any app,
-     * so local ones are used here so other apps cannot interfere with Orbot's
-     * operation.
+     * so local ones are used here so other apps cannot interfere with Orbot's operation.
      */
     private final BroadcastReceiver mLocalBroadcastReceiver = new BroadcastReceiver() {
 
@@ -139,8 +137,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             String status =  intent.getStringExtra(EXTRA_STATUS);
-            if (action == null)
-                return;
+            if (action == null) return;
 
             switch (action) {
                 case LOCAL_ACTION_LOG: {
@@ -170,7 +167,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                         msg.getData().putString("status", status);
 
                     mStatusUpdateHandler.sendMessage(msg);
-
                     break;
                 }
                 case LOCAL_ACTION_V3_NAMES_UPDATED:
@@ -341,13 +337,11 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         boolean useVPN = Prefs.useVpn();
         mBtnVPN.setChecked(useVPN);
 
-        //auto start VPN if VPN is enabled
-        if (useVPN) {
+        if (useVPN) { //auto start VPN if VPN is enabled
             sendIntentToService(ACTION_START_VPN);
         }
 
         mBtnVPN.setOnCheckedChangeListener((buttonView, isChecked) -> enableVPN(isChecked));
-
 
         mBtnBridges = findViewById(R.id.btnBridges);
         mBtnBridges.setChecked(Prefs.bridgesEnabled());
@@ -441,9 +435,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 }
 
                 @Override
-                public void onNothingSelected(AdapterView<?> parentView) {
-                }
-
+                public void onNothingSelected(AdapterView<?> parentView) { }
             });
         }
     }
@@ -493,7 +485,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     protected void onPause() {
         try {
             super.onPause();
-
             if (aDialog != null)
                 aDialog.dismiss();
         } catch (IllegalStateException ise) {
@@ -551,7 +542,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         ContentResolver contentResolver = getContentResolver();
         lastInsertedOnionServiceRowId = ContentUris.parseId(contentResolver.insert(OnionServiceContentProvider.CONTENT_URI, fields));
 
-
         if (torStatus.equals(STATUS_OFF)) {
             startTor();
         } else {
@@ -561,15 +551,12 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     }
 
     private synchronized void handleIntents() {
-        if (getIntent() == null)
-            return;
+        if (getIntent() == null) return;
 
-        // Get intent, action and MIME type
-        Intent intent = getIntent();
+        Intent intent = getIntent(); // Get intent & action
         String action = intent.getAction();
 
-        if (action == null)
-            return;
+        if (action == null) return;
 
         switch (action) {
             case INTENT_ACTION_REQUEST_V3_ONION_SERVICE:
@@ -726,26 +713,15 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     @Override
     protected void onResume() {
         super.onResume();
-
         sendIntentToService(CMD_ACTIVE);
-
         mBtnBridges.setChecked(Prefs.bridgesEnabled());
         refreshVpnState();
-
         setCountrySpinner();
-
         requestTorStatus();
-
-        if (torStatus == null)
-            updateStatus("", STATUS_OFF);
-        else
-            updateStatus(null, torStatus);
-
+        if (torStatus != null) updateStatus(null, torStatus);
         drawAppShortcuts(Prefs.useVpn());
 
-        //now you can handle the intents properly
-        handleIntents();
-
+        handleIntents(); // at this stage in onResume() intents are ready to be handled
         setTitleForSnowflakeProxy();
     }
 
@@ -802,7 +778,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
      */
     @SuppressLint("SetTextI18n")
     private void updateStatus(String torServiceMsg, String newTorStatus) {
-
         if (!TextUtils.isEmpty(torServiceMsg)) {
             if (torServiceMsg.contains(LOG_NOTICE_HEADER)) {
                 if (torServiceMsg.contains(LOG_NOTICE_BOOTSTRAPPED) && !mBtnStart.getText().equals(getString(R.string.menu_stop)))
@@ -813,12 +788,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         }
 
         if (!TextUtils.isEmpty(newTorStatus)) {
-            if (torStatus == null || (newTorStatus != null && newTorStatus.equals(torStatus))) {
-                torStatus = newTorStatus;
-                return;
-            } else {
-                torStatus = newTorStatus;
-            }
+            if (newTorStatus.equals(torStatus)) return;
+            torStatus = newTorStatus;
 
             switch (torStatus) {
                 case STATUS_ON:
@@ -848,7 +819,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                         setResult(RESULT_OK, resultIntent);
                         finish();
                     }
-
                     break;
 
                 case STATUS_STARTING:
@@ -870,7 +840,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                     imgStatus.setImageResource(R.drawable.torstarting);
                     lblStatus.setText(torServiceMsg);
-
                     break;
 
                 case STATUS_OFF:
@@ -885,14 +854,12 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         }
     }
 
-    // Starts tor and related daemons
-    private void startTor() {
+    private void startTor() { // Starts tor and related daemons
         sendIntentToService(ACTION_START);
         mTxtOrbotLog.setText("");
     }
 
-    // Request tor status without starting
-    private void requestTorStatus() {
+    private void requestTorStatus() { // Request tor status without starting
         sendIntentToService(ACTION_STATUS);
     }
 
@@ -908,12 +875,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         // Under 2MiB, returns "xxx.xKiB"
         // Over 2MiB, returns "xxx.xxMiB"
         if (count < 1e6)
-            return numberFormat.format(Math.round(((float) ((int) (count * 10 / 1024)) / 10)))
-                    + getString(R.string.kibibyte);
-        else
-            return numberFormat.format(Math
-                    .round(((float) ((int) (count * 100 / 1024 / 1024)) / 100)))
-                    + getString(R.string.mebibyte);
+            return numberFormat.format(Math.round(((float) ((int) (count * 10 / 1024)) / 10))) + getString(R.string.kibibyte);
+        return numberFormat.format(Math.round(((float) ((int) (count * 100 / 1024 / 1024)) / 100))) + getString(R.string.mebibyte);
     }
 
     private void requestNewTorIdentity() {
@@ -1011,7 +974,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         Utils.zipFileAtPath(fileTorData.getAbsolutePath(), fileZip.getAbsolutePath());
         fileZip.setReadable(true, false);
         Log.d(TAG, "debugdata: " + fileZip.getAbsolutePath());
-
     }
 
     private static class MainActivityStatusUpdateHandler extends Handler {
