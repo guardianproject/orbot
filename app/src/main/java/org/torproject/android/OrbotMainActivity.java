@@ -7,7 +7,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Application;
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -169,10 +168,9 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 }
                 case LOCAL_ACTION_V3_NAMES_UPDATED:
                     if (lastInsertedOnionServiceRowId == -1) break; // another app did not request an onion service
-                    ContentResolver cr = getContentResolver();
                     String where = OnionServiceContentProvider.OnionService._ID + "=" + lastInsertedOnionServiceRowId;
-                    Cursor v3Cursor = cr.query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION,
-                            where, null, null);
+                    Cursor v3Cursor = getContentResolver().query(OnionServiceContentProvider.CONTENT_URI,
+                            OnionServiceContentProvider.PROJECTION, where, null, null);
                     if (v3Cursor == null || v3Cursor.getCount() != 1 || !v3Cursor.moveToFirst()) {
                         if (v3Cursor != null) v3Cursor.close();
                         OrbotMainActivity.this.setResult(RESULT_CANCELED);
@@ -218,9 +216,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     };
     private SharedPreferences mPrefs = null;
 
-    /**
-     * Called when the activity is first created.
-     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -277,13 +272,12 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         else if (torStatus.equals(STATUS_STARTING) || torStatus.equals(STATUS_STOPPING)) {
             if (!waitingToStop) {
                 waitingToStop = true;
-                updateStatus(getString(R.string.status_shutting_down), STATUS_STOPPING);
                 mStatusUpdateHandler.postDelayed(() -> {
-
+                    updateStatus(getString(R.string.status_shutting_down), STATUS_STOPPING);
                     if (mBtnVPN.isChecked()) sendIntentToService(ACTION_STOP_VPN);
                     sendIntentToService(ACTION_STOP);
                     waitingToStop = false;
-                }, 1000);
+                }, 500);
             }
         } else { // tor isn't running, but we need to stop the service
             sendIntentToService(ACTION_STOP_FOREGROUND_TASK);
@@ -531,8 +525,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         fields.put(OnionServiceContentProvider.OnionService.ENABLED, 1);
         fields.put(OnionServiceContentProvider.OnionService.CREATED_BY_USER, 0);
 
-        ContentResolver contentResolver = getContentResolver();
-        lastInsertedOnionServiceRowId = ContentUris.parseId(contentResolver.insert(OnionServiceContentProvider.CONTENT_URI, fields));
+        lastInsertedOnionServiceRowId = ContentUris.parseId(getContentResolver().insert(OnionServiceContentProvider.CONTENT_URI, fields));
 
         if (torStatus.equals(STATUS_OFF)) {
             startTor();
@@ -590,20 +583,15 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     }
 
     private void setNewBridges(String newBridgeValue) {
-
         Prefs.setBridgesList(newBridgeValue); //set the string to a preference
         Prefs.putBridgesEnabled(true);
-
         setResult(RESULT_OK);
 
         mBtnBridges.setChecked(true);
-
         enableBridges(true);
     }
 
-    /*
-     * Launch the system activity for Uri viewing with the provided url
-     */
+    // Launch the system activity for Uri viewing with the provided url
     @SuppressWarnings("SameParameterValue")
     private void openBrowser(final String browserLaunchUrl, boolean forceExternal, String pkgId) {
         if (pkgId != null) {
@@ -649,17 +637,11 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 String newLocale = data.getStringExtra("locale");
                 Prefs.setDefaultLocale(newLocale);
                 Languages.setLanguage(this, newLocale, true);
-                //  Language.setFromPreference(this, "pref_default_locale");
 
                 finish();
 
-                mStatusUpdateHandler.postDelayed(() -> {
-                    //Do something after 100ms
-                    startActivity(new Intent(OrbotMainActivity.this, OrbotMainActivity.class));
-
-                }, 1000);
-
-
+                mStatusUpdateHandler.postDelayed(() ->
+                    startActivity(new Intent(OrbotMainActivity.this, OrbotMainActivity.class)), 1000);
             }
         } else if (request == REQUEST_VPN_APPS_SELECT) {
             if (response == RESULT_OK && torStatus.equals(STATUS_ON))
@@ -729,9 +711,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     }
 
     //general alert dialog for mostly Tor warning messages
-    //sometimes this can go haywire or crazy with too many error
-    //messages from Tor, and the user cannot stop or exit Orbot
-    //so need to ensure repeated error messages are not spamming this method
     @SuppressWarnings("SameParameterValue")
     private void showAlert(String title, String msg, boolean button) {
         try {
@@ -740,23 +719,12 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         } catch (Exception e) {
             //swallow any errors
         }
-
-        if (button) {
-            aDialog = new AlertDialog.Builder(OrbotMainActivity.this)
-                    .setIcon(R.drawable.onion32)
-                    .setTitle(title)
-                    .setMessage(msg)
-                    .setPositiveButton(android.R.string.ok, null)
-                    .show();
-        } else {
-            aDialog = new AlertDialog.Builder(OrbotMainActivity.this)
-                    .setIcon(R.drawable.onion32)
-                    .setTitle(title)
-                    .setMessage(msg)
-                    .show();
-        }
-
-        aDialog.setCanceledOnTouchOutside(true);
+        var builder = new AlertDialog.Builder(OrbotMainActivity.this)
+                .setIcon(R.drawable.onion32)
+                .setTitle(title)
+                .setMessage(msg);
+        if (button) builder.setPositiveButton(android.R.string.ok, null);
+        aDialog = builder.show();
     }
 
     /**
@@ -793,7 +761,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                     // if new onion hostnames are generated, update local DB
                     sendIntentToService(ACTION_UPDATE_ONION_NAMES);
-
                     break;
 
                 case STATUS_STARTING:
@@ -846,7 +813,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
     private String formatTotal(long count) {
         NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
-        // Converts the supplied argument into a string.
         // Under 2MiB, returns "xxx.xKiB"
         // Over 2MiB, returns "xxx.xxMiB"
         if (count < 1e6)

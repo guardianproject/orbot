@@ -730,11 +730,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
                 mOrbotRawEventListener = new OrbotRawEventListener(OrbotService.this);
 
-                ArrayList<String> events = new ArrayList<>(Arrays.asList(
-                        TorControlCommands.EVENT_OR_CONN_STATUS, TorControlCommands.EVENT_CIRCUIT_STATUS,
-                        TorControlCommands.EVENT_NOTICE_MSG, TorControlCommands.EVENT_WARN_MSG,
-                        TorControlCommands.EVENT_ERR_MSG, TorControlCommands.EVENT_BANDWIDTH_USED,
-                        TorControlCommands.EVENT_NEW_DESC, TorControlCommands.EVENT_ADDRMAP));
+                ArrayList<String> events = new ArrayList<>(Arrays.asList(TorControlCommands.EVENT_OR_CONN_STATUS,
+                        TorControlCommands.EVENT_CIRCUIT_STATUS, TorControlCommands.EVENT_NOTICE_MSG,
+                        TorControlCommands.EVENT_WARN_MSG, TorControlCommands.EVENT_ERR_MSG,
+                        TorControlCommands.EVENT_BANDWIDTH_USED, TorControlCommands.EVENT_NEW_DESC,
+                        TorControlCommands.EVENT_ADDRMAP));
                 if (Prefs.useDebugLogging()) {
                     events.add(TorControlCommands.EVENT_DEBUG_MSG);
                     events.add(TorControlCommands.EVENT_INFO_MSG);
@@ -755,7 +755,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
                     initControlConnection();
                 }
-
             }
 
             @Override
@@ -859,22 +858,20 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     public void newIdentity() {
-        if (conn != null) { // it is possible to not have a connection yet, and someone might try to newnym
-            new Thread() {
-                public void run() {
-                    try {
+        if (conn == null) return;
+        new Thread() {
+            public void run() {
+                try {
                         if (conn != null && mCurrentStatus.equals(STATUS_ON)) {
                             mNotifyBuilder.setSubText(null); // clear previous exit node info if present
                             showToolbarNotification(getString(R.string.newnym), NOTIFY_ID, R.drawable.ic_stat_tor);
                             conn.signal(TorControlCommands.SIGNAL_NEWNYM);
-                        }
-
-                    } catch (Exception ioe) {
-                        debug("error requesting newnym: " + ioe.getLocalizedMessage());
                     }
+                } catch (Exception ioe) {
+                    debug("error requesting newnym: " + ioe.getLocalizedMessage());
                 }
-            }.start();
-        }
+            }
+        }.start();
     }
 
     protected void sendCallbackBandwidth(long lastWritten, long lastRead, long totalWritten, long totalRead) {
