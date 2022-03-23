@@ -37,7 +37,7 @@
   <string name="pref_allow_background_starts_summary">Laissez n’importe quelle appli dire à Orbot de démarrer Tor et les services connexes</string>
     <string name="pref_proxy_title">Mandataire pour le réseau sortant (facultatif)</string>
   <string name="pref_proxy_type_title">Type de mandataire sortant</string>
-  <string name="pref_proxy_type_summary">Protocole à utiliser pour le mandataire : HTTP, HTTPS, Socks4, Socks5</string>
+  <string name="pref_proxy_type_summary">Protocole à utiliser pour le mandataire : HTTP, HTTPS, SOCKS4, SOCKS5</string>
   <string name="pref_proxy_type_dialog">Saisir le type de mandataire</string>
   <string name="pref_proxy_host_title">Hôte du mandataire sortant</string>
   <string name="pref_proxy_host_summary">Nom d’hôte du mandataire</string>
