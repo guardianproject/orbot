@@ -190,9 +190,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                     .setCategory(Notification.CATEGORY_SERVICE);
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            mNotifyBuilder.setOngoing(true);
-        else mNotifyBuilder.setOngoing(Prefs.persistNotifications());
+        mNotifyBuilder.setOngoing(true);
 
         var title = getString(R.string.status_disabled);
         if (mCurrentStatus.equals(STATUS_STARTING))
@@ -221,9 +219,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 .setSmallIcon(icon)
                 .setTicker(notifyType != NOTIFY_ID ? notifyMsg : null);
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O && !Prefs.persistNotifications())
-            mNotifyBuilder.setPriority(Notification.PRIORITY_LOW);
-
         if (!mCurrentStatus.equals(STATUS_ON)) {
             mNotifyBuilder.setSubText(null);
         }
@@ -234,14 +229,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
         var notification = mNotifyBuilder.build();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForeground(NOTIFY_ID, notification);
-        } else if (Prefs.persistNotifications() && !mNotificationShowing) {
-            startForeground(NOTIFY_ID, notification);
-            Log.d(OrbotConstants.TAG, "Set background service to FOREGROUND");
-        } else {
-            mNotificationManager.notify(NOTIFY_ID, notification);
-        }
+        startForeground(NOTIFY_ID, notification);
 
         mNotificationShowing = true;
     }

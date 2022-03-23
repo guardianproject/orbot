@@ -17,13 +17,6 @@
         <CheckBoxPreference
             android:defaultValue="true"
             android:enabled="true"
-            android:key="pref_persistent_notifications"
-            android:summary="@string/pref_use_persistent_notifications"
-            android:title="@string/pref_use_persistent_notifications_title" />
-
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:enabled="true"
             android:key="pref_expanded_notifications"
             android:summary="@string/pref_use_expanded_notifications"
             android:title="@string/pref_use_expanded_notifications_title" />
