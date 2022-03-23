@@ -73,19 +73,6 @@
             </intent-filter>
         </activity>
 
-        <!-- This is for ensuring the background service still runs when/if the app is swiped away -->
-        <activity
-            android:name=".service.util.DummyActivity"
-            android:allowTaskReparenting="true"
-            android:alwaysRetainTaskState="false"
-            android:clearTaskOnLaunch="true"
-            android:enabled="true"
-            android:excludeFromRecents="true"
-            android:finishOnTaskLaunch="true"
-            android:noHistory="true"
-            android:stateNotNeeded="true"
-            android:theme="@android:style/Theme.Translucent" />
-
         <activity
             android:name=".core.ui.SettingsPreferencesActivity"
             android:theme="@style/Theme.AppCompat" />

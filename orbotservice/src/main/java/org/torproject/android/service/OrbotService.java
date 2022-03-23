@@ -36,7 +36,6 @@ import net.freehaven.tor.control.TorControlCommands;
 import net.freehaven.tor.control.TorControlConnection;
 
 import org.torproject.android.service.util.CustomTorResourceInstaller;
-import org.torproject.android.service.util.DummyActivity;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.Utils;
 import org.torproject.android.service.vpn.OrbotVpnManager;
@@ -257,14 +256,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
             Log.d(OrbotConstants.TAG, "Got null onStartCommand() intent");
 
         return Service.START_REDELIVER_INTENT;
-    }
-
-    @Override
-    public void onTaskRemoved(Intent rootIntent) {
-        Log.d(OrbotConstants.TAG, "task removed");
-        Intent intent = new Intent(this, DummyActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
     }
 
     @Override
