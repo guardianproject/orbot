@@ -136,7 +136,6 @@
     <string name="v3_delete_client_authorization_confirm">Премахване на удостоверяването на клиента</string>
     <string name="v3_backup_name_hint">Име на файла за резервно копие…</string>
     <string name="onion_port">Порт на Onion</string>
-    <string name="auth_cookie">Бисквитка за удостоверяване</string>
     <string name="bridge_community">Свързване чрез сървъри на общността</string>
     <string name="full_device_vpn">Услуга на VPN за цялото устройство</string>
     <string name="app_shortcuts">Приложения, поддържащи Tor</string>

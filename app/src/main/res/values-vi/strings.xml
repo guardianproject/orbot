@@ -146,7 +146,6 @@
     <string name="consider_disable_battery_optimizations">Hãy cân nhắc việc tắt tối ưu hoá pin</string>
     <string name="share_as_qr">Chia sẻ dưới dạng QR</string>
     <string name="onion">.onion</string>
-    <string name="auth_cookie">Cookie xác thực</string>
     <string name="service_type">Loại dịch vụ</string>
     <string name="confirm_service_deletion">Xác nhận xoá dịch vụ</string>
     <string name="start_tor_again_for_finish_the_process">Khởi động lại Tor để hoàn tất quá trình</string>

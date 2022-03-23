@@ -123,7 +123,6 @@
     <string name="start_tor_again_for_finish_the_process">Стартувај го Tor повторно да го заврши процесот</string>
     <string name="confirm_service_deletion">Потврди бришење на услугата</string>
     <string name="service_type">Тип на услуга</string>
-    <string name="auth_cookie">Автентично колаче</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Ве молиме стартувајте го повторно Orbot за да се овозможат промените</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Сподели како QR</string>

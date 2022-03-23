@@ -123,7 +123,6 @@
     <string name="start_tor_again_for_finish_the_process">Starta Tor igen för att avsluta processen</string>
     <string name="confirm_service_deletion">Bekräfta tjänst borttagning</string>
     <string name="service_type">Typ av tjänst</string>
-    <string name="auth_cookie">Auth kaka</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Vänligen starta om Orbot för att aktivera ändringarna</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Dela som QR</string>

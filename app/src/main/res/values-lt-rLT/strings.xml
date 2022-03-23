@@ -113,7 +113,6 @@
     <string name="trouble_connecting">Nepavyksta prisijungti\?</string>
     <string name="app_shortcuts">„Tor“ įgalintos programos</string>
     <string name="pref_connection_padding">Ryšio užpildymas</string>
-    <string name="auth_cookie">Auth slapukas</string>
     <string name="service_type">Paslaugos tipas</string>
     <string name="restore_backup">Atkurti atsarginę kopiją</string>
     <string name="backup_restored">Atsarginė kopija atkurta</string>

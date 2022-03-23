@@ -122,7 +122,6 @@
     <string name="create_a_backup_first">Criar primeiro backup</string>
     <string name="confirm_service_deletion">Confirmar a remoção do serviço</string>
     <string name="service_type">Tipo do Serviço</string>
-    <string name="auth_cookie">Cookie de autenticação</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Por favor reinicie Orbot para habilitar as mundanças</string>
     <string name="share_as_qr">Compartilhar como QR</string>
     <string name="disable">Desabilitar</string>

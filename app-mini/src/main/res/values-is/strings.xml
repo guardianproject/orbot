@@ -137,8 +137,7 @@
   <string name="confirm_service_deletion">Staðfestu eyðingu á þjónustu</string>
   <string name="click_again_for_backup">Smelltu aftur fyrir öryggisafrit</string>
   <string name="service_type">Tegund þjónustu</string>
-  <string name="auth_cookie">Auðkenningar-vefkaka</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Endurræstu Orbot til að breytingarnar taki gildi</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Endurræstu Orbot til að breytingarnar taki gildi</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">Deila sem QR-kóða</string>
   <string name="disable">Gera óvirkt</string>

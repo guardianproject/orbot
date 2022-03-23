@@ -154,7 +154,6 @@
     <string name="start_tor_again_for_finish_the_process">Start Tor again for finish the process</string>
     <string name="confirm_service_deletion">Confirm service deletion</string>
     <string name="service_type">Service type</string>
-    <string name="auth_cookie">Auth cookie</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Please restart Orbot to enable the changes</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Share as QR</string>

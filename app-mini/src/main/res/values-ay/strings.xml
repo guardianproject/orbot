@@ -136,8 +136,7 @@
   <string name="confirm_service_deletion">Lurañanakax pichsutäniwa</string>
   <string name="click_again_for_backup">Imat luratanak utjañapatak mayamp limt\'am</string>
   <string name="service_type">Kunayman lurañanaka</string>
-  <string name="auth_cookie">Chiqat k\'arich uk katjir cookie</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Mayjt\'ayatanak aqtayañatak Orbot mayamp qhant\'ayam, amp suma</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Mayjt\'ayatanak aqtayañatak Orbot mayamp qhant\'ayam, amp suma</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">QRjam ch\'iqiyaña</string>
   <string name="disable">Jiwt\'ayaña</string>

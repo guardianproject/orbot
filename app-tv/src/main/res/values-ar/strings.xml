@@ -132,8 +132,7 @@
   <string name="confirm_service_deletion">تأكيد حذف الخدمة</string>
   <string name="click_again_for_backup">قم بالنقر ثانية للقيام بالنسخ الإحتياطي</string>
   <string name="service_type">نوع الخدمة</string>
-  <string name="auth_cookie">كعكة المصادقة</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">الرجاء إعادة تشغيل أوربوت لتفعيل التعديلات</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">الرجاء إعادة تشغيل أوربوت لتفعيل التعديلات</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">شارك كرمز كيو آر</string>
   <string name="disable">إلغاء</string>

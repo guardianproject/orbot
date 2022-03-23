@@ -124,7 +124,6 @@
     <string name="start_tor_again_for_finish_the_process">प्रक्रिया को खत्म करने के लिए Tor पुन: प्रारंभ करें</string>
     <string name="confirm_service_deletion">सेवा हटाने की पुष्टि करें</string>
     <string name="service_type">सेवा प्रकार</string>
-    <string name="auth_cookie">Auth कुकी</string>
     <string name="please_restart_Orbot_to_enable_the_changes">परिवर्तन सक्षम करने के लिए Orbot पुनः प्रारंभ करें</string>
     <string name="onion">.अनियन </string>
     <string name="share_as_qr">QR के रूप में शेयर करें</string>

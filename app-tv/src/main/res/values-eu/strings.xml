@@ -137,8 +137,7 @@
   <string name="confirm_service_deletion">Berretsi zerbitzua ezabatzea</string>
   <string name="click_again_for_backup">Egin klik berriro babeskopiarako</string>
   <string name="service_type">Zerbitzu mota</string>
-  <string name="auth_cookie">Autentifikazio cookie-a</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Mesedez berrabiarazi Orbot aldaketak aktibatzeko</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Mesedez berrabiarazi Orbot aldaketak aktibatzeko</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">Partekatu QR gisa</string>
   <string name="disable">Desgaitu</string>

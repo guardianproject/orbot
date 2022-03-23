@@ -123,7 +123,6 @@
     <string name="start_tor_again_for_finish_the_process">برای پایان فرآیند، دوباره تور را آغاز کنید</string>
     <string name="confirm_service_deletion">حذف خدمت را تأیید کنید</string>
     <string name="service_type">گونهٔ خدمت</string>
-    <string name="auth_cookie">کوکی Auth</string>
     <string name="please_restart_Orbot_to_enable_the_changes">برای به‌کار انداختن تغییرات، ربات پیازی را مجدداً شروع کنید</string>
     <string name="onion">‪.onion‬</string>
     <string name="share_as_qr">هم‌رسانی با کیوآر کد</string>

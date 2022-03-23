@@ -186,7 +186,6 @@
     <string name="consider_enable_battery_optimizations">Harkitse virransäästöasetusten käyttöönottoa</string>
     <string name="consider_disable_battery_optimizations">Harkitse virransäästöasetusten poistamista</string>
     <string name="share_as_qr">Jaa QR-koodina</string>
-    <string name="auth_cookie">Tunnistautumiseväste</string>
     <string name="backup_port_exist">Virhe: Sipulipalvelu käyttää jo porttia %s</string>
     <string name="backup_service">Varmuuskopiopalvelu <i>( Varoitus: Tämä voi paljastaa avaimesi toisille sovelluksille )</i></string>
     <string name="v3_import_auth_private">Tuo .auth_private</string>

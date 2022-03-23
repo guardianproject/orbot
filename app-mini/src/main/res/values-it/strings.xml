@@ -137,8 +137,7 @@
   <string name="confirm_service_deletion">Conferma l\'eliminazione del servizio</string>
   <string name="click_again_for_backup">Clicca ancora per eseguire il backup</string>
   <string name="service_type">Tipo di servizio</string>
-  <string name="auth_cookie">Cookie autenticazione</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Per favore riavvia Orbot per rendere effettive le modifiche</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Per favore riavvia Orbot per rendere effettive le modifiche</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">Condividi come QR</string>
   <string name="disable">Disabilita</string>

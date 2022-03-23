@@ -138,8 +138,7 @@
   <string name="confirm_service_deletion">सेवा हटाने की पुष्टि करें</string>
   <string name="click_again_for_backup">बैकअप के लिए फिर से क्लिक करें</string>
   <string name="service_type">सेवा प्रकार</string>
-  <string name="auth_cookie">Auth कुकी</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">परिवर्तन सक्षम करने के लिए Orbot पुनः प्रारंभ करें</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">परिवर्तन सक्षम करने के लिए Orbot पुनः प्रारंभ करें</string>
   <string name="onion">.अनियन </string>
   <string name="share_as_qr">QR के रूप में शेयर करें</string>
   <string name="disable">अक्षम</string>

@@ -129,7 +129,6 @@
     <string name="start_tor_again_for_finish_the_process">Redémarrez Tor pour finir le processus</string>
     <string name="confirm_service_deletion">Confirmez la suppression du service</string>
     <string name="service_type">Type de service</string>
-    <string name="auth_cookie">Témoin d’authentification</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Partager en tant que code QR</string>
     <string name="disable">Désactiver</string>

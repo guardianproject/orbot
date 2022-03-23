@@ -137,8 +137,7 @@
   <string name="confirm_service_deletion">Hizmeti Silmeyi Onayla</string>
   <string name="click_again_for_backup">Yedeklemek için yeniden tıklayın</string>
   <string name="service_type">Hizmet Türü</string>
-  <string name="auth_cookie">Kimlik Doğrulama Çerezi</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Değişiklikleri etkinleştirmek için Orbot uygulamasını yeniden başlatın</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Değişiklikleri etkinleştirmek için Orbot uygulamasını yeniden başlatın</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">QR Olarak Paylaş</string>
   <string name="disable">Devre Dışı Bırak</string>

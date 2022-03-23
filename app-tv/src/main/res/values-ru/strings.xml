@@ -137,8 +137,7 @@
   <string name="confirm_service_deletion">Подтверждение удаления службы</string>
   <string name="click_again_for_backup">Нажмите ещё раз для резервирования</string>
   <string name="service_type">Тип службы</string>
-  <string name="auth_cookie">Авторизирующие cookie</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Пожалуйста, перезапустите Orbot для вступления изменения в силу</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Пожалуйста, перезапустите Orbot для вступления изменения в силу</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">Поделиться через QR-код</string>
   <string name="disable">Отключить</string>

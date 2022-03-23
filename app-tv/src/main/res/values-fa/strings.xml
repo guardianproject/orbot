@@ -137,8 +137,7 @@
   <string name="confirm_service_deletion">حذف سرویس را تایید کنید</string>
   <string name="click_again_for_backup">برای بک‌آپ، دوباره کلیک کنید</string>
   <string name="service_type">نوع سرویس</string>
-  <string name="auth_cookie">کوکی Auth</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">برای دیدن تغییرات، اوربات  را دوباره راه اندازی کنید</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">برای دیدن تغییرات، اوربات  را دوباره راه اندازی کنید</string>
   <string name="onion">onion.</string>
   <string name="share_as_qr">هم‌رسانی با QR</string>
   <string name="disable">غیرفعال کن</string>

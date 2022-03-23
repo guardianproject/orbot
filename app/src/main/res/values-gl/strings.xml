@@ -123,7 +123,6 @@
     <string name="start_tor_again_for_finish_the_process">Inicie Tor de novo para rematar o proceso</string>
     <string name="confirm_service_deletion">Confirme a eliminación do servizo</string>
     <string name="service_type">Tipo de servizo</string>
-    <string name="auth_cookie">Testemuño de autorización</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Por favor, reinicie Orbot para activar os cambios</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Compartir como QR</string>

@@ -137,8 +137,7 @@
   <string name="confirm_service_deletion">ยืนยันการลบบริการ</string>
   <string name="click_again_for_backup">กดอีกครั้งเพื่อเรียกข้อมูลสำรอง</string>
   <string name="service_type">ประเภทของบริการ</string>
-  <string name="auth_cookie">คุกกี้ที่ได้รับอนุญาต</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">กรุณาเริ่ม Orbot ใหม่เพื่อให้การเปลี่ยนแปลงใช้งานได้</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">กรุณาเริ่ม Orbot ใหม่เพื่อให้การเปลี่ยนแปลงใช้งานได้</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">แชร์ในรูปแบบคิวอาร์</string>
   <string name="disable">ปิดการใช้งาน</string>

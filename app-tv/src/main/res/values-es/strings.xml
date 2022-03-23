@@ -138,8 +138,7 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="confirm_service_deletion">Confirme el borrado del servicio</string>
   <string name="click_again_for_backup">Pulse de nuevo para realizar copia de seguridad</string>
   <string name="service_type">Tipo de servicio</string>
-  <string name="auth_cookie">Cookie de autentificación</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Por favor, reinicie Orbot para habilitar los cambios</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Por favor, reinicie Orbot para habilitar los cambios</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">Compartir como QR</string>
   <string name="disable">Deshabilitar</string>

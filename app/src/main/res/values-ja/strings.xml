@@ -123,7 +123,6 @@
     <string name="start_tor_again_for_finish_the_process">プロセスを完了するには、Torを再起動して下さい。</string>
     <string name="confirm_service_deletion">サービス削除を確認</string>
     <string name="service_type">サービスタイプ</string>
-    <string name="auth_cookie">Cookie 認証</string>
     <string name="please_restart_Orbot_to_enable_the_changes">変更を有効にするにはOrbotを再起動してください</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">QR でシェア</string>

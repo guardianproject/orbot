@@ -137,8 +137,7 @@
   <string name="confirm_service_deletion">Szolgáltatás törlés jóváhagyása</string>
   <string name="click_again_for_backup">Kattintson még egyszer a mentéshez</string>
   <string name="service_type">Szolgáltatás típus</string>
-  <string name="auth_cookie">Azonosító süti</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Kérlek indítsd újra az Orbot-ot a változások engedélyezéséhez</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Kérlek indítsd újra az Orbot-ot a változások engedélyezéséhez</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">Megosztás QR-ként</string>
   <string name="disable">Kikapcsol</string>

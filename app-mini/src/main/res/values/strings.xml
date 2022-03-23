@@ -172,7 +172,6 @@
     <string name="confirm_service_deletion">Confirm service deletion</string>
     <string name="click_again_for_backup">Click again for backup</string>
     <string name="service_type">Service type</string>
-    <string name="auth_cookie">Auth cookie</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Please restart Orbot to enable the changes</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Share as QR</string>

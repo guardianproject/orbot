@@ -123,7 +123,6 @@
     <string name="start_tor_again_for_finish_the_process">เริ่มทำงาน Tor อีกครั้งเพื่อจบกระบวนการ</string>
     <string name="confirm_service_deletion">ยืนยันการลบบริการ</string>
     <string name="service_type">ประเภทของบริการ</string>
-    <string name="auth_cookie">คุกกี้ที่ได้รับอนุญาต</string>
     <string name="please_restart_Orbot_to_enable_the_changes">กรุณาเริ่ม Orbot ใหม่เพื่อให้การเปลี่ยนแปลงใช้งานได้</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">แชร์ในรูปแบบคิวอาร์</string>

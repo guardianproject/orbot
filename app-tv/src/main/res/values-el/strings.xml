@@ -137,8 +137,7 @@
   <string name="confirm_service_deletion">Επιβεβαίωση διαγραφής υπηρεσίας</string>
   <string name="click_again_for_backup">Πατήστε ξανά για το αντίγραφο ασφαλείας</string>
   <string name="service_type">Τύπος υπηρεσίας</string>
-  <string name="auth_cookie">Αναγνωριστικό cookie</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Παρακαλούμε επανεκκινήστε το Orbot για να ενεργοποιήσετε τις αλλαγές</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Παρακαλούμε επανεκκινήστε το Orbot για να ενεργοποιήσετε τις αλλαγές</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">Κοινοποίηση ως QR</string>
   <string name="disable">Απενεργοποίηση</string>

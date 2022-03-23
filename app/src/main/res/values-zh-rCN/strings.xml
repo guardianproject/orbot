@@ -150,7 +150,6 @@
     <string name="pref_reduced_connection_padding">减少了连接填充量</string>
     <string name="pref_connection_padding_summary">始终启用连接填充来防御某些形式的流量分析。默认值：自动</string>
     <string name="pref_isolate_dest">隔离目标地址</string>
-    <string name="auth_cookie">认证 cookie</string>
     <string name="create_a_backup_first">先建立一个备份</string>
     <string name="onion_port">洋葱端口</string>
     <string name="menu_hidden_services">洋葱服务</string>

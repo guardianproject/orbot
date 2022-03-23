@@ -123,7 +123,6 @@
     <string name="start_tor_again_for_finish_the_process">Запустіть Tor знову для завершення процесу</string>
     <string name="confirm_service_deletion">Підтвердьте видалення служби</string>
     <string name="service_type">Тип служби</string>
-    <string name="auth_cookie">Куки авторизації</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Перезапустіть Orbot, щоб застосувати зміни</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Поділитися через QR-код</string>

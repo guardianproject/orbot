@@ -87,5 +87,4 @@
     <string name="menu_new_identity">নতুন পরিচয়</string>
     <string name="user_services">ব্যবহারকারী সেবা</string>
     <string name="app_services">অ্যাপ সেবা</string>
-    <string name="auth_cookie">অথ কুকি</string>
 </resources>

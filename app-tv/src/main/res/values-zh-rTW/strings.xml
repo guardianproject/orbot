@@ -137,8 +137,7 @@
   <string name="confirm_service_deletion">確認服務刪除</string>
   <string name="click_again_for_backup">再次點選以進行備份</string>
   <string name="service_type">服務類型</string>
-  <string name="auth_cookie">Auth cookie</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">請重新啟動 Orbot 來讓設定生效。</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">請重新啟動 Orbot 來讓設定生效。</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">利用 QR 碼分享</string>
   <string name="disable">關閉</string>
