@@ -77,8 +77,6 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Извеждане на дневник за отстраняване на грешки (трябва да използвате adb или aLogcat за достъп до него)</string>
     <string name="project_home">Станица на проекта:</string>
     <string name="third_party_software">Софтуер от трети страни:</string>
-    <string name="pref_use_persistent_notifications">Когато Orbot е свързан винаги да се показва икона в лентата със задачи</string>
-    <string name="pref_use_persistent_notifications_title">Винаги включени известия</string>
     <string name="pref_use_expanded_notifications">Известието съдържа държавата и адреса по IP на изходния възел на Tor ако са налични</string>
     <string name="pref_use_expanded_notifications_title">Разширени известия</string>
     <string name="set_locale_title">Език</string>

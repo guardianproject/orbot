@@ -79,8 +79,6 @@
     <string name="project_home">Proje Ana Sayfası:</string>
     <string name="third_party_software">Üçüncü Taraf Yazılım:</string>
     <string name="hidden_service_request">Bir uygulama %1$s numaralı bağlantı noktasındaki onion sunucusunu Tor ağına açmak istiyor. Uygulamaya güveniyorsanız bu güvenlidir.</string>
-    <string name="pref_use_persistent_notifications">Orbot bağlı olduğu sürece simge araç çubuğunda görüntülensin</string>
-    <string name="pref_use_persistent_notifications_title">Bildirimler Her Zaman Açık</string>
     <string name="pref_use_expanded_notifications">Mevcut olduğunda tor çıkış düğümünüzün ülkesini ve IP adresini bildirimde göster</string>
     <string name="pref_use_expanded_notifications_title">Ayrıntılı Bildirimler</string>
     <string name="set_locale_title">Dil</string>

@@ -90,9 +90,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Een app wil de verborgenserverpoort %1$d tot het Tor-netwerk openen. Dit is veilig als je de app vertrouwt.</string>
-  <string name="pref_use_persistent_notifications">Houd icoon in taakbalk zolang Orbot verbonden is</string>
-  <string name="pref_use_persistent_notifications_title">Meldingen altijd aan</string>
-  <string name="pref_use_expanded_notifications">Toon uitgebreide melding met Tor-exitland en IP</string>
+    <string name="pref_use_expanded_notifications">Toon uitgebreide melding met Tor-exitland en IP</string>
   <string name="pref_use_expanded_notifications_title">Uitgebreide meldingen</string>
     <string name="set_locale_title">Taal</string>
   <string name="pref_disable_network_title">Geen netwerk automatisch slapen</string>

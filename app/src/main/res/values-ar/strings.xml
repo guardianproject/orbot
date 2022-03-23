@@ -77,8 +77,6 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">شغل سجل الـdebug ( للمراجعة يجب استخدام adb أو LogCat)</string>
     <string name="project_home">الموقع الرسمي للمشروع (المشاريع):</string>
     <string name="third_party_software">برامج من الطرف الثالث:</string>
-    <string name="pref_use_persistent_notifications">دائما ضع الأيقونة في شريط الأدوات عندما يكون اوربوت متصلاً</string>
-    <string name="pref_use_persistent_notifications_title">تنبيهات دائمة</string>
     <string name="pref_use_expanded_notifications">قم بأظهار التنبيه بشكل موسع بأستخدام تور. أخرج من البلد ورقم الآي بي رقم العنوان على الشبكة</string>
     <string name="pref_use_expanded_notifications_title">تنبيه موسّع</string>
     <string name="set_locale_title">اللغة</string>

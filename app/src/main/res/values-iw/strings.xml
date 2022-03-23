@@ -69,7 +69,6 @@
     <string name="enter_ports">הזן פורטים</string>
     <string name="project_home">אתרי הפרויקט:</string>
     <string name="third_party_software">תוכנה-צד-ג׳: </string>
-    <string name="pref_use_persistent_notifications">לשמור תמיד את האיקון בסרגל כלים כשאורבוט מחובר</string>
     <string name="set_locale_title">שפה</string>
     <string name="pref_disable_network_summary">כבה את Tor כאשר אין חיבור לאינטרנט</string>
     <string name="newnym">החלפת אל זהות Tor חדשה!</string>

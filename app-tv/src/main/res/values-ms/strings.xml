@@ -69,8 +69,6 @@
   <string name="project_home">Rumah Projek(s):</string>
   <string name="project_urls">https://www.torproject.org/docs/android⏎ https://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">3rd-Party-Software: </string>
-  <string name="pref_use_persistent_notifications">Sentiasa biar ikon pada toolbar apabila Orbot bersambung</string>
-  <string name="pref_use_persistent_notifications_title">Sentiasa On Notifikasi</string>
     <string name="set_locale_title">Tetapan Tempatan</string>
     <string name="save">Simpan</string>
   <string name="name">Nama</string>

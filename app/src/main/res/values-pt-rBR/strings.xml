@@ -79,8 +79,6 @@
     <string name="project_home">Site do projeto:</string>
     <string name="third_party_software">Software de Terceiros:</string>
     <string name="hidden_service_request">Um aplicativo quer abrir uma porta no servidor onion %1$s para a rede Tor. É seguro caso você confie neste aplicativo.</string>
-    <string name="pref_use_persistent_notifications">Mantenha sempre um ícone na barra de ferramentas quando o Orbot estiver conectado</string>
-    <string name="pref_use_persistent_notifications_title">Notificações Sempre Ligadas</string>
     <string name="pref_use_expanded_notifications">Exibe na notificação o país e o endereço IP do seu nó de saída do tor quando estiver disponível</string>
     <string name="pref_use_expanded_notifications_title">Notificações Expandidas</string>
     <string name="set_locale_title">Idioma</string>

@@ -76,8 +76,6 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">aktiver fejlfindings-log til output (der skal anvendes adb eller aLogCat for at se dette)</string>
   <string name="project_home">Projekt hjemmeside(r):</string>
     <string name="third_party_software">Tredjeparts-software:</string>
-    <string name="pref_use_persistent_notifications">Vis altid ikonet i statuslinien når Orbot er forbundet til netværket</string>
-  <string name="pref_use_persistent_notifications_title">Vis altid notifikationer</string>
     <string name="set_locale_title">Sprog</string>
   <string name="get_bridges_email">Mail</string>
   <string name="hidden_services">Skjulte tjenester</string>

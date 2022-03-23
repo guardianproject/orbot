@@ -61,7 +61,6 @@
     <string name="third_party_software">৩য় পক্ষের সফ্‌টওয়্যার:</string>
     <string name="reachable_addresses">পৌছানোযোগ্য ঠিকানা</string>
     <string name="reachable_ports">পৌছানোযোগ্য পোর্ট</string>
-    <string name="pref_use_persistent_notifications_title">সর্বদা চালু বিজ্ঞপ্তি</string>
     <string name="pref_use_expanded_notifications_title">বিস্তৃত বিজ্ঞপ্তি</string>
     <string name="pref_socks_title">টর সক্‌স</string>
     <string name="pref_http_title">টর এইচটিটিপি</string>

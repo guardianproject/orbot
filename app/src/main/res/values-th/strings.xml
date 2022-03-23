@@ -79,8 +79,6 @@
     <string name="project_home">ที่อยู่โครงการ:</string>
     <string name="third_party_software">ซอฟต์แวร์โดยผู้ผลิตอื่น:</string>
     <string name="hidden_service_request">โปรแกรมต้องการเปิดพอร์ต %1$d ที่ซ่อนอยู่ของเซิร์ฟเวอร์ให้เชื่อมกับเครือข่าย Tor การกระทำนี้ปลอดภัยถ้าคุณเชื่อถือโปรแกรมนั้น</string>
-    <string name="pref_use_persistent_notifications">แสดงไอคอนในทูลบาร์เสมอเมื่อ Orbot เชื่อมต่ออยู่</string>
-    <string name="pref_use_persistent_notifications_title">การแจ้งเตือนแบบตลอดเวลา</string>
     <string name="pref_use_expanded_notifications">แสดงการแจ้งเตือนแบบขยายที่ระบุประเทศปลายทางและ IP ของ Tor</string>
     <string name="pref_use_expanded_notifications_title">การแจ้งเตือนแบบขยาย</string>
     <string name="set_locale_title">ภาษา</string>

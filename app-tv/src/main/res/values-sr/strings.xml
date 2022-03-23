@@ -88,9 +88,7 @@
   <string name="tor_version">Toр: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="hidden_service_request">Апликација жели да отвори сакривен порт%1$d на серверу за Тор мрежу. Ово је сигуран потез уколико верујете апликацији.</string>
-  <string name="pref_use_persistent_notifications">Увек прикажи икону у тулбару када је Орбот конектован</string>
-  <string name="pref_use_persistent_notifications_title">Стално укључене нотификације</string>
-  <string name="pref_use_expanded_notifications">Прикажи опширно обавештење Тор излаза државе и IP-ја</string>
+    <string name="pref_use_expanded_notifications">Прикажи опширно обавештење Тор излаза државе и IP-ја</string>
   <string name="pref_use_expanded_notifications_title">Опширно Обавештење</string>
     <string name="set_locale_title">Језик</string>
   <string name="pref_disable_network_title">Без Мреже Auto-Sleep</string>

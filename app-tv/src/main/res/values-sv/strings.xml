@@ -90,9 +90,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">En app vill öppna dold serverport %1$d till Tor-nätverket. Det här är säkert om du litar på appen.</string>
-  <string name="pref_use_persistent_notifications">Behåll alltid ikonen i verktygsfältet när Orbot är ansluten</string>
-  <string name="pref_use_persistent_notifications_title">Alltid-På Notifikationer</string>
-  <string name="pref_use_expanded_notifications">Visa utökad notis med Tors utgångsland och IP</string>
+    <string name="pref_use_expanded_notifications">Visa utökad notis med Tors utgångsland och IP</string>
   <string name="pref_use_expanded_notifications_title">Utökade notiser</string>
     <string name="set_locale_title">Språk</string>
   <string name="pref_disable_network_title">Ingen auto-sömn för nätverket</string>

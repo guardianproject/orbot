@@ -77,9 +77,7 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">məhsul üçün sazlama girişi daxil et (baxmaq üçün adb və ya aLogCat istifadə etməlisən)</string>
   <string name="project_home">Layihə Evi(ləri):</string>
     <string name="third_party_software">Xidməti Quraşdırma:</string>
-  <string name="pref_use_persistent_notifications">Həmişə Orbot qoşulduğu hallarda nişanı alətlət panelində saxla</string>
-  <string name="pref_use_persistent_notifications_title">Həmişə Açıq Xəbərdarlıqlar</string>
-  <string name="pref_use_expanded_notifications">Torla birlikdə ətraflı bildirişi göstərib ölkə və IP-dən çıxın. </string>
+    <string name="pref_use_expanded_notifications">Torla birlikdə ətraflı bildirişi göstərib ölkə və IP-dən çıxın. </string>
   <string name="pref_use_expanded_notifications_title">Ətraflı bildirişlər</string>
     <string name="set_locale_title">Dil</string>
   <string name="pref_disable_network_title">Avto-Yuxu Şəbəkəsi Yoxdur</string>

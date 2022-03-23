@@ -154,8 +154,6 @@
     <string name="set_locale_title">Limbă</string>
     <string name="pref_use_expanded_notifications_title">Notificări extinse</string>
     <string name="pref_use_expanded_notifications">Afișați în notificare țara și adresa IP a nodului de ieșire tor, atunci când sunt disponibile</string>
-    <string name="pref_use_persistent_notifications_title">Notificări Always-On</string>
-    <string name="pref_use_persistent_notifications">Păstrați întotdeauna pictograma în bara de instrumente atunci când Orbot este conectat</string>
     <string name="deny">Refuzați</string>
     <string name="allow">Permiteți</string>
     <string name="hidden_service_request">O aplicație dorește să deschidă un server de onion pe portul %1$s în rețeaua Tor. Acest lucru este sigur dacă aveți încredere în aplicație.</string>

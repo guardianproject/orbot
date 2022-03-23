@@ -79,8 +79,6 @@
     <string name="project_home">Почетна страница(и):</string>
     <string name="third_party_software">Софтвер од производител од 3-та страна:</string>
     <string name="hidden_service_request">Апликација сака да отвори сокриена серверска порта %1$s кон Tor мрежата. Ова е безбедно доколку и верувате на апликацијата.</string>
-    <string name="pref_use_persistent_notifications">Секогаш чувајте ја иконата во лентата со алатки кога Orbot е поврзан</string>
-    <string name="pref_use_persistent_notifications_title">Известувања секогаш вклучени</string>
     <string name="pref_use_expanded_notifications">Прикажи проширено известување со излезната држава и IP на Tor</string>
     <string name="pref_use_expanded_notifications_title">Проширени известувања</string>
     <string name="set_locale_title">Јазик</string>

@@ -84,9 +84,7 @@
     <string name="third_party_software">Software třetích stran:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="pref_use_persistent_notifications">Vždy zobrazit ikonu ve stavovém řádku, pokud je Orbot připojen.</string>
-  <string name="pref_use_persistent_notifications_title">Notifikace vždy zapnuté</string>
-  <string name="pref_use_expanded_notifications">Zobrazit rozšířené oznánemí s Tor výstupní zemí a IP</string>
+    <string name="pref_use_expanded_notifications">Zobrazit rozšířené oznánemí s Tor výstupní zemí a IP</string>
   <string name="pref_use_expanded_notifications_title">Rozšířené oznámení</string>
     <string name="set_locale_title">Jazyk</string>
   <string name="pref_disable_network_title">Vypnout uspávání sítě</string>

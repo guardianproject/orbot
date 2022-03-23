@@ -85,9 +85,7 @@
   <string name="third_party_software">3:n osapuolen ohjelmisto:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="pref_use_persistent_notifications">Pidä kuvake aina työkalupalkissa, kun Orbot on yhdistetty</string>
-  <string name="pref_use_persistent_notifications_title">Ilmoitukset aina käytössä</string>
-  <string name="pref_use_expanded_notifications">Näytä laajennettu ilmoitus (Torin ulostulon maa ja IP)</string>
+    <string name="pref_use_expanded_notifications">Näytä laajennettu ilmoitus (Torin ulostulon maa ja IP)</string>
   <string name="pref_use_expanded_notifications_title">Laajennetut ilmoitukset</string>
   <string name="set_locale_title">Kieli</string>
   <string name="pref_disable_network_title">Ei verkon automaattilepotilaa</string>

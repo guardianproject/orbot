@@ -79,8 +79,6 @@
     <string name="project_home">خانهٔ پروژه:</string>
     <string name="third_party_software">نرم‌افزارهای شخص ثالث:</string>
     <string name="hidden_service_request">کاره‌ای می‌خواهد کارساز پیازی روی درگاه %1$s را به شبکهٔ تور بگشاید. اگر به برنامه اطمینان دارید، امن است.</string>
-    <string name="pref_use_persistent_notifications">نگه‌داری همیشگی نقشک در نوار ابزار هنگام وصل بودن روبات پیازی</string>
-    <string name="pref_use_persistent_notifications_title">آگاهی‌های همیشه روشن</string>
     <string name="pref_use_expanded_notifications">نمایش کشور و نشانی آی‌پی گره خروجی تورتان در آگاهی هنگام موحود بودن</string>
     <string name="pref_use_expanded_notifications_title">آگاهی‌های گسترده</string>
     <string name="set_locale_title">زبان</string>

@@ -85,9 +85,7 @@
     <string name="third_party_software">Oprogramowanie 3rd-Party</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="pref_use_persistent_notifications">Zawsze trzymaj ikonę w pasku powiadomień gdy Orbot jest połączony</string>
-  <string name="pref_use_persistent_notifications_title">Powiadomienia zawsze aktywne</string>
-  <string name="pref_use_expanded_notifications">Pokaż rozszerzone powiadomienie z krajem Tor exit node oraz jego IP</string>
+    <string name="pref_use_expanded_notifications">Pokaż rozszerzone powiadomienie z krajem Tor exit node oraz jego IP</string>
   <string name="pref_use_expanded_notifications_title">Rozszerzone Powiadomienia</string>
     <string name="set_locale_title">Język</string>
   <string name="pref_disable_network_title">Brak Auto-Uśpienia Sieci</string>

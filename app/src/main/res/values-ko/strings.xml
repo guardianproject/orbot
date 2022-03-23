@@ -77,9 +77,7 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">디버그 로그 출력 활성화 (보기 위해서는 adb나 aLogCat을 사용해야 함)</string>
   <string name="project_home">프로젝트 홈 페이지:</string>
     <string name="third_party_software">3rd-Party-Software: </string>
-  <string name="pref_use_persistent_notifications">Orbot이 연결되었을 때 툴바에 아이콘 보이기</string>
-  <string name="pref_use_persistent_notifications_title">항상 켜진 알림</string>
-  <string name="pref_use_expanded_notifications">출구 및 IP 정보알림 보이기</string>
+    <string name="pref_use_expanded_notifications">출구 및 IP 정보알림 보이기</string>
   <string name="pref_use_expanded_notifications_title">확장 알림</string>
     <string name="set_locale_title">언어</string>
   <string name="pref_disable_network_title">네트워크가 없을 때의 자동 슬립</string>

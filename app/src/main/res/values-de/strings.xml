@@ -79,8 +79,6 @@
     <string name="project_home">Internetseite des Projektes:</string>
     <string name="third_party_software">Drittanbieteranwendungen:</string>
     <string name="hidden_service_request">Eine Anwendung möchte den Onion Server auf Port %1$s zum Tor-Netzwerk öffnen. Dies ist sicher, wenn Sie der Anwendung vertrauen.</string>
-    <string name="pref_use_persistent_notifications">Symbol immer in der Statusleiste lassen, wenn Orbot verbunden ist</string>
-    <string name="pref_use_persistent_notifications_title">Aktivitätsanzeige</string>
     <string name="pref_use_expanded_notifications">In der Benachrichtigung, wenn vorhanden, das Land und die IP-Adresse des Tor-Ausgangsknotens anzeigen</string>
     <string name="pref_use_expanded_notifications_title">Erweiterte Benachrichtigungen</string>
     <string name="set_locale_title">Sprache</string>

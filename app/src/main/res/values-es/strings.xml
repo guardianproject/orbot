@@ -79,8 +79,6 @@
     <string name="project_home">Página(s) principal(es) del proyecto:</string>
     <string name="third_party_software">Software de terceros:</string>
     <string name="hidden_service_request">Una aplicación quiere abrir el puerto %1$s de servidor oculto a la red Tor. Esto es seguro si confía en la aplicación.</string>
-    <string name="pref_use_persistent_notifications">Mantener siempre el icono de Orbot en la barra de tareas cuando esté conectado</string>
-    <string name="pref_use_persistent_notifications_title">Notificaciones siempre activadas</string>
     <string name="pref_use_expanded_notifications">Mostrar notificación expandida con el país de salida de Tor y la IP</string>
     <string name="pref_use_expanded_notifications_title">Notificaciones expandidas</string>
     <string name="set_locale_title">Idioma</string>

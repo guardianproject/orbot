@@ -71,8 +71,6 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">නිදොස් කිරීමේ ලොගය ප්‍රතිදානය සදහා සබල කරන්න (නැරඹීම සදහා adb or aLogCat භාවිතා කරන්න)</string>
   <string name="project_home">ව්‍යාපෘති නිවහන(න්):</string>
     <string name="third_party_software">3 වන පාර්ශව මෘදුකාංග</string>
-  <string name="pref_use_persistent_notifications">Orbot සම්බන්ධ වී ඇති සැමවිටම විට මෙවලම් තීරුවේ නිරූපකය තබාගන්න</string>
-  <string name="pref_use_persistent_notifications_title">නිවේදන ලැබීමට සලස්වන්න </string>
     <string name="set_locale_title">භාෂාව</string>
     <string name="kb">KB</string>
   <string name="mb">MB</string>

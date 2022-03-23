@@ -85,9 +85,7 @@
     <string name="third_party_software">Perangkat Lunak Pihak Ke-3:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="pref_use_persistent_notifications">Selalu pelihara icon dalam toolbar ketika Orbot terhubung</string>
-  <string name="pref_use_persistent_notifications_title">Pemberitahuan Selalu-Hidup</string>
-  <string name="pref_use_expanded_notifications">Tampilkan notifikasi melebar dengan negara dan IP keluar Tor</string>
+    <string name="pref_use_expanded_notifications">Tampilkan notifikasi melebar dengan negara dan IP keluar Tor</string>
   <string name="pref_use_expanded_notifications_title">Notifikasi Melebar</string>
     <string name="set_locale_title">Bahasa</string>
   <string name="pref_disable_network_title">Auto-Tidur Tidak Ada Jaringan</string>

@@ -90,9 +90,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Forrit vill opna földu vefgáttina %1$d inn á Tor-netið. Þetta er öruggt ef þú treystir forritinu.</string>
-  <string name="pref_use_persistent_notifications">Alltaf hafa táknmynd í verkfærastiku þegar Orbot er tengt</string>
-  <string name="pref_use_persistent_notifications_title">Alltaf-á tilkynningar</string>
-  <string name="pref_use_expanded_notifications">Birta útflettar tilkynningar varðandi Tor-útgangsland og IP-vistfang</string>
+    <string name="pref_use_expanded_notifications">Birta útflettar tilkynningar varðandi Tor-útgangsland og IP-vistfang</string>
   <string name="pref_use_expanded_notifications_title">Útflettar tilkynningar</string>
     <string name="set_locale_title">Tungumál</string>
   <string name="pref_disable_network_title">Engin sjálfvirk svæfing netkerfis</string>
