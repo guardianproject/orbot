@@ -719,7 +719,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             //swallow any errors
         }
         var builder = new AlertDialog.Builder(OrbotMainActivity.this)
-                .setIcon(R.drawable.onion32)
                 .setTitle(title)
                 .setMessage(msg);
         if (button) builder.setPositiveButton(android.R.string.ok, null);
