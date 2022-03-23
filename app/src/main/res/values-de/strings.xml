@@ -151,7 +151,6 @@
     <string name="menu_new_identity">Neue Identität</string>
     <string name="user_services">Nutzerdienste</string>
     <string name="app_services">Appdienste</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="refresh_apps">Apps neu einlesen</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Proxy an allen Schnittstellen öffnen</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">WLAN-Rechnernetzen, per Tethering verbundenen Geräten und allen anderen, die sich mit Ihrer IP verbinden können, erlauben, auf Tor zuzugreifen</string>

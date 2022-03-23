@@ -131,7 +131,6 @@
     <string name="trouble_connecting">Problemas na conexão ? </string>
     <string name="full_device_vpn">VPN PARA TODO O DISPOSITIVO</string>
     <string name="refresh_apps">Atualizar os Aplicativos</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="app_services">Serviços dos Aplicativos</string>
     <string name="user_services">Serviços ao Usuário</string>
     <string name="menu_new_identity">Nova Identidade</string>

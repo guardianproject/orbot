@@ -173,7 +173,6 @@
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
     <string name="refresh_apps">Làm mới các ứng dụng</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="app_services">Dịch vụ ứng dụng</string>
     <string name="user_services">Dịch vụ người dùng</string>
     <string name="menu_new_identity">Danh tính mới</string>

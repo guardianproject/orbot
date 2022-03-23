@@ -153,7 +153,6 @@
     <string name="menu_new_identity">Нова особа</string>
     <string name="user_services">Служби користувача</string>
     <string name="app_services">Служби застосунків</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="refresh_apps">Оновити застосунки</string>
     <string name="bridge_snowflake">Підʼєднатися через інших користувачів Tor за допомогою Snowflake (Метод1 - Швидкий)</string>
     <string name="use_qr_code">Використовувати QR-код</string>

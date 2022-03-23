@@ -153,7 +153,6 @@
     <string name="menu_new_identity">Nouvelle identité</string>
     <string name="user_services">Services utilisateur</string>
     <string name="app_services">Services d’appli</string>
-    <string name="default_socks_http">SOCKS : - HTTP : -</string>
     <string name="refresh_apps">Actualiser les applis</string>
     <string name="bridge_snowflake">Se connecter grâce à d’autres pairs Tor (expérimental)</string>
     <string name="use_qr_code">Utiliser un code QR</string>

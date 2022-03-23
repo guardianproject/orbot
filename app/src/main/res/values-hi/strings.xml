@@ -143,7 +143,6 @@
     <string name="full_device_vpn">पूर्ण डिवाइस VPN</string>
     <string name="vpn_disabled">वीपीएन अक्षम किया गया</string>
     <string name="refresh_apps">रीफ्रेश ऐप्स</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="app_services">ऐप सेवाएं</string>
     <string name="user_services">उपयोगकर्ता सेवाएँ</string>
     <string name="menu_new_identity">नई पहचान</string>

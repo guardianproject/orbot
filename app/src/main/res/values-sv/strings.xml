@@ -153,6 +153,5 @@
     <string name="menu_new_identity">Ny identitet</string>
     <string name="user_services">Användartjänster</string>
     <string name="app_services">App-tjänster</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="refresh_apps">Uppdatera appar</string>
 </resources>

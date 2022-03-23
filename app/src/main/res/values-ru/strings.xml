@@ -142,7 +142,6 @@
     <string name="full_device_vpn">VPN для всего устройства</string>
     <string name="vpn_disabled">VPN отключён</string>
     <string name="refresh_apps">Обновить приложения</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="app_services">Службы приложения</string>
     <string name="user_services">Службы пользователя</string>
     <string name="menu_new_identity">Новая личность</string>

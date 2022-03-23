@@ -180,7 +180,6 @@
     <string name="testing_tor_direct_success">پیروزی. اتّصال تور خوب است!</string>
     <string name="testing_tor_direct">آزمون اتّصال به تور…</string>
     <string name="pref_disable_ipv4_summary">اعلام وصل نشدن به نشانی‌های IPv4 به خروجی‌ها</string>
-    <string name="default_socks_http">ساکس: - اچ‌تی‌تی‌پی: -</string>
     <string name="pref_reduced_circuit_padding">فاصله‌گذاری مدار کاهش‌یافته</string>
     <string name="pref_reduced_circuit_padding_summary">استفاده از الگوریتم‌های فاصله‌گذاری با سربار پایین‌تر برای کاهش مصرف باتری و داده</string>
     <string name="be_a_snowflake_title_limit">محدودیت‌های پیشکار اسنوفلیک</string>

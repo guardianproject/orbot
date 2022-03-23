@@ -146,6 +146,5 @@
     <string name="menu_new_identity">Nova identitat</string>
     <string name="user_services">Serveis d\'usuari</string>
     <string name="app_services">Serveis d\'aplicació</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="refresh_apps">Refresca aplicacions</string>
 </resources>

@@ -783,7 +783,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                 case STATUS_OFF:
                     imgStatus.setImageResource(R.drawable.toroff);
-                    lblStatus.setText(String.format("Tor v%s", OrbotService.BINARY_TOR_VERSION));
+                    lblPorts.setText(R.string.ports_not_set);
                     mBtnStart.setText(R.string.menu_start);
                     mPulsator.start();
                     resetBandwidthStatTextviews();

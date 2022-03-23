@@ -144,7 +144,6 @@
     <string name="menu_new_identity">ตัวตนใหม่</string>
     <string name="pref_prefer_ipv6_summary">บอกทางโหนดออกว่าต้องการที่อยู่ IPv6</string>
     <string name="refresh_apps">รีเฟรชแอป</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="app_services">บริการแอป</string>
     <string name="user_services">บริการผู้ใช้</string>
     <string name="pref_disable_ipv4_summary">บอกโหนดออกไม่ให้เชื่อมต่อกับที่อยู่ IPv4</string>

@@ -162,7 +162,6 @@
     <string name="refresh_captcha">Päivitä CAPTCHA</string>
     <string name="request_bridges">Pyydä siltoja</string>
     <string name="refresh_apps">Päivitä sovellukset</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="app_services">Sovelluspalvelut</string>
     <string name="user_services">Käyttäjäpalvelut</string>
     <string name="menu_new_identity">Uusi identiteetti</string>

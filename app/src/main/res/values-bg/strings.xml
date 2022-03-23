@@ -184,7 +184,6 @@
     <string name="pref_circuit_padding_summary">Използва се уплътняване на връзката с цел защита от някои форми на анализ на трафика</string>
     <string name="pref_reduced_circuit_padding">Намалено уплътняване на обходите</string>
     <string name="pref_reduced_circuit_padding_summary">За да се намали разхода на трафик и батерия се използват по-леки алгоритми</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="refresh_apps">Обновяване на приложения</string>
     <string name="captcha">CAPTCHA</string>
     <string name="refresh_captcha">Презареждане на CAPTCHA</string>

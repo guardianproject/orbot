@@ -58,7 +58,6 @@
     <string name="refresh_captcha">Actualizați CAPTCHA</string>
     <string name="request_bridges">Solicită poduri</string>
     <string name="refresh_apps">Aplicații de reîmprospătare</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="app_services">Servicii de aplicații</string>
     <string name="user_services">Servicii pentru utilizatori</string>
     <string name="menu_new_identity">Identitate nouă</string>

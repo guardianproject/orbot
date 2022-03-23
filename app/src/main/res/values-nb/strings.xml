@@ -132,7 +132,6 @@
     <string name="menu_new_identity">Ny identitet</string>
     <string name="user_services">Brukertjenestetilbud</string>
     <string name="app_services">Programtjenestetilbud</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="pref_http_dialog">HTTP-portoppsett</string>
     <string name="consider_disable_battery_optimizations">Overvei å skru av batterioptimalisering</string>
     <string name="consider_enable_battery_optimizations">Overvei å skru på batterioptimalisering</string>

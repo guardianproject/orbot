@@ -16,18 +16,10 @@
     <string name="menu_exit">Exit</string>
     <string name="menu_scan">Scan BridgeQR</string>
     <string name="menu_share_bridge">Share BridgeQR</string>
-    <!--Welcome Wizard strings (DJH)-->
     <string name="wizard_details_msg">Orbot is an open-source application that contains Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks and LibEvent. It provides a VPN tunnel, a local HTTP Connect proxy (HTTPS only on port 8118) and a SOCKS proxy (9050) into the Tor network.</string>
-    <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">General</string>
     <string name="pref_start_boot_title">Start Orbot on Boot</string>
     <string name="pref_start_boot_summary">Automatically start Orbot and connect Tor when your Android device boots</string>
-    <!--New Wizard Strings-->
-    <!--Title Screen-->
-    <!--Warning screen-->
-    <!--Permissions screen-->
-    <!--TipsAndTricks screen-->
-    <!--Transparent Proxy screen-->
     <string name="pref_node_configuration">Node Configuration</string>
     <string name="pref_node_configuration_summary">These are advanced settings that can reduce your anonymity</string>
     <string name="pref_entrance_node">Entrance Nodes</string>
@@ -185,7 +177,7 @@
     <string name="menu_new_identity">New Identity</string>
     <string name="user_services">User services</string>
     <string name="app_services">App services</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
+    <string name="ports_not_set" translatable="false">SOCKS: -- | HTTP: --</string>
     <string name="refresh_apps">Refresh Apps</string>
     <!-- MoatActivity -->
     <string name="request_bridges">Request Bridges</string>
@@ -214,7 +206,4 @@
     <string formatted="true" name="snowflake_proxy_enabled">Snowflake proxy mode enabled</string>
     <string name="snowflake_proxy_msg_title">Show Connection Notification</string>
     <string name="snowflake_proxy_msg_description">Show a message when your snowflake helps someone circumvent censorship</string>
-
-
-
 </resources>

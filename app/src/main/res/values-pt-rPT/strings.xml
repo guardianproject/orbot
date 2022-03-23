@@ -65,7 +65,6 @@
     <string name="app_services">Serviços de app</string>
     <string name="pref_reduced_connection_padding">Preenchimento de conexão reduzido</string>
     <string name="start_tor_again_for_finish_the_process">Reiniciar o Tor para terminar o processo</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="pref_reduced_connection_padding_summary">Fecha conexões de relé mais cedo e envia menos pacotes de preenchimento para reduzir dados e uso de bateria</string>
     <string name="refresh_apps">Atualizar apps</string>
     <string name="pref_http_title">HTTP Tor</string>

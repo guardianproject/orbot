@@ -48,7 +48,6 @@
     <string name="enter_characters_from_image">Įveskite simbolius iš vaizdo</string>
     <string name="testing_tor_direct">Bandomas ryšys su „Tor“…</string>
     <string name="get_bridges_email_request">Prašyti tiltų elektroniniu paštu</string>
-    <string name="default_socks_http">Kojinės: - HTTP: -</string>
     <string name="bridge_cloud">Prisijungti per debesų serverius</string>
     <string name="bridge_community">Prisijungti per bendruomenės serverius</string>
     <string name="consider_enable_battery_optimizations">Apsvarstykite galimybę įjungti baterijos optimizavimą</string>

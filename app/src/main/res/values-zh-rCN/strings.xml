@@ -135,7 +135,6 @@
     <string name="trouble_connecting">连接时遇到问题？</string>
     <string name="full_device_vpn">全设备 VPN</string>
     <string name="vpn_disabled">VPN 已禁用</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="pref_isolate_dest_summary">对每个目标地址使用不同的回路</string>
     <string name="refresh_apps">刷新应用程序</string>
     <string name="app_services">应用服务</string>

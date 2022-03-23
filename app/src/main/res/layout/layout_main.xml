@@ -104,7 +104,7 @@
                     android:gravity="center"
                     android:lines="1"
                     android:maxLines="1"
-                    android:text="@string/default_socks_http"
+                    android:text="@string/ports_not_set"
                     android:textSize="14sp" />
 
                 <LinearLayout

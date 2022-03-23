@@ -146,7 +146,6 @@
     <string name="pref_http_summary">Puerto en el que Tor ofrece su proxy HTTP (predeterminado: 8118 o 0 para deshabilitar)</string>
     <string name="pref_http_dialog">Configuración del puerto HTTP</string>
     <string name="refresh_apps">Refrescar aplicaciones</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="app_services">Servicios de aplicaciones</string>
     <string name="user_services">Servicios de usuario</string>
     <string name="menu_new_identity">Nueva identidad</string>
