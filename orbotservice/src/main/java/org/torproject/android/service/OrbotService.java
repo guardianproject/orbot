@@ -109,7 +109,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
     private boolean shouldUnbindTorService;
     private NotificationManager mNotificationManager = null;
     private NotificationCompat.Builder mNotifyBuilder;
-    private boolean mNotificationShowing = false;
     private File mV3OnionBasePath, mV3AuthBasePath;
     private ArrayList<Bridge> alBridges = null;
     private int snowflakeClientsConnected;
@@ -161,8 +160,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
         if (mOrbotRawEventListener != null)
             mOrbotRawEventListener.getNodes().clear();
-
-        mNotificationShowing = false;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -227,15 +224,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
             mNotifyBuilder.setProgress(0, 0, false); // removes progress bar
         }
 
-        var notification = mNotifyBuilder.build();
-
-        startForeground(NOTIFY_ID, notification);
-
-        mNotificationShowing = true;
+        startForeground(NOTIFY_ID, mNotifyBuilder.build());
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (!mNotificationShowing)
+        if (mCurrentStatus.equals(STATUS_OFF))
             showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor);
 
         if (intent != null)
