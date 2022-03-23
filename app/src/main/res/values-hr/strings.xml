@@ -76,10 +76,7 @@
   <string name="enter_ports">Unesi portove</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">omogući izlaznost dnevnika o otkrivanju greške (mora koristiti adb ili aLogCat za pregled)</string>
   <string name="project_home">Dom(ovi) Projekta:</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
-  <string name="third_party_software">Software treće strane:</string>
-  <string name="tor_version">Tor: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
+    <string name="third_party_software">Software treće strane:</string>
   <string name="pref_use_persistent_notifications">Uvjek drži ikonu na alatnoj traci kad je Orbot spojen</string>
   <string name="pref_use_persistent_notifications_title">Obavijesti o stalnoj pokrenutosti</string>
   <string name="pref_use_expanded_notifications">Prikaži proširene obavijesti s Tor izlaznom državom i IP-em</string>

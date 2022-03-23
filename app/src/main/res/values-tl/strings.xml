@@ -73,11 +73,7 @@
   <string name="enter_ports">I-lagay ang ports</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">paganahiin ang debug log para sa output (kailangang gamitin ang adb o aLogCat para makita)</string>
   <string name="project_home">Project Home(s):</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/
-</string>
     <string name="third_party_software">3rd-Party-Software:</string>
-  <string name="tor_version">Tor: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="pref_use_persistent_notifications">Palaging panatilihin ang icon sa toolbar kapag ang Orbot ay naka-connect</string>
   <string name="pref_use_persistent_notifications_title">Palaging i-On ang Notifications</string>
   <string name="pref_use_expanded_notifications">Ipakita ang pinalaking notification kasama ng Tor exit country at IP</string>

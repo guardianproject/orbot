@@ -47,7 +47,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:text="@string/project_urls"
+            android:text="@string/orbot_url"
             android:textColor="@android:color/white"
             android:textColorLink="@android:color/white" />
 
@@ -63,7 +63,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:text="@string/tor_version"
+            android:text="@string/tor_url"
             android:textColor="@android:color/white"
             android:textColorLink="@android:color/white" />
 
@@ -71,7 +71,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:text="@string/libevent_version"
+            android:text="@string/libevent_url"
             android:textColor="@android:color/white"
             android:textColorLink="@android:color/white" />
 
@@ -79,7 +79,16 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:text="@string/obfsproxy_version"
+            android:text="@string/obfs4_url"
+            android:textColor="@android:color/white"
+            android:textColorLink="@android:color/white" />
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:text="@string/snowflake_url"
             android:textColor="@android:color/white"
             android:textColorLink="@android:color/white" />
 
@@ -87,7 +96,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:text="@string/openssl_version"
+            android:text="@string/openssl_url"
             android:textColor="@android:color/white"
             android:textColorLink="@android:color/white" />
 

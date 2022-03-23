@@ -76,10 +76,7 @@
     <string name="enter_ports">Въведете портове</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Извеждане на дневник за отстраняване на грешки (трябва да използвате adb или aLogcat за достъп до него)</string>
     <string name="project_home">Станица на проекта:</string>
-    <string name="project_urls">https://orbot.app/</string>
     <string name="third_party_software">Софтуер от трети страни:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="pref_use_persistent_notifications">Когато Orbot е свързан винаги да се показва икона в лентата със задачи</string>
     <string name="pref_use_persistent_notifications_title">Винаги включени известия</string>
     <string name="pref_use_expanded_notifications">Известието съдържа държавата и адреса по IP на изходния възел на Tor ако са налични</string>
@@ -170,7 +167,6 @@
     <string name="backup_service">Услуга за архивиране <i>(Внимание: така могат да бъдат разкрити настройките на услугата от други приложения)</i></string>
     <string name="wizard_details_msg">Orbot е приложение с отворен код, което съдържа Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks и LibEvent. Предоставя тунел на VPN, местен мрежов посредник на HTTP (HTTPS само на порт 8118) и посредник на SOCKS (9050) към мрежата на Tor.</string>
     <string name="pref_circuit_padding">Уплътняване на обходите</string>
-    <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
     <string name="backup_saved_at_external_storage">Резервното копие е запазено във външното хранилище</string>
     <string name="backup_restored">Резервното копие е възстановено</string>
     <string name="start_tor_again_for_finish_the_process">За да завърши процеса пуснете Tor отново</string>
@@ -178,7 +174,6 @@
     <string name="be_a_snowflake_title">Стартиране на прокси сървър на Snowflake</string>
     <string name="be_a_snowflake_title_limit">Ограничения на прокси сървъра на Snowflake</string>
     <string name="be_a_snowflake_desc_limit">Само когато устройството се зарежда и използва Wi-Fi</string>
-    <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
     <string name="pref_http_title">Tor HTTP</string>
     <string name="pref_http_summary">Порт, на който Tor предлага HTTP прокси (подразбиран: 8118 или 0 за изключване)</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Ако мобилната мрежа актовно спира Tor като алтернатива можете да използвате „BridgeServer„. Изберете от вариантите за настройка и проба…</string>

@@ -77,12 +77,7 @@
     <string name="enter_ports">Insira as portas</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Ativar os registros log de depuração para saída (deve usar adb ou aLogCat para ver)</string>
     <string name="project_home">Site do projeto:</string>
-    <string name="project_urls">https://orbot.app/</string>
     <string name="third_party_software">Software de Terceiros:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Um aplicativo quer abrir uma porta no servidor onion %1$s para a rede Tor. É seguro caso você confie neste aplicativo.</string>
     <string name="pref_use_persistent_notifications">Mantenha sempre um ícone na barra de ferramentas quando o Orbot estiver conectado</string>
     <string name="pref_use_persistent_notifications_title">Notificações Sempre Ligadas</string>

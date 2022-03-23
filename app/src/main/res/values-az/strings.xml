@@ -76,12 +76,7 @@
   <string name="enter_ports">Port daxil et</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">məhsul üçün sazlama girişi daxil et (baxmaq üçün adb və ya aLogCat istifadə etməlisən)</string>
   <string name="project_home">Layihə Evi(ləri):</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Xidməti Quraşdırma:</string>
-  <string name="tor_version">
-Tor: https://www.torproject.org</string>
-  <string name="libevent_version">
-LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="pref_use_persistent_notifications">Həmişə Orbot qoşulduğu hallarda nişanı alətlət panelində saxla</string>
   <string name="pref_use_persistent_notifications_title">Həmişə Açıq Xəbərdarlıqlar</string>
   <string name="pref_use_expanded_notifications">Torla birlikdə ətraflı bildirişi göstərib ölkə və IP-dən çıxın. </string>

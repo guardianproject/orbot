@@ -78,12 +78,7 @@
     <string name="enter_ports">बंदरगाहों को दर्ज करें</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">डीबग लॉग आउटपुट को सक्षम करें (देखने के लिए एडीबी या एओॉगटैट का उपयोग करना चाहिए)</string>
     <string name="project_home">प्रोजेक्ट होम(एस)::</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">तृतीय-पक्ष-सॉफ़्टवेयर:</string>
-    <string name="tor_version">तोर : https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">एक ऐप Tor नेटवर्क पर %1$sछिपा सर्वर पोर्ट खोलना चाहता है। यदि आप ऐप पर विश्वास करते हैं, तो यह सुरक्षित है</string>
     <string name="pref_use_persistent_notifications">ऑरबोट कनेक्ट होने पर टूलबार में हमेशा आइकन रखें</string>
     <string name="pref_use_persistent_notifications_title">हमेशा की सूचनाएं</string>

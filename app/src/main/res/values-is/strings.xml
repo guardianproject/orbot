@@ -77,12 +77,7 @@
     <string name="enter_ports">Settu inn gáttir</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">virkja gerð villuskráningar á úttaki (verður að nota adb eða aLogCat til að skoða)</string>
     <string name="project_home">Heimili verkefnisins:</string>
-    <string name="project_urls">https://orbot.app/</string>
     <string name="third_party_software">Hugbúnaður frá 3ja aðila:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Forrit vill opna onion-netþjón á gáttinni %1$s inn á Tor-netið. Þetta er öruggt ef þú treystir forritinu.</string>
     <string name="pref_use_persistent_notifications">Alltaf hafa táknmynd í verkfærastiku þegar Orbot er tengt</string>
     <string name="pref_use_persistent_notifications_title">Alltaf-á tilkynningar</string>

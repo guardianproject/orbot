@@ -77,12 +77,7 @@
   <string name="enter_ports">Saisir les ports</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">activer le journal de débogage vers la sortie (vous devez utiliser adb ou aLogCat pour le visualiser)</string>
   <string name="project_home">Page(s) d’accueil du projet :</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Logiciels tiers :</string>
-  <string name="tor_version">Tor : https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.21 : http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8 : https://github.com/Yawning/obfs4</string>
-  <string name="openssl_version">OpenSSL v1.0.2j : http://www.openssl.org</string>
   <string name="hidden_service_request">Une appli veut ouvrir le port %1$d du serveur caché au réseau Tor. Cela est sécuritaire si vous faites confiance à l’appli.</string>
   <string name="pref_use_persistent_notifications">Toujours conserver l’icône dans la barre des tâches quand Orbot est connecté.</string>
   <string name="pref_use_persistent_notifications_title">Notifications toujours actives</string>

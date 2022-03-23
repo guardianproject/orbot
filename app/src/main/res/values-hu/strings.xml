@@ -77,12 +77,7 @@
     <string name="enter_ports">Add meg a portokat</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">a hibakeresési napló engedélyezése a kimenetre (adb -t vagy aLogCat -t kell használni a megtekintéshez)</string>
     <string name="project_home">Projekt honlap(ok):</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">3. fél szoftver:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Egy app egy rejtett szerver portot %1$d nyitna a Tor hálózatra. Ez biztonságos, ha megbízik az appban.</string>
     <string name="pref_use_persistent_notifications">Mindig tartsa az ikont az eszköztáron, ha az Orbot csatlakoztatva van.</string>
     <string name="pref_use_persistent_notifications_title">Mindig-bekapcsolt értesítések</string>

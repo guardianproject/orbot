@@ -77,12 +77,7 @@
     <string name="enter_ports">Введіть порти</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Увімкнути вивід журналу зневадження (потрібно використовувати adb або aLogCat для перегляду)</string>
     <string name="project_home">Домівка проєкту:</string>
-    <string name="project_urls">https://orbot.app/</string>
     <string name="third_party_software">Програми сторонніх розробників: </string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Застосунок хоче відкрити сервер onion на порту %1$s до мережі Tor. Це безпечно, якщо ви довіряєте застосунку.</string>
     <string name="pref_use_persistent_notifications">Завжди показувати піктограму на панелі інструментів коли Orbot підʼєднано</string>
     <string name="pref_use_persistent_notifications_title">Постійне сповіщення про роботу</string>

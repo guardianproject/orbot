@@ -131,11 +131,6 @@
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_use_expanded_notifications_title">Išplėsti pranešimai</string>
     <string name="pref_use_persistent_notifications_title">Visada įjungti pranešimai</string>
-    <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
-    <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
-    <string name="libevent_version">LibEvent: http://www.monkey.org/~provos/libevent/</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="project_urls">https://orbot.app/</string>
     <string name="project_home">Projekto namai:</string>
     <string name="enter_ports">Įvesti prievadus</string>
     <string name="reachable_ports">Pasiekiami prievadai</string>

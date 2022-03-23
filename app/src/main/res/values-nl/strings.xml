@@ -77,12 +77,7 @@
     <string name="enter_ports">Voer poorten in</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">schakel debug log naar uitvoer in (adb of aLogCat is nodig om dit te bekijken)</string>
     <string name="project_home">Project homepagina(\'s): </string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Software van 3e partijen: </string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Een app wil de verborgenserverpoort %1$s tot het Tor-netwerk openen. Dit is veilig als je de app vertrouwt.</string>
     <string name="pref_use_persistent_notifications">Houd icoon in taakbalk zolang Orbot verbonden is</string>
     <string name="pref_use_persistent_notifications_title">Meldingen altijd aan</string>

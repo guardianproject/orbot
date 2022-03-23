@@ -68,10 +68,7 @@
     <string name="reachable_ports">פורטים בהישג יד</string>
     <string name="enter_ports">הזן פורטים</string>
     <string name="project_home">אתרי הפרויקט:</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">תוכנה-צד-ג׳: </string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="pref_use_persistent_notifications">לשמור תמיד את האיקון בסרגל כלים כשאורבוט מחובר</string>
     <string name="set_locale_title">שפה</string>
     <string name="pref_disable_network_summary">כבה את Tor כאשר אין חיבור לאינטרנט</string>
@@ -90,6 +87,4 @@
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">טביעות אצבע, כינויים, מדינות וכתובות עבור נקודת הגישור האחרונה</string>
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">טביעות אצבע, כינויים, מדינות וכתובות להחרגה</string>
     <string name="ports_reachable_behind_a_restrictive_firewall">פתחות נגישות מאחורי חומת אש מגבילה</string>
-    <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
-    <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
 </resources>

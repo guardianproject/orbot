@@ -77,12 +77,7 @@
     <string name="enter_ports">Увядзіце парты</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Уключыць вынік журнала адладкі (патрабуе выкарыстоўваць adb ці aLogCat для прагляду)</string>
     <string name="project_home">Хатняя старонка праекта:</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Праграмы іншых распрацоўнікаў: </string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Дадатак хоча адкрыць схаваны порт сервера %1$s сеткі Tor. Гэта бяспечна, калі вы давяраеце дадзенаму дадатку.</string>
     <string name="pref_use_persistent_notifications">Заўсёды адлюстроўваць іконку у панэлі заданняў калі Orbot падключаны</string>
     <string name="pref_use_persistent_notifications_title">Нязменнае апавяшчэнне пра працу</string>

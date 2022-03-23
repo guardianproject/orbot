@@ -76,10 +76,7 @@
   <string name="enter_ports">Ievadiet portus</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">iespējot atkļūdošanas žurnālu izvadei (jālieto adb vai aLogCat , lai skatītu)</string>
   <string name="project_home">Projekta mājas:</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Trešo personu programmatūra:</string>
-  <string name="tor_version">Tor: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="pref_use_persistent_notifications">Vienmēr paturēt ikonu rīkjoslā, kad Orbot ir savienots</string>
   <string name="pref_use_persistent_notifications_title">Vienmēr ieslēgtie paziņojumi</string>
   <string name="pref_use_expanded_notifications">Rādīt paplašinātus paziņojumus, kur norādīts IP un Tor izejas valsts</string>

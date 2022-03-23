@@ -76,12 +76,7 @@
     <string name="enter_ports">أدخل المنافذ</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">شغل سجل الـdebug ( للمراجعة يجب استخدام adb أو LogCat)</string>
     <string name="project_home">الموقع الرسمي للمشروع (المشاريع):</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">برامج من الطرف الثالث:</string>
-    <string name="tor_version">تور: https://www.torproject.org</string>
-    <string name="libevent_version">لب إيفينت النسخة http://www.monkey.org/~provos/libevent/ :v2.0.21</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="pref_use_persistent_notifications">دائما ضع الأيقونة في شريط الأدوات عندما يكون اوربوت متصلاً</string>
     <string name="pref_use_persistent_notifications_title">تنبيهات دائمة</string>
     <string name="pref_use_expanded_notifications">قم بأظهار التنبيه بشكل موسع بأستخدام تور. أخرج من البلد ورقم الآي بي رقم العنوان على الشبكة</string>

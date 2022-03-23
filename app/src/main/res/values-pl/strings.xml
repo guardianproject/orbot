@@ -76,10 +76,7 @@
     <string name="enter_ports">Wpisz porty</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">włącz zdebugowany log do wydajności (musisz używać adb lub aLogCat, by go zobaczyć)</string>
     <string name="project_home">Strony domowe projektu:</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Oprogramowanie innych firm:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="pref_use_persistent_notifications">Zawsze trzymaj ikonę w pasku powiadomień gdy Orbot jest połączony</string>
     <string name="pref_use_persistent_notifications_title">Powiadomienia zawsze aktywne</string>
     <string name="pref_use_expanded_notifications">Pokaż rozszerzone powiadomienie z krajem Tor exit node oraz jego IP</string>
@@ -122,8 +119,6 @@
     <string name="vpn_default_world">Globalny (automatyczny)</string>
     <string name="onion_port">Port Cebulowy</string>
     <string name="delete_service">Usuń usługę</string>
-    <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
-    <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
     <string name="consider_disable_battery_optimizations">Rozważ wyłączenie optymalizacji baterii</string>
     <string name="share_as_qr">Udostępnij jako QR</string>
     <string name="onion">.onion</string>

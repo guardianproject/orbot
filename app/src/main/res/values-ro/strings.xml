@@ -76,10 +76,7 @@
   <string name="enter_ports">Introdu porturi</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">activează exportul log-ului (trebuie folosit adb sau LogCat pentru vizualizare)</string>
   <string name="project_home">Casa(le) proiectului:</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Aplicatii tertiare:</string>
-  <string name="tor_version">Tor: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="pref_use_persistent_notifications">Arată tot timpul icoana în bară când Orbot este conectat</string>
   <string name="pref_use_persistent_notifications_title">Notificări active tot timpul</string>
   <string name="pref_use_expanded_notifications">Arată notificări extinse cu Tor exit country şi IP</string>

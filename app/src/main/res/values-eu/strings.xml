@@ -77,12 +77,7 @@
     <string name="enter_ports">Sartu atakak</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">gaitu arazketarako egunkariak (adb edo aLogCat erabili behar da ikusteko)</string>
     <string name="project_home">Proiektuaren etxea(k):</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Hirugarrengoen softwarea:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Aplikazio batek ezkutuko zerbitzariko %1$s ataka ireki nau du Tor sarera. Segurua da aplikazioaz fidatzen bazara.</string>
     <string name="pref_use_persistent_notifications">Mantendu ikonoa tresna barran Orbot konektatuta dagoenean</string>
     <string name="pref_use_persistent_notifications_title">Beti piztutako jakinarazpenak</string>
