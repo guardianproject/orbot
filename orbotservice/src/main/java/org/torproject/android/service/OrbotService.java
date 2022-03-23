@@ -934,10 +934,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
             }
         }
         showToolbarNotification(notificationMessage, NOTIFY_ID, R.drawable.ic_stat_tor);
-        mHandler.post(() -> {
-            LocalBroadcastManager.getInstance(OrbotService.this).sendBroadcast(new Intent(LOCAL_ACTION_LOG)
-                .putExtra(LOCAL_EXTRA_LOG, logMessage));
-        });
+        mHandler.post(() -> LocalBroadcastManager.getInstance(OrbotService.this).sendBroadcast(new Intent(LOCAL_ACTION_LOG)
+            .putExtra(LOCAL_EXTRA_LOG, logMessage)));
     }
 
     private void sendCallbackPorts(int socksPort, int httpPort, int dnsPort, int transPort) {
