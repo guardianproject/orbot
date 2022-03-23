@@ -53,8 +53,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.jetradarmobile.snowfall.SnowfallView;
-
 import org.torproject.android.core.Languages;
 import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.core.ui.Rotate3dAnimation;
@@ -122,7 +120,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private Spinner spnCountries;
     private DrawerLayout mDrawer;
     private TextView tvVpnAppStatus;
-    private SnowfallView snowfallView;
     /* Some tracking bits */
     private String torStatus = null; //latest status reported from the tor service
     private Intent lastStatusIntent;  // the last ACTION_STATUS Intent received
@@ -311,17 +308,12 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             sendIntentToService(ACTION_STOP_FOREGROUND_TASK);
         }
 
-        setSnowfallAnimation(false);
     }
 
-    private void setSnowfallAnimation(boolean isSnowing) {
-        if (isSnowing) {
-            snowfallView.setVisibility(View.VISIBLE);
-            snowfallView.restartFalling();
-        } else {
-            snowfallView.setVisibility(View.GONE);
-            snowfallView.stopFalling();
-        }
+    private void setTitleForSnowflakeProxy() {
+        String title = getString(R.string.app_name);
+        if (IPtProxy.isSnowflakeProxyRunning()) title += " " + SNOWFLAKE_EMOJI;
+        setTitle(title);
     }
 
     private void doLayout() {
@@ -379,7 +371,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         mPulsator = findViewById(R.id.pulsator);
         tvVpnAppStatus = findViewById(R.id.tvVpnAppStatus);
         findViewById(R.id.ivAppVpnSettings).setOnClickListener(v -> startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT));
-        snowfallView = findViewById(R.id.snowflake_view);
     }
 
     private void resetBandwidthStatTextviews() {
@@ -768,7 +759,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         //now you can handle the intents properly
         handleIntents();
 
-        setSnowfallAnimation(IPtProxy.isSnowflakeProxyRunning());
+        setTitleForSnowflakeProxy();
     }
 
     /**
@@ -850,14 +841,12 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     mBtnStart.setText(R.string.menu_stop);
                     mPulsator.stop();
 
-                    if (Prefs.beSnowflakeProxy()) {
-                        lblStatus.setText(getString(R.string.status_activated) + "\n"
-                                + getString(R.string.snowflake_proxy_enabled));
-                        setSnowfallAnimation(true);
-                    } else {
-                        lblStatus.setText(getString(R.string.status_activated));
-                        setSnowfallAnimation(false);
+                    var status = getString(R.string.status_activated);
+                    if (IPtProxy.isSnowflakeProxyRunning()) {
+                        status += "\n" + getString(R.string.snowflake_proxy_enabled);
                     }
+                    lblStatus.setText(status);
+                    setTitleForSnowflakeProxy();
 
                     // if new onion hostnames are generated, update local DB
                     sendIntentToService(OrbotConstants.ACTION_UPDATE_ONION_NAMES);
@@ -914,9 +903,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     mBtnStart.setText(R.string.menu_start);
                     mPulsator.start();
                     resetBandwidthStatTextviews();
-
+                    setTitleForSnowflakeProxy();
                     break;
-
 
             }
         }

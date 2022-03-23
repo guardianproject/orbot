@@ -397,8 +397,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
         IPtProxy.startSnowflake(stunServers, target, front, ampCache, null, true, false, false, 1);
     }
 
-    private static final String SNOWFLAKE_EMOJI = "❄️";
-
     @SuppressWarnings("ConstantConditions")
     private void enableSnowflakeProxy () { // This is to host a snowflake entrance node / bridge
         int capacity = 1;
