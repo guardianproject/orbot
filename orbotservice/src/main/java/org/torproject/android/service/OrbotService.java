@@ -19,13 +19,9 @@ import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.net.Uri;
 import android.net.VpnService;
 import android.os.Build;
@@ -86,19 +82,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
     private static final Uri V3_CLIENT_AUTH_URI = Uri.parse("content://org.torproject.android.ui.v3onionservice.clientauth/v3auth");
     private final static String NOTIFICATION_CHANNEL_ID = "orbot_channel_1";
     private static final String[] V3_ONION_SERVICE_PROJECTION = new String[]{
-            OnionService._ID,
-            OnionService.NAME,
-            OnionService.DOMAIN,
-            OnionService.PORT,
-            OnionService.ONION_PORT,
-            OnionService.ENABLED,
-            OnionService.PATH
+            OnionService._ID, OnionService.NAME, OnionService.DOMAIN,
+            OnionService.PORT, OnionService.ONION_PORT, OnionService.ENABLED, OnionService.PATH
     };
     private static final String[] V3_CLIENT_AUTH_PROJECTION = new String[]{
-            V3ClientAuth._ID,
-            V3ClientAuth.DOMAIN,
-            V3ClientAuth.HASH,
-            V3ClientAuth.ENABLED
+            V3ClientAuth._ID, V3ClientAuth.DOMAIN, V3ClientAuth.HASH, V3ClientAuth.ENABLED
     };
 
     public static int mPortSOCKS = -1;
@@ -148,7 +136,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     public void logException(String msg, Exception e) {
         if (Prefs.useDebugLogging()) {
             Log.e(OrbotConstants.TAG, msg, e);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            var baos = new ByteArrayOutputStream();
             e.printStackTrace(new PrintStream(baos));
 
             sendCallbackLogMessage(msg + '\n' + baos.toString());
@@ -180,12 +168,9 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void createNotificationChannel() {
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        CharSequence name = getString(R.string.app_name); // The user-visible name of the channel.
-        String description = getString(R.string.app_description); // The user-visible description of the channel.
-        NotificationChannel mChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, name, NotificationManager.IMPORTANCE_LOW);
-        mChannel.setDescription(description);
+        var mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        var mChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, getString(R.string.app_name), NotificationManager.IMPORTANCE_LOW);
+        mChannel.setDescription(getString(R.string.app_description));
         mChannel.enableLights(false);
         mChannel.enableVibration(false);
         mChannel.setShowBadge(false);
@@ -195,9 +180,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     @SuppressLint({"NewApi", "RestrictedApi"})
     protected void showToolbarNotification(String notifyMsg, int notifyType, int icon) {
-        PackageManager pm = getPackageManager();
-        Intent intent = pm.getLaunchIntentForPackage(getPackageName());
-        PendingIntent pendIntent = PendingIntent.getActivity(OrbotService.this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        var intent = getPackageManager().getLaunchIntentForPackage(getPackageName());
+        var pendIntent = PendingIntent.getActivity(OrbotService.this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
         if (mNotifyBuilder == null) {
             mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -211,7 +195,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             mNotifyBuilder.setOngoing(true);
         else mNotifyBuilder.setOngoing(Prefs.persistNotifications());
 
-        String title = getString(R.string.status_disabled);
+        var title = getString(R.string.status_disabled);
         if (mCurrentStatus.equals(STATUS_STARTING))
             title = getString(R.string.status_starting_up);
         else if (mCurrentStatus.equals(STATUS_ON)) {
@@ -249,7 +233,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             mNotifyBuilder.setProgress(0, 0, false); // removes progress bar
         }
 
-        Notification notification = mNotifyBuilder.build();
+        var notification = mNotifyBuilder.build();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForeground(NOTIFY_ID, notification);
@@ -340,7 +324,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     private static boolean useIPtObfsMeekProxy() {
-        String bridgeList = Prefs.getBridgesList();
+        var bridgeList = Prefs.getBridgesList();
         return bridgeList.contains("obfs") || bridgeList.contains("meek");
     }
 
@@ -359,7 +343,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             mFronts = new HashMap<>();
 
             try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open("fronts")));
+                var reader = new BufferedReader(new InputStreamReader(context.getAssets().open("fronts")));
                 String line;
                 while ((line = reader.readLine())!=null) {
                     String[] front = line.split(" ");
@@ -381,31 +365,31 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     private void startSnowflakeClientDomainFronting() {
         //this is using the current, default Tor snowflake infrastructure
-        String target = getCdnFront("snowflake-target");
-        String front = getCdnFront("snowflake-front");
-        String stunServer = getCdnFront("snowflake-stun");
+        var target = getCdnFront("snowflake-target");
+        var front = getCdnFront("snowflake-front");
+        var stunServer = getCdnFront("snowflake-stun");
 
         IPtProxy.startSnowflake(stunServer, target, front, null,
                  null, true, false, false, 1);
     }
 
     private void startSnowflakeClientAmpRendezvous() {
-        String stunServers ="stun:stun.l.google.com:19302,stun:stun.voip.blackberry.com:3478,stun:stun.altar.com.pl:3478,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478,stun:stun.sonetel.com:3478,stun:stun.sonetel.net:3478,stun:stun.stunprotocol.org:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.voys.nl:3478";
-        String target = "https://snowflake-broker.torproject.net/";
-        String front = "www.google.com";
-        String ampCache ="https://cdn.ampproject.org/";
+        var stunServers ="stun:stun.l.google.com:19302,stun:stun.voip.blackberry.com:3478,stun:stun.altar.com.pl:3478,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478,stun:stun.sonetel.com:3478,stun:stun.sonetel.net:3478,stun:stun.stunprotocol.org:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.voys.nl:3478";
+        var target = "https://snowflake-broker.torproject.net/";
+        var front = "www.google.com";
+        var ampCache ="https://cdn.ampproject.org/";
         IPtProxy.startSnowflake(stunServers, target, front, ampCache, null, true, false, false, 1);
     }
 
     @SuppressWarnings("ConstantConditions")
     private void enableSnowflakeProxy () { // This is to host a snowflake entrance node / bridge
-        int capacity = 1;
-        boolean keepLocalAddresses = true;
-        boolean unsafeLogging = false;
+        var capacity = 1;
+        var keepLocalAddresses = true;
+        var unsafeLogging = false;
         IPtProxy.startSnowflakeProxy(capacity, null, null, null, null, null, keepLocalAddresses, unsafeLogging, () -> {
             snowflakeClientsConnected++;
             if (!Prefs.showSnowflakeProxyMessage()) return;
-            String message = String.format(getString(R.string.snowflake_proxy_client_connected_msg), SNOWFLAKE_EMOJI, SNOWFLAKE_EMOJI);
+            var  message = String.format(getString(R.string.snowflake_proxy_client_connected_msg), SNOWFLAKE_EMOJI, SNOWFLAKE_EMOJI);
             new Handler(getMainLooper()).post(() -> Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show());
         });
         logNotice(getString(R.string.log_notice_snowflake_proxy_enabled));
@@ -420,7 +404,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
      * if someone stops during startup, we may have to wait for the conn port to be setup, so we can properly shutdown tor
      */
     private void stopTor() throws Exception {
-
         //unbinding from the tor service will stop tor
         if (shouldUnbindTorService) {
             unbindService(torServiceConnection);
@@ -525,47 +508,40 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     private void pluggableTransportInstall() {
-
-        File fileCacheDir = new File(getCacheDir(), "pt");
+        var fileCacheDir = new File(getCacheDir(), "pt");
         if (!fileCacheDir.exists())
             //noinspection ResultOfMethodCallIgnored
             fileCacheDir.mkdir();
         IPtProxy.setStateLocation(fileCacheDir.getAbsolutePath());
-        String fileTestState = IPtProxy.getStateLocation();
-        debug("IPtProxy state: " + fileTestState);
+        debug("IPtProxy state: " + IPtProxy.getStateLocation());
     }
 
     private File updateTorrcCustomFile() throws IOException {
-        SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
-
-        StringBuffer extraLines = new StringBuffer();
+        var prefs = Prefs.getSharedPrefs(getApplicationContext());
+        var extraLines = new StringBuffer();
 
         extraLines.append("\n");
-
         extraLines.append("RunAsDaemon 0").append('\n');
         extraLines.append("AvoidDiskWrites 1").append('\n');
 
-        String socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS, SOCKS_PROXY_PORT_DEFAULT);
-
+        var socksPortPref = prefs.getString(OrbotConstants.PREF_SOCKS, SOCKS_PROXY_PORT_DEFAULT);
         if (socksPortPref.indexOf(':') != -1)
             socksPortPref = socksPortPref.split(":")[1];
 
         socksPortPref = checkPortOrAuto(socksPortPref);
 
-        String httpPortPref = prefs.getString(OrbotConstants.PREF_HTTP, HTTP_PROXY_PORT_DEFAULT);
-
+        var httpPortPref = prefs.getString(OrbotConstants.PREF_HTTP, HTTP_PROXY_PORT_DEFAULT);
         if (httpPortPref.indexOf(':') != -1)
             httpPortPref = httpPortPref.split(":")[1];
 
         httpPortPref = checkPortOrAuto(httpPortPref);
 
-        String isolate = "";
+        var isolate = "";
         if (prefs.getBoolean(OrbotConstants.PREF_ISOLATE_DEST, false)) {
             isolate += " IsolateDestAddr ";
         }
 
-        String ipv6Pref = "";
-
+        var ipv6Pref = "";
         if (prefs.getBoolean(OrbotConstants.PREF_PREFER_IPV6, true)) {
             ipv6Pref += " IPv6Traffic PreferIPv6 ";
         }
@@ -602,8 +578,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
             extraLines.append("ReducedCircuitPadding 1").append('\n');
         }
 
-        String transPort = prefs.getString("pref_transport", TOR_TRANSPROXY_PORT_DEFAULT + "");
-        String dnsPort = prefs.getString("pref_dnsport", TOR_DNS_PORT_DEFAULT + "");
+        var transPort = prefs.getString("pref_transport", TOR_TRANSPROXY_PORT_DEFAULT + "");
+        var dnsPort = prefs.getString("pref_dnsport", TOR_DNS_PORT_DEFAULT + "");
 
         extraLines.append("TransPort ").append(checkPortOrAuto(transPort)).append('\n');
         extraLines.append("DNSPort ").append(checkPortOrAuto(dnsPort)).append('\n');
@@ -634,15 +610,15 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
         debug("torrc.custom=" + extraLines.toString());
 
-        File fileTorRcCustom = TorService.getTorrc(this);
+        var fileTorRcCustom = TorService.getTorrc(this);
         updateTorConfigCustom(fileTorRcCustom, extraLines.toString());
         return fileTorRcCustom;
     }
 
     private String checkPortOrAuto(String portString) {
         if (!portString.equalsIgnoreCase("auto")) {
-            boolean isPortUsed = true;
-            int port = Integer.parseInt(portString);
+            var isPortUsed = true;
+            var port = Integer.parseInt(portString);
 
             while (isPortUsed) {
                 isPortUsed = Utils.isPortOpen("127.0.0.1", port, 500);
@@ -657,8 +633,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     public void updateTorConfigCustom(File fileTorRcCustom, String extraLines) throws IOException {
-        FileWriter fos = new FileWriter(fileTorRcCustom, false);
-        PrintWriter ps = new PrintWriter(fos);
+        var ps = new PrintWriter(new FileWriter(fileTorRcCustom, false));
         ps.print(extraLines);
         ps.flush();
         ps.close();
@@ -727,20 +702,20 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
 
     private void updateV3OnionNames() throws SecurityException {
-        ContentResolver contentResolver = getApplicationContext().getContentResolver();
-        Cursor onionServices = contentResolver.query(V3_ONION_SERVICES_CONTENT_URI, null, null, null, null);
+        var contentResolver = getApplicationContext().getContentResolver();
+        var onionServices = contentResolver.query(V3_ONION_SERVICES_CONTENT_URI, null, null, null, null);
         if (onionServices != null) {
             try {
                 while (onionServices.moveToNext()) {
-                    String domain = onionServices.getString(onionServices.getColumnIndex(OnionService.DOMAIN));
+                    var domain = onionServices.getString(onionServices.getColumnIndex(OnionService.DOMAIN));
                     if (domain == null || TextUtils.isEmpty(domain)) {
-                        String path = onionServices.getString(onionServices.getColumnIndex(OnionService.PATH));
-                        String v3OnionDirPath = new File(mV3OnionBasePath.getAbsolutePath(), path).getCanonicalPath();
-                        File hostname = new File(v3OnionDirPath, "hostname");
+                        var path = onionServices.getString(onionServices.getColumnIndex(OnionService.PATH));
+                        var v3OnionDirPath = new File(mV3OnionBasePath.getAbsolutePath(), path).getCanonicalPath();
+                        var hostname = new File(v3OnionDirPath, "hostname");
                         if (hostname.exists()) {
                             int id = onionServices.getInt(onionServices.getColumnIndex(OnionService._ID));
                             domain = Utils.readString(new FileInputStream(hostname)).trim();
-                            ContentValues fields = new ContentValues();
+                            var fields = new ContentValues();
                             fields.put(OnionService.DOMAIN, domain);
                             contentResolver.update(V3_ONION_SERVICES_CONTENT_URI, fields, OnionService._ID + "=" + id, null);
                         }
@@ -752,8 +727,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 Down the line a better approach needs to happen for sending back the onion names updated
                 status, perhaps just adding it as an extra to the normal Intent callback...
                  */
-                String oldStatus = mCurrentStatus;
-                Intent intent = new Intent(LOCAL_ACTION_V3_NAMES_UPDATED);
+                var oldStatus = mCurrentStatus;
+                var intent = new Intent(LOCAL_ACTION_V3_NAMES_UPDATED);
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 
                 mCurrentStatus = oldStatus;
@@ -770,7 +745,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 "TransPort 0\n" +
                 "DisableNetwork 1\n");
 
-        File fileTorrcCustom = updateTorrcCustomFile();
+        var fileTorrcCustom = updateTorrcCustomFile();
         if ((!fileTorrcCustom.exists()) || (!fileTorrcCustom.canRead()))
             return;
 
@@ -940,22 +915,19 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     protected void sendCallbackBandwidth(long lastWritten, long lastRead, long totalWritten, long totalRead) {
-        Intent intent = new Intent(LOCAL_ACTION_BANDWIDTH);
-
-        intent.putExtra("totalWritten", totalWritten);
-        intent.putExtra("totalRead", totalRead);
-        intent.putExtra("lastWritten", lastWritten);
-        intent.putExtra("lastRead", lastRead);
-
-        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(LOCAL_ACTION_BANDWIDTH)
+            .putExtra("totalWritten", totalWritten)
+            .putExtra("totalRead", totalRead)
+            .putExtra("lastWritten", lastWritten)
+            .putExtra("lastRead", lastRead));
     }
 
     private void sendCallbackLogMessage(final String logMessage) {
-        String notificationMessage = logMessage;
+        var notificationMessage = logMessage;
         if (logMessage.contains(LOG_NOTICE_HEADER)) {
             notificationMessage = notificationMessage.substring(LOG_NOTICE_HEADER.length());
             if (notificationMessage.contains(LOG_NOTICE_BOOTSTRAPPED)) {
-                String percent = notificationMessage.substring(LOG_NOTICE_BOOTSTRAPPED.length());
+                var percent = notificationMessage.substring(LOG_NOTICE_BOOTSTRAPPED.length());
                 percent = percent.substring(0, percent.indexOf('%')).trim();
                 mNotifyBuilder.setProgress(100, Integer.parseInt(percent), false);
                 notificationMessage = notificationMessage.substring(notificationMessage.indexOf('%') + 1).trim();
@@ -963,30 +935,26 @@ public class OrbotService extends VpnService implements OrbotConstants {
         }
         showToolbarNotification(notificationMessage, NOTIFY_ID, R.drawable.ic_stat_tor);
         mHandler.post(() -> {
-            Intent intent = new Intent(LOCAL_ACTION_LOG); // You can also include some extra data.
-            intent.putExtra(LOCAL_EXTRA_LOG, logMessage);
-            LocalBroadcastManager.getInstance(OrbotService.this).sendBroadcast(intent);
+            LocalBroadcastManager.getInstance(OrbotService.this).sendBroadcast(new Intent(LOCAL_ACTION_LOG)
+                .putExtra(LOCAL_EXTRA_LOG, logMessage));
         });
-
     }
 
     private void sendCallbackPorts(int socksPort, int httpPort, int dnsPort, int transPort) {
-        Intent intent = new Intent(LOCAL_ACTION_PORTS); // You can also include some extra data.
-        intent.putExtra(EXTRA_SOCKS_PROXY_PORT, socksPort);
-        intent.putExtra(EXTRA_HTTP_PROXY_PORT, httpPort);
-        intent.putExtra(EXTRA_DNS_PORT, dnsPort);
-        intent.putExtra(EXTRA_TRANS_PORT, transPort);
+        var intent = new Intent(LOCAL_ACTION_PORTS) // You can also include some extra data.
+            .putExtra(EXTRA_SOCKS_PROXY_PORT, socksPort)
+            .putExtra(EXTRA_HTTP_PROXY_PORT, httpPort)
+            .putExtra(EXTRA_DNS_PORT, dnsPort)
+            .putExtra(EXTRA_TRANS_PORT, transPort);
 
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-
         if (Prefs.useVpn() && mVpnManager != null)
             mVpnManager.handleIntent(new Builder(), intent);
-
     }
 
     protected void sendCallbackStatus(String currentStatus) {
         mCurrentStatus = currentStatus;
-        Intent intent = getActionStatusIntent(currentStatus);
+        var intent = getActionStatusIntent(currentStatus);
         sendBroadcastOnlyToOrbot(intent); // send for Orbot internals, using secure local broadcast
         sendBroadcast(intent); // send for any apps that are interested
     }
@@ -994,7 +962,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
     /**
      * Send a secure broadcast only to Orbot itself
      *
-     * @see {@link ContextWrapper#sendBroadcast(Intent)}
      * @see {@link LocalBroadcastManager}
      */
     private void sendBroadcastOnlyToOrbot(Intent intent) {
@@ -1002,36 +969,35 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     private Intent getActionStatusIntent(String currentStatus) {
-        Intent intent = new Intent(ACTION_STATUS);
-        intent.putExtra(EXTRA_STATUS, currentStatus);
-        return intent;
+        return new Intent(ACTION_STATUS)
+            .putExtra(EXTRA_STATUS, currentStatus);
     }
 
     private StringBuffer processSettingsImpl(StringBuffer extraLines) throws IOException {
         logNotice(getString(R.string.updating_settings_in_tor_service));
-        SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
+        var prefs = Prefs.getSharedPrefs(getApplicationContext());
 
-        boolean becomeRelay = prefs.getBoolean(OrbotConstants.PREF_OR, false);
-        boolean ReachableAddresses = prefs.getBoolean(OrbotConstants.PREF_REACHABLE_ADDRESSES, false);
-        boolean enableStrictNodes = prefs.getBoolean("pref_strict_nodes", false);
-        String entranceNodes = prefs.getString("pref_entrance_nodes", "");
-        String exitNodes = prefs.getString("pref_exit_nodes", "");
-        String excludeNodes = prefs.getString("pref_exclude_nodes", "");
+        var becomeRelay = prefs.getBoolean(OrbotConstants.PREF_OR, false);
+        var ReachableAddresses = prefs.getBoolean(OrbotConstants.PREF_REACHABLE_ADDRESSES, false);
+        var enableStrictNodes = prefs.getBoolean("pref_strict_nodes", false);
+        var entranceNodes = prefs.getString("pref_entrance_nodes", "");
+        var exitNodes = prefs.getString("pref_exit_nodes", "");
+        var excludeNodes = prefs.getString("pref_exclude_nodes", "");
 
         if (!Prefs.bridgesEnabled()) {
             extraLines.append("UseBridges 0").append('\n');
             if (Prefs.useVpn()) { //set the proxy here if we aren't using a bridge
                 if (!mIsLollipop) {
-                    String proxyType = "socks5";
+                    var proxyType = "socks5";
                     extraLines.append(proxyType + "Proxy" + ' ' + OrbotVpnManager.sSocksProxyLocalhost + ':' + OrbotVpnManager.sSocksProxyServerPort).append('\n');
                 }
             } else {
-                String proxyType = prefs.getString("pref_proxy_type", null);
+                var proxyType = prefs.getString("pref_proxy_type", null);
                 if (proxyType != null && proxyType.length() > 0) {
-                    String proxyHost = prefs.getString("pref_proxy_host", null);
-                    String proxyPort = prefs.getString("pref_proxy_port", null);
-                    String proxyUser = prefs.getString("pref_proxy_username", null);
-                    String proxyPass = prefs.getString("pref_proxy_password", null);
+                    var proxyHost = prefs.getString("pref_proxy_host", null);
+                    var proxyPort = prefs.getString("pref_proxy_port", null);
+                    var proxyUser = prefs.getString("pref_proxy_username", null);
+                    var proxyPass = prefs.getString("pref_proxy_password", null);
 
                     if ((proxyHost != null && proxyHost.length() > 0) && (proxyPort != null && proxyPort.length() > 0)) {
                         extraLines.append(proxyType).append("Proxy").append(' ').append(proxyHost).append(':').append(proxyPort).append('\n');
@@ -1054,8 +1020,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             extraLines.append("UseBridges 1").append('\n');
             //    extraLines.append("UpdateBridgesFromAuthority 1").append('\n');
 
-            String bridgeList = Prefs.getBridgesList();
-
+            var bridgeList = Prefs.getBridgesList();
             String builtInBridgeType = null;
 
             //check if any PT bridges are needed
@@ -1091,8 +1056,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
         }
 
         //only apply GeoIP if you need it
-        File fileGeoIP = new File(appBinHome, GEOIP_ASSET_KEY);
-        File fileGeoIP6 = new File(appBinHome, GEOIP6_ASSET_KEY);
+        var fileGeoIP = new File(appBinHome, GEOIP_ASSET_KEY);
+        var fileGeoIP6 = new File(appBinHome, GEOIP6_ASSET_KEY);
 
         if (fileGeoIP.exists()) {
             extraLines.append("GeoIPFile" + ' ').append(fileGeoIP.getCanonicalPath()).append('\n');
@@ -1112,7 +1077,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
         try {
             if (ReachableAddresses) {
-                String ReachableAddressesPorts = prefs.getString(OrbotConstants.PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
+                var ReachableAddressesPorts = prefs.getString(OrbotConstants.PREF_REACHABLE_ADDRESSES_PORTS, "*:80,*:443");
                 extraLines.append("ReachableAddresses" + ' ').append(ReachableAddressesPorts).append('\n');
             }
 
@@ -1123,9 +1088,9 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
         try {
             if (becomeRelay && (!Prefs.bridgesEnabled()) && (!ReachableAddresses)) {
-                int ORPort = Integer.parseInt(Objects.requireNonNull(prefs.getString(OrbotConstants.PREF_OR_PORT, "9001")));
-                String nickname = prefs.getString(OrbotConstants.PREF_OR_NICKNAME, "Orbot");
-                String dnsFile = writeDNSFile();
+                var ORPort = Integer.parseInt(Objects.requireNonNull(prefs.getString(OrbotConstants.PREF_OR_PORT, "9001")));
+                var nickname = prefs.getString(OrbotConstants.PREF_OR_NICKNAME, "Orbot");
+                var dnsFile = writeDNSFile();
 
                 extraLines.append("ServerDNSResolvConfFile").append(' ').append(dnsFile).append('\n'); // DNSResolv is not a typo
                 extraLines.append("ORPort").append(' ').append(ORPort).append('\n');
@@ -1139,7 +1104,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         }
 
         if (Prefs.hostOnionServicesEnabled()) {
-            ContentResolver contentResolver = getApplicationContext().getContentResolver();
+            var contentResolver = getApplicationContext().getContentResolver();
             addV3OnionServicesToTorrc(extraLines, contentResolver);
             addV3ClientAuthToTorrc(extraLines, contentResolver);
         }
@@ -1149,12 +1114,12 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     void showBandwidthNotification(String message, boolean isActiveTransfer) {
         if (!mCurrentStatus.equals(STATUS_ON)) return;
-        int icon = !isActiveTransfer ? R.drawable.ic_stat_tor : R.drawable.ic_stat_tor_xfer;
+        var icon = !isActiveTransfer ? R.drawable.ic_stat_tor : R.drawable.ic_stat_tor_xfer;
         showToolbarNotification(message, NOTIFY_ID, icon);
     }
 
     public static String formatBandwidthCount(Context context, long bitsPerSecond) {
-        NumberFormat nf = NumberFormat.getInstance(Locale.getDefault());
+        var nf = NumberFormat.getInstance(Locale.getDefault());
         if (bitsPerSecond < 1e6)
             return nf.format(Math.round(((float) ((int) (bitsPerSecond * 10 / 1024)) / 10)))
                     + context.getString(R.string.kibibyte_per_second);
@@ -1165,25 +1130,25 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     private void addV3OnionServicesToTorrc(StringBuffer torrc, ContentResolver contentResolver) {
         try {
-            Cursor onionServices = contentResolver.query(V3_ONION_SERVICES_CONTENT_URI, V3_ONION_SERVICE_PROJECTION, OnionService.ENABLED + "=1", null, null);
+            var onionServices = contentResolver.query(V3_ONION_SERVICES_CONTENT_URI, V3_ONION_SERVICE_PROJECTION, OnionService.ENABLED + "=1", null, null);
             if (onionServices != null) {
                 while (onionServices.moveToNext()) {
-                    int id = onionServices.getInt(onionServices.getColumnIndex(OnionService._ID));
-                    int localPort = onionServices.getInt(onionServices.getColumnIndex(OnionService.PORT));
-                    int onionPort = onionServices.getInt(onionServices.getColumnIndex(OnionService.ONION_PORT));
-                    String path = onionServices.getString(onionServices.getColumnIndex(OnionService.PATH));
-                    String domain = onionServices.getString(onionServices.getColumnIndex(OnionService.DOMAIN));
+                    var id = onionServices.getInt(onionServices.getColumnIndex(OnionService._ID));
+                    var localPort = onionServices.getInt(onionServices.getColumnIndex(OnionService.PORT));
+                    var onionPort = onionServices.getInt(onionServices.getColumnIndex(OnionService.ONION_PORT));
+                    var path = onionServices.getString(onionServices.getColumnIndex(OnionService.PATH));
+                    var domain = onionServices.getString(onionServices.getColumnIndex(OnionService.DOMAIN));
                     if (path == null) {
                         path = "v3";
                         if (domain == null)
                             path += UUID.randomUUID().toString();
                         else
                             path += localPort;
-                        ContentValues cv = new ContentValues();
+                        var cv = new ContentValues();
                         cv.put(OnionService.PATH, path);
                         contentResolver.update(V3_ONION_SERVICES_CONTENT_URI, cv, OnionService._ID + "=" + id, null);
                     }
-                    String v3DirPath = new File(mV3OnionBasePath.getAbsolutePath(), path).getCanonicalPath();
+                    var v3DirPath = new File(mV3OnionBasePath.getAbsolutePath(), path).getCanonicalPath();
                     torrc.append("HiddenServiceDir ").append(v3DirPath).append("\n");
                     torrc.append("HiddenServiceVersion 3").append("\n");
                     torrc.append("HiddenServicePort ").append(onionPort).append(" 127.0.0.1:").append(localPort).append("\n");
@@ -1200,7 +1165,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     private void addV3ClientAuthToTorrc(StringBuffer torrc, ContentResolver contentResolver) {
-        Cursor v3auths = contentResolver.query(V3_CLIENT_AUTH_URI, V3_CLIENT_AUTH_PROJECTION, V3ClientAuth.ENABLED + "=1", null, null);
+        var v3auths = contentResolver.query(V3_CLIENT_AUTH_URI, V3_CLIENT_AUTH_PROJECTION, V3ClientAuth.ENABLED + "=1", null, null);
         if (v3auths != null) {
             for (File file : mV3AuthBasePath.listFiles()) {
                 if (!file.isDirectory())
@@ -1210,11 +1175,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
             try {
                 int i = 0;
                 while (v3auths.moveToNext()) {
-                    String domain = v3auths.getString(v3auths.getColumnIndex(V3ClientAuth.DOMAIN));
-                    String hash = v3auths.getString(v3auths.getColumnIndex(V3ClientAuth.HASH));
-                    File authFile = new File(mV3AuthBasePath, (i++) + ".auth_private");
+                    var domain = v3auths.getString(v3auths.getColumnIndex(V3ClientAuth.DOMAIN));
+                    var hash = v3auths.getString(v3auths.getColumnIndex(V3ClientAuth.HASH));
+                    var authFile = new File(mV3AuthBasePath, (i++) + ".auth_private");
                     authFile.createNewFile();
-                    FileOutputStream fos = new FileOutputStream(authFile);
+                    var fos = new FileOutputStream(authFile);
                     fos.write(buildV3ClientAuthFile(domain, hash).getBytes());
                     fos.close();
                 }
@@ -1228,13 +1193,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     //using Google DNS for now as the public DNS server
     private String writeDNSFile() throws IOException {
-        File file = new File(appBinHome, "resolv.conf");
-
-        PrintWriter bw = new PrintWriter(new FileWriter(file));
+        var file = new File(appBinHome, "resolv.conf");
+        var bw = new PrintWriter(new FileWriter(file));
         bw.println("nameserver 8.8.8.8");
         bw.println("nameserver 8.8.4.4");
         bw.close();
-
         return file.getCanonicalPath();
     }
 
@@ -1298,14 +1261,14 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     private void setExitNode(String newExits) {
-        SharedPreferences prefs = Prefs.getSharedPrefs(getApplicationContext());
+        var prefs = Prefs.getSharedPrefs(getApplicationContext());
 
         if (TextUtils.isEmpty(newExits)) {
             prefs.edit().remove("pref_exit_nodes").apply();
 
             if (conn != null) {
                 try {
-                    ArrayList<String> resetBuffer = new ArrayList<>();
+                    var resetBuffer = new ArrayList<String>();
                     resetBuffer.add("ExitNodes");
                     resetBuffer.add("StrictNodes");
                     conn.resetConf(resetBuffer);
@@ -1321,15 +1284,13 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
             if (conn != null) {
                 try {
-                    File fileGeoIP = new File(appBinHome, GEOIP_ASSET_KEY);
-                    File fileGeoIP6 = new File(appBinHome, GEOIP6_ASSET_KEY);
+                    var fileGeoIP = new File(appBinHome, GEOIP_ASSET_KEY);
+                    var fileGeoIP6 = new File(appBinHome, GEOIP6_ASSET_KEY);
 
                     conn.setConf("GeoIPFile", fileGeoIP.getCanonicalPath());
                     conn.setConf("GeoIPv6File", fileGeoIP6.getCanonicalPath());
-
                     conn.setConf("ExitNodes", newExits);
                     conn.setConf("StrictNodes", "1");
-
                     conn.setConf("DisableNetwork", "1");
                     conn.setConf("DisableNetwork", "0");
 
@@ -1345,17 +1306,15 @@ public class OrbotService extends VpnService implements OrbotConstants {
             alBridges = new ArrayList<>();
 
             try {
-                BufferedReader in = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.bridges), "UTF-8"));
+                var in = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.bridges), "UTF-8"));
                 String str;
 
                 while ((str = in.readLine()) != null) {
-
-                    StringTokenizer st = new StringTokenizer(str, " ");
-                    Bridge b = new Bridge();
+                    var st = new StringTokenizer(str, " ");
+                    var b = new Bridge();
                     b.type = st.nextToken();
 
-                    StringBuilder sbConfig = new StringBuilder();
-
+                    var sbConfig = new StringBuilder();
                     while (st.hasMoreTokens())
                         sbConfig.append(st.nextToken()).append(' ');
 
@@ -1371,15 +1330,14 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     private void getBridges(String type, StringBuffer extraLines) {
-
         Collections.shuffle(alBridges, bridgeSelectRandom);
 
         //let's just pull up to 2 bridges from the defaults at time
-        int maxBridges = 2;
-        int bridgeCount = 0;
+        var maxBridges = 2;
+        var bridgeCount = 0;
 
         //now go through the list to find the bridges we want
-        for (Bridge b : alBridges) {
+        for (var b : alBridges) {
             if (b.type.equals(type)) {
                 extraLines.append("Bridge ");
                 extraLines.append(b.type);
@@ -1425,7 +1383,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         }
 
         public void run() {
-            String action = mIntent.getAction();
+            var action = mIntent.getAction();
             if (TextUtils.isEmpty(action)) return;
             if (action.equals(ACTION_START)) {
                 if (Prefs.bridgesEnabled()) {
