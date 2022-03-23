@@ -930,7 +930,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 var percent = notificationMessage.substring(LOG_NOTICE_BOOTSTRAPPED.length());
                 percent = percent.substring(0, percent.indexOf('%')).trim();
                 mNotifyBuilder.setProgress(100, Integer.parseInt(percent), false);
-                notificationMessage = notificationMessage.substring(notificationMessage.indexOf('%') + 1).trim();
+                notificationMessage = notificationMessage.substring(notificationMessage.indexOf(':') + 1).trim();
             }
         }
         showToolbarNotification(notificationMessage, NOTIFY_ID, R.drawable.ic_stat_tor);
