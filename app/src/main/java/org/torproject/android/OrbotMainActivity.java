@@ -518,7 +518,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     }
 
     private void enableV3OnionService(int localPort, int onionPort, String name) {
-        ContentValues fields = new ContentValues();
+        var fields = new ContentValues();
         fields.put(OnionServiceContentProvider.OnionService.PORT, localPort);
         fields.put(OrbotService.OnionService.NAME, name);
         fields.put(OnionServiceContentProvider.OnionService.ONION_PORT, onionPort);
@@ -545,11 +545,11 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
         switch (action) {
             case INTENT_ACTION_REQUEST_V3_ONION_SERVICE:
-                final int v3LocalPort = intent.getIntExtra("localPort", -1);
-                final int v3onionPort = intent.getIntExtra("onionPort", v3LocalPort);
-                String name = intent.getStringExtra("name") ;
+                final var v3LocalPort = intent.getIntExtra("localPort", -1);
+                final var v3onionPort = intent.getIntExtra("onionPort", v3LocalPort);
+                var name = intent.getStringExtra("name") ;
                 if (name == null) name = "v3" + v3LocalPort;
-                final String finalName = name;
+                final var finalName = name;
                 new AlertDialog.Builder(this)
                         .setMessage(getString(R.string.hidden_service_request, v3LocalPort))
                         .setPositiveButton(R.string.allow, (d, w) -> enableV3OnionService(v3LocalPort, v3onionPort, finalName))
@@ -701,9 +701,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
      */
     private void refreshVpnState() {
         if (Prefs.useVpn()) {
-            Intent enableVpnIntent = VpnService.prepare(this);
             // don't start the Intent, just update Orbot to say that VPN privileges are gone
-            if (enableVpnIntent != null) {
+            if (VpnService.prepare(this) != null) {
                 Prefs.putUseVpn(false);
             }
         }
@@ -745,7 +744,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         if (!TextUtils.isEmpty(newTorStatus)) {
             if (newTorStatus.equals(torStatus)) return;
             torStatus = newTorStatus;
-
             switch (torStatus) {
                 case STATUS_ON:
                     imgStatus.setImageResource(R.drawable.toron);

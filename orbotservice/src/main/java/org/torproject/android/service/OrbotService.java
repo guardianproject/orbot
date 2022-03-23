@@ -203,12 +203,10 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
         mNotifyBuilder.mActions.clear(); // clear out any notification actions, if any
         if (conn != null && mCurrentStatus.equals(STATUS_ON)) { // only add new identity action when there is a connection
-            Intent intentRefresh = new Intent(TorControlCommands.SIGNAL_NEWNYM);
-            PendingIntent pendingIntentNewNym = PendingIntent.getBroadcast(this, 0, intentRefresh, PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);
+            var pendingIntentNewNym = PendingIntent.getBroadcast(this, 0, new Intent(TorControlCommands.SIGNAL_NEWNYM), PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);
             mNotifyBuilder.addAction(R.drawable.ic_refresh_white_24dp, getString(R.string.menu_new_identity), pendingIntentNewNym);
         } else if (mCurrentStatus.equals(STATUS_OFF)) {
-            Intent intentConnect = new Intent(LOCAL_ACTION_NOTIFICATION_START);
-            PendingIntent pendingIntentConnect = PendingIntent.getBroadcast(this, 0, intentConnect, PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);
+            var pendingIntentConnect = PendingIntent.getBroadcast(this, 0, new Intent(LOCAL_ACTION_NOTIFICATION_START), PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);
             mNotifyBuilder.addAction(R.drawable.ic_stat_tor, getString(R.string.connect_to_tor), pendingIntentConnect);
         }
 
@@ -266,7 +264,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         stopTor();
 
         //stop the foreground priority and make sure to remove the persistent notification
-        stopForeground(true);
+        stopForeground(!showNotification);
 
         if (showNotification) sendCallbackLogMessage(getString(R.string.status_disabled));
 
@@ -275,9 +273,10 @@ public class OrbotService extends VpnService implements OrbotConstants {
         mPortHTTP = -1;
         mPortTrans = -1;
 
-        clearNotifications();
-
-        stopSelf();
+        if (!showNotification) {
+            clearNotifications();
+            stopSelf();
+        }
     }
 
     private void stopTorOnError(String message) {
@@ -369,6 +368,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         if (shouldUnbindTorService) {
             unbindService(torServiceConnection); //unbinding from the tor service will stop tor
             shouldUnbindTorService = false;
+            conn = null;
         } else {
             sendLocalStatusOffBroadcast();
         }
@@ -1411,7 +1411,10 @@ public class OrbotService extends VpnService implements OrbotConstants {
                     break;
                 }
                 case ACTION_STATUS: {
-                    mCurrentStatus = intent.getStringExtra(EXTRA_STATUS);
+                    // hack for https://github.com/guardianproject/tor-android/issues/73 remove when fixed
+                    var newStatus = intent.getStringExtra(EXTRA_STATUS);
+                    if (mCurrentStatus.equals(STATUS_OFF) && newStatus.equals(STATUS_STOPPING)) break;
+                    mCurrentStatus = newStatus;
                     sendStatusToOrbotActivity();
                     break;
                 }
