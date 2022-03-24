@@ -204,4 +204,5 @@
     <string name="bridge_snowflake_amp">Snowflake kullanarak diğer Tor kullanıcıları aracılığıyla bağlanın (Yöntem 2 - AMP)</string>
     <string name="snowflake_proxy_msg_title">Bağlantı Bildirimi Göster</string>
     <string name="snowflake_proxy_msg_description">Snowflake sayesinde birinin sansürü atlatmasına yardımcı olunduğunda bir mesaj göster</string>
+    <string name="strict_nodes_description">Katılmayacak Düğümler ayarlarını tüm devreleri oluştururken bir gereklilik olarak ele alın. Bu, Katılmayacak Düğümler ayarlarınızla hiçbir devre oluşturulamıyorsa işlevselliği bozabilir.</string>
 </resources>
