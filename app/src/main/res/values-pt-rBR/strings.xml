@@ -204,4 +204,5 @@
     <string name="snowflake_proxy_pref_category">Proxy Snowflake (Experimental)</string>
     <string name="snowflake_proxy_msg_title">Mostra a notificação da conexão</string>
     <string name="snowflake_proxy_msg_description">Mostra uma mensagem quando o seu snowflake ajuda alguém a contornar a censura</string>
+    <string name="strict_nodes_description">Trate as configurações de exclusão dos nós como um requisito para a construção de todos os circuitos. Isso pode quebrar a funcionalidade caso nenhum circuito seja capaz de ser gerado com as configurações de exclusão dos nós.</string>
 </resources>

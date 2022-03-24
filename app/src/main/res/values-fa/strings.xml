@@ -158,8 +158,8 @@
     <string name="kibibyte">کی‌ب</string>
     <string name="version">نگارش:</string>
     <string name="license">پروانه:</string>
-    <string name="v3_hosted_services">خدمات پیازی نگارش ۳ میزبانی شده</string>
-    <string name="v3_client_auth_activity_title">تأیید هویت کارخواه نگارش ۳</string>
+    <string name="v3_hosted_services">خدمات پیازی میزبانی شده</string>
+    <string name="v3_client_auth_activity_title">تأیید هویت کارخواه</string>
     <string name="confirm">تأیید</string>
     <string name="v3_backup_name_hint">نام پروندهٔ پشتیبان…</string>
     <string name="v3_import_auth_private">درون‌ریزی ‎.auth_private</string>
