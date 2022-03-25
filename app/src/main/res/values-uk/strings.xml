@@ -204,4 +204,5 @@
     <string name="snowflake_proxy_pref_category">Проксі Snowflake (експериментально)</string>
     <string name="snowflake_proxy_msg_description">Показувати повідомлення, коли snowflake допомагає комусь обійти цензуру</string>
     <string name="bridge_snowflake_amp">Підʼєднатися через інших користувачів Tor за допомогою Snowflake (Метод 2 - AMP)</string>
+    <string name="strict_nodes_description">Розгляд параметрів виключення вузлів як вимоги для побудови всіх схем. Це може порушити функціональність, якщо жодна схема не може бути згенерована з параметрами виключення вузлів.</string>
 </resources>
