@@ -1,9 +1,5 @@
 /* Copyright (c) 2009-2011, Nathan Freitas, Orbot / The Guardian Project - https://guardianproject.info/apps/orbot */
 /* See LICENSE for licensing information */
-/*
- * Code for iptables binary management taken from DroidWall GPLv3
- * Copyright (C) 2009-2010  Rodrigo Zechin Rosauro
- */
 
 package org.torproject.android.service;
 
@@ -190,7 +186,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         mNotifyBuilder.setOngoing(true);
 
         var title = getString(R.string.status_disabled);
-        if (mCurrentStatus.equals(STATUS_STARTING))
+        if (mCurrentStatus.equals(STATUS_STARTING) || notifyMsg.equals(getString(R.string.status_starting_up)))
             title = getString(R.string.status_starting_up);
         else if (mCurrentStatus.equals(STATUS_ON)) {
             title = getString(R.string.status_activated);
@@ -235,6 +231,10 @@ public class OrbotService extends VpnService implements OrbotConstants {
             Log.d(TAG, "Got null onStartCommand() intent");
 
         return Service.START_REDELIVER_INTENT;
+    }
+
+    private void showDeactivatedNotification() {
+        showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor);
     }
 
     @Override
@@ -1415,6 +1415,9 @@ public class OrbotService extends VpnService implements OrbotConstants {
                     var newStatus = intent.getStringExtra(EXTRA_STATUS);
                     if (mCurrentStatus.equals(STATUS_OFF) && newStatus.equals(STATUS_STOPPING)) break;
                     mCurrentStatus = newStatus;
+                    if (mCurrentStatus.equals(STATUS_OFF)) {
+                        showDeactivatedNotification();
+                    }
                     sendStatusToOrbotActivity();
                     break;
                 }
