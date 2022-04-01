@@ -90,8 +90,6 @@
     <string name="hidden_service_request">An app wants to open onion server on port %1$s to the Tor network. This is safe if you trust the app.</string>
     <string name="allow">Allow</string>
     <string name="deny">Deny</string>
-    <string name="pref_use_persistent_notifications">Always keep the icon in toolbar when Orbot is connected</string>
-    <string name="pref_use_persistent_notifications_title">Always-On Notifications</string>
     <string name="pref_use_expanded_notifications">Display in the notification the country and IP Address of your tor exit node when available</string>
     <string name="pref_use_expanded_notifications_title">Expanded Notifications</string>
     <string name="set_locale_title">Language</string>

@@ -79,9 +79,7 @@
   <string name="project_home">Page(s) d’accueil du projet :</string>
     <string name="third_party_software">Logiciels tiers :</string>
   <string name="hidden_service_request">Une appli veut ouvrir le port %1$d du serveur caché au réseau Tor. Cela est sécuritaire si vous faites confiance à l’appli.</string>
-  <string name="pref_use_persistent_notifications">Toujours conserver l’icône dans la barre des tâches quand Orbot est connecté.</string>
-  <string name="pref_use_persistent_notifications_title">Notifications toujours actives</string>
-  <string name="pref_use_expanded_notifications">Montrer des notifications étendues avec le pays de sortie de Tor et l’IP</string>
+    <string name="pref_use_expanded_notifications">Montrer des notifications étendues avec le pays de sortie de Tor et l’IP</string>
   <string name="pref_use_expanded_notifications_title">Notifications étendues</string>
     <string name="set_locale_title">Langue</string>
   <string name="pref_disable_network_title">Pas de mise en veille automatique du réseau</string>

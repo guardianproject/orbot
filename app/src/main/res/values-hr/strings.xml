@@ -77,9 +77,7 @@
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">omogući izlaznost dnevnika o otkrivanju greške (mora koristiti adb ili aLogCat za pregled)</string>
   <string name="project_home">Dom(ovi) Projekta:</string>
     <string name="third_party_software">Software treće strane:</string>
-  <string name="pref_use_persistent_notifications">Uvjek drži ikonu na alatnoj traci kad je Orbot spojen</string>
-  <string name="pref_use_persistent_notifications_title">Obavijesti o stalnoj pokrenutosti</string>
-  <string name="pref_use_expanded_notifications">Prikaži proširene obavijesti s Tor izlaznom državom i IP-em</string>
+    <string name="pref_use_expanded_notifications">Prikaži proširene obavijesti s Tor izlaznom državom i IP-em</string>
   <string name="pref_use_expanded_notifications_title">Proširene obavijesti</string>
   <string name="set_locale_title">Jezik</string>
   <string name="pref_disable_network_title">Nema mrežnog auto-spavanja</string>

@@ -79,8 +79,6 @@
     <string name="project_home">Lloc(s) web del projecte:</string>
     <string name="third_party_software">Programari de terceres parts:</string>
     <string name="hidden_service_request">Una aplicació vol obrir el port de servidor ocults%1$s a la xarxa Tor. Això és segur si confieu en l\'aplicació.</string>
-    <string name="pref_use_persistent_notifications">Manté la icona sempre a la barra d\'eines mentre l\'Orbot està connectat</string>
-    <string name="pref_use_persistent_notifications_title">Notificacions sempre activades</string>
     <string name="pref_use_expanded_notifications">Mostra la informació de sortida addicional del Tor amb  el país i la IP</string>
     <string name="pref_use_expanded_notifications_title">Notificacions addicionals</string>
     <string name="set_locale_title">Llengua</string>

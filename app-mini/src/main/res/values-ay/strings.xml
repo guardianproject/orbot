@@ -89,9 +89,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Imantat apayañ thakhinak Tor llikar mä wakichäwiw jist\'arañ muni %1$d. Wakichawitix uñt\'atachixa, iyaw sama.</string>
-  <string name="pref_use_persistent_notifications">Orbot aqtatäki ukjax chimpup uñstayañapuni</string>
-  <string name="pref_use_persistent_notifications_title">Yatiyäwinakax purinipuniniwa</string>
-  <string name="pref_use_expanded_notifications">Kawkja markans IP ukamp Toramp  uñstani uka yatiyäw juk\'amp uñacht\'ayaña</string>
+    <string name="pref_use_expanded_notifications">Kawkja markans IP ukamp Toramp  uñstani uka yatiyäw juk\'amp uñacht\'ayaña</string>
   <string name="pref_use_expanded_notifications_title">Phuqhat yatiyäwinaka</string>
   <string name="set_locale_title">Aru</string>
   <string name="pref_disable_network_title">Jan jiwt\'ayas suyt\'aña</string>

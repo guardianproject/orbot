@@ -77,8 +77,6 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Kích hoạt nhật ký gỡ lỗi ở đầu ra (phải dùng adb hoặc aLogCat để xem)</string>
     <string name="project_home">Trang chủ dự án:</string>
     <string name="third_party_software">Phần mềm bên thứ 3:</string>
-    <string name="pref_use_persistent_notifications">Luôn giữ thông báo trong thanh trạng thái khi Orbot được kết nối</string>
-    <string name="pref_use_persistent_notifications_title">Thông báo thường trực</string>
     <string name="pref_use_expanded_notifications">Hiển thị thông báo mở rộng với IP và quốc gia của nút cuối (Tor exit-node)</string>
     <string name="pref_use_expanded_notifications_title">Thông báo mở rộng</string>
     <string name="set_locale_title">Ngôn ngữ</string>

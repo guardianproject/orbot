@@ -79,8 +79,6 @@
     <string name="project_home">Projekt honlap(ok):</string>
     <string name="third_party_software">3. fél szoftver:</string>
     <string name="hidden_service_request">Egy app egy rejtett szerver portot %1$d nyitna a Tor hálózatra. Ez biztonságos, ha megbízik az appban.</string>
-    <string name="pref_use_persistent_notifications">Mindig tartsa az ikont az eszköztáron, ha az Orbot csatlakoztatva van.</string>
-    <string name="pref_use_persistent_notifications_title">Mindig-bekapcsolt értesítések</string>
     <string name="pref_use_expanded_notifications">Mutassa a bővített értesítést a Tor kilépő országgal és IP-vel</string>
     <string name="pref_use_expanded_notifications_title">Bővített értesítések</string>
     <string name="set_locale_title">Nyelv</string>

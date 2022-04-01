@@ -36,7 +36,6 @@ import net.freehaven.tor.control.TorControlCommands;
 import net.freehaven.tor.control.TorControlConnection;
 
 import org.torproject.android.service.util.CustomTorResourceInstaller;
-import org.torproject.android.service.util.DummyActivity;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.Utils;
 import org.torproject.android.service.vpn.OrbotVpnManager;
@@ -110,7 +109,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
     private boolean shouldUnbindTorService;
     private NotificationManager mNotificationManager = null;
     private NotificationCompat.Builder mNotifyBuilder;
-    private boolean mNotificationShowing = false;
     private File mV3OnionBasePath, mV3AuthBasePath;
     private ArrayList<Bridge> alBridges = null;
     private int snowflakeClientsConnected;
@@ -162,8 +160,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
         if (mOrbotRawEventListener != null)
             mOrbotRawEventListener.getNodes().clear();
-
-        mNotificationShowing = false;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -191,9 +187,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                     .setCategory(Notification.CATEGORY_SERVICE);
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            mNotifyBuilder.setOngoing(true);
-        else mNotifyBuilder.setOngoing(Prefs.persistNotifications());
+        mNotifyBuilder.setOngoing(true);
 
         var title = getString(R.string.status_disabled);
         if (mCurrentStatus.equals(STATUS_STARTING))
@@ -222,9 +216,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 .setSmallIcon(icon)
                 .setTicker(notifyType != NOTIFY_ID ? notifyMsg : null);
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O && !Prefs.persistNotifications())
-            mNotifyBuilder.setPriority(Notification.PRIORITY_LOW);
-
         if (!mCurrentStatus.equals(STATUS_ON)) {
             mNotifyBuilder.setSubText(null);
         }
@@ -233,22 +224,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
             mNotifyBuilder.setProgress(0, 0, false); // removes progress bar
         }
 
-        var notification = mNotifyBuilder.build();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForeground(NOTIFY_ID, notification);
-        } else if (Prefs.persistNotifications() && !mNotificationShowing) {
-            startForeground(NOTIFY_ID, notification);
-            Log.d(OrbotConstants.TAG, "Set background service to FOREGROUND");
-        } else {
-            mNotificationManager.notify(NOTIFY_ID, notification);
-        }
-
-        mNotificationShowing = true;
+        startForeground(NOTIFY_ID, mNotifyBuilder.build());
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (!mNotificationShowing)
+        if (mCurrentStatus.equals(STATUS_OFF))
             showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor);
 
         if (intent != null)
@@ -257,14 +237,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
             Log.d(OrbotConstants.TAG, "Got null onStartCommand() intent");
 
         return Service.START_REDELIVER_INTENT;
-    }
-
-    @Override
-    public void onTaskRemoved(Intent rootIntent) {
-        Log.d(OrbotConstants.TAG, "task removed");
-        Intent intent = new Intent(this, DummyActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
     }
 
     @Override

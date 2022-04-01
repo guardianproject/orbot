@@ -77,8 +77,6 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">umožnit ladicí informace na výstup (musí používat adb nebo aLogCat k prohlížení)</string>
     <string name="project_home">Domovské(á) umístění projektu</string>
     <string name="third_party_software">Software třetích stran:</string>
-    <string name="pref_use_persistent_notifications">Vždy zobrazit ikonu ve stavovém řádku, pokud je Orbot připojen.</string>
-    <string name="pref_use_persistent_notifications_title">Notifikace vždy zapnuté</string>
     <string name="pref_use_expanded_notifications">Zobrazit rozšířené oznánemí s Tor výstupní zemí a IP</string>
     <string name="pref_use_expanded_notifications_title">Rozšířené oznámení</string>
     <string name="set_locale_title">Jazyk</string>

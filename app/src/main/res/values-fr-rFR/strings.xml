@@ -77,8 +77,6 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Activer le journal de débogage vers la sortie (adb ou aLogCat doivent être utilisés pour le visualiser)</string>
     <string name="project_home">Pages d’accueil du projet :</string>
     <string name="third_party_software">Logiciels tiers :</string>
-    <string name="pref_use_persistent_notifications">Toujours conserver l’icône dans la barre d’outils quand Orbot est connecté</string>
-    <string name="pref_use_persistent_notifications_title">Notifications toujours actives</string>
     <string name="pref_use_expanded_notifications">Afficher des notifications plus détaillées avec le pays de sortie et l’IP de Tor</string>
     <string name="pref_use_expanded_notifications_title">Notifications plus détaillées</string>
     <string name="set_locale_title">Langue</string>

@@ -79,8 +79,6 @@
     <string name="project_home">Project homepagina(\'s): </string>
     <string name="third_party_software">Software van 3e partijen: </string>
     <string name="hidden_service_request">Een app wil de verborgenserverpoort %1$s tot het Tor-netwerk openen. Dit is veilig als je de app vertrouwt.</string>
-    <string name="pref_use_persistent_notifications">Houd icoon in taakbalk zolang Orbot verbonden is</string>
-    <string name="pref_use_persistent_notifications_title">Meldingen altijd aan</string>
     <string name="pref_use_expanded_notifications">Toon uitgebreide melding met Tor-exitland en IP</string>
     <string name="pref_use_expanded_notifications_title">Uitgebreide meldingen</string>
     <string name="set_locale_title">Taal</string>

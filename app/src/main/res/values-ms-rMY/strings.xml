@@ -71,8 +71,6 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">benarkan log debug pada output (mesti guna adb atau aLogCat untuk lihat)</string>
     <string name="project_home">Rumah Projek(s):</string>
     <string name="third_party_software">3rd-Party-Software: </string>
-    <string name="pref_use_persistent_notifications">Sentiasa biar ikon pada toolbar apabila Orbot bersambung</string>
-    <string name="pref_use_persistent_notifications_title">Sentiasa On Notifikasi</string>
     <string name="set_locale_title">Bahasa</string>
     <string name="hidden_services">Perkhidmatan tersembunyi</string>
     <string name="menu_hidden_services">Perkhidmatan tersembunyi</string>

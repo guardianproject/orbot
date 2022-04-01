@@ -77,9 +77,7 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">povoliť záznam výstupu diagnostiky (pre prehliadanie je potrebný adb alebo aLogCat)</string>
   <string name="project_home">Domovské stránky projektov:</string>
     <string name="third_party_software">Software tretích strán:</string>
-  <string name="pref_use_persistent_notifications">Vždy ponechať ikonu v stavovom riadku, keď je Orbot pripojený</string>
-  <string name="pref_use_persistent_notifications_title">Vždy zapnuté upozornenia</string>
-  <string name="pref_use_expanded_notifications">Zobraziť rozšírené upozornenie s výstupnou krajinou a IP adresou siete Tor</string>
+    <string name="pref_use_expanded_notifications">Zobraziť rozšírené upozornenie s výstupnou krajinou a IP adresou siete Tor</string>
   <string name="pref_use_expanded_notifications_title">Rozšírené upozornenia</string>
     <string name="set_locale_title">Jazyk</string>
   <string name="pref_disable_network_title">Automatický spánok</string>

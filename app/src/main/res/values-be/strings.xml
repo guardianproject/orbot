@@ -79,8 +79,6 @@
     <string name="project_home">Хатняя старонка праекта:</string>
     <string name="third_party_software">Праграмы іншых распрацоўнікаў: </string>
     <string name="hidden_service_request">Дадатак хоча адкрыць схаваны порт сервера %1$s сеткі Tor. Гэта бяспечна, калі вы давяраеце дадзенаму дадатку.</string>
-    <string name="pref_use_persistent_notifications">Заўсёды адлюстроўваць іконку у панэлі заданняў калі Orbot падключаны</string>
-    <string name="pref_use_persistent_notifications_title">Нязменнае апавяшчэнне пра працу</string>
     <string name="pref_use_expanded_notifications">Паказаць пашыранае апавяшчэнне Tor з краінай выхаду і IP</string>
     <string name="pref_use_expanded_notifications_title">Пашыраныя апавяшчэнні</string>
     <string name="set_locale_title">Мова</string>

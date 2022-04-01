@@ -104,10 +104,6 @@ public class Prefs {
         return prefs.getBoolean(PREF_ENABLE_LOGGING, false);
     }
 
-    public static boolean persistNotifications() {
-        return prefs.getBoolean(PREF_PERSIST_NOTIFICATIONS, true);
-    }
-
     public static boolean allowBackgroundStarts() {
         return prefs.getBoolean(PREF_ALLOW_BACKGROUND_STARTS, true);
     }

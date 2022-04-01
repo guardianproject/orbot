@@ -85,9 +85,7 @@
     <string name="third_party_software">3rd-Party-Software: </string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="pref_use_persistent_notifications">Orbot이 연결되었을 때 툴바에 아이콘 보이기</string>
-  <string name="pref_use_persistent_notifications_title">항상 켜진 알림</string>
-  <string name="pref_use_expanded_notifications">출구 및 IP 정보알림 보이기</string>
+    <string name="pref_use_expanded_notifications">출구 및 IP 정보알림 보이기</string>
   <string name="pref_use_expanded_notifications_title">확장 알림</string>
     <string name="set_locale_title">언어</string>
   <string name="pref_disable_network_title">네트워크가 없을 때의 자동 슬립</string>

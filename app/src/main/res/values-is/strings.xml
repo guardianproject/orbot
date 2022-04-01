@@ -79,8 +79,6 @@
     <string name="project_home">Heimili verkefnisins:</string>
     <string name="third_party_software">Hugbúnaður frá 3ja aðila:</string>
     <string name="hidden_service_request">Forrit vill opna onion-netþjón á gáttinni %1$s inn á Tor-netið. Þetta er öruggt ef þú treystir forritinu.</string>
-    <string name="pref_use_persistent_notifications">Alltaf hafa táknmynd í verkfærastiku þegar Orbot er tengt</string>
-    <string name="pref_use_persistent_notifications_title">Alltaf-á tilkynningar</string>
     <string name="pref_use_expanded_notifications">Birta land og IP-vistfang útgangspunkts í tilkynningum þegar slíkt er tiltækt</string>
     <string name="pref_use_expanded_notifications_title">Útflettar tilkynningar</string>
     <string name="set_locale_title">Tungumál</string>

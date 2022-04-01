@@ -85,9 +85,7 @@
     <string name="third_party_software">Софтуер на трети страни: </string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="pref_use_persistent_notifications">Винаги показвай икона в тулбара когато Орбот е свързан</string>
-  <string name="pref_use_persistent_notifications_title">Уведомления винаги включени</string>
-  <string name="pref_use_expanded_notifications">Покажи разширена информация за Tor изходната държава и IP в лентата за известия</string>
+    <string name="pref_use_expanded_notifications">Покажи разширена информация за Tor изходната държава и IP в лентата за известия</string>
   <string name="pref_use_expanded_notifications_title">Разширени известия</string>
     <string name="set_locale_title">Език</string>
   <string name="pref_disable_network_title">Лиспва Автоматичен Режим на Изчакване</string>

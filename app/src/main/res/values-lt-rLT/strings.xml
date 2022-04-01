@@ -24,7 +24,6 @@
     <string name="v3_hosted_services">„v3 Onion Services“ priegloba</string>
     <string name="pref_disable_network_title">Išjungti tinklo automatinio užmigdymo funkciją</string>
     <string name="pref_use_expanded_notifications">Rodyti išplėstinį pranešimą su „Tor“ išėjimo šalimi ir IP</string>
-    <string name="pref_use_persistent_notifications">Visada laikyti piktogramą įrankių juostoje, kai „Orbot“ yra prijungta</string>
     <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">Veikti kaip klientui už ugniasienės su ribojančia politika</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Įgalinkite savo įrenginį būti neišeinančią relę</string>
     <string name="pref_proxy_host_title">Išeinantis įgaliotojo serverio priegloba</string>
@@ -129,7 +128,6 @@
     <string name="pref_http_title">Tor HTTP</string>
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_use_expanded_notifications_title">Išplėsti pranešimai</string>
-    <string name="pref_use_persistent_notifications_title">Visada įjungti pranešimai</string>
     <string name="project_home">Projekto namai:</string>
     <string name="enter_ports">Įvesti prievadus</string>
     <string name="reachable_ports">Pasiekiami prievadai</string>

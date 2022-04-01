@@ -83,9 +83,7 @@
     <string name="third_party_software">3rd-Party-Software:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="pref_use_persistent_notifications">Palaging panatilihin ang icon sa toolbar kapag ang Orbot ay naka-connect</string>
-  <string name="pref_use_persistent_notifications_title">Palaging i-On ang Notifications</string>
-  <string name="pref_use_expanded_notifications">Ipakita ang pinalaking notification kasama ng Tor exit country at IP</string>
+    <string name="pref_use_expanded_notifications">Ipakita ang pinalaking notification kasama ng Tor exit country at IP</string>
   <string name="pref_use_expanded_notifications_title">Pinalawak na Notifications</string>
     <string name="set_locale_title">Wika</string>
     <string name="pref_disable_network_title">Walang Auto-Sleep sa Network</string>

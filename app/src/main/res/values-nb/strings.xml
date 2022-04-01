@@ -77,8 +77,6 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">aktiver feilsøkingslogg for output (må bruke adb eller aLogCat for å vise)</string>
     <string name="project_home">Prosjektets nettside(r):</string>
     <string name="third_party_software">Tredjepartsprogramvare:</string>
-    <string name="pref_use_persistent_notifications">Alltid behold ikonet i verktøyslinjen når Orbot er tilkoblet</string>
-    <string name="pref_use_persistent_notifications_title">Alltid-På -varslinger</string>
     <string name="pref_use_expanded_notifications">Vis utvidede merknader med land og IP for utgangstrafikk fra Tor</string>
     <string name="pref_use_expanded_notifications_title">Utvidede varsler</string>
     <string name="set_locale_title">Språk</string>

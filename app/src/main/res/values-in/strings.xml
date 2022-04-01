@@ -77,8 +77,6 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">nyalakan debug log untuk output (harus menggunakan adb atau aLogCat untuk menampilkan)</string>
     <string name="project_home">Beranda Projek:</string>
     <string name="third_party_software">Perangkat Lunak Pihak Ke-3:</string>
-    <string name="pref_use_persistent_notifications">Selalu pelihara icon dalam toolbar ketika Orbot terhubung</string>
-    <string name="pref_use_persistent_notifications_title">Pemberitahuan Selalu-Hidup</string>
     <string name="pref_use_expanded_notifications">Tampilkan notifikasi melebar dengan negara dan IP keluar Tor</string>
     <string name="pref_use_expanded_notifications_title">Notifikasi Melebar</string>
     <string name="set_locale_title">Bahasa</string>

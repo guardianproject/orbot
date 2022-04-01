@@ -79,8 +79,6 @@
     <string name="project_home">Ιστοσελίδες του έργου:</string>
     <string name="third_party_software">Λογισμικό τρίτων:</string>
     <string name="hidden_service_request">Κάποια εφαρμογή προσπαθεί να ανοίξει την κρυφή θύρα διακομιστή %1$s dστο δίκτυο Tor. Πρόκειται για ασφαλή ενέργεια, εφόσον γνωρίζετε την εφαρμογή.</string>
-    <string name="pref_use_persistent_notifications">Να διατηρείται πάντοτε το εικονίδιο στην γραμμή εργαλείων όταν το Orbot συνδέεται</string>
-    <string name="pref_use_persistent_notifications_title">Ειδοποιήσεις διαρκούς σύνδεσης</string>
     <string name="pref_use_expanded_notifications">Εμφάνιση εκτεταμένης ειδοποίησης με τη χώρα εξόδου του Tor και τη διεύθυνση IP</string>
     <string name="pref_use_expanded_notifications_title">Επεκταμένες Ειδοποιήσεις</string>
     <string name="set_locale_title">Γλώσσα </string>

@@ -87,9 +87,7 @@
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: https://www.openssl.org</string>
-  <string name="pref_use_persistent_notifications">Alltid behold ikonet i verktøyslinjen når Orbot er tilkoblet</string>
-  <string name="pref_use_persistent_notifications_title">Alltid-På -varslinger</string>
-  <string name="pref_use_expanded_notifications">Vis utvidede merknader med land og IP for utgangstrafikk fra Tor</string>
+    <string name="pref_use_expanded_notifications">Vis utvidede merknader med land og IP for utgangstrafikk fra Tor</string>
   <string name="pref_use_expanded_notifications_title">Utvidede varsler</string>
     <string name="set_locale_title">Språk</string>
   <string name="pref_disable_network_title">Inget automatisk hvilemodus for nettverk</string>

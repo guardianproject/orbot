@@ -77,8 +77,6 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">włącz zdebugowany log do wydajności (musisz używać adb lub aLogCat, by go zobaczyć)</string>
     <string name="project_home">Strony domowe projektu:</string>
     <string name="third_party_software">Oprogramowanie innych firm:</string>
-    <string name="pref_use_persistent_notifications">Zawsze trzymaj ikonę w pasku powiadomień gdy Orbot jest połączony</string>
-    <string name="pref_use_persistent_notifications_title">Powiadomienia zawsze aktywne</string>
     <string name="pref_use_expanded_notifications">Pokaż rozszerzone powiadomienie z krajem Tor exit node oraz jego IP</string>
     <string name="pref_use_expanded_notifications_title">Rozszerzone Powiadomienia</string>
     <string name="set_locale_title">Język</string>

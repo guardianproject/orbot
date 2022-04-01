@@ -79,8 +79,6 @@
     <string name="project_home">Домівка проєкту:</string>
     <string name="third_party_software">Програми сторонніх розробників: </string>
     <string name="hidden_service_request">Застосунок хоче відкрити сервер onion на порту %1$s до мережі Tor. Це безпечно, якщо ви довіряєте застосунку.</string>
-    <string name="pref_use_persistent_notifications">Завжди показувати піктограму на панелі інструментів коли Orbot підʼєднано</string>
-    <string name="pref_use_persistent_notifications_title">Постійне сповіщення про роботу</string>
     <string name="pref_use_expanded_notifications">Показ, за наявності, країни та IP-адреси вузла виходу tor у сповіщенні</string>
     <string name="pref_use_expanded_notifications_title">Розгорнуті сповіщення</string>
     <string name="set_locale_title">Мова</string>

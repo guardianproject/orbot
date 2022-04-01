@@ -90,9 +90,7 @@
   <string name="obfsproxy_version">Obfs4proxy نسخه‌ی 0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">اپلیکیشنی می‌خواهد پورت سرور %1$d را به شبکه تور بگشاید. در صورتی که به این برنامه اطمینان دارید، چنین کاری امن است.</string>
-  <string name="pref_use_persistent_notifications">وقتی ربات پیازی متصل است، همیشه آیکون مربوط را در نوار ابزار نگه دار.</string>
-  <string name="pref_use_persistent_notifications_title">آگاهسازی همیشه روشن</string>
-  <string name="pref_use_expanded_notifications">نمایش اطلاع رسانی گسترده با کشور خروجی Tor و IP</string>
+    <string name="pref_use_expanded_notifications">نمایش اطلاع رسانی گسترده با کشور خروجی Tor و IP</string>
   <string name="pref_use_expanded_notifications_title">اطلاعیه گسترده</string>
     <string name="set_locale_title">زبان</string>
   <string name="pref_disable_network_title">خاموش کردن در صورت عدم وجود شبکه</string>
