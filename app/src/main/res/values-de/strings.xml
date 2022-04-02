@@ -175,7 +175,7 @@
     <string name="v3_backup_name_hint">Sicherungsdateiname …</string>
     <string name="v3_delete_client_authorization_confirm">Client-Authorisierung löschen</string>
     <string name="v3_hosted_services">Gehostete Onion-Dienste</string>
-    <string name="v3_delete_client_authorization">Schlüssel für Client-Authorisierung löschen</string>
+    <string name="v3_delete_client_authorization">Schlüssel für Client-Autorisierung löschen</string>
     <string name="v3_backup_key_warning">Warnung: Dadurch könnten Ihre Schlüssel anderen Apps zugänglich gemacht werden</string>
     <string name="v3_backup_key">Schlüssel für Client-Autorisierung sichern</string>
     <string name="v3_onion">v3 .onion-Domain</string>
