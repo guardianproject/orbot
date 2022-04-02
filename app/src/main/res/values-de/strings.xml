@@ -104,7 +104,7 @@
     <string name="apps_mode">VPN-Modus</string>
     <string name="send_email">E-Mail senden</string>
     <string name="vpn_default_world">Global (Automatisch)</string>
-    <string name="hidden_services">Onion Dienste</string>
+    <string name="hidden_services">Onion-Dienste</string>
     <string name="menu_hidden_services">Onion-Dienste</string>
     <string name="save">Speichern</string>
     <string name="local_port">Lokaler Port</string>
@@ -177,7 +177,7 @@
     <string name="v3_hosted_services">Gehostete v3 Onion Dienste</string>
     <string name="v3_delete_client_authorization">Entferne Client Authorisierungs-Schlüssel</string>
     <string name="v3_backup_key_warning">Warnung: Dadurch könnten Ihre Schlüssel anderen Apps zugänglich gemacht werden</string>
-    <string name="v3_backup_key">Sicherungsprogramm Authorisierungs-Schlüssel</string>
+    <string name="v3_backup_key">Schlüssel für Client-Authorisierung sichern</string>
     <string name="v3_onion">v3 .onion-Domain</string>
     <string name="v3_key_hash">x25519 Privater Schlüssel in Base32</string>
     <string name="v3_client_auth_activity_title">v3 Client Authorisierung</string>
