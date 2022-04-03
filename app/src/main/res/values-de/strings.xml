@@ -173,7 +173,7 @@
     <string name="testing_tor_direct_success">Erfolgreich. Gute Verbindung mit Tor!</string>
     <string name="v3_import_auth_private">.auth_private importieren</string>
     <string name="v3_backup_name_hint">Sicherungsdateiname …</string>
-    <string name="v3_delete_client_authorization_confirm">Client-Authorisierung löschen</string>
+    <string name="v3_delete_client_authorization_confirm">Client-Autorisierung löschen</string>
     <string name="v3_hosted_services">Gehostete Onion-Dienste</string>
     <string name="v3_delete_client_authorization">Schlüssel für Client-Autorisierung löschen</string>
     <string name="v3_backup_key_warning">Warnung: Dadurch könnten Ihre Schlüssel anderen Apps zugänglich gemacht werden</string>
@@ -202,4 +202,5 @@
     <string name="pref_reduced_circuit_padding">Reduziertes Circuit-Padding</string>
     <string name="pref_circuit_padding_summary">Circuit-Padding zum Schutz vor einigen Formen der Verkehrsanalyse aktivieren</string>
     <string name="strict_nodes_description">Behandeln Sie die Einstellungen „Knoten ausschließen“ als Voraussetzung für die Erstellung aller Kreisläufe. Dies kann die Funktionalität beeinträchtigen, wenn keine Kreisläufe mit Ihren Einstellungen für Ausschlussknoten erstellt werden können.</string>
+    <string name="pref_circuit_padding">Circuit-Padding</string>
 </resources>
