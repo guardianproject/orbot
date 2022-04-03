@@ -112,7 +112,7 @@
     <string name="name">Name</string>
     <string name="done">Fertig!</string>
     <string name="copy_address_to_clipboard">Adresse in die Zwischenablage kopieren</string>
-    <string name="backup_service">Backup Service <i>(Warnung: Dadurch könnte Ihre Service Konfiguration anderen Apps zugänglich gemacht werden)</i></string>
+    <string name="backup_service">Dienst sichern <i>(Warnung: Dadurch könnte Ihre Dienstkonfiguration anderen Apps zugänglich gemacht werden)</i></string>
     <string name="delete_service">Dienst löschen</string>
     <string name="backup_saved_at_external_storage">Sicherung auf externem Speicher abgelegt</string>
     <string name="backup_restored">Sicherung wiederhergestellt</string>
@@ -170,8 +170,8 @@
     <string name="refresh_captcha">CAPTCHA erneuern</string>
     <string name="request_bridges">Brücken anfordern</string>
     <string name="testing_tor_direct">Verbindung zu Tor wird getestet …</string>
-    <string name="testing_tor_direct_success">Erfolgreich. Tor-Verbindungsqualität ist gut!</string>
-    <string name="v3_import_auth_private">Importiere .auth_private</string>
+    <string name="testing_tor_direct_success">Erfolgreich. Gute Verbindung mit Tor!</string>
+    <string name="v3_import_auth_private">.auth_private importieren</string>
     <string name="v3_backup_name_hint">Sicherungsdateiname …</string>
     <string name="v3_delete_client_authorization_confirm">Client-Authorisierung löschen</string>
     <string name="v3_hosted_services">Gehostete Onion-Dienste</string>
