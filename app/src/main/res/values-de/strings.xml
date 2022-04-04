@@ -78,7 +78,7 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Ausgabe des Fehlerprotokolls ermöglichen (benötigt adb oder aLogCat zur Ansicht)</string>
     <string name="project_home">Internetseite des Projektes:</string>
     <string name="third_party_software">Drittanbieteranwendungen:</string>
-    <string name="hidden_service_request">Eine Anwendung möchte den Onion Server auf Port %1$s zum Tor-Netzwerk öffnen. Dies ist sicher, wenn Sie der Anwendung vertrauen.</string>
+    <string name="hidden_service_request">Eine Anwendung möchte den Onion-Server auf Port %1$s zum Tor-Netzwerk öffnen. Dies ist sicher, wenn Sie der Anwendung vertrauen.</string>
     <string name="pref_use_expanded_notifications">In der Benachrichtigung, wenn vorhanden, das Land und die IP-Adresse des Tor-Ausgangsknotens anzeigen</string>
     <string name="pref_use_expanded_notifications_title">Erweiterte Benachrichtigungen</string>
     <string name="set_locale_title">Sprache</string>
@@ -99,12 +99,12 @@
     <string name="pref_torrc_dialog">Benutzerdefinierter Torrc</string>
     <string name="bridges_updated">Brücken aktualisiert</string>
     <string name="restart_orbot_to_use_this_bridge_">Bitte Orbot neu starten, damit die Änderungen wirksam werden</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Wenn Ihr mobiles Netzwerk Tor blockiert, können Sie einen \"Brücken-Server\" als alternativen Weg verwenden. Wählen Sie eine der Optionen zum Konfigurieren und Testen …</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Wenn Ihr mobiles Netzwerk Tor blockiert, können Sie einen „Brücken-Server“ als alternativen Weg verwenden. Wählen Sie eine der Optionen zum Konfigurieren und Testen…</string>
     <string name="get_bridges_email">E-Mail</string>
     <string name="apps_mode">VPN-Modus</string>
     <string name="send_email">E-Mail senden</string>
     <string name="vpn_default_world">Global (Automatisch)</string>
-    <string name="hidden_services">Onion Dienste</string>
+    <string name="hidden_services">Onion-Dienste</string>
     <string name="menu_hidden_services">Onion-Dienste</string>
     <string name="save">Speichern</string>
     <string name="local_port">Lokaler Port</string>
@@ -112,7 +112,7 @@
     <string name="name">Name</string>
     <string name="done">Fertig!</string>
     <string name="copy_address_to_clipboard">Adresse in die Zwischenablage kopieren</string>
-    <string name="backup_service">Backup Service <i>(Warnung: Dadurch könnte Ihre Service Konfiguration anderen Apps zugänglich gemacht werden)</i></string>
+    <string name="backup_service">Dienst sichern <i>(Warnung: Dadurch könnte Ihre Dienstkonfiguration anderen Apps zugänglich gemacht werden)</i></string>
     <string name="delete_service">Dienst löschen</string>
     <string name="backup_saved_at_external_storage">Sicherung auf externem Speicher abgelegt</string>
     <string name="backup_restored">Sicherung wiederhergestellt</string>
@@ -169,17 +169,17 @@
     <string name="refresh_captcha">CAPTCHA erneuern</string>
     <string name="request_bridges">Brücken anfordern</string>
     <string name="testing_tor_direct">Verbindung zu Tor wird getestet …</string>
-    <string name="testing_tor_direct_success">Erfolgreich. Tor-Verbindungsqualität ist gut!</string>
-    <string name="v3_import_auth_private">Importiere .auth_private</string>
+    <string name="testing_tor_direct_success">Erfolgreich. Gute Verbindung mit Tor!</string>
+    <string name="v3_import_auth_private">.auth_private importieren</string>
     <string name="v3_backup_name_hint">Sicherungsdateiname …</string>
-    <string name="v3_delete_client_authorization_confirm">Entferne Client Authorisierung</string>
-    <string name="v3_hosted_services">Gehostete v3 Onion Dienste</string>
-    <string name="v3_delete_client_authorization">Entferne Client Authorisierungs-Schlüssel</string>
+    <string name="v3_delete_client_authorization_confirm">Client-Autorisierung löschen</string>
+    <string name="v3_hosted_services">Gehostete Onion-Dienste</string>
+    <string name="v3_delete_client_authorization">Schlüssel für Client-Autorisierung löschen</string>
     <string name="v3_backup_key_warning">Warnung: Dadurch könnten Ihre Schlüssel anderen Apps zugänglich gemacht werden</string>
-    <string name="v3_backup_key">Sicherungsprogramm Authorisierungs-Schlüssel</string>
+    <string name="v3_backup_key">Schlüssel für Client-Autorisierung sichern</string>
     <string name="v3_onion">v3 .onion-Domain</string>
     <string name="v3_key_hash">x25519 Privater Schlüssel in Base32</string>
-    <string name="v3_client_auth_activity_title">v3 Client Authorisierung</string>
+    <string name="v3_client_auth_activity_title">Client-Autorisierung</string>
     <string name="backup_port_exist">Fehler: Ein Onion-Dienst nutzt bereits Port %s</string>
     <string name="get_bridges_email_request">Brücken via E-Mail anfordern</string>
     <string name="deny">Ablehnen</string>
@@ -198,4 +198,8 @@
     <string name="snowflake_proxy_msg_title">Verbindungsbenachrichtigung anzeigen</string>
     <string name="bridge_snowflake">Mittels Snowflake über andere Tor-Nutzer verbinden (Methode 1 - Schnell)</string>
     <string name="bridge_snowflake_amp">Mittels Snowflake über andere Tor-Nutzer verbinden (Methode 2 - AMP)</string>
+    <string name="pref_reduced_circuit_padding">Reduziertes Circuit-Padding</string>
+    <string name="pref_circuit_padding_summary">Circuit-Padding zum Schutz vor einigen Formen der Verkehrsanalyse aktivieren</string>
+    <string name="strict_nodes_description">Behandeln Sie die Einstellungen „Knoten ausschließen“ als Voraussetzung für die Erstellung aller Kreisläufe. Dies kann die Funktionalität beeinträchtigen, wenn keine Kreisläufe mit Ihren Einstellungen für Ausschlussknoten erstellt werden können.</string>
+    <string name="pref_circuit_padding">Circuit-Padding</string>
 </resources>
