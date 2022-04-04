@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Vingerafdrukken, nicks, landen en adressen om uit te sluiten</string>
     <string name="enter_exclude_nodes">Voer uitgesloten nodes in</string>
     <string name="strict_nodes">Strikte nodes</string>
-    <string name="use_only_these_specified_nodes">Gebruik *enkel* deze opgegeven nodes</string>
     <string name="bridges">Bridges</string>
     <string name="use_bridges">Gebruik bridges</string>
     <string name="relays">Relays</string>
@@ -78,15 +77,8 @@
     <string name="enter_ports">Voer poorten in</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">schakel debug log naar uitvoer in (adb of aLogCat is nodig om dit te bekijken)</string>
     <string name="project_home">Project homepagina(\'s): </string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Software van 3e partijen: </string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Een app wil de verborgenserverpoort %1$s tot het Tor-netwerk openen. Dit is veilig als je de app vertrouwt.</string>
-    <string name="pref_use_persistent_notifications">Houd icoon in taakbalk zolang Orbot verbonden is</string>
-    <string name="pref_use_persistent_notifications_title">Meldingen altijd aan</string>
     <string name="pref_use_expanded_notifications">Toon uitgebreide melding met Tor-exitland en IP</string>
     <string name="pref_use_expanded_notifications_title">Uitgebreide meldingen</string>
     <string name="set_locale_title">Taal</string>
@@ -129,7 +121,6 @@
     <string name="start_tor_again_for_finish_the_process">Start Tor opnieuw om het proces te voltooien</string>
     <string name="confirm_service_deletion">Bevestig verwijderen van dienst</string>
     <string name="service_type">Diensttype</string>
-    <string name="auth_cookie">Authenticatiecookie</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Herstart Orbot om de wijzigingen in te schakelen</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Delen als QR-code</string>
@@ -150,7 +141,6 @@
     <string name="trouble_connecting">Problemen met verbinden?</string>
     <string name="full_device_vpn">Volledigapparaats-VPN</string>
     <string name="vpn_disabled">VPN uitgeschakeld</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="menu_new_identity">Nieuwe identiteit</string>
     <string name="pref_disable_ipv4_summary">Zeg tegen exits om geen verbinding te maken met IPv4 adressen</string>
     <string name="pref_disable_ipv4">Zet IPv4 verbindingen uit</string>

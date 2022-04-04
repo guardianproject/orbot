@@ -85,9 +85,7 @@
     <string name="third_party_software">Trešo personu programmatūra:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="pref_use_persistent_notifications">Vienmēr paturēt ikonu rīkjoslā, kad Orbot ir savienots</string>
-  <string name="pref_use_persistent_notifications_title">Vienmēr ieslēgtie paziņojumi</string>
-  <string name="pref_use_expanded_notifications">Rādīt paplašinātus paziņojumus, kur norādīts IP un Tor izejas valsts</string>
+    <string name="pref_use_expanded_notifications">Rādīt paplašinātus paziņojumus, kur norādīts IP un Tor izejas valsts</string>
   <string name="pref_use_expanded_notifications_title">Paplašināti paziņojumi</string>
     <string name="set_locale_title">Valoda</string>
   <string name="pref_disable_network_title">Neizmantot tīkla automātiskā miega režīmu</string>

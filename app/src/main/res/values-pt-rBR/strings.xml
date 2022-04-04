@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Impressões digitais, apelidos, países e endereços para excluir</string>
     <string name="enter_exclude_nodes">Insira os Nós Excluídos</string>
     <string name="strict_nodes">Nós Estritos</string>
-    <string name="use_only_these_specified_nodes">Use *somente* estes nós específicos</string>
     <string name="bridges">Pontes</string>
     <string name="use_bridges">Usar Pontes</string>
     <string name="relays">Retransmissores</string>
@@ -78,15 +77,8 @@
     <string name="enter_ports">Insira as portas</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Ativar os registros log de depuração para saída (deve usar adb ou aLogCat para ver)</string>
     <string name="project_home">Site do projeto:</string>
-    <string name="project_urls">https://orbot.app/</string>
     <string name="third_party_software">Software de Terceiros:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Um aplicativo quer abrir uma porta no servidor onion %1$s para a rede Tor. É seguro caso você confie neste aplicativo.</string>
-    <string name="pref_use_persistent_notifications">Mantenha sempre um ícone na barra de ferramentas quando o Orbot estiver conectado</string>
-    <string name="pref_use_persistent_notifications_title">Notificações Sempre Ligadas</string>
     <string name="pref_use_expanded_notifications">Exibe na notificação o país e o endereço IP do seu nó de saída do tor quando estiver disponível</string>
     <string name="pref_use_expanded_notifications_title">Notificações Expandidas</string>
     <string name="set_locale_title">Idioma</string>
@@ -128,7 +120,6 @@
     <string name="create_a_backup_first">Criar primeiro backup</string>
     <string name="confirm_service_deletion">Confirmar a remoção do serviço</string>
     <string name="service_type">Tipo do Serviço</string>
-    <string name="auth_cookie">Cookie de autenticação</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Por favor reinicie Orbot para habilitar as mundanças</string>
     <string name="share_as_qr">Compartilhar como QR</string>
     <string name="disable">Desabilitar</string>
@@ -140,7 +131,6 @@
     <string name="trouble_connecting">Problemas na conexão ? </string>
     <string name="full_device_vpn">VPN PARA TODO O DISPOSITIVO</string>
     <string name="refresh_apps">Atualizar os Aplicativos</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="app_services">Serviços dos Aplicativos</string>
     <string name="user_services">Serviços ao Usuário</string>
     <string name="menu_new_identity">Nova Identidade</string>
@@ -211,4 +201,5 @@
     <string name="snowflake_proxy_pref_category">Proxy Snowflake (Experimental)</string>
     <string name="snowflake_proxy_msg_title">Mostra a notificação da conexão</string>
     <string name="snowflake_proxy_msg_description">Mostra uma mensagem quando o seu snowflake ajuda alguém a contornar a censura</string>
+    <string name="strict_nodes_description">Trate as configurações de exclusão dos nós como um requisito para a construção de todos os circuitos. Isso pode quebrar a funcionalidade caso nenhum circuito seja capaz de ser gerado com as configurações de exclusão dos nós.</string>
 </resources>

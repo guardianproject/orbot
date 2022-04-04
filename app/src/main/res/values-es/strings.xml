@@ -5,7 +5,7 @@
     <string name="status_starting_up">Orbot está iniciandose…</string>
     <string name="status_activated">Conectado a la red Tor</string>
     <string name="status_shutting_down">TorService se está cerrando</string>
-    <string name="menu_settings">Configuración</string>
+    <string name="menu_settings">Ajustes</string>
     <string name="menu_log">Registro (log)</string>
     <string name="menu_start">Iniciar</string>
     <string name="menu_stop">Detener</string>
@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Reglas de identificación de repetidores a evitar en la red Tor, mediante huellas de validación de claves (fingerprints), alias (nicks), códigos de país y direcciones (o rangos)</string>
     <string name="enter_exclude_nodes">Introduzca repetidores a evitar</string>
     <string name="strict_nodes">Hacer estricta la exclusión de nodos (incluso si falla la comunicación)</string>
-    <string name="use_only_these_specified_nodes">Usar *sólo* estos nodos especificados</string>
     <string name="bridges">Bridges (repetidores puente) </string>
     <string name="use_bridges">Usar bridges</string>
     <string name="relays">Repetidores</string>
@@ -78,15 +77,8 @@
     <string name="enter_ports">Introduzca puertos</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Habilitar el registro de depuración (debug log) a la salida (debe utilizar adb o aLogCat para verlo)</string>
     <string name="project_home">Página(s) principal(es) del proyecto:</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Software de terceros:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Una aplicación quiere abrir el puerto %1$s de servidor oculto a la red Tor. Esto es seguro si confía en la aplicación.</string>
-    <string name="pref_use_persistent_notifications">Mantener siempre el icono de Orbot en la barra de tareas cuando esté conectado</string>
-    <string name="pref_use_persistent_notifications_title">Notificaciones siempre activadas</string>
     <string name="pref_use_expanded_notifications">Mostrar notificación expandida con el país de salida de Tor y la IP</string>
     <string name="pref_use_expanded_notifications_title">Notificaciones expandidas</string>
     <string name="set_locale_title">Idioma</string>
@@ -129,7 +121,6 @@
     <string name="start_tor_again_for_finish_the_process">Inicie Tor de nuevo para finalizar el proceso</string>
     <string name="confirm_service_deletion">Confirme el borrado del servicio</string>
     <string name="service_type">Tipo de servicio</string>
-    <string name="auth_cookie">Cookie de autentificación</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Por favor, reinicie Orbot para habilitar los cambios</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Compartir como QR</string>
@@ -155,7 +146,6 @@
     <string name="pref_http_summary">Puerto en el que Tor ofrece su proxy HTTP (predeterminado: 8118 o 0 para deshabilitar)</string>
     <string name="pref_http_dialog">Configuración del puerto HTTP</string>
     <string name="refresh_apps">Refrescar aplicaciones</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="app_services">Servicios de aplicaciones</string>
     <string name="user_services">Servicios de usuario</string>
     <string name="menu_new_identity">Nueva identidad</string>

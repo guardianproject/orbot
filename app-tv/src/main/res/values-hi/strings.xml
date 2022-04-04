@@ -91,9 +91,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">एक ऐप Tor नेटवर्क पर %1$dछिपा सर्वर पोर्ट खोलना चाहता है। यदि आप ऐप पर विश्वास करते हैं, तो यह सुरक्षित है</string>
-  <string name="pref_use_persistent_notifications">ऑरबोट कनेक्ट होने पर टूलबार में हमेशा आइकन रखें</string>
-  <string name="pref_use_persistent_notifications_title">हमेशा की सूचनाएं</string>
-  <string name="pref_use_expanded_notifications">तोर एग्जिट देश और आईपी के साथ विस्तारित सूचना दिखाएं</string>
+    <string name="pref_use_expanded_notifications">तोर एग्जिट देश और आईपी के साथ विस्तारित सूचना दिखाएं</string>
   <string name="pref_use_expanded_notifications_title">विस्तारित सूचनाएं</string>
     <string name="set_locale_title">भाषा</string>
   <string name="pref_disable_network_title">कोई नेटवर्क ऑटो-स्लीप नहीं</string>
@@ -138,8 +136,7 @@
   <string name="confirm_service_deletion">सेवा हटाने की पुष्टि करें</string>
   <string name="click_again_for_backup">बैकअप के लिए फिर से क्लिक करें</string>
   <string name="service_type">सेवा प्रकार</string>
-  <string name="auth_cookie">Auth कुकी</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">परिवर्तन सक्षम करने के लिए Orbot पुनः प्रारंभ करें</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">परिवर्तन सक्षम करने के लिए Orbot पुनः प्रारंभ करें</string>
   <string name="onion">.अनियन </string>
   <string name="share_as_qr">QR के रूप में शेयर करें</string>
   <string name="disable">अक्षम</string>

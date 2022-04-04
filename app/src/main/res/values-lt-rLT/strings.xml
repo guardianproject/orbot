@@ -24,7 +24,6 @@
     <string name="v3_hosted_services">„v3 Onion Services“ priegloba</string>
     <string name="pref_disable_network_title">Išjungti tinklo automatinio užmigdymo funkciją</string>
     <string name="pref_use_expanded_notifications">Rodyti išplėstinį pranešimą su „Tor“ išėjimo šalimi ir IP</string>
-    <string name="pref_use_persistent_notifications">Visada laikyti piktogramą įrankių juostoje, kai „Orbot“ yra prijungta</string>
     <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">Veikti kaip klientui už ugniasienės su ribojančia politika</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Įgalinkite savo įrenginį būti neišeinančią relę</string>
     <string name="pref_proxy_host_title">Išeinantis įgaliotojo serverio priegloba</string>
@@ -43,14 +42,12 @@
     <string name="backup_saved_at_external_storage">Atsarginė kopija išsaugota išorinėje saugykloje</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Atidaryti įgaliotąjį serverį visose sąsajose</string>
     <string name="enter_a_custom_relay_nickname">Įveskite pasirinktinės relės slapyvardį</string>
-    <string name="use_only_these_specified_nodes">Naudoti *tik* šiuos nurodytus mazgus</string>
     <string name="v3_delete_client_authorization">Ištrinti kliento autorizavimo raktą</string>
     <string name="v3_backup_key">Padaryti kliento autorizavimo rakto atsarginę kopiją</string>
     <string name="request_bridges_from_torproject">Prašyti tiltų iš torproject.org</string>
     <string name="enter_characters_from_image">Įveskite simbolius iš vaizdo</string>
     <string name="testing_tor_direct">Bandomas ryšys su „Tor“…</string>
     <string name="get_bridges_email_request">Prašyti tiltų elektroniniu paštu</string>
-    <string name="default_socks_http">Kojinės: - HTTP: -</string>
     <string name="bridge_cloud">Prisijungti per debesų serverius</string>
     <string name="bridge_community">Prisijungti per bendruomenės serverius</string>
     <string name="consider_enable_battery_optimizations">Apsvarstykite galimybę įjungti baterijos optimizavimą</string>
@@ -114,7 +111,6 @@
     <string name="trouble_connecting">Nepavyksta prisijungti\?</string>
     <string name="app_shortcuts">„Tor“ įgalintos programos</string>
     <string name="pref_connection_padding">Ryšio užpildymas</string>
-    <string name="auth_cookie">Auth slapukas</string>
     <string name="service_type">Paslaugos tipas</string>
     <string name="restore_backup">Atkurti atsarginę kopiją</string>
     <string name="backup_restored">Atsarginė kopija atkurta</string>
@@ -131,12 +127,6 @@
     <string name="pref_http_title">Tor HTTP</string>
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_use_expanded_notifications_title">Išplėsti pranešimai</string>
-    <string name="pref_use_persistent_notifications_title">Visada įjungti pranešimai</string>
-    <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
-    <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
-    <string name="libevent_version">LibEvent: http://www.monkey.org/~provos/libevent/</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="project_urls">https://orbot.app/</string>
     <string name="project_home">Projekto namai:</string>
     <string name="enter_ports">Įvesti prievadus</string>
     <string name="reachable_ports">Pasiekiami prievadai</string>

@@ -58,7 +58,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Empreintes, pseudos, pays et adresses à exclure</string>
     <string name="enter_exclude_nodes">Saisir les nœuds à exclure</string>
     <string name="strict_nodes">Nœuds stricts</string>
-    <string name="use_only_these_specified_nodes">N’utiliser *que* ces nœuds précis</string>
     <string name="bridges">Ponts</string>
     <string name="use_bridges">Utiliser des ponts</string>
     <string name="relays">Relais</string>
@@ -77,12 +76,7 @@
     <string name="enter_ports">Saisir les ports</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Activer le journal de débogage vers la sortie (adb ou aLogCat doivent être utilisés pour le visualiser)</string>
     <string name="project_home">Pages d’accueil du projet :</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Logiciels tiers :</string>
-    <string name="tor_version">Tor : https://www.torproject.org/fr</string>
-    <string name="libevent_version">LibEvent v2.0.21 : http://www.monkey.org/~provos/libevent/</string>
-    <string name="pref_use_persistent_notifications">Toujours conserver l’icône dans la barre d’outils quand Orbot est connecté</string>
-    <string name="pref_use_persistent_notifications_title">Notifications toujours actives</string>
     <string name="pref_use_expanded_notifications">Afficher des notifications plus détaillées avec le pays de sortie et l’IP de Tor</string>
     <string name="pref_use_expanded_notifications_title">Notifications plus détaillées</string>
     <string name="set_locale_title">Langue</string>
@@ -109,8 +103,6 @@
     <string name="name">Nom</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Veuillez redémarrer Orbot pour activer les changements</string>
     <string name="wizard_details_msg">Orbot est une application à code source ouvert qui comprend Tor, OIPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks et LibEvent. Elle fournit un mandataire HTTP local (8118) et un mandataire SOCKS (9050) vers le réseau Tor. Sur un appareil débridé, Orbot peut aussi faire passer tout le trafic Internet par Tor.</string>
-    <string name="obfsproxy_version">Obfs4proxy : https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL : http://www.openssl.org</string>
     <string name="hidden_service_request">Une appli veut ouvrir le serveur onion sur le port %1$s au réseau Tor. Cette action est sûre si vous faites confiance à cette appli.</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Ouvrir le mandataire sur toutes les interfaces</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Autoriser l’accès à Tor aux pairs Wi-Fi, aux appareils qui utilisent la fonction modem et à quiconque peut se connecter à votre IP</string>
@@ -135,7 +127,6 @@
     <string name="start_tor_again_for_finish_the_process">Redémarrez Tor pour finir le processus</string>
     <string name="confirm_service_deletion">Confirmez la suppression du service</string>
     <string name="service_type">Type de service</string>
-    <string name="auth_cookie">Témoin d’authentification</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Partager en tant que code QR</string>
     <string name="disable">Désactiver</string>
@@ -162,7 +153,6 @@
     <string name="menu_new_identity">Nouvelle identité</string>
     <string name="user_services">Services utilisateur</string>
     <string name="app_services">Services d’appli</string>
-    <string name="default_socks_http">SOCKS : - HTTP : -</string>
     <string name="refresh_apps">Actualiser les applis</string>
     <string name="bridge_snowflake">Se connecter grâce à d’autres pairs Tor (expérimental)</string>
     <string name="use_qr_code">Utiliser un code QR</string>

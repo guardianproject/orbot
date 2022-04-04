@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Fingerabdrücke, Spitznamen, Länder und Adressen, die ausgeschlossen werden sollen</string>
     <string name="enter_exclude_nodes">Auszuschließende Netzknoten eingeben</string>
     <string name="strict_nodes"> Strikte Netzknoten</string>
-    <string name="use_only_these_specified_nodes">*Nur* diese angegebenen Netzknoten nutzen</string>
     <string name="bridges">Brücken</string>
     <string name="use_bridges">Brücken benutzen</string>
     <string name="relays">Relais</string>
@@ -78,15 +77,8 @@
     <string name="enter_ports">Ports eingeben</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Ausgabe des Fehlerprotokolls ermöglichen (benötigt adb oder aLogCat zur Ansicht)</string>
     <string name="project_home">Internetseite des Projektes:</string>
-    <string name="project_urls">https://orbot.app/</string>
     <string name="third_party_software">Drittanbieteranwendungen:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Eine Anwendung möchte den Onion Server auf Port %1$s zum Tor-Netzwerk öffnen. Dies ist sicher, wenn Sie der Anwendung vertrauen.</string>
-    <string name="pref_use_persistent_notifications">Symbol immer in der Statusleiste lassen, wenn Orbot verbunden ist</string>
-    <string name="pref_use_persistent_notifications_title">Aktivitätsanzeige</string>
     <string name="pref_use_expanded_notifications">In der Benachrichtigung, wenn vorhanden, das Land und die IP-Adresse des Tor-Ausgangsknotens anzeigen</string>
     <string name="pref_use_expanded_notifications_title">Erweiterte Benachrichtigungen</string>
     <string name="set_locale_title">Sprache</string>
@@ -129,7 +121,6 @@
     <string name="start_tor_again_for_finish_the_process">Tor neu starten, um den Vorgang abzuschließen</string>
     <string name="confirm_service_deletion">Löschen des Dienstes bestätigen</string>
     <string name="service_type">Dienst-Typ</string>
-    <string name="auth_cookie">Authentifikationscookie</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Bitte Orbot zum Aktivieren der Änderungen neustarten</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Als QR-Code teilen</string>
@@ -160,7 +151,6 @@
     <string name="menu_new_identity">Neue Identität</string>
     <string name="user_services">Nutzerdienste</string>
     <string name="app_services">Appdienste</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="refresh_apps">Apps neu einlesen</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Proxy an allen Schnittstellen öffnen</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">WLAN-Rechnernetzen, per Tethering verbundenen Geräten und allen anderen, die sich mit Ihrer IP verbinden können, erlauben, auf Tor zuzugreifen</string>

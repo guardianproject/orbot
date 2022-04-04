@@ -89,9 +89,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Дадатак хоча адкрыць схаваны порт сервера %1$d сеткі Tor. Гэта бяспечна, калі вы давяраеце дадзенаму дадатку.</string>
-  <string name="pref_use_persistent_notifications">Заўсёды адлюстроўваць іконку у панэлі заданняў калі Orbot падключаны</string>
-  <string name="pref_use_persistent_notifications_title">Нязменнае апавяшчэнне пра працу</string>
-  <string name="pref_use_expanded_notifications">Паказаць пашыранае апавяшчэнне Tor з краінай выхаду і IP</string>
+    <string name="pref_use_expanded_notifications">Паказаць пашыранае апавяшчэнне Tor з краінай выхаду і IP</string>
   <string name="pref_use_expanded_notifications_title">Пашыраныя апавяшчэнні</string>
   <string name="set_locale_title">Мова</string>
   <string name="pref_disable_network_title">Аўтазасынанне без сеткі</string>
@@ -136,8 +134,7 @@
   <string name="confirm_service_deletion">Пацверджанне выдалення службы</string>
   <string name="click_again_for_backup">Націсніце яшчэ раз для рэзервавання</string>
   <string name="service_type">Тып службы</string>
-  <string name="auth_cookie">Аўтарызучыя cookie</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Калі ласка, перазапусціце Orbot для ўступу змены ў сілу</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Калі ласка, перазапусціце Orbot для ўступу змены ў сілу</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">Падзяліцца праз QR-код</string>
   <string name="disable">Адключыць</string>

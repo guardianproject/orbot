@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Адбіткі, псеўданімы, краіны і адрасы для вынятку</string>
     <string name="enter_exclude_nodes">Увядзіце вынятыя вузлы</string>
     <string name="strict_nodes">Дакладныя вузлы</string>
-    <string name="use_only_these_specified_nodes">Выкарыстоўваць *толькі* гэтыя зададзеныя вузлы</string>
     <string name="bridges">Масты</string>
     <string name="use_bridges">Выкарыстоўваць масты</string>
     <string name="relays">Рэтранслятары</string>
@@ -78,15 +77,8 @@
     <string name="enter_ports">Увядзіце парты</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Уключыць вынік журнала адладкі (патрабуе выкарыстоўваць adb ці aLogCat для прагляду)</string>
     <string name="project_home">Хатняя старонка праекта:</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Праграмы іншых распрацоўнікаў: </string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Дадатак хоча адкрыць схаваны порт сервера %1$s сеткі Tor. Гэта бяспечна, калі вы давяраеце дадзенаму дадатку.</string>
-    <string name="pref_use_persistent_notifications">Заўсёды адлюстроўваць іконку у панэлі заданняў калі Orbot падключаны</string>
-    <string name="pref_use_persistent_notifications_title">Нязменнае апавяшчэнне пра працу</string>
     <string name="pref_use_expanded_notifications">Паказаць пашыранае апавяшчэнне Tor з краінай выхаду і IP</string>
     <string name="pref_use_expanded_notifications_title">Пашыраныя апавяшчэнні</string>
     <string name="set_locale_title">Мова</string>
@@ -129,7 +121,6 @@
     <string name="start_tor_again_for_finish_the_process">Запусціце Tor ізноў для завяршэння працэсу</string>
     <string name="confirm_service_deletion">Пацверджанне выдалення службы</string>
     <string name="service_type">Тып службы</string>
-    <string name="auth_cookie">Аўтарызучыя cookie</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Калі ласка, перазапусціце Orbot для ўступу змены ў сілу</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Падзяліцца праз QR-код</string>

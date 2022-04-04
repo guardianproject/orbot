@@ -90,9 +90,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">โปรแกรมต้องการเปิดพอร์ต %1$d ที่ซ่อนอยู่ของเซิร์ฟเวอร์ให้เชื่อมกับเครือข่าย Tor การกระทำนี้ปลอดภัยถ้าคุณเชื่อถือโปรแกรมนั้น</string>
-  <string name="pref_use_persistent_notifications">แสดงไอคอนในทูลบาร์เสมอเมื่อ Orbot เชื่อมต่ออยู่</string>
-  <string name="pref_use_persistent_notifications_title">การแจ้งเตือนแบบตลอดเวลา</string>
-  <string name="pref_use_expanded_notifications">แสดงการแจ้งเตือนแบบขยายที่ระบุประเทศปลายทางและ IP ของ Tor</string>
+    <string name="pref_use_expanded_notifications">แสดงการแจ้งเตือนแบบขยายที่ระบุประเทศปลายทางและ IP ของ Tor</string>
   <string name="pref_use_expanded_notifications_title">การแจ้งเตือนแบบขยาย</string>
     <string name="set_locale_title">ภาษา</string>
   <string name="pref_disable_network_title">ไม่พบเครือข่าย พักการใช้งานอัตโนมัติ</string>
@@ -137,8 +135,7 @@
   <string name="confirm_service_deletion">ยืนยันการลบบริการ</string>
   <string name="click_again_for_backup">กดอีกครั้งเพื่อเรียกข้อมูลสำรอง</string>
   <string name="service_type">ประเภทของบริการ</string>
-  <string name="auth_cookie">คุกกี้ที่ได้รับอนุญาต</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">กรุณาเริ่ม Orbot ใหม่เพื่อให้การเปลี่ยนแปลงใช้งานได้</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">กรุณาเริ่ม Orbot ใหม่เพื่อให้การเปลี่ยนแปลงใช้งานได้</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">แชร์ในรูปแบบคิวอาร์</string>
   <string name="disable">ปิดการใช้งาน</string>

@@ -58,8 +58,7 @@
   <string name="fingerprints_nicks_countries_and_addresses_to_exclude">İxrac üçün barmaq izləri, nişanlar, ölkələr və ünvanlar</string>
   <string name="enter_exclude_nodes">İxrac Kəsişmələrini Daxil Et</string>
   <string name="strict_nodes">Kəskin Kəsişmələr</string>
-  <string name="use_only_these_specified_nodes">*Yalnız* bu xüsusi kəsişmələri istifadə et</string>
-  <string name="bridges">Körpülər</string>
+    <string name="bridges">Körpülər</string>
   <string name="use_bridges">Körpü İstifadə Et</string>
   <string name="relays">Keçidlər</string>
   <string name="relaying">Keçidləmə</string>
@@ -77,15 +76,8 @@
   <string name="enter_ports">Port daxil et</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">məhsul üçün sazlama girişi daxil et (baxmaq üçün adb və ya aLogCat istifadə etməlisən)</string>
   <string name="project_home">Layihə Evi(ləri):</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Xidməti Quraşdırma:</string>
-  <string name="tor_version">
-Tor: https://www.torproject.org</string>
-  <string name="libevent_version">
-LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="pref_use_persistent_notifications">Həmişə Orbot qoşulduğu hallarda nişanı alətlət panelində saxla</string>
-  <string name="pref_use_persistent_notifications_title">Həmişə Açıq Xəbərdarlıqlar</string>
-  <string name="pref_use_expanded_notifications">Torla birlikdə ətraflı bildirişi göstərib ölkə və IP-dən çıxın. </string>
+    <string name="pref_use_expanded_notifications">Torla birlikdə ətraflı bildirişi göstərib ölkə və IP-dən çıxın. </string>
   <string name="pref_use_expanded_notifications_title">Ətraflı bildirişlər</string>
     <string name="set_locale_title">Dil</string>
   <string name="pref_disable_network_title">Avto-Yuxu Şəbəkəsi Yoxdur</string>

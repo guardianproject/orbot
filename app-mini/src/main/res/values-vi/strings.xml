@@ -85,9 +85,7 @@
     <string name="third_party_software">Phần mềm bên thứ 3:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="pref_use_persistent_notifications">Luôn giữ thông báo trong thanh trạng thái khi Orbot được kết nối</string>
-  <string name="pref_use_persistent_notifications_title">Thông báo thường trực</string>
-  <string name="pref_use_expanded_notifications">Hiển thị thông báo mở rộng với IP và quốc gia của nút cuối (Tor exit-node)</string>
+    <string name="pref_use_expanded_notifications">Hiển thị thông báo mở rộng với IP và quốc gia của nút cuối (Tor exit-node)</string>
   <string name="pref_use_expanded_notifications_title">Thông báo mở rộng</string>
     <string name="set_locale_title">Ngôn ngữ</string>
   <string name="pref_disable_network_title">Tự động \"ngủ\" khi không có mạng</string>

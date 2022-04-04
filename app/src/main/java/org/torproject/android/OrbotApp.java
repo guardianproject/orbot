@@ -1,7 +1,6 @@
 package org.torproject.android;
 
 import android.app.Application;
-import android.content.Context;
 import android.content.res.Configuration;
 
 import org.torproject.android.core.Languages;
@@ -25,7 +24,7 @@ public class OrbotApp extends Application implements OrbotConstants {
             Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
         }
 
-        deleteDatabase("hidden_services"); // if exists remove v2 onion service data
+        deleteDatabase("hidden_services"); // if it exists, remove v2 onion service data
 
     }
 

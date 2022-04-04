@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Отпечатоци од прсти, прекари, држави и адреси кои треба да се исклучат</string>
     <string name="enter_exclude_nodes">Внесете ги исклучните јазли</string>
     <string name="strict_nodes">Задолжителни јазли</string>
-    <string name="use_only_these_specified_nodes">Користете ги *само* овие наведени јазли</string>
     <string name="bridges">Мостови</string>
     <string name="use_bridges">Користи мостови</string>
     <string name="relays">Релеи</string>
@@ -78,15 +77,8 @@
     <string name="enter_ports">Внесете порти</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">активирајте го дневникот за отстранување грешки за излез (за да се прикаже мора да се користи adb или aLogCat)</string>
     <string name="project_home">Почетна страница(и):</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Софтвер од производител од 3-та страна:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Апликација сака да отвори сокриена серверска порта %1$s кон Tor мрежата. Ова е безбедно доколку и верувате на апликацијата.</string>
-    <string name="pref_use_persistent_notifications">Секогаш чувајте ја иконата во лентата со алатки кога Orbot е поврзан</string>
-    <string name="pref_use_persistent_notifications_title">Известувања секогаш вклучени</string>
     <string name="pref_use_expanded_notifications">Прикажи проширено известување со излезната држава и IP на Tor</string>
     <string name="pref_use_expanded_notifications_title">Проширени известувања</string>
     <string name="set_locale_title">Јазик</string>
@@ -129,7 +121,6 @@
     <string name="start_tor_again_for_finish_the_process">Стартувај го Tor повторно да го заврши процесот</string>
     <string name="confirm_service_deletion">Потврди бришење на услугата</string>
     <string name="service_type">Тип на услуга</string>
-    <string name="auth_cookie">Автентично колаче</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Ве молиме стартувајте го повторно Orbot за да се овозможат промените</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Сподели како QR</string>

@@ -90,9 +90,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Aplikazio batek ezkutuko zerbitzariko %1$d ataka ireki nau du Tor sarera. Segurua da aplikazioaz fidatzen bazara.</string>
-  <string name="pref_use_persistent_notifications">Mantendu ikonoa tresna barran Orbot konektatuta dagoenean</string>
-  <string name="pref_use_persistent_notifications_title">Beti piztutako jakinarazpenak</string>
-  <string name="pref_use_expanded_notifications">Erakutsi hedatutako jakinarazpenak Tor irteera herrialde eta IP-arekin</string>
+    <string name="pref_use_expanded_notifications">Erakutsi hedatutako jakinarazpenak Tor irteera herrialde eta IP-arekin</string>
   <string name="pref_use_expanded_notifications_title">Hedatutako jakinarazpenak</string>
     <string name="set_locale_title">Hizkuntza</string>
   <string name="pref_disable_network_title">Sareko lokartze automatikorik ez</string>
@@ -137,8 +135,7 @@
   <string name="confirm_service_deletion">Berretsi zerbitzua ezabatzea</string>
   <string name="click_again_for_backup">Egin klik berriro babeskopiarako</string>
   <string name="service_type">Zerbitzu mota</string>
-  <string name="auth_cookie">Autentifikazio cookie-a</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Mesedez berrabiarazi Orbot aldaketak aktibatzeko</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Mesedez berrabiarazi Orbot aldaketak aktibatzeko</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">Partekatu QR gisa</string>
   <string name="disable">Desgaitu</string>

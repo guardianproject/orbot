@@ -58,7 +58,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Vältettävät sormenjäljet, nimimerkit, maat ja osoitteet</string>
     <string name="enter_exclude_nodes">Kirjoita vältettävät solmut</string>
     <string name="strict_nodes">Tarkat solmukohdat</string>
-    <string name="use_only_these_specified_nodes">Käytä *vain* näitä solmuja</string>
     <string name="bridges">Sillat</string>
     <string name="use_bridges">Käytä siltoja</string>
     <string name="relays">Releet</string>
@@ -77,12 +76,7 @@
     <string name="enter_ports">Kirjoita portit</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">ota käyttöön virheenjäljitysloki tulostevirtaan (käytä adb:tä tai aLogCat:ia tarkastellaksesi)</string>
     <string name="project_home">Projektin kotisivu(t):</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">3:n osapuolen ohjelmisto:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="pref_use_persistent_notifications">Pidä kuvake aina työkalupalkissa, kun Orbot on yhdistetty</string>
-    <string name="pref_use_persistent_notifications_title">Ilmoitukset aina käytössä</string>
     <string name="pref_use_expanded_notifications">Näytä laajennettu ilmoitus (Torin ulostulon maa ja IP)</string>
     <string name="pref_use_expanded_notifications_title">Laajennetut ilmoitukset</string>
     <string name="set_locale_title">Kieli</string>
@@ -114,8 +108,6 @@
     <string name="disable">Poista käytöstä</string>
     <string name="enable">Ota käyttöön</string>
     <string name="wizard_details_msg">Orbot on avoimen lähdekoodin sovellus, joka sisältää seuraavat: Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks ja LibEvent. Orbot tarjoaa paikallisen HTTP-välityspalvelimen (8118) ja SOCKS-välityspalvelimen (9050) Tor-verkkoon. Orbotilla on myös ominaisuus, rootatulla laitteella, lähettää kaikki internet-liikenne Torin kautta.</string>
-    <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
     <string name="hidden_service_request">Sovellus haluaa avata sipulipalvelimen portin %1$s Tor-verkkoon. Tämä on turvallista, jos luotat sovellukseen.</string>
     <string name="pref_http_title">Tori HTTP</string>
     <string name="pref_http_summary">Portti, jossa Tor tarjoaa HTTP-välityspalvelimen (oletus: 8118 tai 0 poistaa käytöstä)</string>
@@ -170,7 +162,6 @@
     <string name="refresh_captcha">Päivitä CAPTCHA</string>
     <string name="request_bridges">Pyydä siltoja</string>
     <string name="refresh_apps">Päivitä sovellukset</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="app_services">Sovelluspalvelut</string>
     <string name="user_services">Käyttäjäpalvelut</string>
     <string name="menu_new_identity">Uusi identiteetti</string>
@@ -192,7 +183,6 @@
     <string name="consider_enable_battery_optimizations">Harkitse virransäästöasetusten käyttöönottoa</string>
     <string name="consider_disable_battery_optimizations">Harkitse virransäästöasetusten poistamista</string>
     <string name="share_as_qr">Jaa QR-koodina</string>
-    <string name="auth_cookie">Tunnistautumiseväste</string>
     <string name="backup_port_exist">Virhe: Sipulipalvelu käyttää jo porttia %s</string>
     <string name="backup_service">Varmuuskopiopalvelu <i>( Varoitus: Tämä voi paljastaa avaimesi toisille sovelluksille )</i></string>
     <string name="v3_import_auth_private">Tuo .auth_private</string>

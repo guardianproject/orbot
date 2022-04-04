@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">排除節點的指紋、暱稱、國家或位址</string>
     <string name="enter_exclude_nodes">排除節點的條件</string>
     <string name="strict_nodes">嚴格限制節點</string>
-    <string name="use_only_these_specified_nodes">｢只｣使用這些節點</string>
     <string name="bridges">網橋（Bridges）</string>
     <string name="use_bridges">使用網橋</string>
     <string name="relays">中繼（Relays）</string>
@@ -78,15 +77,8 @@
     <string name="enter_ports">輸入埠</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">啟用除錯日並輸出 (必須使用 adb 或 aLogCat 來檢視)</string>
     <string name="project_home">專案首頁：</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">第三方軟體：</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">有一個應用要開啟隱藏的伺服器端口 %1$s 到 Tor 網路,如果信得過此應用才進行此操作</string>
-    <string name="pref_use_persistent_notifications">當 Orbot 連線成功時，總是在工具列顯示它的圖示</string>
-    <string name="pref_use_persistent_notifications_title">總是顯示連線通知</string>
     <string name="pref_use_expanded_notifications">在通知中顯示 Tor 出口點的國家和 IP</string>
     <string name="pref_use_expanded_notifications_title">詳細的通知</string>
     <string name="set_locale_title">語言</string>
@@ -129,7 +121,6 @@
     <string name="start_tor_again_for_finish_the_process">再次開啟 Tor  以完成此過程</string>
     <string name="confirm_service_deletion">確認服務刪除</string>
     <string name="service_type">服務類型</string>
-    <string name="auth_cookie">Auth cookie</string>
     <string name="please_restart_Orbot_to_enable_the_changes">請重新啟動 Orbot 來讓設定生效。</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">利用 QR 碼分享</string>

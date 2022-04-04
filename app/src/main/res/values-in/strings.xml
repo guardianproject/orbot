@@ -58,7 +58,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Pengecualian fingerprints,nama, negara dan alamat</string>
     <string name="enter_exclude_nodes">Memasuki Node Pengecualian</string>
     <string name="strict_nodes">Node Terlarang</string>
-    <string name="use_only_these_specified_nodes">Pakai *hanya* spesifik node</string>
     <string name="bridges">Bridges</string>
     <string name="use_bridges">Pakai Bridges</string>
     <string name="relays">Relays</string>
@@ -77,12 +76,7 @@
     <string name="enter_ports">Memasuki ports</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">nyalakan debug log untuk output (harus menggunakan adb atau aLogCat untuk menampilkan)</string>
     <string name="project_home">Beranda Projek:</string>
-    <string name="project_urls">https://www.torproject.org/docs/android https://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Perangkat Lunak Pihak Ke-3:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="pref_use_persistent_notifications">Selalu pelihara icon dalam toolbar ketika Orbot terhubung</string>
-    <string name="pref_use_persistent_notifications_title">Pemberitahuan Selalu-Hidup</string>
     <string name="pref_use_expanded_notifications">Tampilkan notifikasi melebar dengan negara dan IP keluar Tor</string>
     <string name="pref_use_expanded_notifications_title">Notifikasi Melebar</string>
     <string name="set_locale_title">Bahasa</string>
@@ -116,9 +110,6 @@
     <string name="pref_http_title">Tor HTTP</string>
     <string name="deny">Pangkar</string>
     <string name="allow">Izinkan</string>
-    <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
-    <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="pref_http_summary">Port yang Tor menawarkan proxy HTTP-nya (standar: 8118 atau 0 untuk mematikan)</string>
     <string name="trouble_connecting">Ada masalah saat menyambung\?</string>
     <string name="onion">.onion</string>

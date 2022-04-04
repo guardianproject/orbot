@@ -85,9 +85,7 @@
   <string name="third_party_software">Software treće strane:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
   <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="pref_use_persistent_notifications">Uvjek drži ikonu na alatnoj traci kad je Orbot spojen</string>
-  <string name="pref_use_persistent_notifications_title">Obavijesti o stalnoj pokrenutosti</string>
-  <string name="pref_use_expanded_notifications">Prikaži proširene obavijesti s Tor izlaznom državom i IP-em</string>
+    <string name="pref_use_expanded_notifications">Prikaži proširene obavijesti s Tor izlaznom državom i IP-em</string>
   <string name="pref_use_expanded_notifications_title">Proširene obavijesti</string>
   <string name="set_locale_title">Jezik</string>
   <string name="pref_disable_network_title">Nema mrežnog auto-spavanja</string>

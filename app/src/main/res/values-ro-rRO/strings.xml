@@ -58,7 +58,6 @@
     <string name="refresh_captcha">Actualizați CAPTCHA</string>
     <string name="request_bridges">Solicită poduri</string>
     <string name="refresh_apps">Aplicații de reîmprospătare</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="app_services">Servicii de aplicații</string>
     <string name="user_services">Servicii pentru utilizatori</string>
     <string name="menu_new_identity">Identitate nouă</string>
@@ -92,7 +91,6 @@
     <string name="share_as_qr">Partajați ca QR</string>
     <string name="onion">.onion</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Vă rugăm să reporniți Orbot pentru a activa modificările</string>
-    <string name="auth_cookie">Cookie de autentificare</string>
     <string name="service_type">Tipul de serviciu</string>
     <string name="confirm_service_deletion">Confirmați ștergerea serviciului</string>
     <string name="start_tor_again_for_finish_the_process">Începeți din nou Tor pentru a termina procesul</string>
@@ -155,17 +153,10 @@
     <string name="set_locale_title">Limbă</string>
     <string name="pref_use_expanded_notifications_title">Notificări extinse</string>
     <string name="pref_use_expanded_notifications">Afișați în notificare țara și adresa IP a nodului de ieșire tor, atunci când sunt disponibile</string>
-    <string name="pref_use_persistent_notifications_title">Notificări Always-On</string>
-    <string name="pref_use_persistent_notifications">Păstrați întotdeauna pictograma în bara de instrumente atunci când Orbot este conectat</string>
     <string name="deny">Refuzați</string>
     <string name="allow">Permiteți</string>
     <string name="hidden_service_request">O aplicație dorește să deschidă un server de onion pe portul %1$s în rețeaua Tor. Acest lucru este sigur dacă aveți încredere în aplicație.</string>
-    <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
-    <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
-    <string name="libevent_version">LibEvent: http://www.monkey.org/~provos/libevent/</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="third_party_software">Software de la o terță parte:</string>
-    <string name="project_urls">https://orbot.app/</string>
     <string name="project_home">Proiectul Acasă:</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Activați jurnalul de depanare la ieșire (trebuie să utilizați adb sau aLogcat pentru a vedea)</string>
     <string name="enter_ports">Introduceți porturile</string>
@@ -184,7 +175,6 @@
     <string name="relays">Relee</string>
     <string name="use_bridges">Utilizați poduri</string>
     <string name="bridges">Poduri</string>
-    <string name="use_only_these_specified_nodes">Utilizați *numai* aceste noduri specificate</string>
     <string name="strict_nodes">Noduri stricte</string>
     <string name="enter_exclude_nodes">Introduceți Noduri de excludere</string>
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Amprentele digitale, crestăturile, țările și adresele de exclus</string>

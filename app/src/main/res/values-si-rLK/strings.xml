@@ -47,7 +47,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">අත්හරින අගිලිසලකුණු, nicks, රටවල් හා ලිපිනයන්</string>
     <string name="enter_exclude_nodes">අත්හරින නොඩුඩුවලට පිවිසෙන්න</string>
     <string name="strict_nodes">දැඩි නොඩු </string>
-    <string name="use_only_these_specified_nodes">ඉහත සදහන් නොඩු *පමණක්* භාවිතා කරන්න </string>
     <string name="bridges">සේතු</string>
     <string name="use_bridges">සේතු භාවිතා කරන්න </string>
     <string name="relays">ප්‍රතියෝජකය</string>
@@ -67,8 +66,6 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">නිදොස් කිරීමේ ලොගය ප්‍රතිදානය සදහා සබල කරන්න (නැරඹීම සදහා adb or aLogCat භාවිතා කරන්න)</string>
     <string name="project_home">ව්‍යාපෘති නිවහන(න්):</string>
     <string name="third_party_software">3 වන පාර්ශව මෘදුකාංග</string>
-    <string name="pref_use_persistent_notifications">Orbot සම්බන්ධ වී ඇති සැමවිටම විට මෙවලම් තීරුවේ නිරූපකය තබාගන්න</string>
-    <string name="pref_use_persistent_notifications_title">නිවේදන ලැබීමට සලස්වන්න </string>
     <string name="set_locale_title">භාෂාව</string>
     <string name="hidden_services">සැගවුණු සේවා </string>
     <string name="menu_hidden_services">සැගවුණු සේවා </string>

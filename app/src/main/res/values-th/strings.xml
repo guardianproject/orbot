@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">ลายนิ้วมือ ชื่อเล่น ประเทศ และที่อยู่ที่ละเว้น</string>
     <string name="enter_exclude_nodes">ระบุโหนดยกเว้น</string>
     <string name="strict_nodes">โหนดเข้มงวด</string>
-    <string name="use_only_these_specified_nodes">ใช้ *เฉพาะ* โหนดที่ระบุเหล่านี้เท่านั้น</string>
     <string name="bridges">Bridges</string>
     <string name="use_bridges">ใช้งาน Bridges</string>
     <string name="relays">รีเลย์</string>
@@ -78,15 +77,8 @@
     <string name="enter_ports">ระบุพอร์ต</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">เปิดใช้งานการส่งออกบันทึกดีบั๊ก (ต้องใช้ adb หรือ aLogCat เพื่อดู)</string>
     <string name="project_home">ที่อยู่โครงการ:</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">ซอฟต์แวร์โดยผู้ผลิตอื่น:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">โปรแกรมต้องการเปิดพอร์ต %1$d ที่ซ่อนอยู่ของเซิร์ฟเวอร์ให้เชื่อมกับเครือข่าย Tor การกระทำนี้ปลอดภัยถ้าคุณเชื่อถือโปรแกรมนั้น</string>
-    <string name="pref_use_persistent_notifications">แสดงไอคอนในทูลบาร์เสมอเมื่อ Orbot เชื่อมต่ออยู่</string>
-    <string name="pref_use_persistent_notifications_title">การแจ้งเตือนแบบตลอดเวลา</string>
     <string name="pref_use_expanded_notifications">แสดงการแจ้งเตือนแบบขยายที่ระบุประเทศปลายทางและ IP ของ Tor</string>
     <string name="pref_use_expanded_notifications_title">การแจ้งเตือนแบบขยาย</string>
     <string name="set_locale_title">ภาษา</string>
@@ -129,7 +121,6 @@
     <string name="start_tor_again_for_finish_the_process">เริ่มทำงาน Tor อีกครั้งเพื่อจบกระบวนการ</string>
     <string name="confirm_service_deletion">ยืนยันการลบบริการ</string>
     <string name="service_type">ประเภทของบริการ</string>
-    <string name="auth_cookie">คุกกี้ที่ได้รับอนุญาต</string>
     <string name="please_restart_Orbot_to_enable_the_changes">กรุณาเริ่ม Orbot ใหม่เพื่อให้การเปลี่ยนแปลงใช้งานได้</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">แชร์ในรูปแบบคิวอาร์</string>
@@ -153,7 +144,6 @@
     <string name="menu_new_identity">ตัวตนใหม่</string>
     <string name="pref_prefer_ipv6_summary">บอกทางโหนดออกว่าต้องการที่อยู่ IPv6</string>
     <string name="refresh_apps">รีเฟรชแอป</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="app_services">บริการแอป</string>
     <string name="user_services">บริการผู้ใช้</string>
     <string name="pref_disable_ipv4_summary">บอกโหนดออกไม่ให้เชื่อมต่อกับที่อยู่ IPv4</string>

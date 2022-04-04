@@ -36,7 +36,6 @@ import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 import org.pcap4j.packet.IllegalRawDataException;
 import org.pcap4j.packet.IpPacket;
 import org.pcap4j.packet.IpSelector;
-import org.pcap4j.packet.Packet;
 import org.pcap4j.packet.UdpPacket;
 import org.pcap4j.packet.namednumber.IpNumber;
 import org.pcap4j.packet.namednumber.UdpPort;
@@ -45,13 +44,11 @@ import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.R;
 import org.torproject.android.service.util.Prefs;
 
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -94,23 +91,20 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
 
     public int handleIntent(VpnService.Builder builder, Intent intent) {
         if (intent != null) {
-            String action = intent.getAction();
-
+            var action = intent.getAction();
             if (action != null) {
                 if (action.equals(ACTION_START_VPN) || action.equals(ACTION_START) ) {
                     Log.d(TAG, "starting VPN");
-
                     isStarted = true;
-
-                    // Stop the previous session by interrupting the thread.
-                    //stopVPN();
-
                 } else if (action.equals(ACTION_STOP_VPN) || action.equals(ACTION_STOP)) {
                     isStarted = false;
-
                     Log.d(TAG, "stopping VPN");
-
                     stopVPN();
+
+                    //reset ports
+                    mTorSocks = -1;
+                    mTorDns = -1;
+
                 } else if (action.equals(OrbotConstants.LOCAL_ACTION_PORTS)) {
                     Log.d(TAG, "setting VPN ports");
 
@@ -126,7 +120,6 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                         mTorDns = torDns;
 
                         if (!mIsLollipop) {
-                         //   stopSocksBypass();
                             startSocksBypass();
                         }
 
@@ -135,18 +128,14 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                 }
             }
         }
-
         return Service.START_STICKY;
     }
 
     public void restartVPN (VpnService.Builder builder) {
         stopVPN();
-
         if (!mIsLollipop) {
-            //   stopSocksBypass();
             startSocksBypass();
         }
-
         setupTun2Socks(builder);
     }
 
@@ -164,9 +153,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                         Log.e(TAG, "Unable to access localhost", e);
                         throw new RuntimeException("Unable to access localhost: " + e);
                     }
-
                 }
-
 
                 if (mSocksProxyServer != null) {
                     stopSocksBypass();
@@ -200,9 +187,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
         if (mInterface != null) {
             try {
                 Log.d(TAG, "closing interface, destroying VPN interface");
-
                 IPtProxy.stopSocks();
-
                 if (fis != null) {
                     fis.close();
                     fis = null;
@@ -215,7 +200,6 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
 
                 mInterface.close();
                 mInterface = null;
-
             } catch (Exception e) {
                 Log.d(TAG, "error stopping tun2socks", e);
             } catch (Error e) {
@@ -240,25 +224,21 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
 
     private synchronized void setupTun2Socks(final VpnService.Builder builder) {
         try {
-
             final String localhost = "127.0.0.1";
             final String defaultRoute = "0.0.0.0";
             final String virtualGateway = "192.168.50.1";
 
             //    builder.setMtu(VPN_MTU);
             //   builder.addAddress(virtualGateway, 32);
-            builder.addAddress(virtualGateway, 24);
-
-            builder.addRoute(defaultRoute, 0);
-
-            builder.setSession(mService.getString(R.string.orbot_vpn));
-
+            builder.addAddress(virtualGateway, 24)
+                .addRoute(defaultRoute, 0)
+                .setSession(mService.getString(R.string.orbot_vpn))
+                .addDnsServer(FAKE_DNS) //just setting a value here so DNS is captured by TUN interface
+                .addRoute(FAKE_DNS, 32);
 
             //route all traffic through VPN (we might offer country specific exclude lists in the future)
             //    builder.addRoute(defaultRoute, 0);
 
-            builder.addDnsServer(FAKE_DNS); //just setting a value here so DNS is captured by TUN interface
-            builder.addRoute(FAKE_DNS, 32);
 
             //handle ipv6
             //builder.addAddress("fdfe:dcba:9876::1", 126);
@@ -295,12 +275,10 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
 
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(() -> {
-                //Do something after 5s
                 try {
                     startListeningToFD(localhost);
                 } catch (IOException e) {
                     Log.d(TAG, "VPN tun listening has stopped", e);
-
                 }
             }, DELAY_FD_LISTEN_MS);
 
@@ -330,17 +308,16 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
         mThreadPacket = new Thread() {
             public void run () {
 
-                byte[] buffer = new byte[32767*2]; //64k
+                var buffer = new byte[32767*2]; //64k
                 keepRunningPacket = true;
                 while (keepRunningPacket) {
                     try {
                         int pLen = fis.read(buffer); // will block on API 21+
 
                         if (pLen > 0) {
-                            byte[] pdata = Arrays.copyOf(buffer, pLen);
-                            Packet packet;
+                            var pdata = Arrays.copyOf(buffer, pLen);
                             try {
-                                packet = IpSelector.newPacket(pdata,0,pdata.length);
+                                var packet = IpSelector.newPacket(pdata,0,pdata.length);
 
                                 if (packet instanceof IpPacket) {
                                     IpPacket ipPacket = (IpPacket) packet;
@@ -349,7 +326,6 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                                     else
                                         IPtProxy.inputPacket(pdata);
                                 }
-
                             } catch (IllegalRawDataException e) {
                                 Log.e(TAG, e.getLocalizedMessage());
                             }
@@ -365,7 +341,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
 
     private static boolean isPacketDNS(IpPacket p) {
         if (p.getHeader().getProtocol() == IpNumber.UDP) {
-            UdpPacket up = (UdpPacket) p.getPayload();
+            var up = (UdpPacket) p.getPayload();
             return up.getHeader().getDstPort() == UdpPort.DOMAIN;
         }
         return false;
@@ -373,8 +349,8 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void doLollipopAppRouting(VpnService.Builder builder) throws NameNotFoundException {
-        ArrayList<TorifiedApp> apps = TorifiedApp.getApps(mService, prefs);
-        boolean perAppEnabled = false;
+        var apps = TorifiedApp.getApps(mService, prefs);
+        var perAppEnabled = false;
 
         for (TorifiedApp app : apps) {
             if (app.isTorified() && (!app.getPackageName().equals(mService.getPackageName()))) {

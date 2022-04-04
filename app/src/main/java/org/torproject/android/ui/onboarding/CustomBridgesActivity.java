@@ -9,11 +9,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -45,22 +43,7 @@ public class CustomBridgesActivity extends AppCompatActivity implements TextWatc
 
     private EditText mEtPastedBridges;
 
-    // configures an EditText we assume to be multiline and nested in a ScrollView to be independently scrollable
     @SuppressLint("ClickableViewAccessibility")
-    private static void configureMultilineEditTextInScrollView(EditText et) {
-        et.setVerticalScrollBarEnabled(true);
-        et.setOverScrollMode(View.OVER_SCROLL_ALWAYS);
-        et.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
-        et.setMovementMethod(ScrollingMovementMethod.getInstance());
-        et.setOnTouchListener((v, event) -> {
-            v.getParent().requestDisallowInterceptTouchEvent(true);
-            if ((event.getAction() & MotionEvent.ACTION_UP) != 0 && (event.getActionMasked() & MotionEvent.ACTION_UP) != 0) {
-                v.getParent().requestDisallowInterceptTouchEvent(false);
-            }
-            return false;
-        });
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +67,17 @@ public class CustomBridgesActivity extends AppCompatActivity implements TextWatc
         }
 
         mEtPastedBridges = findViewById(R.id.etPastedBridges);
-        configureMultilineEditTextInScrollView(mEtPastedBridges);
+        mEtPastedBridges.setOnTouchListener((v, event) -> {
+            if (v.hasFocus()) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                if ((event.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_SCROLL) {
+                    v.getParent().requestDisallowInterceptTouchEvent(false);
+                    return true;
+                }
+            }
+            return false;
+        });
+
         mEtPastedBridges.setText(bridges);
         mEtPastedBridges.addTextChangedListener(this);
         final IntentIntegrator integrator = new IntentIntegrator(this);

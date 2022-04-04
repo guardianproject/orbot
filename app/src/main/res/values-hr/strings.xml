@@ -58,8 +58,7 @@
   <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Otisci prstiju, nadimci, države i adrese koje ne treba uključiti</string>
   <string name="enter_exclude_nodes">Unesi Čvorove koje treba isključiti</string>
   <string name="strict_nodes">Striktni Čvorovi</string>
-  <string name="use_only_these_specified_nodes">Koristi *samo* ove navedene čvorove</string>
-  <string name="bridges">Mostovi</string>
+    <string name="bridges">Mostovi</string>
   <string name="use_bridges">Koristi Mostove</string>
   <string name="relays">Releji</string>
   <string name="relaying">Prenošenje</string>
@@ -77,13 +76,8 @@
   <string name="enter_ports">Unesi portove</string>
   <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">omogući izlaznost dnevnika o otkrivanju greške (mora koristiti adb ili aLogCat za pregled)</string>
   <string name="project_home">Dom(ovi) Projekta:</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
-  <string name="third_party_software">Software treće strane:</string>
-  <string name="tor_version">Tor: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="pref_use_persistent_notifications">Uvjek drži ikonu na alatnoj traci kad je Orbot spojen</string>
-  <string name="pref_use_persistent_notifications_title">Obavijesti o stalnoj pokrenutosti</string>
-  <string name="pref_use_expanded_notifications">Prikaži proširene obavijesti s Tor izlaznom državom i IP-em</string>
+    <string name="third_party_software">Software treće strane:</string>
+    <string name="pref_use_expanded_notifications">Prikaži proširene obavijesti s Tor izlaznom državom i IP-em</string>
   <string name="pref_use_expanded_notifications_title">Proširene obavijesti</string>
   <string name="set_locale_title">Jezik</string>
   <string name="pref_disable_network_title">Nema mrežnog auto-spavanja</string>

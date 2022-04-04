@@ -99,9 +99,6 @@
     <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
     <string name="hidden_service_request">An app wants to open onion server port %1$d to the Tor network. This is safe if you trust the app.</string>
 
-    <string name="pref_use_persistent_notifications">Always keep the icon in toolbar when Orbot is connected</string>
-    <string name="pref_use_persistent_notifications_title">Always-On Notifications</string>
-
     <string name="pref_use_expanded_notifications">Show expanded notification with Tor exit country and IP</string>
     <string name="pref_use_expanded_notifications_title">Expanded Notifications</string>
 
@@ -172,7 +169,6 @@
     <string name="confirm_service_deletion">Confirm service deletion</string>
     <string name="click_again_for_backup">Click again for backup</string>
     <string name="service_type">Service type</string>
-    <string name="auth_cookie">Auth cookie</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Please restart Orbot to enable the changes</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Share as QR</string>
@@ -206,7 +202,6 @@
 
     <string name="user_services">User services</string>
     <string name="app_services">App services</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="refresh_apps">Refresh Apps</string>
 
     <!-- Orbot Mini Strings -->

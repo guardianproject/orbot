@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Kizárandó ujjlenyomatok, becenevek, országok és címek</string>
     <string name="enter_exclude_nodes">Add meg a kizárandó csomópontokat</string>
     <string name="strict_nodes">Szigorú csomópontok</string>
-    <string name="use_only_these_specified_nodes">*Csak* ezeknek a megadott csomópontoknak a használata</string>
     <string name="bridges">Hidak</string>
     <string name="use_bridges">Hidak használata</string>
     <string name="relays">Átjátszók</string>
@@ -78,15 +77,8 @@
     <string name="enter_ports">Add meg a portokat</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">a hibakeresési napló engedélyezése a kimenetre (adb -t vagy aLogCat -t kell használni a megtekintéshez)</string>
     <string name="project_home">Projekt honlap(ok):</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">3. fél szoftver:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Egy app egy rejtett szerver portot %1$d nyitna a Tor hálózatra. Ez biztonságos, ha megbízik az appban.</string>
-    <string name="pref_use_persistent_notifications">Mindig tartsa az ikont az eszköztáron, ha az Orbot csatlakoztatva van.</string>
-    <string name="pref_use_persistent_notifications_title">Mindig-bekapcsolt értesítések</string>
     <string name="pref_use_expanded_notifications">Mutassa a bővített értesítést a Tor kilépő országgal és IP-vel</string>
     <string name="pref_use_expanded_notifications_title">Bővített értesítések</string>
     <string name="set_locale_title">Nyelv</string>
@@ -129,7 +121,6 @@
     <string name="start_tor_again_for_finish_the_process">Indítsa el a Tor-t még egyszer a befejezéshez</string>
     <string name="confirm_service_deletion">Szolgáltatás törlés jóváhagyása</string>
     <string name="service_type">Szolgáltatás típus</string>
-    <string name="auth_cookie">Azonosító süti</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Kérlek indítsd újra az Orbot-ot a változások engedélyezéséhez</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Megosztás QR-ként</string>

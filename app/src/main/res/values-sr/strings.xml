@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Отисци, надимци, државе и адресе за одстрањење</string>
     <string name="enter_exclude_nodes">Унесите чворове за одстрањење</string>
     <string name="strict_nodes">Стриктни чворови</string>
-    <string name="use_only_these_specified_nodes">Користи САМО ове наведене чворове</string>
     <string name="bridges">Мостови</string>
     <string name="use_bridges">Користи bridge</string>
     <string name="relays">Релеји</string>
@@ -78,13 +77,8 @@
     <string name="enter_ports">Унесите портове</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">омогућите debug логовоање (мора се користити adb или aLogCat да би се прегледали)</string>
     <string name="project_home">Почетна за пројекте:</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Софтвер од стране неслужбених издавача:</string>
-    <string name="tor_version">Toр: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="hidden_service_request">Апликација жели да отвори сакривен порт%1$s на серверу за Тор мрежу. Ово је сигуран потез уколико верујете апликацији.</string>
-    <string name="pref_use_persistent_notifications">Увек прикажи икону у тулбару када је Орбот конектован</string>
-    <string name="pref_use_persistent_notifications_title">Стално укључене нотификације</string>
     <string name="pref_use_expanded_notifications">Прикажи опширно обавештење Тор излаза државе и IP-ја</string>
     <string name="pref_use_expanded_notifications_title">Опширно Обавештење</string>
     <string name="set_locale_title">Језик</string>

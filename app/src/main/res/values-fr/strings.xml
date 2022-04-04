@@ -37,7 +37,7 @@
   <string name="pref_allow_background_starts_summary">Laissez n’importe quelle appli dire à Orbot de démarrer Tor et les services connexes</string>
     <string name="pref_proxy_title">Mandataire pour le réseau sortant (facultatif)</string>
   <string name="pref_proxy_type_title">Type de mandataire sortant</string>
-  <string name="pref_proxy_type_summary">Protocole à utiliser pour le mandataire : HTTP, HTTPS, Socks4, Socks5</string>
+  <string name="pref_proxy_type_summary">Protocole à utiliser pour le mandataire : HTTP, HTTPS, SOCKS4, SOCKS5</string>
   <string name="pref_proxy_type_dialog">Saisir le type de mandataire</string>
   <string name="pref_proxy_host_title">Hôte du mandataire sortant</string>
   <string name="pref_proxy_host_summary">Nom d’hôte du mandataire</string>
@@ -59,8 +59,7 @@
   <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Empreintes, pseudos, pays et adresses à exclure</string>
   <string name="enter_exclude_nodes">Saisir les nœuds à exclure</string>
   <string name="strict_nodes">Nœuds stricts</string>
-  <string name="use_only_these_specified_nodes">Utiliser *uniquement * ces nœuds spécifiés</string>
-  <string name="bridges">Ponts</string>
+    <string name="bridges">Ponts</string>
   <string name="use_bridges">Utiliser des ponts</string>
   <string name="relays">Relais</string>
   <string name="relaying">Relais</string>
@@ -78,16 +77,9 @@
   <string name="enter_ports">Saisir les ports</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">activer le journal de débogage vers la sortie (vous devez utiliser adb ou aLogCat pour le visualiser)</string>
   <string name="project_home">Page(s) d’accueil du projet :</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Logiciels tiers :</string>
-  <string name="tor_version">Tor : https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.21 : http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8 : https://github.com/Yawning/obfs4</string>
-  <string name="openssl_version">OpenSSL v1.0.2j : http://www.openssl.org</string>
   <string name="hidden_service_request">Une appli veut ouvrir le port %1$d du serveur caché au réseau Tor. Cela est sécuritaire si vous faites confiance à l’appli.</string>
-  <string name="pref_use_persistent_notifications">Toujours conserver l’icône dans la barre des tâches quand Orbot est connecté.</string>
-  <string name="pref_use_persistent_notifications_title">Notifications toujours actives</string>
-  <string name="pref_use_expanded_notifications">Montrer des notifications étendues avec le pays de sortie de Tor et l’IP</string>
+    <string name="pref_use_expanded_notifications">Montrer des notifications étendues avec le pays de sortie de Tor et l’IP</string>
   <string name="pref_use_expanded_notifications_title">Notifications étendues</string>
     <string name="set_locale_title">Langue</string>
   <string name="pref_disable_network_title">Pas de mise en veille automatique du réseau</string>
@@ -129,8 +121,7 @@
   <string name="start_tor_again_for_finish_the_process">Redémarrer Tor pour terminer le processus</string>
   <string name="confirm_service_deletion">Confirmer la suppression du service</string>
     <string name="service_type">Type de service</string>
-  <string name="auth_cookie">Témoin auth</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Veuillez redémarrer Orbot pour activer les changements</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Veuillez redémarrer Orbot pour activer les changements</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">Partager comme code QR</string>
   <string name="disable">Désactiver</string>

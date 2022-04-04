@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Ampar luk\'an chimpunaka, ñanqha sutinaka, markanaka, chiqawjanaka, jan Tor llikar mantayañataki</string>
     <string name="enter_exclude_nodes">Puriñawjanak uñanuqut qillqantam</string>
     <string name="strict_nodes">Sum uñjat puriñawjanaka</string>
-    <string name="use_only_these_specified_nodes">Aka sutiñchat puriñawjanakak apnaqam</string>
     <string name="bridges">Jalakipañanaka</string>
     <string name="use_bridges">Jalakipañanak apnaqaña</string>
     <string name="relays">Ch\'iqiyirinaka</string>
@@ -78,15 +77,8 @@
     <string name="enter_ports">Apayañ thakhinak qillqantam</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">imatanak ajllirañ qhantayaña (uñjañatakix adb jan ukax aLogCat apnaqañamawa)</string>
     <string name="project_home">Nayrïr uñsta janja:</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">3ar jaljat-Software </string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Imantat apayañ thakhinak Tor llikar mä wakichäwiw jist\'arañ muni %1$s. Wakichawitix uñt\'atachixa, iyaw sama.</string>
-    <string name="pref_use_persistent_notifications">Orbot aqtatäki ukjax chimpup uñstayañapuni</string>
-    <string name="pref_use_persistent_notifications_title">Yatiyäwinakax purinipuniniwa</string>
     <string name="pref_use_expanded_notifications">Kawkja markans IP ukamp Toramp  uñstani uka yatiyäw juk\'amp uñacht\'ayaña</string>
     <string name="pref_use_expanded_notifications_title">Phuqhat yatiyäwinaka</string>
     <string name="set_locale_title">Aru</string>
@@ -129,7 +121,6 @@
     <string name="start_tor_again_for_finish_the_process">Tukuyañatakix Tor mayamp naktayam</string>
     <string name="confirm_service_deletion">Lurañanakax pichsutäniwa</string>
     <string name="service_type">Kunayman lurañanaka</string>
-    <string name="auth_cookie">Chiqat k\'arich uk katjir cookie</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Mayjt\'ayatanak aqtayañatak Orbot mayamp qhant\'ayam, amp suma</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">QRjam ch\'iqiyaña</string>

@@ -90,9 +90,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Κάποια εφαρμογή προσπαθεί να ανοίξει την κρυφή θύρα διακομιστή %1$dστο δίκτυο Tor. Πρόκειται για ασφαλή ενέργεια, εφόσον γνωρίζετε την εφαρμογή.</string>
-  <string name="pref_use_persistent_notifications">Να διατηρείται πάντοτε το εικονίδιο στην γραμμή εργαλείων όταν το Orbot συνδέεται</string>
-  <string name="pref_use_persistent_notifications_title">Ειδοποιήσεις διαρκούς σύνδεσης</string>
-  <string name="pref_use_expanded_notifications">Εμφάνιση εκτεταμένης ειδοποίησης με τη χώρα εξόδου του Tor και τη διεύθυνση IP</string>
+    <string name="pref_use_expanded_notifications">Εμφάνιση εκτεταμένης ειδοποίησης με τη χώρα εξόδου του Tor και τη διεύθυνση IP</string>
   <string name="pref_use_expanded_notifications_title">Επεκταμένες Ειδοποιήσεις</string>
     <string name="set_locale_title">Γλώσσα </string>
   <string name="pref_disable_network_title">Χωρίς Αυτόματη Αναστολή Δικτύου</string>
@@ -137,8 +135,7 @@
   <string name="confirm_service_deletion">Επιβεβαίωση διαγραφής υπηρεσίας</string>
   <string name="click_again_for_backup">Πατήστε ξανά για το αντίγραφο ασφαλείας</string>
   <string name="service_type">Τύπος υπηρεσίας</string>
-  <string name="auth_cookie">Αναγνωριστικό cookie</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Παρακαλούμε επανεκκινήστε το Orbot για να ενεργοποιήσετε τις αλλαγές</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Παρακαλούμε επανεκκινήστε το Orbot για να ενεργοποιήσετε τις αλλαγές</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">Κοινοποίηση ως QR</string>
   <string name="disable">Απενεργοποίηση</string>

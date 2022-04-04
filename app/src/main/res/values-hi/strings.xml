@@ -60,7 +60,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">फ़िंगरप्रिंट, निकल्स, देश और पते को बाहर करने के लिए</string>
     <string name="enter_exclude_nodes">बहिष्कृत नोड्स दर्ज करें</string>
     <string name="strict_nodes">सख्त नोड्स</string>
-    <string name="use_only_these_specified_nodes">* केवल * इन निर्दिष्ट नोड्स का उपयोग करें</string>
     <string name="bridges">पुल</string>
     <string name="use_bridges">पुल का उपयोग करें</string>
     <string name="relays">रिले</string>
@@ -79,15 +78,8 @@
     <string name="enter_ports">बंदरगाहों को दर्ज करें</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">डीबग लॉग आउटपुट को सक्षम करें (देखने के लिए एडीबी या एओॉगटैट का उपयोग करना चाहिए)</string>
     <string name="project_home">प्रोजेक्ट होम(एस)::</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">तृतीय-पक्ष-सॉफ़्टवेयर:</string>
-    <string name="tor_version">तोर : https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">एक ऐप Tor नेटवर्क पर %1$sछिपा सर्वर पोर्ट खोलना चाहता है। यदि आप ऐप पर विश्वास करते हैं, तो यह सुरक्षित है</string>
-    <string name="pref_use_persistent_notifications">ऑरबोट कनेक्ट होने पर टूलबार में हमेशा आइकन रखें</string>
-    <string name="pref_use_persistent_notifications_title">हमेशा की सूचनाएं</string>
     <string name="pref_use_expanded_notifications">तोर एग्जिट देश और आईपी के साथ विस्तारित सूचना दिखाएं</string>
     <string name="pref_use_expanded_notifications_title">विस्तारित सूचनाएं</string>
     <string name="set_locale_title">भाषा</string>
@@ -130,7 +122,6 @@
     <string name="start_tor_again_for_finish_the_process">प्रक्रिया को खत्म करने के लिए Tor पुन: प्रारंभ करें</string>
     <string name="confirm_service_deletion">सेवा हटाने की पुष्टि करें</string>
     <string name="service_type">सेवा प्रकार</string>
-    <string name="auth_cookie">Auth कुकी</string>
     <string name="please_restart_Orbot_to_enable_the_changes">परिवर्तन सक्षम करने के लिए Orbot पुनः प्रारंभ करें</string>
     <string name="onion">.अनियन </string>
     <string name="share_as_qr">QR के रूप में शेयर करें</string>
@@ -152,7 +143,6 @@
     <string name="full_device_vpn">पूर्ण डिवाइस VPN</string>
     <string name="vpn_disabled">वीपीएन अक्षम किया गया</string>
     <string name="refresh_apps">रीफ्रेश ऐप्स</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="app_services">ऐप सेवाएं</string>
     <string name="user_services">उपयोगकर्ता सेवाएँ</string>
     <string name="menu_new_identity">नई पहचान</string>

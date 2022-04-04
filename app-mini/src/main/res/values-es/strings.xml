@@ -91,9 +91,7 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Una aplicación quiere abrir el puerto %1$d de servidor oculto a la red Tor. Esto es seguro si confía en la aplicación.</string>
-  <string name="pref_use_persistent_notifications">Mantener siempre el icono de Orbot en la barra de tareas cuando esté conectado</string>
-  <string name="pref_use_persistent_notifications_title">Notificaciones siempre activadas</string>
-  <string name="pref_use_expanded_notifications">Mostrar notificación expandida con el país de salida de Tor y la IP</string>
+    <string name="pref_use_expanded_notifications">Mostrar notificación expandida con el país de salida de Tor y la IP</string>
   <string name="pref_use_expanded_notifications_title">Notificaciones expandidas</string>
     <string name="set_locale_title">Idioma</string>
   <string name="pref_disable_network_title">Sin suspensión-automática de la red</string>
@@ -138,8 +136,7 @@ direcciones (o rangos). No prevalecen sobre las configuraciones de exclusión de
   <string name="confirm_service_deletion">Confirme el borrado del servicio</string>
   <string name="click_again_for_backup">Pulse de nuevo para realizar copia de seguridad</string>
   <string name="service_type">Tipo de servicio</string>
-  <string name="auth_cookie">Cookie de autentificación</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Por favor, reinicie Orbot para habilitar los cambios</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Por favor, reinicie Orbot para habilitar los cambios</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">Compartir como QR</string>
   <string name="disable">Deshabilitar</string>

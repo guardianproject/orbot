@@ -90,9 +90,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Um aplicativo precisa abrir uma porta tipo servidor escondida %1$dpara a Rede Tor. Isso é seguro se você confiar nesta aplicação.</string>
-  <string name="pref_use_persistent_notifications">Sempre manter o ícone na barra de tarefas quando o Orbot está conectado</string>
-  <string name="pref_use_persistent_notifications_title">Notificações Sempre Ligadas</string>
-  <string name="pref_use_expanded_notifications">Mostrar notificação expandida com Tor país de saída e IP</string>
+    <string name="pref_use_expanded_notifications">Mostrar notificação expandida com Tor país de saída e IP</string>
   <string name="pref_use_expanded_notifications_title">Notificações Expandidas</string>
     <string name="set_locale_title">Idioma</string>
   <string name="pref_disable_network_title">Modo de espera automático</string>
@@ -136,8 +134,7 @@
   <string name="confirm_service_deletion">Confirmar a remoção do serviço</string>
   <string name="click_again_for_backup">Clique novamente para backup</string>
   <string name="service_type">Tipo do Serviço</string>
-  <string name="auth_cookie">Cookie de autenticação</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Por favor reinicie Orbot para habilitar as mundanças</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Por favor reinicie Orbot para habilitar as mundanças</string>
   <string name="share_as_qr">Compartilhar como QR</string>
   <string name="disable">Desabilitar</string>
   <string name="enable">Ativar</string>

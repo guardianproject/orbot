@@ -58,7 +58,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Otisky (fingerprints), přezdívky serveru (nicks), státy a adresy pro vyloučené nody</string>
     <string name="enter_exclude_nodes">Zadejte nody k vyloučení</string>
     <string name="strict_nodes">Striktní nody</string>
-    <string name="use_only_these_specified_nodes">Použít *pouze* tyto specifické nody</string>
     <string name="bridges">Bridge</string>
     <string name="use_bridges">Použít bridge</string>
     <string name="relays">Relé</string>
@@ -78,10 +77,6 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">umožnit ladicí informace na výstup (musí používat adb nebo aLogCat k prohlížení)</string>
     <string name="project_home">Domovské(á) umístění projektu</string>
     <string name="third_party_software">Software třetích stran:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="pref_use_persistent_notifications">Vždy zobrazit ikonu ve stavovém řádku, pokud je Orbot připojen.</string>
-    <string name="pref_use_persistent_notifications_title">Notifikace vždy zapnuté</string>
     <string name="pref_use_expanded_notifications">Zobrazit rozšířené oznánemí s Tor výstupní zemí a IP</string>
     <string name="pref_use_expanded_notifications_title">Rozšířené oznámení</string>
     <string name="set_locale_title">Jazyk</string>

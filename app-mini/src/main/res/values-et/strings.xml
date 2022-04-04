@@ -78,8 +78,6 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">lubage väljastatav silumislogi (vaatamiseks peab kasutama kas adb või aLogCat utiliite) </string>
   <string name="project_home">Projekti kodu(d):</string>
     <string name="third_party_software">Kolmanda osapoole tarkvara:</string>
-  <string name="pref_use_persistent_notifications">Ühendatud Orbot korral näidata katkematult ikoonide tööriistariba</string>
-  <string name="pref_use_persistent_notifications_title">Pidevalt kuvatavad teated</string>
     <string name="pref_disable_network_title">Pole võrgu auto-und</string>
   <string name="pref_disable_network_summary">Pane Tor magama kui Internetiühendus puudub</string>
   <string name="newnym">Lülitusite uuele Tor identiteedile!</string>

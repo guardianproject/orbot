@@ -90,9 +90,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Bir uygulama Tor ağına %1$d gizli sunucu kapısını açmak istiyor. Uygulamaya güveniyorsanız bu işlem güvenlidir.</string>
-  <string name="pref_use_persistent_notifications">Orbot bağlı olduğu sürece simge araç çubuğunda görüntülensin</string>
-  <string name="pref_use_persistent_notifications_title">Bildirimler Her Zaman Açık</string>
-  <string name="pref_use_expanded_notifications">Tor çıkış ülkesi ve IP adresi ile ilgili ayrıntılı bildirim görüntülensin</string>
+    <string name="pref_use_expanded_notifications">Tor çıkış ülkesi ve IP adresi ile ilgili ayrıntılı bildirim görüntülensin</string>
   <string name="pref_use_expanded_notifications_title">Ayrıntılı Bildirimler</string>
   <string name="set_locale_title">Dil</string>
   <string name="pref_disable_network_title">Bağlantı Olmadığında Otomatik Uyku</string>
@@ -137,8 +135,7 @@
   <string name="confirm_service_deletion">Hizmeti Silmeyi Onayla</string>
   <string name="click_again_for_backup">Yedeklemek için yeniden tıklayın</string>
   <string name="service_type">Hizmet Türü</string>
-  <string name="auth_cookie">Kimlik Doğrulama Çerezi</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Değişiklikleri etkinleştirmek için Orbot uygulamasını yeniden başlatın</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Değişiklikleri etkinleştirmek için Orbot uygulamasını yeniden başlatın</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">QR Olarak Paylaş</string>
   <string name="disable">Devre Dışı Bırak</string>

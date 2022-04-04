@@ -58,7 +58,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Dấu theo dõi, biệt hiệu, quốc gia và địa chỉ để loại trừ</string>
     <string name="enter_exclude_nodes">Nhập vào những nút để loại trừ</string>
     <string name="strict_nodes">Nút chỉ định</string>
-    <string name="use_only_these_specified_nodes">*Chỉ* dùng những nút được liệt kê</string>
     <string name="bridges">Bridge</string>
     <string name="use_bridges">Dùng bridge</string>
     <string name="relays">Relay</string>
@@ -77,12 +76,7 @@
     <string name="enter_ports">Nhập số cổng</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Kích hoạt nhật ký gỡ lỗi ở đầu ra (phải dùng adb hoặc aLogCat để xem)</string>
     <string name="project_home">Trang chủ dự án:</string>
-    <string name="project_urls">https://orbot.app/</string>
     <string name="third_party_software">Phần mềm bên thứ 3:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="pref_use_persistent_notifications">Luôn giữ thông báo trong thanh trạng thái khi Orbot được kết nối</string>
-    <string name="pref_use_persistent_notifications_title">Thông báo thường trực</string>
     <string name="pref_use_expanded_notifications">Hiển thị thông báo mở rộng với IP và quốc gia của nút cuối (Tor exit-node)</string>
     <string name="pref_use_expanded_notifications_title">Thông báo mở rộng</string>
     <string name="set_locale_title">Ngôn ngữ</string>
@@ -117,8 +111,6 @@
     <string name="deny">Từ chối</string>
     <string name="allow">Cho phép</string>
     <string name="hidden_service_request">Một ứng dụng muốn mở máy chủ onion ở cổng %1$s vào mạng Tor. Việc này là an toàn nếu bạn tin tưởng ứng dụng đó.</string>
-    <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
-    <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
     <string name="wizard_details_msg">Orbot là một ứng dụng mã nguồn mở chứa Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, LibEvent. Nó cung cấp một proxy HTTP cục bộ (8118) và một proxy SOCKS (9050) vào mạng Tor.</string>
     <string name="be_a_snowflake_desc">Cho phép những người dùng Tor khác kết nối đến Tor qua thiết bị của bạn</string>
     <string name="be_a_snowflake_title">Chạy proxy Snowflake</string>
@@ -152,7 +144,6 @@
     <string name="consider_disable_battery_optimizations">Hãy cân nhắc việc tắt tối ưu hoá pin</string>
     <string name="share_as_qr">Chia sẻ dưới dạng QR</string>
     <string name="onion">.onion</string>
-    <string name="auth_cookie">Cookie xác thực</string>
     <string name="service_type">Loại dịch vụ</string>
     <string name="confirm_service_deletion">Xác nhận xoá dịch vụ</string>
     <string name="start_tor_again_for_finish_the_process">Khởi động lại Tor để hoàn tất quá trình</string>
@@ -182,7 +173,6 @@
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
     <string name="refresh_apps">Làm mới các ứng dụng</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="app_services">Dịch vụ ứng dụng</string>
     <string name="user_services">Dịch vụ người dùng</string>
     <string name="menu_new_identity">Danh tính mới</string>

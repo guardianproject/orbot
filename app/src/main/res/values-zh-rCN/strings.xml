@@ -58,7 +58,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">排除的密钥指纹、昵称、国家与地址</string>
     <string name="enter_exclude_nodes">输入排除节点</string>
     <string name="strict_nodes">限制节点</string>
-    <string name="use_only_these_specified_nodes">仅使用这些指定节点</string>
     <string name="bridges">网桥</string>
     <string name="use_bridges">使用网桥</string>
     <string name="relays">中继</string>
@@ -77,12 +76,7 @@
     <string name="enter_ports">输入端口</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">启用调试日志输出（必须使用 adb 或 aLogCat 查看）</string>
     <string name="project_home">项目主页(们)：</string>
-    <string name="project_urls">https://orbot.app/</string>
     <string name="third_party_software">第三方软件：</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="pref_use_persistent_notifications">Orbot 连接后始终在通知栏显示图标</string>
-    <string name="pref_use_persistent_notifications_title">始终显示通知</string>
     <string name="pref_use_expanded_notifications">当可用时，在通知中显示 tor 出口节点的国家和 IP 地址</string>
     <string name="pref_use_expanded_notifications_title">扩展的通知</string>
     <string name="set_locale_title">语言</string>
@@ -110,8 +104,6 @@
     <string name="name">名称</string>
     <string name="please_restart_Orbot_to_enable_the_changes">请重启 Orbot 以使变更生效</string>
     <string name="wizard_details_msg">Orbot是一个开源应用程序，包含Tor、IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks,LibEvent。它为Tor网络提供了一个本地HTTP代理(8118)和一个SOCKS代理(9050)。Orbot还能在获取根权限的设备上通过Tor发送所有的网络流量。</string>
-    <string name="obfsproxy_version">Obfs4proxy 项目仓库: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL 网站: http://www.openssl.org</string>
     <string name="pref_open_proxy_on_all_interfaces_title">在所有接口上打开代理</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">允许连接到同一Wi-Fi、局域网设备和任何其他可以连接到你的IP的人访问Tor</string>
     <string name="pref_http_title">Tor HTTP</string>
@@ -143,7 +135,6 @@
     <string name="trouble_connecting">连接时遇到问题？</string>
     <string name="full_device_vpn">全设备 VPN</string>
     <string name="vpn_disabled">VPN 已禁用</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="pref_isolate_dest_summary">对每个目标地址使用不同的回路</string>
     <string name="refresh_apps">刷新应用程序</string>
     <string name="app_services">应用服务</string>
@@ -156,7 +147,6 @@
     <string name="pref_reduced_connection_padding">减少了连接填充量</string>
     <string name="pref_connection_padding_summary">始终启用连接填充来防御某些形式的流量分析。默认值：自动</string>
     <string name="pref_isolate_dest">隔离目标地址</string>
-    <string name="auth_cookie">认证 cookie</string>
     <string name="create_a_backup_first">先建立一个备份</string>
     <string name="onion_port">洋葱端口</string>
     <string name="menu_hidden_services">洋葱服务</string>

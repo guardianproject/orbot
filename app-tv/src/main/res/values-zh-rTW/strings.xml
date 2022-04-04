@@ -90,9 +90,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">有一個應用要開啟隱藏的伺服器端口 %1$d 到 Tor 網路,如果信得過此應用才進行此操作</string>
-  <string name="pref_use_persistent_notifications">當 Orbot 連線成功時，總是在工具列顯示它的圖示</string>
-  <string name="pref_use_persistent_notifications_title">總是顯示連線通知</string>
-  <string name="pref_use_expanded_notifications">在通知中顯示 Tor 出口點的國家和 IP</string>
+    <string name="pref_use_expanded_notifications">在通知中顯示 Tor 出口點的國家和 IP</string>
   <string name="pref_use_expanded_notifications_title">詳細的通知</string>
     <string name="set_locale_title">語言</string>
   <string name="pref_disable_network_title">無網路時自動休眠</string>
@@ -137,8 +135,7 @@
   <string name="confirm_service_deletion">確認服務刪除</string>
   <string name="click_again_for_backup">再次點選以進行備份</string>
   <string name="service_type">服務類型</string>
-  <string name="auth_cookie">Auth cookie</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">請重新啟動 Orbot 來讓設定生效。</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">請重新啟動 Orbot 來讓設定生效。</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">利用 QR 碼分享</string>
   <string name="disable">關閉</string>

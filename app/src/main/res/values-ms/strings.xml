@@ -44,8 +44,7 @@
   <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Cap jari, nama samaran, negara dan alamat untuk dikeluarkan</string>
   <string name="enter_exclude_nodes">Masukkan Nod Keluar</string>
   <string name="strict_nodes">Nod Ketat</string>
-  <string name="use_only_these_specified_nodes">Guna *hanya* nod-nod ini</string>
-  <string name="bridges">Jambatan</string>
+    <string name="bridges">Jambatan</string>
   <string name="use_bridges">Guna Jambatan</string>
   <string name="relays">Relays</string>
   <string name="relaying">Relaying</string>
@@ -63,10 +62,7 @@
   <string name="enter_ports">Masukkan port</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">benarkan log debug pada output (mesti guna adb atau aLogCat untuk lihat)</string>
   <string name="project_home">Rumah Projek(s):</string>
-  <string name="project_urls">https://www.torproject.org/docs/android⏎ https://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">3rd-Party-Software: </string>
-  <string name="pref_use_persistent_notifications">Sentiasa biar ikon pada toolbar apabila Orbot bersambung</string>
-  <string name="pref_use_persistent_notifications_title">Sentiasa On Notifikasi</string>
     <string name="set_locale_title">Tetapan Tempatan</string>
     <string name="save">Simpan</string>
   <string name="name">Nama</string>

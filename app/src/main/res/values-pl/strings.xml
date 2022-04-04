@@ -58,7 +58,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Odciski palców, nicki, państwa i adresy do wykluczenia</string>
     <string name="enter_exclude_nodes">Wprowadź Wykluczone Węzły</string>
     <string name="strict_nodes">Ścisłe węzły</string>
-    <string name="use_only_these_specified_nodes">Użyj *tylko* tych określonych węzłów</string>
     <string name="bridges">Mostki</string>
     <string name="use_bridges">Użyj mostków</string>
     <string name="relays">Przekaźniki</string>
@@ -77,12 +76,7 @@
     <string name="enter_ports">Wpisz porty</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">włącz zdebugowany log do wydajności (musisz używać adb lub aLogCat, by go zobaczyć)</string>
     <string name="project_home">Strony domowe projektu:</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Oprogramowanie innych firm:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="pref_use_persistent_notifications">Zawsze trzymaj ikonę w pasku powiadomień gdy Orbot jest połączony</string>
-    <string name="pref_use_persistent_notifications_title">Powiadomienia zawsze aktywne</string>
     <string name="pref_use_expanded_notifications">Pokaż rozszerzone powiadomienie z krajem Tor exit node oraz jego IP</string>
     <string name="pref_use_expanded_notifications_title">Rozszerzone Powiadomienia</string>
     <string name="set_locale_title">Język</string>
@@ -123,8 +117,6 @@
     <string name="vpn_default_world">Globalny (automatyczny)</string>
     <string name="onion_port">Port Cebulowy</string>
     <string name="delete_service">Usuń usługę</string>
-    <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
-    <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
     <string name="consider_disable_battery_optimizations">Rozważ wyłączenie optymalizacji baterii</string>
     <string name="share_as_qr">Udostępnij jako QR</string>
     <string name="onion">.onion</string>
@@ -137,7 +129,6 @@
     <string name="backup_saved_at_external_storage">Kopia zapasowa zapisywana w pamięci zewnętrznej</string>
     <string name="backup_service">Usługa tworzenia kopii zapasowych</string>
     <string name="hidden_service_request">Aplikacja chce otworzyć port serwera cebulowego %1$s do sieci Tor. Jest to bezpieczne, jeśli zaufasz aplikacji.</string>
-    <string name="auth_cookie">Autoryzacja cookie</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jeśli twoja sieć komórkowa aktywnie blokuje Tor, możesz użyć „Serwer mostkowy” jako alternatywnego sposobu wejścia. Wybierz jedną z opcji, aby skonfigurować i przetestować …</string>
     <string name="wizard_details_msg">Orbot to aplikacja typu open source, która zawiera Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks i LibEvent. Zapewnia lokalny serwer proxy HTTP (8118) i serwer proxy SOCKS (9050) do sieci Tor. Orbot ma również możliwość, na zrootowanym urządzeniu, wysyłania całego ruchu internetowego przez Tor.</string>
     <string name="refresh_apps">Odśwież aplikacje</string>
@@ -160,7 +151,6 @@
     <string name="consider_enable_battery_optimizations">Rozważ wyłączenie optymalizacji baterii</string>
     <string name="pref_connection_padding">Wypełnienie połączenia</string>
     <string name="pref_connection_padding_summary">Zawsze włącza wypełnienie połączenia, aby chronić się przed niektórymi formami analizy ruchu. Domyślnie: auto</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Zezwalaj urządzeniom w tej samej sieci Wi-Fi, podłączonym do twojego hotspotu Wi-Fi i innym, którzy mogą połączyć się z twoim adresem IP, na dostęp do Tor</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>

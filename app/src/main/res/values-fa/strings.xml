@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">اثرانگشت‌ها، اسامی مستعار، کشورها و نشانی‌هایی که نباید استفاده شوند</string>
     <string name="enter_exclude_nodes">گره‌های مستثنی را وارد نمایید</string>
     <string name="strict_nodes">گره‌های محدود</string>
-    <string name="use_only_these_specified_nodes">استفاده *فقط* از گره‌های مشخص شده</string>
     <string name="bridges">پل‌ها</string>
     <string name="use_bridges">استفاده از پل‌ها</string>
     <string name="relays">بازپخش کننده‌ها</string>
@@ -78,15 +77,8 @@
     <string name="enter_ports">درگاه‌ها را وارد کنید</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">ثبت گزارش اشکال زدایی را به خروجی فعال کن (برای نمایش باید از adb یا aLogCat استفاده کنید)</string>
     <string name="project_home">خانهٔ پروژه:</string>
-    <string name="project_urls">https://orbot.app</string>
     <string name="third_party_software">نرم‌افزارهای شخص ثالث:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
     <string name="hidden_service_request">کاره‌ای می‌خواهد کارساز پیازی روی درگاه %1$s را به شبکهٔ تور بگشاید. اگر به برنامه اطمینان دارید، امن است.</string>
-    <string name="pref_use_persistent_notifications">نگه‌داری همیشگی نقشک در نوار ابزار هنگام وصل بودن روبات پیازی</string>
-    <string name="pref_use_persistent_notifications_title">آگاهی‌های همیشه روشن</string>
     <string name="pref_use_expanded_notifications">نمایش کشور و نشانی آی‌پی گره خروجی تورتان در آگاهی هنگام موحود بودن</string>
     <string name="pref_use_expanded_notifications_title">آگاهی‌های گسترده</string>
     <string name="set_locale_title">زبان</string>
@@ -129,7 +121,6 @@
     <string name="start_tor_again_for_finish_the_process">برای پایان فرآیند، دوباره تور را آغاز کنید</string>
     <string name="confirm_service_deletion">حذف خدمت را تأیید کنید</string>
     <string name="service_type">گونهٔ خدمت</string>
-    <string name="auth_cookie">کوکی Auth</string>
     <string name="please_restart_Orbot_to_enable_the_changes">برای به‌کار انداختن تغییرات، ربات پیازی را مجدداً شروع کنید</string>
     <string name="onion">‪.onion‬</string>
     <string name="share_as_qr">هم‌رسانی با کیوآر کد</string>
@@ -165,8 +156,8 @@
     <string name="kibibyte">کی‌ب</string>
     <string name="version">نگارش:</string>
     <string name="license">پروانه:</string>
-    <string name="v3_hosted_services">خدمات پیازی نگارش ۳ میزبانی شده</string>
-    <string name="v3_client_auth_activity_title">تأیید هویت کارخواه نگارش ۳</string>
+    <string name="v3_hosted_services">خدمات پیازی میزبانی شده</string>
+    <string name="v3_client_auth_activity_title">تأیید هویت کارخواه</string>
     <string name="confirm">تأیید</string>
     <string name="v3_backup_name_hint">نام پروندهٔ پشتیبان…</string>
     <string name="v3_import_auth_private">درون‌ریزی ‎.auth_private</string>
@@ -189,7 +180,6 @@
     <string name="testing_tor_direct_success">پیروزی. اتّصال تور خوب است!</string>
     <string name="testing_tor_direct">آزمون اتّصال به تور…</string>
     <string name="pref_disable_ipv4_summary">اعلام وصل نشدن به نشانی‌های IPv4 به خروجی‌ها</string>
-    <string name="default_socks_http">ساکس: - اچ‌تی‌تی‌پی: -</string>
     <string name="pref_reduced_circuit_padding">فاصله‌گذاری مدار کاهش‌یافته</string>
     <string name="pref_reduced_circuit_padding_summary">استفاده از الگوریتم‌های فاصله‌گذاری با سربار پایین‌تر برای کاهش مصرف باتری و داده</string>
     <string name="be_a_snowflake_title_limit">محدودیت‌های پیشکار اسنوفلیک</string>

@@ -82,8 +82,6 @@
   <string name="project_home">Projekt hjemmeside(r):</string>
     <string name="third_party_software">Tredjeparts-software:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
-  <string name="pref_use_persistent_notifications">Vis altid ikonet i statuslinien når Orbot er forbundet til netværket</string>
-  <string name="pref_use_persistent_notifications_title">Vis altid notifikationer</string>
     <string name="set_locale_title">Sprog</string>
     <string name="kb">KB</string>
   <string name="mb">MB</string>

@@ -3,8 +3,9 @@ package org.torproject.android.service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.text.TextUtils;
+
+import androidx.core.content.ContextCompat;
 
 import org.torproject.android.service.util.Prefs;
 
@@ -19,16 +20,12 @@ public class StartTorReceiver extends BroadcastReceiver implements OrbotConstant
         if (TextUtils.equals(action, ACTION_START)) {
             String packageName = intent.getStringExtra(EXTRA_PACKAGE_NAME);
             if (Prefs.allowBackgroundStarts()) {
-                Intent startTorIntent = new Intent(context, OrbotService.class);
-                startTorIntent.setAction(action);
+                Intent startTorIntent = new Intent(context, OrbotService.class)
+                        .setAction(action);
                 if (packageName != null) {
                     startTorIntent.putExtra(OrbotService.EXTRA_PACKAGE_NAME, packageName);
                 }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && Prefs.persistNotifications()) {
-                    context.startForegroundService(startTorIntent);
-                } else {
-                    context.startService(startTorIntent);
-                }
+                ContextCompat.startForegroundService(context, startTorIntent);
             } else if (!TextUtils.isEmpty(packageName)) {
                 // let the requesting app know that the user has disabled
                 // starting via Intent

@@ -64,7 +64,6 @@ android {
                 project(':intentintegrator'),
                 project(':orbotservice'),
                 libs.android_material,
-                libs.android_snowfall,
                 libs.android_volley,
                 libs.androidx_localbroadcast,
                 libs.apl_appintro,

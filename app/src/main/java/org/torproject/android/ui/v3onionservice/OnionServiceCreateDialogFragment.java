@@ -35,7 +35,6 @@ public class OnionServiceCreateDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_hs_data_dialog, null);
-        dialogView.findViewById(R.id.hsAuth).setVisibility(View.GONE);
         etServer = dialogView.findViewById(R.id.hsName);
         etLocalPort = dialogView.findViewById(R.id.hsLocalPort);
         etOnionPort = dialogView.findViewById(R.id.hsOnionPort);

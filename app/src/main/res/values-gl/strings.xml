@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Huellas, alias, países e direccións a excluír</string>
     <string name="enter_exclude_nodes">Introduza Nodos Excluídos</string>
     <string name="strict_nodes">Nodos Estritos</string>
-    <string name="use_only_these_specified_nodes">Usar *só* este nodos específicos</string>
     <string name="bridges">Pontes</string>
     <string name="use_bridges">Usar Pontes</string>
     <string name="relays">Reenvíos</string>
@@ -78,15 +77,8 @@
     <string name="enter_ports">Inserir portos</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">habilitar rexistro de depuración na saída (debe usar adb ou aLogCat para ver)</string>
     <string name="project_home">Páxina(s) de Inicio do Proxecto:</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Software de Terceiros:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Unha aplicación quere abrir o porto oculto de servidor %1$s a rede Tor. Esto é seguro se vostede confía na app.</string>
-    <string name="pref_use_persistent_notifications">Mostrar sempre a icona na barra de ferramentas cando Orbot estea conectado</string>
-    <string name="pref_use_persistent_notifications_title">Notificacións Sempre Acesas</string>
     <string name="pref_use_expanded_notifications">Mostar notificación extendida co país de saída de Tor e IP</string>
     <string name="pref_use_expanded_notifications_title">Notificacións extendidas</string>
     <string name="set_locale_title">Idioma</string>
@@ -129,7 +121,6 @@
     <string name="start_tor_again_for_finish_the_process">Inicie Tor de novo para rematar o proceso</string>
     <string name="confirm_service_deletion">Confirme a eliminación do servizo</string>
     <string name="service_type">Tipo de servizo</string>
-    <string name="auth_cookie">Testemuño de autorización</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Por favor, reinicie Orbot para activar os cambios</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Compartir como QR</string>

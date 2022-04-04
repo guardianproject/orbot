@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Αποτυπώματα, ψευδώνυμα, χώρες και διευθύνσεις προς εξαίρεση</string>
     <string name="enter_exclude_nodes">Εισάγετε Εξαιρετέους κόμβους</string>
     <string name="strict_nodes">Αποκλειστικοί κόμβοι</string>
-    <string name="use_only_these_specified_nodes">Χρήση *μόνον* αυτών των συγκεκριμένων κόμβων</string>
     <string name="bridges">Γέφυρες</string>
     <string name="use_bridges">Χρήση γεφυρών</string>
     <string name="relays">Αναμεταδότες</string>
@@ -78,15 +77,8 @@
     <string name="enter_ports">Εισάγετε θύρες</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">ενεργοποίηση καταγραφών αποσφαλμάτωσης (για την προβολή τους απαιτείται χρήση adb ή aLogCat)</string>
     <string name="project_home">Ιστοσελίδες του έργου:</string>
-    <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Λογισμικό τρίτων:</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Κάποια εφαρμογή προσπαθεί να ανοίξει την κρυφή θύρα διακομιστή %1$s dστο δίκτυο Tor. Πρόκειται για ασφαλή ενέργεια, εφόσον γνωρίζετε την εφαρμογή.</string>
-    <string name="pref_use_persistent_notifications">Να διατηρείται πάντοτε το εικονίδιο στην γραμμή εργαλείων όταν το Orbot συνδέεται</string>
-    <string name="pref_use_persistent_notifications_title">Ειδοποιήσεις διαρκούς σύνδεσης</string>
     <string name="pref_use_expanded_notifications">Εμφάνιση εκτεταμένης ειδοποίησης με τη χώρα εξόδου του Tor και τη διεύθυνση IP</string>
     <string name="pref_use_expanded_notifications_title">Επεκταμένες Ειδοποιήσεις</string>
     <string name="set_locale_title">Γλώσσα </string>
@@ -129,7 +121,6 @@
     <string name="start_tor_again_for_finish_the_process">Έναρξη ξανά τού Tor για τον τερματισμό της ενέργειας</string>
     <string name="confirm_service_deletion">Επιβεβαίωση διαγραφής υπηρεσίας</string>
     <string name="service_type">Τύπος υπηρεσίας</string>
-    <string name="auth_cookie">Αναγνωριστικό cookie</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Παρακαλούμε επανεκκινήστε το Orbot για να ενεργοποιήσετε τις αλλαγές</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Κοινοποίηση ως QR</string>

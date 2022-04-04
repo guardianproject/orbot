@@ -90,9 +90,7 @@
   <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
   <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
   <string name="hidden_service_request">Апликација сака да отвори сокриена серверска порта %1$d кон Tor мрежата. Ова е безбедно доколку и верувате на апликацијата.</string>
-  <string name="pref_use_persistent_notifications">Секогаш чувајте ја иконата во лентата со алатки кога Orbot е поврзан</string>
-  <string name="pref_use_persistent_notifications_title">Известувања секогаш вклучени</string>
-  <string name="pref_use_expanded_notifications">Прикажи проширено известување со излезната држава и IP на Tor</string>
+    <string name="pref_use_expanded_notifications">Прикажи проширено известување со излезната држава и IP на Tor</string>
   <string name="pref_use_expanded_notifications_title">Проширени известувања</string>
   <string name="set_locale_title">Јазик</string>
   <string name="pref_disable_network_title">Нема Автоматско-спиење на мрежата</string>
@@ -137,8 +135,7 @@
   <string name="confirm_service_deletion">Потврди бришење на услугата</string>
   <string name="click_again_for_backup">Кликни повторно за резервна копија</string>
   <string name="service_type">Тип на услуга</string>
-  <string name="auth_cookie">Автентично колаче</string>
-  <string name="please_restart_Orbot_to_enable_the_changes">Ве молиме стартувајте го повторно Orbot за да се овозможат промените</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Ве молиме стартувајте го повторно Orbot за да се овозможат промените</string>
   <string name="onion">.onion</string>
   <string name="share_as_qr">Сподели како QR</string>
   <string name="disable">Оневозможи</string>

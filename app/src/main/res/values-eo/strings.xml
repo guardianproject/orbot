@@ -48,8 +48,7 @@
     <string name="exit_nodes">Finnodoj</string>
   <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Fingrospuroj, kaŝnomoj, landoj kaj adresoj por la lasta hopo</string>
   <string name="enter_exit_nodes">Entajpu finnofojn</string>
-  <string name="use_only_these_specified_nodes">Uzi *nur* tiujn ĉi nodojn</string>
-  <string name="bridges">Pontoj</string>
+    <string name="bridges">Pontoj</string>
   <string name="use_bridges">Uzi Pontojn</string>
     <string name="enter_or_port">Entajpu OR-pordon</string>
   <string name="relay_nickname">Kaŝnomo de la relajso</string>

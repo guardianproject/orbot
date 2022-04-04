@@ -20,12 +20,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <com.jetradarmobile.snowfall.SnowfallView
-                android:id="@+id/snowflake_view"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
@@ -110,7 +104,7 @@
                     android:gravity="center"
                     android:lines="1"
                     android:maxLines="1"
-                    android:text="@string/default_socks_http"
+                    android:text="@string/ports_not_set"
                     android:textSize="14sp" />
 
                 <LinearLayout
@@ -199,8 +193,7 @@
                             android:layout_margin="3dp"
                             android:fontFamily="sans-serif-light"
                             android:gravity="center_vertical"
-                            android:lines="1"
-                            android:text="0" />
+                            android:lines="1"/>
                     </LinearLayout>
 
 
@@ -231,8 +224,7 @@
                             android:layout_margin="3dp"
                             android:fontFamily="sans-serif-light"
                             android:gravity="center_vertical"
-                            android:lines="1"
-                            android:text="0" />
+                            android:lines="1"/>
 
                     </LinearLayout>
 

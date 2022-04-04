@@ -55,8 +55,7 @@
   <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Fingerprints, nicks, mga bansa at mga address na hindi isasama</string>
   <string name="enter_exclude_nodes">Enter Exclude Nodes</string>
   <string name="strict_nodes">Strict Nodes</string>
-  <string name="use_only_these_specified_nodes">Gumamit ng *only* sa mga ispesipikong nodes </string>
-  <string name="bridges">Bridges</string>
+    <string name="bridges">Bridges</string>
   <string name="use_bridges">Gumamit ng Bridges</string>
   <string name="relays">Relays</string>
   <string name="relaying">Relaying</string>
@@ -74,14 +73,8 @@
   <string name="enter_ports">I-lagay ang ports</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">paganahiin ang debug log para sa output (kailangang gamitin ang adb o aLogCat para makita)</string>
   <string name="project_home">Project Home(s):</string>
-  <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/
-</string>
     <string name="third_party_software">3rd-Party-Software:</string>
-  <string name="tor_version">Tor: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-  <string name="pref_use_persistent_notifications">Palaging panatilihin ang icon sa toolbar kapag ang Orbot ay naka-connect</string>
-  <string name="pref_use_persistent_notifications_title">Palaging i-On ang Notifications</string>
-  <string name="pref_use_expanded_notifications">Ipakita ang pinalaking notification kasama ng Tor exit country at IP</string>
+    <string name="pref_use_expanded_notifications">Ipakita ang pinalaking notification kasama ng Tor exit country at IP</string>
   <string name="pref_use_expanded_notifications_title">Pinalawak na Notifications</string>
     <string name="set_locale_title">Wika</string>
   <string name="pref_disable_network_title">Walang Auto-Sleep sa Network</string>

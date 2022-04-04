@@ -17,13 +17,6 @@
         <CheckBoxPreference
             android:defaultValue="true"
             android:enabled="true"
-            android:key="pref_persistent_notifications"
-            android:summary="@string/pref_use_persistent_notifications"
-            android:title="@string/pref_use_persistent_notifications_title" />
-
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:enabled="true"
             android:key="pref_expanded_notifications"
             android:summary="@string/pref_use_expanded_notifications"
             android:title="@string/pref_use_expanded_notifications_title" />
@@ -65,7 +58,7 @@
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="pref_strict_nodes"
-            android:summary="@string/use_only_these_specified_nodes"
+            android:summary="@string/strict_nodes_description"
             android:title="@string/strict_nodes" />
 
     </PreferenceCategory>

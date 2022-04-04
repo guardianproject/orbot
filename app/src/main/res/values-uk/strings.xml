@@ -59,7 +59,6 @@
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Відбитки, ніки, країни та адреси на виключення</string>
     <string name="enter_exclude_nodes">Введіть виключені вузли</string>
     <string name="strict_nodes">Точні вузли</string>
-    <string name="use_only_these_specified_nodes">Використовувати *лише* ці вказані вузли</string>
     <string name="bridges">Мости</string>
     <string name="use_bridges">Використовувати мости</string>
     <string name="relays">Ретранслятори</string>
@@ -78,15 +77,8 @@
     <string name="enter_ports">Введіть порти</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Увімкнути вивід журналу зневадження (потрібно використовувати adb або aLogCat для перегляду)</string>
     <string name="project_home">Домівка проєкту:</string>
-    <string name="project_urls">https://orbot.app/</string>
     <string name="third_party_software">Програми сторонніх розробників: </string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">Obfs4proxy v0.0.8: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">OpenSSL v1.0.2j: http://www.openssl.org</string>
     <string name="hidden_service_request">Застосунок хоче відкрити сервер onion на порту %1$s до мережі Tor. Це безпечно, якщо ви довіряєте застосунку.</string>
-    <string name="pref_use_persistent_notifications">Завжди показувати піктограму на панелі інструментів коли Orbot підʼєднано</string>
-    <string name="pref_use_persistent_notifications_title">Постійне сповіщення про роботу</string>
     <string name="pref_use_expanded_notifications">Показ, за наявності, країни та IP-адреси вузла виходу tor у сповіщенні</string>
     <string name="pref_use_expanded_notifications_title">Розгорнуті сповіщення</string>
     <string name="set_locale_title">Мова</string>
@@ -129,7 +121,6 @@
     <string name="start_tor_again_for_finish_the_process">Запустіть Tor знову для завершення процесу</string>
     <string name="confirm_service_deletion">Підтвердьте видалення служби</string>
     <string name="service_type">Тип служби</string>
-    <string name="auth_cookie">Куки авторизації</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Перезапустіть Orbot, щоб застосувати зміни</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Поділитися через QR-код</string>
@@ -162,7 +153,6 @@
     <string name="menu_new_identity">Нова особа</string>
     <string name="user_services">Служби користувача</string>
     <string name="app_services">Служби застосунків</string>
-    <string name="default_socks_http">SOCKS: - HTTP: -</string>
     <string name="refresh_apps">Оновити застосунки</string>
     <string name="bridge_snowflake">Підʼєднатися через інших користувачів Tor за допомогою Snowflake (Метод1 - Швидкий)</string>
     <string name="use_qr_code">Використовувати QR-код</string>
@@ -211,4 +201,5 @@
     <string name="snowflake_proxy_pref_category">Проксі Snowflake (експериментально)</string>
     <string name="snowflake_proxy_msg_description">Показувати повідомлення, коли snowflake допомагає комусь обійти цензуру</string>
     <string name="bridge_snowflake_amp">Підʼєднатися через інших користувачів Tor за допомогою Snowflake (Метод 2 - AMP)</string>
+    <string name="strict_nodes_description">Розгляд параметрів виключення вузлів як вимоги для побудови всіх схем. Це може порушити функціональність, якщо жодна схема не може бути згенерована з параметрами виключення вузлів.</string>
 </resources>

@@ -39,9 +39,6 @@
     <string name="main_layout_upload">আপলোড</string>
     <string name="status_shutting_down">টর সার্ভিস বন্ধ করা হচ্ছে</string>
     <string name="status_activated">টর নেটওয়ার্কের সাথে সংযুক্ত হয়েছে</string>
-    <string name="project_urls">https://www.torproject.org/docs/android
-\nhttps://guardianproject.info/apps/orbot/</string>
-    <string name="tor_version">Tor: https://www.torproject.org</string>
     <string name="project_home">প্রকল্প স্থান:</string>
     <string name="enter_ports">পোর্ট সংখ্যা দাও</string>
     <string name="relay_nickname">রিলে ডাক নাম</string>
@@ -64,10 +61,6 @@
     <string name="third_party_software">৩য় পক্ষের সফ্‌টওয়্যার:</string>
     <string name="reachable_addresses">পৌছানোযোগ্য ঠিকানা</string>
     <string name="reachable_ports">পৌছানোযোগ্য পোর্ট</string>
-    <string name="libevent_version">লিব-ইভেন্ট: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfsproxy_version">অবিএফএস৪প্রক্সি: https://github.com/Yawning/obfs4</string>
-    <string name="openssl_version">ওপেনএসএসএল(OpenSSL): https://www.openssl.org</string>
-    <string name="pref_use_persistent_notifications_title">সর্বদা চালু বিজ্ঞপ্তি</string>
     <string name="pref_use_expanded_notifications_title">বিস্তৃত বিজ্ঞপ্তি</string>
     <string name="pref_socks_title">টর সক্‌স</string>
     <string name="pref_http_title">টর এইচটিটিপি</string>
@@ -93,5 +86,4 @@
     <string name="menu_new_identity">নতুন পরিচয়</string>
     <string name="user_services">ব্যবহারকারী সেবা</string>
     <string name="app_services">অ্যাপ সেবা</string>
-    <string name="auth_cookie">অথ কুকি</string>
 </resources>

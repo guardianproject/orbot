@@ -4,14 +4,12 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@color/dark_purple"
-    >
+    android:background="@color/dark_purple">
 
     <TextView
         android:id="@+id/custom_slide_big_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
         android:textColor="@color/panel_background_main"
         android:gravity="center"
         android:layout_margin="12dp"
@@ -21,14 +19,12 @@
         android:id="@+id/custom_slide_big_text_sub"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
         android:textColor="@color/panel_background_main"
         android:gravity="center"
         android:layout_margin="12dp"
         android:textStyle="bold"
         android:textSize="16sp"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/custom_slide_button"
@@ -37,7 +33,5 @@
         android:layout_margin="10dp"
         android:background="@drawable/round_drawable"
         android:textColor="@color/panel_background_main"
-        android:visibility="gone"
-
-        />
+        android:visibility="gone" />
 </LinearLayout>
