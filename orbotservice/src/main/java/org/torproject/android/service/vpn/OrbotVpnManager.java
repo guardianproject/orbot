@@ -100,6 +100,11 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                     isStarted = false;
                     Log.d(TAG, "stopping VPN");
                     stopVPN();
+
+                    //reset ports
+                    mTorSocks = -1;
+                    mTorDns = -1;
+
                 } else if (action.equals(OrbotConstants.LOCAL_ACTION_PORTS)) {
                     Log.d(TAG, "setting VPN ports");
 
