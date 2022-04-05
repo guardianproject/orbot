@@ -154,5 +154,6 @@ public interface OrbotConstants {
     };
 
     String SNOWFLAKE_EMOJI = "❄️";
+    String SNOWFLAKE_PROXY_EMOJI = "\uD83D\uDCF2";
 
 }

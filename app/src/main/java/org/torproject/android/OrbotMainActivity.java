@@ -751,7 +751,9 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                     var status = getString(R.string.status_activated);
                     if (IPtProxy.isSnowflakeProxyRunning()) {
-                        status += "\n" + getString(R.string.snowflake_proxy_enabled);
+                        status += "\n" + getString(R.string.snowflake_proxy_enabled)
+                                + " (" + Prefs.getSnowflakesServed()+ " " + SNOWFLAKE_PROXY_EMOJI + ")";
+
                     }
                     lblStatus.setText(status);
                     setTitleForSnowflakeProxy();
