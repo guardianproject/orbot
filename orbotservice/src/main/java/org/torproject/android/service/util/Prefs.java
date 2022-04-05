@@ -26,6 +26,7 @@ public class Prefs {
 
     private final static String PREF_HOST_ONION_SERVICES = "pref_host_onionservices";
 
+    private final static String PREF_SNOWFLAKES_SERVED_COUNT = "pref_snowflakes_served";
 
     private static SharedPreferences prefs;
 
@@ -36,6 +37,10 @@ public class Prefs {
 
     private static void putBoolean(String key, boolean value) {
         prefs.edit().putBoolean(key, value).apply();
+    }
+
+    private static void putInt(String key, int value) {
+        prefs.edit().putInt(key, value).apply();
     }
 
     private static void putString(String key, String value) {
@@ -134,5 +139,11 @@ public class Prefs {
 
     public static SharedPreferences getSharedPrefs(Context context) {
         return context.getSharedPreferences(OrbotConstants.PREF_TOR_SHARED_PREFS, Context.MODE_MULTI_PROCESS);
+    }
+
+    public static int getSnowflakesServed () { return prefs.getInt(PREF_SNOWFLAKES_SERVED_COUNT,0);}
+
+    public static void addSnowflakeServed () {
+        putInt(PREF_SNOWFLAKES_SERVED_COUNT,getSnowflakesServed()+1);
     }
 }

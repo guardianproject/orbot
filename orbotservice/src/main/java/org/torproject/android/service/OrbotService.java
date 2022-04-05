@@ -351,6 +351,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var unsafeLogging = false;
         IPtProxy.startSnowflakeProxy(capacity, null, null, null, null, null, keepLocalAddresses, unsafeLogging, () -> {
             snowflakeClientsConnected++;
+            Prefs.addSnowflakeServed();
             if (!Prefs.showSnowflakeProxyMessage()) return;
             var  message = String.format(getString(R.string.snowflake_proxy_client_connected_msg), SNOWFLAKE_EMOJI, SNOWFLAKE_EMOJI);
             new Handler(getMainLooper()).post(() -> Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show());
@@ -454,7 +455,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             logNotice(getString(R.string.couldn_t_start_tor_process_) + " " + e.getClass().getSimpleName());
         }
 
-        snowflakeClientsConnected = 0;
+        snowflakeClientsConnected = Prefs.getSnowflakesServed();
 
         Log.i("OrbotService", "onCreate end");
     }
