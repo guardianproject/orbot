@@ -1,3 +1,77 @@
+/** 16.6.1-RC-1-tor.0.4.6.10 5 Apr 2022 **/
+
+2b72c062 (HEAD -> master) update to 1661300100
+97a0e95b (origin/master, origin/HEAD) add additional display of snowflake proxy info
+b55d599f persist number of snowflakes served across restarts
+ff2fdefb Merge branch 'master' of github.com:guardianproject/orbot
+377a2064 Merge branch 'status_reworking'
+7c80fb53 (status_reworking) reset local port values when the VPN is stopped
+3441ca24 Merge pull request #655 from weblate/weblate-guardianproject-orbot
+71a2183c Translated using Weblate (German)
+5b0a1541 Translated using Weblate (German)
+ee18cba8 Merge pull request #654 from weblate/weblate-guardianproject-orbot
+0453c34d Translated using Weblate (German)
+2b889a8c Translated using Weblate (German)
+243f3c02 Translated using Weblate (German)
+3f3e7b12 Translated using Weblate (German)
+68867757 Merge pull request #653 from weblate/weblate-guardianproject-orbot
+9a08ca13 Translated using Weblate (Bulgarian)
+022512c3 (origin/status_reworking) notifications are good here too
+ce366f7c set status textview to tor binary version when OFF
+aa215a1b Clear ports UI when tor stops, one string for no ports set, dont translate it
+07379a2a Remove old school onion32 graphic users rarely/never see
+092d88a7 Keep Orbot notification alive unless user closes app
+97cda892 More cleanups; stopping UI logic works; I think this is ready for merging now
+f659af02 Removed vestigial REQUEST_START_TOR intent filter and an old v2 onion serivce intent filter
+74c9fe68 Ensure UI is updated to reflect status on boot
+22a6a262 code cleanups from this work, also swithced hardcoded english strings to res
+d18c6a49 Notification has its own local action to start tor, before we started things twice
+4285e8fc Fix bug where user quits Obrot and notification dis and reappaears before finally leaving
+fb850f94 Initial work; OrbotService uses status in TorService...- still working out kinks
+ec5a414a remove badvpn from orbot license
+62e242e3 Merge pull request #649 from guardianproject/always_persist_service
+de5ba0f9 No longer need this boolean flag in OrbotService
+c5596178 remove now obsolete string resources
+b4b5190d remove persist preference, use contextcompat to start service
+83e636f8 remove dummy activity, it just wastes CPU cycles on Android 8+
+23dc507f Merge pull request #651 from weblate/weblate-guardianproject-orbot
+7bf7ab75 Translated using Weblate (Ukrainian)
+077bff85 Merge pull request #650 from weblate/weblate-guardianproject-orbot
+8a03a865 Translated using Weblate (Turkish)
+95887a1d Translated using Weblate (Portuguese (Brazil))
+cf3b4ce9 Translated using Weblate (Persian)
+091a9d1c more
+5d2158a9 don't show tor starting event type in notification, just more user friendly messag
+9197134d java clean
+a3ec2302 removed unused v2 auth cookie resource
+563b90b7 Merge branch 'master' of https://github.com/guardianproject/orbot
+4f621222 Up to date project URLs in app; new string resources use translatable:false so transiflex doesn't translate URLs and ultimatley so that when these things change it'll effect all locales
+62722f42 Merge pull request #648 from weblate/weblate-guardianproject-orbot
+0098acde Fixed hosted services UI not fitting on screen in French + probably other nonenglish locales
+eda28b26 fix SOCKS spelling in canadian french strings
+a6c9a4b1 More subtle UI for running a snowflake proxy
+374c443b Translated using Weblate (Spanish)
+cd8d3ebd bug partially related to #637, #638 some intents are logging as unahndled when they are infact handled
+9b574033 Revert "status intent was misconfigured, probably related to #637 and #638"
+6e7c15a6 status intent was misconfigured, probably related to #637 and #638
+0dde1a1c more unused icons from main app
+9ff00524 Duplicate icons removed from main app, service icons in proper placce in orbotservice
+a337e5cd removed incorrect nested resource dir structure in orbotservice
+64ff52d7 more unused pngs safely gone
+b577fa8b Remove menu PNGs orbot hasn't used in about a decade
+5f7cfe5a Revert "removed unused pngs, hardcoded text"
+7a9492fc removed new bulgarian string translations for resources orbot no longer uses
+66cf4723 cleanup dimens.xml
+df852d61 removed unused pngs, hardcoded text
+3659e940 Closes #644 - you can select all + copy bridge configs
+597bfec0 Closes #630 incorrect StrictNodes description, thanks tla
+22835d6e Collate countries in spinner by default locale so accent marks are taken into account when sorting
+ed9cd3bc more readability, less nesting
+d0cd27ba misc src comments
+5dcdb8d9 Revert "closes #643 adds portugal to spinner"
+08c45f52 closes #643 adds portugal to spinner
+3acf336e remove dnsjava library in favor of just read/write datagrams for #640
+
 
 /** 16.6.0-RC-1-tor.0.4.6.9 16 Feb 2022 **/
 
