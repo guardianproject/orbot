@@ -112,7 +112,7 @@
     <string name="name">Name</string>
     <string name="done">Fertig!</string>
     <string name="copy_address_to_clipboard">Adresse in die Zwischenablage kopieren</string>
-    <string name="backup_service">Dienst sichern <i>(Warnung: Dadurch könnte Ihre Dienstkonfiguration anderen Apps zugänglich gemacht werden)</i></string>
+    <string name="backup_service">Sicherungsdienst <i>(Warnung: Dadurch könnte Ihre Dienstkonfiguration anderen Apps zugänglich gemacht werden)</i></string>
     <string name="delete_service">Dienst löschen</string>
     <string name="backup_saved_at_external_storage">Sicherung auf externem Speicher abgelegt</string>
     <string name="backup_restored">Sicherung wiederhergestellt</string>
