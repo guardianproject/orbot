@@ -4,7 +4,7 @@
     <string name="app_description">روبات پیازی، یک کارهٔ پیشکار آزاد است که دیگر کاره‌ها را در استفاده امن از اینترنت توانمند می‌کند . روبات پیازی برای رمزگذاری شدآمد اینترنتتان و نهفتنش با عبور از میان دنباله‌ای از رایانه‌ها در سراسر جهان، از تور استفاده می‌کند. تور نرم‌افزار آزاد و شبکه‌ای باز است که به شما در برابر شکلی از نظارت شبکه با نام تجزیهٔ شدآمد که محرمانگی و آزادی فردی، فعّالیت‌های تجاری محرمانه و امنیت ملی را تهدید می‌کند، یاری می‌رساند.</string>
     <string name="status_starting_up">روبات پیازی در حال آغاز است…</string>
     <string name="status_activated">وصل شده به شبکهٔ تور</string>
-    <string name="status_shutting_down">خدمت تور در حال خاموش شدن است</string>
+    <string name="status_shutting_down">اوربات در حال خاموش شدن است</string>
     <string name="menu_settings">تنظیمات</string>
     <string name="menu_log">گزارش</string>
     <string name="menu_start">آغاز</string>
@@ -188,7 +188,7 @@
     <string name="use_qr_code">استفاده از رمز QR</string>
     <string name="paste_bridges">چسباندن پل‌ها</string>
     <string name="configure_custom_bridges">پیکربندی پل‌های سفارشی</string>
-    <string formatted="true" name="snowflake_proxy_enabled">حالت پیشکار اسنوفلیک به کار افتاده</string>
+    <string formatted="true" name="snowflake_proxy_enabled">پیشکار اسنوفلیک به کار افتاده</string>
     <string name="pref_prefer_ipv6_summary">اعلام ترجیح نشانی‌های IPv6 به خروجی‌ها</string>
     <string name="refresh_captcha">نوسازی کپچا</string>
     <string name="request_bridges">درخواست پل</string>
