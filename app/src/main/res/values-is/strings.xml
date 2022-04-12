@@ -4,7 +4,7 @@
     <string name="app_description">Orbot er frjálst og ókeypis milliþjónsforrit (proxy) sem gerir öðrum forritum kleift að nota veraldarvefinn á öruggari hátt. Orbot notar Tor til að dulkóða umferð þína á netinu og felur hana svo með að hoppa í gegnum fjölda tölva um allan heim. Tor er frjáls hugbúnaður og opið net sem aðstoðar þig við að verjast eftirliti á netinu sem vinnur gegn frelsi einkalífsins og friðhelgi; vinnur gegn viðkvæmum viðskiptamálum og samböndum og þeirri tegund ríkisöryggis sem þekkt er sem umferðargreining.</string>
     <string name="status_starting_up">Orbot er að ræsa…</string>
     <string name="status_activated">Tengdur við Tor netið</string>
-    <string name="status_shutting_down">TorService er að slökkva á sér</string>
+    <string name="status_shutting_down">Orbot er að slökkva á sér</string>
     <string name="menu_settings">Stillingar</string>
     <string name="menu_log">Atvikaskráning</string>
     <string name="menu_start">Ræsa</string>
@@ -188,11 +188,11 @@
     <string name="v3_backup_key">Auðkennislykill öryggisafrits biðlara</string>
     <string name="v3_onion">v3 .onion lén</string>
     <string name="v3_key_hash">x25519 einkalykill í Base 32</string>
-    <string name="v3_client_auth_activity_title">v3 auðkenning biðlara</string>
-    <string name="v3_hosted_services">Hýstar v3 onion-þjónustur</string>
+    <string name="v3_client_auth_activity_title">Auðkenning biðlara</string>
+    <string name="v3_hosted_services">Hýstar onion-þjónustur</string>
     <string name="deny">Hafna</string>
     <string name="allow">Leyfa</string>
-    <string name="snowflake_proxy_enabled">Snowflake milliþjónustuhamur virkur</string>
+    <string name="snowflake_proxy_enabled">Snowflake milliþjónusta virkjuð</string>
     <string name="be_a_snowflake_desc_limit">Aðeins þegar tækið er tengt við rafmagn og á Wi-Fi neti</string>
     <string name="be_a_snowflake_title_limit">Takmörk Snowflake-milliþjóns</string>
     <string name="version">Útgáfa:</string>
