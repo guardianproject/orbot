@@ -4,7 +4,7 @@
     <string name="app_description">Orbot — це вільний застосунок для проксі-з\'єднань, який дає можливість іншим застосункам безпечніше використовувати інтернет-з\'єднання. Orbot використовує Tor для шифрування інтернет-трафіку, який далі приховується під час пересилання через кілька комп\'ютерів у різних частинах планети. Tor — вільне програмне забезпечення та відкрита мережа, котра допомагає захиститися від мережевого стеження, яке загрожує особистій свободі та приватному життю, конфіденційній бізнес-діяльності й контактам, а також від державної програми безпеки, яка відома як аналіз трафіку.</string>
     <string name="status_starting_up">Запуск Orbot…</string>
     <string name="status_activated">Під\'єднано до мережі Tor</string>
-    <string name="status_shutting_down">Служби Tor вимикаються</string>
+    <string name="status_shutting_down">Orbot вимикаються</string>
     <string name="menu_settings">Налаштування</string>
     <string name="menu_log">Журнал</string>
     <string name="menu_start">Запустити</string>
@@ -194,7 +194,7 @@
     <string name="backup_port_exist">Помилка: служба Onion вже використовує порт %s</string>
     <string name="be_a_snowflake_desc_limit">Лише якщо пристрій заряджається і під\'єднаний до мережі Wi-Fi</string>
     <string name="be_a_snowflake_title_limit">Обмеження проксі Snowflake</string>
-    <string name="snowflake_proxy_enabled">Режим проксі Snowflake увімкнено</string>
+    <string name="snowflake_proxy_enabled">Проксі Snowflake увімкнено</string>
     <string name="version">Версія:</string>
     <string name="license">Ліцензія:</string>
     <string name="snowflake_proxy_msg_title">Показувати сповіщення про з’єднання</string>
