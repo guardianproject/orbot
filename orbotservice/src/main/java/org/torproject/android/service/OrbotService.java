@@ -745,16 +745,15 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
                 if (conn != null) {
                     try {
+                        initControlConnection();
                         conn.addRawEventListener(mOrbotRawEventListener);
                         conn.authenticate(new byte[0]);
+                        logNotice(getString(R.string.log_notice_connected_to_tor_control_port));
                         conn.setEvents(events);
                         logNotice(getString(R.string.log_notice_added_event_handler));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
-
-                    initControlConnection();
                 }
             }
 
@@ -796,16 +795,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     private void initControlConnection() {
         if (conn != null) {
-
-            /* todo this is a kludge workaround for a bug in tor-android where sometimes TorService
-                gets stuck waiting for a lock... this will at least update the app to the starting
-                state so users can stop and then restart orbot
-
-                see: https://github.com/guardianproject/tor-android/issues/67
-             */
-            var localStartingStatus = new Intent(LOCAL_ACTION_STATUS).putExtra(EXTRA_STATUS, STATUS_STARTING);
-            LocalBroadcastManager.getInstance(this).sendBroadcast(localStartingStatus);
-            logNotice(getString(R.string.log_notice_connected_to_tor_control_port));
             try {
                 String confSocks = conn.getInfo("net/listeners/socks");
                 StringTokenizer st = new StringTokenizer(confSocks, " ");
