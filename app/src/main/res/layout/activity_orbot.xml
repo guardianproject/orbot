@@ -85,7 +85,7 @@
 
             />
 
-        w<TextView
+        <TextView
             android:id="@+id/tvConfigure"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

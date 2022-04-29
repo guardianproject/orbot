@@ -9,7 +9,6 @@ import android.content.res.ColorStateList
 import android.net.VpnService
 import android.os.Build
 import android.os.Bundle
-import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.TextAppearanceSpan
 import android.view.Gravity
@@ -38,7 +37,8 @@ import org.torproject.android.ui.v3onionservice.OnionServiceActivity
 import org.torproject.android.ui.v3onionservice.PermissionManager
 import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity
 import org.torproject.android.ui.volunteer.VolunteerModeActivity
-import java.util.*
+import android.widget.Button
+import android.widget.TextView
 
 class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelectedCallback {
 
