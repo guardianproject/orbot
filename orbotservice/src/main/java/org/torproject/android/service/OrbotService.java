@@ -706,7 +706,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             return;
 
         sendCallbackLogMessage(getString(R.string.status_starting_up));
-
+        
         torServiceConnection = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
@@ -723,6 +723,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                     }
                 }
 
+                //wait another second before we set our own event listener
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -731,24 +732,29 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
                 mOrbotRawEventListener = new OrbotRawEventListener(OrbotService.this);
 
-                ArrayList<String> events = new ArrayList<>(Arrays.asList(TorControlCommands.EVENT_OR_CONN_STATUS,
-                        TorControlCommands.EVENT_CIRCUIT_STATUS, TorControlCommands.EVENT_NOTICE_MSG,
-                        TorControlCommands.EVENT_WARN_MSG, TorControlCommands.EVENT_ERR_MSG,
-                        TorControlCommands.EVENT_BANDWIDTH_USED, TorControlCommands.EVENT_NEW_DESC,
-                        TorControlCommands.EVENT_ADDRMAP));
-                if (Prefs.useDebugLogging()) {
-                    events.add(TorControlCommands.EVENT_DEBUG_MSG);
-                    events.add(TorControlCommands.EVENT_INFO_MSG);
-                }
-                if (Prefs.useDebugLogging() || Prefs.showExpandedNotifications())
-                    events.add(TorControlCommands.EVENT_STREAM_STATUS);
-
                 if (conn != null) {
                     try {
                         initControlConnection();
+
+                        //override the TorService event listener
                         conn.addRawEventListener(mOrbotRawEventListener);
-                        conn.authenticate(new byte[0]);
+
                         logNotice(getString(R.string.log_notice_connected_to_tor_control_port));
+
+                        //now set our own events
+                        ArrayList<String> events = new ArrayList<>(Arrays.asList(TorControlCommands.EVENT_OR_CONN_STATUS,
+                                TorControlCommands.EVENT_CIRCUIT_STATUS, TorControlCommands.EVENT_NOTICE_MSG,
+                                TorControlCommands.EVENT_WARN_MSG, TorControlCommands.EVENT_ERR_MSG,
+                                TorControlCommands.EVENT_BANDWIDTH_USED, TorControlCommands.EVENT_NEW_DESC,
+                                TorControlCommands.EVENT_ADDRMAP));
+                        if (Prefs.useDebugLogging()) {
+                            events.add(TorControlCommands.EVENT_DEBUG_MSG);
+                            events.add(TorControlCommands.EVENT_INFO_MSG);
+                        }
+
+                        if (Prefs.useDebugLogging() || Prefs.showExpandedNotifications())
+                            events.add(TorControlCommands.EVENT_STREAM_STATUS);
+
                         conn.setEvents(events);
                         logNotice(getString(R.string.log_notice_added_event_handler));
                     } catch (IOException e) {
