@@ -1,4 +1,5 @@
 apply from: "../commons-device.gradle"
+apply plugin: 'kotlin-android'
 apply from : '../dependencies.gradle'
 
 /* gets the version name from the latest Git tag, stripping the leading v off */
@@ -16,6 +17,7 @@ android {
         applicationId "org.torproject.android"
         versionName getVersionName()
         minSdkVersion 16
+        compileSdkVersion 31
         targetSdkVersion 31
         multiDexEnabled true
     }
@@ -73,4 +75,11 @@ android {
         coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
     }
+}
+dependencies {
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
