@@ -5,11 +5,12 @@ apply from : '../dependencies.gradle'
 android {
     ndkVersion '21.3.6528147'
 
+    /**
     sourceSets {
         main {
             jniLibs.srcDirs = ['./src/main/libs']
         }
-    }
+    }**/
 
     defaultConfig {
         minSdkVersion 16
@@ -49,8 +50,10 @@ dependencies {
             libs.guardian_jsocks,
             libs.guardian_geoip,
             libs.portmapper,
-            libs.tor_android,
+         //   libs.tor_android,
             libs.pcap_core,
             libs.pcap_factory
     )
+    implementation (name:'tor-android-binary-release',ext:'aar')
+
 }
