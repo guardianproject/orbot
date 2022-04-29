@@ -203,9 +203,6 @@
     <string formatted="true" name="snowflake_proxy_enabled">Snowflake proxy enabled</string>
     <string name="snowflake_proxy_msg_title">Show Connection Notification</string>
     <string name="snowflake_proxy_msg_description">Show a message when your snowflake helps someone circumvent censorship</string>
-    <!-- new UX -->
-    <string name="connected_title">You\'re connected!</string>
-
 
     <!-- new UX -->
     <string name="secure_your_connection_title">Secure your connection with Tor</string>

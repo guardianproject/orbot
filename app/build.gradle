@@ -22,7 +22,7 @@ android {
         multiDexEnabled true
     }
     compileOptions {
-        coreLibraryDesugaringEnabled true
+//        coreLibraryDesugaringEnabled true
     }
     lintOptions {
         htmlReport true
