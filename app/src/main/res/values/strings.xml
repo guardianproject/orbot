@@ -204,14 +204,17 @@
     <string name="snowflake_proxy_msg_title">Show Connection Notification</string>
     <string name="snowflake_proxy_msg_description">Show a message when your snowflake helps someone circumvent censorship</string>
     <!-- new UX -->
+    <string name="connected_title">You\'re connected!</string>
+
+
+    <!-- new UX -->
     <string name="secure_your_connection_title">Secure your connection with Tor</string>
     <string name="secure_your_connection_subtitle">Orbot gives you a safe, uninterrupted connection to your apps.</string>
-    <string name="connected_title">You\'re connected!</string>
     <string name="btn_start_vpn">Start VPN</string>
     <string name="btn_configure">Configure</string>
-    <string name="volunteer_mode">Patreon Mode</string>
+    <string name="volunteer_mode">Volunteer Mode</string>
     <string name="volunteer_mode_subtitle">Help others connect</string>
-    <string name="trying_to_connect_title">Trying to connect to Tor…</string>
+    <string name="trying_to_connect">Trying to connect to Tor…</string>
     <string name="btn_choose_apps">Choose apps</string>
     <string name="btn_change_exit">Change exit</string>
     <string name="btn_refresh">Refresh</string>
@@ -225,6 +228,6 @@
     <string name="menu_faq">FAQ</string>
     <string name="menu_header_learn">Learn More</string>
     <string name="btn_use_custom_bridge">Use Custom Bridge</string>
-    <string name="msg_taking_too_long">This seems to be taking long</string>
+    <string name="msg_taking_too_long">This seems to be taking too long</string>
     <string name="msg_try_something_else">Try something else</string>
 </resources>
