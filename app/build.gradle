@@ -66,7 +66,6 @@ android {
                 libs.android_material,
                 libs.android_volley,
                 libs.androidx_localbroadcast,
-                libs.apl_appintro,
                 libs.bclogic_pulsator,
                 libs.ipt_proxy
         )

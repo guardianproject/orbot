@@ -92,10 +92,6 @@
         </activity>
 
         <activity
-            android:name=".ui.onboarding.OnboardingActivity"
-            android:configChanges="orientation|screenSize|screenLayout" />
-
-        <activity
             android:name=".ui.onboarding.BridgeWizardActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/bridges" />

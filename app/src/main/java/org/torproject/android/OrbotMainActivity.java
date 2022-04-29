@@ -64,7 +64,6 @@ import org.torproject.android.ui.AppManagerActivity;
 import org.torproject.android.ui.dialog.AboutDialogFragment;
 import org.torproject.android.ui.v3onionservice.PermissionManager;
 import org.torproject.android.ui.onboarding.BridgeWizardActivity;
-import org.torproject.android.ui.onboarding.OnboardingActivity;
 import org.torproject.android.ui.v3onionservice.OnionServiceContentProvider;
 import org.torproject.android.ui.v3onionservice.OnionServiceActivity;
 import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity;
@@ -233,16 +232,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(LOCAL_ACTION_V3_NAMES_UPDATED));
 
 
-        boolean showFirstTime = mPrefs.getBoolean("connect_first_time", true);
-
-        if (showFirstTime) {
-            Editor pEdit = mPrefs.edit();
-            pEdit.putBoolean("connect_first_time", false);
-            pEdit.apply();
-            startActivity(new Intent(this, OnboardingActivity.class));
-        }
-
-        // Resets previous DNS Port to the default.
         Prefs.getSharedPrefs(getApplicationContext()).edit().putInt(PREFS_DNS_PORT, TOR_DNS_PORT_DEFAULT).apply();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
