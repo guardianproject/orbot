@@ -54,6 +54,9 @@ dependencies {
             libs.pcap_core,
             libs.pcap_factory
     )
+
+    //building from AAR built from https://github.com/guardianproject/tor-android/commit/95eca2a8c9eb44068f11332d7731580a13ef7b28
+    //    until a new full release is done
     implementation (name:'tor-android-binary-release',ext:'aar')
 
 }
