@@ -1,3 +1,26 @@
+/** 16.6.1-RC-3-tor.0.5.6.10 29 Apr 2022 **/
+
+e93c0dbe (HEAD -> master) update to 1661300300
+97803859 (origin/master, origin/HEAD) clean-up use of temporary local AAR library
+c3740110 (tag: 16.6.1-RC-2-tor.0.4.6.10) update to 1661300200
+1a30e250 update with info about tor-android commit for aar
+f7ed3015 temporary builds of local aar for tor-service
+9095a5e2 (newport/master) building from AAR built from https://github.com/guardianproject/tor-android/commit/95eca2a8c9eb44068f11332d7731580a13ef7b28 until a new full release is done
+44b2078c small changes to TorService conn interaction - cleanup where event list is created - don't need to reauthenticate
+fbc0bdc0 Significantly improves #621, more serious work to tor-androud should occur, basically Orbot set tor events and then TorService set its own CIRC event which caused the Orbot UI to not update
+e95179f6 Merge pull request #659 from weblate/weblate-guardianproject-orbot
+0ca0575d Translated using Weblate (Chinese (Simplified))
+1b9ddc1d Translated using Weblate (Ukrainian)
+a3827817 Translated using Weblate (Turkish)
+b5d8c5d0 Translated using Weblate (Portuguese (Brazil))
+9095a951 Translated using Weblate (Icelandic)
+5c6cafa3 Translated using Weblate (Persian)
+a00a0966 Translated using Weblate (German)
+3a680948 Translated using Weblate (Bulgarian)
+af2bf281 Merge pull request #657 from weblate/weblate-guardianproject-orbot
+bff7888e Translated using Weblate (German)
+
+
 /** 16.6.1-RC-1-tor.0.4.6.10 5 Apr 2022 **/
 
 2b72c062 (HEAD -> master) update to 1661300100
