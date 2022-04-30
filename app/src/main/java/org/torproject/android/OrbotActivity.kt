@@ -236,8 +236,6 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         torStatsGroup.visibility = View.GONE
         tvPorts.text = getString(R.string.ports_not_set)
         with(btnStartVpn) {
-            visibility = View.VISIBLE
-            text = getString(R.string.btn_start_vpn)
             isEnabled = true
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 backgroundTintList = ColorStateList.valueOf(
@@ -272,6 +270,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         tvTitle.text = getString(R.string.trying_to_connect_title)
         with(btnStartVpn) {
             text = getString(android.R.string.cancel)
+            isEnabled = false
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 backgroundTintList = ColorStateList.valueOf(
                     ContextCompat.getColor(

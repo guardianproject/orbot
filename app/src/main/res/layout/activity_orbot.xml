@@ -55,7 +55,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivStatus" />
 
-
         <TextView
             android:textAlignment="center"
             android:layout_width="wrap_content"
