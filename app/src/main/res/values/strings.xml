@@ -205,15 +205,14 @@
     <string name="snowflake_proxy_msg_description">Show a message when your snowflake helps someone circumvent censorship</string>
 
     <!-- new UX -->
-    <string name="connected_title">You\'re connected!</string>
     <string name="volunteer_mode">Kindness Mode</string>
-    <string name="trying_to_connect_title">Trying to connect to Tor…</string>
     <string name="secure_your_connection_title">Secure your connection with Tor</string>
     <string name="secure_your_connection_subtitle">Orbot gives you a safe, uninterrupted connection to your apps.</string>
+    <string name="connected_title">You\'re connected!</string>
     <string name="btn_start_vpn">Start VPN</string>
     <string name="btn_configure">Configure</string>
     <string name="volunteer_mode_subtitle">Help others connect</string>
-    <string name="trying_to_connect">Trying to connect to Tor…</string>
+    <string name="trying_to_connect_title">Trying to connect to Tor…</string>
     <string name="btn_choose_apps">Choose apps</string>
     <string name="btn_change_exit">Change exit</string>
     <string name="btn_refresh">Refresh</string>

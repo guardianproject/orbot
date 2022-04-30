@@ -133,6 +133,12 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
             }
             true
         }
+
+        with(LocalBroadcastManager.getInstance(this)) {
+            registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_STATUS))
+            registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_LOG))
+        }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean =
@@ -280,7 +286,8 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         //Toast.makeText(this, "Volunteer Mode Not Implemented...", Toast.LENGTH_LONG).show()
         startActivity(Intent(this, VolunteerModeActivity::class.java))
 
-
+        progressBar.visibility = View.GONE
+        tvTitle.text = getString(R.string.connected_title)
     }
 
     // todo not really defined yet
