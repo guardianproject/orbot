@@ -238,7 +238,4 @@
     <string name="volunteer_mode_weekly_label">WEEKLY TOTAL</string>
     <string name="volunteer_mode_alltime_label">PEOPLE HELPED</string>
     <string name="volunteer_mode_subtitle_desc">Kindness mode allows your device to be a bridge for others. It helps people use Tor in places where it is blocked.</string>
-=======
-
->>>>>>> b47a2495 (Barebones kotlin app, starts tor)
 </resources>
