@@ -6,12 +6,13 @@
     android:layout_height="match_parent">
 
     <ProgressBar
+
         tools:visibility="visible"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/progressBar"
         style="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal"
-        android:progress="0"
+        tools:progress="33"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
