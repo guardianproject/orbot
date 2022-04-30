@@ -217,8 +217,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences mPrefs = Prefs.getSharedPrefs(getApplicationContext());
-
         doLayout(); // Create widgets before registering for broadcasts
 
         /* receive the internal status broadcasts, which are separate from the public
