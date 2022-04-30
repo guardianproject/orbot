@@ -4,7 +4,9 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.res.ColorStateList
 import android.net.VpnService
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -37,6 +39,9 @@ class OrbotActivity : AppCompatActivity(), OrbotConstants {
         btnStartVpn = findViewById(R.id.btnStart)
         ivOnion = findViewById(R.id.ivStatus)
         progressBar = findViewById(R.id.progressBar)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            progressBar.progressTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.progress_bar_purple))
+        }
 
         btnStartVpn.setOnClickListener {
             startTorAndVpn()
@@ -94,6 +99,7 @@ class OrbotActivity : AppCompatActivity(), OrbotConstants {
                         OrbotConstants.STATUS_OFF -> doLayoutOff()
                         OrbotConstants.STATUS_STARTING -> doLayoutStarting()
                         OrbotConstants.STATUS_ON -> doLayoutOn()
+                        OrbotConstants.STATUS_STOPPING -> {}
                     }
                 }
                 OrbotConstants.LOCAL_ACTION_LOG -> {
