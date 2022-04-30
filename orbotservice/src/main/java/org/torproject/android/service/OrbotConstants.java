@@ -111,6 +111,7 @@ public interface OrbotConstants {
     String LOCAL_ACTION_STATUS = "status";
     String LOCAL_ACTION_BANDWIDTH = "bandwidth";
     String LOCAL_EXTRA_LOG = "log";
+    String LOCAL_EXTRA_BOOTSTRAP_PERCENT = "percent";
     String LOCAL_ACTION_PORTS = "ports";
     String LOCAL_ACTION_V3_NAMES_UPDATED = "V3_NAMES_UPDATED";
     String LOCAL_ACTION_NOTIFICATION_START = "notification_start";
