@@ -44,7 +44,7 @@ dependencies {
     api libs.guardian_jtorctl
     implementation(
             libs.android_shell,
-            libs.androidx_core,\
+            libs.androidx_core,
             libs.androidx_localbroadcast,
             libs.ipt_proxy,
             libs.guardian_jsocks,

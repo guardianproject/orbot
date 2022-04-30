@@ -706,7 +706,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             return;
 
         sendCallbackLogMessage(getString(R.string.status_starting_up));
-        
+
         torServiceConnection = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
