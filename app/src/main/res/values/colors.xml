@@ -5,4 +5,6 @@
         <color name="dark_green">#669901</color>
         <color name="dark_purple">#3f2b4f</color>
         <color name="progress_bar_purple">#CB50FF</color>
+        <color name="orbot_btn_enabled_purple">#7424CF</color>
+        <color name="orbot_btn_disable_grey">#332B3B</color>
     </resources>
