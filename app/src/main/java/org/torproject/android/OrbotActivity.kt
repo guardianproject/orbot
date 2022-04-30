@@ -116,6 +116,17 @@ class OrbotActivity : AppCompatActivity(), OrbotConstants {
         ivOnion.setImageResource(R.drawable.ic_disconnected)
         tvSubtitle.visibility = View.VISIBLE
         tvTitle.text = getString(R.string.secure_your_connection_title)
+        with(btnStartVpn) {
+            isEnabled = true
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                backgroundTintList = ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        this@OrbotActivity,
+                        R.color.orbot_btn_enabled_purple
+                    )
+                )
+            }
+        }
     }
 
     private fun doLayoutOn() {
@@ -123,12 +134,24 @@ class OrbotActivity : AppCompatActivity(), OrbotConstants {
         tvSubtitle.visibility = View.GONE
         progressBar.visibility = View.GONE
         tvTitle.text = getString(R.string.connected_title)
+        btnStartVpn.visibility = View.GONE
     }
 
     private fun doLayoutStarting() {
         tvSubtitle.visibility = View.VISIBLE
         progressBar.visibility = View.VISIBLE
         tvTitle.text = getString(R.string.trying_to_connect_title)
+        with(btnStartVpn) {
+            isEnabled = false
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                backgroundTintList = ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        this@OrbotActivity,
+                        R.color.orbot_btn_disable_grey
+                    )
+                )
+            }
+        }
     }
 
 
