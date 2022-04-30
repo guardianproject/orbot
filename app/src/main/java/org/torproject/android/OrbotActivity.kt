@@ -17,7 +17,7 @@ import org.torproject.android.core.LocaleHelper
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.OrbotService
 
-class OrbotActivity : AppCompatActivity(), OrbotConstants {
+class OrbotActivity : AppCompatActivity() {
 
     private lateinit var tvTitle: TextView
     private lateinit var tvSubtitle: TextView
