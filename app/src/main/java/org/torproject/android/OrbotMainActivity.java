@@ -922,7 +922,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
             switch (msg.what) {
                 case MESSAGE_TRAFFIC_COUNT:
-                    long lastWritten = data.getLong("lastWritten");
+                     long lastWritten = data.getLong("lastWritten");
                     long lastRead = data.getLong("lastRead");
                     long totalRead = data.getLong("totalRead");
                     long totalWrite = data.getLong("totalWritten");

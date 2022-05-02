@@ -13,17 +13,21 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import net.freehaven.tor.control.TorControlCommands
 import org.torproject.android.core.LocaleHelper
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.OrbotService
+import org.torproject.android.ui.OrbotMenuAction
 
 class OrbotActivity : AppCompatActivity() {
 
     private lateinit var tvTitle: TextView
     private lateinit var tvSubtitle: TextView
+    private lateinit var tvConfigure: TextView
     private lateinit var btnStartVpn: Button
     private lateinit var ivOnion: ImageView
     private lateinit var progressBar: ProgressBar
+    private lateinit var lvConnectedActions: ListView
 
     private var previousReceivedTorStatus: String? = null
 
@@ -36,9 +40,19 @@ class OrbotActivity : AppCompatActivity() {
         setContentView(R.layout.activity_orbot)
         tvTitle = findViewById(R.id.tvTitle)
         tvSubtitle = findViewById(R.id.tvSubtitle)
+        tvConfigure = findViewById(R.id.tvConfigure)
         btnStartVpn = findViewById(R.id.btnStart)
         ivOnion = findViewById(R.id.ivStatus)
         progressBar = findViewById(R.id.progressBar)
+        lvConnectedActions = findViewById(R.id.lvConnected)
+        lvConnectedActions.adapter = OrbotMenuActionAdapter(this, arrayListOf(
+            OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {},
+            OrbotMenuAction(R.string.btn_change_exit, R.drawable.ic_choose_apps) {},
+            OrbotMenuAction(R.string.btn_refresh, R.drawable.ic_refresh) {sendNewnymSignal()},
+            OrbotMenuAction(R.string.btn_tor_off, R.drawable.ic_power) {stopTorAndVpn()}
+        ))
+
+
 
         doLayoutOff()
 
@@ -79,6 +93,10 @@ class OrbotActivity : AppCompatActivity() {
         sendIntentToService(OrbotConstants.ACTION_STOP_VPN)
     }
 
+    private fun sendNewnymSignal() {
+        sendIntentToService(TorControlCommands.SIGNAL_NEWNYM)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_VPN && resultCode == RESULT_OK) {
@@ -116,8 +134,11 @@ class OrbotActivity : AppCompatActivity() {
         ivOnion.setImageResource(R.drawable.ic_disconnected)
         tvSubtitle.visibility = View.VISIBLE
         progressBar.visibility = View.INVISIBLE
+        lvConnectedActions.visibility = View.GONE
         tvTitle.text = getString(R.string.secure_your_connection_title)
+        tvConfigure.visibility = View.VISIBLE
         with(btnStartVpn) {
+            visibility = View.VISIBLE
             text = getString(R.string.btn_start_vpn)
             isEnabled = true
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -137,7 +158,10 @@ class OrbotActivity : AppCompatActivity() {
         tvSubtitle.visibility = View.GONE
         progressBar.visibility = View.INVISIBLE
         tvTitle.text = getString(R.string.connected_title)
+        tvSubtitle.visibility = View.GONE
         btnStartVpn.visibility = View.GONE
+        lvConnectedActions.visibility = View.VISIBLE
+        tvConfigure.visibility = View.GONE
     }
 
     private fun doLayoutStarting() {

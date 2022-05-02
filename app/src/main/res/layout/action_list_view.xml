@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_height="40dp">
+
+
+    <FrameLayout
+        android:layout_marginLeft="2dp"
+        android:layout_gravity="center|left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp">
+        <ImageView
+            tools:src="@drawable/ic_choose_apps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ivAction"/>
+    </FrameLayout>
+
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center"
+        tools:text="Choose apps"
+        android:id="@+id/tvLabel"
+        android:textColor="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp" />
+
+</LinearLayout>

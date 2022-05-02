@@ -212,7 +212,7 @@
     <string name="secure_your_connection_subtitle">Orbot gives you a safe, uninterrupted connection to your apps.</string>
     <string name="connected_title">You\'re connected!</string>
     <string name="btn_start_vpn">Start VPN</string>
-    <string name="btn_configure">Configure</string>
+    <string name="btn_configure">Configure Tor Connection</string>
     <string name="volunteer_mode">Patreon Mode</string>
     <string name="volunteer_mode_subtitle">Help others connect</string>
     <string name="trying_to_connect_title">Trying to connect to Tor…</string>
