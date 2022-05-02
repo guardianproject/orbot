@@ -8,7 +8,6 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="10dp">
 
-
     <FrameLayout
         android:layout_marginLeft="2dp"
         android:layout_gravity="center|left"
