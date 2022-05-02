@@ -137,6 +137,8 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
             true
         }
 
+        doLayoutOff()
+
         with(LocalBroadcastManager.getInstance(this)) {
             registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_STATUS))
             registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_LOG))
@@ -236,6 +238,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         torStatsGroup.visibility = View.GONE
         tvPorts.text = getString(R.string.ports_not_set)
         with(btnStartVpn) {
+            text = getString(R.string.btn_start_vpn)
             isEnabled = true
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 backgroundTintList = ColorStateList.valueOf(
