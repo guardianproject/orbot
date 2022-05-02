@@ -39,13 +39,8 @@ class OrbotActivity : AppCompatActivity() {
         btnStartVpn = findViewById(R.id.btnStart)
         ivOnion = findViewById(R.id.ivStatus)
         progressBar = findViewById(R.id.progressBar)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            progressBar.progressTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.progress_bar_purple))
-        }
 
-        btnStartVpn.setOnClickListener {
-            startTorAndVpn()
-        }
+        doLayoutOff()
 
         with(LocalBroadcastManager.getInstance(this)) {
             registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_STATUS))
@@ -77,6 +72,11 @@ class OrbotActivity : AppCompatActivity() {
             sendIntentToService(OrbotConstants.ACTION_START)
             sendIntentToService(OrbotConstants.ACTION_START_VPN)
         }
+    }
+
+    private fun stopTorAndVpn() {
+        sendIntentToService(OrbotConstants.ACTION_STOP)
+        sendIntentToService(OrbotConstants.ACTION_STOP_VPN)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -115,8 +115,10 @@ class OrbotActivity : AppCompatActivity() {
     private fun doLayoutOff() {
         ivOnion.setImageResource(R.drawable.ic_disconnected)
         tvSubtitle.visibility = View.VISIBLE
+        progressBar.visibility = View.INVISIBLE
         tvTitle.text = getString(R.string.secure_your_connection_title)
         with(btnStartVpn) {
+            text = getString(R.string.btn_start_vpn)
             isEnabled = true
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 backgroundTintList = ColorStateList.valueOf(
@@ -126,23 +128,27 @@ class OrbotActivity : AppCompatActivity() {
                     )
                 )
             }
+            setOnClickListener { startTorAndVpn() }
         }
     }
 
     private fun doLayoutOn() {
         ivOnion.setImageResource(R.drawable.ic_connected)
         tvSubtitle.visibility = View.GONE
-        progressBar.visibility = View.GONE
+        progressBar.visibility = View.INVISIBLE
         tvTitle.text = getString(R.string.connected_title)
         btnStartVpn.visibility = View.GONE
     }
 
     private fun doLayoutStarting() {
         tvSubtitle.visibility = View.VISIBLE
-        progressBar.visibility = View.VISIBLE
+        with(progressBar) {
+            progress = 0
+            visibility = View.VISIBLE
+        }
         tvTitle.text = getString(R.string.trying_to_connect_title)
         with(btnStartVpn) {
-            isEnabled = false
+            text = getString(android.R.string.cancel)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 backgroundTintList = ColorStateList.valueOf(
                     ContextCompat.getColor(
@@ -151,8 +157,7 @@ class OrbotActivity : AppCompatActivity() {
                     )
                 )
             }
+            setOnClickListener { stopTorAndVpn() }
         }
     }
-
-
 }
