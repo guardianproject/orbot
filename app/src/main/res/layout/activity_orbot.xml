@@ -7,11 +7,12 @@
 
     <ProgressBar
         tools:visibility="visible"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/progressBar"
         style="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal"
         tools:progress="33"
+        android:progressTint="@color/progress_bar_purple"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
