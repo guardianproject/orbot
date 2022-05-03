@@ -20,7 +20,7 @@
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Общи</string>
     <string name="pref_start_boot_title">Старт на Orbot при включване на устройството</string>
-    <string name="pref_start_boot_summary">Автоматично стартира Orbot и се свързва към Тор, когато устройство стартира</string>
+    <string name="pref_start_boot_summary">Автоматично стартира Orbot и се свързва към Tor, когато устройство стартира</string>
     <!--New Wizard Strings-->
     <!--Title Screen-->
     <!--Warning screen-->
@@ -82,7 +82,7 @@
     <string name="set_locale_title">Език</string>
     <string name="pref_disable_network_title">Без автоматично заспиване на мрежата</string>
     <string name="pref_disable_network_summary">При липса на интернет Tor преминава в режим на сън</string>
-    <string name="newnym">Сменихте самоличността си в Тор!</string>
+    <string name="newnym">Сменихте самоличността си в Tor!</string>
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">Порт, на който Tor предлага прокси на SOCKS (подразбиран: 9050 или 0 за изключване)</string>
     <string name="pref_socks_dialog">Настройка на порта на SOCKS</string>
