@@ -30,7 +30,7 @@
         android:layout_margin="@dimen/fab_margin"
         android:tint="@android:color/black"
         app:fabSize="normal"
-        app:backgroundTint="@android:color/darker_gray"
+        app:backgroundTint="@color/progress_bar_purple"
         app:srcCompat="@android:drawable/ic_input_add" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

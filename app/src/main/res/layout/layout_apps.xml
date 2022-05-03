@@ -2,16 +2,22 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/new_backgorund"
     android:duplicateParentState="true">
 
     <ProgressBar
+        android:indeterminateTint="@color/progress_bar_purple"
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        tools:visibility="visible"
         android:visibility="gone" />
 
     <GridView
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
         android:id="@+id/applistview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
