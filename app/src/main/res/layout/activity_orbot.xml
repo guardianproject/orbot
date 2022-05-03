@@ -89,6 +89,7 @@
             android:text="@string/btn_configure"/>
 
         <ListView
+            android:drawSelectorOnTop="true"
             android:layout_marginTop="10dp"
             tools:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/tvConfigure"
