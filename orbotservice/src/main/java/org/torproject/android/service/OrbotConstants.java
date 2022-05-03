@@ -110,6 +110,10 @@ public interface OrbotConstants {
     String LOCAL_ACTION_LOG = "log";
     String LOCAL_ACTION_STATUS = "status";
     String LOCAL_ACTION_BANDWIDTH = "bandwidth";
+    String LOCAL_EXTRA_TOTAL_READ = "totalRead";
+    String LOCAL_EXTRA_TOTAL_WRITTEN = "totalWritten";
+    String LOCAL_EXTRA_LAST_WRITTEN = "lastWritten";
+    String LOCAL_EXTRA_LAST_READ = "lastRead";
     String LOCAL_EXTRA_LOG = "log";
     String LOCAL_EXTRA_BOOTSTRAP_PERCENT = "percent";
     String LOCAL_ACTION_PORTS = "ports";

@@ -233,4 +233,5 @@
     <string name="msg_try_something_else">Try something else</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+    <string name="proxy_ports">Proxy Ports</string>
 </resources>
