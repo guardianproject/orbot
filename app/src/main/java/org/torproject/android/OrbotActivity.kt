@@ -23,8 +23,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.forEach
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import androidx.core.view.GravityCompat
-import androidx.transition.Slide
 import com.google.android.material.navigation.NavigationView
 import net.freehaven.tor.control.TorControlCommands
 import org.torproject.android.core.LocaleHelper
