@@ -12,6 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <FrameLayout
+            android:foreground="@color/new_backgorund"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/mainGuideline"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
         <ProgressBar
             tools:visibility="visible"
             android:visibility="invisible"
@@ -34,6 +43,7 @@
             app:layout_constraintTop_toBottomOf="@id/progressBar" />
 
         <TextView
+            android:layout_marginTop="16dp"
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,6 +56,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ivStatus" />
 
         <TextView
+            android:textAlignment="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvSubtitle"
@@ -53,7 +64,8 @@
             android:textColor="@android:color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle"/>
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            android:gravity="center_horizontal" />
         <Button
             tools:enabled="false"
             android:backgroundTint="@color/orbot_btn_enabled_purple"
@@ -77,13 +89,23 @@
             android:text="@string/btn_configure"/>
 
         <ListView
+            android:layout_marginTop="10dp"
             tools:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/tvConfigure"
             android:visibility="invisible"
             android:dividerHeight="1dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/lvConnected"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/mainGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".8"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
