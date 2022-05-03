@@ -46,6 +46,8 @@ class OrbotActivity : AppCompatActivity() {
     private lateinit var ivOnion: ImageView
     private lateinit var progressBar: ProgressBar
     private lateinit var lvConnectedActions: ListView
+    private lateinit var tvVolunteer: TextView
+    private lateinit var tvVolunteerSubtitle: TextView
     // menu UI
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var menuToggle: ActionBarDrawerToggle
@@ -87,6 +89,8 @@ class OrbotActivity : AppCompatActivity() {
             OrbotMenuAction(R.string.btn_refresh, R.drawable.ic_refresh) {sendNewnymSignal()},
             OrbotMenuAction(R.string.btn_tor_off, R.drawable.ic_power) {stopTorAndVpn()}
         ))
+        tvVolunteer = findViewById(R.id.tvVolunteerMode)
+        tvVolunteerSubtitle = findViewById(R.id.tvVolunteerSubtitle)
         drawerLayout = findViewById(R.id.drawerLayout)
         navigationView = findViewById(R.id.navigationView)
         configureNavigationMenu()
@@ -94,6 +98,8 @@ class OrbotActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(menuToggle)
         menuToggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        tvVolunteer.setOnClickListener {openVolunteerMode()}
+        tvVolunteerSubtitle.setOnClickListener {openVolunteerMode()}
 
         doLayoutOff()
 
@@ -103,7 +109,6 @@ class OrbotActivity : AppCompatActivity() {
             registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_PORTS))
             registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_BANDWIDTH))
         }
-
     }
 
     private fun configureNavigationMenu() {
@@ -125,7 +130,7 @@ class OrbotActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_tor_connection -> {}
-                R.id.menu_help_others -> {}
+                R.id.menu_help_others -> openVolunteerMode()
                 R.id.menu_v3_onion_services -> startActivity(Intent(this, OnionServiceActivity::class.java))
                 R.id.menu_v3_onion_client_auth -> startActivity(Intent(this, ClientAuthActivity::class.java))
                 R.id.menu_settings -> startActivityForResult(SettingsPreferencesActivity.createIntent(this, R.xml.preferences), REQUEST_CODE_SETTINGS)
@@ -283,5 +288,10 @@ class OrbotActivity : AppCompatActivity() {
             }
             setOnClickListener { stopTorAndVpn() }
         }
+    }
+
+    // todo not really defined what this does, somehow start/manage being a snowflake proxy
+    private fun openVolunteerMode() {
+        Toast.makeText(this, "Volunteer Mode Not Implemented...", Toast.LENGTH_LONG).show()
     }
 }

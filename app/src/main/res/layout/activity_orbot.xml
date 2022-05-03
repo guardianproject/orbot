@@ -107,6 +107,30 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent=".8"/>
 
+        <TextView
+            app:layout_constraintTop_toTopOf="@+id/mainGuideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/volunteer_mode_label"
+            android:id="@+id/tvVolunteerMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:text="@string/volunteer_mode"/>
+
+        <TextView
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvVolunteerMode"
+            android:textColor="@android:color/white"
+            android:text="@string/volunteer_mode_subtitle"
+            android:id="@+id/tvVolunteerSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView

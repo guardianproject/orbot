@@ -213,7 +213,7 @@
     <string name="connected_title">You\'re connected!</string>
     <string name="btn_start_vpn">Start VPN</string>
     <string name="btn_configure">Configure Tor Connection</string>
-    <string name="volunteer_mode">Patreon Mode</string>
+    <string name="volunteer_mode">Volunteer Mode</string>
     <string name="volunteer_mode_subtitle">Help others connect</string>
     <string name="trying_to_connect_title">Trying to connect to Tor…</string>
     <string name="btn_choose_apps">Choose apps</string>
