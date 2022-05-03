@@ -77,9 +77,7 @@ class OrbotActivity : AppCompatActivity() {
         menuToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close)
         drawerLayout.addDrawerListener(menuToggle)
         menuToggle.syncState()
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
 
         doLayoutOff()
 
