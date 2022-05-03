@@ -84,18 +84,18 @@
         <activity
             android:name=".ui.v3onionservice.OnionServiceActivity"
             android:label="@string/hidden_services"
-            android:theme="@style/DefaultTheme">
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".OrbotMainActivity" />
+                android:value=".OrbotActivity" />
         </activity>
 
         <activity android:name=".ui.v3onionservice.clientauth.ClientAuthActivity"
             android:label="@string/v3_client_auth_activity_title"
-            android:theme="@style/DefaultTheme">
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".OrbotMainActivity"/>
+                android:value=".OrbotActivity"/>
         </activity>
 
         <activity
@@ -134,8 +134,7 @@
             android:name=".core.OnBootReceiver"
             android:enabled="true"
             android:exported="true"
-            android:directBootAware="true"
-            >
+            android:directBootAware="true">
 
             <intent-filter>
                 <action android:name="android.net.wifi.STATE_CHANGE" />
