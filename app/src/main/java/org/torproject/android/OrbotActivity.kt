@@ -8,16 +8,27 @@ import android.content.res.ColorStateList
 import android.net.VpnService
 import android.os.Build
 import android.os.Bundle
+import android.view.Gravity
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.transition.Slide
+import com.google.android.material.navigation.NavigationView
 import net.freehaven.tor.control.TorControlCommands
 import org.torproject.android.core.LocaleHelper
+import org.torproject.android.core.ui.SettingsPreferencesActivity
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.OrbotService
 import org.torproject.android.ui.OrbotMenuAction
+import org.torproject.android.ui.dialog.AboutDialogFragment
+import org.torproject.android.ui.v3onionservice.OnionServiceActivity
+import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity
 
 class OrbotActivity : AppCompatActivity() {
 
@@ -28,11 +39,16 @@ class OrbotActivity : AppCompatActivity() {
     private lateinit var ivOnion: ImageView
     private lateinit var progressBar: ProgressBar
     private lateinit var lvConnectedActions: ListView
+    // menu
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var menuToggle: ActionBarDrawerToggle
+    private lateinit var navigationView: NavigationView
 
     private var previousReceivedTorStatus: String? = null
 
     companion object {
         const val REQUEST_CODE_VPN = 1234
+        const val REQUEST_CODE_SETTINGS = 2345
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +67,14 @@ class OrbotActivity : AppCompatActivity() {
             OrbotMenuAction(R.string.btn_refresh, R.drawable.ic_refresh) {sendNewnymSignal()},
             OrbotMenuAction(R.string.btn_tor_off, R.drawable.ic_power) {stopTorAndVpn()}
         ))
+        drawerLayout = findViewById(R.id.drawerLayout)
+        navigationView = findViewById(R.id.navigationView)
+        setNavViewMenuItems()
+        menuToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close)
+        drawerLayout.addDrawerListener(menuToggle)
+        menuToggle.syncState()
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
         doLayoutOff()
@@ -62,6 +85,28 @@ class OrbotActivity : AppCompatActivity() {
         }
 
     }
+
+    private fun setNavViewMenuItems() {
+        navigationView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.menu_tor_connection -> {}
+                R.id.menu_help_others -> {}
+                R.id.menu_v3_onion_services -> startActivity(Intent(this, OnionServiceActivity::class.java))
+                R.id.menu_v3_onion_client_auth -> startActivity(Intent(this, ClientAuthActivity::class.java))
+                R.id.menu_settings -> startActivityForResult(SettingsPreferencesActivity.createIntent(this, R.xml.preferences), REQUEST_CODE_SETTINGS)
+                R.id.menu_faq -> Toast.makeText(this, "TODO FAQ not implemented...", Toast.LENGTH_LONG).show()
+                R.id.menu_about -> {
+                    AboutDialogFragment().show(supportFragmentManager, AboutDialogFragment.TAG)
+                    drawerLayout.closeDrawer(Gravity.LEFT)
+                }
+                else -> {}
+            }
+            true
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean =
+        menuToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item)
 
     override fun onResume() {
         super.onResume()
@@ -101,6 +146,8 @@ class OrbotActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_VPN && resultCode == RESULT_OK) {
             startTorAndVpn()
+        } else if (requestCode == REQUEST_CODE_SETTINGS && resultCode == RESULT_OK) {
+            // todo respond to language change extra data here...
         }
     }
 

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/menu_header_features">
+        <menu>
+            <item
+                android:id="@+id/menu_tor_connection"
+                android:title="@string/menu_tor_connection"/>
+
+            <item
+                android:id="@+id/menu_help_others"
+                android:title="@string/menu_help_others"/>
+            <item
+                android:id="@+id/menu_settings"
+                android:title="@string/menu_app_settings"/>
+        </menu>
+    </item>
+
+
+    <item android:title="@string/hidden_services">
+        <menu>
+            <item
+                android:id="@+id/menu_v3_onion_services"
+                android:title="@string/v3_hosted_services"/>
+
+            <item
+                android:id="@+id/menu_v3_onion_client_auth"
+                android:title="@string/v3_client_auth_activity_title"/>
+        </menu>
+    </item>
+
+    <item android:title="@string/menu_header_learn">
+        <menu>
+            <item
+                android:id="@+id/menu_faq"
+                android:title="@string/menu_faq"/>
+
+            <item android:id="@+id/menu_about"
+                android:title="@string/menu_about"/>
+        </menu>
+    </item>
+</menu>
