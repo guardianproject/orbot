@@ -64,6 +64,7 @@
         <activity android:name=".OrbotActivity"
             android:excludeFromRecents="false"
             android:launchMode="singleTop"
+            android:theme="@style/OrbotActivityTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -82,16 +83,14 @@
 
         <activity
             android:name=".ui.v3onionservice.OnionServiceActivity"
-            android:label="@string/hidden_services"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:label="@string/hidden_services">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".OrbotActivity" />
         </activity>
 
         <activity android:name=".ui.v3onionservice.clientauth.ClientAuthActivity"
-            android:label="@string/v3_client_auth_activity_title"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:label="@string/v3_client_auth_activity_title">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".OrbotActivity"/>
