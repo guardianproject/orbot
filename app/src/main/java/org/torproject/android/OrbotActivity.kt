@@ -8,6 +8,9 @@ import android.content.res.ColorStateList
 import android.net.VpnService
 import android.os.Build
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.TextAppearanceSpan
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
@@ -16,6 +19,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.core.view.forEach
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.transition.Slide
@@ -69,7 +73,7 @@ class OrbotActivity : AppCompatActivity() {
         ))
         drawerLayout = findViewById(R.id.drawerLayout)
         navigationView = findViewById(R.id.navigationView)
-        setNavViewMenuItems()
+        configureNavigationMenu()
         menuToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close)
         drawerLayout.addDrawerListener(menuToggle)
         menuToggle.syncState()
@@ -86,7 +90,14 @@ class OrbotActivity : AppCompatActivity() {
 
     }
 
-    private fun setNavViewMenuItems() {
+    private fun configureNavigationMenu() {
+        // apply theme to colorize menu headers
+        navigationView.menu.forEach { menu -> menu.subMenu?.let { // if it has a submenu, we want to color it
+            menu.title = SpannableString(menu.title).apply {
+                setSpan(TextAppearanceSpan(this@OrbotActivity, R.style.NavigationGroupMenuHeaders), 0, this.length, 0)
+            }
+        } }
+        // set click listeners for menu items
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_tor_connection -> {}

@@ -7,4 +7,6 @@
         <color name="progress_bar_purple">#CB50FF</color>
         <color name="orbot_btn_enabled_purple">#7424CF</color>
         <color name="orbot_btn_disable_grey">#332B3B</color>
+        <color name="ic_launcher_background">#471D5A</color>
+        <color name="menu_header">#A06DDF</color>
     </resources>
