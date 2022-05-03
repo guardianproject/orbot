@@ -29,9 +29,11 @@ import org.torproject.android.core.LocaleHelper
 import org.torproject.android.core.ui.SettingsPreferencesActivity
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.OrbotService
+import org.torproject.android.ui.AppManagerActivity
 import org.torproject.android.ui.OrbotMenuAction
 import org.torproject.android.ui.dialog.AboutDialogFragment
 import org.torproject.android.ui.v3onionservice.OnionServiceActivity
+import org.torproject.android.ui.v3onionservice.PermissionManager
 import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity
 import java.text.NumberFormat
 import java.util.*
@@ -60,19 +62,6 @@ class OrbotActivity : AppCompatActivity() {
 
     private var previousReceivedTorStatus: String? = null
 
-    companion object {
-        const val REQUEST_CODE_VPN = 1234
-        const val REQUEST_CODE_SETTINGS = 2345
-        private val numberFormat = NumberFormat.getInstance(Locale.getDefault())
-        private fun formatBandwidth(context: Context, count: Long): String {
-            // Under 2MiB, returns "xxx.xKiB"
-            // Over 2MiB, returns "xxx.xxMiB"
-            if (count < 1e6)
-                return "${numberFormat.format((count * 10 / 1024) / 10f)}${context.getString(R.string.kibibyte)}"
-            return "${numberFormat.format((count * 100 /1024 / 1024) / 100f)}${context.getString(R.string.mebibyte)}"
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orbot)
@@ -83,12 +72,14 @@ class OrbotActivity : AppCompatActivity() {
         ivOnion = findViewById(R.id.ivStatus)
         progressBar = findViewById(R.id.progressBar)
         lvConnectedActions = findViewById(R.id.lvConnected)
-        lvConnectedActions.adapter = OrbotMenuActionAdapter(this, arrayListOf(
-            OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {},
-            OrbotMenuAction(R.string.btn_change_exit, R.drawable.ic_choose_apps) {},
+        val listItems = arrayListOf(OrbotMenuAction(R.string.btn_change_exit, R.drawable.ic_choose_apps) {},
             OrbotMenuAction(R.string.btn_refresh, R.drawable.ic_refresh) {sendNewnymSignal()},
-            OrbotMenuAction(R.string.btn_tor_off, R.drawable.ic_power) {stopTorAndVpn()}
-        ))
+            OrbotMenuAction(R.string.btn_tor_off, R.drawable.ic_power) {stopTorAndVpn()})
+
+        if (CAN_DO_APP_ROUTING) listItems.add(0, OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {
+            startActivityForResult(Intent(this, AppManagerActivity::class.java), REQUEST_VPN_APP_SELECT)
+        })
+        lvConnectedActions.adapter = OrbotMenuActionAdapter(this, listItems)
         tvVolunteer = findViewById(R.id.tvVolunteerMode)
         tvVolunteerSubtitle = findViewById(R.id.tvVolunteerSubtitle)
         drawerLayout = findViewById(R.id.drawerLayout)
@@ -100,6 +91,7 @@ class OrbotActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         tvVolunteer.setOnClickListener {openVolunteerMode()}
         tvVolunteerSubtitle.setOnClickListener {openVolunteerMode()}
+        tvConfigure.setOnClickListener {openConfigureTorConnection()}
 
         doLayoutOff()
 
@@ -129,7 +121,7 @@ class OrbotActivity : AppCompatActivity() {
         // set click listeners for menu items
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.menu_tor_connection -> {}
+                R.id.menu_tor_connection -> openConfigureTorConnection()
                 R.id.menu_help_others -> openVolunteerMode()
                 R.id.menu_v3_onion_services -> startActivity(Intent(this, OnionServiceActivity::class.java))
                 R.id.menu_v3_onion_client_auth -> startActivity(Intent(this, ClientAuthActivity::class.java))
@@ -188,6 +180,8 @@ class OrbotActivity : AppCompatActivity() {
             startTorAndVpn()
         } else if (requestCode == REQUEST_CODE_SETTINGS && resultCode == RESULT_OK) {
             // todo respond to language change extra data here...
+        } else if (requestCode == REQUEST_VPN_APP_SELECT && resultCode == RESULT_OK) {
+            sendIntentToService(OrbotConstants.ACTION_RESTART_VPN) // is this enough todo?
         }
     }
 
@@ -293,5 +287,26 @@ class OrbotActivity : AppCompatActivity() {
     // todo not really defined what this does, somehow start/manage being a snowflake proxy
     private fun openVolunteerMode() {
         Toast.makeText(this, "Volunteer Mode Not Implemented...", Toast.LENGTH_LONG).show()
+    }
+
+    // todo not really defined yet
+    private fun openConfigureTorConnection() {
+        Toast.makeText(this, "Configure Tor Connection...", Toast.LENGTH_LONG).show()
+    }
+
+
+    companion object {
+        const val REQUEST_CODE_VPN = 1234
+        const val REQUEST_CODE_SETTINGS = 2345
+        const val REQUEST_VPN_APP_SELECT = 2432
+        private val numberFormat = NumberFormat.getInstance(Locale.getDefault())
+        private fun formatBandwidth(context: Context, count: Long): String {
+            // Under 2MiB, returns "xxx.xKiB"
+            // Over 2MiB, returns "xxx.xxMiB"
+            if (count < 1e6)
+                return "${numberFormat.format((count * 10 / 1024) / 10f)}${context.getString(R.string.kibibyte)}"
+            return "${numberFormat.format((count * 100 /1024 / 1024) / 100f)}${context.getString(R.string.mebibyte)}"
+        }
+        private val CAN_DO_APP_ROUTING = PermissionManager.isLollipopOrHigher()
     }
 }
