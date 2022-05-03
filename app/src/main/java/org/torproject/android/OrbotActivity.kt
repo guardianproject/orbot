@@ -22,6 +22,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.forEach
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.core.view.GravityCompat
+import androidx.transition.Slide
 import com.google.android.material.navigation.NavigationView
 import net.freehaven.tor.control.TorControlCommands
 import org.torproject.android.core.LocaleHelper
@@ -144,6 +146,25 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
             registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_LOG))
         }
 
+    }
+
+    private fun setNavViewMenuItems() {
+        navigationView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.menu_tor_connection -> {}
+                R.id.menu_help_others -> {}
+                R.id.menu_v3_onion_services -> startActivity(Intent(this, OnionServiceActivity::class.java))
+                R.id.menu_v3_onion_client_auth -> startActivity(Intent(this, ClientAuthActivity::class.java))
+                R.id.menu_settings -> startActivityForResult(SettingsPreferencesActivity.createIntent(this, R.xml.preferences), REQUEST_CODE_SETTINGS)
+                R.id.menu_faq -> Toast.makeText(this, "TODO FAQ not implemented...", Toast.LENGTH_LONG).show()
+                R.id.menu_about -> {
+                    AboutDialogFragment().show(supportFragmentManager, AboutDialogFragment.TAG)
+                    drawerLayout.closeDrawer(Gravity.LEFT)
+                }
+                else -> {}
+            }
+            true
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean =

@@ -23,7 +23,5 @@
         <item name="android:textStyle">bold</item>
         <item name="android:layout_gravity">center|left</item>
     </style>
-
-
 </resources>
 
