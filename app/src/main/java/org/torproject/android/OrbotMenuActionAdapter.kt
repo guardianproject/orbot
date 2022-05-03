@@ -13,7 +13,6 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
 
     private val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val returnView = convertView ?: layoutInflater.inflate(R.layout.action_list_view, null)
         getItem(position)?.let { model ->
