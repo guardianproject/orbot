@@ -35,7 +35,7 @@
     <string name="menu_stop">Stop</string>
     <string name="menu_start">Start</string>
     <string name="menu_log">Jurnal</string>
-    <string name="status_shutting_down">TorService se oprește</string>
+    <string name="status_shutting_down">Orbot se oprește</string>
     <string name="status_activated">Conectat la rețeaua Tor</string>
     <string name="status_starting_up">Orbot începe…</string>
     <string name="app_description">Orbot este o aplicație proxy gratuită care permite altor aplicații să utilizeze internetul în condiții de mai mare siguranță. Orbot folosește Tor pentru a vă cripta traficul de internet și apoi îl ascunde trecând printr-o serie de calculatoare din întreaga lume. Tor este un software gratuit și o rețea deschisă care vă ajută să vă apărați împotriva unei forme de supraveghere a rețelei care amenință libertatea și intimitatea personală, activitățile și relațiile de afaceri confidențiale și securitatea statului, cunoscută sub numele de analiză a traficului.</string>
@@ -194,11 +194,12 @@
     <string name="pref_proxy_host_dialog">Introduceți Proxy Host</string>
     <string name="pref_proxy_host_summary">Numele de gazdă al serverului proxy</string>
     <string name="pref_proxy_host_title">Gazdă Proxy de ieșire</string>
-    <string name="snowflake_proxy_enabled">Modul proxy Snowflake activat</string>
+    <string name="snowflake_proxy_enabled">Proxy Snowflake activat</string>
     <string name="version">Versiunea:</string>
     <string name="license">Licență:</string>
     <string name="bridge_snowflake_amp">Conectați-vă prin intermediul altor utilizatori Tor folosind Snowflake (Metoda 2 - AMP)</string>
     <string name="snowflake_proxy_pref_category">Proxy fulg de zăpadă (experimental)</string>
     <string name="snowflake_proxy_msg_title">Afișați notificarea de conectare</string>
     <string name="snowflake_proxy_msg_description">Afișează un mesaj atunci când fulgul tău de nea ajută pe cineva să ocolească cenzura</string>
+    <string name="strict_nodes_description">Tratați setările de excludere a nodurilor ca pe o cerință pentru construirea tuturor circuitelor. Acest lucru poate întrerupe funcționalitatea în cazul în care niciun circuit nu poate fi generat cu setările de excludere a nodurilor.</string>
 </resources>
