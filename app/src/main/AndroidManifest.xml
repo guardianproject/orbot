@@ -78,9 +78,9 @@
             android:theme="@style/Theme.AppCompat" />
 
         <activity
+            android:theme="@style/OrbotActivityTheme"
             android:name=".ui.AppManagerActivity"
-            android:label="@string/apps_mode"
-            android:theme="@style/Theme.AppCompat" />
+            android:label="@string/apps_mode"/>
 
         <activity
             android:name=".ui.v3onionservice.OnionServiceActivity"

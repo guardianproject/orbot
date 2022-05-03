@@ -2,6 +2,7 @@
 
 <resources>
     <style name="DefaultTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/new_background_secondary</item>
     </style>
 
     <style name="NavigationGroupMenuHeaders">
@@ -10,10 +11,19 @@
 
     <style name="OrbotActivityTheme" parent="Theme.AppCompat">
         <item name="android:windowBackground">@color/new_background_secondary</item>
+        <item name="android:windowIsFloating">false</item>
         <item name="colorPrimary">@color/new_background_secondary</item>
         <item name="colorPrimaryDark">@color/new_background_secondary</item>
 
     </style>
+
+    <style name="OrbotDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/new_background_secondary</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_gravity">center|left</item>
+    </style>
+
 
 </resources>
 

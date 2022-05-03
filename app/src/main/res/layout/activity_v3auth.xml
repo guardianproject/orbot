@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/new_backgorund"
     android:fitsSystemWindows="true"
     tools:context="org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity">
 
@@ -39,7 +40,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:tint="@android:color/black"
-        app:backgroundTint="@android:color/darker_gray"
+        app:backgroundTint="@color/progress_bar_purple"
         app:srcCompat="@android:drawable/ic_input_add" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
