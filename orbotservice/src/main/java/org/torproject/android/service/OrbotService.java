@@ -872,10 +872,10 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     protected void sendCallbackBandwidth(long lastWritten, long lastRead, long totalWritten, long totalRead) {
         LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(LOCAL_ACTION_BANDWIDTH)
-            .putExtra("totalWritten", totalWritten)
-            .putExtra("totalRead", totalRead)
-            .putExtra("lastWritten", lastWritten)
-            .putExtra("lastRead", lastRead));
+            .putExtra(LOCAL_EXTRA_TOTAL_WRITTEN, totalWritten)
+            .putExtra(LOCAL_EXTRA_TOTAL_READ, totalRead)
+            .putExtra(LOCAL_EXTRA_LAST_WRITTEN, lastWritten)
+            .putExtra(LOCAL_EXTRA_LAST_READ, lastRead));
     }
 
     private void sendCallbackLogMessage(final String logMessage) {

@@ -1,5 +1,6 @@
 package org.torproject.android
 
+import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -17,12 +18,11 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.Group
 import androidx.core.content.ContextCompat
-import androidx.core.view.GravityCompat
 import androidx.core.view.forEach
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import androidx.transition.Slide
 import com.google.android.material.navigation.NavigationView
 import net.freehaven.tor.control.TorControlCommands
 import org.torproject.android.core.LocaleHelper
@@ -33,9 +33,12 @@ import org.torproject.android.ui.OrbotMenuAction
 import org.torproject.android.ui.dialog.AboutDialogFragment
 import org.torproject.android.ui.v3onionservice.OnionServiceActivity
 import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity
+import java.text.NumberFormat
+import java.util.*
 
 class OrbotActivity : AppCompatActivity() {
 
+    // main screen UI
     private lateinit var tvTitle: TextView
     private lateinit var tvSubtitle: TextView
     private lateinit var tvConfigure: TextView
@@ -43,16 +46,29 @@ class OrbotActivity : AppCompatActivity() {
     private lateinit var ivOnion: ImageView
     private lateinit var progressBar: ProgressBar
     private lateinit var lvConnectedActions: ListView
-    // menu
+    // menu UI
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var menuToggle: ActionBarDrawerToggle
     private lateinit var navigationView: NavigationView
+    private lateinit var tvTorVersion: TextView
+    private lateinit var tvPorts: TextView
+    private lateinit var tvDownload: TextView
+    private lateinit var tvUpload: TextView
+    private lateinit var torStatsGroup: Group
 
     private var previousReceivedTorStatus: String? = null
 
     companion object {
         const val REQUEST_CODE_VPN = 1234
         const val REQUEST_CODE_SETTINGS = 2345
+        private val numberFormat = NumberFormat.getInstance(Locale.getDefault())
+        private fun formatBandwidth(context: Context, count: Long): String {
+            // Under 2MiB, returns "xxx.xKiB"
+            // Over 2MiB, returns "xxx.xxMiB"
+            if (count < 1e6)
+                return "${numberFormat.format((count * 10 / 1024) / 10f)}${context.getString(R.string.kibibyte)}"
+            return "${numberFormat.format((count * 100 /1024 / 1024) / 100f)}${context.getString(R.string.mebibyte)}"
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,11 +100,21 @@ class OrbotActivity : AppCompatActivity() {
         with(LocalBroadcastManager.getInstance(this)) {
             registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_STATUS))
             registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_LOG))
+            registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_PORTS))
+            registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_BANDWIDTH))
         }
 
     }
 
     private fun configureNavigationMenu() {
+        navigationView.getHeaderView(0).let {
+            tvTorVersion = it.findViewById(R.id.torVersion)
+            tvPorts = it.findViewById(R.id.tvPorts)
+            tvDownload = it.findViewById(R.id.tvDownloadStat)
+            tvUpload = it.findViewById(R.id.tvUploadStat)
+            torStatsGroup = it.findViewById(R.id.torStatsGroup)
+        }
+        tvTorVersion.text = "Tor v${OrbotService.BINARY_TOR_VERSION}"
         // apply theme to colorize menu headers
         navigationView.menu.forEach { menu -> menu.subMenu?.let { // if it has a submenu, we want to color it
             menu.title = SpannableString(menu.title).apply {
@@ -163,6 +189,7 @@ class OrbotActivity : AppCompatActivity() {
     override fun attachBaseContext(newBase: Context) = super.attachBaseContext(LocaleHelper.onAttach(newBase))
 
     private val orbotServiceBroadcastReceiver = object : BroadcastReceiver(){
+        @SuppressLint("SetTextI18n")
         override fun onReceive(context: Context?, intent: Intent?) {
             val status = intent?.getStringExtra(OrbotConstants.EXTRA_STATUS)
             when (intent?.action) {
@@ -181,6 +208,20 @@ class OrbotActivity : AppCompatActivity() {
                         progressBar.progress = Integer.parseInt(it)
                     }
                 }
+                OrbotConstants.LOCAL_ACTION_PORTS -> {
+                    val socks = intent.getIntExtra(OrbotConstants.EXTRA_SOCKS_PROXY_PORT, -1)
+                    val http = intent.getIntExtra(OrbotConstants.EXTRA_HTTP_PROXY_PORT, -1)
+                    if (http > 0 && socks > 0) tvPorts.text = "SOCKS $socks | HTTP $http"
+                }
+                OrbotConstants.LOCAL_ACTION_BANDWIDTH -> {
+                    val totalWritten = intent.getLongExtra(OrbotConstants.LOCAL_EXTRA_TOTAL_WRITTEN, 0)
+                    val totalRead = intent.getLongExtra(OrbotConstants.LOCAL_EXTRA_TOTAL_READ, 0)
+                    val lastWritten = intent.getLongExtra(OrbotConstants.LOCAL_EXTRA_LAST_WRITTEN, 0)
+                    val lastRead = intent.getLongExtra(OrbotConstants.LOCAL_EXTRA_LAST_READ, 0)
+                    tvDownload.text = "${OrbotService.formatBandwidthCount(this@OrbotActivity, lastRead)} / ${formatBandwidth(this@OrbotActivity, totalRead)}"
+                    tvUpload.text = "${OrbotService.formatBandwidthCount(this@OrbotActivity, lastWritten)} / ${formatBandwidth(this@OrbotActivity, totalWritten)}"
+
+                }
                 else -> {}
             }
         }
@@ -193,6 +234,8 @@ class OrbotActivity : AppCompatActivity() {
         lvConnectedActions.visibility = View.GONE
         tvTitle.text = getString(R.string.secure_your_connection_title)
         tvConfigure.visibility = View.VISIBLE
+        torStatsGroup.visibility = View.GONE
+        tvPorts.text = getString(R.string.ports_not_set)
         with(btnStartVpn) {
             visibility = View.VISIBLE
             text = getString(R.string.btn_start_vpn)
@@ -221,6 +264,7 @@ class OrbotActivity : AppCompatActivity() {
     }
 
     private fun doLayoutStarting() {
+        torStatsGroup.visibility = View.VISIBLE
         tvSubtitle.visibility = View.VISIBLE
         with(progressBar) {
             progress = 0
