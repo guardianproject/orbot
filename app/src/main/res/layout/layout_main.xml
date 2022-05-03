@@ -46,18 +46,6 @@
                     android:visibility="visible"
                     android:weightSum="1">
 
-                    <pl.bclogic.pulsator4droid.library.PulsatorLayout
-                        android:id="@+id/pulsator"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:paddingTop="20dp"
-                        app:pulse_color="@color/dark_green"
-                        app:pulse_count="4"
-                        app:pulse_duration="2000"
-                        app:pulse_interpolator="Linear"
-                        app:pulse_repeat="0"
-                        app:pulse_startFromScratch="false">
-
                         <ImageView
                             android:id="@+id/imgStatus"
                             android:layout_width="match_parent"
@@ -66,7 +54,6 @@
                             android:padding="0dp"
                             android:src="@drawable/toroff" />
 
-                    </pl.bclogic.pulsator4droid.library.PulsatorLayout>
 
                     <Button
                         android:id="@+id/btnStart"

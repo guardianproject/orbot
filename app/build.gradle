@@ -68,7 +68,6 @@ android {
                 libs.android_material,
                 libs.android_volley,
                 libs.androidx_localbroadcast,
-                libs.bclogic_pulsator,
                 libs.ipt_proxy
         )
         androidTestImplementation libs.fastlane_screengrab

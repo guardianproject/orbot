@@ -81,7 +81,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import IPtProxy.IPtProxy;
-import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
 public class OrbotMainActivity extends AppCompatActivity implements OrbotConstants {
 
@@ -102,7 +101,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     // this is what takes messages or values from the callback threads or other non-mainUI threads
     // and passes them back into the main UI thread for display to the user
     private final Handler mStatusUpdateHandler = new MainActivityStatusUpdateHandler(this);
-    PulsatorLayout mPulsator;
     AlertDialog aDialog;
     private TextView lblStatus; //the main text display widget
     private TextView lblPorts;
@@ -327,7 +325,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         spnCountries = findViewById(R.id.spinnerCountry);
         setCountrySpinner();
 
-        mPulsator = findViewById(R.id.pulsator);
         tvVpnAppStatus = findViewById(R.id.tvVpnAppStatus);
         findViewById(R.id.ivAppVpnSettings).setOnClickListener(v -> startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT));
     }
@@ -733,7 +730,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 case STATUS_ON:
                     imgStatus.setImageResource(R.drawable.toron);
                     mBtnStart.setText(R.string.menu_stop);
-                    mPulsator.stop();
 
                     var status = getString(R.string.status_activated);
                     if (IPtProxy.isSnowflakeProxyRunning()) {
@@ -774,7 +770,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     imgStatus.setImageResource(R.drawable.toroff);
                     lblPorts.setText(R.string.ports_not_set);
                     mBtnStart.setText(R.string.menu_start);
-                    mPulsator.start();
                     resetBandwidthStatTextviews();
                     setTitleForSnowflakeProxy();
                     break;
