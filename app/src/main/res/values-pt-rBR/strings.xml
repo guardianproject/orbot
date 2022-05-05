@@ -202,4 +202,27 @@
     <string name="snowflake_proxy_msg_title">Mostra a notificação da conexão</string>
     <string name="snowflake_proxy_msg_description">Mostra uma mensagem quando o seu snowflake ajuda alguém a contornar a censura</string>
     <string name="strict_nodes_description">Trate as configurações de exclusão dos nós como um requisito para a construção de todos os circuitos. Isso pode quebrar a funcionalidade caso nenhum circuito seja capaz de ser gerado com as configurações de exclusão dos nós.</string>
+    <string name="volunteer_mode_subtitle">Ajude outros a se conectar</string>
+    <string name="menu_app_settings">Configurações do aplicativo</string>
+    <string name="menu_faq">Perguntas frequentes</string>
+    <string name="menu_header_learn">Saiba mais</string>
+    <string name="msg_taking_too_long">Isso parece estar demorando demais</string>
+    <string name="msg_try_something_else">Tente outra coisa</string>
+    <string name="secure_your_connection_title">Proteja a sua conexão com o Tor</string>
+    <string name="connected_title">Você está conectado!</string>
+    <string name="secure_your_connection_subtitle">O Orbot oferece uma conexão segura e ininterrupta aos seus aplicativos.</string>
+    <string name="btn_configure">Configurar</string>
+    <string name="btn_start_vpn">Iniciar o VPN</string>
+    <string name="volunteer_mode">Modo Patreon</string>
+    <string name="trying_to_connect_title">Tentando se conectar ao Tor…</string>
+    <string name="btn_change_exit">Altere a saída</string>
+    <string name="menu_help_others">Ajude os outros</string>
+    <string name="btn_choose_apps">Escolha os aplicativos</string>
+    <string name="btn_refresh">Atualizar</string>
+    <string name="btn_tor_off">Desligar o Tor</string>
+    <string name="no_thx">Não, obrigado</string>
+    <string name="menu_header_features">Características</string>
+    <string name="captcha_title">Diga-nos que é humano</string>
+    <string name="menu_tor_connection">Conexão Tor</string>
+    <string name="btn_use_custom_bridge">Use uma ponte personalizada</string>
 </resources>
