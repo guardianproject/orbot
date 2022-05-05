@@ -895,7 +895,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     private void sendCallbackPorts(int socksPort, int httpPort, int dnsPort, int transPort) {
-        var intent = new Intent(LOCAL_ACTION_PORTS) // You can also include some extra data.
+        var intent = new Intent(LOCAL_ACTION_PORTS)
             .putExtra(EXTRA_SOCKS_PROXY_PORT, socksPort)
             .putExtra(EXTRA_HTTP_PROXY_PORT, httpPort)
             .putExtra(EXTRA_DNS_PORT, dnsPort)
