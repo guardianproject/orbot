@@ -83,7 +83,7 @@
     <string name="pref_disable_network_title">Без автоматично заспиване на мрежата</string>
     <string name="pref_disable_network_summary">При липса на интернет Tor преминава в режим на сън</string>
     <string name="newnym">Сменихте самоличността си в Tor!</string>
-    <string name="pref_socks_title">Tor SOCKS</string>
+    <string name="pref_socks_title">SOCKS на Tor</string>
     <string name="pref_socks_summary">Порт, на който Tor предлага прокси на SOCKS (подразбиран: 9050 или 0 за изключване)</string>
     <string name="pref_socks_dialog">Настройка на порта на SOCKS</string>
     <string name="pref_transport_title">Порт на прозрачен сървър за прокси на Tor</string>
@@ -202,4 +202,27 @@
     <string name="strict_nodes_description">Настройката „Изключени възли“ да се смята за необходимост при съставяне на обходите. Това може да бъде повод за нарушаване на функционалността, ако е невъзможно да се създадат обходи с тези настройки.</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Позволете на потребителите на същата безжична мрежа, свързаните устройства и всички други, които могат да се свържат към вашия адрес по IP, достъп до Tor</string>
     <string name="consider_disable_battery_optimizations">Собствените услуги работят, помислете дали да не изключите оптимизацията на батерията</string>
+    <string name="trying_to_connect_title">Опит за връзка с мрежата на Tor…</string>
+    <string name="btn_choose_apps">Избор на приложения</string>
+    <string name="btn_change_exit">Промяна на изхода</string>
+    <string name="no_thx">Не, благодаря</string>
+    <string name="menu_header_features">Възможности</string>
+    <string name="captcha_title">Покажете ни, че сте човек</string>
+    <string name="menu_tor_connection">Връзка с Tor</string>
+    <string name="menu_help_others">Помагане на други</string>
+    <string name="menu_app_settings">Настройки на приложението</string>
+    <string name="menu_faq">Въпроси</string>
+    <string name="menu_header_learn">Научете повече</string>
+    <string name="msg_taking_too_long">Изглежда, че ще отнеме време</string>
+    <string name="msg_try_something_else">Опитайте нещо друго</string>
+    <string name="secure_your_connection_subtitle">Orbot осигурява сигурна и непрекъсната връзка на приложенията.</string>
+    <string name="volunteer_mode">Режим Patreon</string>
+    <string name="secure_your_connection_title">Защитете връзката си с Tor</string>
+    <string name="volunteer_mode_subtitle">Помогнете на други да бъдат свързани</string>
+    <string name="btn_start_vpn">Пускане на VPN</string>
+    <string name="connected_title">Свързани сте!</string>
+    <string name="btn_configure">Настройки</string>
+    <string name="btn_tor_off">Изключване на Tor</string>
+    <string name="btn_refresh">Презареждане</string>
+    <string name="btn_use_custom_bridge">Използване на потребителски мост</string>
 </resources>
