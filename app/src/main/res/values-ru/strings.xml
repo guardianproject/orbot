@@ -185,7 +185,7 @@
     <string name="v3_delete_client_authorization">Удалить ключ авторизации клиента</string>
     <string name="v3_backup_key_warning">Внимание: Это может раскрыть ваш ключ другим приложениям</string>
     <string name="v3_backup_key">Резервная копия ключа авторизации</string>
-    <string name="v3_onion">v3 Домен .onion</string>
+    <string name="v3_onion">Домен .onion</string>
     <string name="v3_key_hash">x25519 Закрытый ключ в Base32</string>
     <string name="v3_client_auth_activity_title">Авторизация клиента</string>
     <string name="v3_hosted_services">Размещённые Onion службы</string>
