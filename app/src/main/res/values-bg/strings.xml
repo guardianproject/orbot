@@ -128,7 +128,7 @@
     <string name="vpn_default_world">Всичко (авто)</string>
     <string name="pref_isolate_dest">Изолиране на целевия адрес</string>
     <string name="hidden_service_request">Приложението ще отвори сървър на Onion на порт %1$s в мрежата на Tor. Безопасно е ако имате доверие на приложението.</string>
-    <string name="v3_onion">v3 домейн .onion</string>
+    <string name="v3_onion">Домейн .onion</string>
     <string name="v3_backup_key">Резервно копие на ключа за удостоверяване на клиента</string>
     <string name="v3_delete_client_authorization">Премахване на ключа за удостоверяване на клиента</string>
     <string name="v3_delete_client_authorization_confirm">Премахване на удостоверяването на клиента</string>

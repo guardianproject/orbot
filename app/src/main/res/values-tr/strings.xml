@@ -185,7 +185,7 @@
     <string name="v3_delete_client_authorization">İstemci Yetkilendirme Anahtarını Sil</string>
     <string name="v3_backup_key_warning">Uyarı: Bu, diğer uygulamaların anahtarınıza erişebilmesine neden olabilir</string>
     <string name="v3_backup_key">İstemci Yetkilendirme Anahtarını Yedekle</string>
-    <string name="v3_onion">v3 .onion Etki Alanı</string>
+    <string name="v3_onion">.onion Etki Alanı</string>
     <string name="v3_key_hash">Base 32 olarak x25519 Özel Anahtarı</string>
     <string name="v3_client_auth_activity_title">İstemci Yetkilendirmesi</string>
     <string name="v3_hosted_services">Barındırılan Onion Hizmetleri</string>
