@@ -185,7 +185,7 @@
     <string name="v3_delete_client_authorization">Видалити ключ авторизації клієнта</string>
     <string name="v3_backup_key_warning">Попередження: Це може відкрити ваш ключ для інших застосунків</string>
     <string name="v3_backup_key">Резервне копіювання ключа авторизації клієнта</string>
-    <string name="v3_onion">Домен .onion v3</string>
+    <string name="v3_onion">Домен .onion</string>
     <string name="v3_key_hash">x25519 Закритий ключ у Base32</string>
     <string name="v3_client_auth_activity_title">Авторизація клієнта</string>
     <string name="v3_hosted_services">Хостинг служб Onion</string>
