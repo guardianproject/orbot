@@ -115,7 +115,7 @@
     <string name="v3_delete_client_authorization">Ștergeți cheia de autorizare a clientului</string>
     <string name="v3_backup_key_warning">Avertisment: Acest lucru ar putea expune cheia dumneavoastră altor aplicații</string>
     <string name="v3_backup_key">Cheia de autorizare a clientului de backup</string>
-    <string name="v3_onion">v3 .onion Domeniu</string>
+    <string name="v3_onion">Domeniu .onion</string>
     <string name="v3_key_hash">x25519 Cheie privată în baza32</string>
     <string name="v3_client_auth_activity_title">Autorizare Client</string>
     <string name="v3_hosted_services">Servicii găzduite de Onion</string>
