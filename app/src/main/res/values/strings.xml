@@ -234,4 +234,5 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
     <string name="proxy_ports">Proxy Ports</string>
+    <string name="globe" translatable="false">🌎</string>
 </resources>
