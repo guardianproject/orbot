@@ -29,6 +29,7 @@ import org.torproject.android.core.LocaleHelper
 import org.torproject.android.core.ui.SettingsPreferencesActivity
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.OrbotService
+import org.torproject.android.service.util.Prefs
 import org.torproject.android.ui.AppManagerActivity
 import org.torproject.android.ui.OrbotMenuAction
 import org.torproject.android.ui.dialog.AboutDialogFragment
@@ -68,7 +69,7 @@ class OrbotActivity : AppCompatActivity() {
         ivOnion = findViewById(R.id.ivStatus)
         progressBar = findViewById(R.id.progressBar)
         lvConnectedActions = findViewById(R.id.lvConnected)
-        val listItems = arrayListOf(OrbotMenuAction(R.string.btn_change_exit, R.drawable.ic_choose_apps) {},
+        val listItems = arrayListOf(OrbotMenuAction(R.string.btn_change_exit, 0) {openExitNodeDialog()},
             OrbotMenuAction(R.string.btn_refresh, R.drawable.ic_refresh) {sendNewnymSignal()},
             OrbotMenuAction(R.string.btn_tor_off, R.drawable.ic_power) {stopTorAndVpn()})
 
@@ -96,6 +97,10 @@ class OrbotActivity : AppCompatActivity() {
             registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_LOG))
             registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_PORTS))
         }
+    }
+
+    private fun openExitNodeDialog() {
+        ExitNodeDialogFragment().show(supportFragmentManager, "foo")
     }
 
     private fun configureNavigationMenu() {
@@ -151,6 +156,8 @@ class OrbotActivity : AppCompatActivity() {
         if (vpnIntent != null) {
             startActivityForResult(vpnIntent, REQUEST_CODE_VPN)
         } else {
+            // todo probably just remove this pref altogether and always start VPN
+            Prefs.putUseVpn(true)
             sendIntentToService(OrbotConstants.ACTION_START)
             sendIntentToService(OrbotConstants.ACTION_START_VPN)
         }

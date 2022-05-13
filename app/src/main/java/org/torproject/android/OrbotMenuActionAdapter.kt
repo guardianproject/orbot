@@ -16,7 +16,16 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val returnView = convertView ?: layoutInflater.inflate(R.layout.action_list_view, null)
         getItem(position)?.let { model ->
-            returnView.findViewById<ImageView>(R.id.ivAction).setImageResource(model.imgId)
+            val imgView = returnView.findViewById<ImageView>(R.id.ivAction)
+            val tvAction  = returnView.findViewById<TextView>(R.id.tvEmoji)
+            if (model.imgId == 0) {
+                imgView.visibility = View.GONE
+                tvAction.visibility = View.VISIBLE
+            } else {
+                tvAction.visibility = View.GONE
+                imgView.visibility = View.VISIBLE
+                imgView.setImageResource(model.imgId)
+            }
             returnView.findViewById<TextView>(R.id.tvLabel).text = context.getString(model.textId)
             returnView.setOnClickListener { model.action() }
         }
