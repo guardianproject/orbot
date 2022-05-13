@@ -26,7 +26,6 @@ class ExitNodeDialogFragment(private val callback: ExitNodeSelectedCallback) : D
         }
 
 
-
         val array = arrayOfNulls<String>(COUNTRY_CODES.size + 1)
         array[0] = getString(R.string.globe) + " " + getString(R.string.vpn_default_world)
         sortedCountries.keys.forEachIndexed { index, displayCountry ->
