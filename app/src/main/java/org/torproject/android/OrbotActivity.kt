@@ -35,7 +35,6 @@ import org.torproject.android.ui.dialog.AboutDialogFragment
 import org.torproject.android.ui.v3onionservice.OnionServiceActivity
 import org.torproject.android.ui.v3onionservice.PermissionManager
 import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity
-import java.text.NumberFormat
 import java.util.*
 
 class OrbotActivity : AppCompatActivity() {
@@ -54,10 +53,7 @@ class OrbotActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var menuToggle: ActionBarDrawerToggle
     private lateinit var navigationView: NavigationView
-    private lateinit var tvTorVersion: TextView
     private lateinit var tvPorts: TextView
-    private lateinit var tvDownload: TextView
-    private lateinit var tvUpload: TextView
     private lateinit var torStatsGroup: Group
 
     private var previousReceivedTorStatus: String? = null
@@ -99,19 +95,14 @@ class OrbotActivity : AppCompatActivity() {
             registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_STATUS))
             registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_LOG))
             registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_PORTS))
-            registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_BANDWIDTH))
         }
     }
 
     private fun configureNavigationMenu() {
         navigationView.getHeaderView(0).let {
-            tvTorVersion = it.findViewById(R.id.torVersion)
             tvPorts = it.findViewById(R.id.tvPorts)
-            tvDownload = it.findViewById(R.id.tvDownloadStat)
-            tvUpload = it.findViewById(R.id.tvUploadStat)
             torStatsGroup = it.findViewById(R.id.torStatsGroup)
         }
-        tvTorVersion.text = "Tor v${OrbotService.BINARY_TOR_VERSION}"
         // apply theme to colorize menu headers
         navigationView.menu.forEach { menu -> menu.subMenu?.let { // if it has a submenu, we want to color it
             menu.title = SpannableString(menu.title).apply {
@@ -212,15 +203,6 @@ class OrbotActivity : AppCompatActivity() {
                     val http = intent.getIntExtra(OrbotConstants.EXTRA_HTTP_PROXY_PORT, -1)
                     if (http > 0 && socks > 0) tvPorts.text = "SOCKS $socks | HTTP $http"
                 }
-                OrbotConstants.LOCAL_ACTION_BANDWIDTH -> {
-                    val totalWritten = intent.getLongExtra(OrbotConstants.LOCAL_EXTRA_TOTAL_WRITTEN, 0)
-                    val totalRead = intent.getLongExtra(OrbotConstants.LOCAL_EXTRA_TOTAL_READ, 0)
-                    val lastWritten = intent.getLongExtra(OrbotConstants.LOCAL_EXTRA_LAST_WRITTEN, 0)
-                    val lastRead = intent.getLongExtra(OrbotConstants.LOCAL_EXTRA_LAST_READ, 0)
-                    tvDownload.text = "${OrbotService.formatBandwidthCount(this@OrbotActivity, lastRead)} / ${formatBandwidth(this@OrbotActivity, totalRead)}"
-                    tvUpload.text = "${OrbotService.formatBandwidthCount(this@OrbotActivity, lastWritten)} / ${formatBandwidth(this@OrbotActivity, totalWritten)}"
-
-                }
                 else -> {}
             }
         }
@@ -299,14 +281,6 @@ class OrbotActivity : AppCompatActivity() {
         const val REQUEST_CODE_VPN = 1234
         const val REQUEST_CODE_SETTINGS = 2345
         const val REQUEST_VPN_APP_SELECT = 2432
-        private val numberFormat = NumberFormat.getInstance(Locale.getDefault())
-        private fun formatBandwidth(context: Context, count: Long): String {
-            // Under 2MiB, returns "xxx.xKiB"
-            // Over 2MiB, returns "xxx.xxMiB"
-            if (count < 1e6)
-                return "${numberFormat.format((count * 10 / 1024) / 10f)}${context.getString(R.string.kibibyte)}"
-            return "${numberFormat.format((count * 100 /1024 / 1024) / 100f)}${context.getString(R.string.mebibyte)}"
-        }
         private val CAN_DO_APP_ROUTING = PermissionManager.isLollipopOrHigher()
     }
 }
