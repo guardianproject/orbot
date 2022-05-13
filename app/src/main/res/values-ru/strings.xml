@@ -17,7 +17,7 @@
     <string name="menu_scan">Сканировать QR-код моста</string>
     <string name="menu_share_bridge">Опубликовать QR-код моста</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details_msg">Orbot - это приложение с открытым исходным кодом, которое содержит Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, и LibEvent. Оно предоставляет локальный HTTP-прокси (8118) и SOCKS-прокси (9050) в сеть Tor.</string>
+    <string name="wizard_details_msg">Orbot - это приложение с открытым исходным кодом, которое содержит Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks и LibEvent. Оно обеспечивает VPN-туннель, локальный прокси HTTP Connect (HTTPS только на порту 8118) и SOCKS-прокси (9050) в сеть Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Общие</string>
     <string name="pref_start_boot_title">Запускать Orbot при загрузке</string>
@@ -185,7 +185,7 @@
     <string name="v3_delete_client_authorization">Удалить ключ авторизации клиента</string>
     <string name="v3_backup_key_warning">Внимание: Это может раскрыть ваш ключ другим приложениям</string>
     <string name="v3_backup_key">Резервная копия ключа авторизации</string>
-    <string name="v3_onion">v3 Домен .onion</string>
+    <string name="v3_onion">Домен .onion</string>
     <string name="v3_key_hash">x25519 Закрытый ключ в Base32</string>
     <string name="v3_client_auth_activity_title">Авторизация клиента</string>
     <string name="v3_hosted_services">Размещённые Onion службы</string>
