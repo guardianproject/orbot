@@ -185,7 +185,7 @@
     <string name="v3_delete_client_authorization">删除客户端授权密钥</string>
     <string name="v3_backup_key_warning">警告：这可能会把你的密钥暴露给其他应用程序</string>
     <string name="v3_backup_key">备份客户端授权密钥</string>
-    <string name="v3_onion">v3 .onion 域名</string>
+    <string name="v3_onion">.onion 域名</string>
     <string name="v3_key_hash">Base 32 编码的 x25519 私钥</string>
     <string name="v3_client_auth_activity_title">客户端授权</string>
     <string name="v3_hosted_services">托管的 Onion 服务</string>
