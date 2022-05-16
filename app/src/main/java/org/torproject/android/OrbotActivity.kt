@@ -38,7 +38,7 @@ import org.torproject.android.ui.v3onionservice.PermissionManager
 import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity
 import java.util.*
 
-class OrbotActivity : AppCompatActivity() {
+class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelectedCallback {
 
     // main screen UI
     private lateinit var tvTitle: TextView
@@ -100,7 +100,7 @@ class OrbotActivity : AppCompatActivity() {
     }
 
     private fun openExitNodeDialog() {
-        ExitNodeDialogFragment().show(supportFragmentManager, "foo")
+        ExitNodeDialogFragment(this).show(supportFragmentManager, "foo")
     }
 
     private fun configureNavigationMenu() {
@@ -290,4 +290,14 @@ class OrbotActivity : AppCompatActivity() {
         const val REQUEST_VPN_APP_SELECT = 2432
         private val CAN_DO_APP_ROUTING = PermissionManager.isLollipopOrHigher()
     }
+
+    override fun onExitNodeSelected(exitNode: String, countryDisplayName: String) {
+        sendIntentToService(
+            Intent(this, OrbotService::class.java)
+                .setAction(OrbotConstants.CMD_SET_EXIT)
+                .putExtra("exit", exitNode)
+        )
+
+    }
+
 }

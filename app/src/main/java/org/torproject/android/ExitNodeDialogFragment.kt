@@ -2,6 +2,7 @@ package org.torproject.android
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import org.torproject.android.service.util.Prefs
@@ -9,9 +10,12 @@ import org.torproject.android.service.util.Utils
 import java.text.Collator
 import java.util.*
 
-class ExitNodeDialogFragment : DialogFragment() {
+class ExitNodeDialogFragment(private val callback: ExitNodeSelectedCallback) : DialogFragment() {
 
 
+    interface ExitNodeSelectedCallback {
+        fun onExitNodeSelected(countryCode: String, displayCountryName: String)
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val currentExit = Prefs.getExitNodes()
@@ -20,6 +24,7 @@ class ExitNodeDialogFragment : DialogFragment() {
             val locale = Locale("", it)
             sortedCountries[locale.displayCountry] = locale
         }
+
 
 
         val array = arrayOfNulls<String>(COUNTRY_CODES.size + 1)
@@ -37,8 +42,17 @@ class ExitNodeDialogFragment : DialogFragment() {
                 when(pos) {
                     0 -> {} // global
                     else -> {
+                        var i = 1
+                        for (code in sortedCountries.keys) {
+                            if (i == pos) {
+                                country = sortedCountries[code]!!.country
+                                break
+                            }
+                            i++
+                        }
                     }
                 }
+                callback.onExitNodeSelected(country, array[pos]!!)
             }
             .create()
     }
