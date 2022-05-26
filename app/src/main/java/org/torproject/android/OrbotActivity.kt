@@ -280,7 +280,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
 
     // todo not really defined yet
     private fun openConfigureTorConnection() {
-        Toast.makeText(this, "Configure Tor Connection...", Toast.LENGTH_LONG).show()
+        startActivity(Intent(this, TestConnectionActivity::class.java))
     }
 
 
