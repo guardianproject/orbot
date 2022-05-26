@@ -263,6 +263,7 @@ public class MoatActivity extends AppCompatActivity implements View.OnClickListe
             Prefs.setBridgesList(mOriginalBridges);
             Prefs.putBridgesEnabled(mOriginalBridgeStatus);
         }
+
     }
 
     private void fetchCaptcha() {

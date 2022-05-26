@@ -61,6 +61,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".TestConnectionActivity"
+            android:theme="@style/OrbotActivityTheme">
+        </activity>
+
         <activity android:name=".OrbotActivity"
             android:excludeFromRecents="false"
             android:launchMode="singleTop"
