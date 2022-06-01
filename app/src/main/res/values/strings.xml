@@ -73,7 +73,7 @@
     <string name="orbot_url" translatable="false">https://orbot.app/</string>
     <string name="tor_url" translatable="false">Tor: https://www.torproject.org</string>
     <string name="libevent_url" translatable="false">LibEvent: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfs4_url" translatable="false">obfs4: https://gitlab.com/yawning/obfs4</string>
+    <string name="obfs4_url" translatable="false">obfs4 v%s: https://gitlab.com/yawning/obfs4</string>
     <string name="snowflake_url" translatable="false">Snowflake: https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake</string>
     <string name="openssl_url" translatable="false">OpenSSL: http://www.openssl.org</string>
     <string name="third_party_software">3rd-Party-Software: </string>
