@@ -114,6 +114,8 @@ public interface OrbotConstants {
     String LOCAL_ACTION_PORTS = "ports";
     String LOCAL_ACTION_V3_NAMES_UPDATED = "V3_NAMES_UPDATED";
     String LOCAL_ACTION_NOTIFICATION_START = "notification_start";
+    String LOCAL_ACTION_NOTIFICATION_EXIT = "notification_exit";
+
 
     /**
      * All tor-related services and daemons are stopped
