@@ -66,7 +66,7 @@ public class TorifiedApp implements Comparable {
             app = new TorifiedApp();
             try {
                 PackageInfo pInfo = pMgr.getPackageInfo(aInfo.packageName, PackageManager.GET_PERMISSIONS);
-                if (Arrays.binarySearch(OrbotConstants.BYPASS_VPN_PACKAGES, aInfo.packageName) >= 0) {
+                if (OrbotConstants.BYPASS_VPN_PACKAGES.contains(aInfo.packageName)) {
                     app.setUsesInternet(false);
                 } else if (pInfo != null && pInfo.requestedPermissions != null) {
                     for (String permInfo : pInfo.requestedPermissions) {

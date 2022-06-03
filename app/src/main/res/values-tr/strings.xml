@@ -185,7 +185,7 @@
     <string name="v3_delete_client_authorization">İstemci Yetkilendirme Anahtarını Sil</string>
     <string name="v3_backup_key_warning">Uyarı: Bu, diğer uygulamaların anahtarınıza erişebilmesine neden olabilir</string>
     <string name="v3_backup_key">İstemci Yetkilendirme Anahtarını Yedekle</string>
-    <string name="v3_onion">v3 .onion Etki Alanı</string>
+    <string name="v3_onion">.onion Etki Alanı</string>
     <string name="v3_key_hash">Base 32 olarak x25519 Özel Anahtarı</string>
     <string name="v3_client_auth_activity_title">İstemci Yetkilendirmesi</string>
     <string name="v3_hosted_services">Barındırılan Onion Hizmetleri</string>
@@ -202,4 +202,27 @@
     <string name="snowflake_proxy_msg_title">Bağlantı Bildirimi Göster</string>
     <string name="snowflake_proxy_msg_description">Snowflake sayesinde birinin sansürü atlatmasına yardımcı olunduğunda bir mesaj göster</string>
     <string name="strict_nodes_description">Katılmayacak Düğümler ayarlarını tüm devreleri oluştururken bir gereklilik olarak ele alın. Bu, Katılmayacak Düğümler ayarlarınızla hiçbir devre oluşturulamıyorsa işlevselliği bozabilir.</string>
+    <string name="secure_your_connection_subtitle">Orbot, uygulamalarınıza güvenli ve kesintisiz bir bağlantı sağlar.</string>
+    <string name="connected_title">Bağlandınız!</string>
+    <string name="btn_configure">Yapılandır</string>
+    <string name="volunteer_mode">Patreon Modu</string>
+    <string name="volunteer_mode_subtitle">Başkalarının bağlanmasına yardım edin</string>
+    <string name="trying_to_connect_title">Tor\'a bağlanmaya çalışılıyor…</string>
+    <string name="menu_tor_connection">Tor Bağlantısı</string>
+    <string name="menu_help_others">Başkalarına Yardım Et</string>
+    <string name="msg_taking_too_long">Bu uzun sürüyor gibi görünüyor</string>
+    <string name="msg_try_something_else">Başka bir şey deneyin</string>
+    <string name="btn_start_vpn">VPN\'i başlat</string>
+    <string name="secure_your_connection_title">Tor ile bağlantınızı güvenli hale getirin</string>
+    <string name="btn_use_custom_bridge">Özel Köprü Kullan</string>
+    <string name="menu_header_learn">Daha fazla bilgi edin</string>
+    <string name="btn_choose_apps">Uygulamaları seç</string>
+    <string name="btn_change_exit">Çıkışı değiştir</string>
+    <string name="btn_refresh">Yenile</string>
+    <string name="btn_tor_off">Tor\'u kapat</string>
+    <string name="menu_app_settings">Uygulama Ayarları</string>
+    <string name="no_thx">Hayır, Teşekkürler</string>
+    <string name="menu_header_features">Özellikler</string>
+    <string name="captcha_title">İnsan olduğunuzu bize gösterin</string>
+    <string name="menu_faq">SSS</string>
 </resources>

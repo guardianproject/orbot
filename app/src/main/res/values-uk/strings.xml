@@ -185,7 +185,7 @@
     <string name="v3_delete_client_authorization">Видалити ключ авторизації клієнта</string>
     <string name="v3_backup_key_warning">Попередження: Це може відкрити ваш ключ для інших застосунків</string>
     <string name="v3_backup_key">Резервне копіювання ключа авторизації клієнта</string>
-    <string name="v3_onion">Домен .onion v3</string>
+    <string name="v3_onion">Домен .onion</string>
     <string name="v3_key_hash">x25519 Закритий ключ у Base32</string>
     <string name="v3_client_auth_activity_title">Авторизація клієнта</string>
     <string name="v3_hosted_services">Хостинг служб Onion</string>
@@ -202,4 +202,27 @@
     <string name="snowflake_proxy_msg_description">Показувати повідомлення, коли snowflake допомагає комусь обійти цензуру</string>
     <string name="bridge_snowflake_amp">Підʼєднатися через інших користувачів Tor за допомогою Snowflake (Метод 2 - AMP)</string>
     <string name="strict_nodes_description">Розгляд параметрів виключення вузлів як вимоги для побудови всіх схем. Це може порушити функціональність, якщо жодна схема не може бути згенерована з параметрами виключення вузлів.</string>
+    <string name="secure_your_connection_title">Захистіть з\'єднання за допомогою Tor</string>
+    <string name="secure_your_connection_subtitle">Orbot надає вам безпечне, безперебійне з\'єднання з вашими застосунками.</string>
+    <string name="connected_title">Ви під\'єднані!</string>
+    <string name="volunteer_mode">Режим патронату</string>
+    <string name="volunteer_mode_subtitle">Допоможіть іншим під\'єднатися</string>
+    <string name="trying_to_connect_title">Спроба під\'єднатися до Tor…</string>
+    <string name="btn_change_exit">Змінити вихід</string>
+    <string name="btn_refresh">Оновити</string>
+    <string name="btn_tor_off">Вимкнути Tor</string>
+    <string name="no_thx">Ні, дякую</string>
+    <string name="captcha_title">Дайте нам знати, що ви людина</string>
+    <string name="menu_faq">ЧаП</string>
+    <string name="msg_taking_too_long">Схоже, це триватиме довго</string>
+    <string name="msg_try_something_else">Спробуйте щось інше</string>
+    <string name="btn_configure">Сконфігурувати</string>
+    <string name="btn_choose_apps">Вибрати застосунки</string>
+    <string name="menu_header_features">Функції</string>
+    <string name="btn_start_vpn">Запустити VPN</string>
+    <string name="menu_tor_connection">З\'єднання Tor</string>
+    <string name="menu_app_settings">Налаштування застосунку</string>
+    <string name="menu_help_others">Допоможіть іншим</string>
+    <string name="menu_header_learn">Докладніше</string>
+    <string name="btn_use_custom_bridge">Використовувати власний міст</string>
 </resources>

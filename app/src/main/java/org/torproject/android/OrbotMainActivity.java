@@ -214,12 +214,11 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             }
         }
     };
-    private SharedPreferences mPrefs = null;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mPrefs = Prefs.getSharedPrefs(getApplicationContext());
+        SharedPreferences mPrefs = Prefs.getSharedPrefs(getApplicationContext());
 
         doLayout(); // Create widgets before registering for broadcasts
 
@@ -855,7 +854,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             tvVpnAppStatus.setVisibility(View.VISIBLE);
             return;
         }
-        String tordAppString = mPrefs.getString(PREFS_KEY_TORIFIED, "");
+        String tordAppString = Prefs.getSharedPrefs(getApplicationContext()).getString(PREFS_KEY_TORIFIED, "");
         if (TextUtils.isEmpty(tordAppString)) {
             drawFullDeviceVpn();
         } else {

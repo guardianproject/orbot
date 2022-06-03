@@ -58,7 +58,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
      */
     public static boolean includeAppInUi(ApplicationInfo applicationInfo) {
         if (!applicationInfo.enabled) return false;
-        if (Arrays.binarySearch(BYPASS_VPN_PACKAGES, applicationInfo.packageName) >= 0) return false;
+        if (BYPASS_VPN_PACKAGES.contains(applicationInfo.packageName)) return false;
         return !BuildConfig.APPLICATION_ID.equals(applicationInfo.packageName);
     }
 

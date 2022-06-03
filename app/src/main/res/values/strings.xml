@@ -73,7 +73,7 @@
     <string name="orbot_url" translatable="false">https://orbot.app/</string>
     <string name="tor_url" translatable="false">Tor: https://www.torproject.org</string>
     <string name="libevent_url" translatable="false">LibEvent: http://www.monkey.org/~provos/libevent/</string>
-    <string name="obfs4_url" translatable="false">obfs4: https://gitlab.com/yawning/obfs4</string>
+    <string name="obfs4_url" translatable="false">obfs4 v%s: https://gitlab.com/yawning/obfs4</string>
     <string name="snowflake_url" translatable="false">Snowflake: https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake</string>
     <string name="openssl_url" translatable="false">OpenSSL: http://www.openssl.org</string>
     <string name="third_party_software">3rd-Party-Software: </string>
@@ -119,7 +119,7 @@
     <string name="v3_hosted_services">Hosted Onion Services</string>
     <string name="v3_client_auth_activity_title">Client Authorization</string>
     <string name="v3_key_hash">x25519 Private Key in Base32</string>
-    <string name="v3_onion">v3 .onion Domain</string>
+    <string name="v3_onion">.onion Domain</string>
     <string name="v3_backup_key">Backup Client Authorization Key</string>
     <string name="v3_backup_key_warning">Warning: This could expose your key to other apps</string>
     <string name="v3_delete_client_authorization">Delete Client Authorization Key</string>
@@ -198,12 +198,34 @@
     <string name="bridge_snowflake">Connect through other Tor users using Snowflake (Method 1 - Fastly)</string>
     <string name="bridge_snowflake_amp">Connect through other Tor users using Snowflake (Method 2 - AMP)</string>
     <string name="be_a_snowflake_title">Run Snowflake Proxy</string>
-
     <string name="be_a_snowflake_desc">Allow other Tor users to connect to Tor through your device. (This can\'t be used if you connect alongside bridges)</string>
-
     <string name="be_a_snowflake_title_limit">Snowflake Proxy Limits</string>
     <string name="be_a_snowflake_desc_limit">Only when device is plugged in and on wifi</string>
     <string formatted="true" name="snowflake_proxy_enabled">Snowflake proxy enabled</string>
     <string name="snowflake_proxy_msg_title">Show Connection Notification</string>
     <string name="snowflake_proxy_msg_description">Show a message when your snowflake helps someone circumvent censorship</string>
+    <!-- new UX -->
+    <string name="secure_your_connection_title">Secure your connection with Tor</string>
+    <string name="secure_your_connection_subtitle">Orbot gives you a safe, uninterrupted connection to your apps.</string>
+    <string name="connected_title">You\'re connected!</string>
+    <string name="btn_start_vpn">Start VPN</string>
+    <string name="btn_configure">Configure</string>
+    <string name="volunteer_mode">Patreon Mode</string>
+    <string name="volunteer_mode_subtitle">Help others connect</string>
+    <string name="trying_to_connect_title">Trying to connect to Tor…</string>
+    <string name="btn_choose_apps">Choose apps</string>
+    <string name="btn_change_exit">Change exit</string>
+    <string name="btn_refresh">Refresh</string>
+    <string name="btn_tor_off">Turn Tor off</string>
+    <string name="no_thx">No Thanks</string>
+    <string name="menu_header_features">Features</string>
+    <string name="captcha_title">Let us know you\'re human</string>
+    <string name="menu_tor_connection">Tor Connection</string>
+    <string name="menu_help_others">Help Others</string>
+    <string name="menu_app_settings">App Settings</string>
+    <string name="menu_faq">FAQ</string>
+    <string name="menu_header_learn">Learn More</string>
+    <string name="btn_use_custom_bridge">Use Custom Bridge</string>
+    <string name="msg_taking_too_long">This seems to be taking long</string>
+    <string name="msg_try_something_else">Try something else</string>
 </resources>

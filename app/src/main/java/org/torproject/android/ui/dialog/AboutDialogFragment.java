@@ -16,6 +16,8 @@ import org.torproject.android.service.OrbotService;
 
 import java.io.IOException;
 
+import IPtProxy.IPtProxy;
+
 public class AboutDialogFragment extends DialogFragment {
 
     public static final String TAG = AboutDialogFragment.class.getSimpleName();
@@ -39,6 +41,9 @@ public class AboutDialogFragment extends DialogFragment {
         versionName.setText(version);
 
         tvAbout = view.findViewById(R.id.aboutother);
+
+        TextView tvObfs4 = view.findViewById(R.id.tvObfs4);
+        tvObfs4.setText(getString(R.string.obfs4_url, IPtProxy.obfs4ProxyVersion()));
 
         boolean buildAboutText = true;
 
