@@ -1,0 +1,3 @@
+- Meek-„Cloud“-Brückenoption entfernt, da sie nicht mehr unterstützt wird
+- weitere Verbessungen für Onion-v3-Unterstützung
+- behebt App-Nachschlagen für App-basierte VPN-Auswahl, siehe #441
