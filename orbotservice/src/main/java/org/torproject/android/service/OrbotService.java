@@ -619,6 +619,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         reply.putExtra(EXTRA_HTTP_PROXY, "http://127.0.0.1:" + mPortHTTP);
         reply.putExtra(EXTRA_HTTP_PROXY_HOST, "127.0.0.1");
         reply.putExtra(EXTRA_HTTP_PROXY_PORT, mPortHTTP);
+        reply.putExtra(EXTRA_DNS_PORT, mPortDns);
 
         if (packageName != null) {
             reply.setPackage(packageName);
