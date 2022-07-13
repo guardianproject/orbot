@@ -543,7 +543,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var transPort = prefs.getString("pref_transport", TOR_TRANSPROXY_PORT_DEFAULT + "");
         var dnsPort = prefs.getString("pref_dnsport", TOR_DNS_PORT_DEFAULT + "");
 
-        extraLines.append("TransPort ").append(checkPortOrAuto(transPort)).append('\n');
+        extraLines.append("TransPort ").append(checkPortOrAuto(transPort)).append(isolate).append('\n');
         extraLines.append("DNSPort ").append(checkPortOrAuto(dnsPort)).append('\n');
 
         extraLines.append("VirtualAddrNetwork 10.192.0.0/10").append('\n');
