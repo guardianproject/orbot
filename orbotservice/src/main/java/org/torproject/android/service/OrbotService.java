@@ -141,7 +141,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     private void showConnectedToTorNetworkNotification() {
         mNotifyBuilder.setProgress(0, 0, false);
-        showToolbarNotification(getString(R.string.status_activated), NOTIFY_ID, R.drawable.ic_stat_tor, true);
+        showToolbarNotification(getString(R.string.status_activated), NOTIFY_ID, R.drawable.ic_stat_tor);
     }
 
     @Override
@@ -171,7 +171,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     @SuppressLint({"NewApi", "RestrictedApi"})
-    protected void showToolbarNotification(String notifyMsg, int notifyType, int icon, boolean isFixed) {
+    protected void showToolbarNotification(String notifyMsg, int notifyType, int icon) {
         var intent = getPackageManager().getLaunchIntentForPackage(getPackageName());
         var pendIntent = PendingIntent.getActivity(OrbotService.this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
@@ -183,7 +183,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
                     .setCategory(Notification.CATEGORY_SERVICE);
         }
 
-        mNotifyBuilder.setOngoing(isFixed);
+        mNotifyBuilder.setOngoing(true);
+
         var title = getString(R.string.status_disabled);
         if (mCurrentStatus.equals(STATUS_STARTING) || notifyMsg.equals(getString(R.string.status_starting_up)))
             title = getString(R.string.status_starting_up);
@@ -217,18 +218,12 @@ public class OrbotService extends VpnService implements OrbotConstants {
             mNotifyBuilder.setProgress(0, 0, false); // removes progress bar
         }
 
-        if (!isFixed)
-            stopForeground(true);
-
-        if (isFixed)
-            startForeground(NOTIFY_ID, mNotifyBuilder.build());
-        else
-            mNotificationManager.notify(NOTIFY_ID,mNotifyBuilder.build());
+        startForeground(NOTIFY_ID, mNotifyBuilder.build());
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (mCurrentStatus.equals(STATUS_OFF))
-            showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor, false);
+            showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor);
 
         if (intent != null)
             mExecutor.execute(new IncomingIntentRouter(intent));
@@ -239,7 +234,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     private void showDeactivatedNotification() {
-        showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor, false);
+        showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor);
     }
 
     @Override
@@ -288,7 +283,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         stopTorAsync(false);
         showToolbarNotification(
                 getString(R.string.unable_to_start_tor) + ": " + message,
-                ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, false);
+                ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
     }
 
     private static boolean useIPtObfsMeekProxy() {
@@ -645,7 +640,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             }
 
             mNotifyBuilder.setProgress(100, 0, false);
-            showToolbarNotification("", NOTIFY_ID, R.drawable.ic_stat_tor, true);
+            showToolbarNotification("", NOTIFY_ID, R.drawable.ic_stat_tor);
 
             startTorService();
 
@@ -866,7 +861,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 try {
                         if (conn != null && mCurrentStatus.equals(STATUS_ON)) {
                             mNotifyBuilder.setSubText(null); // clear previous exit node info if present
-                            showToolbarNotification(getString(R.string.newnym), NOTIFY_ID, R.drawable.ic_stat_tor, true);
+                            showToolbarNotification(getString(R.string.newnym), NOTIFY_ID, R.drawable.ic_stat_tor);
                             conn.signal(TorControlCommands.SIGNAL_NEWNYM);
                     }
                 } catch (Exception ioe) {
@@ -895,7 +890,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 notificationMessage = notificationMessage.substring(notificationMessage.indexOf(':') + 1).trim();
             }
         }
-        showToolbarNotification(notificationMessage, NOTIFY_ID, R.drawable.ic_stat_tor, true);
+        showToolbarNotification(notificationMessage, NOTIFY_ID, R.drawable.ic_stat_tor);
         mHandler.post(() -> LocalBroadcastManager.getInstance(OrbotService.this).sendBroadcast(new Intent(LOCAL_ACTION_LOG)
             .putExtra(LOCAL_EXTRA_LOG, logMessage)));
     }
@@ -1020,7 +1015,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             }
 
         } catch (Exception e) {
-            showToolbarNotification(getString(R.string.your_reachableaddresses_settings_caused_an_exception_), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, false);
+            showToolbarNotification(getString(R.string.your_reachableaddresses_settings_caused_an_exception_), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
             return null;
         }
 
@@ -1037,7 +1032,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
             }
         } catch (Exception e) {
-            showToolbarNotification(getString(R.string.your_relay_settings_caused_an_exception_), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr, false);
+            showToolbarNotification(getString(R.string.your_relay_settings_caused_an_exception_), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
             return null;
         }
 
@@ -1053,7 +1048,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     void showBandwidthNotification(String message, boolean isActiveTransfer) {
         if (!mCurrentStatus.equals(STATUS_ON)) return;
         var icon = !isActiveTransfer ? R.drawable.ic_stat_tor : R.drawable.ic_stat_tor_xfer;
-        showToolbarNotification(message, NOTIFY_ID, icon, true);
+        showToolbarNotification(message, NOTIFY_ID, icon);
     }
 
     public static String formatBandwidthCount(Context context, long bitsPerSecond) {
@@ -1380,7 +1375,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
             } else if (action.equals(ACTION_STATUS)) {
                 if (mCurrentStatus.equals(STATUS_OFF))
-                    showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor, false);
+                    showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor);
                 replyWithStatus(mIntent);
 
             } else if (action.equals(TorControlCommands.SIGNAL_RELOAD)) {
