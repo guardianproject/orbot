@@ -3,6 +3,8 @@
 
 package org.torproject.android.service;
 
+import static org.torproject.jni.TorService.ACTION_ERROR;
+
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.app.Notification;
@@ -432,6 +434,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             IntentFilter filter = new IntentFilter(TorControlCommands.SIGNAL_NEWNYM);
             filter.addAction(CMD_ACTIVE);
             filter.addAction(ACTION_STATUS);
+            filter.addAction(ACTION_ERROR);
             filter.addAction(LOCAL_ACTION_NOTIFICATION_START);
 
             mActionBroadcastReceiver = new ActionBroadcastReceiver();
@@ -572,7 +575,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         debug("torrc.custom=" + extraLines.toString());
 
         var fileTorRcCustom = TorService.getTorrc(this);
-        updateTorConfigCustom(fileTorRcCustom, extraLines.toString());
+        updateTorConfigCustom(fileTorRcCustom, extraLines.toString(), false);
         return fileTorRcCustom;
     }
 
@@ -593,8 +596,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
         return portString;
     }
 
-    public void updateTorConfigCustom(File fileTorRcCustom, String extraLines) throws IOException {
-        var ps = new PrintWriter(new FileWriter(fileTorRcCustom, false));
+    public void updateTorConfigCustom(File fileTorRcCustom, String extraLines, boolean append) throws IOException {
+        var ps = new PrintWriter(new FileWriter(fileTorRcCustom, append));
         ps.print(extraLines);
         ps.flush();
         ps.close();
@@ -632,6 +635,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     }
 
+    private boolean showTorServiceErrorMsg = false;
+
     /**
      * The entire process for starting tor and related services is run from this method.
      */
@@ -647,6 +652,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             showToolbarNotification("", NOTIFY_ID, R.drawable.ic_stat_tor);
 
             startTorService();
+            showTorServiceErrorMsg = true;
 
             if (Prefs.hostOnionServicesEnabled()) {
                 try {
@@ -704,7 +710,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         updateTorConfigCustom(TorService.getDefaultsTorrc(this),
                 "DNSPort 0\n" +
                 "TransPort 0\n" +
-                "DisableNetwork 1\n");
+                "DisableNetwork 1\n", false);
 
         var fileTorrcCustom = updateTorrcCustomFile();
         if ((!fileTorrcCustom.exists()) || (!fileTorrcCustom.canRead()))
@@ -740,6 +746,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 if (conn != null) {
                     try {
                         initControlConnection();
+                        if (conn == null) return; // maybe there was an error setting up the control connection
 
                         //override the TorService event listener
                         conn.addRawEventListener(mOrbotRawEventListener);
@@ -809,18 +816,22 @@ public class OrbotService extends VpnService implements OrbotConstants {
             try {
                 String confSocks = conn.getInfo("net/listeners/socks");
                 StringTokenizer st = new StringTokenizer(confSocks, " ");
-
-                confSocks = st.nextToken().split(":")[1];
-                confSocks = confSocks.substring(0, confSocks.length() - 1);
-                mPortSOCKS = Integer.parseInt(confSocks);
-
+                if (confSocks.trim().isEmpty()) {
+                    mPortSOCKS = 0;
+                } else {
+                    confSocks = st.nextToken().split(":")[1];
+                    confSocks = confSocks.substring(0, confSocks.length() - 1);
+                    mPortSOCKS = Integer.parseInt(confSocks);
+                }
                 String confHttp = conn.getInfo("net/listeners/httptunnel");
-                st = new StringTokenizer(confHttp, " ");
-
-                confHttp = st.nextToken().split(":")[1];
-                confHttp = confHttp.substring(0, confHttp.length() - 1);
-                mPortHTTP = Integer.parseInt(confHttp);
-
+                if (confHttp.trim().isEmpty()) {
+                    mPortHTTP = 0;
+                } else {
+                    st = new StringTokenizer(confHttp, " ");
+                    confHttp = st.nextToken().split(":")[1];
+                    confHttp = confHttp.substring(0, confHttp.length() - 1);
+                    mPortHTTP = Integer.parseInt(confHttp);
+                }
                 String confDns = conn.getInfo("net/listeners/dns");
                 st = new StringTokenizer(confDns, " ");
                 if (st.hasMoreTokens()) {
@@ -1409,6 +1420,14 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 }
                 case LOCAL_ACTION_NOTIFICATION_START: {
                     startTor();
+                    break;
+                }
+                case ACTION_ERROR: {
+                    if (showTorServiceErrorMsg) {
+                        Toast.makeText(context, getString(R.string.orbot_config_invalid), Toast.LENGTH_LONG).show();
+                        showTorServiceErrorMsg = false;
+                    }
+                    stopTor();
                     break;
                 }
                 case ACTION_STATUS: {
