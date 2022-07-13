@@ -177,7 +177,6 @@
     <string name="menu_new_identity">New Identity</string>
     <string name="user_services">User services</string>
     <string name="app_services">App services</string>
-    <string name="ports_not_set" translatable="false">SOCKS: -- | HTTP: --</string>
     <string name="refresh_apps">Refresh Apps</string>
     <!-- MoatActivity -->
     <string name="request_bridges">Request Bridges</string>
