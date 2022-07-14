@@ -1,3 +1,72 @@
+/** 16.6.2-RC-1-tor.0.4.7.8 14 Jul 2022 **/
+
+e1083f3d (HEAD -> master) update to 1662300200
+9f230c73 (origin/master, origin/HEAD) add largeHeap=true to see how that impacts memory warnings and stability
+e8628a74 Merge branch 'master' of github.com:guardianproject/orbot
+f1b27f61 Merge pull request #695 from ignoramous/patch-2
+7f305947 Bump snowflake to 2.3.0
+7106bc0c Revert "allow notification to be swiped away when Orbot is not running"
+b97e6b5c For #708 add IsolateDestAddr to TransPort in torrc
+956762e0 Adding string here for faster translation for next release
+f4ca8416 Merge pull request #705 from ignoramous/patch-3
+329a4334 Create design-spec-kindness-mode.md
+666f0faa Merge pull request #710 from weblate/weblate-guardianproject-orbot
+3db16df9 Translated using Weblate (Chinese (Simplified))
+a57abf55 Merge pull request #702 from weblate/weblate-guardianproject-orbot
+7d9b24ad Translated using Weblate (Russian)
+99411429 Translated using Weblate (Ukrainian)
+cd6184ee (tag: 16.6.2-RC-1-tor.0.4.7.8) update version code to 1662300100
+334e652e update to tor 0.4.7.8
+ac103453 Reply with dns port alongside http, socks addrs
+2b01de09 Merge pull request #694 from weblate/weblate-guardianproject-orbot
+ecf320c0 Disallow bypass when vpn is in lockdown
+7f7b413a Translated using Weblate (German)
+fb6c88c2 update to tor-android 0.4.7.7
+ac1eb429 Merge branch 'dev_allow_notification_dismiss'
+0f59ff13 Merge branch 'master' of github.com:guardianproject/orbot
+f4522649 Merge pull request #691 from weblate/weblate-guardianproject-orbot
+3af5e86e Translated using Weblate (Indonesian)
+03fcec9f (origin/dev_allow_notification_dismiss, dev_allow_notification_dismiss) allow notification to be swiped away when Orbot is not running
+82c576c1 Merge branch 'master' of github.com:guardianproject/orbot
+099a78ec Show obfs4proxy version on about dialog
+0fe4fbe4 Use IPtProxy 1.6.0 (new Snowflake 2.2.0 release)
+ffcf2174 Merge pull request #685 from guardianproject/new_geoip
+71761450 Merge pull request #687 from turrisxyz/Pinned-Dependencies-GitHub
+fb44283d chore: Set permissions for GitHub actions
+4915ffce use geoip files used in tor (from IPFire)
+07e47ee5 Merge branch 'master' of https://github.com/guardianproject/orbot
+e646deea Merge pull request #679 from weblate/weblate-guardianproject-orbot
+5cc07e2e Translated using Weblate (Chinese (Simplified))
+90bfe6c9 Merge branch 'master' of https://github.com/guardianproject/orbot
+611f126d Merge pull request #678 from weblate/weblate-guardianproject-orbot
+ec8550ab Translated using Weblate (Portuguese (Brazil))
+58a1966c Merge pull request #677 from weblate/weblate-guardianproject-orbot
+3cdbe863 Translated using Weblate (Ukrainian)
+dce1627d Translated using Weblate (Turkish)
+3d71537a Translated using Weblate (Romanian)
+edda886c Translated using Weblate (Bulgarian)
+b12b17e6 Translated using Weblate (Russian)
+33698483 Merge pull request #675 from weblate/weblate-guardianproject-orbot
+683c9dba Translated using Weblate (Chinese (Simplified))
+0e032629 Merge pull request #673 from weblate/weblate-guardianproject-orbot
+edb53591 Translated using Weblate (Ukrainian)
+31777c4f Translated using Weblate (Turkish)
+e8a1c539 Translated using Weblate (Romanian)
+c5aacf03 Translated using Weblate (Portuguese (Brazil))
+684f492d Translated using Weblate (Bulgarian)
+17e54318 Translated using Weblate (Russian)
+98f3d91a Fix bug with onion share being tor over tor
+33d4713b Merge pull request #672 from weblate/weblate-guardianproject-orbot
+7f4a1b8b Translated using Weblate (Russian)
+93d1a266 Merge pull request #671 from weblate/weblate-guardianproject-orbot
+e50b0244 Translated using Weblate (Romanian)
+e6974558 Translated using Weblate (Bulgarian)
+61857a5d new strings, for translation
+c7fae8f2 Merge pull request #669 from syphyr/main
+349e7307 Remove extra slash
+3db2bc50 Merge branch 'master' of https://github.com/guardianproject/orbot
+eeb3dd79 no need to have extra member var
+
 /** 16.6.1-RC-3-tor.0.5.6.10 29 Apr 2022 **/
 
 e93c0dbe (HEAD -> master) update to 1661300300
