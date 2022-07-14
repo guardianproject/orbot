@@ -20,7 +20,7 @@ ext {
             fastlane_screengrab          : "1.2.0",
             guardian_jsocks              : "1.0.4",
             guardian_jtorctl             : "0.4.5.7",
-            ipt_proxy                    : "1.6.1",
+            ipt_proxy                    : "1.7.0",
             portmapper                   : "2.0.5",
             tor_android                  : "0.4.7.8",
             pcap_core                    : "1.8.2",
