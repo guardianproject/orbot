@@ -145,9 +145,9 @@
     <string name="app_services">Службы приложения</string>
     <string name="user_services">Службы пользователя</string>
     <string name="menu_new_identity">Новый идентификатор</string>
-    <string name="pref_disable_ipv4_summary">Сообщать выходам не подключаться к адресам IPv4</string>
+    <string name="pref_disable_ipv4_summary">Сообщать выходным узлам не использовать адреса IPv4</string>
     <string name="pref_prefer_ipv6_summary">Сообщать выходным узлам, что IPv6-адреса предпочтительнее</string>
-    <string name="pref_disable_ipv4">Отключить IPv4-соединения</string>
+    <string name="pref_disable_ipv4">Отключить соединения IPv4</string>
     <string name="pref_prefer_ipv6">Предпочитать соединения IPv6</string>
     <string name="pref_http_dialog">Конфигурация порта HTTP</string>
     <string name="pref_http_summary">Порт, на котором Tor предлагает свой HTTP-прокси (по умолчанию: 8118 или 0 для отключения)</string>
