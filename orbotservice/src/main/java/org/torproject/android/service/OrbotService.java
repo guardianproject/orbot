@@ -347,7 +347,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     @SuppressWarnings("ConstantConditions")
     private void enableSnowflakeProxy () { // This is to host a snowflake entrance node / bridge
         var capacity = 1;
-        var keepLocalAddresses = true;
+        var keepLocalAddresses = false;
         var unsafeLogging = false;
         var stunUrl = "stun:stun.stunprotocol.org:3478";
         var relayUrl = "wss://snowflake.bamsoftware.com";
