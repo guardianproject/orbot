@@ -514,12 +514,14 @@ public class OrbotService extends VpnService implements OrbotConstants {
             ipv6Pref += " IPv6Traffic NoIPv4Traffic ";
         }
 
-        extraLines.append("SOCKSPort ").append(socksPortPref).append(isolate).append(ipv6Pref).append('\n');
-        extraLines.append("SafeSocks 0").append('\n');
-        extraLines.append("TestSocks 0").append('\n');
-
-        if (Prefs.openProxyOnAllInterfaces())
-            extraLines.append("SocksListenAddress 0.0.0.0").append('\n');
+        if (!Prefs.openProxyOnAllInterfaces()) {
+            extraLines.append("SOCKSPort ").append(socksPortPref).append(isolate).append(ipv6Pref).append('\n');
+            extraLines.append("SafeSocks 0").append('\n');
+            extraLines.append("TestSocks 0").append('\n');
+        } else {
+            extraLines.append("SOCKSPort 0.0.0.0:").append(socksPortPref).append("\n");
+            extraLines.append("SocksPolicy accept *:*").append('\n');
+        }
 
 
         extraLines.append("HTTPTunnelPort ").append(httpPortPref).append(isolate).append('\n');
