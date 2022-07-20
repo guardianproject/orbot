@@ -516,15 +516,15 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
         if (!Prefs.openProxyOnAllInterfaces()) {
             extraLines.append("SOCKSPort ").append(socksPortPref).append(isolate).append(ipv6Pref).append('\n');
-            extraLines.append("SafeSocks 0").append('\n');
-            extraLines.append("TestSocks 0").append('\n');
         } else {
-            extraLines.append("SOCKSPort 0.0.0.0:").append(socksPortPref).append("\n");
+            extraLines.append("SOCKSPort 0.0.0.0:").append(socksPortPref).append(ipv6Pref).append(isolate).append("\n");
             extraLines.append("SocksPolicy accept *:*").append('\n');
         }
 
-
+        extraLines.append("SafeSocks 0").append('\n');
+        extraLines.append("TestSocks 0").append('\n');
         extraLines.append("HTTPTunnelPort ").append(httpPortPref).append(isolate).append('\n');
+        
 
         if (prefs.getBoolean(PREF_CONNECTION_PADDING, false)) {
             extraLines.append("ConnectionPadding 1").append('\n');
@@ -548,7 +548,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var dnsPort = prefs.getString("pref_dnsport", TOR_DNS_PORT_DEFAULT + "");
 
         extraLines.append("TransPort ").append(checkPortOrAuto(transPort)).append(isolate).append('\n');
-        extraLines.append("DNSPort ").append(checkPortOrAuto(dnsPort)).append('\n');
+        extraLines.append("DNSPort ").append(checkPortOrAuto(dnsPort)).append(isolate).append('\n');
 
         extraLines.append("VirtualAddrNetwork 10.192.0.0/10").append('\n');
         extraLines.append("AutomapHostsOnResolve 1").append('\n');
