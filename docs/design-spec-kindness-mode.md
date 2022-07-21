@@ -12,8 +12,7 @@ If no, display **km_ineligible-config** in the app.
 
 If no (bc of wifi network), display **km_ineligible-wifi** in the app.
 
-<img width="367" alt="Screen Shot 2022-07-21 at 10 38 11 AM" src="https://user-images.githubusercontent.com/1434597/180258735-f096d7ea-0f3e-4d50-a8b6-5d850617e63f.png">
-
+<img width="1034" alt="eligibility UI" src="https://user-images.githubusercontent.com/1434597/180260691-2dbadbf4-b203-44c0-823d-5ddc47c42d5a.png">
 
 ## Notification Nudges
 A. Send **notification A** after the app updates with launch of kindness mode.
