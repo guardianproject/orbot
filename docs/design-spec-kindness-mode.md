@@ -28,8 +28,7 @@ C. Send **notification C** _only if_ the user hasn't activated it yet, but have 
 
 **km_onboard** --> **km_active** --> **km_adjust-settings** --> **km_off**
 
-<img width="1149" alt="Screen Shot 2022-07-21 at 11 01 35 AM" src="https://user-images.githubusercontent.com/1434597/180260401-631e1498-a1d7-40a6-b2e5-e79b2753ba5c.png">
-
+<img width="1145" alt="Screen Shot 2022-07-21 at 11 07 03 AM" src="https://user-images.githubusercontent.com/1434597/180261587-d207fdc3-0889-4ce3-8b40-00a63a69f7fd.png">
 
 ### With challenges
 Challenges will be rolled out 1-3 months after kindness mode is released.
