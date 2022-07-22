@@ -524,7 +524,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         extraLines.append("SafeSocks 0").append('\n');
         extraLines.append("TestSocks 0").append('\n');
         extraLines.append("HTTPTunnelPort ").append(httpPortPref).append(isolate).append('\n');
-        
+
 
         if (prefs.getBoolean(PREF_CONNECTION_PADDING, false)) {
             extraLines.append("ConnectionPadding 1").append('\n');
