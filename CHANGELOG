@@ -1,3 +1,46 @@
+/** 16.6.2-RC-4-tor.0.4.7.8.1 26 Jul 2022 **/
+
+f2092a9e (HEAD -> master) update to 1662300400 RC4
+c3aab3c6 (origin/master, origin/HEAD) Merge pull request #715 from guardianproject/proxy_port_fixes
+99003b1e (origin/proxy_port_fixes, proxy_port_fixes) use the tor aar built by n8fr8
+eba71e7a Merge branch 'master' into proxy_port_fixes
+ddd99810 (tag: 16.6.2-RC-3-tor.0.4.7.8.1) update to 1662300300
+6d258c44 (newport/master) add temporary AAR build of tor-android 0.4.7.8.1 release
+35ca3c4b Merge branch 'master' of github.com:guardianproject/orbot
+0a2f4454 add validation on hosted service unzipped files writtten to disk
+13217fae forgot to commit XML files with last commit
+bf2d9efc display snowflake version
+5da549a3 add right flags on open proxy on all interfaces
+6f584673 Closes #317, open proxy on all interfaces feature works again
+cd4ea55a forgot to commit
+b597685b Integration with new tor-android code for not hardcoding proxy ports
+1ab362c1 Update design-spec-kindness-mode.md
+1477fe34 Update design-spec-kindness-mode.md
+7261c726 Update design-spec-kindness-mode.md
+a478ef07 Update design-spec-kindness-mode.md
+ae1e40bc Merge pull request #717 from weblate/weblate-guardianproject-orbot
+5052d57a Translated using Weblate (Russian)
+323d84cb Translated using Weblate (Persian)
+2f8e09c6 keep local addresses -> false for snowflake proxy
+ddab4406 IPtProxy 1.7.1, Fixes #712 snowflake proxy crash
+7a52fdbb needed but for #712, but wont stop the crash on its own
+ebb85119 (tag: 16.6.2-RC-2-tor.0.4.7.8) update CHANGELOG
+e1083f3d update to 1662300200
+9f230c73 add largeHeap=true to see how that impacts memory warnings and stability
+e8628a74 Merge branch 'master' of github.com:guardianproject/orbot
+f1b27f61 Merge pull request #695 from ignoramous/patch-2
+7f305947 Bump snowflake to 2.3.0
+7106bc0c Revert "allow notification to be swiped away when Orbot is not running"
+b97e6b5c For #708 add IsolateDestAddr to TransPort in torrc
+956762e0 Adding string here for faster translation for next release
+f4ca8416 Merge pull request #705 from ignoramous/patch-3
+329a4334 Create design-spec-kindness-mode.md
+666f0faa Merge pull request #710 from weblate/weblate-guardianproject-orbot
+3db16df9 Translated using Weblate (Chinese (Simplified))
+a57abf55 Merge pull request #702 from weblate/weblate-guardianproject-orbot
+7d9b24ad Translated using Weblate (Russian)
+99411429 Translated using Weblate (Ukrainian)
+
 /** 16.6.2-RC-1-tor.0.4.7.8 14 Jul 2022 **/
 
 e1083f3d (HEAD -> master) update to 1662300200
