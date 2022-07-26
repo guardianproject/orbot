@@ -74,7 +74,7 @@
     <string name="tor_url" translatable="false">Tor: https://www.torproject.org</string>
     <string name="libevent_url" translatable="false">LibEvent: http://www.monkey.org/~provos/libevent/</string>
     <string name="obfs4_url" translatable="false">obfs4 v%s: https://gitlab.com/yawning/obfs4</string>
-    <string name="snowflake_url" translatable="false">Snowflake: https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake</string>
+    <string name="snowflake_url" translatable="false">Snowflake v%s: https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake</string>
     <string name="openssl_url" translatable="false">OpenSSL: http://www.openssl.org</string>
     <string name="third_party_software">3rd-Party-Software: </string>
     <string name="version">Version:</string>
@@ -177,7 +177,6 @@
     <string name="menu_new_identity">New Identity</string>
     <string name="user_services">User services</string>
     <string name="app_services">App services</string>
-    <string name="ports_not_set" translatable="false">SOCKS: -- | HTTP: --</string>
     <string name="refresh_apps">Refresh Apps</string>
     <!-- MoatActivity -->
     <string name="request_bridges">Request Bridges</string>

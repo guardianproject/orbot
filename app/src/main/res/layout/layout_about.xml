@@ -87,10 +87,11 @@
 
 
         <TextView
+            android:id="@+id/tvSnowflake"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:text="@string/snowflake_url"
+            tools:text="@string/snowflake_url"
             android:textColor="@android:color/white"
             android:textColorLink="@android:color/white" />
 
