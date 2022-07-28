@@ -1,1 +1,1 @@
-Orbot Прокси в комплекте с Tor
+Orbot: Tor для Android
