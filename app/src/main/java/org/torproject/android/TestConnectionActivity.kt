@@ -15,19 +15,19 @@ class TestConnectionActivity : AppCompatActivity() {
         tvView = findViewById(R.id.tvView)
         val api = CircumventionApiManager()
 
-        api.getSettings(SettingsRequest("cn")) {
+        api.getSettings(SettingsRequest("cn"), {
             it?.let {
                 Log.d("bim", "China Settings Request")
                 Log.d("bim", "$it")
             }
-        }
+        },{})
 
-        api.getMap {
+        api.getMap({
             Log.d("bim", "get map")
             it?.forEach { (k, v) ->
                 Log.d("bim","Country $k")
                 Log.d("bim", "$v")
             }
-        }
+        })
     }
 }
