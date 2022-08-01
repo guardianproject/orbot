@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollView"
     android:background="@color/new_backgorund"
     android:layout_width="fill_parent"
@@ -77,19 +78,21 @@
             android:textColorLink="@android:color/white" />
 
         <TextView
+            android:id="@+id/tvObfs4"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:text="@string/obfs4_url"
+            tools:text="@string/obfs4_url"
             android:textColor="@android:color/white"
             android:textColorLink="@android:color/white" />
 
 
         <TextView
+            android:id="@+id/tvSnowflake"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:text="@string/snowflake_url"
+            tools:text="@string/snowflake_url"
             android:textColor="@android:color/white"
             android:textColorLink="@android:color/white" />
 

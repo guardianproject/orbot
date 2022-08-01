@@ -9,6 +9,7 @@
     <string name="open_orbot_to_connect_to_tor">Open Orbot to Connect to Tor</string>
     <string name="status_shutting_down">Orbot is Shutting Down</string>
     <string name="connect_to_tor">Connect to Tor</string>
+    <string name="orbot_config_invalid">Orbot Configuration Invalid</string>
 
     <string name="couldn_t_start_tor_process_">Couldn\'t start Tor process: </string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">Your ReachableAddresses settings caused an exception!</string>

@@ -351,6 +351,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     private void doLollipopAppRouting(VpnService.Builder builder) throws NameNotFoundException {
         var apps = TorifiedApp.getApps(mService, prefs);
         var perAppEnabled = false;
+        var canBypass = !isVpnLockdown(mService); 
 
         for (TorifiedApp app : apps) {
             if (app.isTorified() && (!app.getPackageName().equals(mService.getPackageName()))) {
@@ -362,14 +363,24 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
             }
         }
 
-        if (!perAppEnabled) {
+        if (!perAppEnabled && canBypass) {
             builder.addDisallowedApplication(mService.getPackageName());
             for (String packageName : OrbotConstants.BYPASS_VPN_PACKAGES)
                 builder.addDisallowedApplication(packageName);
+        } else {
+            Log.i(TAG, "Skip bypass perApp? " + perAppEnabled + " vpnLockdown? " + !canBypass);
         }
     }
 
     public boolean isStarted() {
         return isStarted;
+    }
+
+    private boolean isVpnLockdown(final VpnService vpn) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            return vpn.isLockdownEnabled();
+        } else {
+            return false;
+        }
     }
 }

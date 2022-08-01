@@ -91,7 +91,7 @@
                     android:gravity="center"
                     android:lines="1"
                     android:maxLines="1"
-                    android:text="@string/ports_not_set"
+                    android:text=""
                     android:textSize="14sp" />
 
                 <LinearLayout

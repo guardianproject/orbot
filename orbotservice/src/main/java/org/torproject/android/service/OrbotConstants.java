@@ -5,6 +5,9 @@ package org.torproject.android.service;
 
 import android.content.Intent;
 
+import java.util.Arrays;
+import java.util.List;
+
 public interface OrbotConstants {
 
     String TAG = "Orbot";
@@ -151,12 +154,11 @@ public interface OrbotConstants {
      * Include packages here to make the VPNService ignore these apps (On Lollipop+). This is to
      * prevent tor over tor scenarios...
      */
-    String[] BYPASS_VPN_PACKAGES = new String[] {
-            "org.torproject.torbrowser_alpha",
+    List<String> BYPASS_VPN_PACKAGES = Arrays.asList("org.torproject.torbrowser_alpha",
             "org.torproject.torbrowser",
             "org.onionshare.android", // issue #618
             "org.briarproject.briar.android" // https://github.com/guardianproject/orbot/issues/474
-    };
+    );
 
     String SNOWFLAKE_EMOJI = "❄️";
     String SNOWFLAKE_PROXY_EMOJI = "\uD83D\uDCF2";

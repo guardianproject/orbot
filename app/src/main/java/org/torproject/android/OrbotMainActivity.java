@@ -768,7 +768,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 case STATUS_OFF:
                     lblStatus.setText(String.format("Tor v%s", OrbotService.BINARY_TOR_VERSION));
                     imgStatus.setImageResource(R.drawable.toroff);
-                    lblPorts.setText(R.string.ports_not_set);
+                    lblPorts.setText("");
                     mBtnStart.setText(R.string.menu_start);
                     resetBandwidthStatTextviews();
                     setTitleForSnowflakeProxy();
@@ -926,9 +926,15 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     break;
 
                 case MESSAGE_PORTS:
-                    int socksPort = data.getInt("socks");
-                    int httpPort = data.getInt("http");
-                    oma.lblPorts.setText(String.format(Locale.getDefault(), "SOCKS: %d | HTTP: %d", socksPort, httpPort));
+                    var text = "";
+                    var socksPort = data.getInt("socks");
+                    if (socksPort > 0) text += "SOCKS: " + socksPort;
+                    var httpPort = data.getInt("http");
+                    if (httpPort > 0) {
+                        if (socksPort > 0) text += " | ";
+                        text += "HTTP: " + httpPort;
+                    }
+                    oma.lblPorts.setText(text);
                     break;
 
                 default:

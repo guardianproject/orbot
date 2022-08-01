@@ -15,6 +15,9 @@ import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.util.Arrays;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
@@ -89,16 +92,33 @@ public class ZipUtilities {
         }
     }
 
+    private static final List<String> ONION_SERVICE_CONFIG_FILES = Arrays.asList("config.json",
+            "hostname",
+            "hs_ed25519_public_key",
+            "hs_ed25519_secret_key");
+
     private boolean extractFromZipInputStream(String outputPath, ZipInputStream zis) {
+        File outputDir = new File(outputPath);
         try {
             ZipEntry ze;
             byte[] buffer = new byte[1024];
             int count;
 
-            new File(outputPath).mkdirs();
+            outputDir.mkdirs();
 
             while ((ze = zis.getNextEntry()) != null) {
                 String filename = ze.getName();
+
+                if (!ONION_SERVICE_CONFIG_FILES.contains(filename)) { // *any* kind of foreign file
+                    File[] writtenFiles = outputDir.listFiles();
+                    if (writtenFiles != null) {
+                        for (File writtenFile: writtenFiles) {
+                            writtenFile.delete();
+                        }
+                    }
+                    outputDir.delete();
+                    return false;
+                }
 
                 // Need to create directories if not exists, or it will generate an Exception...
                 if (ze.isDirectory()) {

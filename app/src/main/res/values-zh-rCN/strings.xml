@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbot 是一款免费的代理应用，能够让其他应用更安全地使用互联网。通过在位于世界各地的一系列计算机之间进行跳转，Orbot 可利用 Tor 对网络通信进行加密并隐藏。Tor 是一款免费的软件，并且是一个开放的网络。它可以保护用户免受流量分析的危害，这种网络监控可对个人自由与隐私、商业机密活动和关系以及国家安全造成威胁。</string>
+    <string name="app_description">Orbot 是一款免费的代理应用，能够让其他应用更安全地使用互联网。通过在位于世界各地的一系列计算机之间进行跳转，Orbot 可利用 Tor 对网络通信进行加密并隐藏。Tor 是一款自由软件，并且是一个开放的网络。它可以保护用户免受流量分析的危害，这种网络监控可对个人自由与隐私、商业机密活动和关系以及国家安全造成威胁。</string>
     <string name="status_starting_up">Orbot 正在启动…</string>
     <string name="status_activated">已连接到 Tor 网络</string>
     <string name="status_shutting_down">Orbot 正在关闭</string>
@@ -185,7 +185,7 @@
     <string name="v3_delete_client_authorization">删除客户端授权密钥</string>
     <string name="v3_backup_key_warning">警告：这可能会把你的密钥暴露给其他应用程序</string>
     <string name="v3_backup_key">备份客户端授权密钥</string>
-    <string name="v3_onion">v3 .onion 域名</string>
+    <string name="v3_onion">.onion 域名</string>
     <string name="v3_key_hash">Base 32 编码的 x25519 私钥</string>
     <string name="v3_client_auth_activity_title">客户端授权</string>
     <string name="v3_hosted_services">托管的 Onion 服务</string>
@@ -201,4 +201,28 @@
     <string name="bridge_snowflake_amp">使用 Snowflake 通过其他 Tor 用户连接（方法 2 - AMP）</string>
     <string name="snowflake_proxy_msg_title">显示连接通知</string>
     <string name="snowflake_proxy_msg_description">当您的 Snowflake 帮助某人规避审查时显示一条消息</string>
+    <string name="secure_your_connection_title">用 Tor 保护你的连接</string>
+    <string name="connected_title">你已连接！</string>
+    <string name="strict_nodes_description">将“排除节点”设置作为构建所有电路的必要条件。如果你的“排除节点”设置无法生成电路，可能会破坏功能。</string>
+    <string name="volunteer_mode">“赞助人”模式</string>
+    <string name="trying_to_connect_title">正尝试连接到 Tor…</string>
+    <string name="volunteer_mode_subtitle">帮助其他人连接</string>
+    <string name="btn_tor_off">关闭 Tor</string>
+    <string name="menu_header_features">功能</string>
+    <string name="menu_app_settings">应用程序设置</string>
+    <string name="menu_header_learn">了解更多</string>
+    <string name="btn_use_custom_bridge">使用自定义网桥</string>
+    <string name="msg_try_something_else">试试别的</string>
+    <string name="secure_your_connection_subtitle">Orbot 给你一个安全、不间断的应用程序连接。</string>
+    <string name="btn_start_vpn">启动 VPN</string>
+    <string name="btn_configure">配置</string>
+    <string name="no_thx">不，谢谢</string>
+    <string name="menu_help_others">帮助其他人</string>
+    <string name="btn_choose_apps">选择应用</string>
+    <string name="btn_change_exit">更改出口</string>
+    <string name="menu_tor_connection">Tor 连接</string>
+    <string name="menu_faq">常见问题</string>
+    <string name="msg_taking_too_long">似乎花了很久</string>
+    <string name="btn_refresh">刷新</string>
+    <string name="captcha_title">让我们知道你是真人</string>
 </resources>
