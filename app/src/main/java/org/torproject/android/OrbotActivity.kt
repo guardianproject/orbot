@@ -33,6 +33,7 @@ import org.torproject.android.service.util.Prefs
 import org.torproject.android.ui.AppManagerActivity
 import org.torproject.android.ui.OrbotMenuAction
 import org.torproject.android.ui.dialog.AboutDialogFragment
+import org.torproject.android.ui.onboarding.BridgeWizardActivity
 import org.torproject.android.ui.v3onionservice.OnionServiceActivity
 import org.torproject.android.ui.v3onionservice.PermissionManager
 import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity
@@ -275,12 +276,13 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
 
     // todo not really defined what this does, somehow start/manage being a snowflake proxy
     private fun openVolunteerMode() {
-        Toast.makeText(this, "Volunteer Mode Not Implemented...", Toast.LENGTH_LONG).show()
+        //Toast.makeText(this, "Volunteer Mode Not Implemented...", Toast.LENGTH_LONG).show()
+
     }
 
     // todo not really defined yet
     private fun openConfigureTorConnection() {
-        startActivity(Intent(this, TestConnectionActivity::class.java))
+        startActivity(Intent(this, BridgeWizardActivity::class.java))
     }
 
 
