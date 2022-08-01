@@ -288,7 +288,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
 
     // todo not really defined yet
     private fun openConfigureTorConnection() {
-        startActivity(Intent(this, TestConnectionActivity::class.java))
+        startActivity(Intent(this, BridgeWizardActivity::class.java))
     }
 
 
