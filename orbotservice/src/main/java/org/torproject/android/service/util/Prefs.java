@@ -81,7 +81,6 @@ public class Prefs {
     }
 
     public static boolean beSnowflakeProxy () {
-        if (Prefs.bridgesEnabled()) return false;
         return prefs.getBoolean(PREF_BE_A_SNOWFLAKE,false);
     }
 

@@ -213,7 +213,7 @@
     <string name="connected_title">You\'re connected!</string>
     <string name="btn_start_vpn">Start VPN</string>
     <string name="btn_configure">Configure Tor Connection</string>
-    <string name="volunteer_mode">Volunteer Mode</string>
+    <string name="volunteer_mode">Kindness Mode</string>
     <string name="volunteer_mode_subtitle">Help others connect</string>
     <string name="trying_to_connect_title">Trying to connect to Tor…</string>
     <string name="btn_choose_apps">Choose apps</string>
@@ -236,4 +236,9 @@
     <string name="proxy_ports">Proxy Ports</string>
     <string name="globe" translatable="false">🌎</string>
     <string name="ports_not_set">Ports Not Set</string>
+    <string name="volunteer_mode_title">Today is better because of you</string>
+    <string name="volunteer_mode_label">Kindness Mode</string>
+    <string name="volunteer_mode_weekly_label">WEEKLY TOTAL</string>
+    <string name="volunteer_mode_alltime_label">PEOPLE HELPED</string>
+    <string name="volunteer_mode_subtitle_desc">Kindness mode allows your device to be a bridge for others. It helps people use Tor in places where it is blocked.</string>
 </resources>
