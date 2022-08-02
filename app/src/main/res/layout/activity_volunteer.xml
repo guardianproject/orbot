@@ -59,7 +59,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSubtitle"
-        app:showText="true"
+        app:showText="false"
         android:text="@string/volunteer_mode_label"
         android:textSize="24dp"
         />
