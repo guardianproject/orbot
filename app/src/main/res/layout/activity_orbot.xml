@@ -65,7 +65,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            android:paddingLeft="@dimen/activity_horizontal_large_margin"
+            android:paddingRight="@dimen/activity_horizontal_large_margin"
+
+            />
         <Button
             tools:enabled="false"
             android:backgroundTint="@color/orbot_btn_enabled_purple"
@@ -75,7 +79,11 @@
             android:text="@string/btn_start_vpn"
             android:id="@+id/btnStart"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+
+            />
 
         w<TextView
             android:id="@+id/tvConfigure"

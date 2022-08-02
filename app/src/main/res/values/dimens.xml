@@ -5,4 +5,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="alert_dialog_margin">20dp</dimen>
+    <dimen name="activity_horizontal_large_margin">32dp</dimen>
+
 </resources>

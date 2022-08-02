@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_marginTop="16dp"
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/volunteer_mode_title"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="36sp"
+        android:textStyle="normal"
+        android:gravity="center_horizontal"
+        android:padding="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:textAlignment="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvSubtitle"
+        android:text="@string/volunteer_mode_subtitle_desc"
+        android:textSize="18sp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        android:gravity="center_horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_large_margin"
+        android:paddingRight="@dimen/activity_horizontal_large_margin"
+        android:paddingBottom="30dp"
+
+        />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/rowVolunteerMode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:background="#333333"
+        android:layout_margin="10dp"
+        >
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/swVolunteerMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle"
+        app:showText="true"
+        android:text="@string/volunteer_mode_label"
+        android:textSize="24dp"
+        />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+<!--
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/rowWeeklyTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rowVolunteerMode"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:background="@color/orbot_btn_disable_grey"
+        android:layout_margin="10dp"
+        >
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/volunteer_mode_weekly_label"
+    android:textColor="@color/progress_bar_purple"
+    android:textSize="24dp"
+    android:padding="@dimen/activity_horizontal_margin"
+    />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="#"
+            android:textSize="24dp"
+            android:id="@+id/tvWeeklyTotal"
+            android:padding="@dimen/activity_horizontal_margin"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rowVolunteerMode"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:background="@color/orbot_btn_disable_grey"
+        android:layout_margin="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/volunteer_mode_alltime_label"
+            android:textColor="@color/progress_bar_purple"
+            android:textSize="24dp"
+            android:padding="@dimen/activity_horizontal_margin"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvAlltimeTotal"
+            android:text="#"
+            android:textSize="24dp"
+            android:padding="@dimen/activity_horizontal_margin"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.constraintlayout.widget.ConstraintLayout>

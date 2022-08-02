@@ -102,6 +102,13 @@
         </activity>
 
         <activity
+            android:name=".ui.volunteer.VolunteerModeActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/OrbotActivityTheme"
+
+            android:label="@string/volunteer_mode" />
+
+        <activity
             android:name=".ui.onboarding.BridgeWizardActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/bridges" />
