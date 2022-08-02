@@ -34,6 +34,7 @@ import net.freehaven.tor.control.TorControlCommands;
 import net.freehaven.tor.control.TorControlConnection;
 
 import org.torproject.android.service.util.CustomTorResourceInstaller;
+import org.torproject.android.service.util.PowerConnectionReceiver;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.Utils;
 import org.torproject.android.service.vpn.OrbotVpnManager;
@@ -110,6 +111,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
     private File mV3OnionBasePath, mV3AuthBasePath;
     private ArrayList<Bridge> alBridges = null;
     private int snowflakeClientsConnected;
+
+    private PowerConnectionReceiver mPowerReceiver;
 
     /**
      * @param bridgeList bridges that were manually entered into Orbot settings
@@ -243,6 +246,9 @@ public class OrbotService extends VpnService implements OrbotConstants {
     public void onDestroy() {
         try {
             unregisterReceiver(mActionBroadcastReceiver);
+
+            unregisterReceiver(mPowerReceiver);
+
         } catch (IllegalArgumentException iae) {
             //not registered yet
         }
@@ -260,8 +266,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
             else if (useIPtSnowflakeProxyDomainFronting())
                 IPtProxy.stopSnowflake();
         }
-        else if (Prefs.beSnowflakeProxy())
-            disableSnowflakeProxy();
 
         stopTor();
 
@@ -347,7 +351,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     @SuppressWarnings("ConstantConditions")
-    private void enableSnowflakeProxy () { // This is to host a snowflake entrance node / bridge
+    public void enableSnowflakeProxy () { // This is to host a snowflake entrance node / bridge
         var capacity = 1;
         var keepLocalAddresses = false;
         var unsafeLogging = false;
@@ -365,9 +369,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
         logNotice(getString(R.string.log_notice_snowflake_proxy_enabled));
     }
 
-    private void disableSnowflakeProxy() {
-        IPtProxy.stopSnowflakeProxy();
-        logNotice(getString(R.string.log_notice_snowflake_proxy_disabled));
+    public void disableSnowflakeProxy() {
+        if (IPtProxy.isSnowflakeProxyRunning()) {
+            IPtProxy.stopSnowflakeProxy();
+            logNotice(getString(R.string.log_notice_snowflake_proxy_disabled));
+        }
     }
 
     // if someone stops during startup, we may have to wait for the conn port to be setup, so we can properly shutdown tor
@@ -463,6 +469,13 @@ public class OrbotService extends VpnService implements OrbotConstants {
         }
 
         snowflakeClientsConnected = Prefs.getSnowflakesServed();
+
+        mPowerReceiver = new PowerConnectionReceiver(this);
+
+        IntentFilter ifilter = new IntentFilter();
+        ifilter.addAction(Intent.ACTION_POWER_CONNECTED);
+        ifilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
+        registerReceiver(mPowerReceiver, ifilter);
 
         Log.i("OrbotService", "onCreate end");
     }
