@@ -66,18 +66,7 @@ public class OrbotMLManager {
         return sb.toString();
     }
 
-    public void labelCurrentConnectionState (boolean positiveOrNegative) {
 
-        String connConfig = generateConnectionConfigurationToken(mContext);
-        Log.d("OrbotML","label=" + positiveOrNegative + " for: " + connConfig);
-
-        //use cleaninsights or other simple service to post label to a Tor Onion service for storage of training data
-
-
-        //use local TFLite training (need to generate the model with training capability)
-        //https://www.tensorflow.org/lite/examples/on_device_training/overview
-
-    }
 
 
     public void useMLConnectionClassifier (String connConfigCode) {

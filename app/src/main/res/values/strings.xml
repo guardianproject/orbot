@@ -241,8 +241,8 @@
     <string name="volunteer_mode_subtitle_desc">Kindness mode allows your device to be a bridge for others. It helps people use Tor in places where it is blocked.</string>
 
     <string name="clean_insight_consent_prompt">Would you like to provide feedback on the quality of your connection?</string>
-    <string name="measurement_survey_title">Thank you!</string>
-    <string name="measurement_survey_content">Your input helps us understand how our circumvention technology is working well..</string>
+    <string name="measurement_survey_title">Connection Quality</string>
+    <string name="measurement_survey_content">How is the current quality of your connection to the Tor network?</string>
 
     <string name="measurement_survey_title_fail">How To Fix It</string>
     <string name="measurement_survey_content_fail">You can try using a different connection configuration or \'Bridge\' setting.</string>

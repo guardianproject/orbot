@@ -135,13 +135,17 @@ open class CleanInsightsManager {
             InfoSheet().show(activity) {
                 title(activity.getString(R.string.measurement_survey_title))
                 content(activity.getString(R.string.measurement_survey_content))
-                onNegative(activity.getString(R.string.no_thx)) {
+                onNegative("Poor") {
+                    measureEvent("labeled_data", "$labeledData=poor", CI_CAMPAIGN)
 
                     mMeasure?.persist()
                 }
-                onPositive(activity.getString(R.string.sheets_ok)) {
-                    addLabeledData(activity, labeledData);
+                onPositive("Good") {
+//                    addLabeledData(activity, labeledData);
+
+                    measureEvent("labeled_data", "$labeledData=good", CI_CAMPAIGN)
                     mMeasure?.persist()
+
                 }
             }
 

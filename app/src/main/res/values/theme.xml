@@ -14,6 +14,7 @@
         <item name="android:windowIsFloating">false</item>
         <item name="colorPrimary">@color/new_background_secondary</item>
         <item name="colorPrimaryDark">@color/new_background_secondary</item>
+        <item name="sheetsPrimaryColor">#FFFFFF</item>
 
     </style>
 

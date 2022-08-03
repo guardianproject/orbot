@@ -100,7 +100,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         tvConfigure.setOnClickListener {openConfigureTorConnection()}
 
         tvMeasure.setOnClickListener {
-            val data = OrbotMLManager(this).labelCurrentConnectionState(true).toString()
+            val data = OrbotMLManager.generateConnectionConfigurationToken(this)
             (application as OrbotApp).cleanInsightsManager.showConfirm(this, data)
         }
 
