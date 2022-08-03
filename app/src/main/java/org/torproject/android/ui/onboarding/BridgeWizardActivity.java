@@ -2,20 +2,35 @@ package org.torproject.android.ui.onboarding;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.os.ConfigurationCompat;
 
+import org.tensorflow.lite.support.label.Category;
 import org.torproject.android.R;
 import org.torproject.android.core.LocaleHelper;
+import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.util.Prefs;
+import org.torproject.android.tensor.OrbotMLManager;
+import org.torproject.android.tensor.TextClassificationHelper;
+
+import java.util.List;
+import java.util.Locale;
 
 public class BridgeWizardActivity extends AppCompatActivity {
 
@@ -57,6 +72,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
             if (!isChecked) return;
             Prefs.setBridgesList("");
             Prefs.putBridgesEnabled(false);
+            useMLConnectionClassifier();
         });
 
         mBtObfs4 = findViewById(R.id.btnBridgesObfs4);
@@ -64,6 +80,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
             if (!isChecked) return;
             Prefs.setBridgesList("obfs4");
             Prefs.putBridgesEnabled(true);
+            useMLConnectionClassifier();
         });
 
         mBtSnowflake = findViewById(R.id.btnBridgesSnowflake);
@@ -71,6 +88,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
             if (!isChecked) return;
             Prefs.setBridgesList("snowflake");
             Prefs.putBridgesEnabled(true);
+            useMLConnectionClassifier();
         });
 
         mBtnSnowflakeAmp = findViewById(R.id.btnSnowflakeAmp);
@@ -78,6 +96,7 @@ public class BridgeWizardActivity extends AppCompatActivity {
             if (!isChecked) return;
             Prefs.setBridgesList("snowflake-amp");
             Prefs.putBridgesEnabled(true);
+            useMLConnectionClassifier();
         });
 
         mBtCustom = findViewById(R.id.btnCustomBridges);
@@ -142,5 +161,19 @@ public class BridgeWizardActivity extends AppCompatActivity {
         } else {
             mBtCustom.setChecked(true);
         }
+        useMLConnectionClassifier();
     }
+
+    OrbotMLManager mlManager = null;
+
+    private void useMLConnectionClassifier () {
+        if (mlManager == null)
+            mlManager = new OrbotMLManager(this);
+
+        String connConfig = OrbotMLManager.generateConnectionConfigurationToken(this);
+        Log.d("OrbotML","connConfig="+connConfig);
+        mlManager.useMLConnectionClassifier(connConfig);
+    }
+
+
 }

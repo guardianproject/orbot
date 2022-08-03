@@ -16,7 +16,7 @@ android {
     defaultConfig {
         applicationId "org.torproject.android"
         versionName getVersionName()
-        minSdkVersion 16
+        minSdkVersion 21
         compileSdkVersion 31
         targetSdkVersion 31
         multiDexEnabled true
@@ -40,11 +40,15 @@ android {
 
     flavorDimensions "free"
 
+    androidResources {
+        noCompress 'tflite'
+    }
+
     productFlavors {
         fullperm {
             dimension "free"
 
-            minSdkVersion 16
+            minSdkVersion 21
             applicationId 'org.torproject.android'
             targetSdkVersion 31
             //versionCode 1662300400
@@ -81,8 +85,23 @@ android {
         //    until a new full release is done
        implementation files('../libs/tor-android-binary-release.aar')
 
+        //experimental machine learning
+
+        // Tensorflow lite dependencies
+        implementation 'org.tensorflow:tensorflow-lite-task-text:0.4.0'
+        implementation 'org.tensorflow:tensorflow-lite-gpu-delegate-plugin:0.4.0'
+        implementation 'org.tensorflow:tensorflow-lite-gpu:2.9.0'
+
     }
 }
+
+
+// import DownloadModels task
+project.ext.ASSET_DIR = projectDir.toString() + '/src/main/assets'
+project.ext.TEST_ASSET_DIR = projectDir.toString() + '/src/androidTest/assets'
+
+apply from:'download_model.gradle'
+
 dependencies {
     implementation "androidx.core:core-ktx:1.8.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

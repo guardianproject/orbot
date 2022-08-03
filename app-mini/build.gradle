@@ -4,7 +4,7 @@ apply from : '../dependencies.gradle'
 android {
     defaultConfig {
         applicationId "org.torproject.android.mini"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 31
         multiDexEnabled true
     }
@@ -14,7 +14,7 @@ android {
     productFlavors {
         mini {
             dimension "freemini"
-            minSdkVersion 16
+            minSdkVersion 21
             applicationId 'org.torproject.android.mini'
             targetSdkVersion 28
             versionCode 10020000

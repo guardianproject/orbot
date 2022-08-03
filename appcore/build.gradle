@@ -3,12 +3,13 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
 }
+
 apply from: "../commons.gradle"
 apply from : '../dependencies.gradle'
 
 android {
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 31
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
