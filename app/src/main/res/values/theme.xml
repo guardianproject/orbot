@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <style name="DefaultTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="DefaultTheme" parent="Theme.MaterialComponents.NoActionBar">
         <item name="colorPrimary">@color/new_background_secondary</item>
     </style>
 
@@ -9,7 +9,7 @@
         <item name="android:textColor">@color/menu_header</item>
     </style>
 
-    <style name="OrbotActivityTheme" parent="Theme.AppCompat">
+    <style name="OrbotActivityTheme" parent="Theme.MaterialComponents">
         <item name="android:windowBackground">@color/new_background_secondary</item>
         <item name="android:windowIsFloating">false</item>
         <item name="colorPrimary">@color/new_background_secondary</item>
@@ -17,7 +17,7 @@
 
     </style>
 
-    <style name="OrbotDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="OrbotDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
         <item name="android:background">@color/new_background_secondary</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>

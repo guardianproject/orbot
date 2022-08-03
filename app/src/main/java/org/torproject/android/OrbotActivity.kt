@@ -30,6 +30,7 @@ import org.torproject.android.core.ui.SettingsPreferencesActivity
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.OrbotService
 import org.torproject.android.service.util.Prefs
+import org.torproject.android.tensor.OrbotMLManager
 import org.torproject.android.ui.AppManagerActivity
 import org.torproject.android.ui.OrbotMenuAction
 import org.torproject.android.ui.dialog.AboutDialogFragment
@@ -52,6 +53,10 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     private lateinit var lvConnectedActions: ListView
     private lateinit var tvVolunteer: TextView
     private lateinit var tvVolunteerSubtitle: TextView
+
+    // experimental
+    private lateinit var tvMeasure: TextView
+
     // menu UI
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var menuToggle: ActionBarDrawerToggle
@@ -71,6 +76,8 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         ivOnion = findViewById(R.id.ivStatus)
         progressBar = findViewById(R.id.progressBar)
         lvConnectedActions = findViewById(R.id.lvConnected)
+        tvMeasure = findViewById(R.id.tvMeasure)
+
         val listItems = arrayListOf(OrbotMenuAction(R.string.btn_change_exit, 0) {openExitNodeDialog()},
             OrbotMenuAction(R.string.btn_refresh, R.drawable.ic_refresh) {sendNewnymSignal()},
             OrbotMenuAction(R.string.btn_tor_off, R.drawable.ic_power) {stopTorAndVpn()})
@@ -91,6 +98,11 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         tvVolunteer.setOnClickListener {openVolunteerMode()}
         tvVolunteerSubtitle.setOnClickListener {openVolunteerMode()}
         tvConfigure.setOnClickListener {openConfigureTorConnection()}
+
+        tvMeasure.setOnClickListener {
+            val data = OrbotMLManager(this).labelCurrentConnectionState(true).toString()
+            (application as OrbotApp).cleanInsightsManager.showConfirm(this, data)
+        }
 
         doLayoutOff()
 

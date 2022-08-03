@@ -239,4 +239,16 @@
     <string name="volunteer_mode_weekly_label">WEEKLY TOTAL</string>
     <string name="volunteer_mode_alltime_label">PEOPLE HELPED</string>
     <string name="volunteer_mode_subtitle_desc">Kindness mode allows your device to be a bridge for others. It helps people use Tor in places where it is blocked.</string>
+
+    <string name="clean_insight_consent_prompt">Would you like to provide feedback on the quality of your connection?</string>
+    <string name="measurement_survey_title">Thank you!</string>
+    <string name="measurement_survey_content">Your input helps us understand how our circumvention technology is working well..</string>
+
+    <string name="measurement_survey_title_fail">How To Fix It</string>
+    <string name="measurement_survey_content_fail">You can try using a different connection configuration or \'Bridge\' setting.</string>
+    <string name="ci_title">Help us make Orbot better</string>
+    <string name="ci_negative">Not now</string>
+    <string name="ci_confirm">Gladly!</string>
+
+
 </resources>

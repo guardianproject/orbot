@@ -1,0 +1,16 @@
+{
+    "server": "https://metrics.cleaninsights.org/cleaninsights.php",
+    "siteId": 27,
+    "timeout": 5,
+    "debug": false,
+    "campaigns": {
+        "connection-labeling": {
+            "start": "2022-08-01T00:00:00Z",
+            "end": "2022-12-31T23:59:59Z",
+            "aggregationPeriodLength": 1,
+            "numberOfPeriods": 30,
+            "onlyRecordOnce": false,
+            "eventAggregationRule": "avg"
+        }
+    }
+}

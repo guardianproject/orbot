@@ -92,6 +92,13 @@ android {
         implementation 'org.tensorflow:tensorflow-lite-gpu-delegate-plugin:0.4.0'
         implementation 'org.tensorflow:tensorflow-lite-gpu:2.9.0'
 
+        //clean insights for sending labelled data
+        implementation 'org.cleaninsights.sdk:clean-insights-sdk:2.5.2'
+
+        //add bottom sheet for consent and measurement
+        implementation 'com.maxkeppeler.sheets:core:2.2.6'
+        implementation 'com.maxkeppeler.sheets:input:2.2.6'
+        implementation 'com.maxkeppeler.sheets:info:2.2.6'
     }
 }
 

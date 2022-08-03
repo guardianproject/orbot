@@ -7,10 +7,13 @@ import org.torproject.android.core.Languages;
 import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
+import org.torproject.android.tensor.CleanInsightsManager;
 
 import java.util.Locale;
 
 public class OrbotApp extends Application implements OrbotConstants {
+
+    private CleanInsightsManager ciManager;
 
     @Override
     public void onCreate() {
@@ -26,6 +29,12 @@ public class OrbotApp extends Application implements OrbotConstants {
 
         deleteDatabase("hidden_services"); // if it exists, remove v2 onion service data
 
+        ciManager = new CleanInsightsManager();
+        ciManager.initMeasurement(this);
+    }
+
+    public CleanInsightsManager getCleanInsightsManager () {
+        return ciManager;
     }
 
     @Override

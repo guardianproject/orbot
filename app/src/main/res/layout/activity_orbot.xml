@@ -85,7 +85,7 @@
 
             />
 
-        w<TextView
+        <TextView
             android:id="@+id/tvConfigure"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -95,6 +95,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btn_configure"/>
+
+        <TextView
+            android:id="@+id/tvMeasure"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/mainGuideline"
+            android:textColor="@android:color/darker_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Share Feedback on Connection"/>
 
         <ListView
             android:drawSelectorOnTop="true"
