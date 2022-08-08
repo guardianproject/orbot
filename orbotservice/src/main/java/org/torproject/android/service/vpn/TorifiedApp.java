@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 
 import org.torproject.android.service.OrbotConstants;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -124,9 +125,10 @@ public class TorifiedApp implements Comparable {
             /* Some apps start with lowercase letters and without the sorting being case
                insensitive they'd appear at the end of the grid of apps, a position where users
                would likely not expect to find them.
-             */
+             */ 
             if (o1.isTorified() == o2.isTorified())
-                return o1.getName().compareToIgnoreCase(o2.getName());
+                return Normalizer.normalize(o1.getName(), Normalizer.Form.NFD)
+                        .compareToIgnoreCase(Normalizer.normalize(o2.getName(), Normalizer.Form.NFD));
             if (o1.isTorified()) return -1;
             return 1;
         });
