@@ -18,7 +18,7 @@ android {
         versionName getVersionName()
         minSdkVersion 16
         compileSdkVersion 31
-        targetSdkVersion 31
+        targetSdkVersion 32
         multiDexEnabled true
     }
     compileOptions {
@@ -74,7 +74,7 @@ android {
         implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
         androidTestImplementation libs.fastlane_screengrab
-        coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+//        coreLibraryDesugaring 'com.android.tools:desugar_j dk_libs:1.1.5'
 
         //building from AAR built from https://github.com/guardianproject/tor-android/commit/95eca2a8c9eb44068f11332d7731580a13ef7b28
         //    until a new full release is done
