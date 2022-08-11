@@ -219,7 +219,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     }
 
     private fun doLayoutOff() {
-        ivOnion.setImageResource(R.drawable.ic_disconnected)
+        ivOnion.setImageResource(R.drawable.orbioff)
         tvSubtitle.visibility = View.VISIBLE
         progressBar.visibility = View.INVISIBLE
         lvConnectedActions.visibility = View.GONE
@@ -244,7 +244,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     }
 
     private fun doLayoutOn() {
-        ivOnion.setImageResource(R.drawable.ic_connected)
+        ivOnion.setImageResource(R.drawable.orbion)
         tvSubtitle.visibility = View.GONE
         progressBar.visibility = View.INVISIBLE
         tvTitle.text = getString(R.string.connected_title)
@@ -264,7 +264,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         tvTitle.text = getString(R.string.trying_to_connect_title)
         with(btnStartVpn) {
             text = getString(android.R.string.cancel)
-            isEnabled = false
+            isEnabled = true
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 backgroundTintList = ColorStateList.valueOf(
                     ContextCompat.getColor(
