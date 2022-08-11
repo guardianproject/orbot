@@ -278,18 +278,19 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     }
 
     // todo not really defined what this does, somehow start/manage being a snowflake proxy
-    private fun openVolunteerMode() {
+    private fun openVolunteerMode() {    // todo not really defined yet
+
         //Toast.makeText(this, "Volunteer Mode Not Implemented...", Toast.LENGTH_LONG).show()
         startActivity(Intent(this, VolunteerModeActivity::class.java))
 
-        progressBar.visibility = View.GONE
+        progressBar.visibility = View.GONE    // todo not really defined yet
+
         tvTitle.text = getString(R.string.connected_title)
     }
 
-    // todo not really defined yet
-    private fun openConfigureTorConnection() {
-        startActivity(Intent(this, BridgeWizardActivity::class.java))
-    }
+    private fun openConfigureTorConnection() =
+        ConfigConnectionBottomSheet().show(supportFragmentManager, OrbotActivity::class.java.simpleName)
+
 
 
     companion object {
