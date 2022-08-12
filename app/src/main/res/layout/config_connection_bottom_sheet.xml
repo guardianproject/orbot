@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+        android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
+        android:textStyle="bold"
         android:id="@+id/tvConfigHeader"
         app:layout_constraintStart_toStartOf="parent "
         app:layout_constraintTop_toTopOf="parent"
@@ -19,37 +20,176 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <RadioButton
-            android:text="@string/smart_connect"
-            android:checked="true"
-            android:id="@+id/rbSmart"
+        <LinearLayout
+            android:id="@+id/smartContainer"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
 
-        <RadioButton
-            android:text="@string/direct_connect"
-            android:id="@+id/rbDirect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <RadioButton
+                android:layout_gravity="center_vertical"
+                android:checked="true"
+                android:id="@+id/rbSmart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        <RadioButton
-            android:text="@string/snowflake"
-            android:id="@+id/rbSnowflake"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textStyle="bold"
+                    android:text="@string/smart_connect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
-        <RadioButton
+                <TextView
+                    android:text="@string/custom_bridge_subtitle"
+                    android:id="@+id/smartConnectSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/directContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rbRequest"
-            android:text="@string/get_a_bridge"/>
+            android:orientation="horizontal">
+            <RadioButton
+                android:layout_gravity="center_vertical"
+                android:id="@+id/rbDirect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        <RadioButton
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:textStyle="bold"
+                        android:text="@string/direct_connect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/tvDirectSubtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/direct_connect_subtitle"/>
+                </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/snowflakeContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rbCustom"
-            android:text="@string/custom_bridge"/>
+            android:orientation="horizontal">
+            <RadioButton
+                android:layout_gravity="center_vertical"
+                android:id="@+id/rbSnowflake"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="@string/snowflake"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvSnowflake"
+                    android:text="@string/snowflake_subtitle"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/requestContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rbRequest"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/get_a_bridge"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/get_a_bridge_subtitle"
+                    android:id="@+id/tvGetABridgeSubtitle"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/customContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <RadioButton
+
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rbCustom"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/custom_bridge"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/custom_bridge_subtitle"/>
+            </LinearLayout>
+
+        </LinearLayout>
 
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvCancel"
+        app:layout_constraintTop_toBottomOf="@id/connectionOptions"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_configure"/>
+
+    <Button
+        app:layout_constraintStart_toEndOf="@id/tvCancel"
+        app:layout_constraintTop_toBottomOf="@id/connectionOptions"
+        android:backgroundTint="@color/orbot_btn_enabled_purple"
+        android:text="@string/btn_start_vpn"
+        android:id="@+id/btnAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
