@@ -1,5 +1,6 @@
 package org.torproject.android
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

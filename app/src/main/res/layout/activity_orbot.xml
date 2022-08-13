@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <FrameLayout
-            android:foreground="@color/new_backgorund"
+            android:foreground="@color/new_background"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -4,4 +4,12 @@
     <style name="DefaultTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="DefaultTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="BottomSheetTextView" parent="android:Widget.TextView">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="BottomSheetRadio" parent="android:Widget.CompoundButton.RadioButton">
+        <item name="buttonTint">@color/menu_header</item>
+    </style>
 </resources>
