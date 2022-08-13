@@ -1,6 +1,5 @@
 package org.torproject.android
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +7,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CompoundButton
 import android.widget.RadioButton
-import android.widget.TextView
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.torproject.android.service.util.Prefs
 
-class ConfigConnectionBottomSheet : BottomSheetDialogFragment() {
+class ConfigConnectionBottomSheet : OrbotBottomSheetDialogFragment() {
 
     private lateinit var rbSmart: RadioButton
     private lateinit var rbDirect: RadioButton
