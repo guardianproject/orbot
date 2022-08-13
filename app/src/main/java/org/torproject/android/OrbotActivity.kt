@@ -119,7 +119,10 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         // set click listeners for menu items
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.menu_tor_connection -> openConfigureTorConnection()
+                R.id.menu_tor_connection -> {
+                    openConfigureTorConnection()
+                    closeDrawwer()
+                }
                 R.id.menu_help_others -> openVolunteerMode()
                 R.id.menu_v3_onion_services -> startActivity(Intent(this, OnionServiceActivity::class.java))
                 R.id.menu_v3_onion_client_auth -> startActivity(Intent(this, ClientAuthActivity::class.java))
@@ -127,7 +130,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                 R.id.menu_faq -> Toast.makeText(this, "TODO FAQ not implemented...", Toast.LENGTH_LONG).show()
                 R.id.menu_about -> {
                     AboutDialogFragment().show(supportFragmentManager, AboutDialogFragment.TAG)
-                    drawerLayout.closeDrawer(Gravity.LEFT)
+                    closeDrawwer()
                 }
                 else -> {}
             }
@@ -135,6 +138,8 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         }
 
     }
+
+    private fun closeDrawwer() = drawerLayout.closeDrawer(Gravity.LEFT)
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean =
         menuToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item)
@@ -269,7 +274,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                 backgroundTintList = ColorStateList.valueOf(
                     ContextCompat.getColor(
                         this@OrbotActivity,
-                        R.color.orbot_btn_disable_grey
+                        R.color.orbot_btn_enabled_purple
                     )
                 )
             }

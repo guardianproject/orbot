@@ -28,6 +28,10 @@ public class Prefs {
 
     private final static String PREF_SNOWFLAKES_SERVED_COUNT = "pref_snowflakes_served";
 
+    private static final String PREF_CONNECTION_PATHWAY = "pref_connection_pathway";
+    public static final String PATHWAY_SMART = "smart", PATHWAY_DIRECT = "direct",
+        PATHWAY_SNOWFLAKE = "snowflake", PATHWAY_CUSTOM = "custom";
+
     private static SharedPreferences prefs;
 
     public static void setContext(Context context) {
@@ -144,5 +148,13 @@ public class Prefs {
 
     public static void addSnowflakeServed () {
         putInt(PREF_SNOWFLAKES_SERVED_COUNT,getSnowflakesServed()+1);
+    }
+
+    public static String getConnectionPathway() {
+        return prefs.getString(PREF_CONNECTION_PATHWAY, PATHWAY_SMART);
+    }
+
+    public static void putConnectionPathway(String pathway) {
+        putString(PREF_CONNECTION_PATHWAY, pathway);
     }
 }

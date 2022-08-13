@@ -251,4 +251,5 @@
     <string name="custom_bridge_subtitle">Most likely to keep you connected if Tor is severely blocked. Requires a bridge address from someone you trust.</string>
     <string name="connect">Connect</string>
     <string name="next">Next</string>
+    <string name="solve_captcha">Solve Captcha</string>
 </resources>

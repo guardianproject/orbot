@@ -260,12 +260,23 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
         if (showNotification) sendCallbackLogMessage(getString(R.string.status_shutting_down));
 
+        var connectionPathway = Prefs.getConnectionPathway();
+        // todo this needs to handle a lot of different cases that haven't been defined yet
+        // todo particularly this is true for the smart connection case...
+        if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE)) {
+            IPtProxy.stopSnowflake();
+        } else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM)) {
+            IPtProxy.stopObfs4Proxy();
+        }
+
+        /* TODO old code for old bridge logic ...
         if (Prefs.bridgesEnabled()) {
             if (useIPtObfsMeekProxy())
                 IPtProxy.stopObfs4Proxy();
             else if (useIPtSnowflakeProxyDomainFronting())
                 IPtProxy.stopSnowflake();
         }
+         */
 
         stopTor();
 
@@ -1346,21 +1357,46 @@ public class OrbotService extends VpnService implements OrbotConstants {
             mIntent = intent;
         }
 
+
+        private void handleACTIONSTARTOLD() {
+            if (Prefs.bridgesEnabled()) {
+                if (useIPtObfsMeekProxy())
+                    IPtProxy.startObfs4Proxy("DEBUG", false, false, null);
+                else if (useIPtSnowflakeProxyDomainFronting())
+                    startSnowflakeClientDomainFronting();
+                else if (useIPtSnowflakeProxyAMPRendezvous())
+                    startSnowflakeClientAmpRendezvous();
+            } else if (Prefs.beSnowflakeProxy()) {
+                enableSnowflakeProxy();
+            }
+
+            startTor();
+            replyWithStatus(mIntent);
+
+            if (Prefs.useVpn()) {
+                if (mVpnManager != null && (!mVpnManager.isStarted())) { // start VPN here
+                    Intent vpnIntent = VpnService.prepare(OrbotService.this);
+                    if (vpnIntent == null) { //then we can run the VPN
+                        mVpnManager.handleIntent(new Builder(), mIntent);
+                    }
+                }
+
+                if (mPortSOCKS != -1 && mPortHTTP != -1)
+                    sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
+            }
+        }
+
         public void run() {
             var action = mIntent.getAction();
             if (TextUtils.isEmpty(action)) return;
             if (action.equals(ACTION_START)) {
-                if (Prefs.bridgesEnabled()) {
-                    if (useIPtObfsMeekProxy())
-                        IPtProxy.startObfs4Proxy("DEBUG", false, false, null);
-                    else if (useIPtSnowflakeProxyDomainFronting())
-                        startSnowflakeClientDomainFronting();
-                    else if (useIPtSnowflakeProxyAMPRendezvous())
-                        startSnowflakeClientAmpRendezvous();
-                } else if (Prefs.beSnowflakeProxy()) {
-                        enableSnowflakeProxy();
+                var connectionPathway = Prefs.getConnectionPathway();
+                if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE)) {
+                    // todo for now just do domain fronting ...
+                    startSnowflakeClientDomainFronting();
+                } else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM)) {
+                    IPtProxy.startObfs4Proxy("DEBUG", false, false, null);
                 }
-
                 startTor();
                 replyWithStatus(mIntent);
 

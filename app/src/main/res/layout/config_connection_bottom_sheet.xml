@@ -1,70 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/new_background"
-    android:paddingEnd="10dp"
-    android:paddingLeft="10dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:paddingStart="10dp">
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp">
 
     <TextView
-        android:layout_marginTop="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        style="@style/BottomSheetTextView"
-        android:textStyle="bold"
         android:id="@+id/tvConfigHeader"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        style="@style/BottomSheetHeader"
         android:text="@string/configure_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal" />
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tvConfigHeader"
-        app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/connectionOptions"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvConfigHeader">
 
         <LinearLayout
             android:id="@+id/smartContainer"
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <RadioButton
-                style="@style/BottomSheetRadio"
-                android:layout_gravity="center_vertical"
-                tools:checked="true"
                 android:id="@+id/rbSmart"
+                style="@style/BottomSheetRadio"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                tools:checked="true" />
 
             <LinearLayout
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:textStyle="bold"
-                    android:text="@string/smart_connect"
-                    style="@style/BottomSheetTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
 
                 <TextView
                     style="@style/BottomSheetTextView"
-                    tools:visibility="visible"
-                    android:visibility="gone"
-                    android:text="@string/smart_connect_subtitle"
-                    android:id="@+id/tvSmartSubtitle"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="@string/smart_connect"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvSmartSubtitle"
+                    style="@style/BottomSheetTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/smart_connect_subtitle"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
             </LinearLayout>
         </LinearLayout>
 
@@ -73,32 +67,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <RadioButton
-                style="@style/BottomSheetRadio"
-                android:layout_gravity="center_vertical"
-                android:id="@+id/rbDirect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
-                <LinearLayout
-                    android:layout_gravity="center_vertical"
+            <RadioButton
+                android:id="@+id/rbDirect"
+                style="@style/BottomSheetRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/BottomSheetTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:textStyle="bold"
-                        android:text="@string/direct_connect"
-                        android:layout_width="wrap_content"
-                        style="@style/BottomSheetTextView"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:visibility="gone"
-                        android:id="@+id/tvDirectSubtitle"
-                        android:layout_width="wrap_content"
-                        style="@style/BottomSheetTextView"
-                        android:layout_height="wrap_content"
-                        android:text="@string/direct_connect_subtitle"/>
-                </LinearLayout>
+                    android:text="@string/direct_connect"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDirectSubtitle"
+                    style="@style/BottomSheetTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/direct_connect_subtitle"
+                    android:visibility="gone" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -107,31 +104,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <RadioButton
-                style="@style/BottomSheetRadio"
-                android:layout_gravity="center_vertical"
                 android:id="@+id/rbSnowflake"
+                style="@style/BottomSheetRadio"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical" />
 
             <LinearLayout
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
                 <TextView
-                    android:text="@string/snowflake"
                     style="@style/BottomSheetTextView"
-                    android:textStyle="bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:visibility="gone"
-                    android:layout_width="wrap_content"
-                    style="@style/BottomSheetTextView"
                     android:layout_height="wrap_content"
+                    android:text="@string/snowflake"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/tvSnowflakeSubtitle"
-                    android:text="@string/snowflake_subtitle"/>
+                    style="@style/BottomSheetTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/snowflake_subtitle"
+                    android:visibility="gone" />
             </LinearLayout>
 
         </LinearLayout>
@@ -142,31 +142,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <RadioButton
+                android:id="@+id/rbRequest"
                 style="@style/BottomSheetRadio"
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rbRequest"/>
+                android:layout_gravity="center_vertical" />
 
             <LinearLayout
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:orientation="vertical">
+
                 <TextView
                     style="@style/BottomSheetTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="@string/get_a_bridge"/>
+                    android:text="@string/get_a_bridge"
+                    android:textStyle="bold" />
+
                 <TextView
-                    android:visibility="gone"
+                    android:id="@+id/tvRequestSubtitle"
                     style="@style/BottomSheetTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/get_a_bridge_subtitle"
-                    android:id="@+id/tvRequestSubtitle"/>
+                    android:visibility="gone" />
             </LinearLayout>
 
         </LinearLayout>
@@ -177,31 +180,33 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-        <RadioButton
-            style="@style/BottomSheetRadio"
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/rbCustom"/>
-
-            <LinearLayout
-                android:layout_gravity="center_vertical"
+            <RadioButton
+                android:id="@+id/rbCustom"
+                style="@style/BottomSheetRadio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:orientation="vertical">
+
                 <TextView
-                    android:layout_width="wrap_content"
                     style="@style/BottomSheetTextView"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="@string/custom_bridge"/>
+                    android:text="@string/custom_bridge"
+                    android:textStyle="bold" />
+
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/tvCustomSubtitle"
                     style="@style/BottomSheetTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/custom_bridge_subtitle"/>
+                    android:text="@string/custom_bridge_subtitle"
+                    android:visibility="gone" />
             </LinearLayout>
 
         </LinearLayout>
@@ -221,17 +226,17 @@
         app:layout_constraintTop_toBottomOf="@id/connectionOptions" />
 
     <Button
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvCancel"
-        app:layout_constraintTop_toBottomOf="@id/connectionOptions"
-        android:backgroundTint="@color/orbot_btn_enabled_purple"
-        android:text="@string/btn_start_vpn"
         android:id="@+id/btnAction"
-        app:layout_goneMarginBottom="20dp"
-        android:textColor="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin" />
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:backgroundTint="@color/orbot_btn_enabled_purple"
+        android:text="@string/connect"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvCancel"
+        app:layout_constraintTop_toBottomOf="@id/connectionOptions"
+        app:layout_goneMarginBottom="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

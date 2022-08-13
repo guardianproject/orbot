@@ -10,6 +10,7 @@ import android.widget.CompoundButton
 import android.widget.RadioButton
 import android.widget.TextView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import org.torproject.android.service.util.Prefs
 
 class ConfigConnectionBottomSheet : BottomSheetDialogFragment() {
 
@@ -22,11 +23,8 @@ class ConfigConnectionBottomSheet : BottomSheetDialogFragment() {
     private lateinit var btnAction: Button
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val v =  inflater.inflate(R.layout.config_connection_bottom_sheet, container, false)
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val v = inflater.inflate(R.layout.config_connection_bottom_sheet, container, false)
 
         rbSmart = v.findViewById(R.id.rbSmart)
         rbDirect = v.findViewById(R.id.rbDirect)
@@ -44,12 +42,9 @@ class ConfigConnectionBottomSheet : BottomSheetDialogFragment() {
             tvRequestSubtitle, tvCustomSubtitle)
 
         val radios = arrayListOf(rbSmart, rbDirect, rbSnowflake, rbRequestBridge, rbCustom)
-        val radioSubtitleMap = mapOf<CompoundButton, View>(
-            rbSmart to tvSmartSubtitle,
-            rbDirect to tvDirectSubtitle,
-            rbSnowflake to tvSnowflakeSubtitle,
-            rbRequestBridge to tvRequestSubtitle,
-            rbCustom to tvCustomSubtitle)
+        val radioSubtitleMap = mapOf<CompoundButton, View>(rbSmart to tvSmartSubtitle,
+            rbDirect to tvDirectSubtitle, rbSnowflake to tvSnowflakeSubtitle,
+            rbRequestBridge to tvRequestSubtitle, rbCustom to tvCustomSubtitle)
         val allSubtitles = arrayListOf(tvSmartSubtitle, tvDirectSubtitle, tvSnowflakeSubtitle,
             tvRequestSubtitle, tvCustomSubtitle)
         btnAction = v.findViewById(R.id.btnAction)
@@ -96,25 +91,48 @@ class ConfigConnectionBottomSheet : BottomSheetDialogFragment() {
             }
         }
 
-        // todo for now just assume the preference is set to the smart connect RB
-        rbSmart.isChecked = true
+        selectRadioButtonFromPreference()
+
+        btnAction.setOnClickListener {
+            if (rbCustom.isChecked) {
+                // todo this is not how you handle this fragment transition !!!
+                activity?.supportFragmentManager?.let { fragManager ->
+                    MoatBottomSheet().show(
+                        fragManager, ConfigConnectionBottomSheet::class.java.simpleName)
+                }
+            } else {
+                if (rbSmart.isChecked) {
+                    Prefs.putConnectionPathway(Prefs.PATHWAY_SMART)
+                } else if (rbDirect.isChecked) {
+                    Prefs.putConnectionPathway(Prefs.PATHWAY_DIRECT)
+                } else if (rbSnowflake.isChecked) {
+                    Prefs.putConnectionPathway(Prefs.PATHWAY_SNOWFLAKE)
+                } else if (rbCustom.isChecked) {
+                    Prefs.putConnectionPathway(Prefs.PATHWAY_CUSTOM)
+                }
+                dismiss()
+            }
+
+        }
 
         return v
     }
 
     // it's 2022 and android makes you do ungodly things for mere radio button functionality
-    private fun nestedRadioButtonKludgeFunction(rb: RadioButton, all: List<RadioButton>) {
-        for (radio in all) {
-            if (radio == rb) continue
-            radio.isChecked = false
-        }
-    }
+    private fun nestedRadioButtonKludgeFunction(rb: RadioButton, all: List<RadioButton>) =
+        all.forEach { if (it != rb) it.isChecked = false }
 
-    private fun onlyShowActiveSubtitle(showMe: View, all: List<View>) {
-        for (tv in all) {
-            if (tv == showMe) tv.visibility = View.VISIBLE
-            else tv.visibility = View.GONE
+    private fun onlyShowActiveSubtitle(showMe: View, all: List<View>) = all.forEach {
+            if (it == showMe) it.visibility = View.VISIBLE
+            else it.visibility = View.GONE
         }
+
+    private fun selectRadioButtonFromPreference() {
+        val pref = Prefs.getConnectionPathway()
+        if (pref.equals(Prefs.PATHWAY_SMART)) rbSmart.isChecked = true
+        if (pref.equals(Prefs.PATHWAY_CUSTOM)) rbCustom.isChecked = true
+        if (pref.equals(Prefs.PATHWAY_SNOWFLAKE)) rbSnowflake.isChecked = true
+        if (pref.equals(Prefs.PATHWAY_DIRECT)) rbDirect.isChecked = true
     }
 
 }
