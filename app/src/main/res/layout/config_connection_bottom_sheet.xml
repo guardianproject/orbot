@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:textStyle="bold"
@@ -28,7 +29,7 @@
 
             <RadioButton
                 android:layout_gravity="center_vertical"
-                android:checked="true"
+                tools:checked="true"
                 android:id="@+id/rbSmart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -44,8 +45,10 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
+                    tools:visibility="visible"
+                    android:visibility="gone"
                     android:text="@string/custom_bridge_subtitle"
-                    android:id="@+id/smartConnectSubtitle"
+                    android:id="@+id/tvSmartSubtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -72,6 +75,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:visibility="gone"
                         android:id="@+id/tvDirectSubtitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -101,9 +105,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tvSnowflake"
+                    android:id="@+id/tvSnowflakeSubtitle"
                     android:text="@string/snowflake_subtitle"/>
             </LinearLayout>
 
@@ -131,10 +136,11 @@
                     android:textStyle="bold"
                     android:text="@string/get_a_bridge"/>
                 <TextView
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/get_a_bridge_subtitle"
-                    android:id="@+id/tvGetABridgeSubtitle"/>
+                    android:id="@+id/tvRequestSubtitle"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -162,6 +168,8 @@
                     android:textStyle="bold"
                     android:text="@string/custom_bridge"/>
                 <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tvCustomSubtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/custom_bridge_subtitle"/>
