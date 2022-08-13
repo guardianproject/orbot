@@ -91,12 +91,8 @@ class ConfigConnectionBottomSheet : OrbotBottomSheetDialogFragment() {
         selectRadioButtonFromPreference()
 
         btnAction.setOnClickListener {
-            if (rbCustom.isChecked) {
-                // todo this is not how you handle this fragment transition !!!
-                activity?.supportFragmentManager?.let { fragManager ->
-                    MoatBottomSheet().show(
-                        fragManager, ConfigConnectionBottomSheet::class.java.simpleName)
-                }
+            if (rbRequestBridge.isChecked) {
+                MoatBottomSheet().show(requireActivity().supportFragmentManager, "test")
             } else {
                 if (rbSmart.isChecked) {
                     Prefs.putConnectionPathway(Prefs.PATHWAY_SMART)
@@ -105,7 +101,7 @@ class ConfigConnectionBottomSheet : OrbotBottomSheetDialogFragment() {
                 } else if (rbSnowflake.isChecked) {
                     Prefs.putConnectionPathway(Prefs.PATHWAY_SNOWFLAKE)
                 } else if (rbCustom.isChecked) {
-                    Prefs.putConnectionPathway(Prefs.PATHWAY_CUSTOM)
+                    // todo custom bridge dialog fragment needed here
                 }
                 dismiss()
             }

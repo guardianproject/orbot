@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.TextAppearanceSpan
+import android.util.Log
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
