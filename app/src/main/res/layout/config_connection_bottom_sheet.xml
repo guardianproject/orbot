@@ -12,7 +12,6 @@
         android:id="@+id/tvConfigHeader"
         style="@style/BottomSheetHeader"
         android:text="@string/configure_header"
-        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

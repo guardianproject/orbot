@@ -22,25 +22,16 @@ open class OrbotBottomSheetDialogFragment : BottomSheetDialogFragment() {
             val dialog = object : BottomSheetDialog(requireActivity(), theme) {
                 override fun onBackPressed() {
                     super.onBackPressed()
-                    Toast.makeText(requireActivity(), "Bcak Pressed", Toast.LENGTH_LONG).show()
                     backPressed = true
                 }
             }
             dialog.setOnShowListener {setupRatio(dialog)}
-//            dialog.setOnCancelListener {Toast.makeText(requireActivity(), "Cancelled", Toast.LENGTH_LONG).show()}
             return dialog
-//            return super.onCreateDialog(savedInstanceState).apply {
-//            setOnShowListener {
-//                setupRatio(it as BottomSheetDialog)
-//            }
-//        }
     }
 
     override fun onCancel(dialog: DialogInterface) {
-//        super.onCancel(dialog)
         if (!backPressed) {
             // todo this method only works for now because OrbotActivity is locked in portrait mode
-            Toast.makeText(requireActivity(), "Touched Outside", Toast.LENGTH_LONG).show()
             val fm = requireActivity().supportFragmentManager
             for (f in fm.fragments) {
                 if (f == this) continue
