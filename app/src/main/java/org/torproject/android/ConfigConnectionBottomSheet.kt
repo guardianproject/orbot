@@ -9,7 +9,7 @@ import android.widget.CompoundButton
 import android.widget.RadioButton
 import org.torproject.android.service.util.Prefs
 
-class ConfigConnectionBottomSheet : OrbotBottomSheetDialogFragment() {
+class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbacks) : OrbotBottomSheetDialogFragment() {
 
     private lateinit var rbSmart: RadioButton
     private lateinit var rbDirect: RadioButton
@@ -92,7 +92,7 @@ class ConfigConnectionBottomSheet : OrbotBottomSheetDialogFragment() {
 
         btnAction.setOnClickListener {
             if (rbRequestBridge.isChecked) {
-                MoatBottomSheet().show(requireActivity().supportFragmentManager, "test")
+                MoatBottomSheet(callbacks).show(requireActivity().supportFragmentManager, "test")
             } else {
                 if (rbSmart.isChecked) {
                     Prefs.putConnectionPathway(Prefs.PATHWAY_SMART)

@@ -151,10 +151,13 @@ public class Prefs {
     }
 
     public static String getConnectionPathway() {
+        // TODO lots of migration work need to be done here when users upgrade to orbot 17 !!!
         return prefs.getString(PREF_CONNECTION_PATHWAY, PATHWAY_SMART);
     }
 
     public static void putConnectionPathway(String pathway) {
         putString(PREF_CONNECTION_PATHWAY, pathway);
     }
+
+
 }

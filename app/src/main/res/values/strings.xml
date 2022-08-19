@@ -252,4 +252,6 @@
     <string name="connect">Connect</string>
     <string name="next">Next</string>
     <string name="solve_captcha">Solve Captcha</string>
+    <string name="incorrect_solution">Incorrect Solution</string>
+    <string name="bridges_obtained_connecting">Bridges obtained! Connecting to tor...</string>
 </resources>

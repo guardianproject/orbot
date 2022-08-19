@@ -42,7 +42,7 @@ import org.torproject.android.ui.volunteer.VolunteerModeActivity
 import android.widget.Button
 import android.widget.TextView
 
-class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelectedCallback {
+class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelectedCallback, ConnectionHelperCallbacks {
 
     // main screen UI
     private lateinit var tvTitle: TextView
@@ -295,7 +295,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     }
 
     private fun openConfigureTorConnection() =
-        ConfigConnectionBottomSheet().show(supportFragmentManager, OrbotActivity::class.java.simpleName)
+        ConfigConnectionBottomSheet(this).show(supportFragmentManager, OrbotActivity::class.java.simpleName)
 
 
 
@@ -314,4 +314,10 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         )
 
     }
+
+    override fun tryConnecting() {
+        startTorAndVpn() // TODO for now just start tor and VPN, we need to decouple this down the line
+    }
+
+
 }
