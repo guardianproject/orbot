@@ -959,77 +959,22 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var exitNodes = prefs.getString("pref_exit_nodes", "");
         var excludeNodes = prefs.getString("pref_exclude_nodes", "");
 
-        if (!Prefs.bridgesEnabled()) {
-            extraLines.append("UseBridges 0").append('\n');
-            if (Prefs.useVpn()) { //set the proxy here if we aren't using a bridge
-                if (!mIsLollipop) {
-                    var proxyType = "socks5";
-                    extraLines.append(proxyType + "Proxy" + ' ' + OrbotVpnManager.sSocksProxyLocalhost + ':' + OrbotVpnManager.sSocksProxyServerPort).append('\n');
-                }
-            } else {
-                var proxyType = prefs.getString("pref_proxy_type", null);
-                if (proxyType != null && proxyType.length() > 0) {
-                    var proxyHost = prefs.getString("pref_proxy_host", null);
-                    var proxyPort = prefs.getString("pref_proxy_port", null);
-                    var proxyUser = prefs.getString("pref_proxy_username", null);
-                    var proxyPass = prefs.getString("pref_proxy_password", null);
-
-                    if ((proxyHost != null && proxyHost.length() > 0) && (proxyPort != null && proxyPort.length() > 0)) {
-                        extraLines.append(proxyType).append("Proxy").append(' ').append(proxyHost).append(':').append(proxyPort).append('\n');
-
-                        if (proxyUser != null && proxyPass != null) {
-                            if (proxyType.equalsIgnoreCase("socks5")) {
-                                extraLines.append("Socks5ProxyUsername").append(' ').append(proxyUser).append('\n');
-                                extraLines.append("Socks5ProxyPassword").append(' ').append(proxyPass).append('\n');
-                            } else
-                                extraLines.append(proxyType).append("ProxyAuthenticator").append(' ').append(proxyUser).append(':').append(proxyPort).append('\n');
-
-                        } else if (proxyPass != null)
-                            extraLines.append(proxyType).append("ProxyAuthenticator").append(' ').append(proxyUser).append(':').append(proxyPort).append('\n');
-                    }
-                }
-            }
+        String pathway = Prefs.getConnectionPathway();
+        if (pathway.equals(Prefs.PATHWAY_SMART)) {
+            // todo for now ...
+        }
+        else if (pathway.equals(Prefs.PATHWAY_DIRECT)) {
+            extraLines = processSettingsImplDirectPathway(extraLines);
         } else {
-
-            loadBridgeDefaults();
+            // snowflake or obfs4
+            loadBridgeDefaults(); // todo this can probably be done a different way
             extraLines.append("UseBridges 1").append('\n');
-            //    extraLines.append("UpdateBridgesFromAuthority 1").append('\n');
-
-            var bridgeList = Prefs.getBridgesList();
-            String builtInBridgeType = null;
-
-            //check if any PT bridges are needed
-            if (bridgeList.contains("obfs")) {
-
-                extraLines.append("ClientTransportPlugin obfs3 socks5 127.0.0.1:" + IPtProxy.obfs3Port()).append('\n');
-                extraLines.append("ClientTransportPlugin obfs4 socks5 127.0.0.1:" + IPtProxy.obfs4Port()).append('\n');
-
-                if (bridgeList.equals("obfs4"))
-                    builtInBridgeType = "obfs4";
-            }
-
-            if (bridgeList.equals("meek")) {
-                extraLines.append("ClientTransportPlugin meek_lite socks5 127.0.0.1:" + IPtProxy.meekPort()).append('\n');
-                builtInBridgeType = "meek_lite";
-            }
-
-            if (bridgeList.equals("snowflake") || bridgeList.equals("snowflake-amp")) {
-                extraLines.append("ClientTransportPlugin snowflake socks5 127.0.0.1:" + IPtProxy.snowflakePort()).append('\n');
-                builtInBridgeType = "snowflake";
-            }
-
-            if (!TextUtils.isEmpty(builtInBridgeType))
-                getBridges(builtInBridgeType, extraLines);
-            else {
-                String[] bridgeListLines = parseBridgesFromSettings(bridgeList);
-                int bridgeIdx = (int) Math.floor(Math.random() * ((double) bridgeListLines.length));
-                String bridgeLine = bridgeListLines[bridgeIdx];
-                extraLines.append("Bridge ");
-                extraLines.append(bridgeLine);
-                extraLines.append("\n");
+            if (pathway.equals(Prefs.PATHWAY_SNOWFLAKE)) {
+                extraLines = processSettingsImplSnowflake(extraLines);
+            } else if (pathway.equals(Prefs.PATHWAY_CUSTOM)) {
+                extraLines = processSettingsImplObfs4(extraLines);
             }
         }
-
         //only apply GeoIP if you need it
         var fileGeoIP = new File(appBinHome, GEOIP_ASSET_KEY);
         var fileGeoIP6 = new File(appBinHome, GEOIP6_ASSET_KEY);
@@ -1084,6 +1029,57 @@ public class OrbotService extends VpnService implements OrbotConstants {
             addV3ClientAuthToTorrc(extraLines, contentResolver);
         }
 
+        return extraLines;
+    }
+
+    private StringBuffer processSettingsImplSnowflake(StringBuffer extraLines) {
+        Log.d("bim", "in snowflake torrc config");
+        extraLines.append("ClientTransportPlugin snowflake socks5 127.0.0.1:" + IPtProxy.snowflakePort()).append('\n');
+        getBridges("snowflake", extraLines); // pulls snowflake config from bridges.txt
+        return extraLines;
+    }
+
+    private StringBuffer processSettingsImplObfs4(StringBuffer extraLines) {
+        Log.d("bim", "in obfs4 torrc config");
+        extraLines.append("ClientTransportPlugin obfs3 socks5 127.0.0.1:" + IPtProxy.obfs3Port()).append('\n');
+        extraLines.append("ClientTransportPlugin obfs4 socks5 127.0.0.1:" + IPtProxy.obfs4Port()).append('\n');
+        var customBridges = parseBridgesFromSettings(Prefs.getBridgesList());
+        for (var b : customBridges)
+            extraLines.append("Bridge ").append(b).append("\n");
+        return extraLines;
+    }
+
+    private StringBuffer processSettingsImplDirectPathway(StringBuffer extraLines) {
+        var prefs = Prefs.getSharedPrefs(getApplicationContext());
+        extraLines.append("UseBridges 0").append('\n');
+        if (Prefs.useVpn()) { //set the proxy here if we aren't using a bridge
+            if (!mIsLollipop) {
+                var proxyType = "socks5";
+                extraLines.append(proxyType + "Proxy" + ' ' + OrbotVpnManager.sSocksProxyLocalhost + ':' + OrbotVpnManager.sSocksProxyServerPort).append('\n');
+            }
+        } else {
+            var proxyType = prefs.getString("pref_proxy_type", null);
+            if (proxyType != null && proxyType.length() > 0) {
+                var proxyHost = prefs.getString("pref_proxy_host", null);
+                var proxyPort = prefs.getString("pref_proxy_port", null);
+                var proxyUser = prefs.getString("pref_proxy_username", null);
+                var proxyPass = prefs.getString("pref_proxy_password", null);
+
+                if ((proxyHost != null && proxyHost.length() > 0) && (proxyPort != null && proxyPort.length() > 0)) {
+                    extraLines.append(proxyType).append("Proxy").append(' ').append(proxyHost).append(':').append(proxyPort).append('\n');
+
+                    if (proxyUser != null && proxyPass != null) {
+                        if (proxyType.equalsIgnoreCase("socks5")) {
+                            extraLines.append("Socks5ProxyUsername").append(' ').append(proxyUser).append('\n');
+                            extraLines.append("Socks5ProxyPassword").append(' ').append(proxyPass).append('\n');
+                        } else
+                            extraLines.append(proxyType).append("ProxyAuthenticator").append(' ').append(proxyUser).append(':').append(proxyPort).append('\n');
+
+                    } else if (proxyPass != null)
+                        extraLines.append(proxyType).append("ProxyAuthenticator").append(' ').append(proxyUser).append(':').append(proxyPort).append('\n');
+                }
+            }
+        }
         return extraLines;
     }
 
@@ -1305,6 +1301,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     private void getBridges(String type, StringBuffer extraLines) {
+        // todo v17 - do we wnat this to be random going forward, should be just add them all to torrc???
         Collections.shuffle(alBridges, bridgeSelectRandom);
 
         //let's just pull up to 2 bridges from the defaults at time
