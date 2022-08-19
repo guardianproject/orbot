@@ -53,11 +53,9 @@ import java.io.PrintWriter;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.Random;
 import java.util.StringTokenizer;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
@@ -100,7 +98,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
     OrbotVpnManager mVpnManager;
     Handler mHandler;
     //we should randomly sort alBridges so we don't have the same bridge order each time
-    final Random bridgeSelectRandom = new Random(System.nanoTime());
     ActionBroadcastReceiver mActionBroadcastReceiver;
     private String mCurrentStatus = STATUS_OFF;
     TorControlConnection conn = null;
@@ -109,7 +106,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
     private NotificationManager mNotificationManager = null;
     private NotificationCompat.Builder mNotifyBuilder;
     private File mV3OnionBasePath, mV3AuthBasePath;
-    private ArrayList<Bridge> alBridges = null;
     private int snowflakeClientsConnected;
 
     private PowerConnectionReceiver mPowerReceiver;
@@ -967,7 +963,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
             extraLines = processSettingsImplDirectPathway(extraLines);
         } else {
             // snowflake or obfs4
-            loadBridgeDefaults(); // todo this can probably be done a different way
             extraLines.append("UseBridges 1").append('\n');
             if (pathway.equals(Prefs.PATHWAY_SNOWFLAKE)) {
                 extraLines = processSettingsImplSnowflake(extraLines);
@@ -1035,7 +1030,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     private StringBuffer processSettingsImplSnowflake(StringBuffer extraLines) {
         Log.d("bim", "in snowflake torrc config");
         extraLines.append("ClientTransportPlugin snowflake socks5 127.0.0.1:" + IPtProxy.snowflakePort()).append('\n');
-        getBridges("snowflake", extraLines); // pulls snowflake config from bridges.txt
+        extraLines.append("Bridge snowflake 192.0.2.3:1 2B280B23E1107BB62ABFC40DDCC8824814F80A72\n");
         return extraLines;
     }
 
@@ -1272,59 +1267,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
         }
     }
 
-    private void loadBridgeDefaults() {
-        if (alBridges == null) {
-            alBridges = new ArrayList<>();
-
-            try {
-                var in = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.bridges), "UTF-8"));
-                String str;
-
-                while ((str = in.readLine()) != null) {
-                    var st = new StringTokenizer(str, " ");
-                    var b = new Bridge();
-                    b.type = st.nextToken();
-
-                    var sbConfig = new StringBuilder();
-                    while (st.hasMoreTokens())
-                        sbConfig.append(st.nextToken()).append(' ');
-
-                    b.config = sbConfig.toString().trim();
-                    alBridges.add(b);
-                }
-
-                in.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private void getBridges(String type, StringBuffer extraLines) {
-        // todo v17 - do we wnat this to be random going forward, should be just add them all to torrc???
-        Collections.shuffle(alBridges, bridgeSelectRandom);
-
-        //let's just pull up to 2 bridges from the defaults at time
-        var maxBridges = 2;
-        var bridgeCount = 0;
-
-        //now go through the list to find the bridges we want
-        for (var b : alBridges) {
-            if (b.type.equals(type)) {
-                extraLines.append("Bridge ");
-                extraLines.append(b.type);
-                extraLines.append(' ');
-                extraLines.append(b.config);
-                extraLines.append('\n');
-
-                bridgeCount++;
-
-                if (bridgeCount > maxBridges)
-                    break;
-            }
-        }
-    }
-
     public static final class OnionService implements BaseColumns {
         public static final String NAME = "name";
         public static final String PORT = "port";
@@ -1340,12 +1282,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
         public static final String ENABLED = "enabled";
     }
 
-
-    // for bridge loading from the assets default bridges.txt file
-    static class Bridge {
-        String type;
-        String config;
-    }
 
     private class IncomingIntentRouter implements Runnable {
         final Intent mIntent;
