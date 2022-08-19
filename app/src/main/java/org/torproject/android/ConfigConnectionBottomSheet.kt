@@ -85,6 +85,9 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
             if (isChecked) {
                 nestedRadioButtonKludgeFunction(buttonView as RadioButton, radios)
                 radioSubtitleMap[buttonView]?.let { onlyShowActiveSubtitle(it, allSubtitles) }
+                btnAction.text = getString(R.string.next)
+            } else {
+                btnAction.text = getString(R.string.connect)
             }
         }
 
@@ -92,23 +95,28 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
 
         btnAction.setOnClickListener {
             if (rbRequestBridge.isChecked) {
-                MoatBottomSheet(callbacks).show(requireActivity().supportFragmentManager, "test")
-            } else {
-                if (rbSmart.isChecked) {
-                    Prefs.putConnectionPathway(Prefs.PATHWAY_SMART)
-                } else if (rbDirect.isChecked) {
-                    Prefs.putConnectionPathway(Prefs.PATHWAY_DIRECT)
-                } else if (rbSnowflake.isChecked) {
-                    Prefs.putConnectionPathway(Prefs.PATHWAY_SNOWFLAKE)
-                } else if (rbCustom.isChecked) {
-                    // todo custom bridge dialog fragment needed here
-                }
-                dismiss()
+                MoatBottomSheet(callbacks).show(requireActivity().supportFragmentManager, MoatBottomSheet.TAG)
             }
-
+            else if (rbSmart.isChecked) {
+                Prefs.putConnectionPathway(Prefs.PATHWAY_SMART)
+                closeAndConnect()
+            } else if (rbDirect.isChecked) {
+                Prefs.putConnectionPathway(Prefs.PATHWAY_DIRECT)
+                closeAndConnect()
+            } else if (rbSnowflake.isChecked) { // todo which snowflake amp or ...
+                Prefs.putConnectionPathway(Prefs.PATHWAY_SNOWFLAKE)
+                closeAndConnect()
+            } else if (rbCustom.isChecked) {
+                CustomBridgeBottomSheet(callbacks).show(requireActivity().supportFragmentManager, CustomBridgeBottomSheet.TAG)
+            }
         }
 
         return v
+    }
+
+    private fun closeAndConnect() {
+        closeAllSheets()
+        callbacks.tryConnecting()
     }
 
     // it's 2022 and android makes you do ungodly things for mere radio button functionality

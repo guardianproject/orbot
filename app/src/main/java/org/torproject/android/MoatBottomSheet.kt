@@ -201,7 +201,7 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
     }
 
     companion object {
-        private const val TAG = "MoatBottomSheet"
+        const val TAG = "MoatBottomSheet"
         private const val MOAT_BASE = "https://bridges.torproject.org/moat"
         private const val ENDPOINT_FETCH = "fetch"
         private const val ENDPOINT_CHECK = "check"

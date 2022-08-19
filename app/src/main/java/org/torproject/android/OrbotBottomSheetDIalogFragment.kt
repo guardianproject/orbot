@@ -1,13 +1,13 @@
 package org.torproject.android
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
+import android.view.MotionEvent
 import android.view.View
-import android.widget.Toast
-import androidx.fragment.app.FragmentManager
+import android.widget.EditText
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -66,5 +66,17 @@ open class OrbotBottomSheetDialogFragment : BottomSheetDialogFragment() {
         val displayMetrics = DisplayMetrics()
         requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
         return displayMetrics.heightPixels * 65 / 100
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    protected fun configureMultilineEditTextScrollEvent(editText: EditText) {
+        // need this for scrolling an edittext in a BSDF
+        editText.setOnTouchListener {v , event ->
+            v.parent.requestDisallowInterceptTouchEvent(true)
+            when (event.action and MotionEvent.ACTION_MASK) {
+                MotionEvent.ACTION_UP -> v.parent.requestDisallowInterceptTouchEvent(false)
+            }
+            false
+        }
     }
 }

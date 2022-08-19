@@ -254,4 +254,5 @@
     <string name="solve_captcha">Solve Captcha</string>
     <string name="incorrect_solution">Incorrect Solution</string>
     <string name="bridges_obtained_connecting">Bridges obtained! Connecting to tor...</string>
+    <string name="custom_bridge_description">A custom bridge is provided by someone you know. Ask within your trusted networks and organizations to see if anyone is hosting one.</string>
 </resources>
