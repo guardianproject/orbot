@@ -25,6 +25,7 @@ import android.net.VpnService;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.provider.BaseColumns;
 import android.text.TextUtils;
 import android.util.Log;
@@ -659,6 +660,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     private boolean showTorServiceErrorMsg = false;
 
+    private static final int TIMEOUT_MS = 1000;
+
     /**
      * The entire process for starting tor and related services is run from this method.
      */
@@ -673,6 +676,9 @@ public class OrbotService extends VpnService implements OrbotConstants {
             mNotifyBuilder.setProgress(100, 0, false);
             showToolbarNotification("", NOTIFY_ID, R.drawable.ic_stat_tor);
 
+            if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SMART)) {
+                smartConnectionPathwayStartTor();
+            }
             startTorService();
             showTorServiceErrorMsg = true;
 
@@ -687,6 +693,24 @@ public class OrbotService extends VpnService implements OrbotConstants {
             logException(getString(R.string.unable_to_start_tor) +  " " + e.getLocalizedMessage(), e);
             stopTorOnError(e.getLocalizedMessage());
         }
+    }
+
+    private void smartConnectionPathwayStartTor() {
+        Log.d("bim", "timing out in " + TIMEOUT_MS + "ms");
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            Log.d("bim", "timed out mCurrentStatus=" + mCurrentStatus);
+            if (!mCurrentStatus.equals(STATUS_ON)) {
+                Log.d("bim", "stopping tor...");
+                stopTorAsync(true);
+                sendSmartStatusToActivity(SMART_STATUS_NO_DIRECT);
+            }
+        }, TIMEOUT_MS);
+    }
+
+    private void sendSmartStatusToActivity(String status) {
+        var intent = new Intent(LOCAL_ACTION_SMART_CONNECT_EVENT)
+                .putExtra(LOCAL_EXTRA_SMART_STATUS, status);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 
 

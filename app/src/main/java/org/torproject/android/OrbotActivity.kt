@@ -96,6 +96,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
             registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_STATUS))
             registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_LOG))
             registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_PORTS))
+            registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_SMART_CONNECT_EVENT))
         }
     }
 
@@ -216,6 +217,10 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                     val socks = intent.getIntExtra(OrbotConstants.EXTRA_SOCKS_PROXY_PORT, -1)
                     val http = intent.getIntExtra(OrbotConstants.EXTRA_HTTP_PROXY_PORT, -1)
                     if (http > 0 && socks > 0) tvPorts.text = "SOCKS $socks | HTTP $http"
+                }
+                OrbotConstants.LOCAL_ACTION_SMART_CONNECT_EVENT -> {
+                    val status = intent.getStringExtra(OrbotConstants.LOCAL_EXTRA_SMART_STATUS)
+                    runOnUiThread {Toast.makeText(this@OrbotActivity, "got status $status", Toast.LENGTH_LONG).show() }
                 }
                 else -> {}
             }
