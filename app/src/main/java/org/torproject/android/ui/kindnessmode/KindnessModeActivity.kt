@@ -1,4 +1,4 @@
-package org.torproject.android.ui.volunteer
+package org.torproject.android.ui.kindnessmode
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -8,7 +8,7 @@ import androidx.appcompat.widget.SwitchCompat
 import org.torproject.android.R
 import org.torproject.android.service.util.Prefs
 
-class VolunteerModeActivity: AppCompatActivity() {
+class KindnessModeActivity: AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

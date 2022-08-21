@@ -103,7 +103,7 @@
         </activity>
 
         <activity
-            android:name=".ui.volunteer.VolunteerModeActivity"
+            android:name=".ui.kindnessmode.KindnessModeActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/OrbotActivityTheme"
             android:label="@string/volunteer_mode" />

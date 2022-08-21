@@ -9,10 +9,8 @@ import android.content.res.ColorStateList
 import android.net.VpnService
 import android.os.Build
 import android.os.Bundle
-import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.TextAppearanceSpan
-import android.util.Log
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
@@ -33,11 +31,11 @@ import org.torproject.android.service.OrbotService
 import org.torproject.android.service.util.Prefs
 import org.torproject.android.ui.AppManagerActivity
 import org.torproject.android.ui.OrbotMenuAction
-import org.torproject.android.ui.dialog.AboutDialogFragment
+import org.torproject.android.ui.AboutDialogFragment
 import org.torproject.android.ui.v3onionservice.OnionServiceActivity
 import org.torproject.android.ui.v3onionservice.PermissionManager
 import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity
-import org.torproject.android.ui.volunteer.VolunteerModeActivity
+import org.torproject.android.ui.kindnessmode.KindnessModeActivity
 import android.widget.Button
 import android.widget.TextView
 
@@ -129,7 +127,8 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                 R.id.menu_settings -> startActivityForResult(SettingsPreferencesActivity.createIntent(this, R.xml.preferences), REQUEST_CODE_SETTINGS)
                 R.id.menu_faq -> Toast.makeText(this, "TODO FAQ not implemented...", Toast.LENGTH_LONG).show()
                 R.id.menu_about -> {
-                    AboutDialogFragment().show(supportFragmentManager, AboutDialogFragment.TAG)
+                    AboutDialogFragment()
+                        .show(supportFragmentManager, AboutDialogFragment.TAG)
                     closeDrawwer()
                 }
                 else -> {}
@@ -286,7 +285,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     private fun openVolunteerMode() {    // todo not really defined yet
 
         //Toast.makeText(this, "Volunteer Mode Not Implemented...", Toast.LENGTH_LONG).show()
-        startActivity(Intent(this, VolunteerModeActivity::class.java))
+        startActivity(Intent(this, KindnessModeActivity::class.java))
 
         progressBar.visibility = View.GONE    // todo not really defined yet
 

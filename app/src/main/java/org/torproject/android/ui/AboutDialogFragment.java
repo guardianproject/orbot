@@ -1,4 +1,4 @@
-package org.torproject.android.ui.dialog;
+package org.torproject.android.ui;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
