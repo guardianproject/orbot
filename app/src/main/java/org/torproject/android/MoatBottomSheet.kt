@@ -34,7 +34,7 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
         ivCaptcha = v.findViewById(R.id.ivCaptcha)
         etSolution = v.findViewById(R.id.solutionEt)
         etSolution.setOnEditorActionListener { textView, _, keyEvent ->
-            // handle pressing of enter key
+            // handle pressing of enter key TODO this isn't working properly
             if (keyEvent != null && keyEvent.keyCode == KeyEvent.KEYCODE_ENTER) {
                 if (keyEvent.action == KeyEvent.ACTION_UP) {
                     val imm = requireContext().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager?

@@ -109,15 +109,6 @@
             android:label="@string/volunteer_mode" />
 
         <activity
-            android:name=".ui.onboarding.BridgeWizardActivity"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/bridges" />
-
-        <activity
-            android:label="@string/request_bridges"
-            android:name=".ui.onboarding.MoatActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
             android:name=".ui.onboarding.CustomBridgesActivity"
             android:label="@string/use_custom_bridges" />
 

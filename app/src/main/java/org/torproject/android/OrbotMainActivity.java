@@ -63,7 +63,6 @@ import org.torproject.android.service.util.Utils;
 import org.torproject.android.ui.AppManagerActivity;
 import org.torproject.android.ui.dialog.AboutDialogFragment;
 import org.torproject.android.ui.v3onionservice.PermissionManager;
-import org.torproject.android.ui.onboarding.BridgeWizardActivity;
 import org.torproject.android.ui.v3onionservice.OnionServiceContentProvider;
 import org.torproject.android.ui.v3onionservice.OnionServiceActivity;
 import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity;
@@ -534,7 +533,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 if (name == null) name = "v3" + v3LocalPort;
                 final var finalName = name;
                 new AlertDialog.Builder(this)
-                        .setMessage(getString(R.string.hidden_service_request, v3LocalPort))
+                        .setMessage(getString(R.string.hidden_service_request,  v3LocalPort))
                         .setPositiveButton(R.string.allow, (d, w) -> enableV3OnionService(v3LocalPort, v3onionPort, finalName))
                         .setNegativeButton(R.string.deny, (d, w) -> {
                             setResult(RESULT_CANCELED);
@@ -641,7 +640,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         if (mBtnBridges.isChecked()) {
             Prefs.putBridgesEnabled(true);
 
-            startActivity(new Intent(this, BridgeWizardActivity.class));
+//            startActivity(new Intent(this, BridgeWizardActivity.class));
         } else {
             enableBridges(false);
         }
