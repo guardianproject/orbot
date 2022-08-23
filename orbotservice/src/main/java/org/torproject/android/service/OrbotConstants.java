@@ -122,6 +122,7 @@ public interface OrbotConstants {
     String LOCAL_ACTION_SMART_CONNECT_EVENT = "smart";
     String LOCAL_EXTRA_SMART_STATUS = "status";
     String SMART_STATUS_NO_DIRECT = "no_direct";
+    String SMART_STATUS_CIRCUMVENTION_ATTEMPT_FAILED = "bad_attempt_suggestion";
 
 
     /**

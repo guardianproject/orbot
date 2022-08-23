@@ -23,6 +23,9 @@ public class Prefs {
     private final static String PREF_BE_A_SNOWFLAKE = "pref_be_a_snowflake";
     private final static String PREF_SHOW_SNOWFLAKE_MSG = "pref_show_snowflake_proxy_msg";
     private final static String PREF_BE_A_SNOWFLAKE_LIMIT = "pref_be_a_snowflake_limit";
+    private final static String PREF_SMART_TRY_SNOWFLAKE = "pref_smart_try_snowflake";
+    private final static String PREF_SMART_TRY_OBFS4 = "pref_smart_try_obfs";
+
 
     private final static String PREF_HOST_ONION_SERVICES = "pref_host_onionservices";
 
@@ -31,6 +34,7 @@ public class Prefs {
     private static final String PREF_CONNECTION_PATHWAY = "pref_connection_pathway";
     public static final String PATHWAY_SMART = "smart", PATHWAY_DIRECT = "direct",
         PATHWAY_SNOWFLAKE = "snowflake", PATHWAY_CUSTOM = "custom";
+
 
     private static SharedPreferences prefs;
 
@@ -157,6 +161,22 @@ public class Prefs {
 
     public static void putConnectionPathway(String pathway) {
         putString(PREF_CONNECTION_PATHWAY, pathway);
+    }
+
+    public static void putPrefSmartTrySnowflake(boolean trySnowflake) {
+        putBoolean(PREF_SMART_TRY_SNOWFLAKE, trySnowflake);
+    }
+
+    public static boolean getPrefSmartTrySnowflake() {
+        return prefs.getBoolean(PREF_SMART_TRY_SNOWFLAKE, false);
+    }
+
+    public static void putPrefSmartTryObfs4(String bridges) {
+        putString(PREF_SMART_TRY_OBFS4, bridges);
+    }
+
+    public static String getPrefSmartTryObfs4() {
+        return prefs.getString(PREF_SMART_TRY_OBFS4, null);
     }
 
 

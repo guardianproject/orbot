@@ -260,9 +260,9 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var connectionPathway = Prefs.getConnectionPathway();
         // todo this needs to handle a lot of different cases that haven't been defined yet
         // todo particularly this is true for the smart connection case...
-        if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE)) {
+        if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
             IPtProxy.stopSnowflake();
-        } else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM)) {
+        } else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
             IPtProxy.stopObfs4Proxy();
         }
 
@@ -660,7 +660,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     private boolean showTorServiceErrorMsg = false;
 
-    private static final int TIMEOUT_MS = 1000;
+    private static int TIMEOUT_MS = 1000;
 
     /**
      * The entire process for starting tor and related services is run from this method.
@@ -695,16 +695,45 @@ public class OrbotService extends VpnService implements OrbotConstants {
         }
     }
 
+    static int TRIES_DELETE = 0 ;
+
     private void smartConnectionPathwayStartTor() {
         Log.d("bim", "timing out in " + TIMEOUT_MS + "ms");
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             Log.d("bim", "timed out mCurrentStatus=" + mCurrentStatus);
             if (!mCurrentStatus.equals(STATUS_ON)) {
                 Log.d("bim", "stopping tor...");
+                if (Prefs.getPrefSmartTrySnowflake()) {
+                    Log.d("bim", "trying snowflake didnt work");
+                    clearEphemeralSmartConnectionSettings();
+                    sendSmartStatusToActivity(SMART_STATUS_CIRCUMVENTION_ATTEMPT_FAILED);
+                } else if (Prefs.getPrefSmartTryObfs4() != null) {
+                    Log.d("bim", "trying obfs4 didnt work");
+                    clearEphemeralSmartConnectionSettings();
+                    sendSmartStatusToActivity(SMART_STATUS_CIRCUMVENTION_ATTEMPT_FAILED);
+                } else {
+                    sendSmartStatusToActivity(SMART_STATUS_NO_DIRECT);
+                }
                 stopTorAsync(true);
-                sendSmartStatusToActivity(SMART_STATUS_NO_DIRECT);
+            } else {
+                // tor was connected in the allotted time
+                var obfs4 = Prefs.getPrefSmartTryObfs4();
+                if (obfs4 != null) {
+                    // set these obfs4 bridges
+                    Prefs.setBridgesList(obfs4);
+                    Prefs.putConnectionPathway(Prefs.PATHWAY_CUSTOM);
+                } else if (Prefs.getPrefSmartTrySnowflake()) {
+                    // set snowflake
+                    Prefs.putConnectionPathway(Prefs.PATHWAY_SNOWFLAKE);
+                }
+                clearEphemeralSmartConnectionSettings();
             }
-        }, TIMEOUT_MS);
+        }, ((TRIES_DELETE++) != 2) ? TIMEOUT_MS : 10000);
+    }
+
+    private void clearEphemeralSmartConnectionSettings() {
+        Prefs.putPrefSmartTryObfs4(null);
+        Prefs.putPrefSmartTrySnowflake(false);
     }
 
     private void sendSmartStatusToActivity(String status) {
@@ -988,9 +1017,9 @@ public class OrbotService extends VpnService implements OrbotConstants {
         } else {
             // snowflake or obfs4
             extraLines.append("UseBridges 1").append('\n');
-            if (pathway.equals(Prefs.PATHWAY_SNOWFLAKE)) {
+            if (pathway.equals(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
                 extraLines = processSettingsImplSnowflake(extraLines);
-            } else if (pathway.equals(Prefs.PATHWAY_CUSTOM)) {
+            } else if (pathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
                 extraLines = processSettingsImplObfs4(extraLines);
             }
         }
@@ -1062,7 +1091,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
         Log.d("bim", "in obfs4 torrc config");
         extraLines.append("ClientTransportPlugin obfs3 socks5 127.0.0.1:" + IPtProxy.obfs3Port()).append('\n');
         extraLines.append("ClientTransportPlugin obfs4 socks5 127.0.0.1:" + IPtProxy.obfs4Port()).append('\n');
-        var customBridges = parseBridgesFromSettings(Prefs.getBridgesList());
+        var bridgeList = "";
+        if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_CUSTOM)) {
+            bridgeList = Prefs.getBridgesList();
+        } else bridgeList = Prefs.getPrefSmartTryObfs4();
+        var customBridges = parseBridgesFromSettings(bridgeList);
         for (var b : customBridges)
             extraLines.append("Bridge ").append(b).append("\n");
         return extraLines;
@@ -1348,10 +1381,10 @@ public class OrbotService extends VpnService implements OrbotConstants {
             if (TextUtils.isEmpty(action)) return;
             if (action.equals(ACTION_START)) {
                 var connectionPathway = Prefs.getConnectionPathway();
-                if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE)) {
+                if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
                     // todo for now just do domain fronting ...
                     startSnowflakeClientDomainFronting();
-                } else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM)) {
+                } else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
                     IPtProxy.startObfs4Proxy("DEBUG", false, false, null);
                 }
                 startTor();

@@ -11,6 +11,7 @@ import android.os.Build
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.TextAppearanceSpan
+import android.util.Log
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
@@ -38,6 +39,9 @@ import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity
 import org.torproject.android.ui.kindnessmode.KindnessModeActivity
 import android.widget.Button
 import android.widget.TextView
+import org.torproject.android.circumvention.Bridges
+import org.torproject.android.circumvention.CircumventionApiManager
+import org.torproject.android.circumvention.SettingsRequest
 
 class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelectedCallback, ConnectionHelperCallbacks {
 
@@ -193,6 +197,9 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
 
     override fun attachBaseContext(newBase: Context) = super.attachBaseContext(LocaleHelper.onAttach(newBase))
 
+    private var circumventionApiBridges: List<Bridges?>? = null
+    private var circumventionApiIndex = 0
+
     private val orbotServiceBroadcastReceiver = object : BroadcastReceiver(){
         @SuppressLint("SetTextI18n")
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -220,10 +227,58 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                 }
                 OrbotConstants.LOCAL_ACTION_SMART_CONNECT_EVENT -> {
                     val status = intent.getStringExtra(OrbotConstants.LOCAL_EXTRA_SMART_STATUS)
-                    runOnUiThread {Toast.makeText(this@OrbotActivity, "got status $status", Toast.LENGTH_LONG).show() }
+                    if (status.equals(OrbotConstants.SMART_STATUS_NO_DIRECT)) {
+                        // try the circumvention API, perhaps there's something we can do
+                        CircumventionApiManager().getSettings(SettingsRequest("cn"), {
+                            it?.let {
+                                circumventionApiBridges = it.settings
+                                if (circumventionApiBridges == null) {
+                                    Log.d("bim", "settings is null, we can assume a direct connect is fine ")
+                                } else {
+                                    Log.d("bim", "settings is $circumventionApiBridges")
+                                    circumventionApiBridges?.forEach { b->
+                                        Log.d("bim", "BRIDGE $b")
+
+                                    }
+                                    setPreferenceForSmartConnect()
+                                }
+                            }
+                        }, {
+                            Log.e("bim", "Coudln't hit circumvention API... $it")
+                        })
+                    } else if (status.equals(OrbotConstants.SMART_STATUS_CIRCUMVENTION_ATTEMPT_FAILED)) {
+                        // our attempt at circumventing failed, let's try another if any
+                        setPreferenceForSmartConnect()
+                    }
                 }
                 else -> {}
             }
+        }
+    }
+
+    private fun setPreferenceForSmartConnect() {
+        circumventionApiBridges?.let {
+            if (it.size == circumventionApiIndex) {
+               Log.d("bim", "tried all attempts, got nowhere!!!")
+                circumventionApiBridges = null
+                circumventionApiIndex = 0
+                return
+            }
+            val b = it[circumventionApiIndex]!!.bridges
+            if (b.type =="snowflake") {
+                Log.d("bim", "trying snowflake")
+                Prefs.putPrefSmartTrySnowflake(true)
+                startTorAndVpn()
+            } else if (b.type == "obfs4") {
+                Log.d("bim", "trying obfs4 ${b.source}")
+                var bridgeStrings = ""
+                b.bridge_strings!!.forEach { bridgeString ->
+                    bridgeStrings += "$bridgeString\n"
+                }
+                Prefs.putPrefSmartTryObfs4(bridgeStrings)
+                startTorAndVpn()
+            }
+            circumventionApiIndex += 1
         }
     }
 
@@ -298,6 +353,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     }
 
     private fun openConfigureTorConnection() =
+//        startActivity(Intent(this, TestConnectionActivity::class.java)) // TODO debugging
         ConfigConnectionBottomSheet(this).show(supportFragmentManager, OrbotActivity::class.java.simpleName)
 
 

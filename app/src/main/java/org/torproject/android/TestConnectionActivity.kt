@@ -21,13 +21,5 @@ class TestConnectionActivity : AppCompatActivity() {
                 Log.d("bim", "$it")
             }
         },{})
-
-        api.getMap({
-            Log.d("bim", "get map")
-            it?.forEach { (k, v) ->
-                Log.d("bim","Country $k")
-                Log.d("bim", "$v")
-            }
-        })
     }
 }

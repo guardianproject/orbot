@@ -41,7 +41,7 @@ object ServiceBuilder {
     fun<T> buildService(service: Class<T>): T = retrofit.create(service)
 }
 
-class CircumventionApiManager {
+class  CircumventionApiManager {
     private val retrofit = ServiceBuilder.buildService(CircumventionEndpoints::class.java)
 
     fun getCountries(onResult: (List<String>?) -> Unit, onError: ((Throwable) -> Unit)? = null) {
@@ -77,7 +77,6 @@ class CircumventionApiManager {
             override fun onFailure(call: Call<SettingsResponse>, t: Throwable) {
                 onError?.let { it(t) }
             }
-
         })
     }
 
