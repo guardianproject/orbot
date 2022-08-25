@@ -34,7 +34,7 @@
     <string name="pref_entrance_node_dialog">Въведете входни възли</string>
     <string name="pref_allow_background_starts_title">Зареждане във фонов режим</string>
     <string name="pref_allow_background_starts_summary">Приложенията да могат да искат от Orbot да стартира Tor и услуги на Tor</string>
-    <string name="pref_proxy_title">Сървър за прокси на изходящата мрежа (по избор)</string>
+    <string name="pref_proxy_title">Сървър на мрежов посредник на изходящата мрежа (по избор)</string>
     <string name="pref_proxy_type_title">Вид изходящ сървър за прокси</string>
     <string name="pref_proxy_type_summary">Протокол на сървъра за прокси: HTTP, HTTPS, Socks4, Socks5</string>
     <string name="pref_proxy_type_dialog">Въведете вида на сървъра за прокси</string>
@@ -216,7 +216,7 @@
     <string name="msg_taking_too_long">Изглежда, че ще отнеме време</string>
     <string name="msg_try_something_else">Опитайте нещо друго</string>
     <string name="secure_your_connection_subtitle">Orbot осигурява сигурна и непрекъсната връзка на приложенията.</string>
-    <string name="volunteer_mode">Режим Patreon</string>
+    <string name="volunteer_mode">Режим на доброта</string>
     <string name="secure_your_connection_title">Защитете връзката си с Tor</string>
     <string name="volunteer_mode_subtitle">Помогнете на други да бъдат свързани</string>
     <string name="btn_start_vpn">Пускане на VPN</string>
@@ -225,4 +225,27 @@
     <string name="btn_tor_off">Изключване на Tor</string>
     <string name="btn_refresh">Презареждане</string>
     <string name="btn_use_custom_bridge">Използване на потребителски мост</string>
+    <string name="drawer_open">Отваряне</string>
+    <string name="volunteer_mode_title">Денят е по-добър заради вас</string>
+    <string name="volunteer_mode_label">Режим на доброта</string>
+    <string name="volunteer_mode_weekly_label">ОБЩО СЕДМИЧНО</string>
+    <string name="volunteer_mode_alltime_label">ХОРА ПОМОГНАЛИ</string>
+    <string name="smart_connect">Интелигентна връзка (подразбирано)</string>
+    <string name="snowflake">Snowflake</string>
+    <string name="snowflake_subtitle">Връзката се осъществява през доброволци на Тор. Заобикаля някои забрани на Tor.</string>
+    <string name="custom_bridge">Потребителски мост</string>
+    <string name="connect">Свързване</string>
+    <string name="next">Напред</string>
+    <string name="solve_captcha">Решаване на Captcha</string>
+    <string name="configure_header">Настройка на връзката с Тор</string>
+    <string name="proxy_ports">Портове на прокси</string>
+    <string name="drawer_close">Затваряне</string>
+    <string name="ports_not_set">Няма зададени портове</string>
+    <string name="volunteer_mode_subtitle_desc">Режимът на доброта дава възможност устройството ви да бъде използвано като мост. Така други потребители могат да ползват Тор, на места където е забранен.</string>
+    <string name="smart_connect_subtitle">Orbot се опитва да осъществи връзка по всички възможни начини: директен, Snowflake, мост.</string>
+    <string name="direct_connect">Директна връзка с Тор</string>
+    <string name="direct_connect_subtitle">Най-добрия начин за свързване с Тор. Използвайте ако Тор не е забранен.</string>
+    <string name="get_a_bridge">Получаване на мост от Тор (Obfs4)</string>
+    <string name="custom_bridge_subtitle">Най-голяма вероятност да поддържа непрекъсната връзка с Тор при сериозни забрани на Тор. Изисква адрес на мост от човек, на когото имате доверие.</string>
+    <string name="get_a_bridge_subtitle">Прикрива трафика ви. Заобикаля някои забрани на Tor.</string>
 </resources>
