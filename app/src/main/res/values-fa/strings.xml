@@ -204,7 +204,7 @@
     <string name="secure_your_connection_title">اتّصال خودتان را به وسیلهٔ تور ایمن کنید</string>
     <string name="btn_start_vpn">آغاز وی‌پی‌ان</string>
     <string name="btn_configure">پیکربندی</string>
-    <string name="volunteer_mode">حالت پاترئون</string>
+    <string name="volunteer_mode">حالت مهربانی</string>
     <string name="btn_choose_apps">گزینش کاره‌ها</string>
     <string name="btn_change_exit">تغییر خروجی</string>
     <string name="btn_refresh">نوسازی</string>
@@ -214,7 +214,7 @@
     <string name="menu_app_settings">تنظیمات کاره</string>
     <string name="menu_faq">سوالات متداول</string>
     <string name="menu_header_learn">بیشتر بدانید</string>
-    <string name="msg_taking_too_long">به نظر می رسد این کار طولانی شود</string>
+    <string name="msg_taking_too_long">به نظر بیش از حد طول کشیده</string>
     <string name="msg_try_something_else">چیز دیگری را امتحان کنید</string>
     <string name="connected_title">شما متّصل شدید!</string>
     <string name="secure_your_connection_subtitle">ربات پیازی به شما یک اتّصال ایمن و بدون وقفه را به برنامه‌هایتان می‌دهد.</string>
@@ -225,4 +225,21 @@
     <string name="menu_header_features">قابلیت‌ها</string>
     <string name="btn_use_custom_bridge">استفاده از پل سفارشی</string>
     <string name="strict_nodes_description">تنظیمات گره‌های مستثنی را به عنوان یک الزام برای ساخت همه مدارها در نظر بگیرید. در صورتی که هیچ مداری با تنظیمات گره‌های مستثنی شما ایجاد نشود، ممکن است عملکرد را از بین ببرد.</string>
+    <string name="connect">وصل شدن</string>
+    <string name="solve_captcha">حل کپچا</string>
+    <string name="volunteer_mode_title">امروز به لطف شما روز بهتریست</string>
+    <string name="volunteer_mode_subtitle_desc">حالت مهربانی می‌گذارد افزاره‌تان پلی برای دیگران باشد‌. این کار به استفادهٔ افراد در جاهایی که تور مسدود شده کمک می‌کند.</string>
+    <string name="configure_header">پیکربندی اتصال تورتان</string>
+    <string name="drawer_open">گشودن</string>
+    <string name="drawer_close">بستن</string>
+    <string name="proxy_ports">درگاه‌های پیشکار</string>
+    <string name="volunteer_mode_label">حالت مهربانی</string>
+    <string name="volunteer_mode_weekly_label">مجموع هفتگی</string>
+    <string name="volunteer_mode_alltime_label">یاریگران</string>
+    <string name="smart_connect">اتصال هوشمند (پیش‌گزیده)</string>
+    <string name="direct_connect">اتّصال مستقیم به تور</string>
+    <string name="get_a_bridge">گرفتن پلی از تور (Obfs4)</string>
+    <string name="custom_bridge">پل شخصی</string>
+    <string name="next">بعدی</string>
+    <string name="ports_not_set">درگاه تنظیم نشده</string>
 </resources>
