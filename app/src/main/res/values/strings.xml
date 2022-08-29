@@ -252,4 +252,9 @@
     <string name="connect">Connect</string>
     <string name="next">Next</string>
     <string name="solve_captcha">Solve Captcha</string>
+    <string name="incorrect_solution">Incorrect Solution</string>
+    <string name="bridges_obtained_connecting">Bridges obtained! Connecting to tor...</string>
+    <string name="custom_bridge_description">A custom bridge is provided by someone you know. Ask within your trusted networks and organizations to see if anyone is hosting one.</string>
+    <string name="having_trouble">Having trouble</string>
+    <string name="having_trouble_subtitle">We can try a Tor bridge next but will need your help</string>
 </resources>
