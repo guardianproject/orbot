@@ -42,6 +42,10 @@ object ServiceBuilder {
 }
 
 class  CircumventionApiManager {
+    companion object {
+        const val BRIDGE_TYPE_OBFS4 = "obfs4"
+        const val BRIDGE_TYPE_SNOWFLAKE = "snowflake"
+    }
     private val retrofit = ServiceBuilder.buildService(CircumventionEndpoints::class.java)
 
     fun getCountries(onResult: (List<String>?) -> Unit, onError: ((Throwable) -> Unit)? = null) {

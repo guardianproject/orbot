@@ -9,6 +9,8 @@ import android.content.res.ColorStateList
 import android.net.VpnService
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.SpannableString
 import android.text.style.TextAppearanceSpan
 import android.util.Log
@@ -25,23 +27,21 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.navigation.NavigationView
 import net.freehaven.tor.control.TorControlCommands
+import org.torproject.android.circumvention.Bridges
+import org.torproject.android.circumvention.CircumventionApiManager
+import org.torproject.android.circumvention.SettingsRequest
 import org.torproject.android.core.LocaleHelper
 import org.torproject.android.core.ui.SettingsPreferencesActivity
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.OrbotService
 import org.torproject.android.service.util.Prefs
+import org.torproject.android.ui.AboutDialogFragment
 import org.torproject.android.ui.AppManagerActivity
 import org.torproject.android.ui.OrbotMenuAction
-import org.torproject.android.ui.AboutDialogFragment
+import org.torproject.android.ui.kindnessmode.KindnessModeActivity
 import org.torproject.android.ui.v3onionservice.OnionServiceActivity
 import org.torproject.android.ui.v3onionservice.PermissionManager
 import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity
-import org.torproject.android.ui.kindnessmode.KindnessModeActivity
-import android.widget.Button
-import android.widget.TextView
-import org.torproject.android.circumvention.Bridges
-import org.torproject.android.circumvention.CircumventionApiManager
-import org.torproject.android.circumvention.SettingsRequest
 
 class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelectedCallback, ConnectionHelperCallbacks {
 
@@ -162,6 +162,9 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         this.action = action
     })
 
+    private fun startTorAndVpnDelay(ms: Long) = Handler(Looper.getMainLooper()).postDelayed({startTorAndVpn()}, ms)
+
+
     private fun startTorAndVpn() {
         val vpnIntent = VpnService.prepare(this)
         if (vpnIntent != null) {
@@ -245,6 +248,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                                 }
                             }
                         }, {
+                            // TODO what happens to the app in this case?!
                             Log.e("bim", "Coudln't hit circumvention API... $it")
                         })
                     } else if (status.equals(OrbotConstants.SMART_STATUS_CIRCUMVENTION_ATTEMPT_FAILED)) {
@@ -272,31 +276,34 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     }
 
     private fun setPreferenceForSmartConnect() {
+        val MS_DELAY = 250L
         circumventionApiBridges?.let {
             if (it.size == circumventionApiIndex) {
-               Log.d("bim", "tried all attempts, got nowhere!!!")
+                Log.d("bim", "tried all attempts, got nowhere!!!")
                 circumventionApiBridges = null
                 circumventionApiIndex = 0
                 doLayoutForCircumventionApi()
                 return
             }
             val b = it[circumventionApiIndex]!!.bridges
-            if (b.type =="snowflake") {
+            if (b.type == CircumventionApiManager.BRIDGE_TYPE_SNOWFLAKE) {
                 Log.d("bim", "trying snowflake")
                 Prefs.putPrefSmartTrySnowflake(true)
-                startTorAndVpn()
-            } else if (b.type == "obfs4") {
+                startTorAndVpnDelay(MS_DELAY)
+            } else if (b.type == CircumventionApiManager.BRIDGE_TYPE_OBFS4) {
                 Log.d("bim", "trying obfs4 ${b.source}")
                 var bridgeStrings = ""
                 b.bridge_strings!!.forEach { bridgeString ->
                     bridgeStrings += "$bridgeString\n"
                 }
                 Prefs.putPrefSmartTryObfs4(bridgeStrings)
-                startTorAndVpn()
+                startTorAndVpnDelay(MS_DELAY)
             }
             circumventionApiIndex += 1
         }
     }
+
+
 
     private fun doLayoutOff() {
         ivOnion.setImageResource(R.drawable.orbioff)
