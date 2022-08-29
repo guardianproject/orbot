@@ -660,7 +660,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     private boolean showTorServiceErrorMsg = false;
 
-    private static int TIMEOUT_MS = 1000;
+    private static int TIMEOUT_MS = 10000;
 
     /**
      * The entire process for starting tor and related services is run from this method.
@@ -728,7 +728,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 }
                 clearEphemeralSmartConnectionSettings();
             }
-        }, ((TRIES_DELETE++) != 2) ? TIMEOUT_MS : 10000);
+        }, ((TRIES_DELETE++) != 2) ? TIMEOUT_MS : 1000);
     }
 
     private void clearEphemeralSmartConnectionSettings() {

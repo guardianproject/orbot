@@ -92,7 +92,6 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         tvVolunteer.setOnClickListener {openVolunteerMode()}
         tvVolunteerSubtitle.setOnClickListener {openVolunteerMode()}
-        tvConfigure.setOnClickListener {openConfigureTorConnection()}
 
         doLayoutOff()
 
@@ -229,6 +228,8 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                     val status = intent.getStringExtra(OrbotConstants.LOCAL_EXTRA_SMART_STATUS)
                     if (status.equals(OrbotConstants.SMART_STATUS_NO_DIRECT)) {
                         // try the circumvention API, perhaps there's something we can do
+                        // TODO hardcoded on China here
+//                        CircumventionApiManager().getSettings(SettingsRequest(), {
                         CircumventionApiManager().getSettings(SettingsRequest("cn"), {
                             it?.let {
                                 circumventionApiBridges = it.settings
@@ -256,12 +257,27 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         }
     }
 
+    private fun doLayoutForCircumventionApi() {
+        // TODO prompt user to request bridge over MOAT
+        tvTitle.text = getString(R.string.having_trouble)
+        tvSubtitle.text = getString(R.string.having_trouble_subtitle)
+        btnStartVpn.text = getString(R.string.solve_captcha)
+        btnStartVpn.setOnClickListener {
+            MoatBottomSheet(this).show(supportFragmentManager, "CircumventionFailed")
+        }
+        tvConfigure.text = getString(android.R.string.cancel)
+        tvConfigure.setOnClickListener {
+            doLayoutOff()
+        }
+    }
+
     private fun setPreferenceForSmartConnect() {
         circumventionApiBridges?.let {
             if (it.size == circumventionApiIndex) {
                Log.d("bim", "tried all attempts, got nowhere!!!")
                 circumventionApiBridges = null
                 circumventionApiIndex = 0
+                doLayoutForCircumventionApi()
                 return
             }
             val b = it[circumventionApiIndex]!!.bridges
@@ -289,6 +305,8 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         lvConnectedActions.visibility = View.GONE
         tvTitle.text = getString(R.string.secure_your_connection_title)
         tvConfigure.visibility = View.VISIBLE
+        tvConfigure.text = getString(R.string.btn_configure)
+        tvConfigure.setOnClickListener {openConfigureTorConnection()}
         torStatsGroup.visibility = View.GONE
         tvPorts.text = getString(R.string.ports_not_set)
         with(btnStartVpn) {
