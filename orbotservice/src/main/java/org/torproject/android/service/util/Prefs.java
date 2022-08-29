@@ -25,6 +25,7 @@ public class Prefs {
     private final static String PREF_BE_A_SNOWFLAKE_LIMIT = "pref_be_a_snowflake_limit";
     private final static String PREF_SMART_TRY_SNOWFLAKE = "pref_smart_try_snowflake";
     private final static String PREF_SMART_TRY_OBFS4 = "pref_smart_try_obfs";
+    private static final String PREF_POWER_USER_MODE = "pref_power_user";
 
 
     private final static String PREF_HOST_ONION_SERVICES = "pref_host_onionservices";
@@ -179,5 +180,8 @@ public class Prefs {
         return prefs.getString(PREF_SMART_TRY_OBFS4, null);
     }
 
+    public static boolean isPowerUserMode() {
+        return prefs.getBoolean(PREF_POWER_USER_MODE, false);
+    }
 
 }
