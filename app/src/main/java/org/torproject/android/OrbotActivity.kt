@@ -391,12 +391,12 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     }
 
     override fun onExitNodeSelected(exitNode: String, countryDisplayName: String) {
+        lvConnectedActions.invalidate()
         sendIntentToService(
             Intent(this, OrbotService::class.java)
                 .setAction(OrbotConstants.CMD_SET_EXIT)
                 .putExtra("exit", exitNode)
         )
-
     }
 
     override fun tryConnecting() {

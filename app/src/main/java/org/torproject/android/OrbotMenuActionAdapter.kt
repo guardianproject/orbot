@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import org.torproject.android.service.util.Prefs
+import org.torproject.android.service.util.Utils
 import org.torproject.android.ui.OrbotMenuAction
 
 class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>) : ArrayAdapter<OrbotMenuAction>(context, R.layout.action_list_view, list) {
@@ -20,6 +22,7 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
             val tvAction  = returnView.findViewById<TextView>(R.id.tvEmoji)
             if (model.imgId == 0) {
                 imgView.visibility = View.GONE
+                tvAction.text = Utils.convertCountryCodeToFlagEmoji(Prefs.getExitNodes())
                 tvAction.visibility = View.VISIBLE
             } else {
                 tvAction.visibility = View.GONE

@@ -2,7 +2,6 @@ package org.torproject.android
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import org.torproject.android.service.util.Prefs
