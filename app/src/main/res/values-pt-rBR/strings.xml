@@ -213,7 +213,7 @@
     <string name="secure_your_connection_subtitle">O Orbot oferece uma conexão segura e ininterrupta aos seus aplicativos.</string>
     <string name="btn_configure">Configurar</string>
     <string name="btn_start_vpn">Iniciar a VPN</string>
-    <string name="volunteer_mode">Modo Patreon</string>
+    <string name="volunteer_mode">Modo bondade</string>
     <string name="trying_to_connect_title">Tentando se conectar ao Tor…</string>
     <string name="btn_change_exit">Altere a saída</string>
     <string name="menu_help_others">Ajude os outros</string>
@@ -225,4 +225,27 @@
     <string name="captcha_title">Diga-nos que é humano</string>
     <string name="menu_tor_connection">Conexão Tor</string>
     <string name="btn_use_custom_bridge">Use uma ponte personalizada</string>
+    <string name="configure_header">Configure a sua conexão Tor</string>
+    <string name="volunteer_mode_subtitle_desc">O modo de bondade permite que o seu dispositivo seja uma ponte para as outras pessoas. Ele ajuda as pessoas a usarem o Tor em lugares onde ele está bloqueado.</string>
+    <string name="drawer_open">Abrir</string>
+    <string name="drawer_close">Fechar</string>
+    <string name="direct_connect">Conexão direta com o Tor</string>
+    <string name="snowflake">Snowflake</string>
+    <string name="get_a_bridge">Obter uma ponte do Tor (Obfs4)</string>
+    <string name="custom_bridge">Ponte personalizada</string>
+    <string name="connect">Conectar</string>
+    <string name="next">Próximo</string>
+    <string name="proxy_ports">Portas do proxy</string>
+    <string name="volunteer_mode_title">Hoje é melhor por sua causa</string>
+    <string name="volunteer_mode_label">Modo bondade</string>
+    <string name="volunteer_mode_weekly_label">TOTAL SEMANAL</string>
+    <string name="volunteer_mode_alltime_label">PESSOAS AJUDADAS</string>
+    <string name="ports_not_set">Portas não definidas</string>
+    <string name="smart_connect">Conexão inteligente (padrão)</string>
+    <string name="smart_connect_subtitle">O Orbot tenta se conectar ao Tor por qualquer meio disponível: Direto, Snowflake, Ponte.</string>
+    <string name="direct_connect_subtitle">A melhor maneira de se conectar ao Tor. Use caso o Tor não esteja bloqueado.</string>
+    <string name="get_a_bridge_subtitle">Oculta o seu tráfego. Contorna alguns bloqueios do Tor.</string>
+    <string name="snowflake_subtitle">Conecta-se através de voluntários do Tor. Contorna alguns bloqueios do Tor.</string>
+    <string name="custom_bridge_subtitle">O mais provável é mantê-lo conectado caso o Tor esteja totalmente bloqueado. Requer um endereço de ponte de alguém que você confie.</string>
+    <string name="solve_captcha">Resolver o captcha</string>
 </resources>
