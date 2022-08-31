@@ -203,13 +203,15 @@
     <string formatted="true" name="snowflake_proxy_enabled">Snowflake proxy enabled</string>
     <string name="snowflake_proxy_msg_title">Show Connection Notification</string>
     <string name="snowflake_proxy_msg_description">Show a message when your snowflake helps someone circumvent censorship</string>
+
     <!-- new UX -->
+    <string name="volunteer_mode">Kindness Mode</string>
     <string name="secure_your_connection_title">Secure your connection with Tor</string>
     <string name="secure_your_connection_subtitle">Orbot gives you a safe, uninterrupted connection to your apps.</string>
     <string name="connected_title">You\'re connected!</string>
     <string name="btn_start_vpn">Start VPN</string>
     <string name="btn_configure">Configure</string>
-    <string name="volunteer_mode">Patreon Mode</string>
+    <string name="configure_header">Configure your Tor Connection</string>
     <string name="volunteer_mode_subtitle">Help others connect</string>
     <string name="trying_to_connect_title">Trying to connect to Tor…</string>
     <string name="btn_choose_apps">Choose apps</string>
@@ -225,6 +227,34 @@
     <string name="menu_faq">FAQ</string>
     <string name="menu_header_learn">Learn More</string>
     <string name="btn_use_custom_bridge">Use Custom Bridge</string>
-    <string name="msg_taking_too_long">This seems to be taking long</string>
+    <string name="msg_taking_too_long">This seems to be taking too long</string>
     <string name="msg_try_something_else">Try something else</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="proxy_ports">Proxy Ports</string>
+    <string name="globe" translatable="false">🌎</string>
+    <string name="ports_not_set">Ports Not Set</string>
+    <string name="volunteer_mode_title">Today is better because of you</string>
+    <string name="volunteer_mode_label">Kindness Mode</string>
+    <string name="volunteer_mode_weekly_label">WEEKLY TOTAL</string>
+    <string name="volunteer_mode_alltime_label">PEOPLE HELPED</string>
+    <string name="volunteer_mode_subtitle_desc">Kindness mode allows your device to be a bridge for others. It helps people use Tor in places where it is blocked.</string>
+    <string name="smart_connect">Smart Connect (default)</string>
+    <string name="smart_connect_subtitle">Orbot tries connecting to Tor through any way available: Direct, Snowflake, Bridge.</string>
+    <string name="direct_connect">Direct Connection to Tor</string>
+    <string name="direct_connect_subtitle">The best way to connect to Tor. Use if Tor is not blocked.</string>
+    <string name="snowflake">Snowflake</string>
+    <string name="snowflake_subtitle">Connects through Tor volunteers. Gets around some Tor blocking.</string>
+    <string name="get_a_bridge">Get a Bridge from Tor (Obfs4)</string>
+    <string name="get_a_bridge_subtitle">Cloaks your traffic. Gets around some Tor blocking.</string>
+    <string name="custom_bridge">Custom Bridge</string>
+    <string name="custom_bridge_subtitle">Most likely to keep you connected if Tor is severely blocked. Requires a bridge address from someone you trust.</string>
+    <string name="connect">Connect</string>
+    <string name="next">Next</string>
+    <string name="solve_captcha">Solve Captcha</string>
+    <string name="incorrect_solution">Incorrect Solution</string>
+    <string name="bridges_obtained_connecting">Bridges obtained! Connecting to tor...</string>
+    <string name="custom_bridge_description">A custom bridge is provided by someone you know. Ask within your trusted networks and organizations to see if anyone is hosting one.</string>
+    <string name="having_trouble">Having trouble</string>
+    <string name="having_trouble_subtitle">We can try a Tor bridge next but will need your help</string>
 </resources>

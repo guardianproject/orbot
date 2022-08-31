@@ -257,7 +257,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         if (Prefs.bridgesEnabled()) {
             if (useIPtObfsMeekProxy())
                 IPtProxy.stopObfs4Proxy();
-            else if (useIPtSnowflakeProxyDomainFronting())
+            else if (useIPtSnowflakeProxyDomainFronting() || useIPtSnowflakeProxyAMPRendezvous())
                 IPtProxy.stopSnowflake();
         }
         else if (Prefs.beSnowflakeProxy())
