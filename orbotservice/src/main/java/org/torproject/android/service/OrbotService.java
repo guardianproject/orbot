@@ -135,7 +135,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             var baos = new ByteArrayOutputStream();
             e.printStackTrace(new PrintStream(baos));
 
-            sendCallbackLogMessage(msg + '\n' + baos.toString());
+            sendCallbackLogMessage(msg + '\n' + baos);
         } else
             sendCallbackLogMessage(msg);
 
@@ -595,7 +595,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
         logNotice(getString(R.string.log_notice_updating_torrc));
 
-        debug("torrc.custom=" + extraLines.toString());
+        debug("torrc.custom=" + extraLines);
 
         var fileTorRcCustom = TorService.getTorrc(this);
         updateTorConfigCustom(fileTorRcCustom, extraLines.toString(), false);
