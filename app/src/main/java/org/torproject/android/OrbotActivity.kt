@@ -69,6 +69,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         setContentView(R.layout.activity_orbot)
         tvTitle = findViewById(R.id.tvTitle)
         tvSubtitle = findViewById(R.id.tvSubtitle)
+        tvSubtitle = findViewById(R.id.tvSubtitle)
         tvConfigure = findViewById(R.id.tvConfigure)
         btnStartVpn = findViewById(R.id.btnStart)
         ivOnion = findViewById(R.id.ivStatus)
@@ -104,7 +105,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     }
 
     private fun openExitNodeDialog() {
-        ExitNodeDialogFragment(this).show(supportFragmentManager, "foo")
+        ExitNodeDialogFragment(this).show(supportFragmentManager, "ExitNodeDialogFragment")
     }
 
     private fun configureNavigationMenu() {
@@ -170,7 +171,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         if (vpnIntent != null) {
             startActivityForResult(vpnIntent, REQUEST_CODE_VPN)
         } else {
-            // todo probably just remove this pref altogether and always start VPN
+            // todo we need to add a power user mode for users to start the VPN without tor
             Prefs.putUseVpn(true)
             sendIntentToService(OrbotConstants.ACTION_START)
             sendIntentToService(OrbotConstants.ACTION_START_VPN)
@@ -311,6 +312,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         progressBar.visibility = View.INVISIBLE
         lvConnectedActions.visibility = View.GONE
         tvTitle.text = getString(R.string.secure_your_connection_title)
+        tvSubtitle.text = getString(R.string.secure_your_connection_subtitle)
         tvConfigure.visibility = View.VISIBLE
         tvConfigure.text = getString(R.string.btn_configure)
         tvConfigure.setOnClickListener {openConfigureTorConnection()}
@@ -350,6 +352,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
             progress = 0
             visibility = View.VISIBLE
         }
+        ivOnion.setImageResource(R.drawable.orbistarting)
         tvTitle.text = getString(R.string.trying_to_connect_title)
         with(btnStartVpn) {
             text = getString(android.R.string.cancel)
