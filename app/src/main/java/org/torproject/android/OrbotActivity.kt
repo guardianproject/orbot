@@ -220,8 +220,8 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                             }
                             var shouldDoOffLayout = true
                             if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SMART)) {
-                                if (circumventionApiBridges != null && circumventionApiBridges!!.size > circumventionApiIndex)
-                                    shouldDoOffLayout = false
+                                Log.d("bim", "\tpathway is smart")
+                                shouldDoOffLayout = false
                             }
                             if (shouldDoOffLayout) doLayoutOff()
                         }
@@ -277,8 +277,10 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     private fun doLayoutForCircumventionApi() {
         Log.d("bim", "doLayoutForCircumventionApi")
         // TODO prompt user to request bridge over MOAT
+        progressBar.progress = 0
         tvTitle.text = getString(R.string.having_trouble)
         tvSubtitle.text = getString(R.string.having_trouble_subtitle)
+        tvSubtitle.visibility = View.VISIBLE
         btnStartVpn.text = getString(R.string.solve_captcha)
         btnStartVpn.setOnClickListener {
             MoatBottomSheet(this).show(supportFragmentManager, "CircumventionFailed")
@@ -363,7 +365,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
 
     private fun doLayoutStarting() {
         torStatsGroup.visibility = View.VISIBLE
-        tvSubtitle.visibility = View.VISIBLE
+        tvSubtitle.visibility = View.GONE
         with(progressBar) {
             progress = 0
             visibility = View.VISIBLE
