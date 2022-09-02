@@ -930,6 +930,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 e.printStackTrace();
                 stopTorOnError(e.getLocalizedMessage());
                 conn = null;
+            }  catch (NullPointerException npe) {
+                Log.e("bim", "NPE reached... how???");
+                npe.printStackTrace();
+                stopTorOnError("stopping from NPE");
+                conn = null;
             }
         }
     }

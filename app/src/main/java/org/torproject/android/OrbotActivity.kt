@@ -211,8 +211,20 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                 OrbotConstants.LOCAL_ACTION_STATUS -> {
                     if (status.equals(previousReceivedTorStatus)) return
                     previousReceivedTorStatus = status
+                    Log.d("bim", "about to do some kind of status redraw: $status")
                     when (status) {
-                        OrbotConstants.STATUS_OFF -> doLayoutOff()
+                        OrbotConstants.STATUS_OFF -> {
+                            if (allCircumventionAttemtsFailed) {
+                                allCircumventionAttemtsFailed = false
+                                return
+                            }
+                            var shouldDoOffLayout = true
+                            if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SMART)) {
+                                if (circumventionApiBridges != null && circumventionApiBridges!!.size > circumventionApiIndex)
+                                    shouldDoOffLayout = false
+                            }
+                            if (shouldDoOffLayout) doLayoutOff()
+                        }
                         OrbotConstants.STATUS_STARTING -> doLayoutStarting()
                         OrbotConstants.STATUS_ON -> doLayoutOn()
                         OrbotConstants.STATUS_STOPPING -> {}
@@ -263,6 +275,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     }
 
     private fun doLayoutForCircumventionApi() {
+        Log.d("bim", "doLayoutForCircumventionApi")
         // TODO prompt user to request bridge over MOAT
         tvTitle.text = getString(R.string.having_trouble)
         tvSubtitle.text = getString(R.string.having_trouble_subtitle)
@@ -276,13 +289,16 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         }
     }
 
+    var allCircumventionAttemtsFailed = false
     private fun setPreferenceForSmartConnect() {
+        Log.d("bim", "setPreferenceForSmartConnect()")
         val MS_DELAY = 250L
         circumventionApiBridges?.let {
             if (it.size == circumventionApiIndex) {
                 Log.d("bim", "tried all attempts, got nowhere!!!")
                 circumventionApiBridges = null
                 circumventionApiIndex = 0
+                allCircumventionAttemtsFailed = true
                 doLayoutForCircumventionApi()
                 return
             }
