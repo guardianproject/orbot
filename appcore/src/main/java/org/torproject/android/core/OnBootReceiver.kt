@@ -12,7 +12,7 @@ import org.torproject.android.service.util.Prefs
 
 class OnBootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-        if (Prefs.startOnBoot() && !sReceivedBoot) {
+        if (!Prefs.onboardPending() && Prefs.startOnBoot() && !sReceivedBoot) {
             if (isNetworkAvailable(context)) {
                 startService(OrbotConstants.ACTION_START, context)
                 sReceivedBoot = true
