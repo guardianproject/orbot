@@ -36,7 +36,7 @@
             android:id="@+id/ivStatus"
             android:layout_width="148dp"
             android:layout_height="166dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="250dp"
             android:src="@drawable/orbioff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
