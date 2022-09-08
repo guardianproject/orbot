@@ -69,6 +69,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         setContentView(R.layout.activity_orbot)
         tvTitle = findViewById(R.id.tvTitle)
         tvSubtitle = findViewById(R.id.tvSubtitle)
+        tvSubtitle = findViewById(R.id.tvSubtitle)
         tvConfigure = findViewById(R.id.tvConfigure)
         btnStartVpn = findViewById(R.id.btnStart)
         ivOnion = findViewById(R.id.ivStatus)
@@ -104,7 +105,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     }
 
     private fun openExitNodeDialog() {
-        ExitNodeDialogFragment(this).show(supportFragmentManager, "foo")
+        ExitNodeDialogFragment(this).show(supportFragmentManager, "ExitNodeDialogFragment")
     }
 
     private fun configureNavigationMenu() {
@@ -170,7 +171,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         if (vpnIntent != null) {
             startActivityForResult(vpnIntent, REQUEST_CODE_VPN)
         } else {
-            // todo probably just remove this pref altogether and always start VPN
+            // todo we need to add a power user mode for users to start the VPN without tor
             Prefs.putUseVpn(true)
             sendIntentToService(OrbotConstants.ACTION_START)
             sendIntentToService(OrbotConstants.ACTION_START_VPN)
@@ -210,8 +211,20 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                 OrbotConstants.LOCAL_ACTION_STATUS -> {
                     if (status.equals(previousReceivedTorStatus)) return
                     previousReceivedTorStatus = status
+                    Log.d("bim", "about to do some kind of status redraw: $status")
                     when (status) {
-                        OrbotConstants.STATUS_OFF -> doLayoutOff()
+                        OrbotConstants.STATUS_OFF -> {
+                            if (allCircumventionAttemtsFailed) {
+                                allCircumventionAttemtsFailed = false
+                                return
+                            }
+                            var shouldDoOffLayout = true
+                            if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SMART)) {
+                                Log.d("bim", "\tpathway is smart")
+                                shouldDoOffLayout = false
+                            }
+                            if (shouldDoOffLayout) doLayoutOff()
+                        }
                         OrbotConstants.STATUS_STARTING -> doLayoutStarting()
                         OrbotConstants.STATUS_ON -> doLayoutOn()
                         OrbotConstants.STATUS_STOPPING -> {}
@@ -262,9 +275,12 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     }
 
     private fun doLayoutForCircumventionApi() {
+        Log.d("bim", "doLayoutForCircumventionApi")
         // TODO prompt user to request bridge over MOAT
+        progressBar.progress = 0
         tvTitle.text = getString(R.string.having_trouble)
         tvSubtitle.text = getString(R.string.having_trouble_subtitle)
+        tvSubtitle.visibility = View.VISIBLE
         btnStartVpn.text = getString(R.string.solve_captcha)
         btnStartVpn.setOnClickListener {
             MoatBottomSheet(this).show(supportFragmentManager, "CircumventionFailed")
@@ -275,13 +291,16 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         }
     }
 
+    var allCircumventionAttemtsFailed = false
     private fun setPreferenceForSmartConnect() {
+        Log.d("bim", "setPreferenceForSmartConnect()")
         val MS_DELAY = 250L
         circumventionApiBridges?.let {
             if (it.size == circumventionApiIndex) {
                 Log.d("bim", "tried all attempts, got nowhere!!!")
                 circumventionApiBridges = null
                 circumventionApiIndex = 0
+                allCircumventionAttemtsFailed = true
                 doLayoutForCircumventionApi()
                 return
             }
@@ -311,6 +330,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         progressBar.visibility = View.INVISIBLE
         lvConnectedActions.visibility = View.GONE
         tvTitle.text = getString(R.string.secure_your_connection_title)
+        tvSubtitle.text = getString(R.string.secure_your_connection_subtitle)
         tvConfigure.visibility = View.VISIBLE
         tvConfigure.text = getString(R.string.btn_configure)
         tvConfigure.setOnClickListener {openConfigureTorConnection()}
@@ -345,11 +365,12 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
 
     private fun doLayoutStarting() {
         torStatsGroup.visibility = View.VISIBLE
-        tvSubtitle.visibility = View.VISIBLE
+        tvSubtitle.visibility = View.GONE
         with(progressBar) {
             progress = 0
             visibility = View.VISIBLE
         }
+        ivOnion.setImageResource(R.drawable.orbistarting)
         tvTitle.text = getString(R.string.trying_to_connect_title)
         with(btnStartVpn) {
             text = getString(android.R.string.cancel)

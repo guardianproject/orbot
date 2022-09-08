@@ -23,10 +23,6 @@ public class AppConfigActivity extends AppCompatActivity {
 
     TorifiedApp mApp;
 
-    private boolean mAppTor = false;
-    private boolean mAppData = false;
-    private boolean mAppWifi = false;
-
     private SharedPreferences mPrefs;
 
     @Override
@@ -53,9 +49,9 @@ public class AppConfigActivity extends AppCompatActivity {
         }
         catch (Exception e){}
 
-        mAppTor = mPrefs.getBoolean(pkgId + OrbotConstants.APP_TOR_KEY,true);
-        mAppData = mPrefs.getBoolean(pkgId + OrbotConstants.APP_DATA_KEY,false);
-        mAppWifi = mPrefs.getBoolean(pkgId + OrbotConstants.APP_WIFI_KEY,false);
+        boolean mAppTor = mPrefs.getBoolean(pkgId + OrbotConstants.APP_TOR_KEY, true);
+        boolean mAppData = mPrefs.getBoolean(pkgId + OrbotConstants.APP_DATA_KEY, false);
+        boolean mAppWifi = mPrefs.getBoolean(pkgId + OrbotConstants.APP_WIFI_KEY, false);
 
         Switch switchAppTor = findViewById(R.id.switch_app_tor);
         switchAppTor.setChecked(mAppTor);

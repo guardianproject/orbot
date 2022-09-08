@@ -276,7 +276,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(() -> {
                 try {
-                    startListeningToFD(localhost);
+                    startListeningToFD();
                 } catch (IOException e) {
                     Log.d(TAG, "VPN tun listening has stopped", e);
                 }
@@ -287,7 +287,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
         }
     }
 
-    private void startListeningToFD(String localhost) throws IOException {
+    private void startListeningToFD() throws IOException {
         if (mInterface == null) return; // Prepare hasn't been called yet
 
         fis = new FileInputStream(mInterface.getFileDescriptor());
@@ -302,7 +302,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
             }
         };
 
-        IPtProxy.startSocks(pFlow,localhost,mTorSocks);
+        IPtProxy.startSocks(pFlow, "127.0.0.1",mTorSocks);
 
         //read packets from TUN and send to go-tun2socks
         mThreadPacket = new Thread() {

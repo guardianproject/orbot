@@ -135,7 +135,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             var baos = new ByteArrayOutputStream();
             e.printStackTrace(new PrintStream(baos));
 
-            sendCallbackLogMessage(msg + '\n' + baos.toString());
+            sendCallbackLogMessage(msg + '\n' + baos);
         } else
             sendCallbackLogMessage(msg);
 
@@ -595,7 +595,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
         logNotice(getString(R.string.log_notice_updating_torrc));
 
-        debug("torrc.custom=" + extraLines.toString());
+        debug("torrc.custom=" + extraLines);
 
         var fileTorRcCustom = TorService.getTorrc(this);
         updateTorConfigCustom(fileTorRcCustom, extraLines.toString(), false);
@@ -929,6 +929,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
             } catch (IOException e) {
                 e.printStackTrace();
                 stopTorOnError(e.getLocalizedMessage());
+                conn = null;
+            }  catch (NullPointerException npe) {
+                Log.e("bim", "NPE reached... how???");
+                npe.printStackTrace();
+                stopTorOnError("stopping from NPE");
                 conn = null;
             }
         }
