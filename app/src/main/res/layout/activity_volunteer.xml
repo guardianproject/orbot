@@ -18,7 +18,6 @@
         android:textStyle="normal"
         android:gravity="center_horizontal"
         android:padding="30dp"
-        app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
