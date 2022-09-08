@@ -17,12 +17,16 @@ import android.util.Log
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.Group
 import androidx.core.content.ContextCompat
 import androidx.core.view.forEach
+import androidx.core.view.marginTop
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.navigation.NavigationView
@@ -326,6 +330,10 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
 
     private fun doLayoutOff() {
         ivOnion.setImageResource(R.drawable.orbioff)
+        (ivOnion.layoutParams as ViewGroup.MarginLayoutParams).topMargin = 250
+        ivOnion.animate().y(200f).duration = 150
+
+
         tvSubtitle.visibility = View.VISIBLE
         progressBar.visibility = View.INVISIBLE
         lvConnectedActions.visibility = View.GONE
@@ -354,6 +362,11 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
 
     private fun doLayoutOn() {
         ivOnion.setImageResource(R.drawable.orbion)
+
+        ivOnion.animation?.cancel()
+        ivOnion.animate().y(14f).duration = 200
+//        (ivOnion.layoutParams as ViewGroup.MarginLayoutParams).topMargin = 14
+
         tvSubtitle.visibility = View.GONE
         progressBar.visibility = View.INVISIBLE
         tvTitle.text = getString(R.string.connected_title)
@@ -371,6 +384,11 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
             visibility = View.VISIBLE
         }
         ivOnion.setImageResource(R.drawable.orbistarting)
+        var animHover = AnimationUtils.loadAnimation(this, R.anim.hover);
+        ivOnion.animation = animHover
+        animHover.repeatCount = Animation.INFINITE
+        animHover.start()
+
         tvTitle.text = getString(R.string.trying_to_connect_title)
         with(btnStartVpn) {
             text = getString(android.R.string.cancel)
