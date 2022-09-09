@@ -97,7 +97,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         tvVolunteer.setOnClickListener {openVolunteerMode()}
         tvVolunteerSubtitle.setOnClickListener {openVolunteerMode()}
-
+        
         doLayoutOff()
 
         with(LocalBroadcastManager.getInstance(this)) {
@@ -387,6 +387,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         var animHover = AnimationUtils.loadAnimation(this, R.anim.hover);
         ivOnion.animation = animHover
         animHover.repeatCount = Animation.INFINITE
+        animHover.repeatMode = Animation.REVERSE
         animHover.start()
 
         tvTitle.text = getString(R.string.trying_to_connect_title)
