@@ -1446,6 +1446,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 newIdentity();
             } else if (action.equals(CMD_ACTIVE)) {
                 sendSignalActive();
+                replyWithStatus(mIntent);
             } else if (action.equals(CMD_SET_EXIT)) {
                 setExitNode(mIntent.getStringExtra("exit"));
             } else {
