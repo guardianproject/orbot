@@ -206,8 +206,8 @@
 
     <!-- new UX -->
     <string name="volunteer_mode">Kindness Mode</string>
-    <string name="secure_your_connection_title">Secure your connection with Tor</string>
-    <string name="secure_your_connection_subtitle">Orbot gives you a safe, uninterrupted connection to your apps.</string>
+    <string name="secure_your_connection_title">Ready to Connect</string>
+    <string name="secure_your_connection_subtitle">Hide apps from network monitoring and get access when they are blocked.</string>
     <string name="connected_title">You\'re connected!</string>
     <string name="btn_start_vpn">Start VPN</string>
     <string name="btn_configure">Configure</string>

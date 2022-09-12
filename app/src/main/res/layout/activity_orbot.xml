@@ -42,25 +42,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/progressBar" />
 
+        <ImageView
+            android:id="@+id/ivShadow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:src="@drawable/orbieshadow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivStatus" />
+
         <TextView
             android:layout_marginTop="16dp"
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/secure_your_connection_title"
+            android:text="Ready to Connect"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textSize="24sp"
+            android:fontFamily="sans-serif-black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivStatus" />
+            app:layout_constraintTop_toBottomOf="@+id/ivShadow" />
 
         <TextView
             android:textAlignment="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvSubtitle"
-            android:text="@string/secure_your_connection_subtitle"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-light"
+            android:text="Hide apps from network monitoring and get access when they are blocked."
             android:textColor="@android:color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +92,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin" />
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:paddingLeft="@dimen/activity_horizontal_large_margin"
+            android:paddingRight="@dimen/activity_horizontal_large_margin"
+            />
 
         <TextView
             android:id="@+id/tvConfigure"
@@ -91,7 +106,11 @@
             android:textColor="@android:color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btn_configure"/>
+            android:text="@string/btn_configure"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:fontFamily="sans-serif-light"
+            android:textAllCaps="true"
+            />
 
         <ListView
             android:drawSelectorOnTop="true"
@@ -106,12 +125,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/lvConnected"/>
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/mainGuideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".8"/>
+        <!--
 
         <TextView
             app:layout_constraintTop_toTopOf="@+id/mainGuideline"
@@ -126,16 +140,18 @@
             android:textAllCaps="true"
             android:text="@string/volunteer_mode"/>
 
-        <TextView
-            android:layout_marginTop="2dp"
+            -->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvVolunteerMode"
-            android:textColor="@android:color/white"
-            android:text="@string/volunteer_mode_subtitle"
-            android:id="@+id/tvVolunteerSubtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/main_bottom_nav"
+            app:itemTextColor="@color/bottom_nav_color"
+            app:itemIconTint="@color/bottom_nav_color"
+            />
 
 
 

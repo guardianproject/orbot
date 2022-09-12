@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_connect"
+        android:enabled="true"
+        android:icon="@drawable/ic_onion"
+        android:title="@string/connect"/>
+    <item
+        android:id="@+id/menu_kindness"
+        android:enabled="true"
+        android:icon="@drawable/ic_heart"
+        android:title="Kindness"/>
+
+    <item
+        android:id="@+id/menu_more"
+        android:enabled="true"
+        android:icon="@drawable/ic_more"
+        android:title="More"/>
+</menu>

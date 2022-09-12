@@ -7,7 +7,7 @@
         <color name="orbot_btn_enabled_purple">#7424CF</color>
         <color name="orbot_btn_disable_grey">#332B3B</color>
         <color name="menu_header">#A06DDF</color>
-        <color name="new_background">#272030</color>
-        <color name="new_background_secondary">#1c1425</color>
+        <color name="new_background">#1C1425</color>
+        <color name="new_background_secondary">#1C1425</color>
         <color name="volunteer_mode_label">#A06DDF</color>
 </resources>

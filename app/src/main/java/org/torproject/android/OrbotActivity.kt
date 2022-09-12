@@ -29,6 +29,8 @@ import androidx.core.view.forEach
 import androidx.core.view.marginTop
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
 import net.freehaven.tor.control.TorControlCommands
 import org.torproject.android.circumvention.Bridges
@@ -57,14 +59,13 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     private lateinit var ivOnion: ImageView
     private lateinit var progressBar: ProgressBar
     private lateinit var lvConnectedActions: ListView
-    private lateinit var tvVolunteer: TextView
-    private lateinit var tvVolunteerSubtitle: TextView
     // menu UI
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var menuToggle: ActionBarDrawerToggle
     private lateinit var navigationView: NavigationView
     private lateinit var tvPorts: TextView
     private lateinit var torStatsGroup: Group
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     private var previousReceivedTorStatus: String? = null
 
@@ -86,8 +87,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
             startActivityForResult(Intent(this, AppManagerActivity::class.java), REQUEST_VPN_APP_SELECT)
         })
         lvConnectedActions.adapter = OrbotMenuActionAdapter(this, listItems)
-        tvVolunteer = findViewById(R.id.tvVolunteerMode)
-        tvVolunteerSubtitle = findViewById(R.id.tvVolunteerSubtitle)
+
         drawerLayout = findViewById(R.id.   drawerLayout)
         navigationView = findViewById(R.id.navigationView)
         configureNavigationMenu()
@@ -95,8 +95,27 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         drawerLayout.addDrawerListener(menuToggle)
         menuToggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        tvVolunteer.setOnClickListener {openVolunteerMode()}
-        tvVolunteerSubtitle.setOnClickListener {openVolunteerMode()}
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigationView.setOnItemSelectedListener(NavigationBarView.OnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.menu_connect -> {
+                    // Respond to navigation item 1 click
+                    true
+                }
+                R.id.menu_kindness -> {
+                    // Respond to navigation item 2 click
+                    openKindnessMode()
+                    true
+                }
+                R.id.menu_more -> {
+                    // Respond to navigation item 2 click
+                    openDrawer()
+                    true
+                }
+                else -> false
+            }
+        })
         
         doLayoutOff()
 
@@ -128,9 +147,9 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
             when (it.itemId) {
                 R.id.menu_tor_connection -> {
                     openConfigureTorConnection()
-                    closeDrawwer()
+                    closeDrawer()
                 }
-                R.id.menu_help_others -> openVolunteerMode()
+                R.id.menu_help_others -> openKindnessMode()
                 R.id.menu_v3_onion_services -> startActivity(Intent(this, OnionServiceActivity::class.java))
                 R.id.menu_v3_onion_client_auth -> startActivity(Intent(this, ClientAuthActivity::class.java))
                 R.id.menu_settings -> startActivityForResult(SettingsPreferencesActivity.createIntent(this, R.xml.preferences), REQUEST_CODE_SETTINGS)
@@ -138,7 +157,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                 R.id.menu_about -> {
                     AboutDialogFragment()
                         .show(supportFragmentManager, AboutDialogFragment.TAG)
-                    closeDrawwer()
+                    closeDrawer()
                 }
                 else -> {}
             }
@@ -147,7 +166,12 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
 
     }
 
-    private fun closeDrawwer() = drawerLayout.closeDrawer(Gravity.LEFT)
+    private fun openDrawer() = drawerLayout.openDrawer(Gravity.LEFT)
+
+    private fun closeDrawer() {
+        drawerLayout.closeDrawer(Gravity.LEFT)
+        bottomNavigationView.selectedItemId = R.id.menu_connect
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean =
         menuToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item)
@@ -155,6 +179,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     override fun onResume() {
         super.onResume()
         sendIntentToService(OrbotConstants.CMD_ACTIVE)
+        bottomNavigationView.selectedItemId = R.id.menu_connect
     }
 
     override fun onDestroy() {
@@ -365,7 +390,6 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
 
         ivOnion.animation?.cancel()
         ivOnion.animate().y(14f).duration = 200
-//        (ivOnion.layoutParams as ViewGroup.MarginLayoutParams).topMargin = 14
 
         tvSubtitle.visibility = View.GONE
         progressBar.visibility = View.INVISIBLE
@@ -385,9 +409,9 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         }
         ivOnion.setImageResource(R.drawable.orbistarting)
         var animHover = AnimationUtils.loadAnimation(this, R.anim.hover);
-        ivOnion.animation = animHover
         animHover.repeatCount = Animation.INFINITE
         animHover.repeatMode = Animation.REVERSE
+        ivOnion.animation = animHover
         animHover.start()
 
         tvTitle.text = getString(R.string.trying_to_connect_title)
@@ -407,7 +431,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     }
 
     // todo not really defined what this does, somehow start/manage being a snowflake proxy
-    private fun openVolunteerMode() {    // todo not really defined yet
+    private fun openKindnessMode() {    // todo not really defined yet
 
         //Toast.makeText(this, "Volunteer Mode Not Implemented...", Toast.LENGTH_LONG).show()
         startActivity(Intent(this, KindnessModeActivity::class.java))

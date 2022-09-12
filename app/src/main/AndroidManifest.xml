@@ -39,7 +39,7 @@
         android:largeHeap="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/DefaultTheme"
+        android:theme="@style/OrbotActivityTheme"
         tools:replace="android:allowBackup">
 
         <activity
