@@ -1,5 +1,6 @@
 package org.torproject.android
 
+import android.R.attr.animation
 import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -26,7 +27,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.Group
 import androidx.core.content.ContextCompat
 import androidx.core.view.forEach
-import androidx.core.view.marginTop
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -48,6 +48,7 @@ import org.torproject.android.ui.kindnessmode.KindnessModeActivity
 import org.torproject.android.ui.v3onionservice.OnionServiceActivity
 import org.torproject.android.ui.v3onionservice.PermissionManager
 import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity
+
 
 class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelectedCallback, ConnectionHelperCallbacks {
 
@@ -214,6 +215,10 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
 
     private fun sendNewnymSignal() {
         sendIntentToService(TorControlCommands.SIGNAL_NEWNYM)
+        ivOnion.animate().alpha(0f).duration = 500
+
+        Handler().postDelayed({ ivOnion.animate().alpha(1f).duration = 500 }, 600)
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
