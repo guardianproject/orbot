@@ -43,4 +43,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp" />
 
+    <HorizontalScrollView
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center"
+        android:id="@+id/llBoxShortcuts"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        >
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/llBoxShortcutsInner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </HorizontalScrollView>
 </LinearLayout>

@@ -227,9 +227,20 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
             // todo respond to language change extra data here...
         } else if (requestCode == REQUEST_VPN_APP_SELECT && resultCode == RESULT_OK) {
             sendIntentToService(OrbotConstants.ACTION_RESTART_VPN) // is this enough todo?
+            refreshMenuList()
         }
     }
 
+    private fun refreshMenuList () {
+
+        val listItems = arrayListOf(OrbotMenuAction(R.string.btn_change_exit, 0) {openExitNodeDialog()},
+            OrbotMenuAction(R.string.btn_refresh, R.drawable.ic_refresh) {sendNewnymSignal()},
+            OrbotMenuAction(R.string.btn_tor_off, R.drawable.ic_power) {stopTorAndVpn()})
+        if (CAN_DO_APP_ROUTING) listItems.add(0, OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {
+            startActivityForResult(Intent(this, AppManagerActivity::class.java), REQUEST_VPN_APP_SELECT)
+        })
+        lvConnectedActions.adapter = OrbotMenuActionAdapter(this, listItems)
+    }
     override fun attachBaseContext(newBase: Context) = super.attachBaseContext(LocaleHelper.onAttach(newBase))
 
     private var circumventionApiBridges: List<Bridges?>? = null
@@ -466,13 +477,8 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                 .setAction(OrbotConstants.CMD_SET_EXIT)
                 .putExtra("exit", exitNode)
         )
-        val listItems = arrayListOf(OrbotMenuAction(R.string.btn_change_exit, 0) {openExitNodeDialog()},
-            OrbotMenuAction(R.string.btn_refresh, R.drawable.ic_refresh) {sendNewnymSignal()},
-            OrbotMenuAction(R.string.btn_tor_off, R.drawable.ic_power) {stopTorAndVpn()})
-        if (CAN_DO_APP_ROUTING) listItems.add(0, OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {
-            startActivityForResult(Intent(this, AppManagerActivity::class.java), REQUEST_VPN_APP_SELECT)
-        })
-        lvConnectedActions.adapter = OrbotMenuActionAdapter(this, listItems)
+
+        refreshMenuList()
 
     }
 

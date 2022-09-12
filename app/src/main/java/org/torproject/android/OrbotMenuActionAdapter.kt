@@ -1,15 +1,18 @@
 package org.torproject.android
 
 import android.content.Context
+import android.content.pm.PackageManager
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
+import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.util.Prefs
 import org.torproject.android.service.util.Utils
 import org.torproject.android.ui.OrbotMenuAction
+import org.torproject.android.ui.v3onionservice.PermissionManager
+import java.util.*
 
 class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>) : ArrayAdapter<OrbotMenuAction>(context, R.layout.action_list_view, list) {
 
@@ -20,7 +23,16 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
         getItem(position)?.let { model ->
             val imgView = returnView.findViewById<ImageView>(R.id.ivAction)
             val tvAction  = returnView.findViewById<TextView>(R.id.tvEmoji)
-            if (model.imgId == 0) {
+            val hvApps = returnView.findViewById<HorizontalScrollView>(R.id.llBoxShortcuts)
+
+            if (model.imgId == R.drawable.ic_choose_apps) {
+                tvAction.visibility = View.GONE
+                imgView.visibility = View.VISIBLE
+                imgView.setImageResource(model.imgId)
+                drawAppShortcuts(hvApps)
+
+            }
+            else if (model.imgId == 0) {
                 imgView.visibility = View.GONE
                 val exit = Prefs.getExitNodes()
                 if (exit.length == 2) tvAction.text = Utils.convertCountryCodeToFlagEmoji(exit)
@@ -35,6 +47,53 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
             returnView.setOnClickListener { model.action() }
         }
         return returnView
+    }
+
+    private fun drawAppShortcuts(llBoxShortcuts: HorizontalScrollView) {
+
+        val tordAppString = Prefs.getSharedPrefs(context)
+            .getString(OrbotConstants.PREFS_KEY_TORIFIED, "")
+        if (!TextUtils.isEmpty(tordAppString)) {
+
+            val packageManager: PackageManager = context.getPackageManager()
+            val tordApps = tordAppString!!.split("|").toTypedArray()
+            val container = llBoxShortcuts.getChildAt(0) as LinearLayout
+
+            llBoxShortcuts.visibility = View.VISIBLE
+            container.removeAllViews()
+            val icons: MutableMap<String, ImageView> = TreeMap()
+            for (tordApp in tordApps) {
+                try {
+                    packageManager.getPackageInfo(tordApp, 0)
+                    val iv = ImageView(context)
+                    val applicationInfo = packageManager.getApplicationInfo(tordApp, 0)
+                    iv.setImageDrawable(packageManager.getApplicationIcon(tordApp))
+                    val params = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
+                    params.height = 100
+                    params.width = 100
+                    params.setMargins(1, 12, 1, 1)
+                    iv.layoutParams = params
+                    /**
+                    iv.setOnClickListener { v: View? ->
+                        openBrowser(
+                            OrbotMainActivity.URL_TOR_CHECK,
+                            false,
+                            tordApp
+                        )
+                    }**/
+                    icons[packageManager.getApplicationLabel(applicationInfo).toString()] = iv
+                } catch (e: PackageManager.NameNotFoundException) {
+                    e.printStackTrace()
+                }
+            }
+            if (icons.isNotEmpty()) {
+                val sorted = TreeMap(icons)
+                for (iv in sorted.values) container.addView(iv)
+            }
+        }
     }
 
 }

@@ -473,6 +473,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
     private void refreshVPNApps() {
         sendIntentToService(ACTION_RESTART_VPN);
+
     }
 
     private void enableVPN(boolean enable) {
@@ -625,7 +626,9 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             }
         } else if (request == REQUEST_VPN_APPS_SELECT) {
             if (response == RESULT_OK && torStatus.equals(STATUS_ON))
+
                 refreshVPNApps();
+
 
         } else if (request == REQUEST_VPN && response == RESULT_OK) {
             startVpn();
