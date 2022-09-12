@@ -216,9 +216,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     private fun sendNewnymSignal() {
         sendIntentToService(TorControlCommands.SIGNAL_NEWNYM)
         ivOnion.animate().alpha(0f).duration = 500
-
         Handler().postDelayed({ ivOnion.animate().alpha(1f).duration = 500 }, 600)
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -460,12 +458,22 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     }
 
     override fun onExitNodeSelected(exitNode: String, countryDisplayName: String) {
-        lvConnectedActions.invalidate()
+
+        Prefs.setExitNodes(exitNode);
+
         sendIntentToService(
             Intent(this, OrbotService::class.java)
                 .setAction(OrbotConstants.CMD_SET_EXIT)
                 .putExtra("exit", exitNode)
         )
+        val listItems = arrayListOf(OrbotMenuAction(R.string.btn_change_exit, 0) {openExitNodeDialog()},
+            OrbotMenuAction(R.string.btn_refresh, R.drawable.ic_refresh) {sendNewnymSignal()},
+            OrbotMenuAction(R.string.btn_tor_off, R.drawable.ic_power) {stopTorAndVpn()})
+        if (CAN_DO_APP_ROUTING) listItems.add(0, OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {
+            startActivityForResult(Intent(this, AppManagerActivity::class.java), REQUEST_VPN_APP_SELECT)
+        })
+        lvConnectedActions.adapter = OrbotMenuActionAdapter(this, listItems)
+
     }
 
     override fun tryConnecting() {
