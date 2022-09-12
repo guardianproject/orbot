@@ -206,14 +206,14 @@
 
     <!-- new UX -->
     <string name="volunteer_mode">Kindness Mode</string>
-    <string name="secure_your_connection_title">Ready to Connect</string>
+    <string name="secure_your_connection_title">Ready to connect</string>
     <string name="secure_your_connection_subtitle">Hide apps from network monitoring and get access when they are blocked.</string>
-    <string name="connected_title">You\'re connected!</string>
+    <string name="connected_title">Connected</string>
     <string name="btn_start_vpn">Start VPN</string>
     <string name="btn_configure">Configure</string>
     <string name="configure_header">Configure your Tor Connection</string>
     <string name="volunteer_mode_subtitle">Help others connect</string>
-    <string name="trying_to_connect_title">Trying to connect to Tor…</string>
+    <string name="trying_to_connect_title">Connecting…</string>
     <string name="btn_choose_apps">Choose apps</string>
     <string name="btn_change_exit">Change exit</string>
     <string name="btn_refresh">Refresh</string>
