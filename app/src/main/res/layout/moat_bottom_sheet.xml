@@ -19,10 +19,10 @@
 
     <FrameLayout
         android:id="@+id/captchaContainer"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvSolveCaptchaHeader"
-        android:layout_height="60dp"
+        android:layout_height="140dp"
         android:layout_width="match_parent">
 
         <ProgressBar
@@ -36,7 +36,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSolveCaptchaHeader"
             android:id="@+id/ivCaptcha"
-            android:scaleType="center"
+            android:scaleType="fitXY"
             tools:srcCompat="@tools:sample/backgrounds/scenic"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
@@ -88,7 +88,7 @@
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:backgroundTint="@color/orbot_btn_enabled_purple"
-        android:text="@string/request_bridges"
+        android:text="@string/connect"
         android:enabled="false"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
