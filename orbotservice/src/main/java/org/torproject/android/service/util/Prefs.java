@@ -159,6 +159,7 @@ public class Prefs {
         putInt(PREF_SNOWFLAKES_SERVED_COUNT,getSnowflakesServed()+1);
     }
 
+<<<<<<< HEAD
     public static String getConnectionPathway() {
         // TODO lots of migration work need to be done here when users upgrade to orbot 17 !!!
         return prefs.getString(PREF_CONNECTION_PATHWAY, PATHWAY_SMART);
@@ -188,4 +189,7 @@ public class Prefs {
         return prefs.getBoolean(PREF_POWER_USER_MODE, false);
     }
 
+    public static boolean onboardPending() {
+        return prefs.getBoolean("connect_first_time", true);
+    }
 }
