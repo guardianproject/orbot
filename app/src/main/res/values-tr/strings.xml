@@ -248,4 +248,9 @@
     <string name="volunteer_mode_subtitle_desc">Nezaket modu, aygıtınızın başkaları için bir köprü olmasını sağlar. İnsanların Tor\'u engellendiği yerlerde kullanmasına yardımcı olur.</string>
     <string name="smart_connect_subtitle">Orbot, Tor\'a kullanılabilir herhangi bir yolla bağlanmayı dener: Doğrudan, Snowflake, Köprü.</string>
     <string name="snowflake">Snowflake</string>
+    <string name="incorrect_solution">Yanlış Çözüm</string>
+    <string name="bridges_obtained_connecting">Köprüler alındı! Tor\'a bağlanılıyor...</string>
+    <string name="custom_bridge_description">Tanıdığınız biri tarafından özel bir köprü sağlanır. Güvenilir ağlarınızda ve kuruluşlarınızda barındıran biri olup olmadığını sorun.</string>
+    <string name="having_trouble">Sorun yaşıyorum</string>
+    <string name="having_trouble_subtitle">Bir sonraki adımda Tor köprüsünü deneyebiliriz ancak yardımınıza ihtiyacımız olacak</string>
 </resources>
