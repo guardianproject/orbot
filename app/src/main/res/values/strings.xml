@@ -183,7 +183,7 @@
     <string name="refresh_captcha">Refresh CAPTCHA</string>
     <string name="solve_captcha_instruction">Solve the CAPTCHA to request bridges.</string>
     <string name="captcha">Captcha</string>
-    <string name="enter_characters_from_image">Enter characters from image</string>
+    <string name="enter_characters_from_image">Enter text above</string>
     <!-- BridgeWizardActivity -->
     <string name="request_bridges_from_torproject">Request Bridges from torproject.org</string>
     <string name="custom_bridges">Custom Bridges</string>
@@ -206,14 +206,14 @@
 
     <!-- new UX -->
     <string name="volunteer_mode">Kindness Mode</string>
-    <string name="secure_your_connection_title">Secure your connection with Tor</string>
-    <string name="secure_your_connection_subtitle">Orbot gives you a safe, uninterrupted connection to your apps.</string>
-    <string name="connected_title">You\'re connected!</string>
+    <string name="secure_your_connection_title">Ready to connect</string>
+    <string name="secure_your_connection_subtitle">Hide apps from network monitoring and get access when they are blocked.</string>
+    <string name="connected_title">Connected</string>
     <string name="btn_start_vpn">Start VPN</string>
     <string name="btn_configure">Configure</string>
     <string name="configure_header">Configure your Tor Connection</string>
     <string name="volunteer_mode_subtitle">Help others connect</string>
-    <string name="trying_to_connect_title">Trying to connect to Tor…</string>
+    <string name="trying_to_connect_title">Connecting…</string>
     <string name="btn_choose_apps">Choose apps</string>
     <string name="btn_change_exit">Change exit</string>
     <string name="btn_refresh">Refresh</string>
@@ -234,11 +234,11 @@
     <string name="proxy_ports">Proxy Ports</string>
     <string name="globe" translatable="false">🌎</string>
     <string name="ports_not_set">Ports Not Set</string>
-    <string name="volunteer_mode_title">Today is better because of you</string>
+    <string name="volunteer_mode_title">Help others\nconnect to Tor</string>
     <string name="volunteer_mode_label">Kindness Mode</string>
-    <string name="volunteer_mode_weekly_label">WEEKLY TOTAL</string>
-    <string name="volunteer_mode_alltime_label">PEOPLE HELPED</string>
-    <string name="volunteer_mode_subtitle_desc">Kindness mode allows your device to be a bridge for others. It helps people use Tor in places where it is blocked.</string>
+    <string name="volunteer_mode_weekly_label">Weekly Total</string>
+    <string name="volunteer_mode_alltime_label">All Time Total</string>
+    <string name="volunteer_mode_subtitle_desc">Kindness mode allows your device to be a bridge for others. It helps people use Tor in places where it is blocked.\n\n- It will not drain your batter\n\n- It will not slow down your internet\n\n- It can run only over wifi\n\n- It Can be turned off anytime</string>
     <string name="smart_connect">Smart Connect (default)</string>
     <string name="smart_connect_subtitle">Orbot tries connecting to Tor through any way available: Direct, Snowflake, Bridge.</string>
     <string name="direct_connect">Direct Connection to Tor</string>
@@ -257,4 +257,12 @@
     <string name="custom_bridge_description">A custom bridge is provided by someone you know. Ask within your trusted networks and organizations to see if anyone is hosting one.</string>
     <string name="having_trouble">Having trouble</string>
     <string name="having_trouble_subtitle">We can try a Tor bridge next but will need your help</string>
+    <string name="power_user_mode">Power User Mode</string>
+    <string name="power_user_description">For users familiar with Tor. Allows you to start Orbot without the VPN setting and shows open SOCKS and HTTP ports</string>
+    <string name="action_activate">Activate</string>
+    <string name="volunteer_status_title">Today is better\nbecause of you.</string>
+    <string name="title_choose_apps">Choose Apps</string>
+    <string name="app_suggested_subtitle">Orbot works best with messaging and social media apps.</string>
+    <string name="apps_suggested_title">Suggested Apps</string>
+    <string name="apps_other_apps">Other Apps</string>
 </resources>

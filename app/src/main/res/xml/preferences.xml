@@ -33,6 +33,12 @@
             android:summary="@string/pref_open_proxy_on_all_interfaces_summary"
             android:title="@string/pref_open_proxy_on_all_interfaces_title" />
 
+        <CheckBoxPreference
+            android:key="pref_power_user"
+            android:defaultValue="false"
+            android:summary="@string/power_user_description"
+            android:title="@string/power_user_mode" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

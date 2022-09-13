@@ -1,25 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/new_background"
+    android:orientation="vertical"
     android:duplicateParentState="true">
 
     <ProgressBar
+        android:indeterminateTint="@color/progress_bar_purple"
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        tools:visibility="visible"
         android:visibility="gone" />
 
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="@string/apps_suggested_title"
+        android:textColor="@color/text_purple"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_suggested_subtitle"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+
+        />
+
+
+
     <GridView
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:id="@+id/applistview_suggested"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:gravity="center"
+        android:horizontalSpacing="5dp"
+        android:numColumns="1"
+        android:verticalSpacing="15dp"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="@string/apps_other_apps"
+        android:textColor="@color/text_purple"
+        android:textStyle="bold" />
+
+    <GridView
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
         android:id="@+id/applistview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:horizontalSpacing="5dp"
-        android:numColumns="4"
-        android:verticalSpacing="15dp">
+        android:numColumns="1"
+        android:verticalSpacing="15dp"/>
 
-    </GridView>
 
-</FrameLayout>
+</LinearLayout>

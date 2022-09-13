@@ -1,4 +1,4 @@
-package org.torproject.android.ui.dialog;
+package org.torproject.android.ui;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -8,6 +8,7 @@ import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import org.torproject.android.R;
@@ -23,7 +24,9 @@ public class AboutDialogFragment extends DialogFragment {
     public static final String TAG = AboutDialogFragment.class.getSimpleName();
     private static final String BUNDLE_KEY_TV_ABOUT_TEXT = "about_tv_txt";
     private TextView tvAbout;
+    private static final String ABOUT_LICENSE_EQUALSIGN = "===============================================================================";
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = getActivity().getLayoutInflater().inflate(R.layout.layout_about, null);
@@ -61,12 +64,12 @@ public class AboutDialogFragment extends DialogFragment {
         if (buildAboutText) {
             try {
                 String aboutText = DiskUtils.readFileFromAssets("LICENSE", getContext());
-                aboutText = aboutText.replace("\n", "<br/>");
+                aboutText = aboutText.replaceAll(ABOUT_LICENSE_EQUALSIGN, "\n").replace("\n\n", "<br/><br/>").replace("\n", "");
                 tvAbout.setText(Html.fromHtml(aboutText));
             } catch (IOException e) {
             }
         }
-        return new AlertDialog.Builder(getContext())
+        return new AlertDialog.Builder(getContext(), R.style.OrbotDialogTheme)
                 .setTitle(getString(R.string.button_about))
                 .setView(view)
                 .create();

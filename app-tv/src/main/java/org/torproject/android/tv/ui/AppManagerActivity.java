@@ -267,13 +267,7 @@ public class AppManagerActivity extends AppCompatActivity implements OrbotConsta
 
 
             // check if this application is allowed
-            if (Arrays.binarySearch(tordApps, app.getUsername()) >= 0) {
-                app.setTorified(true);
-            }
-            else
-            {
-                app.setTorified(false);
-            }
+            app.setTorified(Arrays.binarySearch(tordApps, app.getUsername()) >= 0);
 
         }
 

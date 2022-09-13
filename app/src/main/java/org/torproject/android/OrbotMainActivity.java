@@ -12,8 +12,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -61,10 +59,8 @@ import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.Utils;
 import org.torproject.android.ui.AppManagerActivity;
-import org.torproject.android.ui.dialog.AboutDialogFragment;
+import org.torproject.android.ui.AboutDialogFragment;
 import org.torproject.android.ui.v3onionservice.PermissionManager;
-import org.torproject.android.ui.onboarding.BridgeWizardActivity;
-import org.torproject.android.ui.onboarding.OnboardingActivity;
 import org.torproject.android.ui.v3onionservice.OnionServiceContentProvider;
 import org.torproject.android.ui.v3onionservice.OnionServiceActivity;
 import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity;
@@ -82,7 +78,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import IPtProxy.IPtProxy;
-import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
 public class OrbotMainActivity extends AppCompatActivity implements OrbotConstants {
 
@@ -103,7 +98,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     // this is what takes messages or values from the callback threads or other non-mainUI threads
     // and passes them back into the main UI thread for display to the user
     private final Handler mStatusUpdateHandler = new MainActivityStatusUpdateHandler(this);
-    PulsatorLayout mPulsator;
     AlertDialog aDialog;
     private TextView lblStatus; //the main text display widget
     private TextView lblPorts;
@@ -218,8 +212,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences mPrefs = Prefs.getSharedPrefs(getApplicationContext());
-
         doLayout(); // Create widgets before registering for broadcasts
 
         /* receive the internal status broadcasts, which are separate from the public
@@ -233,16 +225,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         lbm.registerReceiver(mLocalBroadcastReceiver, new IntentFilter(LOCAL_ACTION_V3_NAMES_UPDATED));
 
 
-        boolean showFirstTime = mPrefs.getBoolean("connect_first_time", true);
-
-        if (showFirstTime) {
-            Editor pEdit = mPrefs.edit();
-            pEdit.putBoolean("connect_first_time", false);
-            pEdit.apply();
-            startActivity(new Intent(this, OnboardingActivity.class));
-        }
-
-        // Resets previous DNS Port to the default.
         Prefs.getSharedPrefs(getApplicationContext()).edit().putInt(PREFS_DNS_PORT, TOR_DNS_PORT_DEFAULT).apply();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -340,7 +322,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         spnCountries = findViewById(R.id.spinnerCountry);
         setCountrySpinner();
 
-        mPulsator = findViewById(R.id.pulsator);
         tvVpnAppStatus = findViewById(R.id.tvVpnAppStatus);
         findViewById(R.id.ivAppVpnSettings).setOnClickListener(v -> startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT));
     }
@@ -492,6 +473,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
     private void refreshVPNApps() {
         sendIntentToService(ACTION_RESTART_VPN);
+
     }
 
     private void enableVPN(boolean enable) {
@@ -550,7 +532,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 if (name == null) name = "v3" + v3LocalPort;
                 final var finalName = name;
                 new AlertDialog.Builder(this)
-                        .setMessage(getString(R.string.hidden_service_request, v3LocalPort))
+                        .setMessage(getString(R.string.hidden_service_request,  v3LocalPort))
                         .setPositiveButton(R.string.allow, (d, w) -> enableV3OnionService(v3LocalPort, v3onionPort, finalName))
                         .setNegativeButton(R.string.deny, (d, w) -> {
                             setResult(RESULT_CANCELED);
@@ -644,7 +626,9 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             }
         } else if (request == REQUEST_VPN_APPS_SELECT) {
             if (response == RESULT_OK && torStatus.equals(STATUS_ON))
+
                 refreshVPNApps();
+
 
         } else if (request == REQUEST_VPN && response == RESULT_OK) {
             startVpn();
@@ -657,7 +641,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         if (mBtnBridges.isChecked()) {
             Prefs.putBridgesEnabled(true);
 
-            startActivity(new Intent(this, BridgeWizardActivity.class));
+//            startActivity(new Intent(this, BridgeWizardActivity.class));
         } else {
             enableBridges(false);
         }
@@ -746,7 +730,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                 case STATUS_ON:
                     imgStatus.setImageResource(R.drawable.toron);
                     mBtnStart.setText(R.string.menu_stop);
-                    mPulsator.stop();
 
                     var status = getString(R.string.status_activated);
                     if (IPtProxy.isSnowflakeProxyRunning()) {
@@ -787,7 +770,6 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     imgStatus.setImageResource(R.drawable.toroff);
                     lblPorts.setText("");
                     mBtnStart.setText(R.string.menu_start);
-                    mPulsator.start();
                     resetBandwidthStatTextviews();
                     setTitleForSnowflakeProxy();
                     break;
@@ -935,7 +917,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
             switch (msg.what) {
                 case MESSAGE_TRAFFIC_COUNT:
-                    long lastWritten = data.getLong("lastWritten");
+                     long lastWritten = data.getLong("lastWritten");
                     long lastRead = data.getLong("lastRead");
                     long totalRead = data.getLong("totalRead");
                     long totalWrite = data.getLong("totalWritten");

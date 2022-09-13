@@ -23,10 +23,19 @@ public class Prefs {
     private final static String PREF_BE_A_SNOWFLAKE = "pref_be_a_snowflake";
     private final static String PREF_SHOW_SNOWFLAKE_MSG = "pref_show_snowflake_proxy_msg";
     private final static String PREF_BE_A_SNOWFLAKE_LIMIT = "pref_be_a_snowflake_limit";
+    private final static String PREF_SMART_TRY_SNOWFLAKE = "pref_smart_try_snowflake";
+    private final static String PREF_SMART_TRY_OBFS4 = "pref_smart_try_obfs";
+    private static final String PREF_POWER_USER_MODE = "pref_power_user";
+
 
     private final static String PREF_HOST_ONION_SERVICES = "pref_host_onionservices";
 
     private final static String PREF_SNOWFLAKES_SERVED_COUNT = "pref_snowflakes_served";
+
+    private static final String PREF_CONNECTION_PATHWAY = "pref_connection_pathway";
+    public static final String PATHWAY_SMART = "smart", PATHWAY_DIRECT = "direct",
+        PATHWAY_SNOWFLAKE = "snowflake", PATHWAY_CUSTOM = "custom";
+
 
     private static SharedPreferences prefs;
 
@@ -81,7 +90,6 @@ public class Prefs {
     }
 
     public static boolean beSnowflakeProxy () {
-        if (Prefs.bridgesEnabled()) return false;
         return prefs.getBoolean(PREF_BE_A_SNOWFLAKE,false);
     }
 
@@ -137,6 +145,10 @@ public class Prefs {
         return prefs.getString(PREF_EXIT_NODES, "");
     }
 
+    public static void setExitNodes(String country) {
+        putString(PREF_EXIT_NODES, country);
+    }
+
     public static SharedPreferences getSharedPrefs(Context context) {
         return context.getSharedPreferences(OrbotConstants.PREF_TOR_SHARED_PREFS, Context.MODE_MULTI_PROCESS);
     }
@@ -146,4 +158,34 @@ public class Prefs {
     public static void addSnowflakeServed () {
         putInt(PREF_SNOWFLAKES_SERVED_COUNT,getSnowflakesServed()+1);
     }
+
+    public static String getConnectionPathway() {
+        // TODO lots of migration work need to be done here when users upgrade to orbot 17 !!!
+        return prefs.getString(PREF_CONNECTION_PATHWAY, PATHWAY_SMART);
+    }
+
+    public static void putConnectionPathway(String pathway) {
+        putString(PREF_CONNECTION_PATHWAY, pathway);
+    }
+
+    public static void putPrefSmartTrySnowflake(boolean trySnowflake) {
+        putBoolean(PREF_SMART_TRY_SNOWFLAKE, trySnowflake);
+    }
+
+    public static boolean getPrefSmartTrySnowflake() {
+        return prefs.getBoolean(PREF_SMART_TRY_SNOWFLAKE, false);
+    }
+
+    public static void putPrefSmartTryObfs4(String bridges) {
+        putString(PREF_SMART_TRY_OBFS4, bridges);
+    }
+
+    public static String getPrefSmartTryObfs4() {
+        return prefs.getString(PREF_SMART_TRY_OBFS4, null);
+    }
+
+    public static boolean isPowerUserMode() {
+        return prefs.getBoolean(PREF_POWER_USER_MODE, false);
+    }
+
 }

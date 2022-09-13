@@ -35,8 +35,6 @@
         android:allowClearUserData="true"
         android:configChanges="locale|orientation|screenSize"
         android:description="@string/app_description"
-        android:hardwareAccelerated="false"
-        android:largeHeap="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/DefaultTheme"
@@ -47,10 +45,7 @@
             android:excludeFromRecents="false"
             android:launchMode="singleTop"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -65,45 +60,48 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".core.ui.SettingsPreferencesActivity"
-            android:theme="@style/Theme.AppCompat" />
+        <activity android:name=".OrbotActivity"
+            android:excludeFromRecents="false"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"
+            android:theme="@style/OrbotActivityTheme"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
+            android:name=".core.ui.SettingsPreferencesActivity"
+            android:theme="@style/OrbotActivityTheme" />
+
+        <activity
+            android:theme="@style/OrbotActivityTheme"
             android:name=".ui.AppManagerActivity"
-            android:label="@string/apps_mode"
-            android:theme="@style/Theme.AppCompat" />
+            android:label="@string/title_choose_apps"/>
 
         <activity
             android:name=".ui.v3onionservice.OnionServiceActivity"
-            android:label="@string/hidden_services"
-            android:theme="@style/DefaultTheme">
+            android:label="@string/hidden_services">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".OrbotMainActivity" />
+                android:value=".OrbotActivity" />
         </activity>
 
         <activity android:name=".ui.v3onionservice.clientauth.ClientAuthActivity"
-            android:label="@string/v3_client_auth_activity_title"
-            android:theme="@style/DefaultTheme">
+            android:label="@string/v3_client_auth_activity_title">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".OrbotMainActivity"/>
+                android:value=".OrbotActivity"/>
         </activity>
 
         <activity
-            android:name=".ui.onboarding.OnboardingActivity"
-            android:configChanges="orientation|screenSize|screenLayout" />
-
-        <activity
-            android:name=".ui.onboarding.BridgeWizardActivity"
+            android:name=".ui.kindnessmode.KindnessModeActivity"
             android:configChanges="orientation|screenSize"
-            android:label="@string/bridges" />
+            android:theme="@style/OrbotActivityTheme"
+            android:label="@string/volunteer_mode" />
 
-        <activity
-            android:label="@string/request_bridges"
-            android:name=".ui.onboarding.MoatActivity"
-            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ui.onboarding.CustomBridgesActivity"
             android:label="@string/use_custom_bridges" />
@@ -131,8 +129,7 @@
             android:name=".core.OnBootReceiver"
             android:enabled="true"
             android:exported="true"
-            android:directBootAware="true"
-            >
+            android:directBootAware="true">
 
             <intent-filter>
                 <action android:name="android.net.wifi.STATE_CHANGE" />

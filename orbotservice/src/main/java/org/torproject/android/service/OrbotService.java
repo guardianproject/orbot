@@ -25,6 +25,7 @@ import android.net.VpnService;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.provider.BaseColumns;
 import android.text.TextUtils;
 import android.util.Log;
@@ -34,6 +35,7 @@ import net.freehaven.tor.control.TorControlCommands;
 import net.freehaven.tor.control.TorControlConnection;
 
 import org.torproject.android.service.util.CustomTorResourceInstaller;
+import org.torproject.android.service.util.PowerConnectionReceiver;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.Utils;
 import org.torproject.android.service.vpn.OrbotVpnManager;
@@ -52,11 +54,9 @@ import java.io.PrintWriter;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.Random;
 import java.util.StringTokenizer;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
@@ -99,7 +99,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
     OrbotVpnManager mVpnManager;
     Handler mHandler;
     //we should randomly sort alBridges so we don't have the same bridge order each time
-    final Random bridgeSelectRandom = new Random(System.nanoTime());
     ActionBroadcastReceiver mActionBroadcastReceiver;
     private String mCurrentStatus = STATUS_OFF;
     TorControlConnection conn = null;
@@ -108,8 +107,9 @@ public class OrbotService extends VpnService implements OrbotConstants {
     private NotificationManager mNotificationManager = null;
     private NotificationCompat.Builder mNotifyBuilder;
     private File mV3OnionBasePath, mV3AuthBasePath;
-    private ArrayList<Bridge> alBridges = null;
     private int snowflakeClientsConnected;
+
+    private PowerConnectionReceiver mPowerReceiver;
 
     /**
      * @param bridgeList bridges that were manually entered into Orbot settings
@@ -135,7 +135,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             var baos = new ByteArrayOutputStream();
             e.printStackTrace(new PrintStream(baos));
 
-            sendCallbackLogMessage(msg + '\n' + baos.toString());
+            sendCallbackLogMessage(msg + '\n' + baos);
         } else
             sendCallbackLogMessage(msg);
 
@@ -243,6 +243,9 @@ public class OrbotService extends VpnService implements OrbotConstants {
     public void onDestroy() {
         try {
             unregisterReceiver(mActionBroadcastReceiver);
+
+            unregisterReceiver(mPowerReceiver);
+
         } catch (IllegalArgumentException iae) {
             //not registered yet
         }
@@ -254,14 +257,23 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
         if (showNotification) sendCallbackLogMessage(getString(R.string.status_shutting_down));
 
+        var connectionPathway = Prefs.getConnectionPathway();
+        // todo this needs to handle a lot of different cases that haven't been defined yet
+        // todo particularly this is true for the smart connection case...
+        if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
+            IPtProxy.stopSnowflake();
+        } else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
+            IPtProxy.stopObfs4Proxy();
+        }
+
+        /* TODO old code for old bridge logic ...
         if (Prefs.bridgesEnabled()) {
             if (useIPtObfsMeekProxy())
                 IPtProxy.stopObfs4Proxy();
             else if (useIPtSnowflakeProxyDomainFronting() || useIPtSnowflakeProxyAMPRendezvous())
                 IPtProxy.stopSnowflake();
         }
-        else if (Prefs.beSnowflakeProxy())
-            disableSnowflakeProxy();
+         */
 
         stopTor();
 
@@ -347,7 +359,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     @SuppressWarnings("ConstantConditions")
-    private void enableSnowflakeProxy () { // This is to host a snowflake entrance node / bridge
+    public void enableSnowflakeProxy () { // This is to host a snowflake entrance node / bridge
         var capacity = 1;
         var keepLocalAddresses = false;
         var unsafeLogging = false;
@@ -365,9 +377,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
         logNotice(getString(R.string.log_notice_snowflake_proxy_enabled));
     }
 
-    private void disableSnowflakeProxy() {
-        IPtProxy.stopSnowflakeProxy();
-        logNotice(getString(R.string.log_notice_snowflake_proxy_disabled));
+    public void disableSnowflakeProxy() {
+        if (IPtProxy.isSnowflakeProxyRunning()) {
+            IPtProxy.stopSnowflakeProxy();
+            logNotice(getString(R.string.log_notice_snowflake_proxy_disabled));
+        }
     }
 
     // if someone stops during startup, we may have to wait for the conn port to be setup, so we can properly shutdown tor
@@ -463,6 +477,13 @@ public class OrbotService extends VpnService implements OrbotConstants {
         }
 
         snowflakeClientsConnected = Prefs.getSnowflakesServed();
+
+        mPowerReceiver = new PowerConnectionReceiver(this);
+
+        IntentFilter ifilter = new IntentFilter();
+        ifilter.addAction(Intent.ACTION_POWER_CONNECTED);
+        ifilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
+        registerReceiver(mPowerReceiver, ifilter);
 
         Log.i("OrbotService", "onCreate end");
     }
@@ -574,7 +595,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
         logNotice(getString(R.string.log_notice_updating_torrc));
 
-        debug("torrc.custom=" + extraLines.toString());
+        debug("torrc.custom=" + extraLines);
 
         var fileTorRcCustom = TorService.getTorrc(this);
         updateTorConfigCustom(fileTorRcCustom, extraLines.toString(), false);
@@ -639,6 +660,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     private boolean showTorServiceErrorMsg = false;
 
+    private static int TIMEOUT_MS = 15000;
+
     /**
      * The entire process for starting tor and related services is run from this method.
      */
@@ -653,6 +676,9 @@ public class OrbotService extends VpnService implements OrbotConstants {
             mNotifyBuilder.setProgress(100, 0, false);
             showToolbarNotification("", NOTIFY_ID, R.drawable.ic_stat_tor);
 
+            if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SMART)) {
+                smartConnectionPathwayStartTor();
+            }
             startTorService();
             showTorServiceErrorMsg = true;
 
@@ -667,6 +693,53 @@ public class OrbotService extends VpnService implements OrbotConstants {
             logException(getString(R.string.unable_to_start_tor) +  " " + e.getLocalizedMessage(), e);
             stopTorOnError(e.getLocalizedMessage());
         }
+    }
+
+    static int TRIES_DELETE = 0 ;
+
+    private void smartConnectionPathwayStartTor() {
+        Log.d("bim", "timing out in " + TIMEOUT_MS + "ms");
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            Log.d("bim", "timed out mCurrentStatus=" + mCurrentStatus);
+            if (!mCurrentStatus.equals(STATUS_ON)) {
+                Log.d("bim", "stopping tor...");
+                if (Prefs.getPrefSmartTrySnowflake()) {
+                    Log.d("bim", "trying snowflake didnt work");
+                    clearEphemeralSmartConnectionSettings();
+                    sendSmartStatusToActivity(SMART_STATUS_CIRCUMVENTION_ATTEMPT_FAILED);
+                } else if (Prefs.getPrefSmartTryObfs4() != null) {
+                    Log.d("bim", "trying obfs4 didnt work");
+                    clearEphemeralSmartConnectionSettings();
+                    sendSmartStatusToActivity(SMART_STATUS_CIRCUMVENTION_ATTEMPT_FAILED);
+                } else {
+                    sendSmartStatusToActivity(SMART_STATUS_NO_DIRECT);
+                }
+                stopTorAsync(true);
+            } else {
+                // tor was connected in the allotted time
+                var obfs4 = Prefs.getPrefSmartTryObfs4();
+                if (obfs4 != null) {
+                    // set these obfs4 bridges
+                    Prefs.setBridgesList(obfs4);
+                    Prefs.putConnectionPathway(Prefs.PATHWAY_CUSTOM);
+                } else if (Prefs.getPrefSmartTrySnowflake()) {
+                    // set snowflake
+                    Prefs.putConnectionPathway(Prefs.PATHWAY_SNOWFLAKE);
+                }
+                clearEphemeralSmartConnectionSettings();
+            }
+        }, ((TRIES_DELETE++) != 2) ? TIMEOUT_MS : 10000);
+    }
+
+    private void clearEphemeralSmartConnectionSettings() {
+        Prefs.putPrefSmartTryObfs4(null);
+        Prefs.putPrefSmartTrySnowflake(false);
+    }
+
+    private void sendSmartStatusToActivity(String status) {
+        var intent = new Intent(LOCAL_ACTION_SMART_CONNECT_EVENT)
+                .putExtra(LOCAL_EXTRA_SMART_STATUS, status);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 
 
@@ -857,6 +930,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 e.printStackTrace();
                 stopTorOnError(e.getLocalizedMessage());
                 conn = null;
+            }  catch (NullPointerException npe) {
+                Log.e("bim", "NPE reached... how???");
+                npe.printStackTrace();
+                stopTorOnError("stopping from NPE");
+                conn = null;
             }
         }
     }
@@ -890,26 +968,27 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     protected void sendCallbackBandwidth(long lastWritten, long lastRead, long totalWritten, long totalRead) {
         LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(LOCAL_ACTION_BANDWIDTH)
-            .putExtra("totalWritten", totalWritten)
-            .putExtra("totalRead", totalRead)
-            .putExtra("lastWritten", lastWritten)
-            .putExtra("lastRead", lastRead));
+            .putExtra(LOCAL_EXTRA_TOTAL_WRITTEN, totalWritten)
+            .putExtra(LOCAL_EXTRA_TOTAL_READ, totalRead)
+            .putExtra(LOCAL_EXTRA_LAST_WRITTEN, lastWritten)
+            .putExtra(LOCAL_EXTRA_LAST_READ, lastRead));
     }
 
     private void sendCallbackLogMessage(final String logMessage) {
         var notificationMessage = logMessage;
+        var localIntent = new Intent(LOCAL_ACTION_LOG).putExtra(LOCAL_EXTRA_LOG, logMessage);
         if (logMessage.contains(LOG_NOTICE_HEADER)) {
             notificationMessage = notificationMessage.substring(LOG_NOTICE_HEADER.length());
             if (notificationMessage.contains(LOG_NOTICE_BOOTSTRAPPED)) {
                 var percent = notificationMessage.substring(LOG_NOTICE_BOOTSTRAPPED.length());
                 percent = percent.substring(0, percent.indexOf('%')).trim();
+                localIntent.putExtra(LOCAL_EXTRA_BOOTSTRAP_PERCENT, percent);
                 mNotifyBuilder.setProgress(100, Integer.parseInt(percent), false);
                 notificationMessage = notificationMessage.substring(notificationMessage.indexOf(':') + 1).trim();
             }
         }
         showToolbarNotification(notificationMessage, NOTIFY_ID, R.drawable.ic_stat_tor);
-        mHandler.post(() -> LocalBroadcastManager.getInstance(OrbotService.this).sendBroadcast(new Intent(LOCAL_ACTION_LOG)
-            .putExtra(LOCAL_EXTRA_LOG, logMessage)));
+        mHandler.post(() -> LocalBroadcastManager.getInstance(OrbotService.this).sendBroadcast(localIntent));
     }
 
     private void sendCallbackPorts(int socksPort, int httpPort, int dnsPort, int transPort) {
@@ -934,77 +1013,21 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var exitNodes = prefs.getString("pref_exit_nodes", "");
         var excludeNodes = prefs.getString("pref_exclude_nodes", "");
 
-        if (!Prefs.bridgesEnabled()) {
-            extraLines.append("UseBridges 0").append('\n');
-            if (Prefs.useVpn()) { //set the proxy here if we aren't using a bridge
-                if (!mIsLollipop) {
-                    var proxyType = "socks5";
-                    extraLines.append(proxyType + "Proxy" + ' ' + OrbotVpnManager.sSocksProxyLocalhost + ':' + OrbotVpnManager.sSocksProxyServerPort).append('\n');
-                }
-            } else {
-                var proxyType = prefs.getString("pref_proxy_type", null);
-                if (proxyType != null && proxyType.length() > 0) {
-                    var proxyHost = prefs.getString("pref_proxy_host", null);
-                    var proxyPort = prefs.getString("pref_proxy_port", null);
-                    var proxyUser = prefs.getString("pref_proxy_username", null);
-                    var proxyPass = prefs.getString("pref_proxy_password", null);
-
-                    if ((proxyHost != null && proxyHost.length() > 0) && (proxyPort != null && proxyPort.length() > 0)) {
-                        extraLines.append(proxyType).append("Proxy").append(' ').append(proxyHost).append(':').append(proxyPort).append('\n');
-
-                        if (proxyUser != null && proxyPass != null) {
-                            if (proxyType.equalsIgnoreCase("socks5")) {
-                                extraLines.append("Socks5ProxyUsername").append(' ').append(proxyUser).append('\n');
-                                extraLines.append("Socks5ProxyPassword").append(' ').append(proxyPass).append('\n');
-                            } else
-                                extraLines.append(proxyType).append("ProxyAuthenticator").append(' ').append(proxyUser).append(':').append(proxyPort).append('\n');
-
-                        } else if (proxyPass != null)
-                            extraLines.append(proxyType).append("ProxyAuthenticator").append(' ').append(proxyUser).append(':').append(proxyPort).append('\n');
-                    }
-                }
-            }
+        String pathway = Prefs.getConnectionPathway();
+        if (pathway.equals(Prefs.PATHWAY_SMART)) {
+            // todo for now ...
+        }
+        else if (pathway.equals(Prefs.PATHWAY_DIRECT)) {
+            extraLines = processSettingsImplDirectPathway(extraLines);
         } else {
-
-            loadBridgeDefaults();
+            // snowflake or obfs4
             extraLines.append("UseBridges 1").append('\n');
-            //    extraLines.append("UpdateBridgesFromAuthority 1").append('\n');
-
-            var bridgeList = Prefs.getBridgesList();
-            String builtInBridgeType = null;
-
-            //check if any PT bridges are needed
-            if (bridgeList.contains("obfs")) {
-
-                extraLines.append("ClientTransportPlugin obfs3 socks5 127.0.0.1:" + IPtProxy.obfs3Port()).append('\n');
-                extraLines.append("ClientTransportPlugin obfs4 socks5 127.0.0.1:" + IPtProxy.obfs4Port()).append('\n');
-
-                if (bridgeList.equals("obfs4"))
-                    builtInBridgeType = "obfs4";
-            }
-
-            if (bridgeList.equals("meek")) {
-                extraLines.append("ClientTransportPlugin meek_lite socks5 127.0.0.1:" + IPtProxy.meekPort()).append('\n');
-                builtInBridgeType = "meek_lite";
-            }
-
-            if (bridgeList.equals("snowflake") || bridgeList.equals("snowflake-amp")) {
-                extraLines.append("ClientTransportPlugin snowflake socks5 127.0.0.1:" + IPtProxy.snowflakePort()).append('\n');
-                builtInBridgeType = "snowflake";
-            }
-
-            if (!TextUtils.isEmpty(builtInBridgeType))
-                getBridges(builtInBridgeType, extraLines);
-            else {
-                String[] bridgeListLines = parseBridgesFromSettings(bridgeList);
-                int bridgeIdx = (int) Math.floor(Math.random() * ((double) bridgeListLines.length));
-                String bridgeLine = bridgeListLines[bridgeIdx];
-                extraLines.append("Bridge ");
-                extraLines.append(bridgeLine);
-                extraLines.append("\n");
+            if (pathway.equals(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
+                extraLines = processSettingsImplSnowflake(extraLines);
+            } else if (pathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
+                extraLines = processSettingsImplObfs4(extraLines);
             }
         }
-
         //only apply GeoIP if you need it
         var fileGeoIP = new File(appBinHome, GEOIP_ASSET_KEY);
         var fileGeoIP6 = new File(appBinHome, GEOIP6_ASSET_KEY);
@@ -1059,6 +1082,61 @@ public class OrbotService extends VpnService implements OrbotConstants {
             addV3ClientAuthToTorrc(extraLines, contentResolver);
         }
 
+        return extraLines;
+    }
+
+    private StringBuffer processSettingsImplSnowflake(StringBuffer extraLines) {
+        Log.d("bim", "in snowflake torrc config");
+        extraLines.append("ClientTransportPlugin snowflake socks5 127.0.0.1:" + IPtProxy.snowflakePort()).append('\n');
+        extraLines.append("Bridge snowflake 192.0.2.3:1 2B280B23E1107BB62ABFC40DDCC8824814F80A72\n");
+        return extraLines;
+    }
+
+    private StringBuffer processSettingsImplObfs4(StringBuffer extraLines) {
+        Log.d("bim", "in obfs4 torrc config");
+        extraLines.append("ClientTransportPlugin obfs3 socks5 127.0.0.1:" + IPtProxy.obfs3Port()).append('\n');
+        extraLines.append("ClientTransportPlugin obfs4 socks5 127.0.0.1:" + IPtProxy.obfs4Port()).append('\n');
+        var bridgeList = "";
+        if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_CUSTOM)) {
+            bridgeList = Prefs.getBridgesList();
+        } else bridgeList = Prefs.getPrefSmartTryObfs4();
+        var customBridges = parseBridgesFromSettings(bridgeList);
+        for (var b : customBridges)
+            extraLines.append("Bridge ").append(b).append("\n");
+        return extraLines;
+    }
+
+    private StringBuffer processSettingsImplDirectPathway(StringBuffer extraLines) {
+        var prefs = Prefs.getSharedPrefs(getApplicationContext());
+        extraLines.append("UseBridges 0").append('\n');
+        if (Prefs.useVpn()) { //set the proxy here if we aren't using a bridge
+            if (!mIsLollipop) {
+                var proxyType = "socks5";
+                extraLines.append(proxyType + "Proxy" + ' ' + OrbotVpnManager.sSocksProxyLocalhost + ':' + OrbotVpnManager.sSocksProxyServerPort).append('\n');
+            }
+        } else {
+            var proxyType = prefs.getString("pref_proxy_type", null);
+            if (proxyType != null && proxyType.length() > 0) {
+                var proxyHost = prefs.getString("pref_proxy_host", null);
+                var proxyPort = prefs.getString("pref_proxy_port", null);
+                var proxyUser = prefs.getString("pref_proxy_username", null);
+                var proxyPass = prefs.getString("pref_proxy_password", null);
+
+                if ((proxyHost != null && proxyHost.length() > 0) && (proxyPort != null && proxyPort.length() > 0)) {
+                    extraLines.append(proxyType).append("Proxy").append(' ').append(proxyHost).append(':').append(proxyPort).append('\n');
+
+                    if (proxyUser != null && proxyPass != null) {
+                        if (proxyType.equalsIgnoreCase("socks5")) {
+                            extraLines.append("Socks5ProxyUsername").append(' ').append(proxyUser).append('\n');
+                            extraLines.append("Socks5ProxyPassword").append(' ').append(proxyPass).append('\n');
+                        } else
+                            extraLines.append(proxyType).append("ProxyAuthenticator").append(' ').append(proxyUser).append(':').append(proxyPort).append('\n');
+
+                    } else if (proxyPass != null)
+                        extraLines.append(proxyType).append("ProxyAuthenticator").append(' ').append(proxyUser).append(':').append(proxyPort).append('\n');
+                }
+            }
+        }
         return extraLines;
     }
 
@@ -1251,58 +1329,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
         }
     }
 
-    private void loadBridgeDefaults() {
-        if (alBridges == null) {
-            alBridges = new ArrayList<>();
-
-            try {
-                var in = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.bridges), "UTF-8"));
-                String str;
-
-                while ((str = in.readLine()) != null) {
-                    var st = new StringTokenizer(str, " ");
-                    var b = new Bridge();
-                    b.type = st.nextToken();
-
-                    var sbConfig = new StringBuilder();
-                    while (st.hasMoreTokens())
-                        sbConfig.append(st.nextToken()).append(' ');
-
-                    b.config = sbConfig.toString().trim();
-                    alBridges.add(b);
-                }
-
-                in.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private void getBridges(String type, StringBuffer extraLines) {
-        Collections.shuffle(alBridges, bridgeSelectRandom);
-
-        //let's just pull up to 2 bridges from the defaults at time
-        var maxBridges = 2;
-        var bridgeCount = 0;
-
-        //now go through the list to find the bridges we want
-        for (var b : alBridges) {
-            if (b.type.equals(type)) {
-                extraLines.append("Bridge ");
-                extraLines.append(b.type);
-                extraLines.append(' ');
-                extraLines.append(b.config);
-                extraLines.append('\n');
-
-                bridgeCount++;
-
-                if (bridgeCount > maxBridges)
-                    break;
-            }
-        }
-    }
-
     public static final class OnionService implements BaseColumns {
         public static final String NAME = "name";
         public static final String PORT = "port";
@@ -1319,12 +1345,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
 
-    // for bridge loading from the assets default bridges.txt file
-    static class Bridge {
-        String type;
-        String config;
-    }
-
     private class IncomingIntentRouter implements Runnable {
         final Intent mIntent;
 
@@ -1332,21 +1352,46 @@ public class OrbotService extends VpnService implements OrbotConstants {
             mIntent = intent;
         }
 
+
+        private void handleACTIONSTARTOLD() {
+            if (Prefs.bridgesEnabled()) {
+                if (useIPtObfsMeekProxy())
+                    IPtProxy.startObfs4Proxy("DEBUG", false, false, null);
+                else if (useIPtSnowflakeProxyDomainFronting())
+                    startSnowflakeClientDomainFronting();
+                else if (useIPtSnowflakeProxyAMPRendezvous())
+                    startSnowflakeClientAmpRendezvous();
+            } else if (Prefs.beSnowflakeProxy()) {
+                enableSnowflakeProxy();
+            }
+
+            startTor();
+            replyWithStatus(mIntent);
+
+            if (Prefs.useVpn()) {
+                if (mVpnManager != null && (!mVpnManager.isStarted())) { // start VPN here
+                    Intent vpnIntent = VpnService.prepare(OrbotService.this);
+                    if (vpnIntent == null) { //then we can run the VPN
+                        mVpnManager.handleIntent(new Builder(), mIntent);
+                    }
+                }
+
+                if (mPortSOCKS != -1 && mPortHTTP != -1)
+                    sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
+            }
+        }
+
         public void run() {
             var action = mIntent.getAction();
             if (TextUtils.isEmpty(action)) return;
             if (action.equals(ACTION_START)) {
-                if (Prefs.bridgesEnabled()) {
-                    if (useIPtObfsMeekProxy())
-                        IPtProxy.startObfs4Proxy("DEBUG", false, false, null);
-                    else if (useIPtSnowflakeProxyDomainFronting())
-                        startSnowflakeClientDomainFronting();
-                    else if (useIPtSnowflakeProxyAMPRendezvous())
-                        startSnowflakeClientAmpRendezvous();
-                } else if (Prefs.beSnowflakeProxy()) {
-                        enableSnowflakeProxy();
+                var connectionPathway = Prefs.getConnectionPathway();
+                if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
+                    // todo for now just do domain fronting ...
+                    startSnowflakeClientDomainFronting();
+                } else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
+                    IPtProxy.startObfs4Proxy("DEBUG", false, false, null);
                 }
-
                 startTor();
                 replyWithStatus(mIntent);
 
@@ -1401,6 +1446,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 newIdentity();
             } else if (action.equals(CMD_ACTIVE)) {
                 sendSignalActive();
+                replyWithStatus(mIntent);
             } else if (action.equals(CMD_SET_EXIT)) {
                 setExitNode(mIntent.getStringExtra("exit"));
             } else {

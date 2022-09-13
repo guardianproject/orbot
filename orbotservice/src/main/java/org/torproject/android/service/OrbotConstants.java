@@ -110,10 +110,20 @@ public interface OrbotConstants {
     String LOCAL_ACTION_LOG = "log";
     String LOCAL_ACTION_STATUS = "status";
     String LOCAL_ACTION_BANDWIDTH = "bandwidth";
+    String LOCAL_EXTRA_TOTAL_READ = "totalRead";
+    String LOCAL_EXTRA_TOTAL_WRITTEN = "totalWritten";
+    String LOCAL_EXTRA_LAST_WRITTEN = "lastWritten";
+    String LOCAL_EXTRA_LAST_READ = "lastRead";
     String LOCAL_EXTRA_LOG = "log";
+    String LOCAL_EXTRA_BOOTSTRAP_PERCENT = "percent";
     String LOCAL_ACTION_PORTS = "ports";
     String LOCAL_ACTION_V3_NAMES_UPDATED = "V3_NAMES_UPDATED";
     String LOCAL_ACTION_NOTIFICATION_START = "notification_start";
+    String LOCAL_ACTION_SMART_CONNECT_EVENT = "smart";
+    String LOCAL_EXTRA_SMART_STATUS = "status";
+    String SMART_STATUS_NO_DIRECT = "no_direct";
+    String SMART_STATUS_CIRCUMVENTION_ATTEMPT_FAILED = "bad_attempt_suggestion";
+
 
     /**
      * All tor-related services and daemons are stopped
