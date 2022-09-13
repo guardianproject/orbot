@@ -248,4 +248,9 @@
     <string name="smart_connect">Умное подключение (по умолчанию)</string>
     <string name="get_a_bridge">Получить мост из Tor (Obfs4)</string>
     <string name="direct_connect">Прямое подключение к Tor</string>
+    <string name="incorrect_solution">Неправильное решение</string>
+    <string name="bridges_obtained_connecting">Мосты получены! Подключение к Tor…</string>
+    <string name="having_trouble">Есть проблема</string>
+    <string name="having_trouble_subtitle">В следующий раз можно попробовать использовать мост Tor, но понадобится ваша помощь</string>
+    <string name="custom_bridge_description">Пользовательский мост предоставляется кем-то из ваших знакомых. Спросите в своих доверенных сетях и организациях, нет ли у кого-нибудь такого моста.</string>
 </resources>
