@@ -248,6 +248,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     if (entry.box != null) {
                         entry.box.setChecked(app.isTorified());
                         entry.box.setTag(app);
+                        entry.box.setOnClickListener(AppManagerActivity.this);
                     }
                 }
 
@@ -359,6 +360,14 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         Intent response = new Intent();
 
         for (TorifiedApp tApp : mApps) {
+            if (tApp.isTorified()) {
+                tordApps.append(tApp.getPackageName());
+                tordApps.append("|");
+                response.putExtra(tApp.getPackageName(), true);
+            }
+        }
+
+        for (TorifiedApp tApp : mAppsSuggested) {
             if (tApp.isTorified()) {
                 tordApps.append(tApp.getPackageName());
                 tordApps.append("|");
