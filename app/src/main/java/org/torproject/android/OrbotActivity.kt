@@ -81,13 +81,8 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         ivOnion = findViewById(R.id.ivStatus)
         progressBar = findViewById(R.id.progressBar)
         lvConnectedActions = findViewById(R.id.lvConnected)
-        val listItems = arrayListOf(OrbotMenuAction(R.string.btn_change_exit, 0) {openExitNodeDialog()},
-            OrbotMenuAction(R.string.btn_refresh, R.drawable.ic_refresh) {sendNewnymSignal()},
-            OrbotMenuAction(R.string.btn_tor_off, R.drawable.ic_power) {stopTorAndVpn()})
-        if (CAN_DO_APP_ROUTING) listItems.add(0, OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {
-            startActivityForResult(Intent(this, AppManagerActivity::class.java), REQUEST_VPN_APP_SELECT)
-        })
-        lvConnectedActions.adapter = OrbotMenuActionAdapter(this, listItems)
+
+        refreshMenuList();
 
         drawerLayout = findViewById(R.id.   drawerLayout)
         navigationView = findViewById(R.id.navigationView)
@@ -181,6 +176,11 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         super.onResume()
         sendIntentToService(OrbotConstants.CMD_ACTIVE)
         bottomNavigationView.selectedItemId = R.id.menu_connect
+
+        if (Prefs.isPowerUserMode())
+        {
+            btnStartVpn.text = getString(R.string.connect)
+        }
     }
 
     override fun onDestroy() {
@@ -198,13 +198,15 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
 
     private fun startTorAndVpn() {
         val vpnIntent = VpnService.prepare(this)
-        if (vpnIntent != null) {
+        if (vpnIntent != null && (!Prefs.isPowerUserMode())) {
             startActivityForResult(vpnIntent, REQUEST_CODE_VPN)
         } else {
             // todo we need to add a power user mode for users to start the VPN without tor
-            Prefs.putUseVpn(true)
+            Prefs.putUseVpn(!Prefs.isPowerUserMode())
             sendIntentToService(OrbotConstants.ACTION_START)
-            sendIntentToService(OrbotConstants.ACTION_START_VPN)
+
+            if (!Prefs.isPowerUserMode())
+                sendIntentToService(OrbotConstants.ACTION_START_VPN)
         }
     }
 
@@ -236,7 +238,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         val listItems = arrayListOf(OrbotMenuAction(R.string.btn_change_exit, 0) {openExitNodeDialog()},
             OrbotMenuAction(R.string.btn_refresh, R.drawable.ic_refresh) {sendNewnymSignal()},
             OrbotMenuAction(R.string.btn_tor_off, R.drawable.ic_power) {stopTorAndVpn()})
-        if (CAN_DO_APP_ROUTING) listItems.add(0, OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {
+        if (CAN_DO_APP_ROUTING && (!Prefs.isPowerUserMode())) listItems.add(0, OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {
             startActivityForResult(Intent(this, AppManagerActivity::class.java), REQUEST_VPN_APP_SELECT)
         })
         lvConnectedActions.adapter = OrbotMenuActionAdapter(this, listItems)
@@ -385,7 +387,13 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         tvPorts.text = getString(R.string.ports_not_set)
         with(btnStartVpn) {
             visibility = View.VISIBLE
-            text = getString(R.string.btn_start_vpn)
+
+            if (Prefs.isPowerUserMode())
+                text = getString(R.string.connect)
+            else
+                text = getString(R.string.btn_start_vpn)
+
+
             isEnabled = true
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 backgroundTintList = ColorStateList.valueOf(
