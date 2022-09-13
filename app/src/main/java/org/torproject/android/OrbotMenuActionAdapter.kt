@@ -74,7 +74,7 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
                     )
                     params.height = 100
                     params.width = 100
-                    params.setMargins(1, 12, 1, 1)
+                    params.setMargins(1, 20, 1, 1)
                     iv.layoutParams = params
                     /**
                     iv.setOnClickListener { v: View? ->

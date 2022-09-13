@@ -4,6 +4,7 @@
 package org.torproject.android.ui;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -45,12 +46,14 @@ import java.util.StringTokenizer;
 
 public class AppManagerActivity extends AppCompatActivity implements OnClickListener, OrbotConstants {
 
-    static ArrayList<TorifiedApp> mApps = null;
+    static ArrayList<TorifiedApp> mApps, mAppsSuggested = null;
+
     PackageManager pMgr = null;
     SharedPreferences mPrefs = null;
-    private GridView listApps;
-    private ListAdapter adapterApps;
+    private GridView listAppsAll, listAppsSuggested;
+    private ListAdapter adapterAppsAll, adapterAppsSuggested;
     private ProgressBar progressBar;
+    private ArrayList<String> alSuggested;
 
     /**
      * @return true if the app is "enabled", not Orbot, and not in
@@ -69,8 +72,20 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
         this.setContentView(R.layout.layout_apps);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        listApps = findViewById(R.id.applistview);
+        listAppsSuggested = findViewById(R.id.applistview_suggested);
+        listAppsAll = findViewById(R.id.applistview);
         progressBar = findViewById(R.id.progressBar);
+
+        alSuggested = new ArrayList<String>();
+        alSuggested.add("org.thoughtcrime.securesms");
+        alSuggested.add("com.whatsapp");
+        alSuggested.add("com.instagram.android");
+        alSuggested.add("im.vector.app");
+        alSuggested.add("org.telegram.messenger");
+        alSuggested.add("com.twitter.android");
+        alSuggested.add("com.facebook.orca");
+        alSuggested.add("com.facebook.mlite");
+
     }
 
     @Override
@@ -113,13 +128,16 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     private void loadApps() {
 
         if (mApps == null)
-            mApps = getApps(mPrefs);
+            mApps = getApps(AppManagerActivity.this, mPrefs, null);
 
         TorifiedApp.sortAppsForTorifiedAndAbc(mApps);
 
+        if (mAppsSuggested == null)
+            mAppsSuggested = getApps(AppManagerActivity.this, mPrefs, alSuggested);
+
         final LayoutInflater inflater = getLayoutInflater();
 
-        adapterApps = new ArrayAdapter<>(this, R.layout.layout_apps_item, R.id.itemtext, mApps) {
+        adapterAppsAll = new ArrayAdapter<>(this, R.layout.layout_apps_item, R.id.itemtext, mApps) {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -130,6 +148,9 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     convertView = inflater.inflate(R.layout.layout_apps_item, parent, false);
                 else
                     entry = (ListEntry) convertView.getTag();
+
+                View row = convertView.findViewById(R.id.itemRow);
+                row.setOnClickListener(AppManagerActivity.this);
 
                 if (entry == null) {
                     // Inflate a new view
@@ -147,7 +168,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
                         try {
                             entry.icon.setImageDrawable(pMgr.getApplicationIcon(app.getPackageName()));
-                            entry.icon.setOnClickListener(AppManagerActivity.this);
                             entry.icon.setTag(entry.box);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -156,19 +176,17 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
                     if (entry.text != null) {
                         entry.text.setText(app.getName());
-                        entry.text.setOnClickListener(AppManagerActivity.this);
                         entry.text.setTag(entry.box);
                     }
 
                     if (entry.box != null) {
-                        entry.box.setOnClickListener(AppManagerActivity.this);
                         entry.box.setChecked(app.isTorified());
                         entry.box.setTag(app);
                     }
                 }
 
-                convertView.setFocusable(true);
-                convertView.setFocusableInTouchMode(true);
+            //    convertView.setFocusable(true);
+             //   convertView.setFocusableInTouchMode(true);
 
                 convertView.setOnFocusChangeListener((v, hasFocus) -> {
                     if (hasFocus)
@@ -184,9 +202,76 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         };
 
 
+
+        adapterAppsSuggested = new ArrayAdapter<>(this, R.layout.layout_apps_item, R.id.itemtext, mAppsSuggested) {
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+
+                ListEntry entry = null;
+
+                if (convertView == null)
+                    convertView = inflater.inflate(R.layout.layout_apps_item, parent, false);
+                else
+                    entry = (ListEntry) convertView.getTag();
+
+                View row = convertView.findViewById(R.id.itemRow);
+                row.setOnClickListener(AppManagerActivity.this);
+
+                if (entry == null) {
+                    // Inflate a new view
+                    entry = new ListEntry();
+                    entry.icon = convertView.findViewById(R.id.itemicon);
+                    entry.box = convertView.findViewById(R.id.itemcheck);
+                    entry.text = convertView.findViewById(R.id.itemtext);
+                    convertView.setTag(entry);
+                }
+
+                if (mApps != null) {
+                    final TorifiedApp app = mAppsSuggested.get(position);
+
+                    if (entry.icon != null) {
+
+                        try {
+                            entry.icon.setImageDrawable(pMgr.getApplicationIcon(app.getPackageName()));
+                            entry.icon.setTag(entry.box);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    if (entry.text != null) {
+                        entry.text.setText(app.getName());
+                        entry.text.setTag(entry.box);
+                    }
+
+                    if (entry.box != null) {
+                        entry.box.setChecked(app.isTorified());
+                        entry.box.setTag(app);
+                    }
+                }
+
+                //    convertView.setFocusable(true);
+                //   convertView.setFocusableInTouchMode(true);
+
+                convertView.setOnFocusChangeListener((v, hasFocus) -> {
+                    if (hasFocus)
+                        v.setBackgroundColor(getResources().getColor(R.color.dark_purple));
+                    else
+                    {
+                        v.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                    }
+                });
+
+                return convertView;
+            }
+        };
+
     }
 
-    public ArrayList<TorifiedApp> getApps(SharedPreferences prefs) {
+    public static ArrayList<TorifiedApp> getApps(Context context, SharedPreferences prefs, ArrayList<String> filterIds) {
+
+        PackageManager pMgr = context.getPackageManager();
         String tordAppString = prefs.getString(PREFS_KEY_TORIFIED, "");
 
         String[] tordApps;
@@ -205,6 +290,19 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         while (itAppInfo.hasNext()) {
             ApplicationInfo aInfo = itAppInfo.next();
             if (!includeAppInUi(aInfo)) continue;
+
+            if (filterIds != null) {
+                boolean wasFound = false;
+                for (String filterId : filterIds)
+                    if (filterId.equals(aInfo.packageName)) {
+                        wasFound = true;
+                        break;
+                    };
+
+                 if (!wasFound)
+                     continue;;
+            }
+
             TorifiedApp app = new TorifiedApp();
 
             try {
@@ -283,6 +381,8 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
             cbox = (CheckBox) v;
         else if (v.getTag() instanceof CheckBox)
             cbox = (CheckBox) v.getTag();
+        else if (v.getTag() instanceof ListEntry)
+            cbox = ((ListEntry) v.getTag()).box;
 
         if (cbox != null) {
             final TorifiedApp app = (TorifiedApp) cbox.getTag();
@@ -320,7 +420,9 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         protected void onPostExecute(Void unused) {
             if (shouldStop()) return;
             AppManagerActivity ama = activity.get();
-            ama.listApps.setAdapter(ama.adapterApps);
+
+            ama.listAppsAll.setAdapter(ama.adapterAppsAll);
+            ama.listAppsSuggested.setAdapter(ama.adapterAppsSuggested);
             ama.progressBar.setVisibility(View.GONE);
         }
 
