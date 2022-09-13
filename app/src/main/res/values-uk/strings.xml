@@ -248,4 +248,9 @@
     <string name="custom_bridge_subtitle">Швидше за все, допоможе з\'єднуватися, якщо Tor суворо заблокований. Потрібна адреса мосту від людини, якій ви довіряєте.</string>
     <string name="connect">Під\'єднати</string>
     <string name="solve_captcha">Розв\'язати Captcha</string>
+    <string name="incorrect_solution">Неправильне рішення</string>
+    <string name="bridges_obtained_connecting">Мости отримано! Під\'єднання до tor...</string>
+    <string name="having_trouble">Виникли проблеми</string>
+    <string name="having_trouble_subtitle">Далі ми можемо спробувати Tor-міст, але нам знадобиться ваша допомога</string>
+    <string name="custom_bridge_description">Спеціальний міст надається кимось із тих, кого ви знаєте. Поцікавтеся у ваших довірених мережах та організаціях, чи не розміщує хтось такий міст.</string>
 </resources>
