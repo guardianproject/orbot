@@ -4,7 +4,8 @@ apply from : '../dependencies.gradle'
 android {
     defaultConfig {
         applicationId "org.torproject.android.tv"
-        minSdkVersion 23 
+        minSdkVersion 23
+        compileSdkVersion 31
         targetSdkVersion 31
     }
 
