@@ -248,4 +248,9 @@
     <string name="snowflake_subtitle">Conecta-se através de voluntários do Tor. Contorna alguns bloqueios do Tor.</string>
     <string name="custom_bridge_subtitle">O mais provável é mantê-lo conectado caso o Tor esteja totalmente bloqueado. Requer um endereço de ponte de alguém que você confie.</string>
     <string name="solve_captcha">Resolver o captcha</string>
+    <string name="incorrect_solution">Solução incorreta</string>
+    <string name="bridges_obtained_connecting">Pontes obtidas! Conectando-se ao tor...</string>
+    <string name="custom_bridge_description">Uma ponte personalizada foi fornecida por alguém que você conhece. Pergunte em suas redes e organizações confiáveis para ver se alguém está hospedando um.</string>
+    <string name="having_trouble_subtitle">Podemos tentar uma ponte Tor em seguida, mas precisaremos da sua ajuda</string>
+    <string name="having_trouble">Tendo problemas</string>
 </resources>

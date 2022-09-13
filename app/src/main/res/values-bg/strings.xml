@@ -248,4 +248,9 @@
     <string name="get_a_bridge">Получаване на мост от Тор (Obfs4)</string>
     <string name="custom_bridge_subtitle">Най-голяма вероятност да поддържа непрекъсната връзка с Тор при сериозни забрани на Тор. Изисква адрес на мост от човек, на когото имате доверие.</string>
     <string name="get_a_bridge_subtitle">Прикрива трафика ви. Заобикаля някои забрани на Tor.</string>
+    <string name="having_trouble">Има проблем</string>
+    <string name="incorrect_solution">Неправилно решение</string>
+    <string name="bridges_obtained_connecting">Мостовете са получени! Свързване с Тор…</string>
+    <string name="custom_bridge_description">Потребителски мост се предоставя от ваш познат. Попитайте във вашите доверени среди дали някой не предлага такъв.</string>
+    <string name="having_trouble_subtitle">След това можем да опитаме с мост на Тор, но ще се нуждаем от вашата помощ</string>
 </resources>

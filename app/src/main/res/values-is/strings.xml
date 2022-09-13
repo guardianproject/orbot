@@ -248,4 +248,9 @@
     <string name="next">Næsta</string>
     <string name="solve_captcha">Leystu CAPTCHA-þraut</string>
     <string name="strict_nodes_description">Meðhöndla útilokaða punkta sem forsendu við byggingu allra rása. Þetta gæti skemmt fyrir virkni ef ekki er hægt að byggja upp neinar rásir út frá stillingum útilokaðra punkta.</string>
+    <string name="incorrect_solution">Röng lausn</string>
+    <string name="having_trouble">Eru vandamál</string>
+    <string name="bridges_obtained_connecting">Fékk brýr! Tengist við TOR...</string>
+    <string name="custom_bridge_description">Einhver sem þú þekkir er að skaffa brú. Spurðu fólk í þeim hópum sem þú treystir hvort einhver þeirra sé að hýsa brúna.</string>
+    <string name="having_trouble_subtitle">Við getum næst prófað Tor-brú en þurfum þína hjálp til þess</string>
 </resources>

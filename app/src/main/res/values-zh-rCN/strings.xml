@@ -248,4 +248,9 @@
     <string name="get_a_bridge">从 Tor 获取网桥 (Obfs4)</string>
     <string name="snowflake_subtitle">通过 Tor 志愿者连接。 绕过一些 Tor 屏蔽。</string>
     <string name="ports_not_set">未设置端口</string>
+    <string name="incorrect_solution">不正确的解答</string>
+    <string name="having_trouble">出问题了</string>
+    <string name="having_trouble_subtitle">我们接下来可以尝试 Tor 网桥，但需要你的帮助</string>
+    <string name="bridges_obtained_connecting">已获取网桥！正在连接到 tor…</string>
+    <string name="custom_bridge_description">自定义网桥是由你认识的人提供的。问问你所信任的人际网络和组织，看看是否有人托管网桥。</string>
 </resources>
