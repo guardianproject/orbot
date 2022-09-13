@@ -234,8 +234,8 @@
     <string name="proxy_ports">Puerto de Proxy</string>
     <string name="volunteer_mode_title">Hoy es mejor gracias a ti</string>
     <string name="volunteer_mode_label">Modo Altruista</string>
-    <string name="volunteer_mode_weekly_label">TOTAL DE LA SEMANA</string>
-    <string name="volunteer_mode_alltime_label">TOTAL DE TODO EL TIEMPO</string>
+    <string name="volunteer_mode_weekly_label">Total de la Semana</string>
+    <string name="volunteer_mode_alltime_label">Total de Todo el Tiempo</string>
     <string name="volunteer_mode_subtitle_desc">El modo ltruista permite que tu teléfono sea un puente para los demás. Ayuda a las personas a usar Tor en lugares donde está bloqueado.</string>
     <string name="smart_connect">Conexión inteligente (default)</string>
     <string name="smart_connect_subtitle">Orbot intenta conectarse a Tor a través de cualquier forma disponible: Directo, Snowflake, Bridge.</string>
