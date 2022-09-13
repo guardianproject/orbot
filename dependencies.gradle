@@ -24,7 +24,8 @@ ext {
             portmapper                   : "2.0.5",
             tor_android                  : "0.4.7.8",
             pcap_core                    : "1.8.2",
-            pcap_factory                 : "1.8.2"
+            pcap_factory                 : "1.8.2",
+            androidx_work                : "2.7.1"
     ]
 
     libs = [
@@ -53,6 +54,8 @@ ext {
             portmapper                     : "com.offbynull.portmapper:portmapper:$versions.portmapper",
             tor_android                    : "info.guardianproject:tor-android:$versions.tor_android",
             pcap_core                      : "org.pcap4j:pcap4j-core:$versions.pcap_core",
-            pcap_factory                   : "org.pcap4j:pcap4j-packetfactory-static:$versions.pcap_factory"
+            pcap_factory                   : "org.pcap4j:pcap4j-packetfactory-static:$versions.pcap_factory",
+            androidx_work                  : "androidx.work:work-runtime:$versions.androidx_work",
+            androidx_work_kotlin          : "androidx.work:work-runtime-ktx:$versions.androidx_work"
     ]
 }

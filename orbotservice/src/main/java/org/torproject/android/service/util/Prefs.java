@@ -3,9 +3,18 @@ package org.torproject.android.service.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.annotation.NonNull;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
+import androidx.work.Worker;
+import androidx.work.WorkerParameters;
+
 import org.torproject.android.service.OrbotConstants;
 
+import java.util.Calendar;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class Prefs {
 
@@ -31,6 +40,7 @@ public class Prefs {
     private final static String PREF_HOST_ONION_SERVICES = "pref_host_onionservices";
 
     private final static String PREF_SNOWFLAKES_SERVED_COUNT = "pref_snowflakes_served";
+    private final static String PREF_SNOWFLAKES_SERVED_COUNT_WEEKLY = "pref_snowflakes_served_weekly";
 
     private static final String PREF_CONNECTION_PATHWAY = "pref_connection_pathway";
     public static final String PATHWAY_SMART = "smart", PATHWAY_DIRECT = "direct",
@@ -40,8 +50,21 @@ public class Prefs {
     private static SharedPreferences prefs;
 
     public static void setContext(Context context) {
-        if (prefs == null)
+        if (prefs == null) {
             prefs = getSharedPrefs(context);
+
+            initWeeklyWorker();
+        }
+
+    }
+
+    private static void initWeeklyWorker () {
+        PeriodicWorkRequest.Builder myWorkBuilder =
+                new PeriodicWorkRequest.Builder(PrefsWeeklyWorker.class, 7, TimeUnit.DAYS);
+
+        PeriodicWorkRequest myWork = myWorkBuilder.build();
+        WorkManager.getInstance()
+                .enqueueUniquePeriodicWork("prefsWeeklyWorker", ExistingPeriodicWorkPolicy.KEEP, myWork);
     }
 
     private static void putBoolean(String key, boolean value) {
@@ -154,12 +177,18 @@ public class Prefs {
     }
 
     public static int getSnowflakesServed () { return prefs.getInt(PREF_SNOWFLAKES_SERVED_COUNT,0);}
+    public static int getSnowflakesServedWeekly () { return prefs.getInt(PREF_SNOWFLAKES_SERVED_COUNT_WEEKLY,0);}
 
     public static void addSnowflakeServed () {
         putInt(PREF_SNOWFLAKES_SERVED_COUNT,getSnowflakesServed()+1);
+        putInt(PREF_SNOWFLAKES_SERVED_COUNT_WEEKLY,getSnowflakesServedWeekly()+1);
     }
 
-<<<<<<< HEAD
+    public static void resetSnowflakesServedWeekly () {
+        putInt(PREF_SNOWFLAKES_SERVED_COUNT_WEEKLY,0);
+
+    }
+
     public static String getConnectionPathway() {
         // TODO lots of migration work need to be done here when users upgrade to orbot 17 !!!
         return prefs.getString(PREF_CONNECTION_PATHWAY, PATHWAY_SMART);

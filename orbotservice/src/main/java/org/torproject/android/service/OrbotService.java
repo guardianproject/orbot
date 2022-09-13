@@ -485,6 +485,10 @@ public class OrbotService extends VpnService implements OrbotConstants {
         ifilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
         registerReceiver(mPowerReceiver, ifilter);
 
+        if (Prefs.beSnowflakeProxy()) {
+            enableSnowflakeProxy();
+        }
+
         Log.i("OrbotService", "onCreate end");
     }
 
@@ -1449,7 +1453,17 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 replyWithStatus(mIntent);
             } else if (action.equals(CMD_SET_EXIT)) {
                 setExitNode(mIntent.getStringExtra("exit"));
-            } else {
+            }
+            else if (action.equals(CMD_SNOWFLAKE_PROXY)) {
+                if (Prefs.beSnowflakeProxy()) {
+                    enableSnowflakeProxy();
+                }
+                else
+                    disableSnowflakeProxy();
+
+            }
+
+            else {
                 Log.w(TAG, "unhandled OrbotService Intent: " + action);
             }
         }

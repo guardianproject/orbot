@@ -1,5 +1,6 @@
 package org.torproject.android.ui.kindnessmode
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -7,7 +8,10 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.content.ContextCompat
 import org.torproject.android.R
+import org.torproject.android.service.OrbotConstants
+import org.torproject.android.service.OrbotService
 import org.torproject.android.service.util.Prefs
 
 class KindnessModeActivity: AppCompatActivity() {
@@ -25,7 +29,7 @@ class KindnessModeActivity: AppCompatActivity() {
         var btnActionActivate = findViewById<Button>(R.id.btnActionActivate)
 
         tvAlltimeTotal.text = Prefs.getSnowflakesServed().toString()
-        tvWeeklyTotal.text = (Prefs.getSnowflakesServed()/4).toString()
+        tvWeeklyTotal.text = (Prefs.getSnowflakesServedWeekly()).toString()
 
         swVolunteerMode.isChecked = Prefs.beSnowflakeProxy()
         swVolunteerMode.setOnCheckedChangeListener { _, isChecked ->
@@ -38,10 +42,17 @@ class KindnessModeActivity: AppCompatActivity() {
             //   Prefs.setBeSnowflakeProxy(true)
           //  showPanelStatus(true)
             swVolunteerMode.isChecked = true
+            Prefs.setBeSnowflakeProxy(true)
+            sendIntentToService(OrbotConstants.CMD_ACTIVE)
         }
 
         showPanelStatus(Prefs.beSnowflakeProxy())
     }
+
+    private fun sendIntentToService(intent: Intent) = ContextCompat.startForegroundService(this, intent)
+    private fun sendIntentToService(action: String) = sendIntentToService(Intent(this, OrbotService::class.java).apply {
+        this.action = action
+    })
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
