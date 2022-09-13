@@ -252,9 +252,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     }
                 }
 
-                //    convertView.setFocusable(true);
-                //   convertView.setFocusableInTouchMode(true);
-
                 convertView.setOnFocusChangeListener((v, hasFocus) -> {
                     if (hasFocus)
                         v.setBackgroundColor(getResources().getColor(R.color.dark_purple));
