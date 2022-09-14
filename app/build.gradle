@@ -12,6 +12,10 @@ def getVersionName = { ->
     return stdout.toString().trim()
 }
 
+static def versionCodeEpoch() {
+    return (new Date().getTime() / 1000).toInteger()
+}
+
 android {
     defaultConfig {
         applicationId "org.torproject.android"
@@ -59,9 +63,8 @@ android {
             minSdkVersion 16
             applicationId 'org.torproject.android.nightly'
             targetSdkVersion 31
-            versionCode 1700100400
-
             versionName getVersionName()
+            versionCode versionCodeEpoch()
             archivesBaseName = "Orbot-Nightly-$versionName"
         }
     }
