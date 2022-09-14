@@ -62,7 +62,6 @@
 
         <activity android:name=".OrbotActivity"
             android:excludeFromRecents="false"
-            android:screenOrientation="portrait"
             android:launchMode="singleTop"
             android:theme="@style/OrbotActivityTheme"
             android:exported="true">
