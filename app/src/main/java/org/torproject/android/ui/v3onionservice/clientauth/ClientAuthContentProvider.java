@@ -12,6 +12,8 @@ import android.provider.BaseColumns;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.torproject.android.BuildConfig;
+
 public class ClientAuthContentProvider extends ContentProvider {
     public static final String[] PROJECTION = {
             V3ClientAuth._ID,
@@ -19,7 +21,7 @@ public class ClientAuthContentProvider extends ContentProvider {
             V3ClientAuth.HASH,
             V3ClientAuth.ENABLED,
     };
-    private static final String AUTH = "org.torproject.android.ui.v3onionservice.clientauth";
+    private static final String AUTH = BuildConfig.APPLICATION_ID + ".ui.v3onionservice.clientauth";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTH + "/v3auth");
     private static final int V3AUTHS = 1, V3AUTH_ID = 2;
 

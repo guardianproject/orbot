@@ -75,8 +75,10 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     static final int NOTIFY_ID = 1;
     private static final int ERROR_NOTIFY_ID = 3;
-    private static final Uri V3_ONION_SERVICES_CONTENT_URI = Uri.parse("content://org.torproject.android.ui.v3onionservice/v3");
-    private static final Uri V3_CLIENT_AUTH_URI = Uri.parse("content://org.torproject.android.ui.v3onionservice.clientauth/v3auth");
+
+    //these will be set dynamically due to build flavors
+    private static Uri V3_ONION_SERVICES_CONTENT_URI = null;//Uri.parse("content://org.torproject.android.ui.v3onionservice/v3");
+    private static Uri V3_CLIENT_AUTH_URI = null;//Uri.parse("content://org.torproject.android.ui.v3onionservice.clientauth/v3auth");
     private final static String NOTIFICATION_CHANNEL_ID = "orbot_channel_1";
     private static final String[] V3_ONION_SERVICE_PROJECTION = new String[]{
             OnionService._ID, OnionService.NAME, OnionService.DOMAIN,
@@ -416,6 +418,10 @@ public class OrbotService extends VpnService implements OrbotConstants {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        //set proper content URIs for current build flavor
+        V3_ONION_SERVICES_CONTENT_URI = Uri.parse("content://" + getApplicationContext().getPackageName() + ".ui.v3onionservice/v3");
+        V3_CLIENT_AUTH_URI = Uri.parse("content://" + getApplicationContext().getPackageName() + ".ui.v3onionservice.clientauth/v3auth");
 
         try {
             mHandler = new Handler();

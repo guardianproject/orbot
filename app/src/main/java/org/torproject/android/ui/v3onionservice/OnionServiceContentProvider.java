@@ -12,6 +12,8 @@ import android.provider.BaseColumns;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.torproject.android.BuildConfig;
+
 public class OnionServiceContentProvider extends ContentProvider {
 
     public static final String[] PROJECTION = {
@@ -26,7 +28,7 @@ public class OnionServiceContentProvider extends ContentProvider {
     };
 
     private static final int ONIONS = 1, ONION_ID = 2;
-    private static final String AUTH = "org.torproject.android.ui.v3onionservice";
+    private static final String AUTH = BuildConfig.APPLICATION_ID + ".ui.v3onionservice";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTH + "/v3");
     private static final UriMatcher uriMatcher;
 
