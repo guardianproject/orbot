@@ -107,11 +107,11 @@
 
         <provider
             android:name=".ui.v3onionservice.OnionServiceContentProvider"
-            android:authorities="org.torproject.android.ui.v3onionservice"
+            android:authorities="${applicationId}.ui.v3onionservice"
             android:exported="false" />
 
         <provider
-            android:authorities="org.torproject.android.ui.v3onionservice.clientauth"
+            android:authorities="${applicationId}.ui.v3onionservice.clientauth"
             android:name=".ui.v3onionservice.clientauth.ClientAuthContentProvider"
             android:exported="false"/>
 

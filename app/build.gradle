@@ -52,6 +52,18 @@ android {
             versionName getVersionName()
             archivesBaseName = "Orbot-$versionName"
         }
+
+        nightly {
+            dimension "free"
+
+            minSdkVersion 16
+            applicationId 'org.torproject.android.nightly'
+            targetSdkVersion 31
+            versionCode 1700100400
+
+            versionName getVersionName()
+            archivesBaseName = "Orbot-Nightly-$versionName"
+        }
     }
 
     splits {
