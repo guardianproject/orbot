@@ -5,7 +5,7 @@ android {
     defaultConfig {
         applicationId "org.torproject.android.mini"
         minSdkVersion 16
-        targetSdkVersion 31
+        targetSdkVersion 32
         multiDexEnabled true
     }
 
@@ -16,7 +16,7 @@ android {
             dimension "freemini"
             minSdkVersion 16
             applicationId 'org.torproject.android.mini'
-            targetSdkVersion 28
+            compileSdkVersion 31
             versionCode 10020000
             versionName 'mini-1.0.0-BETA-2-tor-0.4.5.7'
             archivesBaseName = "Orbot-mini-$versionName"

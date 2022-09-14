@@ -4,8 +4,8 @@ apply from : '../dependencies.gradle'
 android {
     defaultConfig {
         applicationId "org.torproject.android.tv"
-        minSdkVersion 23 
-        targetSdkVersion 31
+        minSdkVersion 23
+        targetSdkVersion 32
     }
 
     aaptOptions {
@@ -19,7 +19,7 @@ android {
             dimension "teevee"
             minSdkVersion 23 
             applicationId 'org.torproject.android.tv'
-            targetSdkVersion 29 
+            compileSdkVersion 31
             versionCode 10020000
             versionName 'orbot-tv-1.0.0-BETA-2-tor-0.4.5.9'
             archivesBaseName = "Orbot-TV-$versionName"
