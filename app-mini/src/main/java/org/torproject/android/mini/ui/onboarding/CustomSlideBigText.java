@@ -1,4 +1,4 @@
-package org.torproject.android.tv.ui.onboarding;
+package org.torproject.android.mini.ui.onboarding;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import org.torproject.android.tv.R;
+import org.torproject.android.mini.R;
 
 
 public class CustomSlideBigText extends Fragment {

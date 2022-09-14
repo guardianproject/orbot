@@ -1,7 +1,7 @@
 /* Copyright (c) 2009, Nathan Freitas, Orbot / The Guardian Project - http://openideals.com/guardian */
 /* See LICENSE for licensing information */
 
-package org.torproject.android.tv.ui;
+package org.torproject.android.mini.ui;
 
 import android.Manifest;
 import android.content.Intent;
@@ -26,7 +26,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import org.torproject.android.tv.R;
+import org.torproject.android.mini.R;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorifiedApp;

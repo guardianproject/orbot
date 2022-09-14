@@ -507,8 +507,16 @@ public class OrbotService extends VpnService implements OrbotConstants {
         if (!fileCacheDir.exists())
             //noinspection ResultOfMethodCallIgnored
             fileCacheDir.mkdir();
-        IPtProxy.setStateLocation(fileCacheDir.getAbsolutePath());
-        debug("IPtProxy state: " + IPtProxy.getStateLocation());
+
+        try {
+            IPtProxy.setStateLocation(fileCacheDir.getAbsolutePath());
+            debug("IPtProxy state: " + IPtProxy.getStateLocation());
+        }
+        catch (Error e)
+        {
+            debug("IPtProxy state: not installed; " + e.getLocalizedMessage());
+
+        }
     }
 
     private File updateTorrcCustomFile() throws IOException {

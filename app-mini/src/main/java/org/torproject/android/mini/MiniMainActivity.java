@@ -1,7 +1,7 @@
 /* Copyright (c) 2009, Nathan Freitas, Orbot / The Guardian Project - https://guardianproject.info */
 /* See LICENSE for licensing information */
 
-package org.torproject.android.tv;
+package org.torproject.android.mini;
 
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -56,9 +56,10 @@ import org.torproject.android.core.Languages;
 import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.core.ui.Rotate3dAnimation;
 import org.torproject.android.core.ui.SettingsPreferencesActivity;
-import org.torproject.android.tv.ui.AppConfigActivity;
-import org.torproject.android.tv.ui.AppManagerActivity;
-import org.torproject.android.tv.ui.onboarding.OnboardingActivity;
+import org.torproject.android.mini.R;
+import org.torproject.android.mini.ui.AppConfigActivity;
+import org.torproject.android.mini.ui.AppManagerActivity;
+import org.torproject.android.mini.ui.onboarding.OnboardingActivity;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.util.Prefs;

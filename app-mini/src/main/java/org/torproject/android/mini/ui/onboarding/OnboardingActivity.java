@@ -1,4 +1,4 @@
-package org.torproject.android.tv.ui.onboarding;
+package org.torproject.android.mini.ui.onboarding;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment;
 import com.github.paolorotolo.appintro.AppIntro;
 
 import org.torproject.android.core.LocaleHelper;
-import org.torproject.android.tv.R;
+import org.torproject.android.mini.R;
 
 public class OnboardingActivity extends AppIntro {
 

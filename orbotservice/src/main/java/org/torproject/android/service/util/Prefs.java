@@ -52,13 +52,11 @@ public class Prefs {
     public static void setContext(Context context) {
         if (prefs == null) {
             prefs = getSharedPrefs(context);
-
-            initWeeklyWorker();
         }
 
     }
 
-    private static void initWeeklyWorker () {
+    public static void initWeeklyWorker () {
         PeriodicWorkRequest.Builder myWorkBuilder =
                 new PeriodicWorkRequest.Builder(PrefsWeeklyWorker.class, 7, TimeUnit.DAYS);
 

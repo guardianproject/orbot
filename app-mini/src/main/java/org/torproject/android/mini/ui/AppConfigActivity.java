@@ -1,4 +1,4 @@
-package org.torproject.android.tv.ui;
+package org.torproject.android.mini.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,13 +11,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import org.torproject.android.tv.R;
+
+import org.torproject.android.mini.MiniMainActivity;
+import org.torproject.android.mini.R;
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorifiedApp;
 
 import static org.torproject.android.service.OrbotConstants.PREFS_KEY_TORIFIED;
-import static org.torproject.android.tv.MiniMainActivity.getApp;
 
 public class AppConfigActivity extends AppCompatActivity {
 
@@ -41,7 +42,7 @@ public class AppConfigActivity extends AppCompatActivity {
         ApplicationInfo aInfo = null;
         try {
             aInfo = getPackageManager().getApplicationInfo(pkgId, 0);
-            mApp = getApp(this, aInfo);
+            mApp = MiniMainActivity.getApp(this, aInfo);
 
             getSupportActionBar().setIcon(mApp.getIcon());
 

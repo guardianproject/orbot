@@ -21,10 +21,11 @@
             android:name="org.torproject.android.tv.ui.AppConfigActivity"
             android:label="@string/title_activity_app_config"></activity>
         <activity
-            android:name="org.torproject.android.tv.TeeveeMainActivity"
+            android:name=".TeeveeMainActivity"
             android:excludeFromRecents="false"
             android:launchMode="singleTop"
             android:theme="@style/Theme.Leanback"
+            android:exported="true"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,17 +50,7 @@
             -->
 
         </activity> <!-- This is for ensuring the background service still runs when/if the app is swiped away -->
-        <activity
-            android:name="org.torproject.android.service.util.DummyActivity"
-            android:allowTaskReparenting="true"
-            android:alwaysRetainTaskState="false"
-            android:clearTaskOnLaunch="true"
-            android:enabled="true"
-            android:excludeFromRecents="true"
-            android:finishOnTaskLaunch="true"
-            android:noHistory="true"
-            android:stateNotNeeded="true"
-            android:theme="@android:style/Theme.Translucent" />
+
         <activity
             android:name="org.torproject.android.core.ui.SettingsPreferencesActivity"
             android:label="@string/app_name" />
@@ -75,7 +66,9 @@
             android:name="org.torproject.android.service.OrbotService"
             android:enabled="true"
             android:permission="android.permission.BIND_VPN_SERVICE"
-            android:stopWithTask="false">
+            android:stopWithTask="false"
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.net.VpnService" />
             </intent-filter>

@@ -46,4 +46,7 @@ dependencies {
             libs.apl_appintro
     )
     androidTestImplementation libs.fastlane_screengrab
+
+    implementation files('../libs/tor-android-binary-release.aar')
+
 }
