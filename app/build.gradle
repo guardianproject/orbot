@@ -22,7 +22,7 @@ android {
         versionName getVersionName()
         minSdkVersion 16
         compileSdkVersion 31
-        targetSdkVersion 32
+        targetSdkVersion 31
         multiDexEnabled true
     }
     compileOptions {

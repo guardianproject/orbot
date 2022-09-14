@@ -5,7 +5,7 @@ android {
     defaultConfig {
         applicationId "org.torproject.android.tv"
         minSdkVersion 23
-        targetSdkVersion 32
+        targetSdkVersion 31
     }
 
     aaptOptions {
