@@ -47,7 +47,7 @@
         android:layout_marginLeft="20dp"
         android:layout_gravity="center"
         android:id="@+id/llBoxShortcuts"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:visibility="visible"
         >
