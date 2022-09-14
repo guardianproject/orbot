@@ -243,6 +243,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         })
         lvConnectedActions.adapter = OrbotMenuActionAdapter(this, listItems)
     }
+
     override fun attachBaseContext(newBase: Context) = super.attachBaseContext(LocaleHelper.onAttach(newBase))
 
     private var circumventionApiBridges: List<Bridges?>? = null
@@ -254,26 +255,32 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
             val status = intent?.getStringExtra(OrbotConstants.EXTRA_STATUS)
             when (intent?.action) {
                 OrbotConstants.LOCAL_ACTION_STATUS -> {
-                    if (status.equals(previousReceivedTorStatus)) return
-                    previousReceivedTorStatus = status
+                   if (status.equals(previousReceivedTorStatus)) return
                     Log.d("bim", "about to do some kind of status redraw: $status")
                     when (status) {
                         OrbotConstants.STATUS_OFF -> {
-                            if (allCircumventionAttemtsFailed) {
-                                allCircumventionAttemtsFailed = false
-                                return
+                            if (previousReceivedTorStatus.equals(OrbotConstants.STATUS_STARTING)) {
+                                if (allCircumventionAttemtsFailed) {
+                                    allCircumventionAttemtsFailed = false
+                                    return
+                                }
+                                var shouldDoOffLayout = true
+                                if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SMART)) {
+                                    Log.d("bim", "\tpathway is smart")
+                                    shouldDoOffLayout = false
+                                }
+                                if (shouldDoOffLayout) doLayoutOff()
                             }
-                            var shouldDoOffLayout = true
-                            if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SMART)) {
-                                Log.d("bim", "\tpathway is smart")
-                                shouldDoOffLayout = false
-                            }
-                            if (shouldDoOffLayout) doLayoutOff()
+                            else
+                                doLayoutOff()
                         }
                         OrbotConstants.STATUS_STARTING -> doLayoutStarting()
                         OrbotConstants.STATUS_ON -> doLayoutOn()
                         OrbotConstants.STATUS_STOPPING -> {}
                     }
+
+                    previousReceivedTorStatus = status
+
                 }
                 OrbotConstants.LOCAL_ACTION_LOG -> {
                     intent.getStringExtra(OrbotConstants.LOCAL_EXTRA_BOOTSTRAP_PERCENT)?.let {
