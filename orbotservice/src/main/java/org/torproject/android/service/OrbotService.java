@@ -1056,15 +1056,17 @@ public class OrbotService extends VpnService implements OrbotConstants {
         }
 
         if (!TextUtils.isEmpty(entranceNodes))
-            extraLines.append("EntryNodes" + ' ').append(entranceNodes).append('\n');
+            extraLines.append("EntryNodes ").append(entranceNodes).append(" ");
 
         if (!TextUtils.isEmpty(exitNodes))
-            extraLines.append("ExitNodes" + ' ').append(exitNodes).append('\n');
+            extraLines.append("ExitNodes ").append(exitNodes).append(" ");
 
         if (!TextUtils.isEmpty(excludeNodes))
-            extraLines.append("ExcludeNodes" + ' ').append(excludeNodes).append('\n');
+            extraLines.append("ExcludeNodes ").append(excludeNodes).append(" ");
 
-        extraLines.append("StrictNodes" + ' ').append(enableStrictNodes ? "1" : "0").append('\n');
+        extraLines.append("StrictNodes ").append(enableStrictNodes ? "1" : "0");
+
+        extraLines.append("\n");
 
         try {
             if (ReachableAddresses) {

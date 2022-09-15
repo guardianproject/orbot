@@ -256,7 +256,6 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
             when (intent?.action) {
                 OrbotConstants.LOCAL_ACTION_STATUS -> {
                    if (status.equals(previousReceivedTorStatus)) return
-                    Log.d("bim", "about to do some kind of status redraw: $status")
                     when (status) {
                         OrbotConstants.STATUS_OFF -> {
                             if (previousReceivedTorStatus.equals(OrbotConstants.STATUS_STARTING)) {
@@ -266,7 +265,6 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                                 }
                                 var shouldDoOffLayout = true
                                 if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SMART)) {
-                                    Log.d("bim", "\tpathway is smart")
                                     shouldDoOffLayout = false
                                 }
                                 if (shouldDoOffLayout) doLayoutOff()
@@ -485,7 +483,8 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
 
     override fun onExitNodeSelected(exitNode: String, countryDisplayName: String) {
 
-        Prefs.setExitNodes(exitNode);
+        //tor format expects "{" for country code
+        Prefs.setExitNodes("{$exitNode}");
 
         sendIntentToService(
             Intent(this, OrbotService::class.java)

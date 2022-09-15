@@ -15,8 +15,8 @@ public class OrbotApp extends Application implements OrbotConstants {
     @Override
     public void onCreate() {
         super.onCreate();
-        Prefs.setContext(this);
-        LocaleHelper.onAttach(this);
+        Prefs.setContext(getApplicationContext());
+        LocaleHelper.onAttach(getApplicationContext());
 
         Languages.setup(OrbotMainActivity.class, R.string.menu_settings);
 
