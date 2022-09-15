@@ -12,10 +12,16 @@
                 android:icon="@drawable/ic_heart"
                 android:id="@+id/menu_help_others"
                 android:title="@string/menu_help_others"/>
+
+            <item
+                android:icon="@drawable/ic_choose_apps"
+                android:id="@+id/menu_choose_apps"
+                android:title="@string/btn_choose_apps"/>
+
             <item
                 android:icon="@drawable/ic_settings_gear"
                 android:id="@+id/menu_settings"
-                android:title="@string/menu_app_settings"/>
+                android:title="@string/menu_settings"/>
 
             <item
                 android:icon="@drawable/ic_exit"
