@@ -3,6 +3,7 @@ package org.torproject.android
 import android.content.Context
 import android.content.pm.PackageManager
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,30 +64,35 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
             container.removeAllViews()
             val icons: MutableMap<String, ImageView> = TreeMap()
             for (tordApp in tordApps) {
-                try {
-                    packageManager.getPackageInfo(tordApp, 0)
-                    val iv = ImageView(context)
-                    val applicationInfo = packageManager.getApplicationInfo(tordApp, 0)
-                    iv.setImageDrawable(packageManager.getApplicationIcon(tordApp))
-                    val params = LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                    )
-                    params.height = 100
-                    params.width = 100
-                    params.setMargins(1, 20, 1, 1)
-                    iv.layoutParams = params
-                    /**
-                    iv.setOnClickListener { v: View? ->
-                        openBrowser(
-                            OrbotMainActivity.URL_TOR_CHECK,
-                            false,
-                            tordApp
+
+                if (tordApp.isNotEmpty()) {
+                    try {
+                        packageManager.getPackageInfo(tordApp, 0)
+                        val iv = ImageView(context)
+                        val applicationInfo = packageManager.getApplicationInfo(tordApp, 0)
+                        iv.setImageDrawable(packageManager.getApplicationIcon(tordApp))
+                        val params = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.WRAP_CONTENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
                         )
-                    }**/
-                    icons[packageManager.getApplicationLabel(applicationInfo).toString()] = iv
-                } catch (e: PackageManager.NameNotFoundException) {
-                    e.printStackTrace()
+                        params.height = 100
+                        params.width = 100
+                        params.setMargins(1, 20, 1, 1)
+                        iv.layoutParams = params
+                        /**
+                        iv.setOnClickListener { v: View? ->
+                        openBrowser(
+                        OrbotMainActivity.URL_TOR_CHECK,
+                        false,
+                        tordApp
+                        )
+                        }**/
+                        icons[packageManager.getApplicationLabel(applicationInfo).toString()] = iv
+                    } catch (e: PackageManager.NameNotFoundException) {
+                        //couldn't draw icon for the package name
+                        Log.d("Orbot", "error getting package info for: " + tordApp);
+
+                    }
                 }
             }
             if (icons.isNotEmpty()) {
