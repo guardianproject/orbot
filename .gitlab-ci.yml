@@ -26,6 +26,7 @@ before_script:
 
 stages:
   - build
+  - deploy
 #  - test
 
 #lintDebug:
