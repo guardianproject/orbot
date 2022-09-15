@@ -45,7 +45,7 @@ android {
         )
         androidTestImplementation libs.fastlane_screengrab
 
-        implementation files('../libs/tor-android-binary-release.aar')
+   //     implementation files('../libs/tor-android-binary-release.aar')
 
     }
 }

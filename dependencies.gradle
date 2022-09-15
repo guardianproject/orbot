@@ -22,7 +22,7 @@ ext {
             guardian_jtorctl             : "0.4.5.7",
             ipt_proxy                    : "1.7.1",
             portmapper                   : "2.0.5",
-            tor_android                  : "0.4.7.8",
+            tor_android                  : "0.4.7.8.1",
             pcap_core                    : "1.8.2",
             pcap_factory                 : "1.8.2",
             androidx_work                : "2.7.1"

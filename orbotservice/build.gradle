@@ -49,7 +49,7 @@ dependencies {
             libs.ipt_proxy,
             libs.guardian_jsocks,
             libs.portmapper,
-      //      libs.tor_android,
+            libs.tor_android,
             libs.pcap_core,
             libs.pcap_factory,
             libs.androidx_work,
@@ -59,7 +59,7 @@ dependencies {
     //building from AAR built from https://github.com/guardianproject/tor-android/commit/95eca2a8c9eb44068f11332d7731580a13ef7b28
     //    until a new full release is done
     //implementation files('../libs/i.aar')
-    implementation files('../libs/tor-android-binary-release.aar')
-    implementation files('../libs/geoip.jar')
+  //  implementation files('../libs/tor-android-binary-release.aar')
+   // implementation files('../libs/geoip.jar')
 
 }
