@@ -1,6 +1,5 @@
 package org.torproject.android
 
-import android.R.attr.animation
 import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -146,6 +145,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                     closeDrawer()
                 }
                 R.id.menu_help_others -> openKindnessMode()
+                R.id.menu_exit -> doExit()
                 R.id.menu_v3_onion_services -> startActivity(Intent(this, OnionServiceActivity::class.java))
                 R.id.menu_v3_onion_client_auth -> startActivity(Intent(this, ClientAuthActivity::class.java))
                 R.id.menu_settings -> startActivityForResult(SettingsPreferencesActivity.createIntent(this, R.xml.preferences), REQUEST_CODE_SETTINGS)
@@ -501,5 +501,13 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         startTorAndVpn() // TODO for now just start tor and VPN, we need to decouple this down the line
     }
 
+    private fun doExit() {
+        val killIntent = Intent(this, OrbotService::class.java)
+            .setAction(OrbotConstants.ACTION_STOP)
+            .putExtra(OrbotConstants.ACTION_STOP_FOREGROUND_TASK, true)
+        sendIntentToService(OrbotConstants.ACTION_STOP_VPN)
+        startService(killIntent)
+        finish()
+    }
 
 }

@@ -16,6 +16,11 @@
                 android:icon="@drawable/ic_settings_gear"
                 android:id="@+id/menu_settings"
                 android:title="@string/menu_app_settings"/>
+
+            <item
+                android:icon="@drawable/ic_exit"
+                android:id="@+id/menu_exit"
+                android:title="@string/menu_exit"/>
         </menu>
     </item>
 
