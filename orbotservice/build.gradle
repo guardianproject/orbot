@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 31
+        targetSdkVersion 33
     }
 
     buildTypes {
@@ -23,33 +23,34 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError true
-        htmlReport true
-        xmlReport false
-        textReport false
-        lintConfig file("../lint.xml")
-        disable "InvalidPackage"
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version']
+        }
     }
 
-    packagingOptions {
-        exclude 'META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version'
+
+    lint {
+        abortOnError true
+        checkReleaseBuilds false
+        disable 'InvalidPackage'
+        htmlReport true
+        lintConfig file('../lint.xml')
+        textReport false
+        xmlReport false
     }
 }
 
 dependencies {
     api libs.guardian_jtorctl
-    implementation(
+    api libs.tor_android
+            implementation(
             libs.android_shell,
             libs.androidx_core,
             libs.androidx_localbroadcast,
             libs.ipt_proxy,
             libs.guardian_jsocks,
             libs.portmapper,
-            libs.tor_android,
             libs.pcap_core,
             libs.pcap_factory,
             libs.androidx_work,
@@ -58,8 +59,7 @@ dependencies {
 
     //building from AAR built from https://github.com/guardianproject/tor-android/commit/95eca2a8c9eb44068f11332d7731580a13ef7b28
     //    until a new full release is done
-    //implementation files('../libs/i.aar')
-  //  implementation files('../libs/tor-android-binary-release.aar')
+ //   implementation files('../libs/tor-android-0.4.7.8.1-1-g4f8a61ab.aar')
    // implementation files('../libs/geoip.jar')
 
 }

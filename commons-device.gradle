@@ -40,10 +40,6 @@ android {
         }
     }
 
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
-    }
 
     splits {
         abi {
@@ -53,9 +49,6 @@ android {
         }
     }
 
-    packagingOptions {
-        exclude 'META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version'
-    }
 }
 
 repositories {

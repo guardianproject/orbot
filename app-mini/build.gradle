@@ -5,7 +5,7 @@ android {
     defaultConfig {
         applicationId "org.torproject.android.mini"
         minSdkVersion 16
-        targetSdkVersion 31
+        targetSdkVersion 33
         multiDexEnabled true
     }
 
@@ -23,13 +23,6 @@ android {
         }
     }
 
-    packagingOptions {
-        exclude 'lib/x86/libgojni.so'
-        exclude 'lib/x86_64/libgojni.so'
-        exclude 'lib/arm64-v8a/libgojni.so'
-        exclude 'lib/armeabi-v7a/libgojni.so'
-        exclude 'lib/armeabi/libgojni.so'
-    }
     dependencies {
         implementation(
                 project(path: ':appcore'),
@@ -47,5 +40,9 @@ android {
 
    //     implementation files('../libs/tor-android-binary-release.aar')
 
+    }
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
     }
 }
