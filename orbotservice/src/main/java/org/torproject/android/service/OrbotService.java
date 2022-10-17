@@ -358,6 +358,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
         IPtProxy.startSnowflakeProxy(capacity, brokerUrl, relayUrl, stunUrl, natProbeUrl, null, keepLocalAddresses, unsafeLogging, () -> {
             snowflakeClientsConnected++;
             Prefs.addSnowflakeServed();
+            LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(LOCAL_ACTION_SNOWFLAKE_PROXY));
+
             if (!Prefs.showSnowflakeProxyMessage()) return;
             var  message = String.format(getString(R.string.snowflake_proxy_client_connected_msg), SNOWFLAKE_EMOJI, SNOWFLAKE_EMOJI);
             new Handler(getMainLooper()).post(() -> Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show());

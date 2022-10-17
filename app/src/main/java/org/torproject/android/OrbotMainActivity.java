@@ -208,6 +208,16 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
                     break;
                 }
+                case LOCAL_ACTION_SNOWFLAKE_PROXY: {
+                 //   updateStatus(STATUS_ON,"");
+
+                    if (IPtProxy.isSnowflakeProxyRunning()) {
+                        status += "\n" + getString(R.string.snowflake_proxy_enabled)
+                                + " (" + Prefs.getSnowflakesServed()+ " " + SNOWFLAKE_PROXY_EMOJI + ")";
+
+                    }
+                    lblStatus.setText(status);
+                }
                 case ACTION_STOP_VPN: {
                     mBtnVPN.setChecked(false);
                     break;
