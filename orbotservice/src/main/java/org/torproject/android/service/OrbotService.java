@@ -149,7 +149,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        logNotice(getString(R.string.log_notice_low_memory_warning));
+      //  logNotice(getString(R.string.log_notice_low_memory_warning));
     }
 
     private void clearNotifications() {
