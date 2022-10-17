@@ -6,6 +6,7 @@ package org.torproject.android;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Application;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -603,17 +604,22 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
     @SuppressWarnings("SameParameterValue")
     private void startIntent(String pkg, String action, Uri data) {
-        Intent i;
+
+        Intent i = new Intent();
         PackageManager pm = getPackageManager();
 
         try {
+            /**
+
             if (pkg != null) {
                 i = pm.getLaunchIntentForPackage(pkg);
                 if (i == null)
                     throw new PackageManager.NameNotFoundException();
             } else {
                 i = new Intent();
-            }
+            }**/
+
+            i.setPackage(pkg);
 
             i.setAction(action);
             i.setData(data);
@@ -621,7 +627,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             if (i.resolveActivity(pm) != null)
                 startActivity(i);
 
-        } catch (PackageManager.NameNotFoundException e) {
+        }
+        catch (Exception e) {
             // Should not occur. Ignore.
         }
     }
