@@ -313,7 +313,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
 
         lblStatus = findViewById(R.id.lblStatus);
         lblStatus.setOnClickListener(v -> mDrawer.openDrawer(GravityCompat.END));
-        lblStatus.setText(String.format("Tor v%s", OrbotService.BINARY_TOR_VERSION));
+        lblStatus.setText(String.format("Tor v%s", getTorVersion()));
 
         lblPorts = findViewById(R.id.lblPorts);
 
@@ -356,6 +356,9 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         findViewById(R.id.ivAppVpnSettings).setOnClickListener(v -> startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT));
     }
 
+    private String getTorVersion () {
+        return OrbotService.BINARY_TOR_VERSION.split("-")[0];
+    }
     private void resetBandwidthStatTextviews() {
         String zero = String.format("%s / %s", OrbotService.formatBandwidthCount(this, 0), formatTotal(0));
         downloadText.setText(zero);
@@ -800,7 +803,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
                     break;
 
                 case STATUS_OFF:
-                    lblStatus.setText(String.format("Tor v%s", OrbotService.BINARY_TOR_VERSION));
+                    lblStatus.setText(String.format("Tor v%s", getTorVersion()));
                     imgStatus.setImageResource(R.drawable.toroff);
                     lblPorts.setText("");
                     mBtnStart.setText(R.string.menu_start);
