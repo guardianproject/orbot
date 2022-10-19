@@ -56,9 +56,7 @@ public class Prefs {
     }
 
     public static boolean bridgesEnabled() {
-        //if phone is in Farsi, enable bridges by default
-        boolean bridgesEnabledDefault = Locale.getDefault().getLanguage().equals("fa");
-        return prefs.getBoolean(PREF_BRIDGES_ENABLED, bridgesEnabledDefault);
+        return prefs.getBoolean(PREF_BRIDGES_ENABLED, false);
     }
 
     public static void putBridgesEnabled(boolean value) {
@@ -66,10 +64,7 @@ public class Prefs {
     }
 
     public static String getBridgesList() {
-        String defaultBridgeType = "obfs4";
-        if (Locale.getDefault().getLanguage().equals("fa"))
-            defaultBridgeType = "meek"; //if Farsi, use meek as the default bridge type
-        return prefs.getString(PREF_BRIDGES_LIST, defaultBridgeType);
+        return prefs.getString(PREF_BRIDGES_LIST, "");
     }
 
     public static void setBridgesList(String value) {
