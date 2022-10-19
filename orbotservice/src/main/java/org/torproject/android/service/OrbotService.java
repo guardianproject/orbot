@@ -333,12 +333,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var target = getCdnFront("snowflake-target");
         var front = getCdnFront("snowflake-front");
         var stunServers = getCdnFront("snowflake-stun");
-       // var stunServers ="stun:stun.l.google.com:19302,stun:stun.voip.blackberry.com:3478,stun:stun.altar.com.pl:3478,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478,stun:stun.sonetel.com:3478,stun:stun.sonetel.net:3478,stun:stun.stunprotocol.org:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.voys.nl:3478";
 
         String logFile = null;
         if (Prefs.useDebugLogging())
-            logFile = "snowflake-log";
-        var logToStateDir = true;
+            logFile = new File(appCacheHome, LOG_SNOWFLAKE).getAbsolutePath();
+        var logToStateDir = false;
         var keepLocalAddresses = true;
         var unsafeLogging = Prefs.useDebugLogging();
         int maxPeers = 1;
@@ -349,15 +348,14 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     private void startSnowflakeClientAmpRendezvous() {
         var stunServers = getCdnFront("snowflake-stun");
-      //  var stunServers ="stun:stun.l.google.com:19302,stun:stun.voip.blackberry.com:3478,stun:stun.altar.com.pl:3478,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478,stun:stun.sonetel.com:3478,stun:stun.sonetel.net:3478,stun:stun.stunprotocol.org:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.voys.nl:3478";
         var target = getCdnFront("snowflake-amp-target");//"https://snowflake-broker.torproject.net/";
         var front = getCdnFront("snowflake-amp-front");//"www.google.com";
         var ampCache =getCdnFront("snowflake-amp-cache");//"https://cdn.ampproject.org/";
 
         String logFile = null;
         if (Prefs.useDebugLogging())
-            logFile = "snowflake-log";
-        var logToStateDir = true;
+            logFile = LOG_SNOWFLAKE;
+        var logToStateDir = false;
         var keepLocalAddresses = true;
         var unsafeLogging = Prefs.useDebugLogging();
         var maxPeers = 1;

@@ -43,6 +43,7 @@ public interface OrbotConstants {
 
 
     String DIRECTORY_TOR_DATA = "tordata";
+    String LOG_SNOWFLAKE = "snowflake-log";
 
     //geoip data file asset key
     String GEOIP_ASSET_KEY = "geoip";

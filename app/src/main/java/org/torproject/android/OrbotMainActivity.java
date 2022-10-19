@@ -71,6 +71,8 @@ import org.torproject.android.ui.v3onionservice.OnionServiceActivity;
 import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
 import java.net.URLDecoder;
@@ -361,13 +363,69 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
             @Override
             public void onClick(View v) {
 
+                StringBuffer sb = new StringBuffer();
+                sb.append(mTxtOrbotLog.getText()).append("\n");
+
+                File fileTorDir = null;
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    fileTorDir = new File(getDataDir(), DIRECTORY_TOR_DATA);
+                } else {
+                    fileTorDir = getDir(DIRECTORY_TOR_DATA, Application.MODE_PRIVATE);
+                }
+
+                File fileSnowflake = new File(fileTorDir,LOG_SNOWFLAKE);
+                if (fileSnowflake.exists())
+                {
+                    try {
+                        String logSnowflake = Utils.readString(new FileInputStream(fileSnowflake));
+                        sb.append(logSnowflake).append("\n");
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT,mTxtOrbotLog.getText());
+                intent.putExtra(Intent.EXTRA_TEXT,sb.toString());
                 intent.setType("text/plain");
                 startActivity(intent);
 
             }
         });
+
+        findViewById(R.id.btn_snowflake_log).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showSnowflakeLog();
+            }
+        });
+    }
+
+    private void showSnowflakeLog () {
+
+        StringBuffer sb = new StringBuffer();
+
+        File fileTorDir = null;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            fileTorDir = new File(getDataDir(), DIRECTORY_TOR_DATA);
+        } else {
+            fileTorDir = getDir(DIRECTORY_TOR_DATA, Application.MODE_PRIVATE);
+        }
+
+        File fileSnowflake = new File(fileTorDir,LOG_SNOWFLAKE);
+        if (fileSnowflake.exists())
+        {
+            try {
+                String logSnowflake = Utils.readString(new FileInputStream(fileSnowflake));
+                sb.append(logSnowflake).append("\n");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+        mTxtOrbotLog.setText(sb.toString());
+
     }
 
     private String getTorVersion () {

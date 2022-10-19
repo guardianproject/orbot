@@ -334,7 +334,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:orientation="horizontal"
             android:padding="0dp">
             <TextView
@@ -342,9 +342,18 @@
                 android:layout_height="wrap_content"
                 android:text="@string/menu_log"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_alignParentStart="true"
+                android:id="@+id/logTitle"
                 />
 
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="❄"
+                android:id="@+id/btn_snowflake_log"
+                android:visibility="visible"
+                android:layout_toRightOf="@+id/logTitle"
+                />
             <ImageButton
                 android:id="@+id/btn_share"
                 android:layout_width="wrap_content"
