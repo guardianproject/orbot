@@ -354,6 +354,20 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         mPulsator = findViewById(R.id.pulsator);
         tvVpnAppStatus = findViewById(R.id.tvVpnAppStatus);
         findViewById(R.id.ivAppVpnSettings).setOnClickListener(v -> startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT));
+
+
+        View mBtnShareLog = findViewById(R.id.btn_share);
+        mBtnShareLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT,mTxtOrbotLog.getText());
+                intent.setType("text/plain");
+                startActivity(intent);
+
+            }
+        });
     }
 
     private String getTorVersion () {
