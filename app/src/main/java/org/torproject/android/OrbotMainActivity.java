@@ -301,6 +301,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         String title = getString(R.string.app_name);
         if (IPtProxy.isSnowflakeProxyRunning()) title += " " + SNOWFLAKE_EMOJI;
         setTitle(title);
+        findViewById(R.id.btn_snowflake_log).setVisibility(Prefs.getBridgesList().contains("snowflake") ? View.VISIBLE : View.GONE);
+
     }
 
     private void doLayout() {
@@ -357,6 +359,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         tvVpnAppStatus = findViewById(R.id.tvVpnAppStatus);
         findViewById(R.id.ivAppVpnSettings).setOnClickListener(v -> startActivityForResult(new Intent(OrbotMainActivity.this, AppManagerActivity.class), REQUEST_VPN_APPS_SELECT));
 
+        findViewById(R.id.btn_snowflake_log).setVisibility(Prefs.getBridgesList().equals("snowflake") ? View.GONE : View.VISIBLE);
 
         View mBtnShareLog = findViewById(R.id.btn_share);
         mBtnShareLog.setOnClickListener(new View.OnClickListener() {
@@ -775,6 +778,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         super.onResume();
         sendIntentToService(CMD_ACTIVE);
         mBtnBridges.setChecked(Prefs.bridgesEnabled());
+
         refreshVpnState();
         setCountrySpinner();
         requestTorStatus();
