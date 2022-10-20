@@ -257,8 +257,12 @@ public class OrbotService extends VpnService implements OrbotConstants {
         if (Prefs.bridgesEnabled()) {
             if (useIPtObfsMeekProxy())
                 IPtProxy.stopObfs4Proxy();
-            else if (useIPtSnowflakeProxyDomainFronting())
+            else if (useIPtSnowflakeProxyDomainFronting()||useIPtSnowflakeProxyAMPRendezvous()) {
                 IPtProxy.stopSnowflake();
+                File fileLog =  new File(appCacheHome, LOG_SNOWFLAKE);
+                if (fileLog.exists())
+                    fileLog.delete();
+            }
         }
         else if (Prefs.beSnowflakeProxy())
             disableSnowflakeProxy();
@@ -335,13 +339,25 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var stunServers = getCdnFront("snowflake-stun");
 
         String logFile = null;
-        if (Prefs.useDebugLogging())
-            logFile = new File(appCacheHome, LOG_SNOWFLAKE).getAbsolutePath();
+        if (Prefs.useDebugLogging()) {
+            File fileLog =  new File(appCacheHome, LOG_SNOWFLAKE);
+            if (fileLog.exists())
+                fileLog.delete();
+            logFile = fileLog.getAbsolutePath();
+        }
+
         var logToStateDir = false;
         var keepLocalAddresses = true;
         var unsafeLogging = Prefs.useDebugLogging();
         int maxPeers = 1;
 
+        /**
+         * You can experiment with different settings of utls-imitate in the bridge line:
+         *
+         * hellochrome_auto
+         * helloios_auto
+         * hellorandomizedalpn
+         */
         IPtProxy.startSnowflake(stunServers, target, front, null, logFile, logToStateDir, keepLocalAddresses, unsafeLogging, maxPeers);
 
     }
@@ -353,8 +369,14 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var ampCache =getCdnFront("snowflake-amp-cache");//"https://cdn.ampproject.org/";
 
         String logFile = null;
-        if (Prefs.useDebugLogging())
-            logFile = LOG_SNOWFLAKE;
+        if (Prefs.useDebugLogging()) {
+            File fileLog =  new File(appCacheHome, LOG_SNOWFLAKE);
+            if (fileLog.exists())
+                fileLog.delete();
+            logFile = fileLog.getAbsolutePath();
+        }
+
+
         var logToStateDir = false;
         var keepLocalAddresses = true;
         var unsafeLogging = Prefs.useDebugLogging();
