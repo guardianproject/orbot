@@ -69,6 +69,7 @@
     <string name="ports_reachable_behind_a_restrictive_firewall">Ports reachable behind a restrictive firewall</string>
     <string name="enter_ports">Enter ports</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Enable debug log to output (must use adb or aLogcat to view)</string>
+    <string name="enable_snowflake_log_to_output_must_use_adb_or_alogcat_to_view_">Enable snowflake log to output (must use adb or aLogcat to view)</string>
     <string name="project_home">Project Home:</string>
     <string name="orbot_url" translatable="false">https://orbot.app/</string>
     <string name="tor_url" translatable="false">Tor: https://www.torproject.org</string>

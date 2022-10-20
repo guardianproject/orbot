@@ -230,7 +230,6 @@
             android:summary="@string/enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_"
             android:title="Debug Log" />
 
-
         <CheckBoxPreference
             android:defaultValue="true"
             android:enabled="true"
@@ -257,6 +256,14 @@
 <!--            android:key="pref_be_a_snowflake_limit"-->
 <!--            android:title="@string/be_a_snowflake_title_limit"-->
 <!--            android:summary="@string/be_a_snowflake_desc_limit" />-->
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:enabled="true"
+            android:key="pref_enable_snowflake_logging"
+            android:summary="@string/enable_snowflake_log_to_output_must_use_adb_or_alogcat_to_view_"
+            android:title="Snowflake Log" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

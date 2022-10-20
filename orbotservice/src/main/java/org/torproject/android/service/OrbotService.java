@@ -339,10 +339,12 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var stunServers = getCdnFront("snowflake-stun");
 
         String logFile = null;
-        File fileLog =  new File(appCacheHome, LOG_SNOWFLAKE);
-        if (fileLog.exists())
-            fileLog.delete();
-        logFile = fileLog.getAbsolutePath();
+        if (Prefs.useSnowflakeLogging()) {
+	    File fileLog =  new File(appCacheHome, LOG_SNOWFLAKE);
+            if (fileLog.exists())
+                fileLog.delete();
+            logFile = fileLog.getAbsolutePath();
+        }
 
         var logToStateDir = false;
         var keepLocalAddresses = true;
@@ -360,10 +362,12 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var ampCache =getCdnFront("snowflake-amp-cache");//"https://cdn.ampproject.org/";
 
         String logFile = null;
-        File fileLog =  new File(appCacheHome, LOG_SNOWFLAKE);
-        if (fileLog.exists())
-            fileLog.delete();
-        logFile = fileLog.getAbsolutePath();
+        if (Prefs.useSnowflakeLogging()) {
+            File fileLog =  new File(appCacheHome, LOG_SNOWFLAKE);
+            if (fileLog.exists())
+                fileLog.delete();
+            logFile = fileLog.getAbsolutePath();
+        }
 
         var logToStateDir = false;
         var keepLocalAddresses = true;
