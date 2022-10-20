@@ -339,25 +339,16 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var stunServers = getCdnFront("snowflake-stun");
 
         String logFile = null;
-        if (Prefs.useDebugLogging()) {
-            File fileLog =  new File(appCacheHome, LOG_SNOWFLAKE);
-            if (fileLog.exists())
-                fileLog.delete();
-            logFile = fileLog.getAbsolutePath();
-        }
+        File fileLog =  new File(appCacheHome, LOG_SNOWFLAKE);
+        if (fileLog.exists())
+            fileLog.delete();
+        logFile = fileLog.getAbsolutePath();
 
         var logToStateDir = false;
         var keepLocalAddresses = true;
         var unsafeLogging = Prefs.useDebugLogging();
         int maxPeers = 1;
 
-        /**
-         * You can experiment with different settings of utls-imitate in the bridge line:
-         *
-         * hellochrome_auto
-         * helloios_auto
-         * hellorandomizedalpn
-         */
         IPtProxy.startSnowflake(stunServers, target, front, null, logFile, logToStateDir, keepLocalAddresses, unsafeLogging, maxPeers);
 
     }
@@ -369,13 +360,10 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var ampCache =getCdnFront("snowflake-amp-cache");//"https://cdn.ampproject.org/";
 
         String logFile = null;
-        if (Prefs.useDebugLogging()) {
-            File fileLog =  new File(appCacheHome, LOG_SNOWFLAKE);
-            if (fileLog.exists())
-                fileLog.delete();
-            logFile = fileLog.getAbsolutePath();
-        }
-
+        File fileLog =  new File(appCacheHome, LOG_SNOWFLAKE);
+        if (fileLog.exists())
+            fileLog.delete();
+        logFile = fileLog.getAbsolutePath();
 
         var logToStateDir = false;
         var keepLocalAddresses = true;
@@ -1336,6 +1324,13 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 extraLines.append(' ');
                 extraLines.append(b.config);
                 extraLines.append('\n');
+                /**
+                 * You can experiment with different settings of utls-imitate in the bridge line:
+                 *
+                 * hellochrome_auto
+                 * helloios_auto
+                 * hellorandomizedalpn
+                 */
 
                 bridgeCount++;
 
