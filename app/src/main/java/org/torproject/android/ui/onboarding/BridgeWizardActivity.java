@@ -43,7 +43,8 @@ public class BridgeWizardActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        if(android.os.Build.VERSION.SDK_INT < 28){
+
+        if(android.os.Build.VERSION.SDK_INT < 24){
             findViewById(R.id.btnMoat).setVisibility(View.GONE);
             findViewById(R.id.btnBridgesSnowflake).setVisibility(View.GONE);
             findViewById(R.id.btnSnowflakeAmp).setVisibility(View.GONE);
