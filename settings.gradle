@@ -1,3 +1,5 @@
+include ':tor-android'
+include ':iptproxy'
 include ':intentintegrator'
 include ':appcore'
 include ':orbotservice'
