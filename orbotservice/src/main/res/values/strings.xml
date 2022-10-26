@@ -41,5 +41,6 @@
     <string name="log_notice_ignoring_start_request">Ignoring start request, already started.</string>
     <string name="log_notice_geoip_error">There was an error installing geoip files</string>
 
+    <string name="default_bridge" translatable="false"></string>
 </resources>
 

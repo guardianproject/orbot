@@ -2,8 +2,10 @@ package org.torproject.android.service.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 import org.torproject.android.service.OrbotConstants;
+import org.torproject.android.service.R;
 
 import java.util.Locale;
 
@@ -29,10 +31,13 @@ public class Prefs {
     private final static String PREF_SNOWFLAKES_SERVED_COUNT = "pref_snowflakes_served";
 
     private static SharedPreferences prefs;
+    private static Context sContext;
 
     public static void setContext(Context context) {
         if (prefs == null)
             prefs = getSharedPrefs(context);
+
+        sContext = context;
     }
 
     private static void putBoolean(String key, boolean value) {
@@ -56,7 +61,8 @@ public class Prefs {
     }
 
     public static boolean bridgesEnabled() {
-        return prefs.getBoolean(PREF_BRIDGES_ENABLED, false);
+        boolean bridgesEnabled = !TextUtils.isEmpty(getBridgesList());
+        return prefs.getBoolean(PREF_BRIDGES_ENABLED, bridgesEnabled);
     }
 
     public static void putBridgesEnabled(boolean value) {
@@ -64,7 +70,8 @@ public class Prefs {
     }
 
     public static String getBridgesList() {
-        return prefs.getString(PREF_BRIDGES_LIST, "");
+        String defaultBridge = sContext.getString(R.string.default_bridge);
+        return prefs.getString(PREF_BRIDGES_LIST, defaultBridge);
     }
 
     public static void setBridgesList(String value) {
@@ -113,7 +120,7 @@ public class Prefs {
     }
 
     public static boolean useVpn() {
-        return prefs.getBoolean(PREF_USE_VPN, false);
+        return prefs.getBoolean(PREF_USE_VPN, true);
     }
 
     public static void putUseVpn(boolean value) {

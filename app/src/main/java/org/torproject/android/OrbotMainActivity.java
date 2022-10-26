@@ -798,7 +798,8 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         if (Prefs.useVpn()) {
             // don't start the Intent, just update Orbot to say that VPN privileges are gone
             if (VpnService.prepare(this) != null) {
-                Prefs.putUseVpn(false);
+               // Prefs.putUseVpn(false);
+                enableVPN(true);
             }
         }
         mBtnVPN.setChecked(Prefs.useVpn());

@@ -1029,9 +1029,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 String[] bridgeListLines = parseBridgesFromSettings(bridgeList);
                 int bridgeIdx = (int) Math.floor(Math.random() * ((double) bridgeListLines.length));
                 String bridgeLine = bridgeListLines[bridgeIdx];
-                extraLines.append("Bridge ");
-                extraLines.append(bridgeLine);
-                extraLines.append("\n");
+                if (!TextUtils.isEmpty(bridgeLine)) {
+                    extraLines.append("Bridge ");
+                    extraLines.append(bridgeLine);
+                    extraLines.append("\n");
+                }
             }
         }
 

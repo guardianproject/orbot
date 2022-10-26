@@ -24,4 +24,7 @@
     <string name="updating_settings_in_tor_service">正在更新 Tor 服务中的设置</string>
   <string name="mebibyte_per_second">MiB/秒</string>
   <string name="kibibyte_per_second">KiB/秒</string>
+
+  <string name="default_bridge" translatable="false">snowflake</string>
+
 </resources>
