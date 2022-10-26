@@ -1,10 +1,19 @@
-Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.
+Orbot is a free VPN and proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.
+
+★  Traffic Privacy
+Encrypted traffic from any app, through the Tor network, gives you the highest standard of security and privacy.
+
+★ Stop Snooping
+No extra eyes know what apps you are using, and when, or can stop you from using them.
+
+★ No History
+No central logging of your traffic history or IP address by your network operator and app servers.
 
 Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” 
 
 Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.
 
-★ ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.
+★ ACCEPT NO SUBSTITUTES: Orbot is the official Tor VPN for Android. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like traditional VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.
 ★ PRIVACY FOR APPS: Any installed app can use Tor via the Orbot VPN feature, or if it has a proxy feature, using the settings found here: https://goo.gl/2OA1y Use Orbot with Twitter, or try private web searching with DuckDuckGo: https://goo.gl/lgh1p
 ★ PRIVACY FOR EVERYONE: Orbot prevents someone watching your connection from knowing what apps you are using or websites you visit. All anyone monitoring your network traffic can see is that you're using Tor.
 
