@@ -15,6 +15,7 @@ public class Prefs {
     private final static String PREF_BRIDGES_LIST = "pref_bridges_list";
     private final static String PREF_DEFAULT_LOCALE = "pref_default_locale";
     private final static String PREF_ENABLE_LOGGING = "pref_enable_logging";
+    private final static String PREF_ENABLE_SNOWFLAKE_LOGGING = "pref_enable_snowflake_logging";
     private final static String PREF_EXPANDED_NOTIFICATIONS = "pref_expanded_notifications";
     private final static String PREF_PERSIST_NOTIFICATIONS = "pref_persistent_notifications";
     private final static String PREF_START_ON_BOOT = "pref_start_boot";
@@ -109,6 +110,10 @@ public class Prefs {
 
     public static boolean useDebugLogging() {
         return prefs.getBoolean(PREF_ENABLE_LOGGING, false);
+    }
+
+    public static boolean useSnowflakeLogging() {
+        return prefs.getBoolean(PREF_ENABLE_SNOWFLAKE_LOGGING, false);
     }
 
     public static boolean allowBackgroundStarts() {
