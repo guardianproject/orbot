@@ -440,7 +440,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
         uploadText.setText(zero);
     }
 
-    private void toggleTor() { // UI entry point for  (dis)connecting to Tor
+    private synchronized void toggleTor() { // UI entry point for  (dis)connecting to Tor
         if (torStatus.equals(STATUS_OFF)) {
             lblStatus.setText(getString(R.string.status_starting_up));
             startTor();
