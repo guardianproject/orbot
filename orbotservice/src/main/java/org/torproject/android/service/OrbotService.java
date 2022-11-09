@@ -407,6 +407,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
     // if someone stops during startup, we may have to wait for the conn port to be setup, so we can properly shutdown tor
     private void stopTor()  {
         if (shouldUnbindTorService) {
+            TOR_SERVICE_STARTED = false;
+            stopService(torServiceIntent);
             unbindService(torServiceConnection); //unbinding from the tor service will stop tor
             shouldUnbindTorService = false;
             conn = null;
@@ -742,7 +744,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         }
     }
 
-    private synchronized void startTorService() throws Exception {
+    private void startTorService() throws Exception {
         updateTorConfigCustom(TorService.getDefaultsTorrc(this),
                 "DNSPort 0\n" +
                 "TransPort 0\n" +
@@ -830,13 +832,24 @@ public class OrbotService extends VpnService implements OrbotConstants {
             }
         };
 
-        Intent serviceIntent = new Intent(this, TorService.class);
+        if (torServiceIntent == null)
+            torServiceIntent = new Intent(this, TorService.class);
+
+        if (!TOR_SERVICE_STARTED) {
+            startService(torServiceIntent);
+            TOR_SERVICE_STARTED = true;
+        }
+
         if (Build.VERSION.SDK_INT < 29) {
-            shouldUnbindTorService = bindService(serviceIntent, torServiceConnection, BIND_AUTO_CREATE);
+
+            shouldUnbindTorService = bindService(torServiceIntent, torServiceConnection, 0);
         } else {
-            shouldUnbindTorService = bindService(serviceIntent, BIND_AUTO_CREATE, mExecutor, torServiceConnection);
+            shouldUnbindTorService = bindService(torServiceIntent, 0, mExecutor, torServiceConnection);
         }
     }
+
+    private Intent torServiceIntent = null;
+    private static boolean TOR_SERVICE_STARTED = false;
 
     private void sendLocalStatusOffBroadcast() {
         var localOffStatus = new Intent(LOCAL_ACTION_STATUS).putExtra(EXTRA_STATUS, STATUS_OFF);
