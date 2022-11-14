@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Orbot</string>
+  <string name="app_description">Orbot es una aplicación libre de proxy (interpuesto) que faculta a otras aplicaciones para usar Internet de forma más segura. Orbot utiliza Tor para cifrar su tráfico de Internet, y luego lo oculta rebotándolo a través de una serie de computadoras por todo el mundo. Tor es software libre y una red abierta que le ayuda a defenderse contra una forma de vigilancia de red conocida como análisis de tráfico que amenaza la libertad y la privacidad personales, las actividades y relaciones comerciales confidenciales, y la seguridad de estado.</string>
+    <string name="status_starting_up">Orbot está iniciandose...</string>
+  <string name="status_activated">Conectado a la red Tor</string>
+  <string name="status_disabled">Orbot está desactivado</string>
+  <string name="status_shutting_down">TorService se está cerrando</string>
+    <!--Welcome Wizard strings (DJH)-->
+    <!--END Welcome Wizard strings (DJH)-->
+    <!--New Wizard Strings-->
+  <!--Title Screen-->
+    <!--Warning screen-->
+    <!--Permissions screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
+    <string name="couldn_t_start_tor_process_">No se pudo iniciar el proceso de Tor: </string>
+    <string name="your_reachableaddresses_settings_caused_an_exception_">¡Sus \'Reglas de direcciones accesibles\' han producido una excepción!</string>
+  <string name="your_relay_settings_caused_an_exception_">¡La configuración de su repetidor ha producido una excepción!</string>
+    <string name="found_existing_tor_process">Se encontró un proceso de Tor ya existente...</string>
+  <string name="something_bad_happened">Hubo algún tipo de problema. Compruebe el registro (log)</string>
+    <string name="unable_to_start_tor">No fue posible iniciar Tor: </string>
+    <string name="newnym">¡Ha cambiado a una nueva identidad de Tor!</string>
+    <string name="updating_settings_in_tor_service">actualizando la configuración en el servicio Tor</string>
+</resources>
