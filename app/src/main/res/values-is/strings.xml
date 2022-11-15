@@ -162,7 +162,7 @@
     <string name="configure_custom_bridges">Stilla sérsniðnar brýr</string>
     <string name="custom_bridges">Sérsniðnar brýr</string>
     <string name="request_bridges_from_torproject">Biðja um brýr frá torproject.org</string>
-    <string name="enter_characters_from_image">Settu inn stafina úr myndinni</string>
+    <string name="enter_characters_from_image">Settu inn textann hér fyrir ofan</string>
     <string name="captcha">CAPTCHA-mennskupróf</string>
     <string name="solve_captcha_instruction">Leystu CAPTCHA-þraut til að biðja um brýr.</string>
     <string name="refresh_captcha">Endurlesa CAPTCHA</string>
@@ -206,7 +206,7 @@
     <string name="drawer_close">Loka</string>
     <string name="ports_not_set">Gáttir ekki stilltar</string>
     <string name="volunteer_mode">Vænleikahamur</string>
-    <string name="connected_title">Þú hefur tengst!</string>
+    <string name="connected_title">Tengt</string>
     <string name="btn_start_vpn">Ræsa VPN</string>
     <string name="btn_configure">Stilla</string>
     <string name="btn_tor_off">Slökkva á Tor</string>
@@ -216,9 +216,9 @@
     <string name="menu_tor_connection">Tor-tenging</string>
     <string name="menu_help_others">Hjálpa öðrum</string>
     <string name="menu_app_settings">Stillingar forrits</string>
-    <string name="secure_your_connection_title">Tryggðu tenginguna þína með Tor</string>
+    <string name="secure_your_connection_title">Tilbúið að tengjast</string>
     <string name="volunteer_mode_subtitle">Hjálpaðu öðrum að tengjast</string>
-    <string name="trying_to_connect_title">Reyni að tengjast við Tor…</string>
+    <string name="trying_to_connect_title">Tengist…</string>
     <string name="btn_refresh">Endurlesa</string>
     <string name="btn_choose_apps">Veldu forrit</string>
     <string name="btn_change_exit">Breyta útgangi</string>
@@ -231,12 +231,21 @@
     <string name="smart_connect">Snjalltenging (sjálfgefið)</string>
     <string name="direct_connect">Bein tenging við Tor</string>
     <string name="snowflake">Snowflake</string>
-    <string name="secure_your_connection_subtitle">Orbot gefur þér örugga, ótruflaða tengingu við forritin þín.</string>
-    <string name="volunteer_mode_title">Í dag er betra þín vegna</string>
+    <string name="secure_your_connection_subtitle">Feldu forrit fyrir netvöktun og náðu aðgangi þegar lokað er á þau</string>
+    <string name="volunteer_mode_title">Hjálpaðu öðrum
+\nað tengjast við Tor</string>
     <string name="volunteer_mode_label">Vænleikahamur</string>
-    <string name="volunteer_mode_weekly_label">ALLS Í VIKUNNI</string>
-    <string name="volunteer_mode_alltime_label">MANNS HJÁLPUÐU</string>
-    <string name="volunteer_mode_subtitle_desc">Vænleikahamur lætur tækið þitt verða að brú fyrir annað fólk. Það hjálpar því fólki til að komast að efni við aðstæður þar sem annars er lokað á það.</string>
+    <string name="volunteer_mode_weekly_label">Alls í vikunni</string>
+    <string name="volunteer_mode_alltime_label">Samtals frá upphafi</string>
+    <string name="volunteer_mode_subtitle_desc">Vænleikahamur lætur tækið þitt verða að brú fyrir annað fólk. Það hjálpar því fólki til að nota Tori við aðstæður þar sem annars er lokað á það.
+\n
+\n- Það mun ekki eyða rafhlöðunni þinni um of
+\n
+\n- Það mun ekki hægja á internetinu
+\n
+\n- Það getur aðeins notað þráðlaust wi-fi net
+\n
+\n- Hægt er að slökkva á því hvenær sem er</string>
     <string name="smart_connect_subtitle">Orbot reynir að tengjast við Tor með öllum tiltækum ráðum: Beint, með Snowflake, með brúm.</string>
     <string name="direct_connect_subtitle">Besta leiðin til að tengjast við Tor. Notist ef ekki er lokað á Tor.</string>
     <string name="snowflake_subtitle">Tengist í gegnum Tor-sjálfboðaliða. Kemst framhjá sumum hindrunum gagnvart Tor.</string>
@@ -253,4 +262,13 @@
     <string name="bridges_obtained_connecting">Fékk brýr! Tengist við TOR...</string>
     <string name="custom_bridge_description">Einhver sem þú þekkir er að skaffa brú. Spurðu fólk í þeim hópum sem þú treystir hvort einhver þeirra sé að hýsa brúna.</string>
     <string name="having_trouble_subtitle">Við getum næst prófað Tor-brú en þurfum þína hjálp til þess</string>
+    <string name="action_activate">Virkja</string>
+    <string name="title_choose_apps">Veldu forrit</string>
+    <string name="volunteer_status_title">Dagurinn í dag er betri
+\nþökk sé þér.</string>
+    <string name="apps_suggested_title">Tillögur að forritum</string>
+    <string name="apps_other_apps">Önnur forrit</string>
+    <string name="power_user_mode">Hamur fyrir vana notendur</string>
+    <string name="app_suggested_subtitle">Orbot virkar best með skilaboða- og samfélagsmiðlaforritum.</string>
+    <string name="power_user_description">Fyrir notendur sem vanir eru Tor. Gerir þér kleift að ræsa Orbot án VPN-stillingar og sýnir opnar SOCKS og HTTP-gáttir</string>
 </resources>
