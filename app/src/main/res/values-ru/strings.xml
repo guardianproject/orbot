@@ -85,7 +85,7 @@
     <string name="pref_disable_network_title">Автозасыпание без сети</string>
     <string name="pref_disable_network_summary">Переводить Tor в спящий режим при отсутствии интернета</string>
     <string name="newnym">Вы переключились на новый идентификатор Tor!</string>
-    <string name="pref_socks_title">Tor SOCKS proxy</string>
+    <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">Порт, на котором Tor предоставляет свой SOCKS-прокси (по умолчанию: 9050, 0 — для отключения)</string>
     <string name="pref_socks_dialog">Настройка порта SOCKS</string>
     <string name="pref_transport_title">Порт прозрачного прокси Tor</string>
@@ -211,7 +211,7 @@
     <string name="menu_header_learn">Узнать больше</string>
     <string name="btn_use_custom_bridge">Использовать пользовательский мост</string>
     <string name="msg_taking_too_long">Кажется, это займёт очень много времени</string>
-    <string name="snowflake_proxy_pref_category">Snowflake Proxy (экспериментально)</string>
+    <string name="snowflake_proxy_pref_category">Прокси Snowflake (экспериментально)</string>
     <string name="snowflake_proxy_msg_title">Показывать уведомление о подключении</string>
     <string name="snowflake_proxy_msg_description">Показывать уведомление, когда ваш Snowflake помогает кому-то обходить цензуру</string>
     <string name="version">Версия:</string>
