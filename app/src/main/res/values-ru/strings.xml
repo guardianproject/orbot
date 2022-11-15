@@ -166,7 +166,7 @@
     <string name="configure_custom_bridges">Настройка пользовательских мостов</string>
     <string name="custom_bridges">Пользовательские мосты</string>
     <string name="request_bridges_from_torproject">Запросить мосты с сайта torproject.org</string>
-    <string name="enter_characters_from_image">Введите символы с изображения</string>
+    <string name="enter_characters_from_image">Введите вышенаписанный текст</string>
     <string name="captcha">Captcha</string>
     <string name="solve_captcha_instruction">Решите CAPTCHA, чтобы запросить мосты.</string>
     <string name="refresh_captcha">Обновить CAPTCHA</string>
@@ -196,9 +196,9 @@
     <string name="allow">Разрешить</string>
     <string name="snowflake_proxy_enabled">Режим Snowflake активирован</string>
     <string name="bridge_snowflake_amp">Подключение через других пользователей Tor с помощью Snowflake (метод 2)</string>
-    <string name="connected_title">Подключено!</string>
+    <string name="connected_title">Подключено</string>
     <string name="btn_configure">Настроить</string>
-    <string name="trying_to_connect_title">Попытка подключения к Tor…</string>
+    <string name="trying_to_connect_title">Подключение…</string>
     <string name="btn_choose_apps">Выбор приложений</string>
     <string name="btn_change_exit">Сменить выходной узел</string>
     <string name="btn_refresh">Обновить</string>
@@ -217,18 +217,19 @@
     <string name="version">Версия:</string>
     <string name="license">Лицензия:</string>
     <string name="btn_tor_off">Выключить Tor</string>
-    <string name="secure_your_connection_title">Защитите своё соединение с помощью Tor</string>
-    <string name="secure_your_connection_subtitle">Orbot обеспечивает безопасное и бесперебойное соединение вашим приложениям.</string>
+    <string name="secure_your_connection_title">Готово к подключению</string>
+    <string name="secure_your_connection_subtitle">Скрывайте приложения от отслеживания в сети и получайте доступ, когда он заблокирован.</string>
     <string name="btn_start_vpn">Запуск VPN</string>
     <string name="captcha_title">Дайте нам знать, что вы человек</string>
     <string name="menu_tor_connection">Соединение Tor</string>
     <string name="menu_faq">FAQ</string>
     <string name="msg_try_something_else">Попробуйте что-нибудь ещё</string>
     <string name="strict_nodes_description">Рассматривать настройки исключённых узлов как требование для построения всех схем. Это может нарушить функциональность, если ни одна цепь не сможет быть создана с вашими настройками.</string>
-    <string name="volunteer_mode_title">Сегодняшний день стал лучше благодаря вам</string>
+    <string name="volunteer_mode_title">Помогите другим
+\nподключиться к Tor</string>
     <string name="volunteer_mode_label">Режим доброты</string>
-    <string name="volunteer_mode_weekly_label">ВСЕГО ЗА НЕДЕЛЮ</string>
-    <string name="volunteer_mode_alltime_label">ЛЮДЯМ ПОМОГЛИ</string>
+    <string name="volunteer_mode_weekly_label">Итого за неделю</string>
+    <string name="volunteer_mode_alltime_label">Итого за всё время</string>
     <string name="snowflake">Snowflake</string>
     <string name="get_a_bridge_subtitle">Маскировка вашего трафика. Обходит некоторые блокировки Tor.</string>
     <string name="custom_bridge_subtitle">Скорее всего, это поможет сохранить подключение, даже если Tor будет жёстко заблокирован. Требуется адрес моста от кого-то, кому вы доверяете.</string>
@@ -244,7 +245,15 @@
     <string name="proxy_ports">Порты прокси</string>
     <string name="ports_not_set">Порты не указаны</string>
     <string name="smart_connect_subtitle">Orbot пытается подключиться к Tor любым доступным способом: напрямую, через Snowflake, через мост.</string>
-    <string name="volunteer_mode_subtitle_desc">Режим доброты позволяет вашему устройству быть мостом для других. Это помогает людям использовать Tor в местах, где он заблокирован.</string>
+    <string name="volunteer_mode_subtitle_desc">Режим доброты позволяет вашему устройству быть мостом для других. Это помогает людям использовать Tor в местах, где он заблокирован.
+\n
+\n— Он не расходует заряд батареи
+\n
+\n— Он не замедляет ваш интернет
+\n
+\n— Он может работать только через Wi-Fi
+\n
+\n— Его можно отключить в любое время</string>
     <string name="smart_connect">Умное подключение (по умолчанию)</string>
     <string name="get_a_bridge">Получить мост из Tor (Obfs4)</string>
     <string name="direct_connect">Прямое подключение к Tor</string>
@@ -253,4 +262,13 @@
     <string name="having_trouble">Есть проблема</string>
     <string name="having_trouble_subtitle">В следующий раз можно попробовать использовать мост Tor, но понадобится ваша помощь</string>
     <string name="custom_bridge_description">Пользовательский мост предоставляется кем-то из ваших знакомых. Спросите в своих доверенных сетях и организациях, нет ли у кого-нибудь такого моста.</string>
+    <string name="power_user_mode">Режим опытного пользователя</string>
+    <string name="volunteer_status_title">Сегодня стало лучше
+\nблагодаря вам.</string>
+    <string name="title_choose_apps">Выбор приложений</string>
+    <string name="apps_suggested_title">Рекомендуемые приложения</string>
+    <string name="power_user_description">Для пользователей, знакомых с Tor. Позволяет запустить Orbot без настройки VPN и показывает открытые порты SOCKS и HTTP.</string>
+    <string name="apps_other_apps">Другие приложения</string>
+    <string name="action_activate">Активировать</string>
+    <string name="app_suggested_subtitle">Orbot лучше всего работает с приложениями для обмена сообщениями и социальными сетями.</string>
 </resources>
