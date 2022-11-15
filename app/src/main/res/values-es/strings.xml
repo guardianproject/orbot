@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbot es una aplicación libre de proxy (interpuesto) que faculta a otras aplicaciones para usar Internet de forma más segura. Orbot utiliza Tor para cifrar su tráfico de Internet, y luego lo oculta rebotándolo a través de una serie de computadoras por todo el mundo. Tor es software libre y una red abierta que le ayuda a defenderse contra una forma de vigilancia de red conocida como análisis de tráfico que amenaza la libertad y la privacidad personales, las actividades y relaciones comerciales confidenciales, y la seguridad de estado.</string>
+    <string name="app_description">Orbot es una aplicación proxy gratuita que permite a otras aplicaciones utilizar Internet de forma más segura. Orbot utiliza Tor para cifrar su tráfico de Internet y luego lo oculta rebotando a través de una serie de ordenadores en todo el mundo. Tor es un software gratuito y una red abierta que te ayuda a defenderte de una forma de vigilancia de la red que amenaza la libertad y la privacidad personal, las actividades y relaciones comerciales confidenciales y la seguridad del Estado, conocida como análisis del tráfico.</string>
     <string name="status_starting_up">Orbot está iniciandose…</string>
     <string name="status_activated">Conectado a la red Tor</string>
-    <string name="status_shutting_down">Orbot cierra</string>
+    <string name="status_shutting_down">Orbot se está cerrando</string>
     <string name="menu_settings">Ajustes</string>
     <string name="menu_log">Registro (log)</string>
     <string name="menu_start">Iniciar</string>
@@ -63,7 +63,7 @@
     <string name="use_bridges">Usar bridges</string>
     <string name="relays">Repetidores</string>
     <string name="relaying">Repetición de tráfico</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Habilitar que su dispositivo no sea repetidor de salida (de la red Tor) </string>
+    <string name="enable_your_device_to_be_a_non_exit_relay">Habilite su dispositivo para que sea un relé sin salida</string>
     <string name="relay_port">Puerto de repetidor</string>
     <string name="listening_port_for_your_tor_relay">Puerto de escucha para su repetidor Tor</string>
     <string name="enter_or_port">Introduzca puerto OR (Onion Routing, repositorio de repetidores)</string>
@@ -78,7 +78,7 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Habilitar el registro de depuración (debug log) a la salida (debe utilizar adb o aLogCat para verlo)</string>
     <string name="project_home">Proyecto de casa:</string>
     <string name="third_party_software">Software de terceros:</string>
-    <string name="hidden_service_request">Una aplicación quiere abrir el puerto %1$s de servidor oculto a la red Tor. Esto es seguro si confía en la aplicación.</string>
+    <string name="hidden_service_request">Una aplicación quiere abrir un servidor cebolla en el puerto %1$s a la red Tor. Esto es seguro si confías en la aplicación.</string>
     <string name="pref_use_expanded_notifications">Mostrar en la notificación el país y la dirección IP de su nodo de salida de tor cuando esté disponible</string>
     <string name="pref_use_expanded_notifications_title">Notificaciones expandidas</string>
     <string name="set_locale_title">Idioma</string>
@@ -162,13 +162,13 @@
     <string name="license">licencia:</string>
     <string name="v3_hosted_services">Servicios alojados en la Cebolla</string>
     <string name="v3_delete_client_authorization_confirm">Borrar la autorización del cliente</string>
-    <string name="secure_your_connection_title">Asegura tu conexión con Tor</string>
-    <string name="connected_title">¡Estás conectado!</string>
+    <string name="secure_your_connection_title">Listo para conectar</string>
+    <string name="connected_title">Conectado</string>
     <string name="btn_start_vpn">Iniciar VPN</string>
     <string name="btn_configure">Configurar</string>
     <string name="volunteer_mode">Modo Altruista</string>
     <string name="volunteer_mode_subtitle">Ayudar a otros a conectarse</string>
-    <string name="trying_to_connect_title">Intentando conectar con Tor…</string>
+    <string name="trying_to_connect_title">Conectando…</string>
     <string name="btn_choose_apps">Elija las aplicaciones</string>
     <string name="btn_change_exit">Cambiar la salida</string>
     <string name="no_thx">No, gracias</string>
@@ -214,7 +214,7 @@
     <string name="refresh_captcha">Actualizar CAPTCHA</string>
     <string name="solve_captcha_instruction">Resuelva el CAPTCHA para solicitar puentes.</string>
     <string name="captcha">Captcha</string>
-    <string name="enter_characters_from_image">Introduzca los caracteres de la imagen</string>
+    <string name="enter_characters_from_image">Introduzca el texto anterior</string>
     <string name="request_bridges_from_torproject">Solicitar puentes a torproject.org</string>
     <string name="be_a_snowflake_desc">Permitir que otros usuarios de Tor se conecten a Tor a través de su dispositivo. (Esto no se puede utilizar si se conecta junto a los puentes)</string>
     <string name="v3_onion">Dominio .onion</string>
@@ -224,7 +224,7 @@
     <string name="btn_refresh">Actualizar</string>
     <string name="snowflake_proxy_pref_category">Proxy de copos de nieve</string>
     <string name="btn_tor_off">Apagar Tor</string>
-    <string name="secure_your_connection_subtitle">Orbot te ofrece una conexión segura e ininterrumpida con tus aplicaciones.</string>
+    <string name="secure_your_connection_subtitle">Oculte las aplicaciones de la supervisión de la red y obtenga acceso cuando estén bloqueadas.</string>
     <string name="get_a_bridge">Obtener un puente de Tor (Obsf4)</string>
     <string name="direct_connect_subtitle">La mejor manera de conectarse a Tor. Usar si Tor no está bloqueado.</string>
     <string name="snowflake_subtitle">Se conecta a través de los voluntarios de Tor. Evita algunos bloqueos de Tor.</string>
@@ -232,11 +232,20 @@
     <string name="drawer_open">Abrir</string>
     <string name="drawer_close">Cerrar</string>
     <string name="proxy_ports">Puerto de Proxy</string>
-    <string name="volunteer_mode_title">Hoy es mejor gracias a ti</string>
+    <string name="volunteer_mode_title">Ayudar a otros
+\nconectarse a Tor</string>
     <string name="volunteer_mode_label">Modo Altruista</string>
     <string name="volunteer_mode_weekly_label">Total de la Semana</string>
     <string name="volunteer_mode_alltime_label">Total de Todo el Tiempo</string>
-    <string name="volunteer_mode_subtitle_desc">El modo ltruista permite que tu teléfono sea un puente para los demás. Ayuda a las personas a usar Tor en lugares donde está bloqueado.</string>
+    <string name="volunteer_mode_subtitle_desc">El modo Kindness permite que su dispositivo sea un puente para otros. Ayuda a la gente a usar Tor en lugares donde está bloqueado.
+\n
+\n- No agotará su batería
+\n
+\n- No ralentizará tu internet
+\n
+\n- Puede funcionar sólo a través de wifi
+\n
+\n- Se puede apagar en cualquier momento</string>
     <string name="smart_connect">Conexión inteligente (default)</string>
     <string name="smart_connect_subtitle">Orbot intenta conectarse a Tor a través de cualquier forma disponible: Directo, Snowflake, Bridge.</string>
     <string name="direct_connect">Conexión directa a Tor</string>
@@ -253,4 +262,13 @@
     <string name="custom_bridge_description">Un puente personalizado lo proporciona alguien que usted conoce. Pregunte dentro de sus redes y organizaciones de confianza para ver si alguien está alojando uno.</string>
     <string name="having_trouble">¿Estas teniendo problemas\?</string>
     <string name="having_trouble_subtitle">Podemos probar un puente Tor a continuación, pero necesitaremos su ayuda.</string>
+    <string name="power_user_mode">Modo de usuario avanzado</string>
+    <string name="power_user_description">Para usuarios familiarizados con Tor. Permite iniciar Orbot sin la configuración de la VPN y muestra los puertos SOCKS y HTTP abiertos</string>
+    <string name="action_activate">Activar</string>
+    <string name="volunteer_status_title">Hoy es mejor
+\ngracias a ti.</string>
+    <string name="title_choose_apps">Elija las aplicaciones</string>
+    <string name="app_suggested_subtitle">Orbot funciona mejor con aplicaciones de mensajería y redes sociales.</string>
+    <string name="apps_suggested_title">Aplicaciones sugeridas</string>
+    <string name="apps_other_apps">Otras aplicaciones</string>
 </resources>

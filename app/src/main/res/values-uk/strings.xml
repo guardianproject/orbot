@@ -162,7 +162,7 @@
     <string name="configure_custom_bridges">Сконфігурувати користувацькі мости</string>
     <string name="custom_bridges">Користувацькі мости</string>
     <string name="request_bridges_from_torproject">Запит мостів від torproject.org</string>
-    <string name="enter_characters_from_image">Введіть символи з зображення</string>
+    <string name="enter_characters_from_image">Введіть вказаний вище текст</string>
     <string name="captcha">Captcha</string>
     <string name="solve_captcha_instruction">Розв\'яжіть CAPTCHA для запиту мостів.</string>
     <string name="refresh_captcha">Оновити CAPTCHA</string>
@@ -202,12 +202,12 @@
     <string name="snowflake_proxy_msg_description">Показувати повідомлення, коли snowflake допомагає комусь обійти цензуру</string>
     <string name="bridge_snowflake_amp">Підʼєднатися через інших користувачів Tor за допомогою Snowflake (Метод 2 - AMP)</string>
     <string name="strict_nodes_description">Розгляд параметрів виключення вузлів як вимоги для побудови всіх схем. Це може порушити функціональність, якщо жодна схема не може бути згенерована з параметрами виключення вузлів.</string>
-    <string name="secure_your_connection_title">Захистіть з\'єднання за допомогою Tor</string>
-    <string name="secure_your_connection_subtitle">Orbot надає вам безпечне, безперебійне з\'єднання з вашими застосунками.</string>
-    <string name="connected_title">Ви під\'єднані!</string>
+    <string name="secure_your_connection_title">Готовий до з\'єднання</string>
+    <string name="secure_your_connection_subtitle">Приховуйте застосунки від моніторингу мережі та отримуйте доступ, коли вони заблоковані.</string>
+    <string name="connected_title">Під\'єднано</string>
     <string name="volunteer_mode">Режим доброти</string>
     <string name="volunteer_mode_subtitle">Допоможіть іншим під\'єднатися</string>
-    <string name="trying_to_connect_title">Спроба під\'єднатися до Tor…</string>
+    <string name="trying_to_connect_title">Під\'єднання…</string>
     <string name="btn_change_exit">Змінити вихід</string>
     <string name="btn_refresh">Оновити</string>
     <string name="btn_tor_off">Вимкнути Tor</string>
@@ -231,14 +231,23 @@
     <string name="ports_not_set">Порти не налаштовані</string>
     <string name="configure_header">Налаштуйте з\'єднання Tor</string>
     <string name="direct_connect_subtitle">Кращий спосіб під\'єднання до Tor. Використовуйте, якщо Tor не заблокований.</string>
-    <string name="volunteer_mode_subtitle_desc">Режим доброти дозволяє вашому пристрою бути мостом для інших. Це допомагає людям використовувати Tor в місцях, де він заблокований.</string>
+    <string name="volunteer_mode_subtitle_desc">Режим доброти дозволяє вашому пристрою бути мостом для інших. Це допомагає іншим користуватися Tor там, де він заблокований.
+\n
+\n- Це не виснажуватиме ваш акумулятор
+\n
+\n- Це не сповільнить ваш інтернет
+\n
+\n- Працює лише через Wi-Fi
+\n
+\n- Можна вимкнути у будь-який час</string>
     <string name="proxy_ports">Порти проксі</string>
     <string name="volunteer_mode_label">Режим доброти</string>
-    <string name="volunteer_mode_weekly_label">ВСЬОГО ЗА ТИЖДЕНЬ</string>
+    <string name="volunteer_mode_weekly_label">Усього за тиждень</string>
     <string name="custom_bridge">Користувацький міст</string>
     <string name="next">Далі</string>
-    <string name="volunteer_mode_title">Сьогодення краще завдяки вам</string>
-    <string name="volunteer_mode_alltime_label">ДОПОМОГА ЛЮДЯМ</string>
+    <string name="volunteer_mode_title">Допомагайте іншим
+\nпід\'єднуватися до Tor</string>
+    <string name="volunteer_mode_alltime_label">Усього за весь час</string>
     <string name="smart_connect">Розумне з\'єднання (типово)</string>
     <string name="smart_connect_subtitle">Orbot намагається під\'єднатися до Tor будь-яким доступним способом: Безпосередньо, через Snowflake, через міст.</string>
     <string name="direct_connect">Безпосереднє з\'єднання з Tor</string>
@@ -253,4 +262,13 @@
     <string name="having_trouble">Виникли проблеми</string>
     <string name="having_trouble_subtitle">Далі ми можемо спробувати Tor-міст, але нам знадобиться ваша допомога</string>
     <string name="custom_bridge_description">Спеціальний міст надається кимось із тих, кого ви знаєте. Поцікавтеся у ваших довірених мережах та організаціях, чи не розміщує хтось такий міст.</string>
+    <string name="power_user_mode">Режим досвідченого користувача</string>
+    <string name="action_activate">Активувати</string>
+    <string name="volunteer_status_title">Сьогодення краще
+\nзавдяки вам.</string>
+    <string name="app_suggested_subtitle">Orbot найкраще працює з застосунками для обміну повідомленнями та соціальними мережами.</string>
+    <string name="apps_suggested_title">Рекомендовані застосунки</string>
+    <string name="title_choose_apps">Вибрати застосунки</string>
+    <string name="power_user_description">Для користувачів, знайомих з Tor. Дозволяє запускати Orbot без налаштування VPN і показує відкриті SOCKS і HTTP-порти</string>
+    <string name="apps_other_apps">Інші застосунки</string>
 </resources>

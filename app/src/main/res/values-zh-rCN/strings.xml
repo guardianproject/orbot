@@ -162,7 +162,7 @@
     <string name="configure_custom_bridges">配置自定义网桥</string>
     <string name="custom_bridges">自定义网桥</string>
     <string name="request_bridges_from_torproject">从 torproject.org 请求网桥</string>
-    <string name="enter_characters_from_image">输入来自图片的字符</string>
+    <string name="enter_characters_from_image">输入上方文本</string>
     <string name="captcha">验证码</string>
     <string name="solve_captcha_instruction">解决验证码来请求网桥。</string>
     <string name="refresh_captcha">刷新验证码</string>
@@ -188,7 +188,7 @@
     <string name="v3_onion">.onion 域名</string>
     <string name="v3_key_hash">Base 32 编码的 x25519 私钥</string>
     <string name="v3_client_auth_activity_title">客户端授权</string>
-    <string name="v3_hosted_services">托管的 Onion 服务</string>
+    <string name="v3_hosted_services">托管的洋葱服务</string>
     <string name="deny">拒绝</string>
     <string name="allow">允许</string>
     <string name="backup_port_exist">错误：一个 Onion 服务已经在使用端口 %s</string>
@@ -201,11 +201,11 @@
     <string name="bridge_snowflake_amp">使用 Snowflake 通过其他 Tor 用户连接（方法 2 - AMP）</string>
     <string name="snowflake_proxy_msg_title">显示连接通知</string>
     <string name="snowflake_proxy_msg_description">当您的 Snowflake 帮助某人规避审查时显示一条消息</string>
-    <string name="secure_your_connection_title">用 Tor 保护你的连接</string>
-    <string name="connected_title">你已连接！</string>
+    <string name="secure_your_connection_title">准备好连接</string>
+    <string name="connected_title">已连接</string>
     <string name="strict_nodes_description">将“排除节点”设置作为构建所有电路的必要条件。如果你的“排除节点”设置无法生成电路，可能会破坏功能。</string>
     <string name="volunteer_mode">善举模式</string>
-    <string name="trying_to_connect_title">正尝试连接到 Tor…</string>
+    <string name="trying_to_connect_title">连接中…</string>
     <string name="volunteer_mode_subtitle">帮助其他人连接</string>
     <string name="btn_tor_off">关闭 Tor</string>
     <string name="menu_header_features">功能</string>
@@ -213,7 +213,7 @@
     <string name="menu_header_learn">了解更多</string>
     <string name="btn_use_custom_bridge">使用自定义网桥</string>
     <string name="msg_try_something_else">试试别的</string>
-    <string name="secure_your_connection_subtitle">Orbot 给你一个安全、不间断的应用程序连接。</string>
+    <string name="secure_your_connection_subtitle">从网络监控中隐藏应用，并在它们被阻止时获得访问权限。</string>
     <string name="btn_start_vpn">启动 VPN</string>
     <string name="btn_configure">配置</string>
     <string name="no_thx">不，谢谢</string>
@@ -233,11 +233,20 @@
     <string name="proxy_ports">代理端口</string>
     <string name="drawer_open">打开</string>
     <string name="volunteer_mode_label">善举模式</string>
-    <string name="volunteer_mode_weekly_label">每周总计</string>
-    <string name="volunteer_mode_title">今天因你而更好</string>
-    <string name="volunteer_mode_alltime_label">帮助的人</string>
+    <string name="volunteer_mode_weekly_label">一周总计</string>
+    <string name="volunteer_mode_title">帮助他人
+\n连接到 Tor</string>
+    <string name="volunteer_mode_alltime_label">所有时间总计</string>
     <string name="get_a_bridge_subtitle">伪装流量。 绕过一些 Tor 屏蔽。</string>
-    <string name="volunteer_mode_subtitle_desc">善举模式让你的设备成为他人的网桥。 它帮助人们在 Tor 被阻止的地方使用 Tor。</string>
+    <string name="volunteer_mode_subtitle_desc">善举模式让你的设备成为他人的网桥。 它帮助人们在 Tor 被阻止的地方使用 Tor。
+\n
+\n- 它不会耗尽你的电量
+\n
+\n - 它不会拖慢网速
+\n
+\n - 它只能通过 wifi 运行
+\n
+\n - 你可以随时关闭它</string>
     <string name="snowflake">Snowflake</string>
     <string name="custom_bridge">定制网桥</string>
     <string name="smart_connect">智能连接（默认）</string>
@@ -253,4 +262,13 @@
     <string name="having_trouble_subtitle">我们接下来可以尝试 Tor 网桥，但需要你的帮助</string>
     <string name="bridges_obtained_connecting">已获取网桥！正在连接到 tor…</string>
     <string name="custom_bridge_description">自定义网桥是由你认识的人提供的。问问你所信任的人际网络和组织，看看是否有人托管网桥。</string>
+    <string name="power_user_mode">高级用户模式</string>
+    <string name="power_user_description">适合熟悉 Tor 的用户。 允许在没有 VPN 设置的情况下启动 Orbot 并显示打开的 SOCKS 和 HTTP 端口</string>
+    <string name="title_choose_apps">选择应用</string>
+    <string name="app_suggested_subtitle">Orbot 最适合消息传递和社交媒体应用。</string>
+    <string name="apps_suggested_title">推荐的应用</string>
+    <string name="apps_other_apps">其他应用</string>
+    <string name="action_activate">激活</string>
+    <string name="volunteer_status_title">今天因你
+\n而更好。</string>
 </resources>

@@ -10,7 +10,7 @@
 
 ***Mums patinka atsiliepimai***
 ★ APIE MUS: „Guardian Project“ yra kūrėjų grupė, kurianti saugias mobiliąsias programėles ir atvirojo kodo kodą geresniam rytojui.
-★ ATVIRAS KODAS: „Orbot“ yra laisva programinė įranga. Peržiūrėkite mūsų pirminį kodą arba prisijunkite prie bendruomenės ir tobulinkite jį: https://github.com/guardianproject/orbot arba https://gitweb.torproject.org/orbot.git.
+★ ATVIRAS KODAS: „Orbot“ yra laisva programinė įranga. Peržiūrėkite mūsų pirminį kodą arba prisijunkite prie bendruomenės ir tobulinkite jį: https://github.com/guardianproject/orbot
 ★ PARAŠYKITE MUMS: Ar trūksta jūsų mėgstamiausios funkcijos? Radote erzinančią klaidą? Norėtume išgirsti jūsų nuomonę! Siųskite mums el. laišką: support@guardianproject.info
 
 ***Atsakomybės apribojimas***

@@ -5,7 +5,7 @@
     <string name="status_starting_up">O Orbot está iniciando…</string>
     <string name="status_activated">Conectado à rede Tor</string>
     <string name="status_shutting_down">O Orbot está desligando</string>
-    <string name="menu_settings">Configurações</string>
+    <string name="menu_settings">Definições</string>
     <string name="menu_log">Registro</string>
     <string name="menu_start">Iniciar</string>
     <string name="menu_stop">Parar</string>
@@ -169,7 +169,7 @@
     <string name="pref_reduced_circuit_padding">Preenchimento reduzido do circuito</string>
     <string name="pref_circuit_padding_summary">Ative o preenchimento do circuito para se defender contra algumas formas de análise de tráfego</string>
     <string name="pref_circuit_padding">Preenchimento do circuito</string>
-    <string name="enter_characters_from_image">Digite os caracteres da imagem</string>
+    <string name="enter_characters_from_image">Digite o texto acima</string>
     <string name="captcha">Captcha</string>
     <string name="solve_captcha_instruction">Para solicitar pontes resolva o CAPTCHA.</string>
     <string name="request_bridges">Solicitar Pontes</string>
@@ -208,13 +208,13 @@
     <string name="menu_header_learn">Saiba mais</string>
     <string name="msg_taking_too_long">Isso parece estar demorando demais</string>
     <string name="msg_try_something_else">Tente outra coisa</string>
-    <string name="secure_your_connection_title">Proteja a sua conexão com o Tor</string>
-    <string name="connected_title">Você está conectado!</string>
-    <string name="secure_your_connection_subtitle">O Orbot oferece uma conexão segura e ininterrupta aos seus aplicativos.</string>
+    <string name="secure_your_connection_title">Pronto para conectar</string>
+    <string name="connected_title">Conectado</string>
+    <string name="secure_your_connection_subtitle">Oculte o aplicativos do monitoramento da rede e obtenha acesso quando eles estiverem bloqueados.</string>
     <string name="btn_configure">Configurar</string>
     <string name="btn_start_vpn">Iniciar a VPN</string>
     <string name="volunteer_mode">Modo bondade</string>
-    <string name="trying_to_connect_title">Tentando se conectar ao Tor…</string>
+    <string name="trying_to_connect_title">Conectando…</string>
     <string name="btn_change_exit">Altere a saída</string>
     <string name="menu_help_others">Ajude os outros</string>
     <string name="btn_choose_apps">Escolha os aplicativos</string>
@@ -226,7 +226,15 @@
     <string name="menu_tor_connection">Conexão Tor</string>
     <string name="btn_use_custom_bridge">Use uma ponte personalizada</string>
     <string name="configure_header">Configure a sua conexão Tor</string>
-    <string name="volunteer_mode_subtitle_desc">O modo de bondade permite que o seu dispositivo seja uma ponte para as outras pessoas. Ele ajuda as pessoas a usarem o Tor em lugares onde ele está bloqueado.</string>
+    <string name="volunteer_mode_subtitle_desc">O modo bondade permite que o seu dispositivo seja uma ponte para os outros. Ajuda as pessoas a usar o Tor em lugares onde ele esteja bloqueado.
+\n
+\n- Não drenará a sua bateria
+\n
+\n- Não desacelerará a sua internet
+\n
+\n- Só funciona via wi-fi
+\n
+\n- Pode ser desligado a qualquer momento</string>
     <string name="drawer_open">Abrir</string>
     <string name="drawer_close">Fechar</string>
     <string name="direct_connect">Conexão direta com o Tor</string>
@@ -236,10 +244,11 @@
     <string name="connect">Conectar</string>
     <string name="next">Próximo</string>
     <string name="proxy_ports">Portas do proxy</string>
-    <string name="volunteer_mode_title">Hoje é melhor por sua causa</string>
+    <string name="volunteer_mode_title">Ajude outros
+\na se conectar ao Tor</string>
     <string name="volunteer_mode_label">Modo bondade</string>
-    <string name="volunteer_mode_weekly_label">TOTAL SEMANAL</string>
-    <string name="volunteer_mode_alltime_label">PESSOAS AJUDADAS</string>
+    <string name="volunteer_mode_weekly_label">Total semanal</string>
+    <string name="volunteer_mode_alltime_label">Total de todos os períodos</string>
     <string name="ports_not_set">Portas não definidas</string>
     <string name="smart_connect">Conexão inteligente (padrão)</string>
     <string name="smart_connect_subtitle">O Orbot tenta se conectar ao Tor por qualquer meio disponível: Direto, Snowflake, Ponte.</string>
@@ -253,4 +262,13 @@
     <string name="custom_bridge_description">Uma ponte personalizada foi fornecida por alguém que você conhece. Pergunte em suas redes e organizações confiáveis para ver se alguém está hospedando um.</string>
     <string name="having_trouble_subtitle">Podemos tentar uma ponte Tor em seguida, mas precisaremos da sua ajuda</string>
     <string name="having_trouble">Tendo problemas</string>
+    <string name="power_user_description">Para usuários familiarizados com Tor. Permite que você inicie o Orbot sem a configuração VPN e mostra as portas SOCKS e HTTP que estejam abertas</string>
+    <string name="action_activate">Ativar</string>
+    <string name="volunteer_status_title">Hoje está melhor
+\npor sua causa.</string>
+    <string name="title_choose_apps">Escolha os aplicativos</string>
+    <string name="app_suggested_subtitle">O Orbot funciona melhor com aplicativos de mensagens e mídias sociais.</string>
+    <string name="apps_suggested_title">Sugestões de aplicativos</string>
+    <string name="apps_other_apps">Outros aplicativos</string>
+    <string name="power_user_mode">Modo de usuário avançado</string>
 </resources>
