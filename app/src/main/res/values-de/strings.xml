@@ -202,4 +202,5 @@
     <string name="pref_circuit_padding_summary">Circuit-Padding zum Schutz vor einigen Formen der Verkehrsanalyse aktivieren</string>
     <string name="strict_nodes_description">Behandeln Sie die Einstellungen „Knoten ausschließen“ als Voraussetzung für die Erstellung aller Kreisläufe. Dies kann die Funktionalität beeinträchtigen, wenn keine Kreisläufe mit Ihren Einstellungen für Ausschlussknoten erstellt werden können.</string>
     <string name="pref_circuit_padding">Circuit-Padding</string>
+    <string name="secure_your_connection_title">Bereit zum Verbinden</string>
 </resources>
