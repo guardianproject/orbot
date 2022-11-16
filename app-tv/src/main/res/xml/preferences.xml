@@ -185,6 +185,18 @@
             android:summary="@string/pref_isolate_dest_summary"
             android:title="@string/pref_isolate_dest" />
         <CheckBoxPreference
+            android:defaultValue="false"
+            android:enabled="true"
+            android:key="pref_isolate_port"
+            android:summary="@string/pref_isolate_port_summary"
+            android:title="@string/pref_isolate_port" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:enabled="true"
+            android:key="pref_isolate_protocol"
+            android:summary="@string/pref_isolate_protocol_summary"
+            android:title="@string/pref_isolate_protocol" />
+        <CheckBoxPreference
             android:defaultValue="true"
             android:enabled="true"
             android:key="pref_prefer_ipv6"
