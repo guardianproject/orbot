@@ -9,7 +9,7 @@
     <string name="menu_log">Log</string>
     <string name="menu_start">Indítás</string>
     <string name="menu_stop">Leállítás</string>
-    <string name="menu_about">Névjegy</string>
+    <string name="menu_about">Rólunk</string>
     <string name="main_layout_download">Letöltés</string>
     <string name="main_layout_upload">Feltöltés</string>
     <string name="button_about">Névjegy</string>
