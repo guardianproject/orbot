@@ -162,7 +162,7 @@
     <string name="configure_custom_bridges">Özel Köprüleri Yapılandır</string>
     <string name="custom_bridges">Özel Köprüler</string>
     <string name="request_bridges_from_torproject">torproject.org\'dan Köprü İste</string>
-    <string name="enter_characters_from_image">Resimdeki karakterleri girin</string>
+    <string name="enter_characters_from_image">Yukarıdaki metni girin</string>
     <string name="captcha">CAPTCHA</string>
     <string name="solve_captcha_instruction">Köprü istemek için CAPTCHA\'yı çözün.</string>
     <string name="refresh_captcha">CAPTCHA\'yı Yenile</string>
@@ -202,18 +202,18 @@
     <string name="snowflake_proxy_msg_title">Bağlantı Bildirimi Göster</string>
     <string name="snowflake_proxy_msg_description">Snowflake sayesinde birinin sansürü atlatmasına yardımcı olunduğunda bir mesaj göster</string>
     <string name="strict_nodes_description">Katılmayacak Düğümler ayarlarını tüm devreleri oluştururken bir gereklilik olarak ele alın. Bu, Katılmayacak Düğümler ayarlarınızla hiçbir devre oluşturulamıyorsa işlevselliği bozabilir.</string>
-    <string name="secure_your_connection_subtitle">Orbot, uygulamalarınıza güvenli ve kesintisiz bir bağlantı sağlar.</string>
-    <string name="connected_title">Bağlandınız!</string>
+    <string name="secure_your_connection_subtitle">Uygulamaları ağ izlemeden gizleyin ve engellendiklerinde erişim sağlayın.</string>
+    <string name="connected_title">Bağlandı</string>
     <string name="btn_configure">Yapılandır</string>
     <string name="volunteer_mode">Nezaket Modu</string>
     <string name="volunteer_mode_subtitle">Başkalarının bağlanmasına yardım edin</string>
-    <string name="trying_to_connect_title">Tor\'a bağlanmaya çalışılıyor…</string>
+    <string name="trying_to_connect_title">Bağlanıyor…</string>
     <string name="menu_tor_connection">Tor Bağlantısı</string>
     <string name="menu_help_others">Başkalarına Yardım Et</string>
     <string name="msg_taking_too_long">Bu çok uzun sürüyor gibi görünüyor</string>
     <string name="msg_try_something_else">Başka bir şey deneyin</string>
     <string name="btn_start_vpn">VPN\'i başlat</string>
-    <string name="secure_your_connection_title">Tor ile bağlantınızı güvenli hale getirin</string>
+    <string name="secure_your_connection_title">Bağlanmaya hazır</string>
     <string name="btn_use_custom_bridge">Özel Köprü Kullan</string>
     <string name="menu_header_learn">Daha fazla bilgi edin</string>
     <string name="btn_choose_apps">Uygulamaları seç</string>
@@ -227,8 +227,9 @@
     <string name="menu_faq">SSS</string>
     <string name="drawer_open">Aç</string>
     <string name="drawer_close">Kapat</string>
-    <string name="volunteer_mode_title">Bugün sizin sayenizde daha iyi</string>
-    <string name="volunteer_mode_alltime_label">YARDIM EDİLEN KİŞİLER</string>
+    <string name="volunteer_mode_title">Başkalarının Tor\'a 
+\nbağlanmasına yardımcı olun</string>
+    <string name="volunteer_mode_alltime_label">Tüm Zamanlar Toplamı</string>
     <string name="smart_connect">Akıllı Bağlan (öntanımlı)</string>
     <string name="direct_connect">Tor\'a Doğrudan Bağlantı</string>
     <string name="direct_connect_subtitle">Tor\'a bağlanmanın en iyi yolu. Tor engelli değilse kullanın.</string>
@@ -239,13 +240,21 @@
     <string name="connect">Bağlan</string>
     <string name="next">Sonraki</string>
     <string name="solve_captcha">Captcha Çöz</string>
-    <string name="volunteer_mode_weekly_label">HAFTALIK TOPLAM</string>
+    <string name="volunteer_mode_weekly_label">Haftalık Toplam</string>
     <string name="configure_header">Tor Bağlantınızı Yapılandırın</string>
     <string name="proxy_ports">Vekil Bağlantı Noktaları</string>
     <string name="ports_not_set">Bağlantı Noktaları Ayarlanmadı</string>
     <string name="custom_bridge_subtitle">Tor ciddi şekilde engellendiyse büyük olasılıkla bağlı kalmanızı sağlar. Güvendiğiniz birinden bir köprü adresi gerektirir.</string>
     <string name="volunteer_mode_label">Nezaket Modu</string>
-    <string name="volunteer_mode_subtitle_desc">Nezaket modu, aygıtınızın başkaları için bir köprü olmasını sağlar. İnsanların Tor\'u engellendiği yerlerde kullanmasına yardımcı olur.</string>
+    <string name="volunteer_mode_subtitle_desc">Nezaket modu, aygıtınızın başkaları için bir köprü olmasını sağlar. İnsanların Tor\'u engellendiği yerlerde kullanmasına yardımcı olur.
+\n
+\n- Pilinizi boşaltmaz
+\n
+\n- İnternetinizi yavaşlatmaz
+\n
+\n- Sadece wi-fi üzerinden çalışabilir
+\n
+\n- İstenildiği zaman kapatılabilir</string>
     <string name="smart_connect_subtitle">Orbot, Tor\'a kullanılabilir herhangi bir yolla bağlanmayı dener: Doğrudan, Snowflake, Köprü.</string>
     <string name="snowflake">Snowflake</string>
     <string name="incorrect_solution">Yanlış Çözüm</string>
@@ -253,4 +262,13 @@
     <string name="custom_bridge_description">Tanıdığınız biri tarafından özel bir köprü sağlanır. Güvenilir ağlarınızda ve kuruluşlarınızda barındıran biri olup olmadığını sorun.</string>
     <string name="having_trouble">Sorun yaşıyorum</string>
     <string name="having_trouble_subtitle">Bir sonraki adımda Tor köprüsünü deneyebiliriz ancak yardımınıza ihtiyacımız olacak</string>
+    <string name="volunteer_status_title">Bugün sizin 
+\nsayenizde daha iyi.</string>
+    <string name="title_choose_apps">Uygulamaları Seç</string>
+    <string name="apps_suggested_title">Önerilen Uygulamalar</string>
+    <string name="power_user_mode">Uzman Kullanıcı Modu</string>
+    <string name="action_activate">Etkinleştir</string>
+    <string name="app_suggested_subtitle">Orbot en iyi mesajlaşma ve sosyal medya uygulamalarıyla çalışır.</string>
+    <string name="power_user_description">Tor\'a aşina olan kullanıcılar için. Orbot\'u VPN ayarı olmadan başlatmanıza izin verir ve açık SOCKS ve HTTP bağlantı noktalarını gösterir</string>
+    <string name="apps_other_apps">Diğer Uygulamalar</string>
 </resources>

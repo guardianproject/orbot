@@ -28,8 +28,8 @@
     <string name="pref_start_boot_summary">Pornește automat Orbot și conectează Tor atunci când dispozitivul tău Android pornește</string>
     <string name="pref_start_boot_title">Porniți Orbot la pornire</string>
     <string name="wizard_details_msg">Orbot este o aplicație open-source care conține Tor, OIPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks și LibEvent. Acesta oferă un proxy HTTP local (8118) și un proxy SOCKS (9050) în rețeaua Tor. Orbot are, de asemenea, capacitatea, pe dispozitivul înrădăcinat, de a trimite tot traficul de internet prin Tor.</string>
-    <string name="menu_share_bridge">Distribuie BridgeQR</string>
-    <string name="menu_scan">Scanare BridgeQR</string>
+    <string name="menu_share_bridge">Partajați cod QR punte</string>
+    <string name="menu_scan">Scanare cod QR punte</string>
     <string name="main_layout_upload">Încărcați</string>
     <string name="main_layout_download">Descărcați</string>
     <string name="menu_stop">Stop</string>
@@ -42,21 +42,21 @@
     <string name="app_name">Orbot</string>
     <string name="be_a_snowflake_desc_limit">Numai atunci când dispozitivul este conectat la priză și pe wifi</string>
     <string name="be_a_snowflake_title_limit">Limitele Proxy Snowflake</string>
-    <string name="be_a_snowflake_desc">Permiteți altor utilizatori Tor să se conecteze la Tor prin intermediul dispozitivului dumneavoastră. (Aceasta nu poate fi utilizată dacă vă conectați alături de poduri)</string>
+    <string name="be_a_snowflake_desc">Permiteți altor utilizatori Tor să se conecteze la Tor prin intermediul dispozitivului dumneavoastră. (Aceasta nu poate fi utilizată dacă vă conectați alături de punți)</string>
     <string name="be_a_snowflake_title">Rulați Snowflake Proxy</string>
     <string name="bridge_snowflake">Conectați-vă prin intermediul altor utilizatori Tor folosind Snowflake (Metoda 1 - Fastly)</string>
     <string name="use_qr_code">Utilizați codul QR</string>
-    <string name="paste_bridges">Poduri de lipire</string>
+    <string name="paste_bridges">Lipire adrese punți</string>
     <string name="in_a_browser">Într-un browser, vizitați %s și atingeți Get Bridges &gt; Just Give Me Bridges!</string>
-    <string name="use_custom_bridges">Utilizați poduri personalizate</string>
+    <string name="use_custom_bridges">Utilizați punți personalizate</string>
     <string name="configure_custom_bridges">Configurarea punților personalizate</string>
-    <string name="custom_bridges">Poduri personalizate</string>
-    <string name="request_bridges_from_torproject">Cereți poduri de la torproject.org</string>
-    <string name="enter_characters_from_image">Introduceți caracterele din imagine</string>
+    <string name="custom_bridges">Punți personalizate</string>
+    <string name="request_bridges_from_torproject">Cereți punți de la torproject.org</string>
+    <string name="enter_characters_from_image">Introduceți textul de mai sus</string>
     <string name="captcha">Captcha</string>
-    <string name="solve_captcha_instruction">Rezolvați CAPTCHA pentru a solicita poduri.</string>
+    <string name="solve_captcha_instruction">Rezolvați CAPTCHA pentru a solicita punți.</string>
     <string name="refresh_captcha">Actualizați CAPTCHA</string>
-    <string name="request_bridges">Solicită poduri</string>
+    <string name="request_bridges">Solicită punți</string>
     <string name="refresh_apps">Aplicații de reîmprospătare</string>
     <string name="app_services">Servicii de aplicații</string>
     <string name="user_services">Servicii pentru utilizatori</string>
@@ -66,7 +66,7 @@
     <string name="trouble_connecting">Probleme la conectare\?</string>
     <string name="bridge_cloud">Conectare prin intermediul serverelor cloud</string>
     <string name="bridge_community">Conectați-vă prin intermediul serverelor comunității</string>
-    <string name="bridge_direct_connect">Conectați-vă direct la Tor (Cel mai bun)</string>
+    <string name="bridge_direct_connect">Conectați-vă direct la Tor (Cel mai bine)</string>
     <string name="testing_tor_direct_success">Succes. Configurația punții este bună!</string>
     <string name="testing_tor_direct">Testarea conexiunii la Tor…</string>
     <string name="app_shortcuts">Aplicații compatibile cu Tor</string>
@@ -106,7 +106,7 @@
     <string name="name">Nume</string>
     <string name="onion_port">Portul Onion</string>
     <string name="local_port">Port local</string>
-    <string name="save">Salvează</string>
+    <string name="save">Salvați</string>
     <string name="menu_hidden_services">Onion Servicii</string>
     <string name="confirm">Confirmați</string>
     <string name="v3_import_auth_private">Importați .auth_private</string>
@@ -123,11 +123,11 @@
     <string name="vpn_default_world">Nivel global (Auto)</string>
     <string name="send_email">Trimiteți un e-mail</string>
     <string name="apps_mode">Mod VPN</string>
-    <string name="get_bridges_email_request">Solicită poduri prin e-mail</string>
+    <string name="get_bridges_email_request">Solicită punți prin e-mail</string>
     <string name="get_bridges_email">E-mail</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Dacă rețeaua dumneavoastră de telefonie mobilă blochează în mod activ Tor, puteți utiliza un \"Bridge Server\" ca o cale alternativă de acces. Selectați una dintre opțiuni pentru a configura și testa…</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Dacă rețeaua dumneavoastră de telefonie mobilă blochează în mod activ Tor, puteți utiliza un \"Server punte\" ca o cale alternativă de acces. Selectați una dintre opțiuni pentru a configura și testa…</string>
     <string name="restart_orbot_to_use_this_bridge_">Vă rugăm să reporniți Orbot pentru a activa modificările</string>
-    <string name="bridges_updated">Poduri actualizate</string>
+    <string name="bridges_updated">Punți actualizate</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
     <string name="pref_torrc_dialog">Torrc personalizat</string>
@@ -173,8 +173,8 @@
     <string name="enable_your_device_to_be_a_non_exit_relay">Activați dispozitivul pentru a fi un releu non-exit</string>
     <string name="relaying">Redirecționare</string>
     <string name="relays">Relee</string>
-    <string name="use_bridges">Utilizați poduri</string>
-    <string name="bridges">Poduri</string>
+    <string name="use_bridges">Utilizați punți</string>
+    <string name="bridges">Punți</string>
     <string name="strict_nodes">Noduri stricte</string>
     <string name="enter_exclude_nodes">Introduceți Noduri de excludere</string>
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Amprentele digitale, crestăturile, țările și adresele de exclus</string>
@@ -206,7 +206,7 @@
     <string name="btn_configure">Configurează</string>
     <string name="volunteer_mode">Modul Bunătate</string>
     <string name="volunteer_mode_subtitle">Ajută-i pe alții să se conecteze</string>
-    <string name="trying_to_connect_title">Se încearcă conectarea la Tor…</string>
+    <string name="trying_to_connect_title">Se conectează…</string>
     <string name="btn_choose_apps">Alegere aplicații</string>
     <string name="btn_change_exit">Schimbare ieșire</string>
     <string name="btn_refresh">Actualizează</string>
@@ -218,10 +218,10 @@
     <string name="menu_app_settings">Setări aplicație</string>
     <string name="menu_faq">Întrebări frecvente</string>
     <string name="menu_header_learn">Află mai multe</string>
-    <string name="btn_use_custom_bridge">Utilizați Punte personalizată</string>
-    <string name="secure_your_connection_title">Protejați-vă conexiunea cu Tor</string>
-    <string name="secure_your_connection_subtitle">Orbot vă oferă o conexiune sigură și neîntreruptă pentru aplicațiile dumneavoastră.</string>
-    <string name="connected_title">Sunteți conectați!</string>
+    <string name="btn_use_custom_bridge">Utilizați punte personalizată</string>
+    <string name="secure_your_connection_title">Gata de conectare</string>
+    <string name="secure_your_connection_subtitle">Ascundeți aplicațiile de monitorizarea rețelei și obțineți acces atunci când acestea sunt blocate.</string>
+    <string name="connected_title">Conectat</string>
     <string name="menu_tor_connection">Conexiunea Tor</string>
     <string name="msg_taking_too_long">Acest lucru pare să dureze prea mult timp</string>
     <string name="msg_try_something_else">Încearcă altceva</string>
@@ -230,22 +230,45 @@
     <string name="drawer_close">Închide</string>
     <string name="proxy_ports">Porturi proxy</string>
     <string name="ports_not_set">Porturile nu sunt setate</string>
-    <string name="volunteer_mode_title">Astăzi este o zi mai bună datorită ție</string>
+    <string name="volunteer_mode_title">Ajutați-i pe alții
+\nsă se conecteze la Tor</string>
     <string name="volunteer_mode_label">Modul Bunătate</string>
-    <string name="volunteer_mode_weekly_label">TOTAL SĂPTĂMÂNAL</string>
-    <string name="volunteer_mode_alltime_label">OAMENI AJUTAȚI</string>
-    <string name="volunteer_mode_subtitle_desc">Modul Bunătate permite dispozitivului dvs. să fie o punte de legătură pentru ceilalți. Ajută oamenii să folosească Tor în locurile în care acesta este blocat.</string>
+    <string name="volunteer_mode_weekly_label">Total săptămânal</string>
+    <string name="volunteer_mode_alltime_label">Tot timpul total</string>
+    <string name="volunteer_mode_subtitle_desc">Modul Bunătate permite dispozitivului dvs. să fie o punte de legătură pentru ceilalți. Ajută oamenii să folosească Tor în locurile în care acesta este blocat.
+\n
+\n- Nu vă va consuma bateria
+\n
+\n- Nu vă va încetini internetul
+\n
+\n- Poate funcționa doar prin wifi
+\n
+\n- Poate fi oprit oricând</string>
     <string name="smart_connect">Conectare inteligentă (implicită)</string>
     <string name="direct_connect">Conexiune directă la Tor</string>
     <string name="direct_connect_subtitle">Cel mai bun mod de a vă conecta la Tor. Utilizați dacă Tor nu este blocat.</string>
     <string name="snowflake">Snowflake</string>
     <string name="snowflake_subtitle">Se conectează prin intermediul voluntarilor Tor. Ocolește unele blocaje Tor.</string>
-    <string name="get_a_bridge">Obțineți un Bridge de la Tor (Obfs4)</string>
-    <string name="get_a_bridge_subtitle">Ascunde traficul. Ocolește unele blocaje Tor.</string>
-    <string name="custom_bridge">Bridge personalizat</string>
-    <string name="custom_bridge_subtitle">Cel mai probabil vă va menține conectat dacă Tor este blocat în mod sever. Necesită o adresă de bridge de la o persoană de încredere.</string>
+    <string name="get_a_bridge">Obțineți o punte de la Tor (Obfs4)</string>
+    <string name="get_a_bridge_subtitle">Camuflează traficul. Ocolește unele blocaje Tor.</string>
+    <string name="custom_bridge">Punte personalizată</string>
+    <string name="custom_bridge_subtitle">Cel mai probabil vă va menține conectat dacă Tor este blocat în mod sever. Necesită o adresă de punte de la o persoană de încredere.</string>
     <string name="connect">Conectare</string>
     <string name="next">Următorul</string>
     <string name="solve_captcha">Rezolvă Captcha</string>
-    <string name="smart_connect_subtitle">Orbot încearcă să se conecteze la Tor prin orice modalitate disponibilă: Direct, Snowflake, Bridge.</string>
+    <string name="smart_connect_subtitle">Orbot încearcă să se conecteze la Tor prin orice modalitate disponibilă: Direct, Snowflake, Punte.</string>
+    <string name="incorrect_solution">Soluție incorectă</string>
+    <string name="bridges_obtained_connecting">Punți obținute! Se conectează la Tor...</string>
+    <string name="custom_bridge_description">O punte personalizată este oferită de cineva cunoscut. Întrebați în cadrul rețelelor și organizațiilor de încredere să vedeți dacă cineva găzduiește una.</string>
+    <string name="having_trouble">Am probleme</string>
+    <string name="having_trouble_subtitle">Putem încerca o punte Tor, dar vom avea nevoie de ajutorul vostru</string>
+    <string name="power_user_mode">Mod utilizator expert</string>
+    <string name="action_activate">Activați</string>
+    <string name="title_choose_apps">Alegeți aplicații</string>
+    <string name="app_suggested_subtitle">Orbot funcționează cel mai bine cu aplicațiile de mesagerie și social media.</string>
+    <string name="power_user_description">Pentru utilizatorii familiarizați cu Tor. Vă permite să porniți Orbot fără setarea VPN și afișează porturile SOCKS și HTTP deschise</string>
+    <string name="volunteer_status_title">Astăzi este mai bine
+\ndatorită vouă.</string>
+    <string name="apps_suggested_title">Aplicații sugerate</string>
+    <string name="apps_other_apps">Alte aplicații</string>
 </resources>

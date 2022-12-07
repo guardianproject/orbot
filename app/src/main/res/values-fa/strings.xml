@@ -184,7 +184,7 @@
     <string name="pref_reduced_circuit_padding_summary">استفاده از الگوریتم‌های فاصله‌گذاری با سربار پایین‌تر برای کاهش مصرف باتری و داده</string>
     <string name="be_a_snowflake_title_limit">محدودیت‌های پیشکار اسنوفلیک</string>
     <string name="custom_bridges">پل‌های سفارشی</string>
-    <string name="enter_characters_from_image">ورود نویسه‌ها از تصویر</string>
+    <string name="enter_characters_from_image">ورود متن بالا</string>
     <string name="use_qr_code">استفاده از رمز QR</string>
     <string name="paste_bridges">چسباندن پل‌ها</string>
     <string name="configure_custom_bridges">پیکربندی پل‌های سفارشی</string>
@@ -201,7 +201,7 @@
     <string name="solve_captcha_instruction">برای درخواست پل، کپچا را حل کنید.</string>
     <string name="snowflake_proxy_pref_category">پیشکار اسنوفلیک (آزمایشی)</string>
     <string name="be_a_snowflake_desc">اجازه به دیگر کاربران تور برای وصل شدن به تور از طریق افزاره‌تان. (اگر با پل‌ها وصل شده‌اید، قابل استفاده نیست)</string>
-    <string name="secure_your_connection_title">اتّصال خودتان را به وسیلهٔ تور ایمن کنید</string>
+    <string name="secure_your_connection_title">آمادهٔ وصل شدن</string>
     <string name="btn_start_vpn">آغاز وی‌پی‌ان</string>
     <string name="btn_configure">پیکربندی</string>
     <string name="volunteer_mode">حالت مهربانی</string>
@@ -216,10 +216,10 @@
     <string name="menu_header_learn">بیشتر بدانید</string>
     <string name="msg_taking_too_long">به نظر بیش از حد طول کشیده</string>
     <string name="msg_try_something_else">چیز دیگری را امتحان کنید</string>
-    <string name="connected_title">شما متّصل شدید!</string>
-    <string name="secure_your_connection_subtitle">ربات پیازی به شما یک اتّصال ایمن و بدون وقفه را به برنامه‌هایتان می‌دهد.</string>
+    <string name="connected_title">وصل شده</string>
+    <string name="secure_your_connection_subtitle">نهفتن کاره از پایش شبکه و گرفتن دسترسی هنگام انسداد.</string>
     <string name="volunteer_mode_subtitle">به دیگران کمک کنید ارتباط برقرار کنند</string>
-    <string name="trying_to_connect_title">تلاش برای اتّصال به تور…</string>
+    <string name="trying_to_connect_title">در حال وصل شدن…</string>
     <string name="btn_tor_off">تور را خاموش کنید</string>
     <string name="no_thx">نه ممنون</string>
     <string name="menu_header_features">قابلیت‌ها</string>
@@ -227,15 +227,24 @@
     <string name="strict_nodes_description">تنظیمات گره‌های مستثنی را به عنوان یک الزام برای ساخت همه مدارها در نظر بگیرید. در صورتی که هیچ مداری با تنظیمات گره‌های مستثنی شما ایجاد نشود، ممکن است عملکرد را از بین ببرد.</string>
     <string name="connect">وصل شدن</string>
     <string name="solve_captcha">حل کپچا</string>
-    <string name="volunteer_mode_title">امروز به لطف شما روز بهتریست</string>
-    <string name="volunteer_mode_subtitle_desc">حالت مهربانی می‌گذارد افزاره‌تان پلی برای دیگران باشد‌. این کار به استفادهٔ افراد در جاهایی که تور مسدود شده کمک می‌کند.</string>
+    <string name="volunteer_mode_title">کمک به دیگران در
+\nوصل شدن به تور</string>
+    <string name="volunteer_mode_subtitle_desc">حالت مهربانی می‌گذارد افزاره‌تان پلی برای دیگران باشد‌. این کار به استفادهٔ افراد در جاهایی که تور مسدود شده کمک می‌کند.
+\n
+\n- باتریتان را خالی نمی‌کند
+\n
+\n- اینترنتتان را کند نمی‌کند
+\n
+\n- می‌تواند فقط روی وای‌فای اجرا شود
+\n
+\n- می‌تواند هر زمانی خاموش شود</string>
     <string name="configure_header">پیکربندی اتصال تورتان</string>
     <string name="drawer_open">گشودن</string>
     <string name="drawer_close">بستن</string>
     <string name="proxy_ports">درگاه‌های پیشکار</string>
     <string name="volunteer_mode_label">حالت مهربانی</string>
     <string name="volunteer_mode_weekly_label">مجموع هفتگی</string>
-    <string name="volunteer_mode_alltime_label">یاریگران</string>
+    <string name="volunteer_mode_alltime_label">مجموع تمامی زمان‌ها</string>
     <string name="smart_connect">اتصال هوشمند (پیش‌گزیده)</string>
     <string name="direct_connect">اتّصال مستقیم به تور</string>
     <string name="get_a_bridge">گرفتن پلی از تور (Obfs4)</string>
@@ -253,4 +262,13 @@
     <string name="bridges_obtained_connecting">پل‌ها گرفته شدند! وصل شدن به تور…</string>
     <string name="incorrect_solution">روش نادرست</string>
     <string name="custom_bridge_description">یک پل شخصی به دست فردی که می‌شناسید فراهم شده. در سازمان‌ها و شبکه‌های مورد اطمینانتان بپرسید که کسی پلی میزبانی می‌کند یا نه.</string>
+    <string name="power_user_mode">حالت کاربری قدرتمند</string>
+    <string name="action_activate">فعّال</string>
+    <string name="volunteer_status_title">به لطفتان امروز
+\nروز بهتری است.</string>
+    <string name="title_choose_apps">گزینش کاره‌ها</string>
+    <string name="apps_other_apps">دیگر کاره‌ها</string>
+    <string name="power_user_description">برای کاربران آشنا با تور. می‌گذارد اوربات را بدون تنظیمات وی‌پی‌ان اغاز کرده و درگاه‌های HTTP و ساکس را نشان می‌دهد</string>
+    <string name="app_suggested_subtitle">اوربات بهترین کارایی را با کاره‌های شبکهٔ اجتماعی و پیام‌رسان دارد.</string>
+    <string name="apps_suggested_title">کاره‌های پیشنهادی</string>
 </resources>
