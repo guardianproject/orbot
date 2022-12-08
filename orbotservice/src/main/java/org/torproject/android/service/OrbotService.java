@@ -1312,10 +1312,9 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     private void setExitNode(String newExits) {
-        var prefs = Prefs.getSharedPrefs(getApplicationContext());
 
         if (TextUtils.isEmpty(newExits)) {
-            prefs.edit().remove("pref_exit_nodes").apply();
+            Prefs.setExitNodes("");
 
             if (conn != null) {
                 try {
@@ -1331,7 +1330,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 }
             }
         } else {
-            prefs.edit().putString("pref_exit_nodes", newExits).apply();
+
+            Prefs.setExitNodes("{"+newExits+"}");
 
             if (conn != null) {
                 try {

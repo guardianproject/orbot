@@ -17,7 +17,7 @@ class ExitNodeDialogFragment(private val callback: ExitNodeSelectedCallback) : D
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val currentExit = Prefs.getExitNodes()
+        val currentExit = Prefs.getExitNodes().replace("\\{","").replace("\\}","")
         val sortedCountries = TreeMap<String, Locale>(Collator.getInstance())
         COUNTRY_CODES.forEach {
             val locale = Locale("", it)
