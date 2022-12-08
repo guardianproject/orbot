@@ -117,6 +117,7 @@ android {
         textReport false
         xmlReport false
     }
+    namespace 'org.torproject.android'
 }
 dependencies {
     implementation "androidx.core:core-ktx:1.8.0"

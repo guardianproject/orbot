@@ -39,6 +39,7 @@ android {
         textReport false
         xmlReport false
     }
+    namespace 'org.torproject.android.service'
 }
 
 dependencies {

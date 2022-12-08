@@ -45,4 +45,5 @@ android {
         abortOnError false
         checkReleaseBuilds false
     }
+    namespace 'org.torproject.android.mini'
 }
