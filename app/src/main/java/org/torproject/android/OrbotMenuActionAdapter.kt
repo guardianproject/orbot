@@ -35,8 +35,8 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
             }
             else if (model.imgId == 0) {
                 imgView.visibility = View.GONE
-                val exit = Prefs.getExitNodes()
-                if (exit.length == 2) tvAction.text = Utils.convertCountryCodeToFlagEmoji(exit)
+                val currentExit = Prefs.getExitNodes().replace("{","").replace("}","")
+                if (currentExit.length == 2) tvAction.text = Utils.convertCountryCodeToFlagEmoji(currentExit)
                 else tvAction.text = context.getString(R.string.globe)
                 tvAction.visibility = View.VISIBLE
             } else {
