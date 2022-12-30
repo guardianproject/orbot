@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ربات پیازی</string>
-    <string name="app_description">ربات پیازی، یک کارهٔ پیشکار آزاد است که دیگر کاره‌ها را در استفاده امن از اینترنت توانمند می‌کند . ربات پیازی برای رمزگذاری شدآمد اینترنتتان و نهفتنش با عبور از میان دنباله‌ای از رایانه‌ها در سراسر جهان، از تور استفاده می‌کند. تور نرم‌افزار آزاد و شبکه‌ای باز است که به شما در برابر شکلی از نظارت شبکه با نام تجزیهٔ شدآمد که محرمانگی و آزادی فردی، فعّالیت‌های تجاری محرمانه و امنیت ملّی را تهدید می‌کند، یاری می‌رساند.</string>
-    <string name="status_starting_up">ربات پیازی در حال آغاز است…</string>
-    <string name="status_activated">وصل شده به شبکهٔ تور</string>
+    <string name="app_description">ربات پیازی یک برنامه پراکسی رایگان است که به سایر برنامه ها اجازه می دهد تا با امنیت بیشتری از اینترنت استفاده کنند ربات پیازی از تور برای رمزگذاری ترافیک اینترنت شما استفاده می کند و سپس آن را با گذراندن از طریق یک سری کامپیوتر در سراسر جهان پنهان می کند تور یک نرم‌افزار رایگان و یک شبکه باز است که به شما کمک می‌کند در برابر نوعی از نظارت شبکه که آزادی و حریم خصوصی شخصی و فعالیت‌ها و روابط تجاری محرمانه و امنیت دولتی معروف به تجزیه و تحلیل ترافیک را تهدید می‌کند دفاع کنید</string>
+    <string name="status_starting_up">ربات پیازی در حال شروع است …</string>
+    <string name="status_activated">به شبکه تور متصل شده</string>
     <string name="status_shutting_down">ربات پیازی در حال خاموش شدن است</string>
     <string name="menu_settings">تنظیمات</string>
     <string name="menu_log">گزارش</string>
-    <string name="menu_start">آغاز</string>
-    <string name="menu_stop">توقّف</string>
+    <string name="menu_start">شروع</string>
+    <string name="menu_stop">توقف</string>
     <string name="menu_about">درباره</string>
     <string name="main_layout_download">بارگیری</string>
     <string name="main_layout_upload">بارگذاری</string>
