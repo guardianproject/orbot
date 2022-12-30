@@ -1,0 +1,4 @@
+* soporte para OnionServices v3
+* mejoras en la configuración del puente
+* garantiza que el modo VPN se trate como "conexión no medida"
+* modo experimental para habilitar la ejecución como un proxy Snowflake

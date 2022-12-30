@@ -1,0 +1,3 @@
+- Se eliminó la opción de puente Meek "Cloud" debido a que ya no es compatible
+- más mejoras en el soporte del servicio Onion V3
+- para el n.º 441, corrige la búsqueda de aplicaciones para la selección de VPN basada en aplicaciones
