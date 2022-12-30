@@ -4,7 +4,7 @@
     <string name="app_description">Orbot est une appli libre de serveur mandataire qui permet aux applis d’utiliser Internet avec une sécurité accrue. Orbot utilise Tor pour chiffrer votre trafic Internet et le cache ensuite en le relayant au travers d’ordinateurs de par le monde. Tor est un logiciel libre et un réseau ouvert qui vous aident à vous défendre contre une forme de surveillance réseau qui menace la liberté personnelle et la protection des données personnelles, les activités professionnelles confidentielles et les relations, et l’analyse du trafic des gouvernements.</string>
     <string name="status_starting_up">Orbot démarre…</string>
     <string name="status_activated">Connecté au réseau Tor</string>
-    <string name="status_shutting_down">TorService est en cours de fermeture</string>
+    <string name="status_shutting_down">Orbot est en cours de fermeture</string>
     <string name="menu_settings">Paramètres</string>
     <string name="menu_log">Journal</string>
     <string name="menu_start">Démarrer</string>
@@ -75,7 +75,7 @@
     <string name="ports_reachable_behind_a_restrictive_firewall">Ports accessibles derrière un pare-feu restrictif</string>
     <string name="enter_ports">Saisir les ports</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Activer le journal de débogage vers la sortie (adb ou aLogCat doivent être utilisés pour le visualiser)</string>
-    <string name="project_home">Pages d’accueil du projet :</string>
+    <string name="project_home">Page d’accueil du projet :</string>
     <string name="third_party_software">Logiciels tiers :</string>
     <string name="pref_use_expanded_notifications">Afficher des notifications plus détaillées avec le pays de sortie et l’IP de Tor</string>
     <string name="pref_use_expanded_notifications_title">Notifications plus détaillées</string>
@@ -109,7 +109,7 @@
     <string name="pref_http_title">HTTP Tor</string>
     <string name="pref_http_summary">Port sur lequel Tor offre son mandataire HTTP (par défaut : 8118 ou 0 pour le désactiver)</string>
     <string name="pref_http_dialog">Configuration du port HTTP</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Si votre réseau mobile bloque Tor activement, vous pouvez utiliser un « serveur pont » comme solution de remplacement. SÉLECTIONNEZ l’une des options pour configurer et tester…</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Si votre réseau mobile bloque Tor activement, vous pouvez utiliser un « serveur pont » comme solution alternative pour vous connecter. Sélictionez l’une des options pour configurer et tester…</string>
     <string name="apps_mode">Mode RPV</string>
     <string name="vpn_default_world">Global (automatique)</string>
     <string name="hidden_services">Services onion</string>
@@ -131,8 +131,8 @@
     <string name="share_as_qr">Partager en tant que code QR</string>
     <string name="disable">Désactiver</string>
     <string name="enable">Activer</string>
-    <string name="consider_disable_battery_optimizations">Envisagez de désactiver les optimisations de la pile</string>
-    <string name="consider_enable_battery_optimizations">Envisagez d’activer les optimisations de la pile</string>
+    <string name="consider_disable_battery_optimizations">Services hébergés en cours d\'exécution, considerez de désactiver les optimisations de batterie</string>
+    <string name="consider_enable_battery_optimizations">Pas de services hébergés en cours d\'exécution, considerez d’activer les optimisations de la batterie</string>
     <string name="pref_isolate_dest">Isoler les adresses de destination</string>
     <string name="pref_isolate_dest_summary">Utiliser un circuit différent pour chaque adresse de destination</string>
     <string name="pref_connection_padding">Bourrage de la connexion</string>
@@ -154,7 +154,7 @@
     <string name="user_services">Services utilisateur</string>
     <string name="app_services">Services d’appli</string>
     <string name="refresh_apps">Actualiser les applis</string>
-    <string name="bridge_snowflake">Se connecter grâce à d’autres pairs Tor (expérimental)</string>
+    <string name="bridge_snowflake">Se connecter à travers d’autres utilizateurs Tor en utilizant Snowflake (Métode 1 - Rapidement)</string>
     <string name="use_qr_code">Utiliser un code QR</string>
     <string name="paste_bridges">Coller des ponts</string>
     <string name="in_a_browser">Dans un navigateur,accédez à %s et touchez Obtenez des ponts &gt; Donnez-moi juste des ponts</string>
@@ -162,7 +162,7 @@
     <string name="configure_custom_bridges">Configurer des ponts personnalisés</string>
     <string name="custom_bridges">Ponts personnalisés</string>
     <string name="request_bridges_from_torproject">Demander des ponts de torproject.org</string>
-    <string name="enter_characters_from_image">Saisissez les caractères qui apparaissent dans l’image</string>
+    <string name="enter_characters_from_image">Saisissez les texte au-dessus</string>
     <string name="captcha">Captcha</string>
     <string name="solve_captcha_instruction">Pour demander des ponts, résolvez le captcha.</string>
     <string name="refresh_captcha">Actualiser le captcha</string>
@@ -176,22 +176,22 @@
     <string name="mebibyte">Mio</string>
     <string name="kibibyte">Kio</string>
     <string name="get_bridges_email_request">Demander des ponts par courriel</string>
-    <string name="be_a_snowflake_desc">Autorisez les autres utilisateurs de Tor de se connecter à Tor par votre appareil</string>
+    <string name="be_a_snowflake_desc">Autorisez les autres utilisateurs de Tor de se connecter à Tor à travers votre appareil. (Ceci ne peut pas être utilisé si vous vous connectez le long de ponts)</string>
     <string name="be_a_snowflake_title">Exécuter le mandataire Snowflake</string>
     <string name="confirm">Confirmer</string>
     <string name="v3_import_auth_private">Importer .auth_private</string>
     <string name="v3_backup_name_hint">Nom du fichier de sauvegarde…</string>
     <string name="v3_delete_client_authorization_confirm">Supprimer l’autorisation client</string>
     <string name="v3_delete_client_authorization">Supprimer la clé d’autorisation client</string>
-    <string name="v3_backup_key_warning">Avertissement : Votre clé pourrait être exposée à d’autres applis</string>
+    <string name="v3_backup_key_warning">Avertissement : Cela pourrait exposer vôtre clé à d’autres applications</string>
     <string name="v3_key_hash">Clé privée x25519 en Base32</string>
-    <string name="v3_client_auth_activity_title">Autorisation client v3</string>
-    <string name="v3_hosted_services">Services Onion v3 hébergés</string>
+    <string name="v3_client_auth_activity_title">Autorisation client</string>
+    <string name="v3_hosted_services">Services Onion hébergés</string>
     <string name="deny">Refuser</string>
     <string name="allow">Autoriser</string>
-    <string name="backup_port_exist">Erreur : Un service onion utilise déjà le port %s</string>
+    <string name="backup_port_exist">Erreur : Un service Onion utilise déjà le port %s</string>
     <string name="v3_backup_key">Sauvegarder la clé d’autorisation client</string>
-    <string name="v3_onion">Domaine .onion v3</string>
+    <string name="v3_onion">Domaine .onion</string>
     <string name="be_a_snowflake_desc_limit">Seulement quand l’appareil est branché et sur le Wi-Fi</string>
     <string name="be_a_snowflake_title_limit">Limites du mandataire Snowflake</string>
     <string name="version">Version :</string>
@@ -201,4 +201,65 @@
     <string name="snowflake_proxy_pref_category">Mandataire Snowflake (expérimental)</string>
     <string name="snowflake_proxy_msg_title">Afficher la notification de connexion</string>
     <string name="snowflake_proxy_msg_description">Afficher un message quand votre Snowflake aide quelqu’un à contourner la censure</string>
+    <string name="power_user_mode">Mode utilisateur avancé</string>
+    <string name="action_activate">Activer</string>
+    <string name="volunteer_status_title">Aujourd’hui, c’est meilleur
+\ngrâce à toi.</string>
+    <string name="title_choose_apps">Choisir les applications</string>
+    <string name="app_suggested_subtitle">Orbot fonctionne mieux avec les applications de messagerie et de médias sociaux.</string>
+    <string name="apps_suggested_title">Applications suggérées</string>
+    <string name="apps_other_apps">Autres applications</string>
+    <string name="configure_header">Configurer vôtre connexion TOR</string>
+    <string name="drawer_open">Ouvrir</string>
+    <string name="drawer_close">Fermer</string>
+    <string name="volunteer_mode_title">Aidez les autres
+\nà se connecter à Tor</string>
+    <string name="volunteer_mode_alltime_label">Total de toujours</string>
+    <string name="volunteer_mode_subtitle_desc">Le mode gentillesse permet à votre appareil d\'être un pont pour les autres. Il aide les gens à utiliser Tor dans les endroits où il est bloqué.
+\n
+\n- Il ne décharge pas votre batterie.
+\n
+\n- Il ne ralenti pas votre Internet
+\n
+\n- Il peut fonctionner uniquement sur wifi
+\n
+\n- Il peut être éteint à tout moment</string>
+    <string name="smart_connect">Connexion intelligente (par défault)</string>
+    <string name="smart_connect_subtitle">Orbot essaie de se connecter à Tor par n\'importe quel moyen disponible : Direct, Snowflake, Pont.</string>
+    <string name="direct_connect">Connexion directe à Tor</string>
+    <string name="direct_connect_subtitle">La meilleure façon de se connecter à Tor. Utiliser si Tor n’est pas bloqué.</string>
+    <string name="snowflake">Snowflake</string>
+    <string name="snowflake_subtitle">Se connecte par l’intermédiaire de bénévoles Tor. Permet de contourner certains blocages de Tor.</string>
+    <string name="get_a_bridge">Obtenir un pont de Tor (Obfs4)</string>
+    <string name="get_a_bridge_subtitle">Masque votre trafic. Contourne certains blocages de Tor.</string>
+    <string name="custom_bridge">Pont personnalisé</string>
+    <string name="custom_bridge_subtitle">Le plus probable de vous garder connecté si Tor est sévèrement bloqué. Nécessite une adresse d\'un pont de quelqu\'un de confiance.</string>
+    <string name="connect">Se connecter</string>
+    <string name="next">Suivant</string>
+    <string name="solve_captcha">Résoudre captcha</string>
+    <string name="connected_title">Connecté</string>
+    <string name="btn_start_vpn">Démarrer le RPV</string>
+    <string name="volunteer_mode_subtitle">Aider les autres à se connecter</string>
+    <string name="trying_to_connect_title">Connexion en cours …</string>
+    <string name="btn_choose_apps">Choisir des applications</string>
+    <string name="btn_change_exit">Changer la sortie</string>
+    <string name="btn_refresh">Actualiser</string>
+    <string name="btn_tor_off">Éteindre Tor</string>
+    <string name="no_thx">Non, merci</string>
+    <string name="menu_header_features">Fonctionnalités</string>
+    <string name="captcha_title">Dis-nous que tu es humain</string>
+    <string name="menu_tor_connection">Connexion Tor</string>
+    <string name="menu_faq">Questions fréquentes</string>
+    <string name="menu_header_learn">En savoir plus</string>
+    <string name="btn_use_custom_bridge">Utiliser un pont personnalisé</string>
+    <string name="msg_taking_too_long">Cela semble prendre trop long</string>
+    <string name="incorrect_solution">Solution incorrecte</string>
+    <string name="bridges_obtained_connecting">Ponts obtenus! Connexion à tor...</string>
+    <string name="having_trouble_subtitle">Nous pouvons essayer un pont Tor ensuite mais avons besoin de votre aide</string>
+    <string name="secure_your_connection_title">Prêt à se connecter</string>
+    <string name="menu_app_settings">Paramètres de l’application</string>
+    <string name="secure_your_connection_subtitle">Masquez les applications de la surveillance du réseau et obtenez accès lorsqu\'elles sont bloquées.</string>
+    <string name="menu_help_others">Aider les autres</string>
+    <string name="msg_try_something_else">Essayez autre chose</string>
+    <string name="custom_bridge_description">Un pont personnalisé est fourni par quelq\'un que vous connaissez. Demandez dans vos réseaux et organisations de confiance pour savoir si quelqu\'un en héberge un.</string>
 </resources>
