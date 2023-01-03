@@ -153,4 +153,8 @@ public class Prefs {
     public static void addSnowflakeServed () {
         putInt(PREF_SNOWFLAKES_SERVED_COUNT,getSnowflakesServed()+1);
     }
+
+    public static boolean onboardPending() {
+        return prefs.getBoolean("connect_first_time", true);
+    }
 }
