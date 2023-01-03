@@ -1,0 +1,4 @@
+* soporte agregado para puentes Snowflake
+* soporte actualizado para puentes Obfs4 y Meek
+* aumento de la velocidad de la función " Solicitar nuevos puentes »
+* Tor actualizado a la versión 0.4.4.6

@@ -1,30 +1,256 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Orbot</string>
-  <string name="app_description">Orbot eshte nje perfaqesues falas per internetin i cili ndihmon programet e tjera te perdori internetin ne menyre me te sigurte. Orbot perdor Tor per te shifruar trafikun tuaj te internetit nepermjet nje serie me kompjutere perqark botes. Tor eshte nje softwere pa pagese dhe nje rrjet i hapur qe ju ndihmon juve te mbroheni nga cdo forme mbikqyrjeje ne rrjet qe cenon lirine dhe privatesine personale, aktivitetet konfidenciale te lidhjeve dhe bizneseve, dhe siqurine e gjendjes te njohur si analiza e trafikut.</string>
-    <string name="menu_settings">Zgjedhjet</string>
-    <string name="menu_start">Nisje</string>
-  <string name="menu_stop">Ndale</string>
-  <string name="menu_about">Informacione</string>
-  <string name="main_layout_download">Shkarkim</string>
-    <string name="button_about">Informacione</string>
-  <string name="menu_exit">Dil</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <string name="app_name">Orbot</string>
+    <string name="app_description">Orbot është një aplikacion i lirë ndërmjetësish që i bën aplikacionet e tjera ta përdorin internetin në mënyrë më të siguruar. Orbot-i përdor Tor-in për të fshehtëzuar trafikun tuaj Internet dhe mandej e fsheh duke e kaluar përmes një vargu kompjuterash nëpër botë. Tor-i është <em>software</em> i lirë dhe një rrjet i hapët që ju ndihmon të mbroheni nga një formë survejimi rrjetesh e cila kërcënon lirinë dhe privatësinë personale, veprimtarinë dhe marrëdhëniet rezervat në biznesi dhe sigurinë shtetërore, e njohur si analizim trafiku.</string>
+    <string name="menu_settings">Rregullime</string>
+    <string name="menu_start">Nise</string>
+    <string name="menu_stop">Ndale</string>
+    <string name="menu_about">Mbi</string>
+    <string name="main_layout_download">Shkarkim</string>
+    <string name="button_about">Mbi</string>
+    <string name="menu_exit">Dalje</string>
+    <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
-  <string name="pref_general_group">Të Përgjithshme</string>
-  <!--New Wizard Strings-->
-  <!--Title Screen-->
-  <!--Warning screen-->
+    <string name="pref_general_group">Të Përgjithshme</string>
+    <!--New Wizard Strings-->
+    <!--Title Screen-->
+    <!--Warning screen-->
     <!--Permissions screen-->
-  <!--TipsAndTricks screen-->
-  <!--Transparent Proxy screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
     <string name="error">Gabim</string>
-  <string name="bridges">Urat</string>
+    <string name="bridges">Ura</string>
     <string name="set_locale_title">Gjuhë</string>
     <string name="get_bridges_email">Email</string>
-  <string name="save">Ruaje</string>
-  <string name="name">Emër</string>
-  <string name="backup_restored">Kopjeruajtja u rikthye</string>
-  <string name="disable">Çaktivizoje</string>
-  <string name="enable">Mundëso</string>
+    <string name="save">Ruaje</string>
+    <string name="name">Emër</string>
+    <string name="backup_restored">Kopjeruajtja u rikthye</string>
+    <string name="disable">Çaktivizoje</string>
+    <string name="enable">Aktivizoje</string>
+    <string name="pref_disable_network_summary">Vëre në gjumë Tor-in, kur nuk ka internet</string>
+    <string name="pref_transport_dialog">Formësim Porte</string>
+    <string name="pref_torrc_dialog">Torrc vejtkae</string>
+    <string name="volunteer_status_title">Për hir tuajin sot
+\nështë më mirë.</string>
+    <string name="title_choose_apps">Zgjidhni Aplikacione</string>
+    <string name="status_starting_up">Orbot-i po niset…</string>
+    <string name="status_activated">I lidhur me rrjetin Tor</string>
+    <string name="allow">Lejoje</string>
+    <string name="user_services">Shërbime përdoruesi</string>
+    <string name="app_services">Shërbime aplikacionesh</string>
+    <string name="refresh_apps">Rifresko Aplikacionet</string>
+    <string name="request_bridges">Kërkoni Ura</string>
+    <string name="refresh_captcha">Rifresko CAPTCHA-n</string>
+    <string name="solve_captcha_instruction">Që të kërkoni ura, zgjidhni CAPTCHA-n.</string>
+    <string name="captcha">Kaptça</string>
+    <string name="enter_characters_from_image">Jepni tekstin më sipër</string>
+    <string name="snowflake_proxy_msg_title">Shfaq Njoftim Lidhjeje</string>
+    <string name="connected_title">I lidhur</string>
+    <string name="configure_header">Formësoni Lidhjen tuaj Tor</string>
+    <string name="menu_header_learn">Mësoni Më Tepër</string>
+    <string name="btn_use_custom_bridge">Përdorni Urë Vetjake</string>
+    <string name="msg_taking_too_long">Kjo duket se po zgjat shumë</string>
+    <string name="msg_try_something_else">Provoni diçka tjetër</string>
+    <string name="volunteer_mode_title">Ndihmoni të tjerët
+\ntë lidhen me Tor-in</string>
+    <string name="volunteer_mode_weekly_label">Gjithsej Javore</string>
+    <string name="volunteer_mode_alltime_label">Gjithsej Për Tërë Kohën</string>
+    <string name="power_user_mode">Mënyra “Përdorues i Regjur”</string>
+    <string name="power_user_description">Për përdorues të familjarizuar me Tor-in. Ju lejon ta nisni Orbot-in pa rregullimin VPN dhe shfaqë porta SOCKS dhe HTTP të hapura</string>
+    <string name="action_activate">Aktivizoje</string>
+    <string name="apps_suggested_title">Aplikacione të Këshilluar</string>
+    <string name="apps_other_apps">Aplikacione të Tjera</string>
+    <string name="pref_start_boot_title">Nise Orbot-in që gjatë Nisjes së Kompjuterit</string>
+    <string name="exit_nodes">Nyje Daljesh</string>
+    <string name="confirm">Ripohojeni</string>
+    <string name="onion_port">Portë Onion</string>
+    <string name="done">U bë!</string>
+    <string name="delete_service">Fshije Shërbimin</string>
+    <string name="pref_isolate_dest">Izolo adresa vendmbërritje</string>
+    <string name="bridge_community">Lidhu përmes shërbyesish të bashkësisë</string>
+    <string name="testing_tor_direct_success">Sukses. Lidhja me Tor-in është e mirë!</string>
+    <string name="bridge_direct_connect">Lidhu drejt e me Tor-in (Më e mira)</string>
+    <string name="bridge_cloud">Lidhu përmes shërbyesish në re</string>
+    <string name="be_a_snowflake_title">Vini në punë Ndërmjetësin Snowflake</string>
+    <string name="onion">.onion</string>
+    <string name="configure_custom_bridges">Formësoni Ura Vetjake</string>
+    <string name="use_custom_bridges">Përdorni Ura Vetjake</string>
+    <string name="paste_bridges">Ngjitni Ura</string>
+    <string name="secure_your_connection_title">Gati që të lidheni</string>
+    <string name="drawer_open">Hape</string>
+    <string name="drawer_close">Mbylle</string>
+    <string name="proxy_ports">Porta Ndërmjetësi</string>
+    <string name="smart_connect">Lidhje e Mençur (parazgjedhje)</string>
+    <string name="direct_connect">Lidhje e drejtpërdrejtë me Tor-in</string>
+    <string name="snowflake">Snowflake</string>
+    <string name="get_a_bridge">Merrni një Urë nga Tor (Obfs4)</string>
+    <string name="custom_bridge">Urë Vetjake</string>
+    <string name="connect">Lidhu</string>
+    <string name="next">Pasuesi</string>
+    <string name="solve_captcha">Zgjidhni CAPTCHA-n</string>
+    <string name="ports_not_set">Porta të Paujdisura</string>
+    <string name="btn_start_vpn">Nise VPN-në</string>
+    <string name="btn_configure">Formësoje</string>
+    <string name="volunteer_mode_subtitle">Ndihmoni të tjerët të lidhen</string>
+    <string name="trying_to_connect_title">Po lidhjet…</string>
+    <string name="btn_choose_apps">Zgjidhni aplikacione</string>
+    <string name="btn_change_exit">Ndryshoni dalje</string>
+    <string name="btn_refresh">Rifreskoje</string>
+    <string name="btn_tor_off">Çaktivizoje Tor-in</string>
+    <string name="no_thx">Jo, Faleminderit</string>
+    <string name="menu_header_features">Veçori</string>
+    <string name="captcha_title">Na bëni të ditur se jeni qenie njerëzore</string>
+    <string name="menu_tor_connection">Lidhje Tor</string>
+    <string name="menu_help_others">Ndihmoni të Tjerët</string>
+    <string name="menu_app_settings">Rregullime Aplikacioni</string>
+    <string name="menu_faq">PBR</string>
+    <string name="status_shutting_down">Orbot-i po fiket</string>
+    <string name="menu_log">Regjistër</string>
+    <string name="main_layout_upload">Ngarkim</string>
+    <string name="menu_scan">Skanoni BridgeQR</string>
+    <string name="wizard_details_msg">Orbot-i është një aplikacion me burim të hapët, që përmban Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks dhe LibEvent.AI furnizon një tunel VPN, një ndërmjetës vendor HTTP Connect (HTTPS vetëm në portën 8118) dhe një ndërmjetës SOCKS (9050) te rrjeti Tor.</string>
+    <string name="pref_node_configuration">Formësim Nyje</string>
+    <string name="pref_node_configuration_summary">Këto janë rregullime të thelluara që mund të reduktojnë anonimitetin tuaj</string>
+    <string name="pref_entrance_node">Nyja Hyrjesh</string>
+    <string name="pref_entrance_node_dialog">Jepni Nyja Hyrjesh</string>
+    <string name="pref_proxy_type_summary">Protokoll për t’u përdorur për shërbyes ndërmjetës: HTTP, HTTPS, SOCKS4, SOCKS5</string>
+    <string name="pref_proxy_type_dialog">Jepni Lloj Ndërmjetësi</string>
+    <string name="pref_proxy_host_summary">Strehëemër Shërbyesi Ndërmjetësi</string>
+    <string name="pref_proxy_host_dialog">Jepni Strehë Ndërmjetësi</string>
+    <string name="pref_proxy_port_summary">Portë Shërbyesi Ndërmjetësi</string>
+    <string name="pref_proxy_port_dialog">Jepni portë Ndërmjetësi</string>
+    <string name="pref_proxy_username_summary">Emër Përdoruesi Ndërmjetësi (Në daçi)</string>
+    <string name="pref_proxy_username_dialog">Jepni Emër Përdoruesi Ndërmjetësi</string>
+    <string name="pref_proxy_password_summary">Fjalëkalim Ndërmjetësi (Opsional)</string>
+    <string name="pref_proxy_password_dialog">Jepni Fjalëkalim Ndërmjetësi</string>
+    <string name="enter_exit_nodes">Jepni Nyja Daljeje</string>
+    <string name="exclude_nodes">Nyja Përjashtimi</string>
+    <string name="enter_exclude_nodes">Jepni Nyja Përjashtimi</string>
+    <string name="strict_nodes">Nyja Strikt</string>
+    <string name="use_bridges">Përdorni Ura</string>
+    <string name="relays">Rele</string>
+    <string name="relay_port">Portë Releje</string>
+    <string name="listening_port_for_your_tor_relay">Portë përgjimi për relenë tuaj Tor</string>
+    <string name="enter_or_port">Jepni portë OR</string>
+    <string name="relay_nickname">Nofkë releje</string>
+    <string name="the_nickname_for_your_tor_relay">Nofka për relenë tuaj Tor</string>
+    <string name="enter_a_custom_relay_nickname">Jepni një nofkë vetjake për relenë</string>
+    <string name="reachable_addresses">Adresa të Kapshme</string>
+    <string name="reachable_ports">Porta të kapshme</string>
+    <string name="enter_ports">Jepni porta</string>
+    <string name="project_home">Kreu i Projektit:</string>
+    <string name="third_party_software">Software Palësh të Treta:</string>
+    <string name="version">Version:</string>
+    <string name="license">Licencë:</string>
+    <string name="pref_dnsport_dialog">Formësim Porte DNS</string>
+    <string name="create_a_backup_first">Krijo së pari një kopjeruajtje</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Që të hyjnë në fuqi ndryshimet, ju lutemi, rinisni Orbot-in</string>
+    <string name="share_as_qr">Jepeni si QR</string>
+    <string name="pref_prefer_ipv6">Parapëlqe lidhje IPv6</string>
+    <string name="app_shortcuts">Aplikacione të ujdisura për Tor</string>
+    <string name="request_bridges_from_torproject">Kërkoni Ura prej torproject.org</string>
+    <string name="custom_bridges">Ura Vetjake</string>
+    <string name="in_a_browser">Që nga një shfletues, vizitoni %s dhe prekni Merrni ura &gt; Thjesht Më Jepni Ura!</string>
+    <string name="use_qr_code">Përdorni kod QR</string>
+    <string name="snowflake_proxy_pref_category">Ndërmjetës Snowflake (Eksperimental)</string>
+    <string name="be_a_snowflake_title_limit">Kufij të Ndërmjetësit Snowflake</string>
+    <string name="deny">Mohoje</string>
+    <string name="kibibyte">KiB</string>
+    <string name="newnym">Kaluat te një identitet i ri Tor!</string>
+    <string name="pref_open_proxy_on_all_interfaces_title">Hape Ndërmjetësin në Krejt Ndërfaqet</string>
+    <string name="pref_socks_title">SOCKS Tor-i</string>
+    <string name="pref_use_expanded_notifications_title">Njoftime të Zgjeruara</string>
+    <string name="pref_socks_dialog">Formësim Porte SOCKS</string>
+    <string name="pref_http_summary">Portë te e cila Tor-i ofron ndërmjetësin e vet HTTP (parazgjedhje: 8118, ose 0 për ta çaktivizuar)</string>
+    <string name="pref_http_dialog">Formësim Porte HTTP</string>
+    <string name="pref_transport_title">Portë Tor TransProxy</string>
+    <string name="pref_dnsport_title">Portë DNS Tor</string>
+    <string name="pref_dnsport_summary">Portë ku Tor-i ofron DNS e vet (parazgjedhje: 5400, ose 0 për ta çaktivizuar)</string>
+    <string name="pref_torrc_title">Formësim Torrc Vetjake</string>
+    <string name="mebibyte">MiB</string>
+    <string name="bridges_updated">Urat u Përditësuan</string>
+    <string name="restart_orbot_to_use_this_bridge_">Që aktivizohen ndryshimet, ju lutemi, rinisni Orbot-in</string>
+    <string name="get_bridges_email_request">Kërkoni Ura përmes Email-i</string>
+    <string name="apps_mode">Mënyra VPN</string>
+    <string name="send_email">Dërgo Email</string>
+    <string name="vpn_default_world">Globale (Automatike)</string>
+    <string name="hidden_services">Shërbime Onion</string>
+    <string name="v3_hosted_services">Shërbime Onion të Strehuara</string>
+    <string name="v3_client_auth_activity_title">Autorizim Klienti</string>
+    <string name="v3_key_hash">Kyç Privat x25519 në Base32</string>
+    <string name="v3_onion">Përkatësi .onion</string>
+    <string name="v3_backup_key">Kopjeruani Kyç Autorizimi Klienti</string>
+    <string name="v3_backup_key_warning">Kujdes: Kjo mund të ekspozojë kyçet tuaj ndaj aplikacionet të tjera</string>
+    <string name="v3_delete_client_authorization">Fshi Kyç Autorizimi Klienti</string>
+    <string name="v3_delete_client_authorization_confirm">Fshi Autorizim Klienti</string>
+    <string name="v3_backup_name_hint">Emër kartele kopjeruajtjeje…</string>
+    <string name="v3_import_auth_private">Importo .auth_private</string>
+    <string name="menu_hidden_services">Shërbime Onion</string>
+    <string name="local_port">Portë Vendore</string>
+    <string name="backup_saved_at_external_storage">Kopjeruajtja u ruajt te depozitë e jashtme</string>
+    <string name="backup_port_exist">Gabim: Një shërbim Onion po përdor tashmë portën %s</string>
+    <string name="restore_backup">Riktheje Kopjeruajtjen</string>
+    <string name="copy_address_to_clipboard">Kopjoje adresën në të papastër</string>
+    <string name="confirm_service_deletion">Ripohoni fshirje shërbimi</string>
+    <string name="service_type">Lloj shërbimi</string>
+    <string name="pref_isolate_dest_summary">Përdorni një qark të ndryshëm për çdo adresë vendmbërritje</string>
+    <string name="pref_disable_ipv4">Çaktivizo lidhje IPv4</string>
+    <string name="testing_tor_direct">Po provohet lidhja me Tor-in…</string>
+    <string name="trouble_connecting">Problem për t’u lidhur\?</string>
+    <string name="vpn_disabled">VPN e Çaktivizuar</string>
+    <string name="menu_new_identity">Identitet i Ri</string>
+    <string formatted="true" name="snowflake_proxy_enabled">Ndërmjetës Snowflake i aktivizuar</string>
+    <string name="incorrect_solution">Zgjidhje e Pasaktë</string>
+    <string name="bridges_obtained_connecting">Urat u morën! Po lidhet me Tor-in…</string>
+    <string name="having_trouble">Keni probleme</string>
+    <string name="pref_start_boot_summary">Nise automatikisht Orbot-in dhe lidhu me Tor-in, kur niset pajisja Android</string>
+    <string name="pref_entrance_node_summary">Shenja gishtash, nofka, vende dhe adresa për hopin e parë</string>
+    <string name="pref_allow_background_starts_summary">Lejoni çfarëdo aplikacioni t’i thotë Orbot-it të nisë Tor-in dhe shërbime të lidhura me të</string>
+    <string name="strict_nodes_description">Traktoji rregullimet për Nyje Dalëse si një domosdoshmëri për ngritjen e krejt qarqeve. Kjo mund të dëmtojë funksione, nëse s’është e mundur të prodhohen qarqe me rregullimet tuaja për Nyje Dalëse.</string>
+    <string name="pref_use_expanded_notifications">Shfaq te njoftimi vendin dhe adresën IP të nyjës tuaj dalëse Tor, kur dihet</string>
+    <string name="pref_open_proxy_on_all_interfaces_summary">Lejoni të pranishëm në Wi-Fi-n tuaj, pajisje të lidhura dhe këdo tjetër që mund të lidhet te IP-ja juaj, të hyjnë në</string>
+    <string name="pref_socks_summary">Portë te e cila Tor-i ofron ndërmjetësin e vet SOCKS (parazgjedhje: 9050, ose 0 për ta çaktivizuar)</string>
+    <string name="pref_http_title">Tor HTTP</string>
+    <string name="consider_enable_battery_optimizations">Pa shërbime të strehuara në funksionim, shihni mundësinë e aktivizimit të optimizimeve të baterisë</string>
+    <string name="volunteer_mode_subtitle_desc">Mënyra dashamirësi e lejon pajisjen tuaj të jetë një urë për të tjera. I ndihmon njerëzit të përdorin Tor-in në vende ku e bllokojnë.
+\n
+\n- S’do të thajë baterinë tuaj
+\n
+\n- S’do të ngadalësojë internetin tuaj
+\n
+\n- Mund të punojë vetëm me wifi
+\n
+\n- Mund të çaktivizohet kurdo</string>
+    <string name="smart_connect_subtitle">Orbot-i provon të lidhet me Tor-in përmes çfarëdo rruge të mundshme: Drejtpërdrejt, Snowflake, Urë.</string>
+    <string name="direct_connect_subtitle">Rruga më e mirë për t’u lidhur me Tor-in. Përdoreni nëse Tor-i s’është i bllokuar.</string>
+    <string name="get_a_bridge_subtitle">Fsheh trafikun tuaj. Anashkalohet ca bllokim Tor-i.</string>
+    <string name="custom_bridge_subtitle">Sipas shumicës së gjasave, për t’ju mbajtur të lidhur, nëse Tor-i është bllokuar keq. Lyp një adresë ure prek dikujt të cilit i zini besë.</string>
+    <string name="custom_bridge_description">Një urë vetjake jepet nga dikush që e njihni. Pyetni mes rrjeteve dhe enteve tuaj të besuar, për të parë nëse dikush strehon të tillë.</string>
+    <string name="app_suggested_subtitle">Më mirë se me gjithçka tjetër, Orbot-i funksionon me aplikacione shkëmbimi mesazhesh dhe mediash shoqërore.</string>
+    <string name="secure_your_connection_subtitle">Fshihini aplikacione mbikëqyrjes së rrjetit dhe përfitoni hyrje kur janë të bllokuar.</string>
+    <string name="be_a_snowflake_desc">Lejojuni përdoruesve të tjerë të Tor-it të lidhen me Tor-in përmes pajisjes suaj. (Kjo s’mund të përdoret, nëse lidheni tok me ura)</string>
+    <string name="volunteer_mode">Mënyra Dashamirësi</string>
+    <string name="volunteer_mode_label">Mënyra Dashamirësi</string>
+    <string name="snowflake_subtitle">Lidhuni përmes vullnetarësh Tor. Anashkalohen disa bllokime Tor-i.</string>
+    <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Shenja gishtash, nofka, vende dhe adresa për hopin e fundit</string>
+    <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Shenja gishtash, nofka, vende dhe adresa për t’u përjashtuar</string>
+    <string name="enable_your_device_to_be_a_non_exit_relay">Aktivizojeni pajisjen tuaj të jetë një rele jo-dalje</string>
+    <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">Xhiro si një klient pas një firewall-i me rregulla kufizuese</string>
+    <string name="ports_reachable_behind_a_restrictive_firewall">Porta të kapshme pas një firewall-i kufizues</string>
+    <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Aktivizo regjistër diagnostikimi te ç’jepet (duhet përdorur adb ose aLogcat për ta parë)</string>
+    <string name="hidden_service_request">Një aplikacion dëshiron të hapë shërbyes onion te porta %1$s për te rrjeti Tor. Kjo është e parrezik, nëse i zini besë aplikacionit.</string>
+    <string name="pref_disable_network_title">Pa Vetë-Fjetje Rrjeti</string>
+    <string name="pref_prefer_ipv6_summary">U thotë daljeve se parapëlqehen adresa IPv6</string>
+    <string name="bridge_snowflake">Lidhuni përmes përdoruesish të tjerë të Tor-it, duke përdorur Snowflake (Metoda 1 - Shpejt)</string>
+    <string name="pref_transport_summary">Portë te e cila Tor-i ofron Ndërmjetësin e vet Transparent (parazgjedhje: 9040, ose 0 për ta çaktivizuar)</string>
+    <string name="pref_torrc_summary">VETËM PËR TË SPROVUARIT: jepni drejtpërsëdrejti rreshta formësimi torrc</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Nëse rrjeti juaj celular e bllokon aktivisht Tor-in, mund të përdorni një “Shërbyes Urash”, si një rrugë alternative për hyrje. Përzgjidhni një nga mundësi për të formuar dhe testuar…</string>
+    <string name="backup_service">Shërbim Kopjeruajtje <i>(Kujdes: Kjo Mund T’u Ekspozojë Aplikacioneve të Tjera Formësimin Tuaj të Shërbimit)</i></string>
+    <string name="start_tor_again_for_finish_the_process">Riniseni Tor-in që të përfundojë procesi</string>
+    <string name="consider_disable_battery_optimizations">Me shërbime të strehuara në funksionim, shihni mundësinë e çaktivizimit të optimizimeve të baterisë</string>
+    <string name="pref_disable_ipv4_summary">U thotë daljeve të mos lidhen me adresa IPv4</string>
+    <string name="bridge_snowflake_amp">Lidhuni përmes përdoruesish të tjerë të Tor-it, duke përdorur Snowflake (Metoda 1 - AMP)</string>
+    <string name="be_a_snowflake_desc_limit">Vetëm kur pajisja është në prizë dhe në wifi</string>
+    <string name="snowflake_proxy_msg_description">Shfaqni një mesazh kur Snowflake-u juaj ndihmon dikë të anashkalojë censurim</string>
+    <string name="having_trouble_subtitle">Më pas mund të provojmë një urë Tor, por do të na duhet ndihma juaj</string>
 </resources>
