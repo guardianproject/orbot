@@ -24,6 +24,11 @@
                 android:title="@string/menu_settings"/>
 
             <item
+                android:icon="@drawable/ic_more"
+                android:id="@+id/menu_log"
+                android:title="@string/menu_log"/>
+
+            <item
                 android:icon="@drawable/ic_exit"
                 android:id="@+id/menu_exit"
                 android:title="@string/menu_exit"/>

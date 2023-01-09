@@ -38,10 +38,12 @@ import org.torproject.android.circumvention.SettingsRequest
 import org.torproject.android.core.LocaleHelper
 import org.torproject.android.core.ui.SettingsPreferencesActivity
 import org.torproject.android.service.OrbotConstants
+import org.torproject.android.service.OrbotConstants.LOCAL_EXTRA_LOG
 import org.torproject.android.service.OrbotService
 import org.torproject.android.service.util.Prefs
 import org.torproject.android.ui.AboutDialogFragment
 import org.torproject.android.ui.AppManagerActivity
+import org.torproject.android.ui.LogBottomSheet
 import org.torproject.android.ui.OrbotMenuAction
 import org.torproject.android.ui.kindnessmode.KindnessModeActivity
 import org.torproject.android.ui.v3onionservice.OnionServiceActivity
@@ -67,6 +69,8 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     private lateinit var torStatsGroup: Group
     private lateinit var bottomNavigationView: BottomNavigationView
 
+    private lateinit var logBottomSheet: LogBottomSheet
+
     private var previousReceivedTorStatus: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,6 +94,8 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         drawerLayout.addDrawerListener(menuToggle)
         menuToggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        logBottomSheet = LogBottomSheet()
 
         bottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigationView.setOnItemSelectedListener(NavigationBarView.OnItemSelectedListener { item ->
@@ -149,6 +155,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                     startActivityForResult(Intent(this, AppManagerActivity::class.java), REQUEST_VPN_APP_SELECT)
                 }
                 R.id.menu_exit -> doExit()
+                R.id.menu_log -> showLog()
                 R.id.menu_v3_onion_services -> startActivity(Intent(this, OnionServiceActivity::class.java))
                 R.id.menu_v3_onion_client_auth -> startActivity(Intent(this, ClientAuthActivity::class.java))
                 R.id.menu_settings -> startActivityForResult(SettingsPreferencesActivity.createIntent(this, R.xml.preferences), REQUEST_CODE_SETTINGS)
@@ -286,6 +293,9 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                 OrbotConstants.LOCAL_ACTION_LOG -> {
                     intent.getStringExtra(OrbotConstants.LOCAL_EXTRA_BOOTSTRAP_PERCENT)?.let {
                         progressBar.progress = Integer.parseInt(it)
+                    }
+                    intent.getStringExtra(OrbotConstants.LOCAL_EXTRA_LOG)?.let {
+                        logBottomSheet.appendLog(it)
                     }
                 }
                 OrbotConstants.LOCAL_ACTION_PORTS -> {
@@ -501,6 +511,10 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
 
     override fun tryConnecting() {
         startTorAndVpn() // TODO for now just start tor and VPN, we need to decouple this down the line
+    }
+
+    private fun showLog() {
+        logBottomSheet.show(supportFragmentManager, OrbotActivity::class.java.simpleName)
     }
 
     private fun doExit() {

@@ -265,4 +265,5 @@
     <string name="app_suggested_subtitle">Orbot works best with messaging and social media apps.</string>
     <string name="apps_suggested_title">Suggested Apps</string>
     <string name="apps_other_apps">Other Apps</string>
+    <string name="hide_apps">Hide apps from network monitoring and get access when they are blocked.</string>
 </resources>

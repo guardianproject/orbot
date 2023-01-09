@@ -77,7 +77,7 @@
             android:id="@+id/tvSubtitle"
             android:textSize="16sp"
             android:fontFamily="sans-serif-light"
-            android:text="Hide apps from network monitoring and get access when they are blocked."
+            android:text="@string/hide_apps"
             android:textColor="@android:color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

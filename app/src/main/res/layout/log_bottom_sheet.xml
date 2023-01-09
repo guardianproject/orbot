@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/new_background"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp">
+
+
+        <TextView
+            android:id="@+id/orbotLogHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_log"
+            android:textColor="@color/bright_green"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/btnCopyLog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:backgroundTint="@color/orbot_btn_enabled_purple"
+            android:text="Copy Log"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginBottom="20dp" />
+
+        <TextView
+            android:id="@+id/orbotLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="monospace"
+            android:textColor="@color/bright_green"
+            android:gravity="start"
+            android:textIsSelectable="true"
+            android:textSize="12sp"
+            android:text="This is the log\nIam cool\nlaksjdalsdjas"
+            android:textAppearance="?android:attr/textAppearanceSmallInverse"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orbotLogHeader"
+            />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
