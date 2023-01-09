@@ -85,6 +85,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         alSuggested.add("com.twitter.android");
         alSuggested.add("com.facebook.orca");
         alSuggested.add("com.facebook.mlite");
+        alSuggested.add("com.brave.browser");
 
     }
 
@@ -182,6 +183,8 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     if (entry.box != null) {
                         entry.box.setChecked(app.isTorified());
                         entry.box.setTag(app);
+                        entry.box.setOnClickListener(AppManagerActivity.this);
+
                     }
                 }
 
