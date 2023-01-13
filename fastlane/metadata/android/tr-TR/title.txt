@@ -1,1 +1,1 @@
-Orbot Tor Proxy
+Orbot: Android için Tor
