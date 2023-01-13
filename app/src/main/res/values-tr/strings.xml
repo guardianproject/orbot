@@ -202,7 +202,7 @@
     <string name="snowflake_proxy_msg_title">Bağlantı Bildirimi Göster</string>
     <string name="snowflake_proxy_msg_description">Snowflake sayesinde birinin sansürü atlatmasına yardımcı olunduğunda bir mesaj göster</string>
     <string name="strict_nodes_description">Katılmayacak Düğümler ayarlarını tüm devreleri oluştururken bir gereklilik olarak ele alın. Bu, Katılmayacak Düğümler ayarlarınızla hiçbir devre oluşturulamıyorsa işlevselliği bozabilir.</string>
-    <string name="secure_your_connection_subtitle">Uygulamaları ağ izlemeden gizleyin ve engellendiklerinde erişim sağlayın.</string>
+    <string name="secure_your_connection_subtitle">Uygulamaları ağ izlenmesinden gizleyin ve engellendiklerinde erişim sağlayın.</string>
     <string name="connected_title">Bağlandı</string>
     <string name="btn_configure">Yapılandır</string>
     <string name="volunteer_mode">Nezaket Modu</string>
@@ -271,4 +271,5 @@
     <string name="app_suggested_subtitle">Orbot en iyi mesajlaşma ve sosyal medya uygulamalarıyla çalışır.</string>
     <string name="power_user_description">Tor\'a aşina olan kullanıcılar için. Orbot\'u VPN ayarı olmadan başlatmanıza izin verir ve açık SOCKS ve HTTP bağlantı noktalarını gösterir</string>
     <string name="apps_other_apps">Diğer Uygulamalar</string>
+    <string name="hide_apps">Uygulamaları ağ izlenmesinden gizleyin ve engellendiklerinde erişim sağlayın.</string>
 </resources>

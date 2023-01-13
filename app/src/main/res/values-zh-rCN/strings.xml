@@ -14,8 +14,8 @@
     <string name="main_layout_upload">上传</string>
     <string name="button_about">关于</string>
     <string name="menu_exit">退出</string>
-    <string name="menu_scan">扫描网桥 QR 码</string>
-    <string name="menu_share_bridge">分享网桥 QR 码</string>
+    <string name="menu_scan">扫描网桥二维码</string>
+    <string name="menu_share_bridge">分享网桥二维码</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">常规</string>
@@ -154,7 +154,7 @@
     <string name="hidden_service_request">一个应用程序想要在端口 %1$s上打开到 Tor 网络的洋葱服务器。如果你信任这个应用程序，这是安全的。</string>
     <string name="pref_connection_padding">连接填充</string>
     <string name="onion">.onion 地址</string>
-    <string name="bridge_snowflake">使用 Snowflake 通过其他 Tor 用户连接（方法 1 - 快速）</string>
+    <string name="bridge_snowflake">使用 Snowflake 通过其他 Tor 用户连接（方法 1 - Fastly）</string>
     <string name="use_qr_code">使用二维码</string>
     <string name="paste_bridges">粘贴网桥</string>
     <string name="in_a_browser">在浏览器中访问 %s并点击 Get Bridges &gt; Just Give Me Bridges!</string>

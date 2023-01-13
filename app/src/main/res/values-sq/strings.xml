@@ -253,4 +253,11 @@
     <string name="be_a_snowflake_desc_limit">Vetëm kur pajisja është në prizë dhe në wifi</string>
     <string name="snowflake_proxy_msg_description">Shfaqni një mesazh kur Snowflake-u juaj ndihmon dikë të anashkalojë censurim</string>
     <string name="having_trouble_subtitle">Më pas mund të provojmë një urë Tor, por do të na duhet ndihma juaj</string>
+    <string name="pref_allow_background_starts_title">Lejo Nisje Në Prapaskenë</string>
+    <string name="pref_proxy_title">Ndërmjetës Rrjeti Në Dalje (Opsional)</string>
+    <string name="pref_proxy_type_title">Llojj Ndërmjetësi Në Dalje</string>
+    <string name="pref_proxy_host_title">Strehë Ndërmjetësi Në Dalje</string>
+    <string name="pref_proxy_port_title">Portë Ndërmjetësi Në Dalje</string>
+    <string name="pref_proxy_username_title">Emër Përdoruesi Ndërmjetësi Në Dalje</string>
+    <string name="pref_proxy_password_title">Fjalëkalim Ndërmjetësi Në Dalje</string>
 </resources>
