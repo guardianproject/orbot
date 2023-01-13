@@ -271,4 +271,5 @@
     <string name="apps_other_apps">Другие приложения</string>
     <string name="action_activate">Активировать</string>
     <string name="app_suggested_subtitle">Orbot лучше всего работает с приложениями для обмена сообщениями и социальными сетями.</string>
+    <string name="hide_apps">Скрывайте приложения от отслеживания в сети и получайте доступ при блокировке.</string>
 </resources>
