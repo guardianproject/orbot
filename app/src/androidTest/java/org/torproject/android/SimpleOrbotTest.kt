@@ -14,7 +14,8 @@ import org.hamcrest.TypeSafeMatcher
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.torproject.android.nightly.R
+import org.torproject.android.R
+import org.torproject.android.OrbotActivity
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
