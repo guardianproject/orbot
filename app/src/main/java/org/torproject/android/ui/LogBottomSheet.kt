@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.content.ContextCompat.getSystemService
+import android.widget.Toast
 import org.torproject.android.OrbotBottomSheetDialogFragment
 import org.torproject.android.R
 
@@ -29,26 +29,22 @@ class LogBottomSheet : OrbotBottomSheetDialogFragment() {
             val clipboard = context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clip: ClipData = ClipData.newPlainText("log", tvLog.text)
             clipboard.setPrimaryClip(clip)
-
+            Toast.makeText(v.context, R.string.log_copied, Toast.LENGTH_LONG).show()
         }
-
-
-        return v;
+        return v
     }
 
-    public fun appendLog (logLine : String) {
-        if (this::tvLog.isInitialized)
-        {
-            tvLog?.append(logLine)
-            tvLog?.append("\n")
+    fun appendLog (logLine : String) {
+        if (this::tvLog.isInitialized) {
+            tvLog.append(logLine)
+            tvLog.append("\n")
         }
-        else
-            buffer.append(logLine)
-
+        buffer.append(logLine).append("\n")
     }
 
-    public fun resetLog () {
+    fun resetLog () {
         if (this::tvLog.isInitialized)
-            tvLog?.text = ""
+            tvLog.text = ""
+        buffer = StringBuffer()
     }
 }
