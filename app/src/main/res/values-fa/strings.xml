@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ربات پیازی</string>
-    <string name="app_description">ربات پیازی، یک کارهٔ پیشکار آزاد است که دیگر کاره‌ها را در استفاده امن از اینترنت توانمند می‌کند . ربات پیازی برای رمزگذاری شدآمد اینترنتتان و نهفتنش با عبور از میان دنباله‌ای از رایانه‌ها در سراسر جهان، از تور استفاده می‌کند. تور نرم‌افزار آزاد و شبکه‌ای باز است که به شما در برابر شکلی از نظارت شبکه با نام تجزیهٔ شدآمد که محرمانگی و آزادی فردی، فعّالیت‌های تجاری محرمانه و امنیت ملّی را تهدید می‌کند، یاری می‌رساند.</string>
-    <string name="status_starting_up">ربات پیازی در حال آغاز است…</string>
+    <string name="app_name">روبوت پیازی</string>
+    <string name="app_description">روبوت پیازی کارهٔ پیشکار آزادی است که دیگر کاره‌ها را در استفاده امن از اینترنت توانمند می‌کند . روبوت پیازی برای رمزگذاری شدآمد اینترنتتان و نهفتنش با عبور از میان دنباله‌ای از رایانه‌ها در سراسر جهان، از تور استفاده می‌کند. تور نرم‌افزار آزاد و شبکه‌ای باز است که به شما در برابر شکلی از نظارت شبکه با نام تجزیهٔ شدآمد که محرمانگی و آزادی فردی، فعّالیت‌های تجاری محرمانه و امنیت ملّی را تهدید می‌کند، یاری می‌رساند.</string>
+    <string name="status_starting_up">روبوت پیازی در حال آغاز است…</string>
     <string name="status_activated">وصل شده به شبکهٔ تور</string>
-    <string name="status_shutting_down">ربات پیازی در حال خاموش شدن است</string>
+    <string name="status_shutting_down">روبوت پیازی در حال خاموش شدن است</string>
     <string name="menu_settings">تنظیمات</string>
     <string name="menu_log">گزارش</string>
     <string name="menu_start">آغاز</string>
@@ -17,11 +17,11 @@
     <string name="menu_scan">پویش BridgeQR</string>
     <string name="menu_share_bridge">هم‌رسانی BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details_msg">ربات پیازی نرم‌افزاری آزاد است که شامل تور، IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks و LibEvent می‌شود. این نرم‌افزار یک تونل وی‌پی‌ان، یک پیشکار اچ‌تی‌تی‌پی محلّی (اچ‌تی‌تی‌پی‌اس فقط روی ۸۱۱۸) و یک پیشکار ساکس (۹۰۵۰) به شبکهٔ تور فراهم می‌کند.</string>
+    <string name="wizard_details_msg">روبوت پیازی نرم‌افزاری آزاد است که شامل تور، IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks و LibEvent می‌شود. این نرم‌افزار یک تونل وی‌پی‌ان، یک پیشکار HTTP محلّی (فقط HTTPS روی ۸۱۱۸) و یک پیشکار ساکس (۹۰۵۰) به شبکهٔ تور فراهم می‌کند.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">عمومی</string>
-    <string name="pref_start_boot_title">اجرای ربات پیازی هنگام راه‌اندازی</string>
-    <string name="pref_start_boot_summary">آغاز خودکار ربات پیازی و وصل شدن به تور هنگام راه‌اندازی افزارهٔ اندرویدیتان</string>
+    <string name="pref_start_boot_title">اجرای روبوت پیازی هنگام راه‌اندازی</string>
+    <string name="pref_start_boot_summary">آغاز خودکار روبوت پیازی و وصل شدن به تور هنگام راه‌اندازی افزارهٔ اندرویدیتان</string>
     <!--New Wizard Strings-->
     <!--Title Screen-->
     <!--Warning screen-->
@@ -34,7 +34,7 @@
     <string name="pref_entrance_node_summary">اثرانگشت‌ها، اسامی مستعار، کشورها و نشانی‌های اولین گره</string>
     <string name="pref_entrance_node_dialog">گره‌های ورودی را وارد کنید</string>
     <string name="pref_allow_background_starts_title">اجازهٔ شروع در پس‌زمینه</string>
-    <string name="pref_allow_background_starts_summary">بگذار هر کاره‌ای به ربات پیازی بگویید که تور و خدمات مربوط به آن را شروع کند</string>
+    <string name="pref_allow_background_starts_summary">اجازه به کاره‌ها برای گفتن شروع تور و خدمات مربوط به آن به روبوت پیازی</string>
     <string name="pref_proxy_title">پیشکار شبکهٔ خروجی (اختیاری)</string>
     <string name="pref_proxy_type_title">گونهٔ پیشکار خروجی</string>
     <string name="pref_proxy_type_summary">شیوه‌نامهٔ مورد استفاده برای کارساز پیشکار: HTTP, HTTPS, SOCKS4, SOCKS5</string>
@@ -98,7 +98,7 @@
     <string name="pref_torrc_summary">فقط متخصصان: خط‌های پیکربندی torrc را به صورت مستقیم وارد کنید</string>
     <string name="pref_torrc_dialog">سفارشی Torrc</string>
     <string name="bridges_updated">پُل‌ها به‌روز شدند</string>
-    <string name="restart_orbot_to_use_this_bridge_">برای به‌کار انداختن تغییرات، ربات پیازی را مجدداً شروع کنید</string>
+    <string name="restart_orbot_to_use_this_bridge_">برای به‌کار انداختن تغییرات، روبوت پیازی را دوباره آغاز کنید</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">اگر شبکه همراهتان فعّالانه تور را مسدود می‌کند، می‌توانید از یک «کارساز پل» به عنوان راهی جایگزین برای ورود استفاده کنید. برای پیکربندی و آزمودن، یکی از گزینه‌ها را برگزینید…</string>
     <string name="get_bridges_email">رایانامه</string>
     <string name="apps_mode">حالت وی‌پی‌ان</string>
@@ -121,7 +121,7 @@
     <string name="start_tor_again_for_finish_the_process">برای پایان فرآیند، دوباره تور را آغاز کنید</string>
     <string name="confirm_service_deletion">حذف خدمت را تأیید کنید</string>
     <string name="service_type">گونهٔ خدمت</string>
-    <string name="please_restart_Orbot_to_enable_the_changes">برای به‌کار انداختن تغییرات، ربات پیازی را مجدداً شروع کنید</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">برای به‌کار انداختن تغییرات، روبوت پیازی را دوباره آغاز کنید</string>
     <string name="onion">‪.onion‬</string>
     <string name="share_as_qr">هم‌رسانی با کیوآر کد</string>
     <string name="disable">از کار انداختن</string>
@@ -251,7 +251,7 @@
     <string name="custom_bridge">پل شخصی</string>
     <string name="next">بعدی</string>
     <string name="ports_not_set">درگاه تنظیم نشده</string>
-    <string name="smart_connect_subtitle">اوربات تلاش می‌کند از هر راه ممکنی به تور وصل شود: مستقیم، اسنوفلیک، پل.</string>
+    <string name="smart_connect_subtitle">روبوت پیازی تلاش می‌کند از هر راه ممکنی به تور وصل شود: مستقیم، اسنوفلیک و پل.</string>
     <string name="snowflake">اسنوفلیک</string>
     <string name="snowflake_subtitle">وصل شدن از طریق داوطلبان تور. رد شدن از برخی مسدودیت‌های تور.</string>
     <string name="direct_connect_subtitle">بهترین روش وصل شدن به تور. استفاده در صورت مسدود نبودن تور.</string>
@@ -268,7 +268,8 @@
 \nروز بهتری است.</string>
     <string name="title_choose_apps">گزینش کاره‌ها</string>
     <string name="apps_other_apps">دیگر کاره‌ها</string>
-    <string name="power_user_description">برای کاربران آشنا با تور. می‌گذارد اوربات را بدون تنظیمات وی‌پی‌ان اغاز کرده و درگاه‌های HTTP و ساکس را نشان می‌دهد</string>
-    <string name="app_suggested_subtitle">اوربات بهترین کارایی را با کاره‌های شبکهٔ اجتماعی و پیام‌رسان دارد.</string>
+    <string name="power_user_description">برای کاربران آشنا با تور. می‌گذارد روبوت پیازی را بدون تنظیمات وی‌پی‌ان آغاز کند و درگاه‌های باز HTTP و ساکس را نشان می‌دهد</string>
+    <string name="app_suggested_subtitle">روبوت پیازی بهترین کارایی را با کاره‌های شبکهٔ اجتماعی و پیام‌رسان دارد.</string>
     <string name="apps_suggested_title">کاره‌های پیشنهادی</string>
+    <string name="hide_apps">نهفتن کاره‌ها از پایش شبکه و دسترسی گرفتن هنگام مسدود بودنشان.</string>
 </resources>

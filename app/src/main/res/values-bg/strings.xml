@@ -271,4 +271,5 @@
     <string name="apps_suggested_title">Препоръчани приложения</string>
     <string name="apps_other_apps">Други приложения</string>
     <string name="title_choose_apps">Избор на приложения</string>
+    <string name="hide_apps">Скрийте приложенията от наблюдение на мрежата и получете достъп, когато са блокирани.</string>
 </resources>
