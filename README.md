@@ -25,9 +25,3 @@ Tor Frequently Asked Questions:
 ***********************************************
 Copyright (c) 2009-2013, Nathan Freitas, The Guardian Project
  * https://guardianproject.info/
-
- *****
- 
-Thanks to: https://drslash.com/flat-osx-pack/ 
-
-FLAT OS by DrSlash.com is licensed under a Creative Commons Attribution – NonCommercial 4.0 International License.
