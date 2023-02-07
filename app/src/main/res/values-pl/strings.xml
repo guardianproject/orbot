@@ -271,4 +271,5 @@
     <string name="bridges_obtained_connecting">Otrzymano mostki! Łączę z Tor...</string>
     <string name="having_trouble_subtitle">Możemy spróbować mostka Tor, ale będziemy potrzebować twojej pomocy</string>
     <string name="custom_bridge_description">Mostek niestandardowy jest dostarczany przez kogoś, kogo znasz. Zapytaj w swoich zaufanych sieciach i organizacjach, czy ktoś jest gospodarzem takiego mostka.</string>
+    <string name="hide_apps">Ukryj aplikacje przed monitorowaniem sieci i uzyskaj dostęp, gdy zostaną zablokowane.</string>
 </resources>
