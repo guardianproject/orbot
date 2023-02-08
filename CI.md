@@ -7,12 +7,15 @@ the project (and pushes to `master`) are automatically built, while PRs from for
 secrets and prevent abusing the build server.
 
 A build will do a few things:
-    * Build a universal APK and make it available for download (`nightlyDebug`).
-    * Run tests
-        * Unit tests are run (and results are available) right in bitrise.
-        * Espresso tests are run in Browserstack App Automate on real devices.
-    * Make the app available for testing on real devices via Browserstack.
-        * Accessing this requires a login to our browserstack account.
+
+* Build a universal APK and make it available for download under "Artifacts"(`nightlyDebug`).
+* Run tests
+    * Unit tests are run (and results are available) right in bitrise under "Tests".
+        * If these fail, the checks on the Pull Request will automatically fail.
+    * Espresso tests are run in Browserstack App Automate on real devices.
+        * While the logs will show summary results, including failures, the build will not fail nor will github's UI show this failure ([see bug report on this issue](https://github.com/browserstack/browserstack-bitrise-espresso-step/issues/10))
+* Make the app available for testing on real devices via Browserstack.
+    * Accessing this requires a login to our browserstack account.
 
 ### Secrets
 
