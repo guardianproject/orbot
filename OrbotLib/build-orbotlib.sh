@@ -1,7 +1,9 @@
 #!/bin/sh
 
 rm *aar *jar
-git clone https://github.com/bitmold/OrbotIPtProxy
+if [ ! -d OrbotIPtProxy ]; then
+   git clone https://github.com/bitmold/OrbotIPtProxy
+fi
 cd OrbotIPtProxy
 git pull
 git submodule update --init
