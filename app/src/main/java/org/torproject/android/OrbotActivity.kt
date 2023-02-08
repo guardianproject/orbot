@@ -29,7 +29,6 @@ import androidx.core.view.forEach
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
 import net.freehaven.tor.control.TorControlCommands
 import org.torproject.android.circumvention.Bridges
@@ -38,7 +37,6 @@ import org.torproject.android.circumvention.SettingsRequest
 import org.torproject.android.core.LocaleHelper
 import org.torproject.android.core.ui.SettingsPreferencesActivity
 import org.torproject.android.service.OrbotConstants
-import org.torproject.android.service.OrbotConstants.LOCAL_EXTRA_LOG
 import org.torproject.android.service.OrbotService
 import org.torproject.android.service.util.Prefs
 import org.torproject.android.ui.AboutDialogFragment
@@ -85,7 +83,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         progressBar = findViewById(R.id.progressBar)
         lvConnectedActions = findViewById(R.id.lvConnected)
 
-        refreshMenuList();
+        refreshMenuList()
 
         drawerLayout = findViewById(R.id.   drawerLayout)
         navigationView = findViewById(R.id.navigationView)
@@ -98,26 +96,23 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         logBottomSheet = LogBottomSheet()
 
         bottomNavigationView = findViewById(R.id.bottom_navigation)
-        bottomNavigationView.setOnItemSelectedListener(NavigationBarView.OnItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.menu_connect -> {
-                    // Respond to navigation item 1 click
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.menu_connect -> { // Respond to navigation item 1 click
                     true
                 }
-                R.id.menu_kindness -> {
-                    // Respond to navigation item 2 click
+                R.id.menu_kindness -> { // Respond to navigation item 2 click
                     openKindnessMode()
                     true
                 }
-                R.id.menu_more -> {
-                    // Respond to navigation item 2 click
+                R.id.menu_more -> { // Respond to navigation item 2 click
                     openDrawer()
                     true
                 }
                 else -> false
             }
-        })
-        
+        }
+
         doLayoutOff()
 
         with(LocalBroadcastManager.getInstance(this)) {
@@ -203,7 +198,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         this.action = action
     })
 
-    private fun startTorAndVpnDelay(ms: Long) = Handler(Looper.getMainLooper()).postDelayed({startTorAndVpn()}, ms)
+    private fun startTorAndVpnDelay(@Suppress("SameParameterValue") ms: Long) = Handler(Looper.getMainLooper()).postDelayed({startTorAndVpn()}, ms)
 
 
     private fun startTorAndVpn() {
@@ -269,8 +264,8 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                     when (status) {
                         OrbotConstants.STATUS_OFF -> {
                             if (previousReceivedTorStatus.equals(OrbotConstants.STATUS_STARTING)) {
-                                if (allCircumventionAttemtsFailed) {
-                                    allCircumventionAttemtsFailed = false
+                                if (allCircumventionAttemptsFailed) {
+                                    allCircumventionAttemptsFailed = false
                                     return
                                 }
                                 var shouldDoOffLayout = true
@@ -325,7 +320,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                             }
                         }, {
                             // TODO what happens to the app in this case?!
-                            Log.e("bim", "Coudln't hit circumvention API... $it")
+                            Log.e("bim", "Couldn't hit circumvention API... $it")
                         })
                     } else if (status.equals(OrbotConstants.SMART_STATUS_CIRCUMVENTION_ATTEMPT_FAILED)) {
                         // our attempt at circumventing failed, let's try another if any
@@ -354,7 +349,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         }
     }
 
-    var allCircumventionAttemtsFailed = false
+    var allCircumventionAttemptsFailed = false
     private fun setPreferenceForSmartConnect() {
         Log.d("bim", "setPreferenceForSmartConnect()")
         val MS_DELAY = 250L
@@ -363,7 +358,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                 Log.d("bim", "tried all attempts, got nowhere!!!")
                 circumventionApiBridges = null
                 circumventionApiIndex = 0
-                allCircumventionAttemtsFailed = true
+                allCircumventionAttemptsFailed = true
                 doLayoutForCircumventionApi()
                 return
             }
@@ -406,10 +401,10 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         with(btnStartVpn) {
             visibility = View.VISIBLE
 
-            if (Prefs.isPowerUserMode())
-                text = getString(R.string.connect)
+            text = if (Prefs.isPowerUserMode())
+                getString(R.string.connect)
             else
-                text = getString(R.string.btn_start_vpn)
+                getString(R.string.btn_start_vpn)
 
 
             isEnabled = true
@@ -422,6 +417,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                 )
             }
             setOnClickListener { startTorAndVpn() }
+            logBottomSheet.resetLog()
         }
     }
 
@@ -448,7 +444,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
             visibility = View.VISIBLE
         }
         ivOnion.setImageResource(R.drawable.orbistarting)
-        var animHover = AnimationUtils.loadAnimation(this, R.anim.hover);
+        val animHover = AnimationUtils.loadAnimation(this, R.anim.hover);
         animHover.repeatCount = Animation.INFINITE
         animHover.repeatMode = Animation.REVERSE
         ivOnion.animation = animHover

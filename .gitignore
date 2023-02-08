@@ -1,5 +1,6 @@
 # compiled NDK binary artifacts 
 orbotservice/src/main/libs/
+OrbotLib/OrbotIPtProxy
 
 # auto-generated files from Android builds
 build.xml

@@ -238,7 +238,7 @@
     <string name="volunteer_mode_label">Kindness Mode</string>
     <string name="volunteer_mode_weekly_label">Weekly Total</string>
     <string name="volunteer_mode_alltime_label">All Time Total</string>
-    <string name="volunteer_mode_subtitle_desc">Kindness mode allows your device to be a bridge for others. It helps people use Tor in places where it is blocked.\n\n- It will not drain your batter\n\n- It will not slow down your internet\n\n- It can run only over wifi\n\n- It Can be turned off anytime</string>
+    <string name="volunteer_mode_subtitle_desc">Kindness mode allows your device to be a bridge for others. It helps people use Tor in places where it is blocked.\n\n- It will not drain your battery\n\n- It will not slow down your internet\n\n- It can run only over wifi\n\n- It can be turned off anytime</string>
     <string name="smart_connect">Smart Connect (default)</string>
     <string name="smart_connect_subtitle">Orbot tries connecting to Tor through any way available: Direct, Snowflake, Bridge.</string>
     <string name="direct_connect">Direct Connection to Tor</string>
@@ -266,4 +266,5 @@
     <string name="apps_suggested_title">Suggested Apps</string>
     <string name="apps_other_apps">Other Apps</string>
     <string name="hide_apps">Hide apps from network monitoring and get access when they are blocked.</string>
+    <string name="log_copied">Log Copied</string>
 </resources>
