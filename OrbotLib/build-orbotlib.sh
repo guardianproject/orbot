@@ -6,7 +6,6 @@ if [ ! -d OrbotIPtProxy ]; then
 fi
 cd OrbotIPtProxy
 git pull
-git submodule update --init
 bash build-orbot.sh
 mv OrbotLib.aar ..
 mv OrbotLib-sources.jar ..
