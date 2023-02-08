@@ -8,6 +8,6 @@ internal class OrbotActivityTest {
     @Test
     @Throws(Exception::class)
     fun testThatSucceeds() {
-        assert(true)
+        assert(false)
     }
 }
