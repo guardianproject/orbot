@@ -27,6 +27,6 @@ class TrivialOrbotUITest {
                 allOf(withId(R.id.tvConfigure), withText("CONFIGURE"),
                         withParent(withParent(withId(R.id.drawerLayout))),
                         isDisplayed()))
-        textView.check(matches(withText("CONFIGURE")))
+        textView.check(matches(withText("break tests")))
     }
 }
