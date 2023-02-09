@@ -1,7 +1,7 @@
 
 ## Orbot: Android Onion Routing Robot
 
-[![Build Status](https://app.bitrise.io/app/0e76c31b8e7e1801/status.svg?token=S2weJXueO3AvrDUrrd85SA&branch=master)](https://app.bitrise.io/app/0e76c31b8e7e1801)
+[![Build Status](https://app.bitrise.io/app/0e76c31b8e7e1801/status.svg?token=S2weJXueO3AvrDUrrd85SA&branch=master)](https://app.bitrise.io/app/0e76c31b8e7e1801) (see Orbot's [CI docs](CI.md))
 
 Orbot is a freely licensed open-source application developed for the
 Android platform. It acts as a front-end to the Tor binary application,
