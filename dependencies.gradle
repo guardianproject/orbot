@@ -17,7 +17,7 @@ ext {
             androidx_recyclerview        : "1.2.1",
             apl_appintro                 : "v4.2.3",
             bclogic_pulsator             : "1.0.3",
-            fastlane_screengrab          : "1.2.0",
+            fastlane_screengrab          : "2.0.0",
             guardian_jsocks              : "1.0.4",
             guardian_jtorctl             : "0.4.5.7",
             ipt_proxy                    : "1.7.1",
