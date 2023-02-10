@@ -368,7 +368,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var capacity = 1;
         var keepLocalAddresses = false;
         var unsafeLogging = false;
-        var stunUrl = "stun:stun.stunprotocol.org:3478";
+        var stunUrl = "stun:stun.l.google.com:19302";
         var relayUrl = "wss://snowflake.bamsoftware.com";
         var natProbeUrl = "https://snowflake-broker.torproject.net:8443/probe";
         var brokerUrl = "https://snowflake-broker.torproject.net/";
