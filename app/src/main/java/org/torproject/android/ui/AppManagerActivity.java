@@ -76,7 +76,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         listAppsAll = findViewById(R.id.applistview);
         progressBar = findViewById(R.id.progressBar);
 
-        alSuggested = new ArrayList<String>();
+        alSuggested = new ArrayList<>();
         alSuggested.add("org.thoughtcrime.securesms");
         alSuggested.add("com.whatsapp");
         alSuggested.add("com.instagram.android");
@@ -188,9 +188,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     }
                 }
 
-            //    convertView.setFocusable(true);
-             //   convertView.setFocusableInTouchMode(true);
-
                 convertView.setOnFocusChangeListener((v, hasFocus) -> {
                     if (hasFocus)
                         v.setBackgroundColor(getResources().getColor(R.color.dark_purple));
@@ -298,10 +295,10 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     if (filterId.equals(aInfo.packageName)) {
                         wasFound = true;
                         break;
-                    };
+                    }
 
-                 if (!wasFound)
-                     continue;;
+                if (!wasFound)
+                     continue;
             }
 
             TorifiedApp app = new TorifiedApp();

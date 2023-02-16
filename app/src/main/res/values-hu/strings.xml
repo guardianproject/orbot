@@ -7,7 +7,6 @@
     <string name="status_shutting_down">A TorService leáll</string>
     <string name="menu_settings">Beállítások</string>
     <string name="menu_log">Log</string>
-    <string name="menu_start">Indítás</string>
     <string name="menu_stop">Leállítás</string>
     <string name="menu_about">Rólunk</string>
     <string name="main_layout_download">Letöltés</string>

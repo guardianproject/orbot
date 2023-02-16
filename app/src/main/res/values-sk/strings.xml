@@ -7,8 +7,7 @@
   <string name="status_shutting_down">TorService sa vypína</string>
   <string name="menu_settings">Nastavenia</string>
   <string name="menu_log">Podrobnosti</string>
-    <string name="menu_start">Štart</string>
-  <string name="menu_stop">Stop</string>
+    <string name="menu_stop">Stop</string>
   <string name="menu_about">O aplikácií</string>
     <string name="main_layout_download">Stiahnuť</string>
   <string name="main_layout_upload">Nahrať</string>

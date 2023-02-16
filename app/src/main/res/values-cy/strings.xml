@@ -5,8 +5,7 @@
   <string name="status_activated">Wedi cysylltu â rhwydwaith Tor</string>
   <string name="menu_settings">Gosodiadau</string>
   <string name="menu_log">Log</string>
-    <string name="menu_start">Cychwyn</string>
-  <string name="menu_stop">Stop</string>
+    <string name="menu_stop">Stop</string>
   <string name="menu_about">Amdanom ni</string>
   <string name="main_layout_download">Llwytho i lawr</string>
   <string name="main_layout_upload">Llwytho i fyny</string>

@@ -7,7 +7,6 @@
     <string name="status_shutting_down">Orbot cierra</string>
     <string name="menu_settings">Ajustes</string>
     <string name="menu_log">Registro (log)</string>
-    <string name="menu_start">Iniciar</string>
     <string name="menu_stop">Detener</string>
     <string name="menu_about">Acerca de</string>
     <string name="main_layout_download">Descarga</string>

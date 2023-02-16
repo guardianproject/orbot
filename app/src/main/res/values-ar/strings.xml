@@ -7,7 +7,6 @@
     <string name="status_shutting_down">جاري ايقاف خدمة تور</string>
     <string name="menu_settings">إعدادات</string>
     <string name="menu_log">السجل</string>
-    <string name="menu_start">بدء</string>
     <string name="menu_stop">توقف</string>
     <string name="menu_about">حول</string>
     <string name="main_layout_download">تحميل</string>

@@ -7,8 +7,7 @@
   <string name="status_shutting_down">토르 서비스가 종료되는 중입니다</string>
   <string name="menu_settings">설정</string>
   <string name="menu_log">로그</string>
-    <string name="menu_start">시작</string>
-  <string name="menu_stop">중지</string>
+    <string name="menu_stop">중지</string>
   <string name="menu_about">정보</string>
     <string name="main_layout_download">다운로드</string>
   <string name="main_layout_upload">업로드</string>

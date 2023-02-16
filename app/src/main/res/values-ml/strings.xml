@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <string name="menu_start">ആരംഭിക്കുക</string>
-  <string name="menu_stop">നിര്‍ത്തുക</string>
+    <string name="menu_stop">നിര്‍ത്തുക</string>
   <string name="menu_about">വിവരം</string>
     <string name="button_about">വിവരം</string>
     <!--Welcome Wizard strings (DJH)-->

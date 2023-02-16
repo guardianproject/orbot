@@ -6,8 +6,7 @@
   <string name="status_shutting_down">Orbot sedang ditutup</string>
   <string name="menu_settings">Tetapan</string>
   <string name="menu_log">Log</string>
-    <string name="menu_start">Mula</string>
-  <string name="menu_stop">Henti</string>
+    <string name="menu_stop">Henti</string>
   <string name="menu_about">Tentang</string>
     <string name="button_about">Tentang</string>
     <string name="menu_exit">Keluar</string>

@@ -7,8 +7,7 @@
   <string name="status_shutting_down">El servicio de Tor se esta cerrando</string>
   <string name="menu_settings">Configuración</string>
   <string name="menu_log">Registro</string>
-    <string name="menu_start">Iniciar</string>
-  <string name="menu_stop">Detener</string>
+    <string name="menu_stop">Detener</string>
   <string name="menu_about">Acerca de</string>
     <string name="main_layout_download">Descargar</string>
   <string name="main_layout_upload">Subir</string>

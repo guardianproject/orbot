@@ -8,7 +8,6 @@
     <string name="status_shutting_down">तोर सर्विस बंध हो रहा हे </string>
     <string name="menu_settings">सेटिंग्स</string>
     <string name="menu_log">यात्रा दैनिकी</string>
-    <string name="menu_start">प्रारंभ</string>
     <string name="menu_stop">विराम</string>
     <string name="menu_about">बारे में</string>
     <string name="main_layout_download">डाउनलोड</string>

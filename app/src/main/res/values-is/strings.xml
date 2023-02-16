@@ -7,7 +7,6 @@
     <string name="status_shutting_down">Orbot er að slökkva á sér</string>
     <string name="menu_settings">Stillingar</string>
     <string name="menu_log">Atvikaskráning</string>
-    <string name="menu_start">Ræsa</string>
     <string name="menu_stop">Stöðva</string>
     <string name="menu_about">Um hugbúnaðinn</string>
     <string name="main_layout_download">Sótt gögn</string>

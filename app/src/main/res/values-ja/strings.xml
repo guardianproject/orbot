@@ -7,7 +7,6 @@
     <string name="status_shutting_down">Orbotが終了しています</string>
     <string name="menu_settings">設定</string>
     <string name="menu_log">履歴</string>
-    <string name="menu_start">開始</string>
     <string name="menu_stop">停止</string>
     <string name="menu_about">情報</string>
     <string name="main_layout_download">ダウンロード</string>

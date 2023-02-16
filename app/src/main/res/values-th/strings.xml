@@ -7,7 +7,6 @@
     <string name="status_shutting_down">กำลังปิดการทำงาน TorService </string>
     <string name="menu_settings">การตั้งค่า</string>
     <string name="menu_log">บันทึก</string>
-    <string name="menu_start">เริ่ม</string>
     <string name="menu_stop">หยุด</string>
     <string name="menu_about">เกี่ยวกับ</string>
     <string name="main_layout_download">ดาวน์โหลด</string>

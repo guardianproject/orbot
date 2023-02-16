@@ -33,7 +33,6 @@
     <string name="main_layout_upload">Încărcați</string>
     <string name="main_layout_download">Descărcați</string>
     <string name="menu_stop">Stop</string>
-    <string name="menu_start">Start</string>
     <string name="menu_log">Jurnal</string>
     <string name="status_shutting_down">Orbot se oprește</string>
     <string name="status_activated">Conectat la rețeaua Tor</string>

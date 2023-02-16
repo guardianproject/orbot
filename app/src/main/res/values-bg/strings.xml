@@ -7,7 +7,6 @@
     <string name="status_shutting_down">Orbot спира</string>
     <string name="menu_settings">Настройки</string>
     <string name="menu_log">Дневник</string>
-    <string name="menu_start">Старт</string>
     <string name="menu_stop">Спиране</string>
     <string name="menu_about">Относно</string>
     <string name="main_layout_download">Получено</string>

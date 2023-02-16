@@ -102,7 +102,7 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
     private RecyclerView rv;
     // this is what takes messages or values from the callback threads or other non-mainUI threads
 //and passes them back into the main UI thread for display to the user
-    private Handler mStatusUpdateHandler = new Handler() {
+    private final Handler mStatusUpdateHandler = new Handler() {
 
         @Override
         public void handleMessage(final Message msg) {
@@ -152,7 +152,7 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
      * so local ones are used here so other apps cannot interfere with Orbot's
      * operation.
      */
-    private BroadcastReceiver mLocalBroadcastReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mLocalBroadcastReceiver = new BroadcastReceiver() {
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -327,13 +327,13 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
 
         setTitle(R.string.app_name);
 
-        mTxtOrbotLog = (TextView) findViewById(R.id.orbotLog);
+        mTxtOrbotLog = findViewById(R.id.orbotLog);
 
-        imgStatus = (ImageView) findViewById(R.id.imgStatus);
+        imgStatus = findViewById(R.id.imgStatus);
         imgStatus.setOnLongClickListener(this);
 
-        downloadText = (TextView) findViewById(R.id.trafficDown);
-        uploadText = (TextView) findViewById(R.id.trafficUp);
+        downloadText = findViewById(R.id.trafficDown);
+        uploadText = findViewById(R.id.trafficUp);
 
         downloadText.setText(formatTotal(0) + " \u2193");
         uploadText.setText(formatTotal(0) + " \u2191");
@@ -511,23 +511,20 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
         if (action == null)
             return;
 
-        switch (action) {
+        if (Intent.ACTION_VIEW.equals(action)) {
+            String urlString = intent.getDataString();
 
-            case Intent.ACTION_VIEW:
-                String urlString = intent.getDataString();
+            if (urlString != null) {
 
-                if (urlString != null) {
+                if (urlString.toLowerCase().startsWith("bridge://")) {
+                    String newBridgeValue = urlString.substring(9); //remove the bridge protocol piece
+                    newBridgeValue = URLDecoder.decode(newBridgeValue); //decode the value here
 
-                    if (urlString.toLowerCase().startsWith("bridge://")) {
-                        String newBridgeValue = urlString.substring(9); //remove the bridge protocol piece
-                        newBridgeValue = URLDecoder.decode(newBridgeValue); //decode the value here
+                    showAlert(getString(R.string.bridges_updated), getString(R.string.restart_orbot_to_use_this_bridge_) + newBridgeValue, false);
 
-                        showAlert(getString(R.string.bridges_updated), getString(R.string.restart_orbot_to_use_this_bridge_) + newBridgeValue, false);
-
-                        setNewBridges(newBridgeValue);
-                    }
+                    setNewBridges(newBridgeValue);
                 }
-                break;
+            }
         }
 
         updateStatus(null, torStatus);
@@ -903,7 +900,7 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
         startActivityForResult(data, REQUEST_VPN_APPS_SELECT);
     }
 
-    public class DataCount {
+    public static class DataCount {
         // data uploaded
         public long Upload;
         // data downloaded

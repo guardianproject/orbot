@@ -7,7 +7,6 @@
     <string name="status_shutting_down">TorService itzaltzen ari da</string>
     <string name="menu_settings">Ezarpenak</string>
     <string name="menu_log">Egunkaria</string>
-    <string name="menu_start">Abiarazi</string>
     <string name="menu_stop">Gelditu</string>
     <string name="menu_about">Honi buruz</string>
     <string name="main_layout_download">Jaitsiera</string>

@@ -7,7 +7,6 @@
     <string name="status_shutting_down">Orbot está a fechar</string>
     <string name="menu_settings">Configurações</string>
     <string name="menu_log">Registo</string>
-    <string name="menu_start">Iniciar</string>
     <string name="menu_stop">Parar</string>
     <string name="menu_about">Sobre</string>
     <string name="main_layout_download">Transferir</string>

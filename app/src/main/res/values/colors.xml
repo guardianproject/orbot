@@ -1,7 +1,6 @@
 <resources>
         <color name="panel_background_main">#efefef</color>
         <color name="bright_green">#ccff2a</color>
-        <color name="dark_green">#669901</color>
         <color name="dark_purple">#3f2b4f</color>
         <color name="progress_bar_purple">#CB50FF</color>
         <color name="orbot_btn_enabled_purple">#7424CF</color>

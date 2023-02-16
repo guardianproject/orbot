@@ -3,16 +3,12 @@ package org.torproject.android.service.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import androidx.annotation.NonNull;
 import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
-import androidx.work.Worker;
-import androidx.work.WorkerParameters;
 
 import org.torproject.android.service.OrbotConstants;
 
-import java.util.Calendar;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 

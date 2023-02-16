@@ -7,8 +7,7 @@
     <string name="status_shutting_down">TorService išjungiamas</string>
   <string name="menu_settings">Nustatymai</string>
   <string name="menu_log">Žurnalas</string>
-    <string name="menu_start">Pradėti</string>
-  <string name="menu_stop">Baigti</string>
+    <string name="menu_stop">Baigti</string>
   <string name="menu_about">Apie</string>
     <string name="main_layout_download">Parsiuntimas</string>
   <string name="main_layout_upload">Išsiuntimas</string>

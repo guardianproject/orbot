@@ -3,7 +3,6 @@
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot është një aplikacion i lirë ndërmjetësish që i bën aplikacionet e tjera ta përdorin internetin në mënyrë më të siguruar. Orbot-i përdor Tor-in për të fshehtëzuar trafikun tuaj Internet dhe mandej e fsheh duke e kaluar përmes një vargu kompjuterash nëpër botë. Tor-i është <em>software</em> i lirë dhe një rrjet i hapët që ju ndihmon të mbroheni nga një formë survejimi rrjetesh e cila kërcënon lirinë dhe privatësinë personale, veprimtarinë dhe marrëdhëniet rezervat në biznesi dhe sigurinë shtetërore, e njohur si analizim trafiku.</string>
     <string name="menu_settings">Rregullime</string>
-    <string name="menu_start">Nise</string>
     <string name="menu_stop">Ndale</string>
     <string name="menu_about">Mbi</string>
     <string name="main_layout_download">Shkarkim</string>

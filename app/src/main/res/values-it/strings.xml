@@ -7,7 +7,6 @@
     <string name="status_shutting_down">TorService si sta spegnendo</string>
     <string name="menu_settings">Impostazioni</string>
     <string name="menu_log">Log</string>
-    <string name="menu_start">Avvia</string>
     <string name="menu_stop">Ferma</string>
     <string name="menu_about">Info</string>
     <string name="main_layout_download">Download</string>

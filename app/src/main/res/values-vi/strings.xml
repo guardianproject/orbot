@@ -7,7 +7,6 @@
     <string name="status_shutting_down">Đang tắt dịch vụ Tor</string>
     <string name="menu_settings">Cài đặt</string>
     <string name="menu_log">Nhật ký</string>
-    <string name="menu_start">Bắt đầu</string>
     <string name="menu_stop">Dừng</string>
     <string name="menu_about">Giới thiệu</string>
     <string name="main_layout_download">Tải xuống</string>

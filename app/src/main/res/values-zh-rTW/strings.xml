@@ -7,7 +7,6 @@
     <string name="status_shutting_down">Tor服務 正在關閉</string>
     <string name="menu_settings">設定</string>
     <string name="menu_log">記錄檔</string>
-    <string name="menu_start">開始</string>
     <string name="menu_stop">停止</string>
     <string name="menu_about">關於</string>
     <string name="main_layout_download">下載</string>

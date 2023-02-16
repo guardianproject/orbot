@@ -1,8 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="menu_settings">ချိန်ညှိချက်များ</string>
-    <string name="menu_start">စတင်ရန်</string>
-  <string name="menu_stop">ရပ်ရန်</string>
+    <string name="menu_stop">ရပ်ရန်</string>
   <string name="menu_about">အကြောင်း</string>
   <string name="main_layout_download">ဒေါင်းလုဒ်</string>
     <string name="button_about">အကြောင်း</string>

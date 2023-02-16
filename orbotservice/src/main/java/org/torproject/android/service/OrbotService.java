@@ -363,7 +363,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
         IPtProxy.startSnowflake(stunServers, target, front, ampCache, null, true, false, false, 1);
     }
 
-    @SuppressWarnings("ConstantConditions")
     public void enableSnowflakeProxy () { // This is to host a snowflake entrance node / bridge
         var capacity = 1;
         var keepLocalAddresses = false;
@@ -681,7 +680,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     private boolean showTorServiceErrorMsg = false;
 
-    private static int TIMEOUT_MS = 15000;
+    private static final int TIMEOUT_MS = 15000;
 
     /**
      * The entire process for starting tor and related services is run from this method.

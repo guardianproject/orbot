@@ -7,7 +7,6 @@
     <string name="status_shutting_down">Η Orbot κλείνει</string>
     <string name="menu_settings">Ρυθμίσεις</string>
     <string name="menu_log">Καταγραφή</string>
-    <string name="menu_start">Εκκίνηση</string>
     <string name="menu_stop">Διακοπή</string>
     <string name="menu_about">Σχετικά</string>
     <string name="main_layout_download">Λήψη (ταχύτητα/σύνολο)</string>
