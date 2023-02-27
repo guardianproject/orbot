@@ -1,6 +1,6 @@
-Orbot on ilmainen välityspalvelinsovellus, joka auttaa muita sovelluksia yhdistämään internetiin turvallisemmin. Orbot käyttää Toria kryptatakseen verkkoliikenteesi ja sen jälkeen piilottaa sen hyppimällä useiden eri tietokoneiden kautta ympäri maailman. Tor on vapaa sovellus ja avoin verkosto, joka auttaa sinua suojautumaan valtion turvallisuusviranomaisten harjoittamalta verkkoliikenneanalyysilta ja verkkovalvonnalta, joka uhkaa yksilönvapautta ja yksityisyyttä sekä luottamuksellisia liiketoimia ja ihmissuhteita.
+Orbot on ilmainen välityspalvelinsovellus, joka auttaa muita sovelluksia yhdistämään Internetiin turvallisemmin. Orbot käyttää Tor-verkkoa verkkoliikenteesi salaukseen ja sen jälkeen peittää sen ohjaamalla sen useiden eri tietokoneiden kautta ympäri maailman. Tor on vapaa ohjelmisto ja avoin verkosto, joka auttaa sinua suojautumaan valtioiden turvallisuusviranomaisten harjoittamalta verkkoliikenneanalyysilta ja verkkovalvonnalta, joka uhkaa yksilönvapautta ja yksityisyyttä sekä luottamuksellisia liiketoimia ja ihmissuhteita.
 
-Orbot on ainoa sovellus, joka luo oikeasti yksityisen internet-yhteyden. Kuten New York Times kirjoittaa, "kun yhteys saapuu Toriin, et voi koskaan tietää mistä ja keneltä se on tullut".
+Orbot on ainoa sovellus, joka luo oikeasti yksityisen Internet-yhteyden. Kuten New York Times kirjoittaa, "kun yhteys saapuu Toriin, et voi koskaan tietää mistä ja keneltä se on tullut".
 
 Vuonna 2012 Tor voitti Electronic Frontier -säätiön (EFF) Pioneer-palkinnon.
 
