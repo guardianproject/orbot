@@ -272,4 +272,5 @@
     <string name="apps_other_apps">Други приложения</string>
     <string name="title_choose_apps">Избор на приложения</string>
     <string name="hide_apps">Скрийте приложенията от наблюдение на мрежата и получете достъп, когато са блокирани.</string>
+    <string name="log_copied">Дневникът е копиран</string>
 </resources>
