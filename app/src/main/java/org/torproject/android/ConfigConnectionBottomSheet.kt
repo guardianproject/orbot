@@ -1,13 +1,22 @@
 package org.torproject.android
 
+import android.content.Context
+import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
+import android.telephony.TelephonyManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CompoundButton
 import android.widget.RadioButton
+import org.torproject.android.circumvention.Bridges
+import org.torproject.android.circumvention.CircumventionApiManager
+import org.torproject.android.circumvention.SettingsRequest
 import org.torproject.android.service.util.Prefs
+import java.util.*
 
 class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbacks) : OrbotBottomSheetDialogFragment() {
 
@@ -18,6 +27,7 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
     private lateinit var rbCustom: RadioButton
 
     private lateinit var btnAction: Button
+    private lateinit var btnAskTor: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -43,6 +53,11 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
         val allSubtitles = arrayListOf(tvDirectSubtitle, tvSnowflakeSubtitle, tvSnowflakeAmpSubtitle,
             tvRequestSubtitle, tvCustomSubtitle)
         btnAction = v.findViewById(R.id.btnAction)
+        btnAskTor = v.findViewById(R.id.btnAskTor)
+
+        btnAskTor.setOnClickListener {
+            askTor()
+        }
 
         // setup containers so radio buttons can be checked if labels are clicked on
      //   v.findViewById<View>(R.id.smartContainer).setOnClickListener {rbSmart.isChecked = true}
@@ -134,5 +149,115 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
         if (pref.equals(Prefs.PATHWAY_SNOWFLAKE_AMP)) rbSnowflakeAmp.isChecked = true
         if (pref.equals(Prefs.PATHWAY_DIRECT)) rbDirect.isChecked = true
     }
+
+    private var circumventionApiBridges: List<Bridges?>? = null
+    private var circumventionApiIndex = 0
+
+    private fun askTor () {
+
+        var dLeft = activity?.getDrawable(R.drawable.ic_faq)
+        btnAskTor.text = getString(R.string.asking)
+        btnAskTor.setCompoundDrawablesWithIntrinsicBounds(dLeft, null, null, null)
+
+        val countryCodeValue: String? = getDeviceCountryCode(requireContext())
+
+        CircumventionApiManager().getSettings(SettingsRequest(countryCodeValue), {
+            it?.let {
+                circumventionApiBridges = it.settings
+                if (circumventionApiBridges == null) {
+                    //Log.d("bim", "settings is null, we can assume a direct connect is fine ")
+                    rbDirect.isChecked = true;
+
+                } else {
+
+                   // Log.d("bim", "settings is $circumventionApiBridges")
+                    circumventionApiBridges?.forEach { b->
+                     //   Log.d("bim", "BRIDGE $b")
+                    }
+
+                    //got bridges, let's set them
+                    setPreferenceForSmartConnect()
+                }
+            }
+        }, {
+            // TODO what happens to the app in this case?!
+            Log.e("bim", "Couldn't hit circumvention API... $it")
+        })
+    }
+
+    private fun getDeviceCountryCode(context: Context): String? {
+        var countryCode: String?
+
+        // Try to get country code from TelephonyManager service
+        val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+        if (tm != null) {
+            // Query first getSimCountryIso()
+            countryCode = tm.simCountryIso
+            if (countryCode != null && countryCode.length == 2)
+                return countryCode.lowercase(Locale.getDefault())
+
+            countryCode = tm.networkCountryIso
+            if (countryCode != null && countryCode.length == 2)
+                      return countryCode.lowercase(Locale.getDefault())
+        }
+
+        // If network country not available (tablets maybe), get country code from Locale class
+        countryCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            context.resources.configuration.locales[0].country
+        } else {
+            context.resources.configuration.locale.country
+        }
+
+        return if (countryCode != null && countryCode.length == 2)
+            countryCode.lowercase(Locale.getDefault()) else "us"
+
+    }
+
+    private fun setPreferenceForSmartConnect() {
+
+        var dLeft = activity?.getDrawable(R.drawable.ic_green_check)
+        btnAskTor.setCompoundDrawablesWithIntrinsicBounds(dLeft, null, null, null)
+
+        circumventionApiBridges?.let {
+            if (it.size == circumventionApiIndex) {
+              //  Log.d("bim", "tried all attempts, got nowhere!!!")
+                circumventionApiBridges = null
+                circumventionApiIndex = 0
+                rbDirect.isChecked = true
+                btnAskTor.text = Prefs.PATHWAY_DIRECT
+
+                return
+            }
+            val b = it[circumventionApiIndex]!!.bridges
+            if (b.type == CircumventionApiManager.BRIDGE_TYPE_SNOWFLAKE) {
+               // Log.d("bim", "trying snowflake")
+                //Prefs.putPrefSmartTrySnowflake(true)
+                Prefs.putConnectionPathway(Prefs.PATHWAY_SNOWFLAKE)
+                rbSnowflake.isChecked = true
+                btnAskTor.text = Prefs.PATHWAY_SNOWFLAKE
+
+            } else if (b.type == CircumventionApiManager.BRIDGE_TYPE_OBFS4) {
+              //  Log.d("bim", "trying obfs4 ${b.source}")
+
+                rbCustom.isChecked = true
+                btnAskTor.text = Prefs.PATHWAY_CUSTOM
+
+                var bridgeStrings = ""
+                b.bridge_strings!!.forEach { bridgeString ->
+                    bridgeStrings += "$bridgeString\n"
+                }
+                Prefs.setBridgesList(bridgeStrings)
+                Prefs.putConnectionPathway(Prefs.PATHWAY_CUSTOM)
+
+            }
+            else
+            {
+                rbDirect.isChecked = true
+            }
+
+            circumventionApiIndex += 1
+        }
+    }
+
 
 }

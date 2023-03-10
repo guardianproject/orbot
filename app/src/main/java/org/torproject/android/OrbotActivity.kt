@@ -254,9 +254,6 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
 
     override fun attachBaseContext(newBase: Context) = super.attachBaseContext(LocaleHelper.onAttach(newBase))
 
-    private var circumventionApiBridges: List<Bridges?>? = null
-    private var circumventionApiIndex = 0
-
     private val orbotServiceBroadcastReceiver = object : BroadcastReceiver(){
         @SuppressLint("SetTextI18n")
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -302,6 +299,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                     if (http > 0 && socks > 0) tvPorts.text = "SOCKS $socks | HTTP $http"
                 }
                 OrbotConstants.LOCAL_ACTION_SMART_CONNECT_EVENT -> {
+                    /**
                     val status = intent.getStringExtra(OrbotConstants.LOCAL_EXTRA_SMART_STATUS)
                     if (status.equals(OrbotConstants.SMART_STATUS_NO_DIRECT)) {
                         // try the circumvention API, perhaps there's something we can do
@@ -328,7 +326,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
                     } else if (status.equals(OrbotConstants.SMART_STATUS_CIRCUMVENTION_ATTEMPT_FAILED)) {
                         // our attempt at circumventing failed, let's try another if any
                         setPreferenceForSmartConnect()
-                    }
+                    }**/
                 }
                 else -> {}
             }
@@ -353,35 +351,6 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     }
 
     var allCircumventionAttemptsFailed = false
-    private fun setPreferenceForSmartConnect() {
-        Log.d("bim", "setPreferenceForSmartConnect()")
-        val MS_DELAY = 250L
-        circumventionApiBridges?.let {
-            if (it.size == circumventionApiIndex) {
-                Log.d("bim", "tried all attempts, got nowhere!!!")
-                circumventionApiBridges = null
-                circumventionApiIndex = 0
-                allCircumventionAttemptsFailed = true
-                doLayoutForCircumventionApi()
-                return
-            }
-            val b = it[circumventionApiIndex]!!.bridges
-            if (b.type == CircumventionApiManager.BRIDGE_TYPE_SNOWFLAKE) {
-                Log.d("bim", "trying snowflake")
-                Prefs.putPrefSmartTrySnowflake(true)
-                startTorAndVpnDelay(MS_DELAY)
-            } else if (b.type == CircumventionApiManager.BRIDGE_TYPE_OBFS4) {
-                Log.d("bim", "trying obfs4 ${b.source}")
-                var bridgeStrings = ""
-                b.bridge_strings!!.forEach { bridgeString ->
-                    bridgeStrings += "$bridgeString\n"
-                }
-                Prefs.putPrefSmartTryObfs4(bridgeStrings)
-                startTorAndVpnDelay(MS_DELAY)
-            }
-            circumventionApiIndex += 1
-        }
-    }
 
 
 

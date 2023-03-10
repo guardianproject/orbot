@@ -271,4 +271,5 @@
     <string name="ask_tor">Ask Tor</string>
     <string name="many_ways">There are many ways to reach Tor. Some may work better than others for you.</string>
     <string name="action_use">Use</string>
+    <string name="asking">ASKING...</string>
 </resources>
