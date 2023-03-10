@@ -129,12 +129,12 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     private void loadApps() {
 
         if (mApps == null)
-            mApps = getApps(AppManagerActivity.this, mPrefs, null);
+            mApps = getApps(AppManagerActivity.this, mPrefs, null, alSuggested);
 
         TorifiedApp.sortAppsForTorifiedAndAbc(mApps);
 
         if (mAppsSuggested == null)
-            mAppsSuggested = getApps(AppManagerActivity.this, mPrefs, alSuggested);
+            mAppsSuggested = getApps(AppManagerActivity.this, mPrefs, alSuggested, null);
 
         final LayoutInflater inflater = getLayoutInflater();
 
@@ -267,7 +267,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
     }
 
-    public static ArrayList<TorifiedApp> getApps(Context context, SharedPreferences prefs, ArrayList<String> filterIds) {
+    public static ArrayList<TorifiedApp> getApps(Context context, SharedPreferences prefs, ArrayList<String> filterInclude, ArrayList<String> filterRemove) {
 
         PackageManager pMgr = context.getPackageManager();
         String tordAppString = prefs.getString(PREFS_KEY_TORIFIED, "");
@@ -289,9 +289,9 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
             ApplicationInfo aInfo = itAppInfo.next();
             if (!includeAppInUi(aInfo)) continue;
 
-            if (filterIds != null) {
+            if (filterInclude != null) {
                 boolean wasFound = false;
-                for (String filterId : filterIds)
+                for (String filterId : filterInclude)
                     if (filterId.equals(aInfo.packageName)) {
                         wasFound = true;
                         break;
@@ -299,6 +299,18 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
                 if (!wasFound)
                      continue;
+            }
+
+            if (filterRemove != null) {
+                boolean wasFound = false;
+                for (String filterId : filterRemove)
+                    if (filterId.equals(aInfo.packageName)) {
+                        wasFound = true;
+                        break;
+                    }
+
+                if (wasFound)
+                    continue;
             }
 
             TorifiedApp app = new TorifiedApp();
