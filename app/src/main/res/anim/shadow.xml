@@ -3,14 +3,15 @@
     android:interpolator="@android:anim/accelerate_decelerate_interpolator"
     >
 
-    <translate
-        android:fromXDelta="0.0"
-        android:toXDelta="0.0"
-        android:fromYDelta="0.0"
-        android:toYDelta="50.0"
-        android:startOffset="0"
+    <scale
         android:duration="500"
         android:repeatCount="50"
+        android:fromXScale="1.0"
+        android:fromYScale="1.0"
+        android:toXScale="1.2"
+        android:toYScale="1.2"
+        android:pivotX="50%"
+        android:pivotY="50%"
         />
 
 </set>

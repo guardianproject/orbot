@@ -58,6 +58,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     private lateinit var tvConfigure: TextView
     private lateinit var btnStartVpn: Button
     private lateinit var ivOnion: ImageView
+    private lateinit var ivOnionShadow: ImageView
     private lateinit var progressBar: ProgressBar
     private lateinit var lvConnectedActions: ListView
     // menu UI
@@ -81,6 +82,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         tvConfigure = findViewById(R.id.tvConfigure)
         btnStartVpn = findViewById(R.id.btnStart)
         ivOnion = findViewById(R.id.ivStatus)
+        ivOnionShadow = findViewById(R.id.ivShadow)
         progressBar = findViewById(R.id.progressBar)
         lvConnectedActions = findViewById(R.id.lvConnected)
 
@@ -386,8 +388,8 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
     private fun doLayoutOff() {
         ivOnion.setImageResource(R.drawable.orbioff)
         (ivOnion.layoutParams as ViewGroup.MarginLayoutParams).topMargin = 250
+        ivOnion.animation?.cancel()
         ivOnion.animate().y(200f).duration = 150
-
 
         tvSubtitle.visibility = View.VISIBLE
         progressBar.visibility = View.INVISIBLE
@@ -436,6 +438,7 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         ivOnion.setImageResource(R.drawable.orbion)
 
         ivOnion.animation?.cancel()
+        ivOnionShadow.animation?.cancel()
         ivOnion.animate().y(14f).duration = 200
 
         tvSubtitle.visibility = View.GONE
@@ -460,6 +463,11 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         animHover.repeatMode = Animation.REVERSE
         ivOnion.animation = animHover
         animHover.start()
+        val animShadow = AnimationUtils.loadAnimation(this, R.anim.shadow);
+        animShadow.repeatCount = Animation.INFINITE
+        animShadow.repeatMode = Animation.REVERSE
+        ivOnionShadow.animation = animShadow
+        animShadow.start()
 
         tvTitle.text = getString(R.string.trying_to_connect_title)
         with(btnStartVpn) {
