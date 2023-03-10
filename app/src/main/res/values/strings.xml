@@ -267,4 +267,8 @@
     <string name="apps_other_apps">Other Apps</string>
     <string name="hide_apps">Hide apps from network monitoring and get access when they are blocked.</string>
     <string name="log_copied">Log Copied</string>
+    <string name="not_sure">Not sure?</string>
+    <string name="ask_tor">Ask Tor</string>
+    <string name="many_ways">There are many ways to reach Tor. Some may work better than others for you.</string>
+    <string name="action_use">Use</string>
 </resources>

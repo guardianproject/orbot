@@ -19,7 +19,7 @@
         android:id="@+id/tvConfigSubHeader"
         style="@style/BottomSheetTextView"
         android:fontFamily="sans-serif-light"
-        android:text="There are many ways to reach Tor. Some may work better than others for you."
+        android:text="@string/many_ways"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvConfigHeader"
         />
@@ -41,7 +41,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="16dp"
-            android:text="Not sure?" />
+            android:text="@string/not_sure" />
 
 
         <Button
@@ -52,7 +52,7 @@
             android:backgroundTint="@color/orbot_btn_disable_grey"
             android:paddingLeft="@dimen/button_horizontal_large_margin"
             android:paddingRight="@dimen/button_horizontal_large_margin"
-            android:text="Ask Tor"
+            android:text="@string/ask_tor"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -67,41 +67,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvConfigAskTor">
 
-        <!--
-        <LinearLayout
-            android:layout_marginBottom="8dp"
-            android:id="@+id/smartContainer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/rbSmart"
-                style="@style/BottomSheetRadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                tools:checked="true" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/BottomSheetRadioHeader"
-                    android:text="@string/smart_connect" />
-
-                <TextView
-                    android:id="@+id/tvSmartSubtitle"
-                    style="@style/BottomSheetTextView"
-                    android:text="@string/smart_connect_subtitle"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
-            </LinearLayout>
-        </LinearLayout>
-        -->
 
         <LinearLayout
             android:id="@+id/directContainer"

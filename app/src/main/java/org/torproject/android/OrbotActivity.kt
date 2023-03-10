@@ -402,7 +402,15 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         with(btnStartVpn) {
             visibility = View.VISIBLE
 
-            var connectStr = Prefs.getConnectionPathway()
+            var connectStr = context.getString(R.string.action_use) + ' '
+            if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_DIRECT))
+                connectStr += getString(R.string.direct_connect);
+            else if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SNOWFLAKE))
+                connectStr += getString(R.string.snowflake);
+            else if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SNOWFLAKE_AMP))
+                connectStr += getString(R.string.snowflake_amp);
+            else if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_CUSTOM))
+                connectStr += getString(R.string.custom_bridge);
 
             text = if (Prefs.isPowerUserMode())
                 getString(R.string.connect)
