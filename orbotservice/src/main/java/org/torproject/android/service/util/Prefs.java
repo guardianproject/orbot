@@ -40,7 +40,7 @@ public class Prefs {
 
     private static final String PREF_CONNECTION_PATHWAY = "pref_connection_pathway";
     public static final String PATHWAY_SMART = "smart", PATHWAY_DIRECT = "direct",
-        PATHWAY_SNOWFLAKE = "snowflake", PATHWAY_CUSTOM = "custom";
+        PATHWAY_SNOWFLAKE = "snowflake", PATHWAY_SNOWFLAKE_AMP = "snowflake_amp", PATHWAY_CUSTOM = "custom";
 
 
     private static SharedPreferences prefs;

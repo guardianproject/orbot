@@ -265,7 +265,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var connectionPathway = Prefs.getConnectionPathway();
         // todo this needs to handle a lot of different cases that haven't been defined yet
         // todo particularly this is true for the smart connection case...
-        if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
+        if (connectionPathway.startsWith(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
             IPtProxy.stopSnowflake();
         } else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
             IPtProxy.stopObfs4Proxy();
@@ -1042,7 +1042,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         } else {
             // snowflake or obfs4
             extraLines.append("UseBridges 1").append('\n');
-            if (pathway.equals(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
+            if (pathway.startsWith(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
                 extraLines = processSettingsImplSnowflake(extraLines);
             } else if (pathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
                 extraLines = processSettingsImplObfs4(extraLines);
@@ -1409,9 +1409,12 @@ public class OrbotService extends VpnService implements OrbotConstants {
             if (action.equals(ACTION_START)) {
                 var connectionPathway = Prefs.getConnectionPathway();
                 if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
-                    // todo for now just do domain fronting ...
                     startSnowflakeClientDomainFronting();
-                } else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
+                }
+                else if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE_AMP)) {
+                    startSnowflakeClientAmpRendezvous();
+                }
+                else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
                     IPtProxy.startObfs4Proxy("DEBUG", false, false, null);
                 }
                 startTor();

@@ -209,7 +209,7 @@
     <string name="secure_your_connection_subtitle">Hide apps from network monitoring and get access when they are blocked.</string>
     <string name="connected_title">Connected</string>
     <string name="btn_start_vpn">Start VPN</string>
-    <string name="btn_configure">Configure</string>
+    <string name="btn_configure">Choose How To Connect</string>
     <string name="configure_header">Configure your Tor Connection</string>
     <string name="volunteer_mode_subtitle">Help others connect</string>
     <string name="trying_to_connect_title">Connecting…</string>
@@ -242,9 +242,10 @@
     <string name="smart_connect_subtitle">Orbot tries connecting to Tor through any way available: Direct, Snowflake, Bridge.</string>
     <string name="direct_connect">Direct Connection to Tor</string>
     <string name="direct_connect_subtitle">The best way to connect to Tor. Use if Tor is not blocked.</string>
-    <string name="snowflake">Snowflake</string>
+    <string name="snowflake">Snowflake (Original)</string>
+    <string name="snowflake_amp">Snowflake (AMP)</string>
     <string name="snowflake_subtitle">Connects through Tor volunteers. Gets around some Tor blocking.</string>
-    <string name="get_a_bridge">Get a Bridge from Tor (Obfs4)</string>
+    <string name="get_a_bridge">Bridge from Tor (Obfs4)</string>
     <string name="get_a_bridge_subtitle">Cloaks your traffic. Gets around some Tor blocking.</string>
     <string name="custom_bridge">Custom Bridge</string>
     <string name="custom_bridge_subtitle">Most likely to keep you connected if Tor is severely blocked. Requires a bridge address from someone you trust.</string>

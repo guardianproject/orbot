@@ -11,6 +11,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.Html
 import android.text.SpannableString
 import android.text.style.TextAppearanceSpan
 import android.util.Log
@@ -401,10 +402,12 @@ class OrbotActivity : AppCompatActivity(), ExitNodeDialogFragment.ExitNodeSelect
         with(btnStartVpn) {
             visibility = View.VISIBLE
 
+            var connectStr = Prefs.getConnectionPathway()
+
             text = if (Prefs.isPowerUserMode())
                 getString(R.string.connect)
             else
-                getString(R.string.btn_start_vpn)
+                Html.fromHtml("<big>${getString(R.string.btn_start_vpn)}</big><br/><small>${connectStr}</small>")
 
 
             isEnabled = true
