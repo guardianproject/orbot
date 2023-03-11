@@ -199,7 +199,7 @@
     <string name="be_a_snowflake_desc">Allow other Tor users to connect to Tor through your device. (This can\'t be used if you connect alongside bridges)</string>
     <string name="be_a_snowflake_title_limit">Snowflake Proxy Limits</string>
     <string name="be_a_snowflake_desc_limit">Only when device is plugged in and on wifi</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Snowflake proxy enabled</string>
+    <string name="snowflake_proxy_enabled" formatted="true">Snowflake proxy enabled</string>
     <string name="snowflake_proxy_msg_title">Show Connection Notification</string>
     <string name="snowflake_proxy_msg_description">Show a message when your snowflake helps someone circumvent censorship</string>
 
@@ -237,7 +237,7 @@
     <string name="volunteer_mode_label">Kindness Mode</string>
     <string name="volunteer_mode_weekly_label">Weekly Total</string>
     <string name="volunteer_mode_alltime_label">All Time Total</string>
-    <string name="volunteer_mode_subtitle_desc">Kindness mode allows your device to be a bridge for others. It helps people use Tor in places where it is blocked.\n\n- It will not drain your battery\n\n- It will not slow down your internet\n\n- It can run only over wifi\n\n- It can be turned off anytime</string>
+    <string name="volunteer_mode_subtitle_desc">Kindness mode allows your device to be a bridge for others. It helps people use Tor in places where it is blocked.\n\n• It will not drain your battery\n• It will not slow down your internet\n• It can run only over wifi\n• It can be turned off anytime</string>
     <string name="smart_connect">Smart Connect (default)</string>
     <string name="smart_connect_subtitle">Orbot tries connecting to Tor through any way available: Direct, Snowflake, Bridge.</string>
     <string name="direct_connect">Direct Connection to Tor</string>
@@ -272,4 +272,6 @@
     <string name="many_ways">There are many ways to reach Tor. Some may work better than others for you.</string>
     <string name="action_use">Use</string>
     <string name="asking">ASKING...</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

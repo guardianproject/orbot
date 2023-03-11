@@ -1,4 +1,4 @@
-package org.torproject.android
+package org.torproject.android.ui
 
 import android.content.Context
 import android.content.Intent
@@ -10,15 +10,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.content.ContextCompat.startActivity
+import org.torproject.android.R
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.util.Prefs
 import org.torproject.android.service.util.Utils
-import org.torproject.android.ui.OrbotMenuAction
 import java.util.*
 
 
-class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>) : ArrayAdapter<OrbotMenuAction>(context, R.layout.action_list_view, list) {
+class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>) : ArrayAdapter<OrbotMenuAction>(context,
+    R.layout.action_list_view, list) {
 
     private val layoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater

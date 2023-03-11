@@ -32,12 +32,13 @@ open class OrbotBottomSheetDialogFragment : BottomSheetDialogFragment() {
     override fun onCancel(dialog: DialogInterface) {
         if (!backPressed) {
             // todo this method only works for now because OrbotActivity is locked in portrait mode
-            closeAllSheetsInternal()
+           // closeAllSheetsInternal()
+            dismiss()
         }
     }
 
     protected fun closeAllSheets() {
-        closeAllSheetsInternal()
+       // closeAllSheetsInternal()
         dismiss()
     }
 
