@@ -27,7 +27,7 @@ class TrivialOrbotUITest {
         val bottomNav = onView(
                 allOf(withId(R.id.bottom_navigation),
                         isDisplayed()))
-        
+
         //textView.check(matches(withText("CONFIGURE")))
 
     }

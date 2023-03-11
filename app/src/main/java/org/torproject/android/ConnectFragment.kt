@@ -4,6 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.net.NetworkInfo
 import android.net.VpnService
 import android.os.Build
 import android.os.Bundle
@@ -19,6 +22,7 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import net.freehaven.tor.control.TorControlCommands
 import org.torproject.android.service.OrbotConstants
@@ -27,6 +31,7 @@ import org.torproject.android.service.util.Prefs
 import org.torproject.android.ui.AppManagerActivity
 import org.torproject.android.ui.OrbotMenuAction
 import org.torproject.android.ui.OrbotMenuActionAdapter
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,20 +88,55 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
             progressBar = it.findViewById(R.id.progressBar)
             lvConnectedActions = it.findViewById(R.id.lvConnected)
 
-            if (Prefs.isPowerUserMode())
-            {
+            if (Prefs.isPowerUserMode()) {
                 btnStartVpn.text = getString(R.string.connect)
             }
 
-            when (lastStatus) {
-                OrbotConstants.STATUS_OFF -> doLayoutOff()
-                OrbotConstants.STATUS_STARTING -> doLayoutStarting(requireContext())
-                OrbotConstants.STATUS_ON -> doLayoutOn(requireContext())
-                OrbotConstants.STATUS_STOPPING -> {}
+            if (!isNetworkAvailable(requireContext())) {
+                doLayoutNoInternet(requireContext())
+            } else {
+
+                when (lastStatus) {
+                    OrbotConstants.STATUS_OFF -> doLayoutOff()
+                    OrbotConstants.STATUS_STARTING -> doLayoutStarting(requireContext())
+                    OrbotConstants.STATUS_ON -> doLayoutOn(requireContext())
+                    OrbotConstants.STATUS_STOPPING -> {}
+                    else -> {doLayoutOff()}
+                }
+
             }
+
+
         }
 
         return view
+    }
+
+    fun isNetworkAvailable(context: Context?): Boolean {
+        if (context == null) return false
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            if (capabilities != null) {
+                when {
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
+                        return true
+                    }
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
+                        return true
+                    }
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
+                        return true
+                    }
+                }
+            }
+        } else {
+            val activeNetworkInfo = connectivityManager.activeNetworkInfo
+            if (activeNetworkInfo != null && activeNetworkInfo.isConnected) {
+                return true
+            }
+        }
+        return false
     }
 
     public fun stopTorAndVpn() {
@@ -169,6 +209,28 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         tvConfigure.setOnClickListener {
             doLayoutOff()
         }
+    }
+
+
+    public fun doLayoutNoInternet(context : Context) {
+
+        ivOnion.setImageResource(R.drawable.nointernet)
+
+        ivOnion.animation?.cancel()
+
+        tvSubtitle.visibility = View.VISIBLE
+
+        progressBar.visibility = View.INVISIBLE
+        tvTitle.text = "Connect to internet"
+        tvSubtitle.text = "You need an internet connection to use Orbot."
+
+        tvSubtitle.visibility = View.VISIBLE
+
+        btnStartVpn.visibility = View.GONE
+        lvConnectedActions.visibility = View.GONE
+        tvConfigure.visibility = View.GONE
+        //refreshMenuList(context)
+
     }
 
     public fun doLayoutOn(context : Context) {
