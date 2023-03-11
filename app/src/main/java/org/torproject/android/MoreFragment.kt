@@ -59,7 +59,7 @@ class MoreFragment : Fragment() {
         lvMore = view.findViewById(R.id.lvMoreActions)
 
         val listItems = arrayListOf(
-            OrbotMenuAction(R.string.v3_hosted_services, R.drawable.ic_shield) { startActivity(Intent(requireActivity(), OnionServiceActivity::class.java))},
+            OrbotMenuAction(R.string.v3_hosted_services, R.drawable.ic_menu_onion) { startActivity(Intent(requireActivity(), OnionServiceActivity::class.java))},
             OrbotMenuAction(R.string.v3_client_auth_activity_title, R.drawable.ic_shield) { startActivity(Intent(requireActivity(), ClientAuthActivity::class.java))},
             OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {
                 startActivityForResult(Intent(requireActivity(), AppManagerActivity::class.java), REQUEST_VPN_APP_SELECT)

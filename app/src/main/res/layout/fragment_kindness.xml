@@ -15,6 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/panel_kindness_activate"
         android:visibility="visible"
+        android:alpha="0"
         >
 
 
@@ -22,11 +23,11 @@
             android:id="@+id/ivHeart"
             android:layout_width="180dp"
             android:layout_height="180dp"
-            android:src="@drawable/kindness"
+            android:src="@drawable/orbiesnoozing"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            android:alpha=".5"
+            android:alpha=".8"
             />
 
 
@@ -71,6 +72,9 @@
             android:backgroundTint="@color/orbot_btn_enabled_purple"
             android:text="@string/action_activate"
             android:textColor="@android:color/white"
+            android:background="@drawable/btn_shape_round"
+            android:paddingLeft="@dimen/button_horizontal_large_margin"
+            android:paddingRight="@dimen/button_horizontal_large_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSubtitle"
@@ -85,7 +89,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/panel_kindness_status"
-        android:visibility="gone"
+        android:visibility="visible"
+        android:alpha="1"
         >
 
         <ImageView
@@ -103,7 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/volunteer_status_title"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@android:color/white"
             android:textSize="36sp"
             android:textStyle="normal"
             android:gravity="center_horizontal"
@@ -125,8 +130,9 @@
             android:layout_margin="10dp"
             >
             <TextView
+                android:id="@+id/swVolunteerHeader"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/volunteer_mode"
                 android:textSize="24dp"
                 android:paddingTop="@dimen/activity_horizontal_margin"
@@ -134,45 +140,30 @@
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/swVolunteerMode"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:showText="false"
                 android:textSize="24dp"
                 android:padding="@dimen/activity_horizontal_margin"
 
                 />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <!--
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/rowWeeklyTotal"
-                android:layout_width="match_parent"
+
+            <TextView
+                android:id="@+id/swVolunteerAdjust"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingTop="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/button_horizontal_large_margin"
+                android:text="@string/kindness_adjust_title"
+                android:textSize="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rowVolunteerMode"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:background="@color/orbot_btn_disable_grey"
-                android:layout_margin="10dp"
-                >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/volunteer_mode_weekly_label"
-            android:textColor="@color/progress_bar_purple"
-            android:textSize="24dp"
-            android:padding="@dimen/activity_horizontal_margin"
-            />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="#"
-                    android:textSize="24dp"
-                    android:id="@+id/tvWeeklyTotal"
-                    android:padding="@dimen/activity_horizontal_margin"
-                    />
-            </androidx.appcompat.widget.LinearLayoutCompat>-->
+                app:layout_constraintTop_toBottomOf="@+id/swVolunteerHeader" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -181,7 +172,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rowVolunteerMode"
             android:orientation="horizontal"
-            android:background="@color/orbot_btn_disable_grey"
+            android:background="@color/panel_widget_background"
             android:layout_margin="10dp"
             android:id="@+id/volunteer_display_weekly"
             >
@@ -192,6 +183,8 @@
                 android:textColor="@color/progress_bar_purple"
                 android:textSize="20dp"
                 android:padding="@dimen/activity_horizontal_margin"
+                android:fontFamily="sans-serif-medium"
+                android:textAllCaps="true"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -201,6 +194,7 @@
                 android:textSize="24dp"
                 android:padding="@dimen/activity_horizontal_margin"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:fontFamily="sans-serif-medium"
 
                 />
 
@@ -212,7 +206,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/volunteer_display_weekly"
             android:orientation="horizontal"
-            android:background="@color/orbot_btn_disable_grey"
+            android:background="@color/panel_widget_background"
             android:layout_margin="10dp"
             >
             <TextView
@@ -222,6 +216,9 @@
                 android:textColor="@color/progress_bar_purple"
                 android:textSize="20dp"
                 android:padding="@dimen/activity_horizontal_margin"
+                android:textAllCaps="true"
+                android:fontFamily="sans-serif-medium"
+
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -231,6 +228,7 @@
                 android:textSize="24dp"
                 android:padding="@dimen/activity_horizontal_margin"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:fontFamily="sans-serif-medium"
 
                 />
 

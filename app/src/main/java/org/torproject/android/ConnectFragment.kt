@@ -221,8 +221,8 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         tvSubtitle.visibility = View.VISIBLE
 
         progressBar.visibility = View.INVISIBLE
-        tvTitle.text = "Connect to internet"
-        tvSubtitle.text = "You need an internet connection to use Orbot."
+        tvTitle.text = getString(R.string.no_interent_title)
+        tvSubtitle.text = getString(R.string.no_internet_subtitle)
 
         tvSubtitle.visibility = View.VISIBLE
 

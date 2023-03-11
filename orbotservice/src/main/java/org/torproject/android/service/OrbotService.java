@@ -20,6 +20,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.net.Uri;
 import android.net.VpnService;
 import android.os.Build;
@@ -64,6 +67,7 @@ import java.util.concurrent.Executors;
 
 import IPtProxy.IPtProxy;
 import androidx.annotation.ChecksSdkIntAtLeast;
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -494,10 +498,71 @@ public class OrbotService extends VpnService implements OrbotConstants {
         registerReceiver(mPowerReceiver, ifilter);
 
         if (Prefs.beSnowflakeProxy()) {
-            enableSnowflakeProxy();
+
+            if (Prefs.limitSnowflakeProxyingCharging())
+            {
+                //wait until the next time it is plugged in
+            }
+            else if (Prefs.limitSnowflakeProxyingWifi())
+            {
+                //check if on wifi
+               ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+               boolean hasWifi = false;
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    hasWifi = connMgr.getNetworkCapabilities(connMgr.getActiveNetwork()).hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
+
+                }
+                else
+                {
+                    hasWifi = connMgr.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
+                }
+
+                if (hasWifi)
+                    enableSnowflakeProxy();
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    connMgr.registerDefaultNetworkCallback(new ConnectivityManager.NetworkCallback() {
+                        @Override
+                        public void onAvailable(@NonNull Network network) {
+                            super.onAvailable(network);
+
+                            boolean hasWifi = false;
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                                hasWifi = connMgr.getNetworkCapabilities(connMgr.getActiveNetwork()).hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
+                            else
+                                hasWifi = connMgr.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
+
+                            if (hasWifi)
+                                enableSnowflakeProxy();
+                            else
+                                disableSnowflakeProxy();
+                        }
+
+                        @Override
+                        public void onLost(@NonNull Network network) {
+                            super.onLost(network);
+
+                            boolean hasWifi = false;
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                                hasWifi = connMgr.getNetworkCapabilities(connMgr.getActiveNetwork()).hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
+                            else
+                                hasWifi = connMgr.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
+
+                            if (hasWifi)
+                                enableSnowflakeProxy();
+                            else
+                                disableSnowflakeProxy();
+
+                        }
+                    });
+                }
+
+            }
+            else
+                enableSnowflakeProxy();
         }
 
-        Log.i("OrbotService", "onCreate end");
     }
 
     protected String getCurrentStatus() {

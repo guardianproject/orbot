@@ -56,6 +56,11 @@ class KindnessFragment : Fragment() {
             showPanelStatus(isChecked)
         }
 
+        view.findViewById<TextView>(R.id.swVolunteerAdjust).setOnClickListener {
+
+            KindessConfigBottomSheet().show(requireActivity().supportFragmentManager, CustomBridgeBottomSheet.TAG)
+
+        }
 
         btnActionActivate.setOnClickListener {
             //   Prefs.setBeSnowflakeProxy(true)
@@ -109,15 +114,36 @@ class KindnessFragment : Fragment() {
 
     private fun showPanelStatus(showStatus: Boolean) {
 
+        var duration = 250L
+
         if (showStatus) {
-            pnlActivate.visibility = View.GONE
-            pnlStatus.visibility = View.VISIBLE
+
+            pnlActivate.animate()
+                .alpha(0f)
+                .setDuration(duration)
+                .setListener(null);
+
+
+            pnlStatus.animate()
+                .alpha(1f)
+                .setDuration(duration)
+                .setListener(null);
+
 
         }
         else
         {
-            pnlActivate.visibility = View.VISIBLE
-            pnlStatus.visibility = View.GONE
+            pnlActivate.animate()
+                .alpha(1f)
+                .setDuration(duration)
+                .setListener(null);
+
+
+            pnlStatus.animate()
+                .alpha(0f)
+                .setDuration(duration)
+                .setListener(null);
+
         }
     }
 }
