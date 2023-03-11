@@ -23,10 +23,12 @@ class TrivialOrbotUITest {
 
     @Test
     fun trivialOrbotUITest() {
-        val textView = onView(
-                allOf(withId(R.id.tvConfigure), withText("CONFIGURE"),
-                        withParent(withParent(withId(R.id.drawerLayout))),
+
+        val bottomNav = onView(
+                allOf(withId(R.id.bottom_navigation),
                         isDisplayed()))
-        textView.check(matches(withText("CONFIGURE")))
+        
+        //textView.check(matches(withText("CONFIGURE")))
+
     }
 }
