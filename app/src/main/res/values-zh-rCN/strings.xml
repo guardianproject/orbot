@@ -7,7 +7,6 @@
     <string name="status_shutting_down">Orbot 正在关闭</string>
     <string name="menu_settings">设置</string>
     <string name="menu_log">日志</string>
-    <string name="menu_start">启动</string>
     <string name="menu_stop">停止</string>
     <string name="menu_about">关于</string>
     <string name="main_layout_download">下载</string>

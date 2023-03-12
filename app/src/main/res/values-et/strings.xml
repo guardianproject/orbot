@@ -7,7 +7,6 @@
     <string name="status_shutting_down">Orbot lõpetab tegevuse</string>
     <string name="menu_settings">Seaded</string>
     <string name="menu_log">Logi</string>
-    <string name="menu_start">Start</string>
     <string name="menu_stop">Stopp</string>
     <string name="menu_about">Lähemalt</string>
     <string name="main_layout_download">Lae alla</string>

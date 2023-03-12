@@ -7,8 +7,7 @@
   <string name="status_shutting_down">Tor xidməti işini başa vurur</string>
   <string name="menu_settings">Quraşdırmalar</string>
   <string name="menu_log">Jurnal</string>
-    <string name="menu_start">Başla</string>
-  <string name="menu_stop">Dur</string>
+    <string name="menu_stop">Dur</string>
   <string name="menu_about">Haqqında</string>
     <string name="main_layout_download">Endir</string>
   <string name="main_layout_upload">Yüklə</string>

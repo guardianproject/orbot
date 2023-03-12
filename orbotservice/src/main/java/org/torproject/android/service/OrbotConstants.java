@@ -18,8 +18,6 @@ public interface OrbotConstants {
     String PREF_REACHABLE_ADDRESSES = "pref_reachable_addresses";
     String PREF_REACHABLE_ADDRESSES_PORTS = "pref_reachable_addresses_ports";
 
-    String PREF_DISABLE_NETWORK = "pref_disable_network";
-
     String PREF_TOR_SHARED_PREFS = "org.torproject.android_preferences";
 
     String PREF_SOCKS = "pref_socks";
@@ -48,7 +46,6 @@ public interface OrbotConstants {
     String GEOIP_ASSET_KEY = "geoip";
     String GEOIP6_ASSET_KEY = "geoip6";
 
-    String IP_LOCALHOST = "127.0.0.1";
     int TOR_TRANSPROXY_PORT_DEFAULT = 9040;
 
     int TOR_DNS_PORT_DEFAULT = 5400;
@@ -167,6 +164,4 @@ public interface OrbotConstants {
     );
 
     String SNOWFLAKE_EMOJI = "❄️";
-    String SNOWFLAKE_PROXY_EMOJI = "\uD83D\uDCF2";
-
 }

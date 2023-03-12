@@ -7,7 +7,6 @@
     <string name="status_shutting_down">Orbot tiek slēgts</string>
     <string name="menu_settings">Iestatījumi</string>
     <string name="menu_log">Žurnāls</string>
-    <string name="menu_start">Startēt</string>
     <string name="menu_stop">Apturēt</string>
     <string name="menu_about">Par</string>
     <string name="main_layout_download">Lejupielāde</string>

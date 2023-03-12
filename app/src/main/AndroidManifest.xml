@@ -39,26 +39,6 @@
         android:theme="@style/DefaultTheme"
         tools:replace="android:allowBackup">
 
-        <activity
-            android:name=".OrbotMainActivity"
-            android:excludeFromRecents="false"
-            android:launchMode="singleTop"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="bridge" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="org.torproject.android.REQUEST_V3_ONION_SERVICE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
-
         <activity android:name=".OrbotActivity"
             android:excludeFromRecents="false"
             android:launchMode="singleTop"

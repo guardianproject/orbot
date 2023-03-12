@@ -7,7 +7,6 @@
     <string name="status_shutting_down">O Orbot está desligando</string>
     <string name="menu_settings">Definições</string>
     <string name="menu_log">Registro</string>
-    <string name="menu_start">Iniciar</string>
     <string name="menu_stop">Parar</string>
     <string name="menu_about">Sobre</string>
     <string name="main_layout_download">Download</string>

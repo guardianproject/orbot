@@ -38,12 +38,6 @@ public class CustomSlideBigText extends Fragment {
 
     public void setSubTitle(String subTitle) { mSubTitle = subTitle; }
 
-    public void showButton (String buttonText, View.OnClickListener buttonListener)
-    {
-        mButtonText = buttonText;
-        mButtonListener = buttonListener;
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,14 +57,14 @@ public class CustomSlideBigText extends Fragment {
         if (!TextUtils.isEmpty(mSubTitle)) {
 
             TextView tv =
-                    (TextView)view.findViewById(R.id.custom_slide_big_text_sub);
+                    view.findViewById(R.id.custom_slide_big_text_sub);
             tv.setText(mSubTitle);
             tv.setVisibility(View.VISIBLE);
         }
 
         if (mButtonText != null)
         {
-            Button button = (Button)view.findViewById(R.id.custom_slide_button);
+            Button button = view.findViewById(R.id.custom_slide_button);
             button.setVisibility(View.VISIBLE);
             button.setText(mButtonText);
             button.setOnClickListener(mButtonListener);

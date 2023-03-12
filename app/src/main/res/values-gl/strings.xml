@@ -7,7 +7,6 @@
     <string name="status_shutting_down">O ServizoTor estase pechando</string>
     <string name="menu_settings">Axustes</string>
     <string name="menu_log">Rexistro (log)</string>
-    <string name="menu_start">Iniciar</string>
     <string name="menu_stop">Deter</string>
     <string name="menu_about">Sobre</string>
     <string name="main_layout_download">Descargar</string>

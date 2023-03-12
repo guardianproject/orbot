@@ -7,7 +7,6 @@
     <string name="status_shutting_down">Tor-Сервисот се исклучува</string>
     <string name="menu_settings">Поставки</string>
     <string name="menu_log">Дневник</string>
-    <string name="menu_start">Започни</string>
     <string name="menu_stop">Запри</string>
     <string name="menu_about">За</string>
     <string name="main_layout_download">Преземи</string>

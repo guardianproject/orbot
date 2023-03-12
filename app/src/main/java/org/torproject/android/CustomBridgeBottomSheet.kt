@@ -26,6 +26,7 @@ class CustomBridgeBottomSheet(private val callbacks: ConnectionHelperCallbacks):
         v.findViewById<View>(R.id.tvCancel).setOnClickListener { dismiss() }
         btnAction = v.findViewById(R.id.btnAction)
         btnAction.setOnClickListener {
+            Prefs.setBridgesList(etBridges.text.toString())
             callbacks.tryConnecting()
             closeAllSheets()
         }

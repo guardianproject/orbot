@@ -7,7 +7,6 @@
     <string name="status_shutting_down">Гашење Тор Сервиса</string>
     <string name="menu_settings">Подешавања</string>
     <string name="menu_log">Логови</string>
-    <string name="menu_start">Крени</string>
     <string name="menu_stop">Заустави</string>
     <string name="menu_about">О нама</string>
     <string name="main_layout_download">Преузимање</string>

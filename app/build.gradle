@@ -20,10 +20,11 @@ android {
     defaultConfig {
         applicationId "org.torproject.android"
         versionName getVersionName()
-        minSdkVersion 16
+        minSdkVersion 18
         compileSdkVersion 33
         targetSdkVersion 33
         multiDexEnabled true
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     compileOptions {
 //        coreLibraryDesugaringEnabled true
@@ -41,7 +42,7 @@ android {
         fullperm {
             dimension "free"
 
-            minSdkVersion 16
+            minSdkVersion 18
             applicationId 'org.torproject.android'
             targetSdkVersion 31
             versionCode 1700200100
@@ -53,7 +54,7 @@ android {
         nightly {
             dimension "free"
 
-            minSdkVersion 16
+            minSdkVersion 18
             applicationId 'org.torproject.android.nightly'
             targetSdkVersion 31
             versionName getVersionName()
@@ -121,5 +122,11 @@ android {
 }
 dependencies {
     implementation "androidx.core:core-ktx:1.8.0"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    // Kotlin
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
 }

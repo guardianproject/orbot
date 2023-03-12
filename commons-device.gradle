@@ -1,5 +1,5 @@
 /*
-    Applies across android app modules: {app, app-mini, app-tv}
+    Applies across android app modules: {app, app-tv}
  */
 apply plugin: 'com.android.application'
 apply from: "../commons.gradle"

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/new_background"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_kindness_header"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/kindness_adjust_title"
+        style="@style/BottomSheetHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:textColor="@android:color/white"
+        android:text="@string/kindess_config_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_kindness_header"
+        android:id="@+id/tvCustomBridgeSubHeader"/>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rowKindnessConfigWifi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCustomBridgeSubHeader"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:background="@color/panel_widget_background"
+        android:layout_margin="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Only on Wifi"
+            android:textSize="24dp"
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:textColor="@android:color/white"
+
+            />
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/swKindnessConfigWifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:showText="false"
+            android:textSize="24dp"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:textColor="@android:color/white"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rowKindnessConfigPower"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rowKindnessConfigWifi"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:background="@color/panel_widget_background"
+        android:layout_margin="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Only when charging"
+            android:textSize="24dp"
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:textColor="@android:color/white"
+
+            />
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/swKindnessConfigCharging"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:showText="false"
+            android:textSize="24dp"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:textColor="@android:color/white"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/mainGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".65"/>
+
+    <TextView
+        android:id="@+id/tvCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@android:string/cancel"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/btnAction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainGuideline" />
+
+
+    <Button
+        android:id="@+id/btnAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:backgroundTint="@color/orbot_btn_enabled_purple"
+        android:text="@string/save"
+        android:textColor="@android:color/white"
+        android:background="@drawable/btn_shape_round"
+        android:paddingLeft="@dimen/button_horizontal_large_margin"
+        android:paddingRight="@dimen/button_horizontal_large_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvCancel"
+        app:layout_constraintTop_toBottomOf="@id/mainGuideline"
+        app:layout_goneMarginBottom="20dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

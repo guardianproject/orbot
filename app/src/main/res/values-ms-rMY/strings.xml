@@ -5,7 +5,6 @@
     <string name="status_activated">Bersambung ke rangkaian Tor</string>
     <string name="menu_settings">Tetapan</string>
     <string name="menu_log">Log</string>
-    <string name="menu_start">Mula</string>
     <string name="menu_stop">Henti</string>
     <string name="menu_about">Tentang</string>
     <string name="main_layout_download">Muat turun</string>

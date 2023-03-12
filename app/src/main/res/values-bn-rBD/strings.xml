@@ -7,7 +7,6 @@
     <string name="status_shutting_down">টর সার্ভিস বন্ধ করা হচ্ছে</string>
     <string name="menu_settings">পছন্দসমূহ</string>
     <string name="menu_log">লগ</string>
-    <string name="menu_start">শুরু</string>
     <string name="menu_stop">শেষ</string>
     <string name="menu_about">বিস্তারিত</string>
     <string name="main_layout_download">ডাওনলোড</string>

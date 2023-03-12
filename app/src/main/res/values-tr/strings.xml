@@ -7,7 +7,6 @@
     <string name="status_shutting_down">Orbot kapatılıyor</string>
     <string name="menu_settings">Ayarlar</string>
     <string name="menu_log">Günlük</string>
-    <string name="menu_start">Başlat</string>
     <string name="menu_stop">Durdur</string>
     <string name="menu_about">Hakkında</string>
     <string name="main_layout_download">İndir</string>

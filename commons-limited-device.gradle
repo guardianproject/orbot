@@ -1,5 +1,5 @@
 /*
-    Applies across android app module with limited capabilities: {app-mini, app-tv}
+    Applies across android app module with limited capabilities: {app-tv}
  */
 apply from: "../commons-device.gradle"
 

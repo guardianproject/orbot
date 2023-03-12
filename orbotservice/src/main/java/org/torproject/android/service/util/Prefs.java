@@ -3,16 +3,12 @@ package org.torproject.android.service.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import androidx.annotation.NonNull;
 import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
-import androidx.work.Worker;
-import androidx.work.WorkerParameters;
 
 import org.torproject.android.service.OrbotConstants;
 
-import java.util.Calendar;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -31,7 +27,9 @@ public class Prefs {
     private final static String PREF_EXIT_NODES = "pref_exit_nodes";
     private final static String PREF_BE_A_SNOWFLAKE = "pref_be_a_snowflake";
     private final static String PREF_SHOW_SNOWFLAKE_MSG = "pref_show_snowflake_proxy_msg";
-    private final static String PREF_BE_A_SNOWFLAKE_LIMIT = "pref_be_a_snowflake_limit";
+    private final static String PREF_BE_A_SNOWFLAKE_LIMIT_WIFI = "pref_be_a_snowflake_limit_wifi";
+    private final static String PREF_BE_A_SNOWFLAKE_LIMIT_CHARGING = "pref_be_a_snowflake_limit_charing";
+
     private final static String PREF_SMART_TRY_SNOWFLAKE = "pref_smart_try_snowflake";
     private final static String PREF_SMART_TRY_OBFS4 = "pref_smart_try_obfs";
     private static final String PREF_POWER_USER_MODE = "pref_power_user";
@@ -44,7 +42,7 @@ public class Prefs {
 
     private static final String PREF_CONNECTION_PATHWAY = "pref_connection_pathway";
     public static final String PATHWAY_SMART = "smart", PATHWAY_DIRECT = "direct",
-        PATHWAY_SNOWFLAKE = "snowflake", PATHWAY_CUSTOM = "custom";
+        PATHWAY_SNOWFLAKE = "snowflake", PATHWAY_SNOWFLAKE_AMP = "snowflake_amp", PATHWAY_CUSTOM = "custom";
 
 
     private static SharedPreferences prefs;
@@ -122,8 +120,20 @@ public class Prefs {
         putBoolean(PREF_BE_A_SNOWFLAKE,beSnowflakeProxy);
     }
 
-    public static boolean limitSnowflakeProxying () {
-        return prefs.getBoolean(PREF_BE_A_SNOWFLAKE_LIMIT,true);
+    public static void setBeSnowflakeProxyLimitWifi (boolean beSnowflakeProxy) {
+        putBoolean(PREF_BE_A_SNOWFLAKE_LIMIT_WIFI,beSnowflakeProxy);
+    }
+
+    public static void setBeSnowflakeProxyLimitCharging (boolean beSnowflakeProxy) {
+        putBoolean(PREF_BE_A_SNOWFLAKE_LIMIT_CHARGING,beSnowflakeProxy);
+    }
+
+    public static boolean limitSnowflakeProxyingWifi () {
+        return prefs.getBoolean(PREF_BE_A_SNOWFLAKE_LIMIT_WIFI,false);
+    }
+
+    public static boolean limitSnowflakeProxyingCharging () {
+        return prefs.getBoolean(PREF_BE_A_SNOWFLAKE_LIMIT_CHARGING,false);
     }
 
     public static void setDefaultLocale(String value) {

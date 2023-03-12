@@ -7,7 +7,6 @@
     <string name="status_shutting_down">Служба Tor выключаецца</string>
     <string name="menu_settings">Налады</string>
     <string name="menu_log">Журнал</string>
-    <string name="menu_start">Пуск</string>
     <string name="menu_stop">Стоп</string>
     <string name="menu_about">Пра праграму</string>
     <string name="main_layout_download">Спампаваць</string>

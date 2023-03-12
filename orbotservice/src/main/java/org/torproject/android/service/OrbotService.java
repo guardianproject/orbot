@@ -20,6 +20,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.net.Uri;
 import android.net.VpnService;
 import android.os.Build;
@@ -64,6 +67,7 @@ import java.util.concurrent.Executors;
 
 import IPtProxy.IPtProxy;
 import androidx.annotation.ChecksSdkIntAtLeast;
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -265,7 +269,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var connectionPathway = Prefs.getConnectionPathway();
         // todo this needs to handle a lot of different cases that haven't been defined yet
         // todo particularly this is true for the smart connection case...
-        if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
+        if (connectionPathway.startsWith(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
             IPtProxy.stopSnowflake();
         } else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
             IPtProxy.stopObfs4Proxy();
@@ -356,19 +360,18 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     private void startSnowflakeClientAmpRendezvous() {
-        var stunServers ="stun:stun.l.google.com:19302,stun:stun.voip.blackberry.com:3478,stun:stun.altar.com.pl:3478,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478,stun:stun.sonetel.com:3478,stun:stun.sonetel.net:3478,stun:stun.stunprotocol.org:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.voys.nl:3478";
+        var stunServers = "stun:stun.l.google.com:19302,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478,stun:stun.sonetel.com:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.voys.nl:3478";
         var target = "https://snowflake-broker.torproject.net/";
         var front = "www.google.com";
         var ampCache ="https://cdn.ampproject.org/";
         IPtProxy.startSnowflake(stunServers, target, front, ampCache, null, true, false, false, 1);
     }
 
-    @SuppressWarnings("ConstantConditions")
     public void enableSnowflakeProxy () { // This is to host a snowflake entrance node / bridge
         var capacity = 1;
         var keepLocalAddresses = false;
         var unsafeLogging = false;
-        var stunUrl = "stun:stun.stunprotocol.org:3478";
+        var stunUrl = "stun:stun.l.google.com:19302";
         var relayUrl = "wss://snowflake.bamsoftware.com";
         var natProbeUrl = "https://snowflake-broker.torproject.net:8443/probe";
         var brokerUrl = "https://snowflake-broker.torproject.net/";
@@ -495,10 +498,71 @@ public class OrbotService extends VpnService implements OrbotConstants {
         registerReceiver(mPowerReceiver, ifilter);
 
         if (Prefs.beSnowflakeProxy()) {
-            enableSnowflakeProxy();
+
+            if (Prefs.limitSnowflakeProxyingCharging())
+            {
+                //wait until the next time it is plugged in
+            }
+            else if (Prefs.limitSnowflakeProxyingWifi())
+            {
+                //check if on wifi
+               ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+               boolean hasWifi = false;
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    hasWifi = connMgr.getNetworkCapabilities(connMgr.getActiveNetwork()).hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
+
+                }
+                else
+                {
+                    hasWifi = connMgr.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
+                }
+
+                if (hasWifi)
+                    enableSnowflakeProxy();
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    connMgr.registerDefaultNetworkCallback(new ConnectivityManager.NetworkCallback() {
+                        @Override
+                        public void onAvailable(@NonNull Network network) {
+                            super.onAvailable(network);
+
+                            boolean hasWifi = false;
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                                hasWifi = connMgr.getNetworkCapabilities(connMgr.getActiveNetwork()).hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
+                            else
+                                hasWifi = connMgr.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
+
+                            if (hasWifi)
+                                enableSnowflakeProxy();
+                            else
+                                disableSnowflakeProxy();
+                        }
+
+                        @Override
+                        public void onLost(@NonNull Network network) {
+                            super.onLost(network);
+
+                            boolean hasWifi = false;
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                                hasWifi = connMgr.getNetworkCapabilities(connMgr.getActiveNetwork()).hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
+                            else
+                                hasWifi = connMgr.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
+
+                            if (hasWifi)
+                                enableSnowflakeProxy();
+                            else
+                                disableSnowflakeProxy();
+
+                        }
+                    });
+                }
+
+            }
+            else
+                enableSnowflakeProxy();
         }
 
-        Log.i("OrbotService", "onCreate end");
     }
 
     protected String getCurrentStatus() {
@@ -681,7 +745,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     private boolean showTorServiceErrorMsg = false;
 
-    private static int TIMEOUT_MS = 15000;
+    private static final int TIMEOUT_MS = 15000;
 
     /**
      * The entire process for starting tor and related services is run from this method.
@@ -1043,7 +1107,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         } else {
             // snowflake or obfs4
             extraLines.append("UseBridges 1").append('\n');
-            if (pathway.equals(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
+            if (pathway.startsWith(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
                 extraLines = processSettingsImplSnowflake(extraLines);
             } else if (pathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
                 extraLines = processSettingsImplObfs4(extraLines);
@@ -1410,9 +1474,12 @@ public class OrbotService extends VpnService implements OrbotConstants {
             if (action.equals(ACTION_START)) {
                 var connectionPathway = Prefs.getConnectionPathway();
                 if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
-                    // todo for now just do domain fronting ...
                     startSnowflakeClientDomainFronting();
-                } else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
+                }
+                else if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE_AMP)) {
+                    startSnowflakeClientAmpRendezvous();
+                }
+                else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
                     IPtProxy.startObfs4Proxy("DEBUG", false, false, null);
                 }
                 startTor();

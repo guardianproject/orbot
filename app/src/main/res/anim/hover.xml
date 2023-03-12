@@ -10,7 +10,7 @@
         android:toYDelta="50.0"
         android:startOffset="0"
         android:duration="500"
-        android:repeatCount="3"
+        android:repeatCount="50"
         />
 
 </set>

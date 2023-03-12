@@ -7,7 +7,6 @@
     <string name="status_shutting_down">Tor-tjenesten avsluttes</string>
     <string name="menu_settings">Innstillinger</string>
     <string name="menu_log">Logg</string>
-    <string name="menu_start">Start</string>
     <string name="menu_stop">Stopp</string>
     <string name="menu_about">Om</string>
     <string name="main_layout_download">Nedlasting</string>

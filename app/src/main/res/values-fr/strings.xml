@@ -7,8 +7,7 @@
   <string name="status_shutting_down">TorService est en cours d’extinction</string>
   <string name="menu_settings">Paramètres</string>
   <string name="menu_log">Journal</string>
-    <string name="menu_start">Démarrer</string>
-  <string name="menu_stop">Arrêter</string>
+    <string name="menu_stop">Arrêter</string>
   <string name="menu_about">À propos</string>
     <string name="main_layout_download">Télchargement</string>
   <string name="main_layout_upload">Téléversement</string>

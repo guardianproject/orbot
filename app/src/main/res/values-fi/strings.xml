@@ -7,7 +7,6 @@
     <string name="status_shutting_down">Orbot lopettaa toimintansa</string>
     <string name="menu_settings">Asetukset</string>
     <string name="menu_log">Loki</string>
-    <string name="menu_start">Aloita</string>
     <string name="menu_stop">Lopeta</string>
     <string name="menu_about">Tietoa</string>
     <string name="main_layout_download">Lataa</string>

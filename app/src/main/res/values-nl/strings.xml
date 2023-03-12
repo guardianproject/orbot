@@ -7,7 +7,6 @@
     <string name="status_shutting_down">TorService wordt afgesloten</string>
     <string name="menu_settings">Instellingen</string>
     <string name="menu_log">Logboek</string>
-    <string name="menu_start">Start</string>
     <string name="menu_stop">Stop</string>
     <string name="menu_about">Over</string>
     <string name="main_layout_download">Download</string>

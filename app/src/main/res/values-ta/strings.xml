@@ -6,8 +6,7 @@
   <string name="status_activated">தோர் நெட்வொர்க் இணைக்கப்பட்ட</string>
     <string name="menu_settings">அமைப்புகள்</string>
   <string name="menu_log">பதிவுகள்</string>
-    <string name="menu_start">துவங்கு</string>
-  <string name="menu_stop">நிறுத்து</string>
+    <string name="menu_stop">நிறுத்து</string>
   <string name="menu_about">ஆர்பாட் பற்றி</string>
     <string name="main_layout_download">பதிவிறக்கு</string>
   <string name="main_layout_upload">பதிவேற்று</string>
