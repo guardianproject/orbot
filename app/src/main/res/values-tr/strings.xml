@@ -271,4 +271,5 @@
     <string name="power_user_description">Tor\'a aşina olan kullanıcılar için. Orbot\'u VPN ayarı olmadan başlatmanıza izin verir ve açık SOCKS ve HTTP bağlantı noktalarını gösterir</string>
     <string name="apps_other_apps">Diğer Uygulamalar</string>
     <string name="hide_apps">Uygulamaları ağ izlenmesinden gizleyin ve engellendiklerinde erişim sağlayın.</string>
+    <string name="log_copied">Günlük Kopyalandı</string>
 </resources>

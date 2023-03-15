@@ -271,4 +271,5 @@
     <string name="apps_other_apps">Outros aplicativos</string>
     <string name="power_user_mode">Modo de usuário avançado</string>
     <string name="hide_apps">Oculte os aplicativos de monitoramento da rede e obtenha acesso quando eles estiverem bloqueados.</string>
+    <string name="log_copied">Registro log copiado</string>
 </resources>
