@@ -188,7 +188,7 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
         Prefs.putConnectionPathway(Prefs.PATHWAY_CUSTOM)
         Prefs.setBridgesList(bridges)
         Prefs.putBridgesEnabled(true)
-        Toast.makeText(requireContext(), R.string.bridges_obtained_connecting, Toast.LENGTH_LONG).show()
+       // Toast.makeText(requireContext(), R.string.bridges_obtained_connecting, Toast.LENGTH_LONG).show()
         callbacks.tryConnecting()
         closeAllSheets()
     }

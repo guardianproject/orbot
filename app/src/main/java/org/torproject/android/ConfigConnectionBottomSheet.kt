@@ -109,7 +109,14 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
 
         btnAction.setOnClickListener {
             if (rbRequestBridge.isChecked) {
-                MoatBottomSheet(callbacks).show(requireActivity().supportFragmentManager, MoatBottomSheet.TAG)
+                MoatBottomSheet(object : ConnectionHelperCallbacks {
+                    override fun tryConnecting() {
+                        Prefs.putConnectionPathway(Prefs.PATHWAY_CUSTOM)
+                        rbCustom.isChecked = true
+                        dismiss()
+                        callbacks.tryConnecting()
+                    }
+                }).show(requireActivity().supportFragmentManager, MoatBottomSheet.TAG)
             }
             else if (rbDirect.isChecked) {
                 Prefs.putConnectionPathway(Prefs.PATHWAY_DIRECT)

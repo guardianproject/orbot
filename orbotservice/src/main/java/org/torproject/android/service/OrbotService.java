@@ -275,15 +275,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
             IPtProxy.stopObfs4Proxy();
         }
 
-        /* TODO old code for old bridge logic ...
-        if (Prefs.bridgesEnabled()) {
-            if (useIPtObfsMeekProxy())
-                IPtProxy.stopObfs4Proxy();
-            else if (useIPtSnowflakeProxyDomainFronting() || useIPtSnowflakeProxyAMPRendezvous())
-                IPtProxy.stopSnowflake();
-        }
-         */
-
         stopTor();
 
         //stop the foreground priority and make sure to remove the persistent notification
@@ -332,10 +323,10 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 var reader = new BufferedReader(new InputStreamReader(context.getAssets().open("fronts")));
                 String line;
                 while ((line = reader.readLine())!=null) {
-                    String[] front = line.split(" ");
-                    //add some code to test the connection here
-
-                    mFronts.put(front[0],front[1]);
+                    int spaceIdx = line.indexOf(' ');
+                    String key = line.substring(0,spaceIdx);
+                    String val = line.substring(spaceIdx+1);
+                    mFronts.put(key, val);
                 }
                 reader.close();
             } catch (IOException e) {
@@ -360,10 +351,10 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     private void startSnowflakeClientAmpRendezvous() {
-        var stunServers = "stun:stun.l.google.com:19302,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478,stun:stun.sonetel.com:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.voys.nl:3478";
-        var target = "https://snowflake-broker.torproject.net/";
-        var front = "www.google.com";
-        var ampCache ="https://cdn.ampproject.org/";
+        var stunServers = getCdnFront("snowflake-stun");
+        var target =  getCdnFront("snowflake-target-direct");//"https://snowflake-broker.torproject.net/";
+        var front = getCdnFront("snowflake-amp-front");//"www.google.com";
+        var ampCache =getCdnFront("snowflake-amp-cache");//"https://cdn.ampproject.org/";
         IPtProxy.startSnowflake(stunServers, target, front, ampCache, null, true, false, false, 1);
     }
 
@@ -371,10 +362,10 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var capacity = 1;
         var keepLocalAddresses = false;
         var unsafeLogging = false;
-        var stunUrl = "stun:stun.l.google.com:19302";
-        var relayUrl = "wss://snowflake.bamsoftware.com";
-        var natProbeUrl = "https://snowflake-broker.torproject.net:8443/probe";
-        var brokerUrl = "https://snowflake-broker.torproject.net/";
+        var stunUrl = getCdnFront("snowflake-stun");
+        var relayUrl = getCdnFront("snowflake-relay-url");//"wss://snowflake.bamsoftware.com";
+        var natProbeUrl = getCdnFront("snowflake-nat-probe");//"https://snowflake-broker.torproject.net:8443/probe";
+        var brokerUrl = getCdnFront("snowflake-target-direct");//https://snowflake-broker.torproject.net/";
         IPtProxy.startSnowflakeProxy(capacity, brokerUrl, relayUrl, stunUrl, natProbeUrl, null, keepLocalAddresses, unsafeLogging, () -> {
             snowflakeClientsConnected++;
             Prefs.addSnowflakeServed();
@@ -1175,7 +1166,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
     private StringBuffer processSettingsImplSnowflake(StringBuffer extraLines) {
         Log.d("bim", "in snowflake torrc config");
         extraLines.append("ClientTransportPlugin snowflake socks5 127.0.0.1:" + IPtProxy.snowflakePort()).append('\n');
-        extraLines.append("Bridge snowflake 192.0.2.3:1 2B280B23E1107BB62ABFC40DDCC8824814F80A72\n");
+        extraLines.append("Bridge ").append(getCdnFront("snowflake-broker-1")).append("\n");
+        extraLines.append("Bridge ").append(getCdnFront("snowflake-broker-2")).append("\n");
         return extraLines;
     }
 
