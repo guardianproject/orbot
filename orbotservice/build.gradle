@@ -45,10 +45,12 @@ android {
 dependencies {
 
     api libs.guardian_jtorctl
-    api project(':OrbotLib')
-    api project(':tor-android')
 
-    //  api libs.tor_android
+    //use locally built ipt_proxy+go_tun2socks
+    api project(':OrbotLib')
+
+    api libs.tor_android
+
             implementation(
             libs.android_shell,
             libs.androidx_core,

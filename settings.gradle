@@ -2,7 +2,7 @@ include ':intentintegrator'
 include ':appcore'
 include ':orbotservice'
 include ':OrbotLib'
-include ':tor-android'
+//include ':tor-android'
 include ':app'
 include ':app-tv'
 

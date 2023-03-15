@@ -92,6 +92,8 @@ android {
                 libs.android_material,
                 libs.android_volley,
                 libs.androidx_localbroadcast,
+
+                //use locally built ipt_proxy+go_tun2socks
                 project(':OrbotLib')
              //   libs.ipt_proxy
         )
@@ -101,11 +103,6 @@ android {
 
         androidTestImplementation libs.fastlane_screengrab
 //        coreLibraryDesugaring 'com.android.tools:desugar_j dk_libs:1.1.5'
-
-        //building from AAR built from https://github.com/guardianproject/tor-android/commit/95eca2a8c9eb44068f11332d7731580a13ef7b28
-        //    until a new full release is done
-      // implementation files('../libs/tor-android-binary-release.aar')
-
 
 
     }
