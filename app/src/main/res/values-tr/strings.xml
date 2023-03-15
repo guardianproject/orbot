@@ -203,7 +203,7 @@
     <string name="strict_nodes_description">Katılmayacak Düğümler ayarlarını tüm devreleri oluştururken bir gereklilik olarak ele alın. Bu, Katılmayacak Düğümler ayarlarınızla hiçbir devre oluşturulamıyorsa işlevselliği bozabilir.</string>
     <string name="secure_your_connection_subtitle">Uygulamaları ağ izlenmesinden gizleyin ve engellendiklerinde erişim sağlayın.</string>
     <string name="connected_title">Bağlandı</string>
-    <string name="btn_configure">Yapılandır</string>
+    <string name="btn_configure">Nasıl Bağlanılacağını Seç</string>
     <string name="volunteer_mode">Nezaket Modu</string>
     <string name="volunteer_mode_subtitle">Başkalarının bağlanmasına yardım edin</string>
     <string name="trying_to_connect_title">Bağlanıyor…</string>
@@ -233,7 +233,7 @@
     <string name="direct_connect">Tor\'a Doğrudan Bağlantı</string>
     <string name="direct_connect_subtitle">Tor\'a bağlanmanın en iyi yolu. Tor engelli değilse kullanın.</string>
     <string name="snowflake_subtitle">Tor gönüllüleri aracılığıyla bağlanır. Bazı Tor engellemelerini aşar.</string>
-    <string name="get_a_bridge">Tor\'dan bir Köprü Edin (Obfs4)</string>
+    <string name="get_a_bridge">Tor\'dan Köprü (Obfs4)</string>
     <string name="get_a_bridge_subtitle">Trafiğinizi gizler. Bazı Tor engellemelerini aşar.</string>
     <string name="custom_bridge">Özel Köprü</string>
     <string name="connect">Bağlan</string>
@@ -247,15 +247,12 @@
     <string name="volunteer_mode_label">Nezaket Modu</string>
     <string name="volunteer_mode_subtitle_desc">Nezaket modu, aygıtınızın başkaları için bir köprü olmasını sağlar. İnsanların Tor\'u engellendiği yerlerde kullanmasına yardımcı olur.
 \n
-\n- Pilinizi boşaltmaz
-\n
-\n- İnternetinizi yavaşlatmaz
-\n
-\n- Sadece wi-fi üzerinden çalışabilir
-\n
-\n- İstenildiği zaman kapatılabilir</string>
+\n• Pilinizi boşaltmaz
+\n• İnternetinizi yavaşlatmaz
+\n• Yalnızca wi-fi üzerinden çalışabilir
+\n• İstenildiği zaman kapatılabilir</string>
     <string name="smart_connect_subtitle">Orbot, Tor\'a kullanılabilir herhangi bir yolla bağlanmayı dener: Doğrudan, Snowflake, Köprü.</string>
-    <string name="snowflake">Snowflake</string>
+    <string name="snowflake">Snowflake (Orijinal)</string>
     <string name="incorrect_solution">Yanlış Çözüm</string>
     <string name="bridges_obtained_connecting">Köprüler alındı! Tor\'a bağlanılıyor...</string>
     <string name="custom_bridge_description">Tanıdığınız biri tarafından özel bir köprü sağlanır. Güvenilir ağlarınızda ve kuruluşlarınızda barındıran biri olup olmadığını sorun.</string>
@@ -272,4 +269,15 @@
     <string name="apps_other_apps">Diğer Uygulamalar</string>
     <string name="hide_apps">Uygulamaları ağ izlenmesinden gizleyin ve engellendiklerinde erişim sağlayın.</string>
     <string name="log_copied">Günlük Kopyalandı</string>
+    <string name="not_sure">Emin değil misiniz\?</string>
+    <string name="ask_tor">Tor\'a sor</string>
+    <string name="many_ways">Tor\'a erişmenin birçok yolu vardır. Bazıları sizin için diğerlerinden daha iyi çalışabilir.</string>
+    <string name="action_use">Kullan</string>
+    <string name="asking">SORUYOR...</string>
+    <string name="hello_blank_fragment">Merhaba boş parça</string>
+    <string name="no_interent_title">İnternete bağlan</string>
+    <string name="kindness_adjust_title">Ne zaman çalışacağını ayarlayın...</string>
+    <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="no_internet_subtitle">Orbot\'u kullanmak için internet bağlantınızın olması gerekir.</string>
+    <string name="kindess_config_detail">Aygıtınızın diğer Tor kullanıcıları için nasıl ve ne zaman bir Snowflake vekili olarak çalışabileceğini yapılandırın.</string>
 </resources>

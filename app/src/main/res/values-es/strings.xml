@@ -164,7 +164,7 @@
     <string name="secure_your_connection_title">Listo para conectar</string>
     <string name="connected_title">Conectado</string>
     <string name="btn_start_vpn">Iniciar VPN</string>
-    <string name="btn_configure">Configurar</string>
+    <string name="btn_configure">Escoge como conectarte</string>
     <string name="volunteer_mode">Modo Altruista</string>
     <string name="volunteer_mode_subtitle">Ayudar a otros a conectarse</string>
     <string name="trying_to_connect_title">Conectando…</string>
@@ -224,7 +224,7 @@
     <string name="snowflake_proxy_pref_category">Proxy de copos de nieve</string>
     <string name="btn_tor_off">Apagar Tor</string>
     <string name="secure_your_connection_subtitle">Oculte las aplicaciones de la supervisión de la red y obtenga acceso cuando estén bloqueadas.</string>
-    <string name="get_a_bridge">Obtener un puente de Tor (Obsf4)</string>
+    <string name="get_a_bridge">Puente de Tor (Obsf4)</string>
     <string name="direct_connect_subtitle">La mejor manera de conectarse a Tor. Usar si Tor no está bloqueado.</string>
     <string name="snowflake_subtitle">Se conecta a través de los voluntarios de Tor. Evita algunos bloqueos de Tor.</string>
     <string name="configure_header">Configura tu conexión Tor</string>
@@ -236,9 +236,9 @@
     <string name="volunteer_mode_label">Modo Altruista</string>
     <string name="volunteer_mode_weekly_label">Total de la Semana</string>
     <string name="volunteer_mode_alltime_label">Total de Todo el Tiempo</string>
-    <string name="volunteer_mode_subtitle_desc">El modo Kindness permite que su dispositivo sea un puente para otros. Ayuda a la gente a usar Tor en lugares donde está bloqueado.
+    <string name="volunteer_mode_subtitle_desc">El modo Solidario permite que tu dispositivo sea un puente para otros. Ayuda a la gente a usar Tor en lugares donde está bloqueado.
 \n
-\n- No agotará su batería
+\n- No agotará tu batería
 \n
 \n- No ralentizará tu internet
 \n
@@ -271,4 +271,16 @@
     <string name="apps_suggested_title">Aplicaciones sugeridas</string>
     <string name="apps_other_apps">Otras aplicaciones</string>
     <string name="hide_apps">Oculte las aplicaciones de la supervisión de la red y obtenga acceso a ellas cuando estén bloqueadas.</string>
+    <string name="log_copied">Registro copiado</string>
+    <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="not_sure">¿No estas segura\?</string>
+    <string name="many_ways">Hay muchas formas de conectarse a Tor. Algunas pueden funcionar mejor que otras para ti.</string>
+    <string name="action_use">Uso</string>
+    <string name="asking">Preguntando...</string>
+    <string name="no_interent_title">Conectarse a Internet</string>
+    <string name="no_internet_subtitle">Necesitas estar conectado a Internet para usar Orbot.</string>
+    <string name="kindness_adjust_title">Establecer cuando esta activado...</string>
+    <string name="ask_tor">Preguntale a Tor</string>
+    <string name="hello_blank_fragment">Hola fragmento en blanco</string>
+    <string name="kindess_config_detail">Configura cómo y cuándo tu dispositivo puede actuar como un proxy Snowflake para otros usuarios de Tor.</string>
 </resources>
