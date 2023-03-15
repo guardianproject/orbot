@@ -517,6 +517,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                         @Override
                         public void onAvailable(@NonNull Network network) {
                             super.onAvailable(network);
+                            ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
                             boolean hasWifi = false;
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
@@ -533,6 +534,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
                         @Override
                         public void onLost(@NonNull Network network) {
                             super.onLost(network);
+
+                            ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
                             boolean hasWifi = false;
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
