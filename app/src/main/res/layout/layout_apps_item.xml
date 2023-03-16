@@ -9,18 +9,28 @@
 
     >
 
+    <CheckBox
+        android:id="@+id/itemcheck"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        />
 <ImageView
     android:id="@+id/itemicon"
     android:layout_width="48dp"
     android:layout_height="match_parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
+
     android:src="@drawable/ic_heart"
+
+    app:layout_constraintStart_toEndOf="@id/itemcheck"
     />
 
 <TextView
     android:id="@+id/itemtext"
-    android:layout_width="wrap_content"
+    android:layout_width="280dp"
     android:layout_height="match_parent"
     android:ellipsize="end"
     android:maxLines="1"
@@ -29,20 +39,11 @@
     android:textSize="24dp"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintStart_toEndOf="@id/itemicon"
-    android:text="App Name Here"
+    android:text="App Name Here that is really long"
     android:gravity="center_vertical"
     android:layout_marginLeft="@dimen/activity_horizontal_margin"
     />
 
-<CheckBox
-    android:id="@+id/itemcheck"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    android:layout_marginRight="@dimen/activity_horizontal_margin"
-
-    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
