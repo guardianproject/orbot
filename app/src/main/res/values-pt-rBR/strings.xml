@@ -210,7 +210,7 @@
     <string name="secure_your_connection_title">Pronto para conectar</string>
     <string name="connected_title">Conectado</string>
     <string name="secure_your_connection_subtitle">Oculte o aplicativos do monitoramento da rede e obtenha acesso quando eles estiverem bloqueados.</string>
-    <string name="btn_configure">Configurar</string>
+    <string name="btn_configure">Escolha como se conectar</string>
     <string name="btn_start_vpn">Iniciar a VPN</string>
     <string name="volunteer_mode">Modo bondade</string>
     <string name="trying_to_connect_title">Conectando…</string>
@@ -227,18 +227,15 @@
     <string name="configure_header">Configure a sua conexão Tor</string>
     <string name="volunteer_mode_subtitle_desc">O modo bondade permite que o seu dispositivo seja uma ponte para os outros. Ajuda as pessoas a usar o Tor em lugares onde ele esteja bloqueado.
 \n
-\n- Não drenará a sua bateria
-\n
-\n- Não desacelerará a sua internet
-\n
-\n- Só funciona via wi-fi
-\n
-\n- Pode ser desligado a qualquer momento</string>
+\n• Não drenará a sua bateria
+\n• Não desacelerará a sua internet
+\n• Só funciona via wi-fi
+\n• Pode ser desligado a qualquer momento</string>
     <string name="drawer_open">Abrir</string>
     <string name="drawer_close">Fechar</string>
     <string name="direct_connect">Conexão direta com o Tor</string>
-    <string name="snowflake">Snowflake</string>
-    <string name="get_a_bridge">Obter uma ponte do Tor (Obfs4)</string>
+    <string name="snowflake">Snowflake (Original)</string>
+    <string name="get_a_bridge">Ponte do Tor (Obfs4)</string>
     <string name="custom_bridge">Ponte personalizada</string>
     <string name="connect">Conectar</string>
     <string name="next">Próximo</string>
@@ -272,4 +269,15 @@
     <string name="power_user_mode">Modo de usuário avançado</string>
     <string name="hide_apps">Oculte os aplicativos de monitoramento da rede e obtenha acesso quando eles estiverem bloqueados.</string>
     <string name="log_copied">Registro log copiado</string>
+    <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="not_sure">Não tem certeza\?</string>
+    <string name="kindess_config_detail">Configure como e quando o seu dispositivo poder atuar como um proxy Snowflake para outros usuários do Tor.</string>
+    <string name="many_ways">Existem muitas maneiras de chegar ao Tor. Alguns podem funcionar melhor do que outros para você.</string>
+    <string name="ask_tor">Pergunte ao Tor</string>
+    <string name="action_use">Usar</string>
+    <string name="asking">PEDIDO...</string>
+    <string name="hello_blank_fragment">Fragmento \"Hello\" em branco</string>
+    <string name="no_interent_title">Conectar à internet</string>
+    <string name="kindness_adjust_title">Ajuste quando for executado...</string>
+    <string name="no_internet_subtitle">Você precisa de uma conexão com a Internet para usar o Orbot.</string>
 </resources>
