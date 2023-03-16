@@ -25,7 +25,6 @@
         android:id="@+id/ivStatus"
         android:layout_width="148dp"
         android:layout_height="166dp"
-        android:layout_marginTop="100dp"
         android:src="@drawable/orbioff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +47,7 @@
         android:layout_height="wrap_content"
         android:text="Ready to Connect"
         android:textColor="@android:color/white"
-        android:textSize="24sp"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
         android:fontFamily="sans-serif-black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,8 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvSubtitle"
-        android:textSize="16sp"
-        android:fontFamily="sans-serif-light"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
         android:text="@string/hide_apps"
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,8 +96,9 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_configure"
         android:layout_marginTop="32dp"
-        android:fontFamily="sans-serif-medium"
         android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+
         />
 
     <ListView

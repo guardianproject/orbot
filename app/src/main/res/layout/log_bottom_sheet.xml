@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/new_background"
-    android:paddingStart="10dp"
-    android:paddingEnd="10dp">
+    android:padding="10dp"
+    >
 
 
         <TextView
@@ -32,21 +32,27 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_goneMarginBottom="20dp" />
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orbotLogHeader"
+            android:paddingBottom="@dimen/button_horizontal_large_margin"
+            >
         <TextView
             android:id="@+id/orbotLog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:fontFamily="monospace"
             android:textColor="@color/bright_green"
             android:gravity="start"
             android:textIsSelectable="true"
             android:textSize="12sp"
-            android:text="This is the log\nIam cool\nlaksjdalsdjas"
+            android:text=""
             android:textAppearance="?android:attr/textAppearanceSmallInverse"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/orbotLogHeader"
+
             />
+        </ScrollView>
 
 
 

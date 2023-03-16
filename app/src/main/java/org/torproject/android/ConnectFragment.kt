@@ -250,12 +250,16 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         tvConfigure.visibility = View.GONE
 
         refreshMenuList(context)
+
+        ivOnion.setOnClickListener {
+            stopTorAndVpn()
+        }
     }
 
     public fun doLayoutOff() {
 
         ivOnion.setImageResource(R.drawable.orbioff)
-        (ivOnion.layoutParams as ViewGroup.MarginLayoutParams).topMargin = 250
+        (ivOnion.layoutParams as ViewGroup.MarginLayoutParams).topMargin = 200
         ivOnion.animation?.cancel()
         ivOnion.animate().y(200f).duration = 150
 
@@ -300,6 +304,12 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
             setOnClickListener { startTorAndVpn() }
             //logBottomSheet.resetLog()
         }
+
+        ivOnion.setOnClickListener {
+            startTorAndVpn()
+        }
+
+
     }
 
 
