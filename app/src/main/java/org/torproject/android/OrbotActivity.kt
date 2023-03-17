@@ -56,7 +56,7 @@ class OrbotActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         sendIntentToService(OrbotConstants.CMD_ACTIVE)
-
+        LocaleHelper.onAttach(this)
     }
 
     override fun onDestroy() {
@@ -79,13 +79,15 @@ class OrbotActivity : AppCompatActivity() {
         if (requestCode == REQUEST_CODE_VPN && resultCode == RESULT_OK) {
             fragConnect?.startTorAndVpn()
         } else if (requestCode == REQUEST_CODE_SETTINGS && resultCode == RESULT_OK) {
-            // todo respond to language change extra data here...
+            Prefs.setDefaultLocale(data?.getStringExtra("locale"))
+            (application as OrbotApp).setLocale()
+            finish()
+            startActivity(Intent(this, OrbotActivity::class.java))
         } else if (requestCode == REQUEST_VPN_APP_SELECT && resultCode == RESULT_OK) {
             sendIntentToService(OrbotConstants.ACTION_RESTART_VPN) // is this enough todo?
             fragConnect?.refreshMenuList(this)
         }
     }
-
 
     override fun attachBaseContext(newBase: Context) = super.attachBaseContext(LocaleHelper.onAttach(newBase))
 

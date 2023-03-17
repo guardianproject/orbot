@@ -517,6 +517,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                         @Override
                         public void onAvailable(@NonNull Network network) {
                             super.onAvailable(network);
+                            ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
                             boolean hasWifi = false;
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
@@ -533,6 +534,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
                         @Override
                         public void onLost(@NonNull Network network) {
                             super.onLost(network);
+
+                            ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
                             boolean hasWifi = false;
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
@@ -600,6 +603,12 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var isolate = "";
         if (prefs.getBoolean(PREF_ISOLATE_DEST, false)) {
             isolate += " IsolateDestAddr ";
+        }
+        if (prefs.getBoolean(PREF_ISOLATE_PORT, false)) {
+            isolate += " IsolateDestPort ";
+        }
+        if (prefs.getBoolean(PREF_ISOLATE_PROTOCOL, false)) {
+            isolate += " IsolateClientProtocol ";
         }
 
         var ipv6Pref = "";

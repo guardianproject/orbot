@@ -1,5 +1,6 @@
 package org.torproject.android
 
+import android.animation.Animator.AnimatorListener
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation.AnimationListener
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
@@ -112,37 +114,46 @@ class KindnessFragment : Fragment() {
 
 
 
-    private fun showPanelStatus(showStatus: Boolean) {
+    private fun showPanelStatus(isActivated: Boolean) {
 
         var duration = 250L
 
-        if (showStatus) {
+        if (isActivated) {
 
             pnlActivate.animate()
                 .alpha(0f)
                 .setDuration(duration)
-                .setListener(null);
+                .withEndAction {
+                    pnlActivate.visibility = View.GONE
+                }
 
-
+            pnlStatus.visibility = View.VISIBLE
             pnlStatus.animate()
                 .alpha(1f)
                 .setDuration(duration)
-                .setListener(null);
+                .withEndAction {
+
+                }
 
 
         }
         else
         {
+            pnlActivate.visibility = View.VISIBLE
             pnlActivate.animate()
                 .alpha(1f)
                 .setDuration(duration)
-                .setListener(null);
+                .withEndAction {
+
+                }
 
 
             pnlStatus.animate()
                 .alpha(0f)
                 .setDuration(duration)
-                .setListener(null);
+                .withEndAction {
+                    pnlStatus.visibility = View.GONE
+                }
 
         }
     }
