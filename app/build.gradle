@@ -42,22 +42,15 @@ android {
     productFlavors {
         fullperm {
             dimension "free"
-
-            minSdkVersion 18
             applicationId 'org.torproject.android'
-            targetSdkVersion 31
-            versionCode 1700200300
-
+            versionCode 1700200400
             versionName getVersionName()
             archivesBaseName = "Orbot-${versionName}"
         }
 
         nightly {
             dimension "free"
-
-            minSdkVersion 18
             applicationId 'org.torproject.android.nightly'
-            targetSdkVersion 31
             versionName getVersionName()
             versionCode versionCodeEpoch()
             archivesBaseName = "Orbot-${versionName}"
