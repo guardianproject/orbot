@@ -25,6 +25,7 @@ android {
         targetSdkVersion 33
         multiDexEnabled true
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        archivesBaseName = "Orbot-$versionName"
     }
     compileOptions {
 //        coreLibraryDesugaringEnabled true
@@ -41,25 +42,18 @@ android {
     productFlavors {
         fullperm {
             dimension "free"
-
-            minSdkVersion 18
             applicationId 'org.torproject.android'
-            targetSdkVersion 31
-            versionCode 1700200100
-
+            versionCode 1700200400
             versionName getVersionName()
             archivesBaseName = "Orbot-$versionName"
         }
 
         nightly {
             dimension "free"
-
-            minSdkVersion 18
             applicationId 'org.torproject.android.nightly'
-            targetSdkVersion 31
             versionName getVersionName()
             versionCode versionCodeEpoch()
-            archivesBaseName = "Orbot-Nightly-$versionName"
+            archivesBaseName = "Orbot-$versionName"
         }
     }
 
