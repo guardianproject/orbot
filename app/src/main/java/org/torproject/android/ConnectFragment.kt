@@ -276,15 +276,15 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         with(btnStartVpn) {
             visibility = View.VISIBLE
 
-            var connectStr = context.getString(R.string.action_use) + ' '
+            var connectStr = ""
             if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_DIRECT))
-                connectStr += getString(R.string.direct_connect);
+                connectStr = context.getString(R.string.action_use) + ' ' + getString(R.string.direct_connect);
             else if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SNOWFLAKE))
-                connectStr += getString(R.string.snowflake);
+                connectStr = context.getString(R.string.action_use) + ' ' + getString(R.string.snowflake);
             else if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SNOWFLAKE_AMP))
-                connectStr += getString(R.string.snowflake_amp);
+                connectStr = context.getString(R.string.action_use) + ' ' + getString(R.string.snowflake_amp);
             else if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_CUSTOM))
-                connectStr += getString(R.string.custom_bridge);
+                connectStr = context.getString(R.string.action_use) + ' ' + getString(R.string.custom_bridge);
 
             text = if (Prefs.isPowerUserMode())
                 getString(R.string.connect)
