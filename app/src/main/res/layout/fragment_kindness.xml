@@ -15,8 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/panel_kindness_activate"
-        android:visibility="visible"
-        android:alpha="1"
+        android:visibility="gone"
+        android:alpha="0"
         >
 
         <ScrollView
@@ -106,7 +106,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/panel_kindness_status"
-        android:visibility="visible"
+        android:visibility="gone"
         android:alpha="0"
         >
         <ScrollView

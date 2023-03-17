@@ -11,6 +11,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.annotation.XmlRes
 import org.torproject.android.core.Languages
 import org.torproject.android.core.LocaleHelper
+import org.torproject.android.service.util.Prefs
 
 class SettingsPreferencesActivity : PreferenceActivity() {
     private var prefLocale: ListPreference? = null
@@ -24,6 +25,7 @@ class SettingsPreferencesActivity : PreferenceActivity() {
         val languages = Languages[this]
         prefLocale?.entries = languages!!.allNames
         prefLocale?.entryValues = languages.supportedLocales
+        prefLocale?.value = Prefs.getDefaultLocale()
         prefLocale?.onPreferenceChangeListener = OnPreferenceChangeListener { _: Preference?, newValue: Any? ->
             val language = newValue as String?
             val intentResult = Intent()

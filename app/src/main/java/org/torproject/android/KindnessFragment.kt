@@ -127,22 +127,24 @@ class KindnessFragment : Fragment() {
                     pnlActivate.visibility = View.GONE
                 }
 
+            pnlStatus.visibility = View.VISIBLE
             pnlStatus.animate()
                 .alpha(1f)
                 .setDuration(duration)
                 .withEndAction {
-                    pnlStatus.visibility = View.VISIBLE
+
                 }
 
 
         }
         else
         {
+            pnlActivate.visibility = View.VISIBLE
             pnlActivate.animate()
                 .alpha(1f)
                 .setDuration(duration)
                 .withEndAction {
-                    pnlActivate.visibility = View.VISIBLE
+
                 }
 
 

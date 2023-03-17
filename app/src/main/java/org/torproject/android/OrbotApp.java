@@ -37,4 +37,15 @@ public class OrbotApp extends Application implements OrbotConstants {
             Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
     }
 
+    public void setLocale ()
+    {
+        var appLocale = Prefs.getDefaultLocale();
+        var systemLoc = Locale.getDefault().getLanguage();
+
+        if (!appLocale.equals(systemLoc)) {
+            Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
+        }
+
+    }
+
 }

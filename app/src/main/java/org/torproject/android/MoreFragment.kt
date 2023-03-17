@@ -62,10 +62,10 @@ class MoreFragment : Fragment() {
             OrbotMenuAction(R.string.v3_hosted_services, R.drawable.ic_menu_onion) { startActivity(Intent(requireActivity(), OnionServiceActivity::class.java))},
             OrbotMenuAction(R.string.v3_client_auth_activity_title, R.drawable.ic_shield) { startActivity(Intent(requireActivity(), ClientAuthActivity::class.java))},
             OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {
-                startActivityForResult(Intent(requireActivity(), AppManagerActivity::class.java), REQUEST_VPN_APP_SELECT)
+                activity?.startActivityForResult(Intent(requireActivity(), AppManagerActivity::class.java), REQUEST_VPN_APP_SELECT)
             },
             OrbotMenuAction(R.string.menu_settings, R.drawable.ic_settings_gear) {
-                startActivityForResult(SettingsPreferencesActivity.createIntent(requireActivity(), R.xml.preferences), REQUEST_CODE_SETTINGS)
+                activity?.startActivityForResult(SettingsPreferencesActivity.createIntent(requireActivity(), R.xml.preferences), REQUEST_CODE_SETTINGS)
                                                                                  },
             OrbotMenuAction(R.string.menu_log, R.drawable.ic_log) { showLog()},
             OrbotMenuAction(R.string.menu_about, R.drawable.ic_about) { AboutDialogFragment()

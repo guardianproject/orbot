@@ -108,6 +108,10 @@ public class Prefs {
         return prefs.getString(PREF_DEFAULT_LOCALE, Locale.getDefault().getLanguage());
     }
 
+    public static void setDefaultLocale(String value) {
+        putString(PREF_DEFAULT_LOCALE, value);
+    }
+
     public static boolean beSnowflakeProxy () {
         return prefs.getBoolean(PREF_BE_A_SNOWFLAKE,false);
     }
@@ -134,10 +138,6 @@ public class Prefs {
 
     public static boolean limitSnowflakeProxyingCharging () {
         return prefs.getBoolean(PREF_BE_A_SNOWFLAKE_LIMIT_CHARGING,false);
-    }
-
-    public static void setDefaultLocale(String value) {
-        putString(PREF_DEFAULT_LOCALE, value);
     }
 
     public static boolean showExpandedNotifications() {
