@@ -25,6 +25,7 @@ android {
         targetSdkVersion 33
         multiDexEnabled true
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        archivesBaseName = "Orbot"
     }
     compileOptions {
 //        coreLibraryDesugaringEnabled true
@@ -48,7 +49,7 @@ android {
             versionCode 1700200300
 
             versionName getVersionName()
-            archivesBaseName = "Orbot-$versionName"
+            archivesBaseName = "Orbot-${versionName}"
         }
 
         nightly {
@@ -59,7 +60,7 @@ android {
             targetSdkVersion 31
             versionName getVersionName()
             versionCode versionCodeEpoch()
-            archivesBaseName = "Orbot-Nightly-$versionName"
+            archivesBaseName = "Orbot-${versionName}"
         }
     }
 
