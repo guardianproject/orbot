@@ -604,6 +604,12 @@ public class OrbotService extends VpnService implements OrbotConstants {
         if (prefs.getBoolean(PREF_ISOLATE_DEST, false)) {
             isolate += " IsolateDestAddr ";
         }
+        if (prefs.getBoolean(PREF_ISOLATE_PORT, false)) {
+            isolate += " IsolateDestPort ";
+        }
+        if (prefs.getBoolean(PREF_ISOLATE_PROTOCOL, false)) {
+            isolate += " IsolateClientProtocol ";
+        }
 
         var ipv6Pref = "";
         if (prefs.getBoolean(PREF_PREFER_IPV6, true)) {

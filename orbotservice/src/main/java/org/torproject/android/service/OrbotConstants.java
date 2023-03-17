@@ -25,6 +25,8 @@ public interface OrbotConstants {
     String PREF_HTTP = "pref_http";
 
     String PREF_ISOLATE_DEST = "pref_isolate_dest";
+    String PREF_ISOLATE_PORT = "pref_isolate_port";
+    String PREF_ISOLATE_PROTOCOL = "pref_isolate_protocol";
 
     String PREF_CONNECTION_PADDING = "pref_connection_padding";
     String PREF_REDUCED_CONNECTION_PADDING = "pref_reduced_connection_padding";
