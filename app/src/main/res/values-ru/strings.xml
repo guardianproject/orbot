@@ -247,11 +247,8 @@
     <string name="volunteer_mode_subtitle_desc">Режим доброты позволяет вашему устройству быть мостом для других. Это помогает людям использовать Tor в местах, где он заблокирован.
 \n
 \n• Он не расходует заряд батареи
-\n
 \n• Он не замедляет ваш интернет
-\n
 \n• Он может работать только через Wi-Fi
-\n
 \n• Его можно отключить в любое время</string>
     <string name="smart_connect">Умное подключение (по умолчанию)</string>
     <string name="get_a_bridge">Мост из Tor (Obfs4)</string>
@@ -276,4 +273,11 @@
     <string name="many_ways">Есть много способов добраться до Tor. Некоторые из них могут сработать у вас лучше, чем другие.</string>
     <string name="not_sure">Не уверены\?</string>
     <string name="ask_tor">Запросить Tor</string>
+    <string name="action_use">Использовать</string>
+    <string name="asking">ЗАПРОС…</string>
+    <string name="hello_blank_fragment">Пустой фрагмент</string>
+    <string name="no_interent_title">Подключиться к интернету</string>
+    <string name="no_internet_subtitle">Для использования Orbot необходимо подключение к интернету.</string>
+    <string name="kindness_adjust_title">Настройка работы...</string>
+    <string name="kindess_config_detail">Настройте, как и когда ваше устройство может использоваться в качестве прокси-сервера Snowflake для других пользователей Tor.</string>
 </resources>
