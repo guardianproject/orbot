@@ -215,7 +215,7 @@
     <string name="menu_faq">ЧаП</string>
     <string name="msg_taking_too_long">Схоже, це триватиме задовго</string>
     <string name="msg_try_something_else">Спробуйте щось інше</string>
-    <string name="btn_configure">Сконфігурувати</string>
+    <string name="btn_configure">Виберіть спосіб підключення</string>
     <string name="btn_choose_apps">Вибрати застосунки</string>
     <string name="menu_header_features">Функції</string>
     <string name="btn_start_vpn">Запустити VPN</string>
@@ -230,15 +230,12 @@
     <string name="ports_not_set">Порти не налаштовані</string>
     <string name="configure_header">Налаштуйте з\'єднання Tor</string>
     <string name="direct_connect_subtitle">Кращий спосіб під\'єднання до Tor. Використовуйте, якщо Tor не заблокований.</string>
-    <string name="volunteer_mode_subtitle_desc">Режим доброти дозволяє вашому пристрою бути мостом для інших. Це допомагає іншим користуватися Tor там, де він заблокований.
+    <string name="volunteer_mode_subtitle_desc">Режим доброти дозволяє вашому пристрою бути мостом для інших. Він допомагає людям користуватися Tor там, де він заблокований.
 \n
-\n- Це не виснажуватиме ваш акумулятор
-\n
-\n- Це не сповільнить ваш інтернет
-\n
-\n- Працює лише через Wi-Fi
-\n
-\n- Можна вимкнути у будь-який час</string>
+\n- Він не розряджає ваш акумулятор
+\n- Не сповільнює ваш інтернет
+\n- Він може працювати тільки через Wi-Fi
+\n- Його можна вимкнути в будь-який час</string>
     <string name="proxy_ports">Порти проксі</string>
     <string name="volunteer_mode_label">Режим доброти</string>
     <string name="volunteer_mode_weekly_label">Усього за тиждень</string>
@@ -251,7 +248,7 @@
     <string name="smart_connect_subtitle">Orbot намагається під\'єднатися до Tor будь-яким доступним способом: Безпосередньо, через Snowflake, через міст.</string>
     <string name="direct_connect">Безпосереднє з\'єднання з Tor</string>
     <string name="snowflake_subtitle">З\'єднання через волонтерів Tor. Обходить деякі блокування Tor.</string>
-    <string name="get_a_bridge">Отримати міст від Tor (Obfs4)</string>
+    <string name="get_a_bridge">Міст з Tor (Obfs4)</string>
     <string name="get_a_bridge_subtitle">Маскує ваш трафік. Обходить деякі блокування Tor.</string>
     <string name="custom_bridge_subtitle">Швидше за все, допоможе з\'єднуватися, якщо Tor суворо заблокований. Потрібна адреса мосту від людини, якій ви довіряєте.</string>
     <string name="connect">Під\'єднати</string>
@@ -272,4 +269,14 @@
     <string name="apps_other_apps">Інші застосунки</string>
     <string name="hide_apps">Приховуйте застосунки від моніторингу мережі та отримуйте доступ, коли вони заблоковані.</string>
     <string name="log_copied">Журнал скопійовано</string>
+    <string name="action_use">Використати</string>
+    <string name="many_ways">Існує багато способів отримати доступ до Tor. Деякі з них можуть працювати для вас краще, ніж інші.</string>
+    <string name="no_interent_title">Підключення до Інтернету</string>
+    <string name="snowflake_amp">Snowflake (спосіб 2)</string>
+    <string name="not_sure">Не впевнений\?</string>
+    <string name="ask_tor">Запитайте Tor</string>
+    <string name="asking">ЗАПИТУЄМО...</string>
+    <string name="no_internet_subtitle">Щоб використовувати Orbot, вам потрібне підключення до Інтернету.</string>
+    <string name="kindness_adjust_title">Налаштуйте під час запуску...</string>
+    <string name="kindess_config_detail">Налаштуйте, як і коли ваш пристрій може діяти як проксі-сервер Snowflake для інших користувачів Tor.</string>
 </resources>
