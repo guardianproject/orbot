@@ -165,9 +165,9 @@
     <string name="smart_connect_subtitle">Orbot mencoba menghubungkan ke Tor melalui cara apa pun yang tersedia: Langsung, Snowflake, Jembatan.</string>
     <string name="direct_connect">Koneksi Langsung ke Tor</string>
     <string name="direct_connect_subtitle">Cara yang terbaik untuk menghubungkan ke Tor. Gunakan jika Tor tidak diblokir.</string>
-    <string name="snowflake">Snowflake</string>
+    <string name="snowflake">Snowflake (Asli)</string>
     <string name="snowflake_subtitle">Menghubungkan melalui sukarelawan Tor. Melewati beberapa pemblokiran Tor.</string>
-    <string name="get_a_bridge">Dapatkan Jembatan dari Tor (Obfs4)</string>
+    <string name="get_a_bridge">Jembatan dari Tor (Obfs4)</string>
     <string name="get_a_bridge_subtitle">Menyembunyikan lalu lintas Anda. Melewati beberapa pemblokiran Tor.</string>
     <string name="custom_bridge">Jembatan Khusus</string>
     <string name="connect">Hubungkan</string>
@@ -178,7 +178,7 @@
     <string name="secure_your_connection_title">Siap untuk menghubungkan</string>
     <string name="connected_title">Terhubung</string>
     <string name="btn_start_vpn">Mulai VPN</string>
-    <string name="btn_configure">Konfigurasi</string>
+    <string name="btn_configure">Pilih Cara Menghubungkan</string>
     <string name="trying_to_connect_title">Menghubungkan…</string>
     <string name="btn_change_exit">Pilih nodus keluar</string>
     <string name="btn_refresh">Muat ulang</string>
@@ -225,13 +225,13 @@
     <string name="menu_faq">SSD</string>
     <string name="volunteer_mode_subtitle_desc">Mode kebaikan membuat perangkat Anda menjadi jembatan untuk orang lain. Ini membantu orang-orang menggunakan Tor di tempat di mana Tor diblokir.
 \n
-\n- Tidak akan menghabiskan baterai Anda
+\n• Tidak akan menghabiskan baterai Anda
 \n
-\n- Tidak akan memperlambat internet Anda
+\n• Tidak akan memperlambat internet Anda
 \n
-\n- Hanya bisa berjalan dengan wifi
+\n• Hanya bisa berjalan dengan wifi
 \n
-\n- Dapat dimatikan kapan pun</string>
+\n• Dapat dimatikan kapan pun</string>
     <string name="custom_bridge_subtitle">Kemungkinan untuk membuat Anda tetap terhubung jika kebanyakan Tor diblokir. Membutuhkan alamat jembatan dari seseorang yang Anda percaya.</string>
     <string name="confirm">Konfirmasi</string>
     <string name="v3_backup_key_warning">Peringatan: Ini dapat membocorkan kunci Anda ke aplikasi lain</string>
@@ -272,4 +272,15 @@
     <string name="having_trouble_subtitle">Kami bisa mencoba sebuah jembatan Tor berikut tetapi akan membutuhkan bantuan Anda</string>
     <string name="hide_apps">Sembunyikan aplikasi dari pemantauan jaringan dan dapatkan akses ketika mereka diblokir.</string>
     <string name="log_copied">Catatan Disalin</string>
+    <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="not_sure">Tidak yakin\?</string>
+    <string name="ask_tor">Tanyakan Tor</string>
+    <string name="many_ways">Ada lebih banyak cara untuk mencapai Tor. Beberapa dapat bekerja dengan baik daripada yang lain untuk Anda.</string>
+    <string name="hello_blank_fragment">Fragmen kosong halo</string>
+    <string name="no_interent_title">Hubungkan ke internet</string>
+    <string name="no_internet_subtitle">Anda membutuhkan koneksi internet untuk menggunakan Orbot.</string>
+    <string name="kindness_adjust_title">Atur ketika berjalan…</string>
+    <string name="kindess_config_detail">Atur bagaimana dan kapan perangkat Anda dapat menjadi sebagai proksi Snowflake untuk pengguna Tor lain.</string>
+    <string name="asking">MENANYAKAN…</string>
+    <string name="action_use">Gunakan</string>
 </resources>
