@@ -19,7 +19,7 @@
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Yleiset</string>
-    <string name="pref_start_boot_title">Käynnistä Orbot käynnistettäessä</string>
+    <string name="pref_start_boot_title">Käynnistä Orbot automaattisesti</string>
     <string name="pref_start_boot_summary">Käynnistä Orbot ja muodosta Tor-yhteys automaattisesti Android-laitteesi käynnistyessä.</string>
     <!--New Wizard Strings-->
     <!--Title Screen-->
@@ -30,10 +30,10 @@
     <string name="pref_node_configuration">Solmumääritykset</string>
     <string name="pref_node_configuration_summary">Nämä ovat lisäasetuksia, jotka voivat vähentää anonyymiyttäsi</string>
     <string name="pref_entrance_node">Lähtösolmut</string>
-    <string name="pref_entrance_node_summary">Sormenjäljet, nimimerkit, maat ja osoitteet ensimmäiseen hyppyyn</string>
+    <string name="pref_entrance_node_summary">Leimat, nimimerkit, maat ja osoitteet ensimmäiseen hyppyyn.</string>
     <string name="pref_entrance_node_dialog">Syötä lähtösolmut</string>
     <string name="pref_allow_background_starts_title">Salli taustakäynnistys</string>
-    <string name="pref_allow_background_starts_summary">Salli muiden sovellusten ohjata Orbot käynnistämään Tor ja tarpeelliset palvelut.</string>
+    <string name="pref_allow_background_starts_summary">Salli muiden sovellusten ohjata Orbotia käynnistämään Tor ja tarpeelliset palvelut.</string>
     <string name="pref_proxy_title">Lähtevä välityspalvelin (valinnainen)</string>
     <string name="pref_proxy_type_title">Välityspalvelimen tyyppi</string>
     <string name="pref_proxy_type_summary">Lähtevän välityspalvelimen yhteysprotokolla: HTTP, HTTPS, SOCKS4 tai SOCKS5.</string>
@@ -51,18 +51,18 @@
     <string name="pref_proxy_password_summary">Lähtevän välityspalvelimen salasana (tarvittaessa).</string>
     <string name="pref_proxy_password_dialog">Syötä välityspalvelimen salasana</string>
     <string name="error">Virhe</string>
-    <string name="exit_nodes">Päätesolmut</string>
-    <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Sormenjäljet, nimimerkit, maat ja osoitteet viimeiselle hypylle.</string>
-    <string name="enter_exit_nodes">Syötä päätesolmut</string>
+    <string name="exit_nodes">Päätössolmut</string>
+    <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Leimat, nimimerkit, maat ja osoitteet viimeiselle hypylle.</string>
+    <string name="enter_exit_nodes">Syötä päätössolmut</string>
     <string name="exclude_nodes">Ohitettavat solmut</string>
-    <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Ohitettavat sormenjäljet, nimimerkit, maat ja osoitteet.</string>
+    <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Ohitettavat leimat, nimimerkit, maat ja osoitteet.</string>
     <string name="enter_exclude_nodes">Syötä ohitettavat solmut</string>
     <string name="strict_nodes">Tiukat solmut</string>
     <string name="bridges">Sillat</string>
     <string name="use_bridges">Käytä siltoja</string>
     <string name="relays">Reitittimet</string>
     <string name="relaying">Reititys</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Käytä laitettasi muuna kuin päätereitittimenä.</string>
+    <string name="enable_your_device_to_be_a_non_exit_relay">Käytä laitettasi muuna kuin päätösreitittimenä.</string>
     <string name="relay_port">Reitittimen portti</string>
     <string name="listening_port_for_your_tor_relay">Portti, jota Tor-reitittimesi kuuntelee.</string>
     <string name="enter_or_port">Syötä OR-portti</string>
@@ -77,20 +77,20 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Käytä vianselvityslokin lähetystä (tarkastelu adb:n tai aLogCat-sovelluksen kautta).</string>
     <string name="project_home">Projektin koti:</string>
     <string name="third_party_software">3. osapuolen ohjelmistot:</string>
-    <string name="pref_use_expanded_notifications">Näytä Tor-päätesolmusi maa ja IP-osoite ilmoituksessa, jos saatavilla.</string>
+    <string name="pref_use_expanded_notifications">Näytä Tor-päätössolmun maa ja IP-osoite ilmoituksessa, jos saatavilla.</string>
     <string name="pref_use_expanded_notifications_title">Laajennetut ilmoitukset</string>
     <string name="set_locale_title">Kieli</string>
     <string name="pref_disable_network_title">Ei verkon automaattilepotilaa</string>
     <string name="pref_disable_network_summary">Aseta Tor lepotilaan, kun Internet-yhteyttä ei ole käytettävissä.</string>
     <string name="newnym">Vaihdoit Tor-identiteettisi uuteen!</string>
     <string name="pref_socks_title">Tor SOCKS-välityspalvelin</string>
-    <string name="pref_socks_summary">Portti, jonka kautta Torin SOCKS-välityspalvelin on tavoitettavissa (oletus: 9050 tai poista käytöstä arvolla 0).</string>
+    <string name="pref_socks_summary">Portti, jonka kautta Torin SOCKS-välityspalvelin on tavoitettavissa (oletus on 9050 tai pois käytöstä arvolla 0).</string>
     <string name="pref_socks_dialog">Syötä SOCKS-porttimääritys</string>
     <string name="pref_transport_title">Tor TransProxy -portti</string>
-    <string name="pref_transport_summary">Portti, jonka kautta Torin lähinäkyvä välityspalvelin on tavoitettavissa (oletus: 9040 tai poista käytöstä arvolla 0).</string>
+    <string name="pref_transport_summary">Portti, jonka kautta Torin lähinäkyvä välityspalvelin on tavoitettavissa (oletus on 9040 tai pois käytöstä arvolla 0).</string>
     <string name="pref_transport_dialog">Syötä TransProxy-porttimääritys</string>
     <string name="pref_dnsport_title">Tor DNS-portti</string>
-    <string name="pref_dnsport_summary">Portti, jossa Torin DNS on (oletus: 5400, 0 = poista käytöstä)</string>
+    <string name="pref_dnsport_summary">Portti, jonka Torin DNS on tavoitettavissa (oletus on 5400 tai pois käytöstä arvolla 0).</string>
     <string name="pref_dnsport_dialog">Syötä DNS-porttimääritys</string>
     <string name="pref_torrc_title">Omat Torrc-määritykset</string>
     <string name="pref_torrc_summary">VAIN KOKENEILLE KÄYTTÄJILLE: Syötä Torrc-määritysrivejä suoraan.</string>
@@ -110,7 +110,7 @@
     <string name="wizard_details_msg">Orbot-sovellus on avointa lähdekoodia ja se sisältää seuraavat: Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks ja LibEvent. Se tarjoaa VPN-tunnelin, paikallisen HTTP Connect -välityspalvelimen (HTTPS vain portissa 8118) ja SOCKS-välityspalvelimen (9050) Tor-verkkoon.</string>
     <string name="hidden_service_request">Sovellus haluaa avata Tor-verkkoon Onion-palvelimen portissa %1$s. Tämä on turvallista, jos luotat sovellukseen.</string>
     <string name="pref_http_title">Tori HTTP</string>
-    <string name="pref_http_summary">Portti, jonka kautta Torin HTTP-välityspalvelin on tavoitettavissa (oletus: 8118 tai poista käytöstä arvolla 0).</string>
+    <string name="pref_http_summary">Portti, jonka kautta Torin HTTP-välityspalvelin on tavoitettavissa (oletus on 8118 tai pois käytöstä arvolla 0).</string>
     <string name="pref_http_dialog">Syötä HTTP-porttimääritys</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jos mobiiliverkkosi pyrkii aktiivisesti estämään Tor-yhteydet, voit käyttää siltapalvelinta vaihtoehtoisena reittinä. Valitse yksi, määritä se ja kokeile…</string>
     <string name="apps_mode">VPN-tila</string>
@@ -134,13 +134,13 @@
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
     <string name="in_a_browser">Avaa osoite %s selaimessasi ja paina Get Bridges &gt; Just Give Me Bridges!</string>
-    <string name="pref_reduced_circuit_padding_summary">Käytä kevyempiä pehmustealgoritmeja vähentääksesi tiedonsiirtoa ja virrankulutusta.</string>
+    <string name="pref_reduced_circuit_padding_summary">Käytä kevyempiä pehmustusalgoritmeja vähentääksesi tiedonsiirtoa ja virrankulutusta.</string>
     <string name="pref_reduced_circuit_padding">Kevennetty ketjupehmustus</string>
     <string name="pref_circuit_padding_summary">Pehmusta ketjuja suojautuaksesi eräiltä tietoliikenteen analysointitavoilta.</string>
     <string name="pref_circuit_padding">Ketjupehmustus</string>
-    <string name="pref_reduced_connection_padding_summary">Sulkee välittäjäyhteydet nopeammin ja lähettää vähemmän pehmustepaketteja vähentääkseen dataa ja virrankäyttöä</string>
+    <string name="pref_reduced_connection_padding_summary">Reititinyhteydet suljetaan nopeammin ja pehmustuspaketteja lähetetään vähemmän tiedonsiirton ja virrankulutuksen vähentämiseksi.</string>
     <string name="pref_reduced_connection_padding">Kevennetty yhteyspehmustus</string>
-    <string name="pref_connection_padding_summary">Sallii aina yhteyden pehmustamisen suojatakseen verkkoliikenneanalyyseiltä. Oletus: automaattinen</string>
+    <string name="pref_connection_padding_summary">Käyttää yhteyspehmustusta aina suojatakseen verkkoliikenteen analysoinnilta. Oletus: Automaattinen.</string>
     <string name="pref_connection_padding">Yhteyspehmustus</string>
     <string name="v3_backup_name_hint">Varmuuskopioi tiedostonimi…</string>
     <string name="v3_backup_key">Varmuuskopioi päätteen todennusavain</string>
@@ -148,7 +148,7 @@
     <string name="snowflake_proxy_enabled">Snowflake-välityspalvelin on käytössä</string>
     <string name="be_a_snowflake_desc_limit">Vain silloin, kun laite on kytkettynä ja wlanissa</string>
     <string name="be_a_snowflake_title_limit">Välityspalvelimen rajoitukset</string>
-    <string name="be_a_snowflake_desc">Salli muiden Tor-käyttäjien muodostaa yhteys Toriin laitteesi kautta. (Tätä ei voi käyttää, jos muodostat yhteyden siltojen rinnalla)</string>
+    <string name="be_a_snowflake_desc">Salli muiden Tor-käyttäjien muodostaa Tor-yhteys laitteesi kautta (tämä ei toimi, jos muodostat yhteyden siltojen rinnalla).</string>
     <string name="be_a_snowflake_title">Käytä Snowflake-välityspalvelinta</string>
     <string name="bridge_snowflake">Yhdistä muiden Tor-käyttäjien välityksellä käyttäen Snowflakea (menetelmä 1 - Nopeasti)</string>
     <string name="paste_bridges">Liitä sillat</string>
@@ -174,9 +174,9 @@
     <string name="testing_tor_direct_success">Onnistui. Tor-yhteys on kunnossa!</string>
     <string name="testing_tor_direct">Kokeillaan yhteyttä Toriin…</string>
     <string name="app_shortcuts">Tor-yhteyttä käyttävät sovellukset</string>
-    <string name="pref_disable_ipv4_summary">Kertoo päätesolmuille, ettei IPv4-osoitteisiin yhdistetä.</string>
+    <string name="pref_disable_ipv4_summary">Kertoo päätössolmuille, ettei IPv4-osoitteisiin yhdistetä.</string>
     <string name="pref_disable_ipv4">Poista käytöstä IPv4-yhteydet</string>
-    <string name="pref_prefer_ipv6_summary">Kertoo päätesolmuille, että suositaan IPv6-osoitteita.</string>
+    <string name="pref_prefer_ipv6_summary">Kertoo päätössolmuille, että suositaan IPv6-osoitteita.</string>
     <string name="pref_prefer_ipv6">Suosi IPv6-yhteyksiä</string>
     <string name="pref_isolate_dest_summary">Käytä jokaiselle kohdeosoitteelle eri ketjua.</string>
     <string name="pref_isolate_dest">Eristä kohdeosoitteet</string>
@@ -199,13 +199,13 @@
     <string name="license">Lisenssi:</string>
     <string name="connected_title">Yhdistetty</string>
     <string name="btn_start_vpn">Käynnistä VPN</string>
-    <string name="btn_configure">Määritä</string>
+    <string name="btn_configure">Valitse yhteyden muodostustapa</string>
     <string name="volunteer_mode">Ystävällisyystila</string>
     <string name="volunteer_mode_subtitle">Auta muita yhdistymään</string>
-    <string name="btn_choose_apps">Valitse sovellukset</string>
-    <string name="btn_change_exit">Vaihda poistuminen</string>
+    <string name="btn_choose_apps">Valitse sovelluksia</string>
+    <string name="btn_change_exit">Vaihda päätössolmu</string>
     <string name="btn_refresh">Päivitä</string>
-    <string name="btn_tor_off">Sammuta Tor</string>
+    <string name="btn_tor_off">Katkaise Tor-yhteys</string>
     <string name="no_thx">Ei kiitos</string>
     <string name="menu_header_features">Ominaisuudet</string>
     <string name="captcha_title">Kerro meille, että olet ihminen</string>
@@ -234,14 +234,14 @@
     <string name="power_user_mode">Tehokäyttäjätila</string>
     <string name="action_activate">Aktivoi</string>
     <string name="volunteer_status_title">Tänään on ansiostasi parempi päivä.</string>
-    <string name="title_choose_apps">Valitse sovellukset</string>
+    <string name="title_choose_apps">Valitse sovelluksia</string>
     <string name="app_suggested_subtitle">Orbot toimii parhaiten viestintäsovellusten ja sosiaalisen median sovellusten kanssa.</string>
     <string name="apps_other_apps">Muut sovellukset</string>
     <string name="apps_suggested_title">Ehdotetut sovellukset</string>
     <string name="configure_header">Määritä Tor-yhteytesi</string>
     <string name="drawer_open">Avaa</string>
     <string name="drawer_close">Sulje</string>
-    <string name="volunteer_mode_label">Ystävyystila</string>
+    <string name="volunteer_mode_label">Ystävällisyystila</string>
     <string name="volunteer_mode_weekly_label">Viikottainen kokonaismäärä</string>
     <string name="volunteer_mode_alltime_label">Kaikkien aikojen kokonaismäärä</string>
     <string name="volunteer_mode_title">Auta muita yhdistämään Tor-verkkoon</string>
@@ -249,23 +249,34 @@
     <string name="smart_connect_subtitle">Orbot pyrkii muodostamaan Tor-yhteyden jollakin käytettävissä olevalla tavalla: Suora, Snowflake, Silta.</string>
     <string name="direct_connect">Suora Tor-yhteys</string>
     <string name="direct_connect_subtitle">Paras Tor-yhteyden muodostustapa. Käytä, jos Tor-verkkoa ei ole estetty.</string>
-    <string name="snowflake">Snowflake</string>
+    <string name="snowflake">Snowflake (alkuperäinen)</string>
     <string name="snowflake_subtitle">Muodostaa Tor-yhteyden vapaaehtoisten välityksellä. Kiertää joitakin Tor-estoja.</string>
-    <string name="get_a_bridge">Hanki Tor-silta (Obfs4)</string>
+    <string name="get_a_bridge">Silta Torilta (obfs4)</string>
     <string name="connect">Yhdistä</string>
     <string name="next">Seuraava</string>
     <string name="solve_captcha">Ratkaise CAPTCHA</string>
     <string name="ports_not_set">Portteja ei ole määritetty</string>
-    <string name="volunteer_mode_subtitle_desc">Ystävyystila tekee laitteestasi sillan muille. Tämä auttaa muita käyttämään Toria paikoissa, joissa se on estetty.
+    <string name="volunteer_mode_subtitle_desc">Ystävällisyystila tekee laitteestasi sillan muille. Se auttaa muita käyttämään Toria paikoissa, joissa se on estetty.
 \n
-\n- Se ei kuluta akkuasi
-\n- Se ei hidasta Internet-yhteyttäsi
-\n- Se voi toimia vain Wi-Fi-yhteydellä
-\n- Se voidaan poistaa käytöstä koska tahansa</string>
+\n• Se ei kuluta akkuasi
+\n• Se ei hidasta Internet-yhteyttäsi
+\n• Se voi toimia vain Wi-Fi-yhteydellä
+\n• Se voidaan poistaa käytöstä koska tahansa</string>
     <string name="hide_apps">Piilota sovelluksia verkkoseurannalta ja käytä estettyjä palveluita.</string>
     <string name="incorrect_solution">Virheellinen ratkaisu</string>
     <string name="bridges_obtained_connecting">Sillat vastaanotettu! Muodostetaan Tor-yhteyttä...</string>
     <string name="having_trouble_subtitle">Seuraavaksi voidaan kokeilla Tor-siltaa, mutta se edellyttää apuasi.</string>
     <string name="having_trouble">Kohdataan ongelmia</string>
     <string name="log_copied">Lokitiedot kopioitu</string>
+    <string name="kindness_adjust_title">Määritä milloin se suoritetaan...</string>
+    <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="ask_tor">Kysy Torilta</string>
+    <string name="action_use">Käytä</string>
+    <string name="asking">KYSYTÄÄN...</string>
+    <string name="no_internet_subtitle">Tarvitset Internet-yhteyden Orbotin käyttöön.</string>
+    <string name="kindess_config_detail">Määritä miten ja milloin laitteesi voi toimia Snowflake-välityspalvelimena muille Tor-käyttäjille.</string>
+    <string name="not_sure">Etkö osaa valita\?</string>
+    <string name="many_ways">Tor voidaan tavoittaa monilla tavoilla. Jotkin saattavat sopia sinulle muita paremmin.</string>
+    <string name="hello_blank_fragment">Hei, tyhjä sirpale</string>
+    <string name="no_interent_title">Yhdistä Internetiin</string>
 </resources>
