@@ -279,4 +279,5 @@
     <string name="no_internet_subtitle">Щоб використовувати Orbot, вам потрібне підключення до Інтернету.</string>
     <string name="kindness_adjust_title">Налаштуйте під час запуску...</string>
     <string name="kindess_config_detail">Налаштуйте, як і коли ваш пристрій може діяти як проксі-сервер Snowflake для інших користувачів Tor.</string>
+    <string name="hello_blank_fragment">Привіт, порожній фрагменте</string>
 </resources>
