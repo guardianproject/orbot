@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.widget.*
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -28,9 +27,9 @@ class OrbotActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
 
     private lateinit var logBottomSheet: LogBottomSheet
-    public lateinit var fragConnect : ConnectFragment
+    lateinit var fragConnect : ConnectFragment
 
-    public var previousReceivedTorStatus: String? = null
+    var previousReceivedTorStatus: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,17 +66,15 @@ class OrbotActivity : AppCompatActivity() {
 
     private fun sendIntentToService(intent: Intent) = ContextCompat.startForegroundService(this, intent)
     private fun sendIntentToService(action: String) = sendIntentToService(
-        android.content.Intent(
-            this,
-            org.torproject.android.service.OrbotService::class.java
-        ).apply {
+        android.content.Intent(this, org.torproject.android.service.OrbotService::class.java)
+            .apply {
             this.action = action
         })
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_VPN && resultCode == RESULT_OK) {
-            fragConnect?.startTorAndVpn()
+            fragConnect.startTorAndVpn()
         } else if (requestCode == REQUEST_CODE_SETTINGS && resultCode == RESULT_OK) {
             Prefs.setDefaultLocale(data?.getStringExtra("locale"))
             (application as OrbotApp).setLocale()
@@ -85,7 +82,7 @@ class OrbotActivity : AppCompatActivity() {
             startActivity(Intent(this, OrbotActivity::class.java))
         } else if (requestCode == REQUEST_VPN_APP_SELECT && resultCode == RESULT_OK) {
             sendIntentToService(OrbotConstants.ACTION_RESTART_VPN) // is this enough todo?
-            fragConnect?.refreshMenuList(this)
+            fragConnect.refreshMenuList(this)
         }
     }
 
@@ -111,13 +108,13 @@ class OrbotActivity : AppCompatActivity() {
                                 if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SMART)) {
                                     shouldDoOffLayout = false
                                 }
-                                if (shouldDoOffLayout) fragConnect?.doLayoutOff()
+                                if (shouldDoOffLayout) fragConnect.doLayoutOff()
                             }
                             else
-                                fragConnect?.doLayoutOff()
+                                fragConnect.doLayoutOff()
                         }
-                        OrbotConstants.STATUS_STARTING -> fragConnect?.doLayoutStarting(this@OrbotActivity)
-                        OrbotConstants.STATUS_ON -> fragConnect?.doLayoutOn(this@OrbotActivity)
+                        OrbotConstants.STATUS_STARTING -> fragConnect.doLayoutStarting(this@OrbotActivity)
+                        OrbotConstants.STATUS_ON -> fragConnect.doLayoutOn(this@OrbotActivity)
                         OrbotConstants.STATUS_STOPPING -> {}
                     }
 
@@ -142,15 +139,6 @@ class OrbotActivity : AppCompatActivity() {
         }
     }
 
-
-
-
-
-
-
-
-
-
     companion object {
         const val REQUEST_CODE_VPN = 1234
         const val REQUEST_CODE_SETTINGS = 2345
@@ -158,12 +146,8 @@ class OrbotActivity : AppCompatActivity() {
         val CAN_DO_APP_ROUTING = PermissionManager.isLollipopOrHigher()
     }
 
-
-
-    public fun showLog() {
+    fun showLog() {
         logBottomSheet.show(supportFragmentManager, OrbotActivity::class.java.simpleName)
 
     }
-
-
 }
