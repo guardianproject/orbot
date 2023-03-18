@@ -220,7 +220,7 @@
     <string name="volunteer_mode_subtitle">Помогнете на други да бъдат свързани</string>
     <string name="btn_start_vpn">Пускане на VPN</string>
     <string name="connected_title">Свързани</string>
-    <string name="btn_configure">Настройки</string>
+    <string name="btn_configure">Настройки на връзката</string>
     <string name="btn_tor_off">Изключване на Тор</string>
     <string name="btn_refresh">Презареждане</string>
     <string name="btn_use_custom_bridge">Използване на потребителски мост</string>
@@ -231,7 +231,7 @@
     <string name="volunteer_mode_weekly_label">Общо седмично</string>
     <string name="volunteer_mode_alltime_label">Общо за цялото време</string>
     <string name="smart_connect">Интелигентна връзка (подразбирано)</string>
-    <string name="snowflake">Снежинка</string>
+    <string name="snowflake">Снежинка (оригинална)</string>
     <string name="snowflake_subtitle">Връзката се осъществява през доброволци на Тор. Заобикаля някои забрани на Тор.</string>
     <string name="custom_bridge">Потребителски мост</string>
     <string name="connect">Свързване</string>
@@ -243,17 +243,14 @@
     <string name="ports_not_set">Няма зададени портове</string>
     <string name="volunteer_mode_subtitle_desc">Режимът на доброта дава възможност устройството ви да бъде използвано като мост. Така други потребители могат да ползват Тор, на места където е забранен.
 \n
-\n– Не изразходва батерията
-\n
-\n– Не забавя връзката с интернет
-\n
-\n– Работи само през безжична мрежа
-\n
-\n– Може да бъде спрян по всяко време</string>
+\n• не изразходва батерията
+\n• не забавя връзката с интернет
+\n• работи само през безжична мрежа
+\n• може да бъде спрян по всяко време</string>
     <string name="smart_connect_subtitle">Orbot се опитва да осъществи връзка по всички възможни начини: директен, Снежинка, мост.</string>
     <string name="direct_connect">Директна връзка с Тор</string>
     <string name="direct_connect_subtitle">Най-добрия начин за свързване с Тор. Използвайте ако Тор не е забранен.</string>
-    <string name="get_a_bridge">Получаване на мост от Тор (Obfs4)</string>
+    <string name="get_a_bridge">Мост от Тор (Obfs4)</string>
     <string name="custom_bridge_subtitle">Най-голяма вероятност да поддържа непрекъсната връзка с Тор при сериозни забрани на Тор. Изисква адрес на мост от човек, на когото имате доверие.</string>
     <string name="get_a_bridge_subtitle">Прикрива трафика ви. Заобикаля някои забрани на Тор.</string>
     <string name="having_trouble">Има проблем</string>
@@ -272,4 +269,15 @@
     <string name="title_choose_apps">Избор на приложения</string>
     <string name="hide_apps">Скрийте приложенията от наблюдение на мрежата и получете достъп, когато са блокирани.</string>
     <string name="log_copied">Дневникът е копиран</string>
+    <string name="snowflake_amp">Снежинка (AMP)</string>
+    <string name="action_use">Използване</string>
+    <string name="asking">ЗАПИТВАНЕ…</string>
+    <string name="no_interent_title">Свържете се с интернет</string>
+    <string name="hello_blank_fragment">Празен низ</string>
+    <string name="kindness_adjust_title">Настройка на работата…</string>
+    <string name="no_internet_subtitle">За да използвате Orbot е необходим достъп до интернет.</string>
+    <string name="not_sure">Не сте сигурни\?</string>
+    <string name="ask_tor">Попитайте Тор</string>
+    <string name="many_ways">Има много начини за достъп до Тор. Някои може да работят по-добре от други.</string>
+    <string name="kindess_config_detail">Настройте как и кога устройството ви да бъде използвано като посредник на Снежинка за другите потребители на мрежата на Тор.</string>
 </resources>
