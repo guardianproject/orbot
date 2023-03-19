@@ -181,7 +181,7 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
     }
 
     private fun displayError(exception: Exception, response: JSONObject?) {
-        Log.d("bim", "DISPLAY ERROR: $exception")
+        Log.d("MoatBottomSheet", "DISPLAY ERROR: $exception")
     }
 
     private fun onBridgeRequestSuccess(bridges: String) {

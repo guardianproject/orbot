@@ -27,8 +27,8 @@ class KindessConfigBottomSheet(): OrbotBottomSheetDialogFragment() {
         v.findViewById<View>(R.id.tvCancel).setOnClickListener { dismiss() }
         btnAction = v.findViewById(R.id.btnAction)
 
-        var configWifi = v.findViewById<SwitchCompat>(R.id.swKindnessConfigWifi)
-        var configCharging = v.findViewById<SwitchCompat>(R.id.swKindnessConfigCharging)
+        val configWifi = v.findViewById<SwitchCompat>(R.id.swKindnessConfigWifi)
+        val configCharging = v.findViewById<SwitchCompat>(R.id.swKindnessConfigCharging)
 
         btnAction.setOnClickListener {
 

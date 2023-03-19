@@ -40,11 +40,8 @@ class CustomBridgeBottomSheet(private val callbacks: ConnectionHelperCallbacks):
     }
 
     private fun updateUi() {
-        if (etBridges.text.isEmpty() || !etBridges.text.contains(bridgeStatement)) {
-            btnAction.isEnabled = false
-        } else {
-            btnAction.isEnabled = true
-        }
+        btnAction.isEnabled =
+            !(etBridges.text.isEmpty() || !etBridges.text.contains(bridgeStatement))
     }
 
 }

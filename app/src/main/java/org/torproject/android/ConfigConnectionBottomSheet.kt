@@ -162,7 +162,7 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
 
     private fun askTor () {
 
-        var dLeft = activity?.getDrawable(R.drawable.ic_faq)
+        val dLeft = activity?.getDrawable(R.drawable.ic_faq)
         btnAskTor.text = getString(R.string.asking)
         btnAskTor.setCompoundDrawablesWithIntrinsicBounds(dLeft, null, null, null)
 
@@ -197,16 +197,16 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
 
         // Try to get country code from TelephonyManager service
         val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-        if (tm != null) {
-            // Query first getSimCountryIso()
-            countryCode = tm.simCountryIso
-            if (countryCode != null && countryCode.length == 2)
-                return countryCode.lowercase(Locale.getDefault())
 
-            countryCode = tm.networkCountryIso
-            if (countryCode != null && countryCode.length == 2)
-                      return countryCode.lowercase(Locale.getDefault())
-        }
+        // Query first getSimCountryIso()
+        countryCode = tm.simCountryIso
+        if (countryCode != null && countryCode.length == 2)
+            return countryCode.lowercase(Locale.getDefault())
+
+        countryCode = tm.networkCountryIso
+        if (countryCode != null && countryCode.length == 2)
+                  return countryCode.lowercase(Locale.getDefault())
+
 
         // If network country not available (tablets maybe), get country code from Locale class
         countryCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -222,7 +222,7 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
 
     private fun setPreferenceForSmartConnect() {
 
-        var dLeft = activity?.getDrawable(R.drawable.ic_green_check)
+        val dLeft = activity?.getDrawable(R.drawable.ic_green_check)
         btnAskTor.setCompoundDrawablesWithIntrinsicBounds(dLeft, null, null, null)
 
         circumventionApiBridges?.let {
