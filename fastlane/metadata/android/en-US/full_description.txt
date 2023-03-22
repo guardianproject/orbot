@@ -5,10 +5,11 @@ Orbot is the only app that creates a truly private internet connection. As the N
 Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.
 
 ★ ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.
-★ PRIVACY FOR APPS: Any installed app can use Tor via the Orbot VPN feature, or if it has a proxy feature, using the settings found here: https://goo.gl/2OA1y Use Orbot with Twitter, or try private web searching with DuckDuckGo: https://goo.gl/lgh1p
+★ PRIVACY FOR APPS: Any app can be routed over Tor via the Orbot VPN feature
 ★ PRIVACY FOR EVERYONE: Orbot prevents someone watching your connection from knowing what apps you are using or websites you visit. All anyone monitoring your network traffic can see is that you're using Tor.
 
 ***We Love Feedback***
+★ LEARN MORE: Learn more about Orbot and get involved at https://orbot.app
 ★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow.
 ★ OPEN-SOURCE: Orbot is free software. Take a look at our source code, or join the community to make it better: https://github.com/guardianproject/orbot
 ★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? We’d love to hear from you! Send us an email: support@guardianproject.info
