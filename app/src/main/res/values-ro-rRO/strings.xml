@@ -280,4 +280,8 @@
     <string name="kindness_adjust_title">Reglați când funcționează...</string>
     <string name="kindess_config_detail">Configurați cum și când dispozitivul dvs. poate acționa ca proxy Snowflake pentru alți utilizatori Tor.</string>
     <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="pref_isolate_port">Izolarea porturilor de destinație</string>
+    <string name="pref_isolate_port_summary">Utilizați un circuit diferit pentru fiecare port de destinație</string>
+    <string name="pref_isolate_protocol">Izolați protocoalele clienților</string>
+    <string name="pref_isolate_protocol_summary">Utilizați un circuit diferit pentru fiecare protocol de conectare</string>
 </resources>
