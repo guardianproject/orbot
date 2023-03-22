@@ -259,7 +259,7 @@
     <string name="custom_bridge_description">Потребителски мост се предоставя от ваш познат. Попитайте във вашите доверени среди дали някой не предлага такъв.</string>
     <string name="having_trouble_subtitle">След това можем да опитаме с мост на Тор, но ще се нуждаем от вашата помощ</string>
     <string name="power_user_mode">Режим за напреднали</string>
-    <string name="power_user_description">За потребители, запознати с Тор. Дава еъзможност да стартирате Орбот без настройката за ВЧМ и показва отворените портове на SOCKS и HTTP</string>
+    <string name="power_user_description">За потребители, запознати с Тор. Дава възможност Орбот да бъде пуснат без настройки на ВЧМ, показва отворените портове на SOCKS и HTTP</string>
     <string name="action_activate">Включване</string>
     <string name="volunteer_status_title">Денят е по-добър
 \nзаради вас</string>
@@ -280,4 +280,8 @@
     <string name="ask_tor">Попитайте Тор</string>
     <string name="many_ways">Има много начини за достъп до Тор. Някои може да работят по-добре от други.</string>
     <string name="kindess_config_detail">Настройте как и кога устройството ви да бъде използвано като посредник на Снежинка за другите потребители на мрежата на Тор.</string>
+    <string name="pref_isolate_port_summary">Използване на различен обход за всеки порт</string>
+    <string name="pref_isolate_protocol">Изолиране на клиентските протоколи</string>
+    <string name="pref_isolate_port">Изолиране на целевите портове</string>
+    <string name="pref_isolate_protocol_summary">Използване на различен обход за всеки протокол за свързване</string>
 </resources>
