@@ -5,9 +5,7 @@
         android:layout_height="match_parent"
         android:backgroundTint="@color/new_background"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        >
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <fragment
             android:id="@+id/nav_fragment"
@@ -32,7 +30,5 @@
             app:itemTextColor="@color/bottom_nav_color"
             app:itemIconTint="@color/bottom_nav_color"
             />
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>

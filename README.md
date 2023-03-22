@@ -23,5 +23,5 @@ Tor Frequently Asked Questions:
         https://support.torproject.org/faq/
 
 ***********************************************
-Copyright (c) 2009-2013, Nathan Freitas, The Guardian Project
+**Copyright (c) 2009-2023, Nathan Freitas, The Guardian Project**
  * https://guardianproject.info/

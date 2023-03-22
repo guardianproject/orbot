@@ -42,7 +42,7 @@ class KindnessFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.fragment_kindness, container, false)
+        val view = inflater.inflate(R.layout.fragment_kindness, container, false)
         tvAlltimeTotal = view.findViewById<TextView>(R.id.tvAlltimeTotal)
         tvWeeklyTotal = view.findViewById<TextView>(R.id.tvWeeklyTotal)
         swVolunteerMode = view.findViewById<SwitchCompat>(R.id.swVolunteerMode)

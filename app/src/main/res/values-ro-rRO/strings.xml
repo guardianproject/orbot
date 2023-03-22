@@ -202,7 +202,7 @@
     <string name="snowflake_proxy_msg_description">Afișează un mesaj atunci când fulgul tău de nea ajută pe cineva să ocolească cenzura</string>
     <string name="strict_nodes_description">Tratați setările de excludere a nodurilor ca pe o cerință pentru construirea tuturor circuitelor. Acest lucru poate întrerupe funcționalitatea în cazul în care niciun circuit nu poate fi generat cu setările de excludere a nodurilor.</string>
     <string name="btn_start_vpn">Pornire VPN</string>
-    <string name="btn_configure">Configurează</string>
+    <string name="btn_configure">Alegeți cum să vă conectați</string>
     <string name="volunteer_mode">Modul Bunătate</string>
     <string name="volunteer_mode_subtitle">Ajută-i pe alții să se conecteze</string>
     <string name="trying_to_connect_title">Se conectează…</string>
@@ -236,19 +236,16 @@
     <string name="volunteer_mode_alltime_label">Tot timpul total</string>
     <string name="volunteer_mode_subtitle_desc">Modul Bunătate permite dispozitivului dvs. să fie o punte de legătură pentru ceilalți. Ajută oamenii să folosească Tor în locurile în care acesta este blocat.
 \n
-\n- Nu vă va consuma bateria
-\n
-\n- Nu vă va încetini internetul
-\n
-\n- Poate funcționa doar prin wifi
-\n
-\n- Poate fi oprit oricând</string>
+\n• Nu vă va consuma bateria
+\n• Nu vă va încetini internetul
+\n• Poate funcționa doar prin wifi
+\n• Poate fi oprit oricând</string>
     <string name="smart_connect">Conectare inteligentă (implicită)</string>
     <string name="direct_connect">Conexiune directă la Tor</string>
     <string name="direct_connect_subtitle">Cel mai bun mod de a vă conecta la Tor. Utilizați dacă Tor nu este blocat.</string>
-    <string name="snowflake">Snowflake</string>
+    <string name="snowflake">Snowflake (Original)</string>
     <string name="snowflake_subtitle">Se conectează prin intermediul voluntarilor Tor. Ocolește unele blocaje Tor.</string>
-    <string name="get_a_bridge">Obțineți o punte de la Tor (Obfs4)</string>
+    <string name="get_a_bridge">Punte de la Tor (Obfs4)</string>
     <string name="get_a_bridge_subtitle">Camuflează traficul. Ocolește unele blocaje Tor.</string>
     <string name="custom_bridge">Punte personalizată</string>
     <string name="custom_bridge_subtitle">Cel mai probabil vă va menține conectat dacă Tor este blocat în mod sever. Necesită o adresă de punte de la o persoană de încredere.</string>
@@ -272,4 +269,15 @@
     <string name="apps_other_apps">Alte aplicații</string>
     <string name="hide_apps">Ascundeți aplicațiile de la monitorizarea rețelei și obțineți acces atunci când sunt blocate.</string>
     <string name="log_copied">Jurnalul a fost copiat</string>
+    <string name="not_sure">Nu sunteți siguri\?</string>
+    <string name="ask_tor">Adresați-vă Tor</string>
+    <string name="many_ways">Există mai multe modalități de a vă conecta la Tor. Unele pot funcționa mai bine decât altele pentru dumneavoastră.</string>
+    <string name="action_use">Utilizați</string>
+    <string name="asking">CERERE...</string>
+    <string name="hello_blank_fragment">Bună ziua, fragment gol</string>
+    <string name="no_interent_title">Conectare la internet</string>
+    <string name="no_internet_subtitle">Aveți nevoie de o conexiune la internet pentru a utiliza Orbot.</string>
+    <string name="kindness_adjust_title">Reglați când funcționează...</string>
+    <string name="kindess_config_detail">Configurați cum și când dispozitivul dvs. poate acționa ca proxy Snowflake pentru alți utilizatori Tor.</string>
+    <string name="snowflake_amp">Snowflake (AMP)</string>
 </resources>

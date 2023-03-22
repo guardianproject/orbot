@@ -75,7 +75,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.fragment_connect, container, false)
+        val view = inflater.inflate(R.layout.fragment_connect, container, false)
         view?.let {
 
             tvTitle = it.findViewById(R.id.tvTitle)
@@ -139,12 +139,12 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         return false
     }
 
-    public fun stopTorAndVpn() {
+    fun stopTorAndVpn() {
         sendIntentToService(OrbotConstants.ACTION_STOP)
         sendIntentToService(OrbotConstants.ACTION_STOP_VPN)
     }
 
-    public fun sendNewnymSignal() {
+    fun sendNewnymSignal() {
         sendIntentToService(TorControlCommands.SIGNAL_NEWNYM)
         ivOnion.animate().alpha(0f).duration = 500
         Handler().postDelayed({ ivOnion.animate().alpha(1f).duration = 500 }, 600)
@@ -157,7 +157,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
     private fun startTorAndVpnDelay(@Suppress("SameParameterValue") ms: Long) = Handler(Looper.getMainLooper()).postDelayed({startTorAndVpn()}, ms)
 
 
-    public fun startTorAndVpn() {
+     fun startTorAndVpn() {
         val vpnIntent = VpnService.prepare(requireActivity())
         if (vpnIntent != null && (!Prefs.isPowerUserMode())) {
             startActivityForResult(vpnIntent, OrbotActivity.REQUEST_CODE_VPN)
@@ -171,7 +171,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         }
     }
 
-    public fun refreshMenuList (context: Context) {
+    fun refreshMenuList (context: Context) {
 
         val listItems = arrayListOf(OrbotMenuAction(R.string.btn_change_exit, 0) {openExitNodeDialog()},
             OrbotMenuAction(R.string.btn_refresh, R.drawable.ic_refresh) {sendNewnymSignal()},
@@ -212,7 +212,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
     }
 
 
-    public fun doLayoutNoInternet(context : Context) {
+    fun doLayoutNoInternet(context : Context) {
 
         ivOnion.setImageResource(R.drawable.nointernet)
 
@@ -233,7 +233,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
 
     }
 
-    public fun doLayoutOn(context : Context) {
+    fun doLayoutOn(context : Context) {
 
         ivOnion.setImageResource(R.drawable.orbion)
 
@@ -256,7 +256,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         }
     }
 
-    public fun doLayoutOff() {
+    fun doLayoutOff() {
 
         ivOnion.setImageResource(R.drawable.orbioff)
         (ivOnion.layoutParams as ViewGroup.MarginLayoutParams).topMargin = 200

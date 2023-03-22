@@ -50,9 +50,9 @@ class MoreFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.fragment_more, container, false)
+        val view = inflater.inflate(R.layout.fragment_more, container, false)
 
-        var tvVersion = view.findViewById<TextView>(R.id.tvVersion)
+        val tvVersion = view.findViewById<TextView>(R.id.tvVersion)
         tvVersion.text = "Tor v" + getTorVersion()
 
 
@@ -107,8 +107,8 @@ class MoreFragment : Fragment() {
             .setAction(OrbotConstants.ACTION_STOP)
             .putExtra(OrbotConstants.ACTION_STOP_FOREGROUND_TASK, true)
         sendIntentToService(OrbotConstants.ACTION_STOP_VPN)
-        requireActivity()?.startService(killIntent)
-        requireActivity()?.finish()
+        requireActivity().startService(killIntent)
+        requireActivity().finish()
     }
 
     private fun sendIntentToService(intent: Intent) = ContextCompat.startForegroundService(requireActivity(), intent)
