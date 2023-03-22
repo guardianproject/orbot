@@ -279,4 +279,8 @@
     <string name="many_ways">Tor voidaan tavoittaa monilla tavoilla. Jotkin saattavat sopia sinulle muita paremmin.</string>
     <string name="hello_blank_fragment">Hei, tyhjä sirpale</string>
     <string name="no_interent_title">Yhdistä Internetiin</string>
+    <string name="pref_isolate_protocol">Eristä pääteprotokollat</string>
+    <string name="pref_isolate_port">Eristä kohdeportit</string>
+    <string name="pref_isolate_port_summary">Käytä eri ketjua jokaiselle kohdeportille</string>
+    <string name="pref_isolate_protocol_summary">Käytä eri ketjua jokaiselle yhteysprotokollalle</string>
 </resources>
