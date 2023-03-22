@@ -248,7 +248,7 @@
     <string name="secure_your_connection_subtitle">Verstecke Apps vor der Netzwerküberwachung und erhalte Zugriff, wenn sie blockiert sind.</string>
     <string name="connected_title">Verbunden</string>
     <string name="btn_start_vpn">VPN starten</string>
-    <string name="btn_configure">Konfigurieren</string>
+    <string name="btn_configure">Wähle die Art der Verbindung</string>
     <string name="volunteer_mode_subtitle">Anderen helfen, sich zu vernetzen</string>
     <string name="trying_to_connect_title">Verbinden…</string>
     <string name="btn_choose_apps">Anwendungen auswählen</string>
@@ -271,4 +271,6 @@
     <string name="having_trouble">Probleme haben</string>
     <string name="having_trouble_subtitle">Als Nächstes können wir eine Tor-Brücke ausprobieren, aber dazu brauchen wir deine Hilfe</string>
     <string name="hide_apps">Verstecke Apps vor der Netzwerküberwachung und erhalte Zugriff, wenn sie blockiert sind.</string>
+    <string name="pref_isolate_port">Zielports isolieren</string>
+    <string name="pref_isolate_protocol">Clientprotokolle isolieren</string>
 </resources>
