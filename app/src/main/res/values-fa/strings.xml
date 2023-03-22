@@ -202,7 +202,7 @@
     <string name="be_a_snowflake_desc">اجازه به دیگر کاربران تور برای وصل شدن به تور از طریق افزاره‌تان. (اگر با پل‌ها وصل شده‌اید، قابل استفاده نیست)</string>
     <string name="secure_your_connection_title">آمادهٔ وصل شدن</string>
     <string name="btn_start_vpn">آغاز وی‌پی‌ان</string>
-    <string name="btn_configure">پیکربندی</string>
+    <string name="btn_configure">نحوه اتصال را انتخاب کنید</string>
     <string name="volunteer_mode">حالت مهربانی</string>
     <string name="btn_choose_apps">گزینش کاره‌ها</string>
     <string name="btn_change_exit">تغییر خروجی</string>
@@ -231,11 +231,8 @@
     <string name="volunteer_mode_subtitle_desc">حالت مهربانی می‌گذارد افزاره‌تان پلی برای دیگران باشد‌. این کار به استفادهٔ افراد در جاهایی که تور مسدود شده کمک می‌کند.
 \n
 \n- باتریتان را خالی نمی‌کند
-\n
 \n- اینترنتتان را کند نمی‌کند
-\n
 \n- می‌تواند فقط روی وای‌فای اجرا شود
-\n
 \n- می‌تواند هر زمانی خاموش شود</string>
     <string name="configure_header">پیکربندی اتصال تورتان</string>
     <string name="drawer_open">گشودن</string>
@@ -246,12 +243,12 @@
     <string name="volunteer_mode_alltime_label">مجموع تمامی زمان‌ها</string>
     <string name="smart_connect">اتصال هوشمند (پیش‌گزیده)</string>
     <string name="direct_connect">اتّصال مستقیم به تور</string>
-    <string name="get_a_bridge">گرفتن پلی از تور (Obfs4)</string>
+    <string name="get_a_bridge">پل از تور (Obfs4)</string>
     <string name="custom_bridge">پل شخصی</string>
     <string name="next">بعدی</string>
     <string name="ports_not_set">درگاه تنظیم نشده</string>
     <string name="smart_connect_subtitle">روبوت پیازی تلاش می‌کند از هر راه ممکنی به تور وصل شود: مستقیم، اسنوفلیک و پل.</string>
-    <string name="snowflake">اسنوفلیک</string>
+    <string name="snowflake">دانه برف (اصل)</string>
     <string name="snowflake_subtitle">وصل شدن از طریق داوطلبان تور. رد شدن از برخی مسدودیت‌های تور.</string>
     <string name="direct_connect_subtitle">بهترین روش وصل شدن به تور. استفاده در صورت مسدود نبودن تور.</string>
     <string name="get_a_bridge_subtitle">پنهان کردن شدآمدتان. رد شدن از برخی مسدودیت‌های تور.</string>
@@ -271,4 +268,20 @@
     <string name="app_suggested_subtitle">روبوت پیازی بهترین کارایی را با کاره‌های شبکهٔ اجتماعی و پیام‌رسان دارد.</string>
     <string name="apps_suggested_title">کاره‌های پیشنهادی</string>
     <string name="hide_apps">نهفتن کاره‌ها از پایش شبکه و دسترسی گرفتن هنگام مسدود بودنشان.</string>
+    <string name="pref_isolate_port">درگاه‌های مقصد را مجزا کنید</string>
+    <string name="pref_isolate_port_summary">برای هر درگاه مقصد از مدار متفاوتی استفاده کنید</string>
+    <string name="pref_isolate_protocol">شیوه‌نامه‌های کلاینت را مجزا کنید</string>
+    <string name="pref_isolate_protocol_summary">برای هر شیوه‌نامه اتصال از مدار متفاوتی استفاده کنید</string>
+    <string name="snowflake_amp">دانه برف (AMP)</string>
+    <string name="ask_tor">از Tor بپرسید</string>
+    <string name="not_sure">مطمئن نیستید؟</string>
+    <string name="many_ways">راه های زیادی برای رسیدن به Tor وجود دارد. برخی ممکن است بهتر از دیگران برای شما کار کنند.</string>
+    <string name="action_use">استفاده</string>
+    <string name="asking">پرسیدن...</string>
+    <string name="hello_blank_fragment">سلام قطعه خالی</string>
+    <string name="no_interent_title">به اینترنت وصل شوید</string>
+    <string name="no_internet_subtitle">شما برای استفاده از ربات‌پیازی به اینترنت نیاز دارید.</string>
+    <string name="kindness_adjust_title">زمانی که اجرا می‌شود تنظیم کنید...</string>
+    <string name="kindess_config_detail">پیکربندی کنید که چگونه و چه زمانی دستگاه شما می‌تواند به عنوان یک پروکسی دانه برف برای سایر کاربران Tor عمل کند.</string>
+    <string name="log_copied">گزارش کپی شد</string>
 </resources>
