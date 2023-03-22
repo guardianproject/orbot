@@ -207,7 +207,7 @@
     <string name="volunteer_mode">Vænleikahamur</string>
     <string name="connected_title">Tengt</string>
     <string name="btn_start_vpn">Ræsa VPN</string>
-    <string name="btn_configure">Stilla</string>
+    <string name="btn_configure">Veldu hvernig á að tengjast</string>
     <string name="btn_tor_off">Slökkva á Tor</string>
     <string name="no_thx">Nei takk</string>
     <string name="menu_header_features">Eiginleikar</string>
@@ -229,8 +229,8 @@
     <string name="proxy_ports">Gáttir milliþjóna</string>
     <string name="smart_connect">Snjalltenging (sjálfgefið)</string>
     <string name="direct_connect">Bein tenging við Tor</string>
-    <string name="snowflake">Snowflake</string>
-    <string name="secure_your_connection_subtitle">Feldu forrit fyrir netvöktun og náðu aðgangi þegar lokað er á þau</string>
+    <string name="snowflake">Snowflake (upprunalegt)</string>
+    <string name="secure_your_connection_subtitle">Feldu forrit fyrir netvöktun og náðu aðgangi þegar lokað er á þau.</string>
     <string name="volunteer_mode_title">Hjálpaðu öðrum
 \nað tengjast við Tor</string>
     <string name="volunteer_mode_label">Vænleikahamur</string>
@@ -238,17 +238,14 @@
     <string name="volunteer_mode_alltime_label">Samtals frá upphafi</string>
     <string name="volunteer_mode_subtitle_desc">Vænleikahamur lætur tækið þitt verða að brú fyrir annað fólk. Það hjálpar því fólki til að nota Tori við aðstæður þar sem annars er lokað á það.
 \n
-\n- Það mun ekki eyða rafhlöðunni þinni um of
-\n
-\n- Það mun ekki hægja á internetinu
-\n
-\n- Það getur aðeins notað þráðlaust wi-fi net
-\n
-\n- Hægt er að slökkva á því hvenær sem er</string>
+\n• Það mun ekki eyða rafhlöðunni þinni um of
+\n• Það mun ekki hægja á internetinu
+\n• Það getur aðeins notað þráðlaust wi-fi net
+\n• Hægt er að slökkva á því hvenær sem er</string>
     <string name="smart_connect_subtitle">Orbot reynir að tengjast við Tor með öllum tiltækum ráðum: Beint, með Snowflake, með brúm.</string>
     <string name="direct_connect_subtitle">Besta leiðin til að tengjast við Tor. Notist ef ekki er lokað á Tor.</string>
     <string name="snowflake_subtitle">Tengist í gegnum Tor-sjálfboðaliða. Kemst framhjá sumum hindrunum gagnvart Tor.</string>
-    <string name="get_a_bridge">Fá brú frá Tor (Obfs4)</string>
+    <string name="get_a_bridge">Brú frá Tor (Obfs4)</string>
     <string name="get_a_bridge_subtitle">Stíflar netið þitt. Kemst framhjá sumum hindrunum gagnvart Tor.</string>
     <string name="custom_bridge">Sérsniðin brú</string>
     <string name="custom_bridge_subtitle">Líklegast til að halda þér tengdum ef Tor er alvarlega hindrað. Krefst brúarvistfangs frá einhverjum sem þú treystir.</string>
@@ -270,4 +267,19 @@
     <string name="power_user_mode">Hamur fyrir vana notendur</string>
     <string name="app_suggested_subtitle">Orbot virkar best með skilaboða- og samfélagsmiðlaforritum.</string>
     <string name="power_user_description">Fyrir notendur sem vanir eru Tor. Gerir þér kleift að ræsa Orbot án VPN-stillingar og sýnir opnar SOCKS og HTTP-gáttir</string>
+    <string name="pref_isolate_port">Einangra markgáttir</string>
+    <string name="pref_isolate_protocol">Einangra samskiptamáta biðlara</string>
+    <string name="pref_isolate_protocol_summary">Nota mismunandi rás fyrir hvern samskiptamáta tengingar</string>
+    <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="ask_tor">Spurðu Tor</string>
+    <string name="many_ways">Það eru margar aðferðir við að ná sambandi við Tor. Sumar gætu virkað betur fyrir þig en aðrar.</string>
+    <string name="action_use">Nota</string>
+    <string name="no_interent_title">Tengjast við internetið</string>
+    <string name="no_internet_subtitle">Þú þarft internettengingu til að nota Orbot.</string>
+    <string name="kindness_adjust_title">Aðlagaðu þegar það keyrir...</string>
+    <string name="pref_isolate_port_summary">Nota mismunandi rás fyrir hverja markgátt</string>
+    <string name="hide_apps">Feldu forrit fyrir netvöktun og náðu aðgangi þegar lokað er á þau.</string>
+    <string name="not_sure">Ekki viss\?</string>
+    <string name="asking">SPYR...</string>
+    <string name="log_copied">Atvikaskrá afrituð</string>
 </resources>
