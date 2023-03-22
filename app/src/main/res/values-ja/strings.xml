@@ -166,7 +166,7 @@
     <string name="secure_your_connection_subtitle">アプリをネットワーク監視から隠し、ブロックされているときにはアクセスできるようにします。</string>
     <string name="connected_title">接続されました</string>
     <string name="btn_start_vpn">VPNを開始</string>
-    <string name="btn_configure">構成</string>
+    <string name="btn_configure">接続の仕方を選択</string>
     <string name="volunteer_mode">親切モード</string>
     <string name="trying_to_connect_title">接続しています…</string>
     <string name="btn_choose_apps">アプリを選ぶ</string>
@@ -237,25 +237,25 @@
 \n他の人を助ける</string>
     <string name="volunteer_mode_subtitle_desc">親切モードは、あなたの端末が他の人のためのブリッジになることを可能にします。Torを遮断されている場所で使う手助けをします。
 \n
-\n- 電池を消耗しません
+\n* 電池を消耗しません
 \n
-\n- インターネットが遅くなりません
+\n* インターネットが遅くなりません
 \n
-\n- wifiのみでしか動作しません
+\n* wifiのみでしか動作しません
 \n
-\n- いつでもオフにできます</string>
+\n* いつでもオフにできます</string>
     <string name="smart_connect">気の利いた接続(デフォルト)</string>
     <string name="volunteer_mode_weekly_label">週間合計</string>
     <string name="volunteer_mode_alltime_label">全期間累計</string>
     <string name="smart_connect_subtitle">Orbotはあらゆる手段でTorに接続しようとします: 直接、Snowflake、ブリッジ。</string>
     <string name="direct_connect">Torに直接接続</string>
     <string name="direct_connect_subtitle">Torに接続する最良の手段です。Torが遮断されてないときに使用します。</string>
-    <string name="snowflake">Snowflake</string>
+    <string name="snowflake">Snowflake (元のまま)</string>
     <string name="snowflake_subtitle">Torの有志を介した接続です。一部のTor遮断を回避できます。</string>
     <string name="get_a_bridge_subtitle">あなたのトラフィックを隠します。一部のTor遮断を回避できます。</string>
     <string name="custom_bridge">カスタムブリッジ</string>
     <string name="custom_bridge_subtitle">Torが厳重に遮断されている場合、接続を維持できる可能性が最も高いです。信頼できる人からのブリッジアドレスが必要です。</string>
-    <string name="get_a_bridge">Torからブリッジを入手(Obfs4)</string>
+    <string name="get_a_bridge">Torからのブリッジ(Obfs4)</string>
     <string name="connect">接続</string>
     <string name="solve_captcha">Captchaを解く</string>
     <string name="incorrect_solution">不正解</string>
@@ -269,4 +269,14 @@
     <string name="app_suggested_subtitle">Orbotは、メッセージングアプリやソーシャルメディアアプリとの相性が抜群です。</string>
     <string name="action_activate">有効化</string>
     <string name="hide_apps">アプリをネットワーク監視から隠し、ブロックされているときにはアクセスできるようにします。</string>
+    <string name="pref_isolate_port">宛先ポートを分離</string>
+    <string name="pref_isolate_port_summary">宛先ポートごとに別の回路を使用する</string>
+    <string name="pref_isolate_protocol">クライアントプロトコルを分離</string>
+    <string name="pref_isolate_protocol_summary">接続中のプロトコルごとに別の回路を使用する</string>
+    <string name="many_ways">Torに到達する方法はたくさんあります。いくつかはあなたにとってより良い方法であるかもしれません。</string>
+    <string name="action_use">使用</string>
+    <string name="no_interent_title">インターネットに接続</string>
+    <string name="no_internet_subtitle">Orbotを使用するには、インターネット接続が必要です。</string>
+    <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="log_copied">ログをコピーしました</string>
 </resources>

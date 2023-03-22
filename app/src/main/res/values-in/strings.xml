@@ -283,4 +283,8 @@
     <string name="kindess_config_detail">Atur bagaimana dan kapan perangkat Anda dapat menjadi sebagai proksi Snowflake untuk pengguna Tor lain.</string>
     <string name="asking">MENANYAKAN…</string>
     <string name="action_use">Gunakan</string>
+    <string name="pref_isolate_port_summary">Gunakan sirkuit yang berbeda untuk setiap porta tujuan</string>
+    <string name="pref_isolate_port">Isolasi porta tujuan</string>
+    <string name="pref_isolate_protocol">Isolasi protokol klien</string>
+    <string name="pref_isolate_protocol_summary">Gunakan sirkuit yang berbeda untuk setiap protokol penghubungan</string>
 </resources>

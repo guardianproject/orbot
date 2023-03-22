@@ -280,4 +280,8 @@
     <string name="no_interent_title">Conectar à internet</string>
     <string name="kindness_adjust_title">Ajuste quando for executado...</string>
     <string name="no_internet_subtitle">Você precisa de uma conexão com a Internet para usar o Orbot.</string>
+    <string name="pref_isolate_protocol">Isole os protocolos do cliente</string>
+    <string name="pref_isolate_port_summary">Utilize um circuito diferente para cada porta de destino</string>
+    <string name="pref_isolate_port">Isole as portas de destino</string>
+    <string name="pref_isolate_protocol_summary">Utilize um circuito diferente para cada protocolo de conexão</string>
 </resources>
