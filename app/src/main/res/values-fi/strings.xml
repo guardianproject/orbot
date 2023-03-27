@@ -281,6 +281,6 @@
     <string name="no_interent_title">Yhdistä Internetiin</string>
     <string name="pref_isolate_protocol">Eristä pääteprotokollat</string>
     <string name="pref_isolate_port">Eristä kohdeportit</string>
-    <string name="pref_isolate_port_summary">Käytä eri ketjua jokaiselle kohdeportille</string>
-    <string name="pref_isolate_protocol_summary">Käytä eri ketjua jokaiselle yhteysprotokollalle</string>
+    <string name="pref_isolate_port_summary">Käytä jokaiselle kohdeportille eri ketjua.</string>
+    <string name="pref_isolate_protocol_summary">Käytä jokaiselle yhteysprotokollalle eri ketjua.</string>
 </resources>
