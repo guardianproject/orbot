@@ -173,7 +173,7 @@
     <string name="btn_change_exit">出口を変更する</string>
     <string name="btn_refresh">リフレッシュ</string>
     <string name="btn_tor_off">Torをオフにする</string>
-    <string name="no_thx"/>
+    <string name="no_thx">ノーサンキュー</string>
     <string name="captcha_title">あなたが人間であることを知らせてください</string>
     <string name="menu_tor_connection">Tor接続</string>
     <string name="menu_help_others">他の人を助ける</string>
@@ -279,4 +279,12 @@
     <string name="no_internet_subtitle">Orbotを使用するには、インターネット接続が必要です。</string>
     <string name="snowflake_amp">Snowflake (AMP)</string>
     <string name="log_copied">ログをコピーしました</string>
+    <string name="volunteer_status_title">今日も元気に
+\nは、あなたのおかげです。</string>
+    <string name="not_sure">よくわからない？</string>
+    <string name="ask_tor">トールに聞く</string>
+    <string name="asking">アスク...</string>
+    <string name="kindness_adjust_title">走るときに調整する...</string>
+    <string name="hello_blank_fragment">ハローブランフレグメント</string>
+    <string name="kindess_config_detail">お使いのデバイスが他のTorユーザーのためにSnowflakeプロキシとして動作する方法とタイミングを設定します。</string>
 </resources>

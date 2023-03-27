@@ -176,15 +176,12 @@
     <string name="drawer_open">Otwórz</string>
     <string name="volunteer_mode_title">Pomóż innym
 \npołączyć się z Tor</string>
-    <string name="volunteer_mode_subtitle_desc">Tryb życzliwości pozwala Twojemu urządzeniu być mostkiem dla innych. Pomaga ludziom korzystać z Tora w miejscach, gdzie jest on zablokowany.
+    <string name="volunteer_mode_subtitle_desc">Tryb życzliwości pozwala Twojemu urządzeniu być mostem dla innych. Pomaga ludziom używać Tora w miejscach, gdzie jest on zablokowany.
 \n
-\n- Nie powoduje podwyższonego użycia baterii
-\n
+\n- Nie powoduje wyczerpania baterii
 \n- Nie spowalnia działania internetu.
-\n
-\n- Może działać tylko przez Wi-Fi
-\n
-\n- Można go wyłączyć w każdej chwili</string>
+\n- Może działać tylko przez Wifi
+\n- Może być wyłączony w każdej chwili</string>
     <string name="pref_reduced_connection_padding_summary">Zamyka połączenia przekaźnikowe wcześniej i wysyła mniej pakietów wypełniających, aby zmniejszyć zużycie danych i baterii</string>
     <string name="custom_bridges">Mostki niestandardowe</string>
     <string name="request_bridges_from_torproject">Poproś o mostki od torproject.org</string>
@@ -207,16 +204,16 @@
     <string name="next">Następny</string>
     <string name="custom_bridge_subtitle">Najprawdopodobniej utrzymasz połączenie, jeśli Tor zostanie poważnie zablokowany. Wymaga adresu pomostu od osoby, której ufasz.</string>
     <string name="custom_bridge">Mostek niestandardowy</string>
-    <string name="get_a_bridge">Zdobądź mostek z Tora (Obfs4)</string>
+    <string name="get_a_bridge">Most od Tor (Obfs4)</string>
     <string name="get_a_bridge_subtitle">Ukrywa twój ruch. Obchodzi niektóre blokady Tor.</string>
-    <string name="snowflake">Snowflake</string>
+    <string name="snowflake">Snowflake (Oryginał)</string>
     <string name="smart_connect_subtitle">Orbot próbuje połączyć się z Torem za pomocą każdego dostępnego sposobu: Bezpośrednio, Snowflake, Mostek.</string>
     <string name="direct_connect_subtitle">Najlepszy sposób na połączenie się z Tor. Użyj, jeśli Tor nie jest zablokowany.</string>
     <string name="direct_connect">Bezpośrednie połączenie z Tor</string>
     <string name="smart_connect">Inteligentne połączenie (domyślne)</string>
     <string name="secure_your_connection_title">Gotowy do połączenia</string>
     <string name="btn_start_vpn">Uruchom VPN</string>
-    <string name="btn_configure">Skonfiguruj</string>
+    <string name="btn_configure">Wybierz sposób połączenia</string>
     <string name="volunteer_mode_subtitle">Pomóż innym połączyć się</string>
     <string name="btn_choose_apps">Wybierz aplikacje</string>
     <string name="btn_refresh">Odśwież</string>
@@ -271,4 +268,20 @@
     <string name="having_trouble_subtitle">Możemy spróbować mostka Tor, ale będziemy potrzebować twojej pomocy</string>
     <string name="custom_bridge_description">Mostek niestandardowy jest dostarczany przez kogoś, kogo znasz. Zapytaj w swoich zaufanych sieciach i organizacjach, czy ktoś jest gospodarzem takiego mostka.</string>
     <string name="hide_apps">Ukryj aplikacje przed monitorowaniem sieci i uzyskaj dostęp, gdy zostaną zablokowane.</string>
+    <string name="pref_isolate_port">Izolowanie portów docelowych</string>
+    <string name="pref_isolate_protocol">Izolacja protokołów klienta</string>
+    <string name="snowflake_amp">Płatek śniegu (metoda AMP)</string>
+    <string name="not_sure">Nie wiesz\?</string>
+    <string name="no_internet_subtitle">Do korzystania z Orbota potrzebne jest połączenie z internetem.</string>
+    <string name="action_use">Użyj</string>
+    <string name="kindness_adjust_title">Wyregulować, kiedy działa...</string>
+    <string name="many_ways">Istnieje wiele sposobów na dotarcie do Tor. Niektóre z nich mogą działać lepiej niż inne dla Ciebie.</string>
+    <string name="asking">ASKING...</string>
+    <string name="pref_isolate_port_summary">Użyj innego obwodu dla każdego portu docelowego</string>
+    <string name="pref_isolate_protocol_summary">Użyj innego obwodu dla każdego protokołu łączącego</string>
+    <string name="ask_tor">Zapytaj Tora</string>
+    <string name="hello_blank_fragment">Witaj pusty fragmencie</string>
+    <string name="no_interent_title">Podłączenie do Internetu</string>
+    <string name="kindess_config_detail">Skonfiguruj, jak i kiedy Twoje urządzenie może działać jako proxy Snowflake dla innych użytkowników Tor.</string>
+    <string name="log_copied">Dziennik Skopiowany</string>
 </resources>
