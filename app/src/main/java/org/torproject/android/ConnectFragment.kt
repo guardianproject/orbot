@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.NetworkInfo
 import android.net.VpnService
 import android.os.Build
 import android.os.Bundle
@@ -22,7 +21,6 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import net.freehaven.tor.control.TorControlCommands
 import org.torproject.android.service.OrbotConstants
@@ -53,7 +51,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
     private lateinit var btnStartVpn: Button
     private lateinit var ivOnion: ImageView
     private lateinit var ivOnionShadow: ImageView
-    public lateinit var progressBar: ProgressBar
+    lateinit var progressBar: ProgressBar
     private lateinit var lvConnectedActions: ListView
 
     private var lastStatus: String? = ""
@@ -66,7 +64,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         super.onAttach(activity)
 
         (activity as OrbotActivity).fragConnect = this
-        lastStatus = (activity as OrbotActivity).previousReceivedTorStatus
+        lastStatus = activity.previousReceivedTorStatus
 
     }
 
@@ -112,7 +110,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         return view
     }
 
-    fun isNetworkAvailable(context: Context?): Boolean {
+    private fun isNetworkAvailable(context: Context?): Boolean {
         if (context == null) return false
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -212,7 +210,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
     }
 
 
-    fun doLayoutNoInternet(context : Context) {
+    private fun doLayoutNoInternet(context : Context) {
 
         ivOnion.setImageResource(R.drawable.nointernet)
 
@@ -315,7 +313,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
     }
 
 
-    public fun doLayoutStarting(context : Context) {
+    fun doLayoutStarting(context : Context) {
 
         // torStatsGroup.visibility = View.VISIBLE
         tvSubtitle.visibility = View.GONE
@@ -393,13 +391,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
 
     private fun sendIntentToService(intent: Intent) = ContextCompat.startForegroundService(requireActivity(), intent)
     private fun sendIntentToService(action: String) = sendIntentToService(
-        android.content.Intent(
-            requireActivity(),
-            org.torproject.android.service.OrbotService::class.java
-        ).apply {
+        Intent(requireActivity(), OrbotService::class.java).apply {
         this.action = action
     })
-
-
-
 }

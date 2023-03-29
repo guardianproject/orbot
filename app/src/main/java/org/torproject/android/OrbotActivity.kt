@@ -25,7 +25,6 @@ import org.torproject.android.ui.v3onionservice.PermissionManager
 
 class OrbotActivity : AppCompatActivity() {
 
-    private lateinit var tvPorts: TextView
   //  private lateinit var torStatsGroup: Group
     private lateinit var bottomNavigationView: BottomNavigationView
 
@@ -164,7 +163,8 @@ class OrbotActivity : AppCompatActivity() {
                 }
                 OrbotConstants.LOCAL_ACTION_LOG -> {
                     intent.getStringExtra(OrbotConstants.LOCAL_EXTRA_BOOTSTRAP_PERCENT)?.let {
-                        fragConnect?.progressBar?.progress = Integer.parseInt(it)
+                        // todo progress bar shouldn't be accessed directly here, *tell* the connect fragment to update
+                        fragConnect.progressBar.progress = Integer.parseInt(it)
                     }
                     intent.getStringExtra(OrbotConstants.LOCAL_EXTRA_LOG)?.let {
                         logBottomSheet.appendLog(it)
