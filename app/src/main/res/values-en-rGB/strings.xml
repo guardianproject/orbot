@@ -146,20 +146,17 @@
     <string name="volunteer_mode_alltime_label">All Time Total</string>
     <string name="volunteer_mode_subtitle_desc">Kindness mode allows your device to be a bridge for others. It helps people use Tor in places where it is blocked.
 \n
-\n- It will not drain your battery
-\n
-\n- It will not slow down your internet
-\n
-\n- It can run only over wifi
-\n
-\n- It can be turned off anytime</string>
+\n• It will not drain your battery
+\n• It will not slow down your internet
+\n• It can run only over wifi
+\n• It can be turned off anytime</string>
     <string name="smart_connect">Smart Connect (default)</string>
     <string name="smart_connect_subtitle">Orbot tries connecting to Tor through any way available: Direct, Snowflake, Bridge.</string>
     <string name="direct_connect">Direct Connection to Tor</string>
     <string name="direct_connect_subtitle">The best way to connect to Tor. Use if Tor is not blocked.</string>
-    <string name="snowflake">Snowflake</string>
+    <string name="snowflake">Snowflake (Original)</string>
     <string name="snowflake_subtitle">Connects through Tor volunteers. Gets around some Tor blocking.</string>
-    <string name="get_a_bridge">Get a Bridge from Tor (Obfs4)</string>
+    <string name="get_a_bridge">Bridge from Tor (Obfs4)</string>
     <string name="get_a_bridge_subtitle">Cloaks your traffic. Gets around some Tor blocking.</string>
     <string name="custom_bridge">Custom Bridge</string>
     <string name="custom_bridge_subtitle">Most likely to keep you connected if Tor is severely blocked. Requires a bridge address from someone you trust.</string>
@@ -171,7 +168,7 @@
     <string name="secure_your_connection_title">Ready to connect</string>
     <string name="secure_your_connection_subtitle">Hide apps from network monitoring and get access when they are blocked.</string>
     <string name="btn_start_vpn">Start VPN</string>
-    <string name="btn_configure">Configure</string>
+    <string name="btn_configure">Choose How To Connect</string>
     <string name="volunteer_mode_subtitle">Help others connect</string>
     <string name="btn_choose_apps">Choose apps</string>
     <string name="btn_change_exit">Change exit</string>
@@ -270,4 +267,21 @@
     <string name="bridges_obtained_connecting">Bridges obtained! Connecting to tor...</string>
     <string name="having_trouble">Having trouble</string>
     <string name="having_trouble_subtitle">We can try a Tor bridge next but will need your help</string>
+    <string name="pref_isolate_port">Isolate destination ports</string>
+    <string name="pref_isolate_port_summary">Use a different circuit for each destination port</string>
+    <string name="pref_isolate_protocol_summary">Use a different circuit for each connecting protocol</string>
+    <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="log_copied">Log Copied</string>
+    <string name="not_sure">Not sure\?</string>
+    <string name="ask_tor">Ask Tor</string>
+    <string name="many_ways">There are many ways to reach Tor. Some may work better than others for you.</string>
+    <string name="action_use">Use</string>
+    <string name="asking">ASKING...</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_internet_subtitle">You need an Internet connection to use Orbot.</string>
+    <string name="kindness_adjust_title">Adjust when it runs...</string>
+    <string name="kindess_config_detail">Configure how and when your device can act as a Snowflake proxy for other Tor users.</string>
+    <string name="hide_apps">Hide apps from network monitoring and get access when they are blocked.</string>
+    <string name="pref_isolate_protocol">Isolate client protocols</string>
+    <string name="no_interent_title">Connect to Internet</string>
 </resources>

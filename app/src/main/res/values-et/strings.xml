@@ -108,14 +108,14 @@
     <string name="trouble_connecting">Probleemid ühendamisega\?</string>
     <string name="full_device_vpn">Täielik seade VPN</string>
     <string name="vpn_disabled">VPN välja lülitatud</string>
-    <string name="secure_your_connection_title">Turvaline ühendus Toriga</string>
-    <string name="secure_your_connection_subtitle">Orbot annab teile turvalise ja katkematu ühenduse oma rakendustega.</string>
-    <string name="connected_title">Sa oled ühendatud!</string>
+    <string name="secure_your_connection_title">Valmis ühendamiseks</string>
+    <string name="secure_your_connection_subtitle">Peida rakendused võrgu jälgimise eest ja saada juurdepääs, kui need on blokeeritud.</string>
+    <string name="connected_title">Ühendatud</string>
     <string name="btn_start_vpn">VPN-i käivitamine</string>
-    <string name="btn_configure">Konfigureeri</string>
-    <string name="volunteer_mode">Patreon režiim</string>
+    <string name="btn_configure">Valige, kuidas ühendada</string>
+    <string name="volunteer_mode">Sõbralikkuse režiim</string>
     <string name="volunteer_mode_subtitle">Aidake teisi ühendada</string>
-    <string name="trying_to_connect_title">Proovin ühendust luua Toriga…</string>
+    <string name="trying_to_connect_title">Ühendamine…</string>
     <string name="btn_choose_apps">Vali rakendused</string>
     <string name="btn_change_exit">Muuda väljumist</string>
     <string name="btn_refresh">Värskenda</string>
@@ -128,7 +128,7 @@
     <string name="menu_faq">FAQ</string>
     <string name="menu_header_learn">Lisateave</string>
     <string name="btn_use_custom_bridge">Kasutage kohandatud silda</string>
-    <string name="msg_taking_too_long">Tundub, et see võtab kaua aega</string>
+    <string name="msg_taking_too_long">See tundub liiga kaua aega võtvat</string>
     <string name="msg_try_something_else">Proovi midagi muud</string>
     <string name="wizard_details_msg">Orbot on avatud lähtekoodiga rakendus, mis sisaldab Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks ja LibEvent. See pakub VPN-tunnelit, lokaalset HTTP Connect proksi (HTTPS ainult port 8118) ja SOCKS-proksi (9050) Tor-võrku.</string>
     <string name="hidden_service_request">Rakendus soovib avada Tor-võrku sibulaserveri sadamas %1$s. See on turvaline, kui te rakendust usaldate.</string>
@@ -197,7 +197,7 @@
     <string name="refresh_captcha">Värskenda CAPTCHA</string>
     <string name="solve_captcha_instruction">Sildade taotlemiseks lahendage CAPTCHA.</string>
     <string name="captcha">Captcha</string>
-    <string name="enter_characters_from_image">Sisestage tähemärgid pildilt</string>
+    <string name="enter_characters_from_image">Sisestage ülaltoodud tekst</string>
     <string name="custom_bridges">Kohandatud sillad</string>
     <string name="configure_custom_bridges">Kohandatud sildade konfigureerimine</string>
     <string name="in_a_browser">Külastage brauseris %s ja koputage nuppu Get Bridges &gt; Just Give Me Bridges!</string>
@@ -224,4 +224,64 @@
     <string name="consider_enable_battery_optimizations">Hostitud teenused töötavad, kaaluge aku optimeerimise väljalülitamist</string>
     <string name="pref_reduced_connection_padding_summary">Sulgeb releeühendused varem ja saadab vähem täitepakette, et vähendada andmete ja aku kasutamist</string>
     <string name="pref_reduced_circuit_padding_summary">Kasutage andmete ja aku kasutamise vähendamiseks väiksema koormusega polsterdamisalgoritme</string>
+    <string name="custom_bridge">Kohandatud sild</string>
+    <string name="incorrect_solution">Vale lahendus</string>
+    <string name="having_trouble">Probleeme on</string>
+    <string name="power_user_mode">Elektrikasutajarežiim</string>
+    <string name="title_choose_apps">Vali rakendused</string>
+    <string name="apps_other_apps">Muud rakendused</string>
+    <string name="asking">KÜSIMINE...</string>
+    <string name="hello_blank_fragment">Tere tühi fragment</string>
+    <string name="kindness_adjust_title">Reguleerige, kui see jookseb...</string>
+    <string name="volunteer_mode_title">Aidata teisi
+\nühendada Toriga</string>
+    <string name="volunteer_mode_label">Sõbralikkuse režiim</string>
+    <string name="volunteer_mode_alltime_label">Kogu aeg Kokku</string>
+    <string name="smart_connect_subtitle">Orbot üritab luua ühendust Toriga igal võimalikul viisil: Direct, Snowflake, Bridge.</string>
+    <string name="snowflake_subtitle">Ühendab Tori vabatahtlike kaudu. Saab ümber mõnest Tor\'i blokeeringust.</string>
+    <string name="get_a_bridge_subtitle">Varjab teie liiklust. Saab ümber mõnest Tor\'i blokeeringust.</string>
+    <string name="direct_connect">Otsene ühendus Toriga</string>
+    <string name="connect">Ühendage</string>
+    <string name="next">Järgmine</string>
+    <string name="solve_captcha">Lahendage Captcha</string>
+    <string name="apps_suggested_title">Soovitatavad rakendused</string>
+    <string name="pref_isolate_port">Eraldada sihtkoha sadamad</string>
+    <string name="pref_isolate_port_summary">Kasutage iga sihtkoha jaoks erinevat vooluahelat</string>
+    <string name="pref_isolate_protocol_summary">Kasutage iga ühendusprotokolli jaoks erinevat vooluahelat</string>
+    <string name="ports_not_set">Sadamad ei ole määratud</string>
+    <string name="pref_isolate_protocol">Isoleerida kliendiprotokollid</string>
+    <string name="volunteer_mode_weekly_label">Nädalane kogusumma</string>
+    <string name="hide_apps">Peida rakendused võrgu jälgimise eest ja saada juurdepääs, kui need on blokeeritud.</string>
+    <string name="custom_bridge_subtitle">Tõenäoliselt hoiab teid ühenduses, kui Tor on tõsiselt blokeeritud. Nõuab silla aadressi kellegi, keda te usaldate.</string>
+    <string name="action_activate">Aktiveeri</string>
+    <string name="many_ways">Torini jõudmiseks on mitmeid viise. Mõni neist võib teie jaoks toimida paremini kui teised.</string>
+    <string name="bridges_obtained_connecting">Sillad saadud! Ühendamine tor...</string>
+    <string name="having_trouble_subtitle">Järgmisena võime proovida Tori silda, kuid vajame teie abi</string>
+    <string name="custom_bridge_description">Kohandatud silda pakub keegi, keda te tunnete. Küsige oma usaldusväärsetes võrgustikes ja organisatsioonides, et näha, kas keegi võõrustab sellist silda.</string>
+    <string name="power_user_description">Toriga tuttavatele kasutajatele. Võimaldab käivitada Orbot ilma VPN-seadistusteta ja näitab avatud SOCKS- ja HTTP-porti</string>
+    <string name="volunteer_status_title">Täna on parem
+\ntänu sinule.</string>
+    <string name="app_suggested_subtitle">Orbot töötab kõige paremini koos sõnumite ja sotsiaalmeedia rakendustega.</string>
+    <string name="no_interent_title">Ühendage internetiga</string>
+    <string name="no_internet_subtitle">Orbot\'i kasutamiseks on vaja internetiühendust.</string>
+    <string name="kindess_config_detail">Konfigureerige, kuidas ja millal teie seade saab tegutseda Snowflake\'i proxy\'ina teiste Tor\'i kasutajate jaoks.</string>
+    <string name="log_copied">Logi kopeeritud</string>
+    <string name="configure_header">Tor-ühenduse konfigureerimine</string>
+    <string name="smart_connect">Smart Connect (vaikimisi)</string>
+    <string name="direct_connect_subtitle">Parim viis Toriga ühendumiseks. Kasutage, kui Tor ei ole blokeeritud.</string>
+    <string name="drawer_open">Avatud</string>
+    <string name="drawer_close">Sulge</string>
+    <string name="proxy_ports">Proxy pordid</string>
+    <string name="volunteer_mode_subtitle_desc">Sõbralikkuse režiim võimaldab teie seadmel olla teistele sillaks. See aitab inimestel kasutada Tor\'i kohtades, kus see on blokeeritud.
+\n
+\n- See ei tühjenda teie akut
+\n- See ei aeglusta teie internetti
+\n- Seda saab kasutada ainult üle wifi
+\n- Seda saab igal ajal välja lülitada</string>
+    <string name="ask_tor">Küsi Torilt</string>
+    <string name="snowflake">Lumehelbeke (originaal)</string>
+    <string name="snowflake_amp">Lumehelbeke (AMP)</string>
+    <string name="get_a_bridge">Tori sild (Obfs4)</string>
+    <string name="not_sure">Ei ole kindel\?</string>
+    <string name="action_use">Kasutage</string>
 </resources>

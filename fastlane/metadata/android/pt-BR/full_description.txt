@@ -7,12 +7,13 @@ Orbot é o único aplicativo que cria uma conexão verdadeiramente privada com a
 Tor ganhou em 2012 o prêmio Electronic Frontier Foundation (EFF) Pioneer Award.
 
 ★ NÃO ACEITE NENHUM SUBSTITUTO: O Orbot sem dúvida é a forma mais segura de usar a Internet em dispositivos com o sistema operacional Android (Tvs, tablets, celulares e etc ). O Orbot transfere o seu tráfego criptografado várias vezes entre computadores espalhados geograficamente em todo o mundo, em vez de conectá-lo diretamente ao seu destino, assim como fazem as VPNs e proxies. Esse processo demora um pouco mais se comparado a uma conexão normal, porém é o preço que se paga para ter mais privacidade e proteção de identidade, vale a pena esperar.
-★ PRIVACIDADE PARA OS APLICATIVOS: Qualquer aplicativo instalado pode usar o Tor através da função Orbot VPN, caso haja a possibilidade de sair através de um proxy, usando as configurações encontradas aqui: https://guardianproject.info/apps/orbot/ Use o Orbot com o Twitter, ou tente pesquisas privadas com DuckDuckGo: https://play.google.com/store/apps/details?id=com.duckduckgo.mobile.android
+★ PRIVACIDADE PARA OS APLICATIVOS: Qualquer aplicativo pode ser roteado via Tor através do recurso Orbot VPN
 ★ PRIVACIDADE PARA TODOS: O Orbot impede que alguém que esteja observando a sua conexão saiba quais os aplicativos você está usando ou quais os sites você acessa. Tudo o que a pessoa que esteja monitorando o seu tráfego de rede poderá ver, é que você está usando o Tor.
 ★ UMA FORMA FÁCIL DE TER PRIVACIDADE: Confira a nossa diversão, passo a passo de modo interativo: https://guardianproject.info/howto/browsefreely
 ★ É OFICIAL: Esta é uma versão oficial do serviço de roteamento cebola Tor para o Android.
 
 *** Nós amamos comentários ***
+★ SAIBA MAIS: Saiba mais sobre o Orbot e participe em https://orbot.app
 ★ QUEM SOMOS: O Guardian Project é um grupo de desenvolvedores que fazem aplicações móveis seguras e de código aberto para um amanhã melhor.
 ★ CÓDIGO ABERTO: O Orbot é um software livre. Dê uma olhada em nosso código fonte, ou juntar-se a nossa comunidade para torná-lo ainda melhor: https://github.com/guardianproject/orbot
 SOBRE O PROJETO Tor: https://TorProject.org
