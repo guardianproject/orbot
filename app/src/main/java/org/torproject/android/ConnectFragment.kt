@@ -31,11 +31,6 @@ import org.torproject.android.ui.OrbotMenuAction
 import org.torproject.android.ui.OrbotMenuActionAdapter
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 /**
  * A simple [Fragment] subclass.
  * Use the [ConnectFragment.newInstance] factory method to
@@ -55,10 +50,6 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
     private lateinit var lvConnectedActions: ListView
 
     private var lastStatus: String? = ""
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
@@ -137,17 +128,17 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         return false
     }
 
-    fun stopTorAndVpn() {
+    private fun stopTorAndVpn() {
         sendIntentToService(OrbotConstants.ACTION_STOP)
         sendIntentToService(OrbotConstants.ACTION_STOP_VPN)
-        stopAnimations()
     }
 
     private fun stopAnimations() {
-
+        ivOnion.clearAnimation()
+        ivOnionShadow.clearAnimation()
     }
 
-    fun sendNewnymSignal() {
+    private fun sendNewnymSignal() {
         sendIntentToService(TorControlCommands.SIGNAL_NEWNYM)
         ivOnion.animate().alpha(0f).duration = 500
         Handler().postDelayed({ ivOnion.animate().alpha(1f).duration = 500 }, 600)
@@ -181,7 +172,6 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         if (OrbotActivity.CAN_DO_APP_ROUTING && (!Prefs.isPowerUserMode())) listItems.add(0, OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {
             startActivityForResult(Intent(requireActivity(), AppManagerActivity::class.java), OrbotActivity.REQUEST_VPN_APP_SELECT)
         })
-        Toast.makeText(requireContext(), "Count ${listItems.size}", Toast.LENGTH_LONG).show()
         lvConnectedActions.adapter = OrbotMenuActionAdapter(context, listItems)
     }
 
@@ -219,7 +209,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
 
         ivOnion.setImageResource(R.drawable.nointernet)
 
-        ivOnion.animation?.cancel()
+        stopAnimations()
 
         tvSubtitle.visibility = View.VISIBLE
 
@@ -240,10 +230,6 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
 
         ivOnion.setImageResource(R.drawable.orbion)
 
-        ivOnion.animation?.cancel()
-        ivOnionShadow.animation?.cancel()
-        ivOnion.animate().y(14f).duration = 200
-
         tvSubtitle.visibility = View.GONE
         progressBar.visibility = View.INVISIBLE
         tvTitle.text = context.getString(R.string.connected_title)
@@ -260,10 +246,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
     fun doLayoutOff() {
 
         ivOnion.setImageResource(R.drawable.orbioff)
-        (ivOnion.layoutParams as ViewGroup.MarginLayoutParams).topMargin = 200
-        ivOnion.animation?.cancel()
-        ivOnion.animate().y(200f).duration = 150
-
+        stopAnimations()
         tvSubtitle.visibility = View.VISIBLE
         progressBar.visibility = View.INVISIBLE
         lvConnectedActions.visibility = View.GONE
@@ -272,8 +255,6 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         tvConfigure.visibility = View.VISIBLE
         tvConfigure.text = getString(R.string.btn_configure)
         tvConfigure.setOnClickListener {openConfigureTorConnection()}
-        //  torStatsGroup.visibility = View.GONE
-        // tvPorts.text = getString(R.string.ports_not_set)
         with(btnStartVpn) {
             visibility = View.VISIBLE
 
@@ -348,7 +329,9 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
                     )
                 )
             }
-            setOnClickListener { stopTorAndVpn() }
+            setOnClickListener {
+                stopTorAndVpn()
+            }
         }
     }
 

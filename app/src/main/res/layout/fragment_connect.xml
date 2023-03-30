@@ -11,6 +11,7 @@
         tools:visibility="visible"
         android:visibility="invisible"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ivStatus"
         android:id="@+id/progressBar"
         style="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal"
         tools:progress="33"
@@ -22,17 +23,16 @@
         android:id="@+id/ivStatus"
         android:layout_width="148dp"
         android:layout_height="166dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/orbioff"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progressBar" />
-
+        app:layout_constraintStart_toStartOf="parent"/>
     <ImageView
         android:id="@+id/ivShadow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="15dp"
         android:src="@drawable/orbieshadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
