@@ -27,26 +27,31 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
         val returnView = convertView ?: layoutInflater.inflate(R.layout.action_list_view, null)
         getItem(position)?.let { model ->
             val imgView = returnView.findViewById<ImageView>(R.id.ivAction)
+            val emojiContainer = returnView.findViewById<FrameLayout>(R.id.textContainer)
             val tvAction = returnView.findViewById<TextView>(R.id.tvEmoji)
             val hvApps = returnView.findViewById<HorizontalScrollView>(R.id.llBoxShortcuts)
 
-            if (model.imgId == R.drawable.ic_choose_apps) {
-                tvAction.visibility = View.GONE
-                imgView.visibility = View.VISIBLE
-                imgView.setImageResource(model.imgId)
-                drawAppShortcuts(hvApps)
+            when (model.imgId) {
+                R.drawable.ic_choose_apps -> {
+                    emojiContainer.visibility = View.GONE
+                    imgView.visibility = View.VISIBLE
+                    imgView.setImageResource(model.imgId)
+                    drawAppShortcuts(hvApps)
 
-            } else if (model.imgId == 0) {
-                imgView.visibility = View.GONE
-                val currentExit = Prefs.getExitNodes().replace("{", "").replace("}", "")
-                if (currentExit.length == 2) tvAction.text =
-                    Utils.convertCountryCodeToFlagEmoji(currentExit)
-                else tvAction.text = context.getString(R.string.globe)
-                tvAction.visibility = View.VISIBLE
-            } else {
-                tvAction.visibility = View.GONE
-                imgView.visibility = View.VISIBLE
-                imgView.setImageResource(model.imgId)
+                }
+                0 -> {
+                    imgView.visibility = View.GONE
+                    val currentExit = Prefs.getExitNodes().replace("{", "").replace("}", "")
+                    if (currentExit.length == 2) tvAction.text =
+                        Utils.convertCountryCodeToFlagEmoji(currentExit)
+                    else tvAction.text = context.getString(R.string.globe)
+                    emojiContainer.visibility = View.VISIBLE
+                }
+                else -> {
+                    emojiContainer.visibility = View.GONE
+                    imgView.visibility = View.VISIBLE
+                    imgView.setImageResource(model.imgId)
+                }
             }
             returnView.findViewById<TextView>(R.id.tvLabel).text = context.getString(model.textId)
             returnView.setOnClickListener { model.action() }

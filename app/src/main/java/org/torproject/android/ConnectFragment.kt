@@ -140,6 +140,11 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
     fun stopTorAndVpn() {
         sendIntentToService(OrbotConstants.ACTION_STOP)
         sendIntentToService(OrbotConstants.ACTION_STOP_VPN)
+        stopAnimations()
+    }
+
+    private fun stopAnimations() {
+
     }
 
     fun sendNewnymSignal() {
@@ -170,13 +175,13 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
     }
 
     fun refreshMenuList (context: Context) {
-
         val listItems = arrayListOf(OrbotMenuAction(R.string.btn_change_exit, 0) {openExitNodeDialog()},
             OrbotMenuAction(R.string.btn_refresh, R.drawable.ic_refresh) {sendNewnymSignal()},
             OrbotMenuAction(R.string.btn_tor_off, R.drawable.ic_power) {stopTorAndVpn()})
         if (OrbotActivity.CAN_DO_APP_ROUTING && (!Prefs.isPowerUserMode())) listItems.add(0, OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {
             startActivityForResult(Intent(requireActivity(), AppManagerActivity::class.java), OrbotActivity.REQUEST_VPN_APP_SELECT)
         })
+        Toast.makeText(requireContext(), "Count ${listItems.size}", Toast.LENGTH_LONG).show()
         lvConnectedActions.adapter = OrbotMenuActionAdapter(context, listItems)
     }
 
@@ -249,9 +254,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
 
         refreshMenuList(context)
 
-        ivOnion.setOnClickListener {
-            stopTorAndVpn()
-        }
+        ivOnion.setOnClickListener {}
     }
 
     fun doLayoutOff() {
