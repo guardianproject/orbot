@@ -284,4 +284,5 @@
     <string name="pref_isolate_port_summary">Использовать разные цепочки подключения для каждого порта назначения</string>
     <string name="pref_isolate_port">Изолировать порты назначения</string>
     <string name="pref_isolate_protocol_summary">Использовать разные цепочки подключения для каждого протокола</string>
+    <string name="btn_copy_log">Копировать журнал</string>
 </resources>
