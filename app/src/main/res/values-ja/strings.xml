@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbotは他のアプリがインターネットをより安全に使うことを可能にする、無料プロキシアプリです。Orbotでは、Torを用いてあなたの端末のインターネットトラフィックを暗号化し、世界中のコンピューターを中継することで、そのトラフィックを隠します。Torは自由ソフトウェアかつ開放的なネットワークであり、個人の自由とプライバシーを脅かすネットワーク監視と対決し、機密のビジネス活動、そして国家によるトラフィック分析から防御すること助けてくれます。</string>
+    <string name="app_description">Orbotは、他のアプリがインターネットをより安全に使用できるようにする無料のプロキシアプリです。OrbotはTorを使用してインターネットトラフィックを暗号化し、世界中の一連のコンピュータを経由してバウンスすることでそれを隠蔽しています。Torはフリーソフトウェアであり、オープンネットワークです。個人の自由やプライバシー、機密のビジネス活動や関係、国家安全保障を脅かすネットワーク監視の一形態であるトラフィック解析から身を守るのに役立ちます。</string>
     <string name="status_starting_up">Orbotが開始されています…</string>
     <string name="status_activated">Torネットワークに接続しました</string>
     <string name="status_shutting_down">Orbotが終了しています</string>
@@ -61,7 +61,7 @@
     <string name="bridges">ブリッジ</string>
     <string name="use_bridges">ブリッジを使う</string>
     <string name="relays">リレー</string>
-    <string name="relaying">リレー中</string>
+    <string name="relaying">リレーする</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">この端末を非出口リレーにする</string>
     <string name="relay_port">リレーのポート</string>
     <string name="listening_port_for_your_tor_relay">このTorリレーのリスニングポート</string>
@@ -143,7 +143,7 @@
     <string name="pref_open_proxy_on_all_interfaces_title">全インターフェイスでプロキシを開く</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Wi-Fiピア、テザリングされたデバイス、及びIPに接続できる他のユーザーに、Torへのアクセスを許可します</string>
     <string name="pref_http_title">Tor HTTP</string>
-    <string name="pref_http_summary">Tor が HTTP プロキシを提供するポート (デフォルト: 8118、0 にすると無効)</string>
+    <string name="pref_http_summary">Tor が HTTP プロキシを提供するポート (デフォルト: 8118、0にすると無効)</string>
     <string name="pref_http_dialog">HTTP ポート設定</string>
     <string name="pref_prefer_ipv6">IPv6接続を優先</string>
     <string name="pref_prefer_ipv6_summary">IPv6アドレスが優先されるように出口に指示します</string>
@@ -160,7 +160,7 @@
     <string name="v3_delete_client_authorization">クライアント認証鍵を削除</string>
     <string name="v3_import_auth_private">.auth_privateをインポート</string>
     <string name="confirm">確認</string>
-    <string name="v3_hosted_services">オニオンサービスでホスト</string>
+    <string name="v3_hosted_services">オニオンサービスによるホスト</string>
     <string name="custom_bridges">カスタムブリッジ</string>
     <string name="secure_your_connection_title">接続準備完了</string>
     <string name="secure_your_connection_subtitle">アプリをネットワーク監視から隠し、ブロックされているときにはアクセスできるようにします。</string>
@@ -173,7 +173,7 @@
     <string name="btn_change_exit">出口を変更する</string>
     <string name="btn_refresh">リフレッシュ</string>
     <string name="btn_tor_off">Torをオフにする</string>
-    <string name="no_thx"></string>
+    <string name="no_thx">結構です</string>
     <string name="captcha_title">あなたが人間であることを知らせてください</string>
     <string name="menu_tor_connection">Tor接続</string>
     <string name="menu_help_others">他の人を助ける</string>
@@ -235,15 +235,12 @@
     <string name="custom_bridge_description">カスタムブリッジは、あなたが知っている誰かによって提供されます。信頼できるネットワークや組織内で、誰かがカスタムブリッジをホストしていないか尋ねてみてください。</string>
     <string name="volunteer_mode_title">Torに接続する
 \n他の人を助ける</string>
-    <string name="volunteer_mode_subtitle_desc">親切モードは、あなたの端末が他の人のためのブリッジになることを可能にします。Torを遮断されている場所で使う手助けをします。
+    <string name="volunteer_mode_subtitle_desc">親切モードは、あなたのデバイスが他の人のためのブリッジになることを可能にします。Torが遮断されている場所でも使えるようにします。
 \n
-\n* 電池を消耗しません
-\n
-\n* インターネットが遅くなりません
-\n
-\n* wifiのみでしか動作しません
-\n
-\n* いつでもオフにできます</string>
+\n• 電池を消耗しません
+\n• インターネットを遅くすることはありません
+\n• wifiでのみ動作可能
+\n• いつでも電源を切ることができます</string>
     <string name="smart_connect">気の利いた接続(デフォルト)</string>
     <string name="volunteer_mode_weekly_label">週間合計</string>
     <string name="volunteer_mode_alltime_label">全期間累計</string>
@@ -265,7 +262,7 @@
     <string name="apps_other_apps">他のアプリ</string>
     <string name="power_user_description">Torに精通しているユーザー向け。VPN設定なしでOrbotを起動でき、開いているSOCKSポートとHTTPポートが表示されます</string>
     <string name="title_choose_apps">アプリを選ぶ</string>
-    <string name="apps_suggested_title">おすすめアプリ</string>
+    <string name="apps_suggested_title">提案されたアプリ</string>
     <string name="app_suggested_subtitle">Orbotは、メッセージングアプリやソーシャルメディアアプリとの相性が抜群です。</string>
     <string name="action_activate">有効化</string>
     <string name="hide_apps">アプリをネットワーク監視から隠し、ブロックされているときにはアクセスできるようにします。</string>
@@ -279,11 +276,13 @@
     <string name="no_internet_subtitle">Orbotを使用するには、インターネット接続が必要です。</string>
     <string name="snowflake_amp">Snowflake (AMP)</string>
     <string name="log_copied">ログをコピーしました</string>
-    <string name="volunteer_status_title"></string>
-    <string name="not_sure"></string>
+    <string name="volunteer_status_title">今日の方がいい。
+\nあなたのおかげで。</string>
+    <string name="not_sure">わからない？</string>
     <string name="ask_tor"></string>
     <string name="asking"></string>
     <string name="kindness_adjust_title"></string>
     <string name="hello_blank_fragment"></string>
     <string name="kindess_config_detail">あなたの端末が他のTor利用者用のSnowflakeプロキシとしてどう動作するか、いつ動作するかを設定します。</string>
+    <string name="btn_copy_log">ログをコピー</string>
 </resources>
