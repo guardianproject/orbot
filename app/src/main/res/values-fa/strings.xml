@@ -6,7 +6,7 @@
     <string name="status_activated">وصل شده به شبکهٔ تور</string>
     <string name="status_shutting_down">روبوت پیازی در حال خاموش شدن است</string>
     <string name="menu_settings">تنظیمات</string>
-    <string name="menu_log">رخدادها</string>
+    <string name="menu_log">گزارشات</string>
     <string name="menu_stop">توقّف</string>
     <string name="menu_about">درباره</string>
     <string name="main_layout_download">بارگیری</string>
@@ -283,6 +283,6 @@
     <string name="no_internet_subtitle">شما برای استفاده از ربات‌پیازی به اینترنت نیاز دارید.</string>
     <string name="kindness_adjust_title">زمانی که اجرا می‌شود تنظیم کنید...</string>
     <string name="kindess_config_detail">پیکربندی کنید که چگونه و چه زمانی دستگاه شما می‌تواند به عنوان یک پروکسی دانه برف برای سایر کاربران Tor عمل کند.</string>
-    <string name="log_copied">رخدادها رونوشت شدند</string>
-    <string name="btn_copy_log">رونوشت رخدادها</string>
+    <string name="log_copied">گزارشات رونوشت شدند</string>
+    <string name="btn_copy_log">رونوشت گزارشات</string>
 </resources>
