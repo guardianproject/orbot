@@ -30,6 +30,7 @@ class OrbotActivity : AppCompatActivity() {
 
     private lateinit var logBottomSheet: LogBottomSheet
     lateinit var fragConnect : ConnectFragment
+    lateinit var fragMore : MoreFragment
 
     var previousReceivedTorStatus: String? = null
 
@@ -173,7 +174,7 @@ class OrbotActivity : AppCompatActivity() {
                 OrbotConstants.LOCAL_ACTION_PORTS -> {
                     val socks = intent.getIntExtra(OrbotConstants.EXTRA_SOCKS_PROXY_PORT, -1)
                     val http = intent.getIntExtra(OrbotConstants.EXTRA_HTTP_PROXY_PORT, -1)
-//                    if (http > 0 && socks > 0) tvPorts.text = "SOCKS $socks | HTTP $http"
+                    if (http > 0 && socks > 0) fragMore?.setPorts(http, socks)
                 }
                 else -> {}
             }
