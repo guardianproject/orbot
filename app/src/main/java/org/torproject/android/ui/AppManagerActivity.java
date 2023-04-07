@@ -150,7 +150,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     entry = (ListEntry) convertView.getTag();
 
                 View row = convertView.findViewById(R.id.itemRow);
-                row.setOnClickListener(AppManagerActivity.this);
+               // row.setOnClickListener(AppManagerActivity.this);
 
                 if (entry == null) {
                     // Inflate a new view
@@ -169,6 +169,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                         try {
                             entry.icon.setImageDrawable(pMgr.getApplicationIcon(app.getPackageName()));
                             entry.icon.setTag(entry.box);
+                            entry.icon.setOnClickListener(AppManagerActivity.this);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -177,6 +178,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     if (entry.text != null) {
                         entry.text.setText(app.getName());
                         entry.text.setTag(entry.box);
+                        entry.text.setOnClickListener(AppManagerActivity.this);
                     }
 
                     if (entry.box != null) {
@@ -215,7 +217,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     entry = (ListEntry) convertView.getTag();
 
                 View row = convertView.findViewById(R.id.itemRow);
-                row.setOnClickListener(AppManagerActivity.this);
+               // row.setOnClickListener(AppManagerActivity.this);
 
                 if (entry == null) {
                     // Inflate a new view
@@ -223,6 +225,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     entry.icon = convertView.findViewById(R.id.itemicon);
                     entry.box = convertView.findViewById(R.id.itemcheck);
                     entry.text = convertView.findViewById(R.id.itemtext);
+                    row.setTag(entry);
                     convertView.setTag(entry);
                 }
 
@@ -234,6 +237,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                         try {
                             entry.icon.setImageDrawable(pMgr.getApplicationIcon(app.getPackageName()));
                             entry.icon.setTag(entry.box);
+                            entry.icon.setOnClickListener(AppManagerActivity.this);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -242,6 +246,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     if (entry.text != null) {
                         entry.text.setText(app.getName());
                         entry.text.setTag(entry.box);
+                        entry.text.setOnClickListener(AppManagerActivity.this);
                     }
 
                     if (entry.box != null) {
