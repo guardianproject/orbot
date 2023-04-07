@@ -1,11 +1,20 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:iconSpaceReserved="false"
 
-    <PreferenceCategory android:title="@string/pref_general_group">
+    >
+
+    <PreferenceCategory android:title="@string/pref_general_group"
+        app:iconSpaceReserved="false"
+
+        >
         <ListPreference
             android:key="pref_default_locale"
             android:title="@string/set_locale_title"
             android:enabled="true"
-            android:selectable="true" />
+            android:selectable="true"
+
+            />
 
         <CheckBoxPreference
             android:defaultValue="true"
@@ -37,7 +46,10 @@
 
     <PreferenceCategory
         android:summary="@string/pref_node_configuration_summary"
-        android:title="@string/pref_node_configuration">
+        android:title="@string/pref_node_configuration"
+
+        app:iconSpaceReserved="false"
+        >
 
         <EditTextPreference
             android:dialogTitle="@string/pref_entrance_node_dialog"
@@ -63,7 +75,10 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/relays">
+    <PreferenceCategory android:title="@string/relays"
+
+        app:iconSpaceReserved="false"
+        >
         <CheckBoxPreference
             android:defaultValue="false"
             android:enabled="true"
@@ -88,7 +103,10 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/reachable_addresses">
+    <PreferenceCategory android:title="@string/reachable_addresses"
+
+        app:iconSpaceReserved="false"
+        >
         <CheckBoxPreference
             android:defaultValue="false"
             android:enabled="true"
@@ -104,7 +122,10 @@
             android:title="@string/reachable_ports" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Connectivity">
+    <PreferenceCategory android:title="Connectivity"
+
+        app:iconSpaceReserved="false"
+        >
         <CheckBoxPreference
             android:defaultValue="false"
             android:enabled="true"
@@ -137,7 +158,11 @@
             android:title="@string/pref_disable_ipv4" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Padding">
+    <PreferenceCategory android:title="@string/setting_padding"
+
+
+        app:iconSpaceReserved="false"
+        >
         <CheckBoxPreference
             android:defaultValue="false"
             android:enabled="true"
@@ -164,7 +189,10 @@
             android:title="@string/pref_reduced_circuit_padding" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/pref_proxy_title">
+    <PreferenceCategory android:title="@string/pref_proxy_title"
+
+        app:iconSpaceReserved="false"
+        >
         <EditTextPreference
             android:dialogTitle="@string/pref_proxy_type_dialog"
             android:key="pref_proxy_type"
@@ -195,7 +223,10 @@
             android:title="@string/pref_proxy_password_title" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Debug">
+    <PreferenceCategory android:title="@string/setting_debug"
+
+        app:iconSpaceReserved="false"
+        >
 
         <EditTextPreference
             android:inputType="number"
@@ -251,7 +282,10 @@
             android:title="@string/pref_disable_network_title" />
 
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/snowflake_proxy_pref_category">
+    <PreferenceCategory android:title="@string/snowflake_proxy_pref_category"
+
+        app:iconSpaceReserved="false"
+        >
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="pref_be_a_snowflake"

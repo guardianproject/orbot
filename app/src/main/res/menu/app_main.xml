@@ -21,6 +21,11 @@
     xmlns:yourapp="http://schemas.android.com/apk/res-auto"
     >
 
+    <item android:id="@+id/menu_save_apps"
+        android:title="@string/save"
+        android:icon="@drawable/ic_green_check"
+        yourapp:showAsAction="always|withText"
+        />
 
     <item android:id="@+id/menu_refresh_apps"
         android:title="@string/refresh_apps"

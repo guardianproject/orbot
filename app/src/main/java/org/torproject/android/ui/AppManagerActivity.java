@@ -76,6 +76,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         listAppsAll = findViewById(R.id.applistview);
         progressBar = findViewById(R.id.progressBar);
 
+        //need a better way to manage this list
         alSuggested = new ArrayList<>();
         alSuggested.add("org.thoughtcrime.securesms");
         alSuggested.add("com.whatsapp");
@@ -86,6 +87,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         alSuggested.add("com.facebook.orca");
         alSuggested.add("com.facebook.mlite");
         alSuggested.add("com.brave.browser");
+        alSuggested.add("org.mozilla.focus");
 
     }
 
@@ -110,7 +112,12 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         if (item.getItemId() == R.id.menu_refresh_apps) {
             mApps = null;
             reloadApps();
-        } else if (item.getItemId() == android.R.id.home) {
+        }
+        else if (item.getItemId() == R.id.menu_save_apps) {
+            saveAppSettings();
+            finish();
+        }
+        else if (item.getItemId() == android.R.id.home) {
             finish();
             return true;
         }
@@ -405,7 +412,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                 cbox.setChecked(app.isTorified());
             }
 
-            saveAppSettings();
         }
     }
 

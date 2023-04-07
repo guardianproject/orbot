@@ -55,7 +55,7 @@
         </activity>
 
         <activity
-            android:name=".core.ui.SettingsPreferencesActivity"
+            android:name=".core.ui.SettingsPreferencesFragment"
             android:theme="@style/OrbotActivityTheme" />
 
         <activity

@@ -1,8 +1,6 @@
 package org.torproject.android
 
 import android.content.Intent
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +11,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import org.torproject.android.OrbotActivity.Companion.REQUEST_CODE_SETTINGS
 import org.torproject.android.OrbotActivity.Companion.REQUEST_VPN_APP_SELECT
-import org.torproject.android.core.ui.SettingsPreferencesActivity
+import org.torproject.android.core.ui.SettingsActivity
+import org.torproject.android.core.ui.SettingsPreferencesFragment
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.OrbotService
 import org.torproject.android.ui.*
@@ -65,7 +64,9 @@ class MoreFragment : Fragment() {
                 activity?.startActivityForResult(Intent(requireActivity(), AppManagerActivity::class.java), REQUEST_VPN_APP_SELECT)
             },
             OrbotMenuAction(R.string.menu_settings, R.drawable.ic_settings_gear) {
-                activity?.startActivityForResult(SettingsPreferencesActivity.createIntent(requireActivity(), R.xml.preferences), REQUEST_CODE_SETTINGS)
+
+              //  activity?.startActivityForResult(SettingsPreferencesFragment.createIntent(requireActivity(), R.xml.preferences), REQUEST_CODE_SETTINGS)
+                activity?.startActivityForResult(Intent(context, SettingsActivity::class.java), REQUEST_CODE_SETTINGS)
                                                                                  },
             OrbotMenuAction(R.string.menu_log, R.drawable.ic_log) { showLog()},
             OrbotMenuAction(R.string.menu_about, R.drawable.ic_about) { AboutDialogFragment()
