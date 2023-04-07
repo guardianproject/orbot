@@ -38,7 +38,7 @@
         android:layout_margin="10dp"
         >
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:text="@string/option_only_on_wifi"
             android:textSize="24dp"
@@ -72,7 +72,7 @@
         android:layout_margin="10dp"
         >
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:text="@string/option_only_when_charging"
             android:textSize="24dp"
