@@ -280,4 +280,8 @@
     <string name="no_internet_subtitle">Necesitas una conexión a Internet para usar Orbot.</string>
     <string name="kindness_adjust_title">Ajustar cuando se ejecuta...</string>
     <string name="kindess_config_detail">Configura cómo y cuándo tu dispositivo puede actuar como un proxy Snowflake para otros usuarios de Tor.</string>
+    <string name="menu_more">Mas</string>
+    <string name="option_only_when_charging">Solo cuando estes cargando tu telefono</string>
+    <string name="option_only_on_wifi">Solo cuando tengas acceso a Wifi</string>
+    <string name="menu_kindness">Solidaridad</string>
 </resources>
