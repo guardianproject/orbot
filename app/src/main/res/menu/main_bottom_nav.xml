@@ -8,11 +8,11 @@
         android:id="@+id/kindnessFragment"
         android:enabled="true"
         android:icon="@drawable/ic_heart"
-        android:title="Kindness"/>
+        android:title="@string/menu_kindness"/>
 
     <item
         android:id="@+id/moreFragment"
         android:enabled="true"
         android:icon="@drawable/ic_more"
-        android:title="More"/>
+        android:title="@string/menu_more"/>
 </menu>
