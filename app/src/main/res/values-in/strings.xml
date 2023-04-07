@@ -287,4 +287,5 @@
     <string name="pref_isolate_port">Isolasi porta tujuan</string>
     <string name="pref_isolate_protocol">Isolasi protokol klien</string>
     <string name="pref_isolate_protocol_summary">Gunakan sirkuit yang berbeda untuk setiap protokol penghubungan</string>
+    <string name="btn_copy_log">Salin Catatan</string>
 </resources>
