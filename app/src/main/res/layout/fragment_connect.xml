@@ -43,7 +43,7 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ready to Connect"
+        android:text="@string/secure_your_connection_title"
         android:textColor="@android:color/white"
         android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
         android:fontFamily="sans-serif-black"

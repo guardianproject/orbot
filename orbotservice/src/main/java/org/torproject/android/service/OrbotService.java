@@ -924,7 +924,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                             events.add(TorControlCommands.EVENT_INFO_MSG);
                         }
 
-                        if (Prefs.useDebugLogging() || Prefs.showExpandedNotifications())
+                        if (Prefs.useDebugLogging())
                             events.add(TorControlCommands.EVENT_STREAM_STATUS);
 
                         conn.setEvents(events);
@@ -1356,7 +1356,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     public void setNotificationSubtext(String message) {
         if (mNotifyBuilder != null) {
             // stop showing expanded notifications if the user changed the after starting Orbot
-            if (!Prefs.showExpandedNotifications()) message = null;
+           // if (!Prefs.showExpandedNotifications()) message = null;
             mNotifyBuilder.setSubText(message);
         }
     }
