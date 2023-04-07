@@ -46,10 +46,10 @@ import java.util.StringTokenizer;
 
 public class AppManagerActivity extends AppCompatActivity implements OnClickListener, OrbotConstants {
 
-    static ArrayList<TorifiedApp> mApps, mAppsSuggested = null;
+    private ArrayList<TorifiedApp> mApps, mAppsSuggested = null;
 
-    PackageManager pMgr = null;
-    SharedPreferences mPrefs = null;
+    private PackageManager pMgr = null;
+    private SharedPreferences mPrefs = null;
     private GridView listAppsAll, listAppsSuggested;
     private ListAdapter adapterAppsAll, adapterAppsSuggested;
     private ProgressBar progressBar;
@@ -109,11 +109,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.menu_refresh_apps) {
-            mApps = null;
-            reloadApps();
-        }
-        else if (item.getItemId() == R.id.menu_save_apps) {
+        if (item.getItemId() == R.id.menu_save_apps) {
             saveAppSettings();
             finish();
         }
@@ -366,7 +362,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         return apps;
     }
 
-    public void saveAppSettings() {
+    private void saveAppSettings() {
 
         StringBuilder tordApps = new StringBuilder();
         Intent response = new Intent();
