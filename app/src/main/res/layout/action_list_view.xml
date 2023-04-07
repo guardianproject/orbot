@@ -70,13 +70,13 @@
                     >
             <TextView
                 android:textAlignment="center"
-                android:textSize="19sp"
                 android:layout_gravity="center"
                 android:text="@string/full_device_vpn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 android:id="@+id/llBoxShortcutsText"
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall"
                 />
         </LinearLayout>
     </HorizontalScrollView>
