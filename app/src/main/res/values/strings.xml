@@ -285,4 +285,6 @@
     <string name="kindess_config_detail">Configure how and when your device can act as a Snowflake proxy for other Tor users.</string>
     <string name="menu_kindness">Kindness</string>
     <string name="menu_more">More</string>
+    <string name="option_only_on_wifi">Only on Wifi</string>
+    <string name="option_only_when_charging">Only when charging</string>
 </resources>
