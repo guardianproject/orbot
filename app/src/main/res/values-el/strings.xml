@@ -284,4 +284,11 @@
     <string name="having_trouble_subtitle">Μπορούμε να δοκιμάσουμε μια γέφυρα Tor στη συνέχεια, αλλά θα χρειαστούμε τη βοήθειά σας</string>
     <string name="direct_connect_subtitle">Ο καλύτερος τρόπος για να συνδεθείτε στο Tor. Χρησιμοποιήστε το αν το Tor δεν είναι μπλοκαρισμένο.</string>
     <string name="snowflake">Χιονονιφάδα (πρωτότυπο)</string>
+    <string name="setting_padding">Συμπλήρωση</string>
+    <string name="setting_debug">Αποσφαλμάτωση</string>
+    <string name="menu_kindness">Ευγένεια</string>
+    <string name="menu_more">Περισσότερα</string>
+    <string name="option_only_on_wifi">Μόνο στο Wifi</string>
+    <string name="option_only_when_charging">Μόνο κατά τη φόρτιση</string>
+    <string name="btn_copy_log">Αντιγραφή αρχείου καταγραφής</string>
 </resources>

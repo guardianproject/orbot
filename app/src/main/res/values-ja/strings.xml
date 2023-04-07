@@ -279,10 +279,16 @@
     <string name="volunteer_status_title">今日の方がいい。
 \nあなたのおかげで。</string>
     <string name="not_sure">わからない？</string>
-    <string name="ask_tor"></string>
-    <string name="asking"></string>
-    <string name="kindness_adjust_title"></string>
-    <string name="hello_blank_fragment"></string>
+    <string name="ask_tor">トールに聞く</string>
+    <string name="asking">アスク...</string>
+    <string name="kindness_adjust_title">走るときに調整する...</string>
+    <string name="hello_blank_fragment">ハローブランフレグメント</string>
     <string name="kindess_config_detail">あなたの端末が他のTor利用者用のSnowflakeプロキシとしてどう動作するか、いつ動作するかを設定します。</string>
     <string name="btn_copy_log">ログをコピー</string>
+    <string name="setting_padding">パディング</string>
+    <string name="menu_more">もっと見る</string>
+    <string name="option_only_on_wifi">Wifiのみ</string>
+    <string name="menu_kindness">優しさ</string>
+    <string name="option_only_when_charging">充電時のみ</string>
+    <string name="setting_debug">デバッグ</string>
 </resources>

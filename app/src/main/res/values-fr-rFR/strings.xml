@@ -74,9 +74,9 @@
     <string name="ports_reachable_behind_a_restrictive_firewall">Ports accessibles derrière un pare-feu restrictif</string>
     <string name="enter_ports">Saisir les ports</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Activer le journal de débogage vers la sortie (adb ou aLogCat doivent être utilisés pour le visualiser)</string>
-    <string name="project_home">Page d’accueil du projet :</string>
+    <string name="project_home">Accueil du projet :</string>
     <string name="third_party_software">Logiciels tiers :</string>
-    <string name="pref_use_expanded_notifications">Afficher des notifications plus détaillées avec le pays de sortie et l’IP de Tor</string>
+    <string name="pref_use_expanded_notifications">Affichez dans la notification le pays et l\'adresse IP de votre nœud de sortie Tor, le cas échéant</string>
     <string name="pref_use_expanded_notifications_title">Notifications plus détaillées</string>
     <string name="set_locale_title">Langue</string>
     <string name="pref_disable_network_title">Aucune mise en veille automatique du réseau</string>
@@ -195,7 +195,7 @@
     <string name="be_a_snowflake_title_limit">Limites du mandataire Snowflake</string>
     <string name="version">Version :</string>
     <string name="license">Licence :</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Le mode mandataire Snowflake est activé</string>
+    <string formatted="true" name="snowflake_proxy_enabled">Proxy Snowflake activé</string>
     <string name="bridge_snowflake_amp">Se connecter par d’autres utilisateurs de Tor grâce à Snowflake (méthode 2 – AMP)</string>
     <string name="snowflake_proxy_pref_category">Mandataire Snowflake (expérimental)</string>
     <string name="snowflake_proxy_msg_title">Afficher la notification de connexion</string>
@@ -213,23 +213,20 @@
     <string name="drawer_close">Fermer</string>
     <string name="volunteer_mode_title">Aidez les autres
 \nà se connecter à Tor</string>
-    <string name="volunteer_mode_alltime_label">Total de toujours</string>
+    <string name="volunteer_mode_alltime_label">Total de tous les temps</string>
     <string name="volunteer_mode_subtitle_desc">Le mode gentillesse permet à votre appareil d\'être un pont pour les autres. Il aide les gens à utiliser Tor dans les endroits où il est bloqué.
 \n
-\n- Il ne décharge pas votre batterie.
-\n
-\n- Il ne ralenti pas votre Internet
-\n
-\n- Il peut fonctionner uniquement sur wifi
-\n
-\n- Il peut être éteint à tout moment</string>
+\n- Il n\'épuise pas votre batterie
+\n- Il ne ralentit pas l\'accès à l\'internet
+\n- Il ne peut fonctionner qu\'en wifi
+\n- Il peut être désactivé à tout moment</string>
     <string name="smart_connect">Connexion intelligente (par défault)</string>
     <string name="smart_connect_subtitle">Orbot essaie de se connecter à Tor par n\'importe quel moyen disponible : Direct, Snowflake, Pont.</string>
     <string name="direct_connect">Connexion directe à Tor</string>
     <string name="direct_connect_subtitle">La meilleure façon de se connecter à Tor. Utiliser si Tor n’est pas bloqué.</string>
-    <string name="snowflake">Snowflake</string>
+    <string name="snowflake">Snowflake (Originale)</string>
     <string name="snowflake_subtitle">Se connecte par l’intermédiaire de bénévoles Tor. Permet de contourner certains blocages de Tor.</string>
-    <string name="get_a_bridge">Obtenir un pont de Tor (Obfs4)</string>
+    <string name="get_a_bridge">Pont de Tor (Obfs4)</string>
     <string name="get_a_bridge_subtitle">Masque votre trafic. Contourne certains blocages de Tor.</string>
     <string name="custom_bridge">Pont personnalisé</string>
     <string name="custom_bridge_subtitle">Le plus probable de vous garder connecté si Tor est sévèrement bloqué. Nécessite une adresse d\'un pont de quelqu\'un de confiance.</string>
@@ -246,7 +243,7 @@
     <string name="btn_tor_off">Éteindre Tor</string>
     <string name="no_thx">Non, merci</string>
     <string name="menu_header_features">Fonctionnalités</string>
-    <string name="captcha_title">Dis-nous que tu es humain</string>
+    <string name="captcha_title">Faites-nous savoir que vous êtes humain</string>
     <string name="menu_tor_connection">Connexion Tor</string>
     <string name="menu_faq">Questions fréquentes</string>
     <string name="menu_header_learn">En savoir plus</string>
@@ -261,4 +258,37 @@
     <string name="menu_help_others">Aider les autres</string>
     <string name="msg_try_something_else">Essayez autre chose</string>
     <string name="custom_bridge_description">Un pont personnalisé est fourni par quelq\'un que vous connaissez. Demandez dans vos réseaux et organisations de confiance pour savoir si quelqu\'un en héberge un.</string>
+    <string name="pref_isolate_port">Isoler les ports de destination</string>
+    <string name="pref_isolate_protocol">Isoler les protocoles des clients</string>
+    <string name="btn_configure">Choisir le mode de connexion</string>
+    <string name="proxy_ports">Ports proxy</string>
+    <string name="volunteer_mode_weekly_label">Total hebdomadaire</string>
+    <string name="action_use">Utilisation</string>
+    <string name="ask_tor">Demander à Tor</string>
+    <string name="no_internet_subtitle">Vous avez besoin d\'une connexion internet pour utiliser Orbot.</string>
+    <string name="kindness_adjust_title">Ajuster lorsqu\'il fonctionne...</string>
+    <string name="asking">DEMANDER...</string>
+    <string name="setting_padding">Rembourrage</string>
+    <string name="setting_debug">Débogage</string>
+    <string name="menu_more">Plus d\'informations</string>
+    <string name="option_only_when_charging">Uniquement en cas de charge</string>
+    <string name="pref_isolate_port_summary">Utiliser un circuit différent pour chaque port de destination</string>
+    <string name="pref_isolate_protocol_summary">Utiliser un circuit différent pour chaque protocole de connexion</string>
+    <string name="snowflake_amp">Snowflake (AMP méthode)</string>
+    <string name="many_ways">Il existe de nombreuses façons d\'atteindre Tor. Certaines peuvent fonctionner mieux que d\'autres pour vous.</string>
+    <string name="power_user_description">Pour les utilisateurs familiers avec Tor. Permet de démarrer Orbot sans le paramètre VPN et montre les ports SOCKS et HTTP ouverts</string>
+    <string name="no_interent_title">Se connecter à l\'internet</string>
+    <string name="menu_kindness">La gentillesse</string>
+    <string name="option_only_on_wifi">Uniquement sur Wifi</string>
+    <string name="hello_blank_fragment">Bonjour fragment vierge</string>
+    <string name="volunteer_mode_label">Mode gentillesse</string>
+    <string name="ports_not_set">Ports non définis</string>
+    <string name="volunteer_mode">Mode gentillesse</string>
+    <string name="hide_apps">Masquer les applications de la surveillance du réseau et y accéder lorsqu\'elles sont bloquées.</string>
+    <string name="having_trouble">Difficultés</string>
+    <string name="kindess_config_detail">Configurez quand et comment votre appareil peut agir en tant que proxy Snowflake pour les autres utilisateurs de Tor.</string>
+    <string name="btn_copy_log">Journal des copies</string>
+    <string name="log_copied">Journal copié</string>
+    <string name="strict_nodes_description">Traiter les paramètres des nœuds d\'exclusion comme une exigence pour la construction de tous les circuits. Cela risque d\'interrompre la fonctionnalité si aucun circuit ne peut être généré avec vos paramètres de nœuds d\'exclusion.</string>
+    <string name="not_sure">Vous n\'êtes pas sûr \?</string>
 </resources>
