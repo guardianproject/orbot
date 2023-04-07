@@ -26,7 +26,7 @@ public class OrbotApp extends Application implements OrbotConstants {
 
         deleteDatabase("hidden_services"); // if it exists, remove v2 onion service data
 
-        Prefs.initWeeklyWorker();
+
     }
 
     @Override

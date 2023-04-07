@@ -54,6 +54,8 @@ class OrbotActivity : AppCompatActivity() {
         }
 
         requestNotificationPermission()
+
+        Prefs.initWeeklyWorker()
     }
 
     private fun requestNotificationPermission () {
