@@ -220,7 +220,4 @@ public class Prefs {
         return prefs.getBoolean(PREF_POWER_USER_MODE, false);
     }
 
-    public static boolean onboardPending() {
-        return prefs.getBoolean("connect_first_time", true);
-    }
 }
