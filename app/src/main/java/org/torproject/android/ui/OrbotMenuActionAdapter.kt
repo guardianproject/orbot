@@ -36,7 +36,10 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
                     emojiContainer.visibility = View.GONE
                     imgView.visibility = View.VISIBLE
                     imgView.setImageResource(model.imgId)
-                    drawAppShortcuts(hvApps)
+                    if (!drawAppShortcuts(hvApps))
+                    {
+                        returnView.findViewById<TextView>(R.id.llBoxShortcutsText).visibility = View.VISIBLE
+                    }
 
                 }
                 0 -> {
@@ -59,7 +62,7 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
         return returnView
     }
 
-    private fun drawAppShortcuts(llBoxShortcuts: HorizontalScrollView) {
+    private fun drawAppShortcuts(llBoxShortcuts: HorizontalScrollView) : Boolean {
 
         val tordAppString = Prefs.getSharedPrefs(context)
             .getString(OrbotConstants.PREFS_KEY_TORIFIED, "")
@@ -108,7 +111,10 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
                 val sorted = TreeMap(icons)
                 for (iv in sorted.values) container.addView(iv)
             }
+            return true
         }
+
+        return false
     }
 
     final val URL_TOR_CHECK = "https://check.torproject.org"

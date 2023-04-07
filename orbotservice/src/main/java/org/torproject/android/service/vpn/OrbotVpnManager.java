@@ -381,8 +381,8 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                 builder.addDisallowedApplication(mService.getPackageName());
 
                 //disallow all apps since we no longer have a default "full device" mode
-                for (TorifiedApp app : apps)
-                    builder.addDisallowedApplication(app.getPackageName());
+              //  for (TorifiedApp app : apps)
+                //    builder.addDisallowedApplication(app.getPackageName());
 
                 for (String packageName : OrbotConstants.BYPASS_VPN_PACKAGES)
                     builder.addDisallowedApplication(packageName);
