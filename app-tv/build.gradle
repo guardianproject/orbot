@@ -8,6 +8,9 @@ android {
         targetSdkVersion 33
     }
 
+    lintOptions {
+        disable "Instantiatable"
+    }
 
     flavorDimensions "teevee"
 
