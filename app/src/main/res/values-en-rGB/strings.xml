@@ -284,4 +284,11 @@
     <string name="hide_apps">Hide apps from network monitoring and get access when they are blocked.</string>
     <string name="pref_isolate_protocol">Isolate client protocols</string>
     <string name="no_interent_title">Connect to Internet</string>
+    <string name="setting_padding">Padding</string>
+    <string name="option_only_on_wifi">Only on Wifi</string>
+    <string name="option_only_when_charging">Only when charging</string>
+    <string name="menu_more">More</string>
+    <string name="setting_debug">Debug</string>
+    <string name="menu_kindness">Kindness</string>
+    <string name="btn_copy_log">Copy Log</string>
 </resources>

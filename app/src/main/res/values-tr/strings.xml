@@ -285,4 +285,10 @@
     <string name="pref_isolate_protocol">İstemci iletişim kuralları yalıtılsın</string>
     <string name="pref_isolate_protocol_summary">Her bağlantı iletişim kuralı için farklı bir devre kullanın</string>
     <string name="btn_copy_log">Günlüğü Kopyala</string>
+    <string name="setting_debug">Hata ayıklama</string>
+    <string name="menu_kindness">Nezaket</string>
+    <string name="option_only_on_wifi">Yalnızca Wi-Fi\'de</string>
+    <string name="option_only_when_charging">Yalnızca şarj olurken</string>
+    <string name="menu_more">Daha fazla</string>
+    <string name="setting_padding">Yastıklama</string>
 </resources>

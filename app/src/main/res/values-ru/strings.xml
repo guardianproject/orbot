@@ -289,4 +289,6 @@
     <string name="option_only_on_wifi">Только по Wi-Fi</string>
     <string name="menu_more">Ещё</string>
     <string name="menu_kindness">Помощь другим</string>
+    <string name="setting_padding">Прокладка</string>
+    <string name="setting_debug">Отладка</string>
 </resources>

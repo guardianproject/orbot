@@ -285,4 +285,10 @@
     <string name="pref_isolate_port">Isole as portas de destino</string>
     <string name="pref_isolate_protocol_summary">Utilize um circuito diferente para cada protocolo de conexão</string>
     <string name="btn_copy_log">Copiar os registros</string>
+    <string name="setting_debug">Depurar</string>
+    <string name="option_only_on_wifi">Apenas no WiFi</string>
+    <string name="option_only_when_charging">Apenas ao carregar</string>
+    <string name="menu_kindness">Delicadeza</string>
+    <string name="setting_padding">Preenchimento</string>
+    <string name="menu_more">Mais</string>
 </resources>
