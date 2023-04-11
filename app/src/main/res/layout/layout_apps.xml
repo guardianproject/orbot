@@ -25,12 +25,11 @@
         android:textColor="@color/text_purple"
         android:textStyle="bold" />
     <TextView
+        android:textColor="@android:color/white"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/app_suggested_subtitle"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-
-        />
+        android:layout_marginLeft="@dimen/activity_horizontal_margin" />
 
 
 
@@ -66,6 +65,5 @@
         android:horizontalSpacing="5dp"
         android:numColumns="1"
         android:verticalSpacing="15dp"/>
-
 
 </LinearLayout>

@@ -21,6 +21,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.net.ProxyInfo;
 import android.net.VpnService;
 import android.os.Build;
 import android.os.Handler;
@@ -70,6 +71,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     private ParcelFileDescriptor mInterface;
     private int mTorSocks = -1;
     private int mTorDns = -1;
+    private int mTorHttp = -1;
     private ProxyServer mSocksProxyServer;
     private final VpnService mService;
     private final SharedPreferences prefs;
@@ -116,6 +118,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                     if ((torSocks != -1 && torSocks != mTorSocks
                             && torDns != -1 && torDns != mTorDns)) {
 
+                        mTorHttp = torHttp;
                         mTorSocks = torSocks;
                         mTorDns = torDns;
 
@@ -244,6 +247,12 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
             //builder.addAddress("fdfe:dcba:9876::1", 126);
             //builder.addRoute("::", 0);
 
+            /**
+             * Can't use this since our HTTP proxy is only CONNECT and not a full proxy
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                builder.setHttpProxy(ProxyInfo.buildDirectProxy("localhost",mTorHttp));
+            }**/
+
             if (mIsLollipop)
                 doLollipopAppRouting(builder);
 
@@ -351,7 +360,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     private void doLollipopAppRouting(VpnService.Builder builder) throws NameNotFoundException {
         var apps = TorifiedApp.getApps(mService, prefs);
         var perAppEnabled = false;
-        var canBypass = !isVpnLockdown(mService); 
+        var canBypass = !isVpnLockdown(mService);
 
         for (TorifiedApp app : apps) {
             if (app.isTorified() && (!app.getPackageName().equals(mService.getPackageName()))) {
@@ -363,12 +372,33 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
             }
         }
 
-        if (!perAppEnabled && canBypass) {
-            builder.addDisallowedApplication(mService.getPackageName());
-            for (String packageName : OrbotConstants.BYPASS_VPN_PACKAGES)
-                builder.addDisallowedApplication(packageName);
+        if (!perAppEnabled) {
+
+            //if not VPN lockdown, then we can let these apps all go by
+            if (canBypass) {
+
+                //remove all apps from Tor
+                builder.addDisallowedApplication(mService.getPackageName());
+
+                //disallow all apps since we no longer have a default "full device" mode
+              //  for (TorifiedApp app : apps)
+                //    builder.addDisallowedApplication(app.getPackageName());
+
+                for (String packageName : OrbotConstants.BYPASS_VPN_PACKAGES)
+                    builder.addDisallowedApplication(packageName);
+
+            }
+            else
+            {
+                //nothing will work unless they choose it in the choose apps screen
+                //remove all apps from Tor
+
+            }
+
         } else {
             Log.i(TAG, "Skip bypass perApp? " + perAppEnabled + " vpnLockdown? " + !canBypass);
+
+
         }
     }
 

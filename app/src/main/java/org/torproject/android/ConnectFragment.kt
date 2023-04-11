@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.NetworkInfo
 import android.net.VpnService
 import android.os.Build
 import android.os.Bundle
@@ -22,7 +21,6 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import net.freehaven.tor.control.TorControlCommands
 import org.torproject.android.service.OrbotConstants
@@ -32,11 +30,6 @@ import org.torproject.android.ui.AppManagerActivity
 import org.torproject.android.ui.OrbotMenuAction
 import org.torproject.android.ui.OrbotMenuActionAdapter
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -53,20 +46,16 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
     private lateinit var btnStartVpn: Button
     private lateinit var ivOnion: ImageView
     private lateinit var ivOnionShadow: ImageView
-    public lateinit var progressBar: ProgressBar
+    lateinit var progressBar: ProgressBar
     private lateinit var lvConnectedActions: ListView
 
     private var lastStatus: String? = ""
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
 
         (activity as OrbotActivity).fragConnect = this
-        lastStatus = (activity as OrbotActivity).previousReceivedTorStatus
+        lastStatus = activity.previousReceivedTorStatus
 
     }
 
@@ -112,7 +101,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         return view
     }
 
-    fun isNetworkAvailable(context: Context?): Boolean {
+    private fun isNetworkAvailable(context: Context?): Boolean {
         if (context == null) return false
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -139,12 +128,17 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         return false
     }
 
-    fun stopTorAndVpn() {
+    private fun stopTorAndVpn() {
         sendIntentToService(OrbotConstants.ACTION_STOP)
         sendIntentToService(OrbotConstants.ACTION_STOP_VPN)
     }
 
-    fun sendNewnymSignal() {
+    private fun stopAnimations() {
+        ivOnion.clearAnimation()
+        ivOnionShadow.clearAnimation()
+    }
+
+    private fun sendNewnymSignal() {
         sendIntentToService(TorControlCommands.SIGNAL_NEWNYM)
         ivOnion.animate().alpha(0f).duration = 500
         Handler().postDelayed({ ivOnion.animate().alpha(1f).duration = 500 }, 600)
@@ -172,7 +166,6 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
     }
 
     fun refreshMenuList (context: Context) {
-
         val listItems = arrayListOf(OrbotMenuAction(R.string.btn_change_exit, 0) {openExitNodeDialog()},
             OrbotMenuAction(R.string.btn_refresh, R.drawable.ic_refresh) {sendNewnymSignal()},
             OrbotMenuAction(R.string.btn_tor_off, R.drawable.ic_power) {stopTorAndVpn()})
@@ -212,11 +205,11 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
     }
 
 
-    fun doLayoutNoInternet(context : Context) {
+    private fun doLayoutNoInternet(context : Context) {
 
         ivOnion.setImageResource(R.drawable.nointernet)
 
-        ivOnion.animation?.cancel()
+        stopAnimations()
 
         tvSubtitle.visibility = View.VISIBLE
 
@@ -237,10 +230,6 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
 
         ivOnion.setImageResource(R.drawable.orbion)
 
-        ivOnion.animation?.cancel()
-        ivOnionShadow.animation?.cancel()
-        ivOnion.animate().y(14f).duration = 200
-
         tvSubtitle.visibility = View.GONE
         progressBar.visibility = View.INVISIBLE
         tvTitle.text = context.getString(R.string.connected_title)
@@ -251,18 +240,13 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
 
         refreshMenuList(context)
 
-        ivOnion.setOnClickListener {
-            stopTorAndVpn()
-        }
+        ivOnion.setOnClickListener {}
     }
 
     fun doLayoutOff() {
 
         ivOnion.setImageResource(R.drawable.orbioff)
-        (ivOnion.layoutParams as ViewGroup.MarginLayoutParams).topMargin = 200
-        ivOnion.animation?.cancel()
-        ivOnion.animate().y(200f).duration = 150
-
+        stopAnimations()
         tvSubtitle.visibility = View.VISIBLE
         progressBar.visibility = View.INVISIBLE
         lvConnectedActions.visibility = View.GONE
@@ -271,8 +255,6 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         tvConfigure.visibility = View.VISIBLE
         tvConfigure.text = getString(R.string.btn_configure)
         tvConfigure.setOnClickListener {openConfigureTorConnection()}
-        //  torStatsGroup.visibility = View.GONE
-        // tvPorts.text = getString(R.string.ports_not_set)
         with(btnStartVpn) {
             visibility = View.VISIBLE
 
@@ -315,7 +297,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
     }
 
 
-    public fun doLayoutStarting(context : Context) {
+    fun doLayoutStarting(context : Context) {
 
         // torStatsGroup.visibility = View.VISIBLE
         tvSubtitle.visibility = View.GONE
@@ -347,7 +329,9 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
                     )
                 )
             }
-            setOnClickListener { stopTorAndVpn() }
+            setOnClickListener {
+                stopTorAndVpn()
+            }
         }
     }
 
@@ -393,13 +377,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
 
     private fun sendIntentToService(intent: Intent) = ContextCompat.startForegroundService(requireActivity(), intent)
     private fun sendIntentToService(action: String) = sendIntentToService(
-        android.content.Intent(
-            requireActivity(),
-            org.torproject.android.service.OrbotService::class.java
-        ).apply {
+        Intent(requireActivity(), OrbotService::class.java).apply {
         this.action = action
     })
-
-
-
 }

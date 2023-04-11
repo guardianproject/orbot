@@ -30,10 +30,9 @@ public class OrbotRawEventListener implements RawEventListener {
         mTotalBandwidthWritten = 0;
         hmBuiltNodes = new HashMap<>();
 
-        if (Prefs.showExpandedNotifications()) {
-            exitNodeMap = new HashMap<>();
-            ignoredInternalCircuits = new HashSet<>();
-        }
+        exitNodeMap = new HashMap<>();
+        ignoredInternalCircuits = new HashSet<>();
+
     }
 
     @Override
@@ -44,8 +43,9 @@ public class OrbotRawEventListener implements RawEventListener {
         } else if (TorControlCommands.EVENT_NEW_DESC.equals(keyword)) {
             handleNewDescriptors(payload);
         } else if (TorControlCommands.EVENT_STREAM_STATUS.equals(keyword)) {
-            if (Prefs.showExpandedNotifications())
-                handleStreamEventExpandedNotifications(payload[1], payload[3], payload[2], payload[4]);
+
+            handleStreamEventExpandedNotifications(payload[1], payload[3], payload[2], payload[4]);
+
             if (Prefs.useDebugLogging())
                 handleStreamEventsDebugLogging(payload[1], payload[0]);
         } else if (TorControlCommands.EVENT_CIRCUIT_STATUS.equals(keyword)) {
@@ -56,13 +56,13 @@ public class OrbotRawEventListener implements RawEventListener {
                 path = "";
             else path = payload[2];
             handleCircuitStatus(status, circuitId, path);
-            if (Prefs.showExpandedNotifications()) {
-                // don't bother looking up internal circuits that Orbot clients won't directly use
-                if (data.contains(CIRCUIT_BUILD_FLAG_ONE_HOP_TUNNEL) || data.contains(CIRCUIT_BUILD_FLAG_IS_INTERNAL)) {
-                    ignoredInternalCircuits.add(Integer.parseInt(circuitId));
-                }
-                handleCircuitStatusExpandedNotifications(status, circuitId, path);
+
+            // don't bother looking up internal circuits that Orbot clients won't directly use
+            if (data.contains(CIRCUIT_BUILD_FLAG_ONE_HOP_TUNNEL) || data.contains(CIRCUIT_BUILD_FLAG_IS_INTERNAL)) {
+                ignoredInternalCircuits.add(Integer.parseInt(circuitId));
             }
+            handleCircuitStatusExpandedNotifications(status, circuitId, path);
+
         } else if (TorControlCommands.EVENT_OR_CONN_STATUS.equals(keyword)) {
             handleConnectionStatus(payload[1], payload[0]);
         } else if (TorControlCommands.EVENT_DEBUG_MSG.equals(keyword) || TorControlCommands.EVENT_INFO_MSG.equals(keyword) ||

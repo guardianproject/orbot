@@ -53,7 +53,7 @@ import org.json.JSONArray;
 import org.torproject.android.core.Languages;
 import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.core.ui.Rotate3dAnimation;
-import org.torproject.android.core.ui.SettingsPreferencesActivity;
+import org.torproject.android.core.ui.SettingsPreferencesFragment;
 import org.torproject.android.tv.ui.AppConfigActivity;
 import org.torproject.android.tv.ui.AppManagerActivity;
 import org.torproject.android.tv.ui.onboarding.OnboardingActivity;
@@ -405,7 +405,7 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
         if (item.getItemId() == R.id.menu_newnym) {
             requestNewTorIdentity();
         } else if (item.getItemId() == R.id.menu_settings) {
-            Intent intent = SettingsPreferencesActivity.createIntent(this, R.xml.preferences);
+            Intent intent = SettingsPreferencesFragment.createIntent(this, R.xml.preferences);
             startActivityForResult(intent, REQUEST_SETTINGS);
         }
         else if (item.getItemId() == R.id.menu_about) {

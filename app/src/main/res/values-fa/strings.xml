@@ -6,7 +6,7 @@
     <string name="status_activated">وصل شده به شبکهٔ تور</string>
     <string name="status_shutting_down">روبوت پیازی در حال خاموش شدن است</string>
     <string name="menu_settings">تنظیمات</string>
-    <string name="menu_log">گزارش</string>
+    <string name="menu_log">گزارشات</string>
     <string name="menu_stop">توقّف</string>
     <string name="menu_about">درباره</string>
     <string name="main_layout_download">بارگیری</string>
@@ -202,7 +202,7 @@
     <string name="be_a_snowflake_desc">اجازه به دیگر کاربران تور برای وصل شدن به تور از طریق افزاره‌تان. (اگر با پل‌ها وصل شده‌اید، قابل استفاده نیست)</string>
     <string name="secure_your_connection_title">آمادهٔ وصل شدن</string>
     <string name="btn_start_vpn">آغاز وی‌پی‌ان</string>
-    <string name="btn_configure">نحوه اتصال را انتخاب کنید</string>
+    <string name="btn_configure">نحوهٔ اتّصال را انتخاب کنید</string>
     <string name="volunteer_mode">حالت مهربانی</string>
     <string name="btn_choose_apps">گزینش کاره‌ها</string>
     <string name="btn_change_exit">تغییر خروجی</string>
@@ -234,14 +234,14 @@
 \n- اینترنتتان را کند نمی‌کند
 \n- می‌تواند فقط روی وای‌فای اجرا شود
 \n- می‌تواند هر زمانی خاموش شود</string>
-    <string name="configure_header">پیکربندی اتصال تورتان</string>
+    <string name="configure_header">پیکربندی اتّصال تورتان</string>
     <string name="drawer_open">گشودن</string>
     <string name="drawer_close">بستن</string>
     <string name="proxy_ports">درگاه‌های پیشکار</string>
     <string name="volunteer_mode_label">حالت مهربانی</string>
     <string name="volunteer_mode_weekly_label">مجموع هفتگی</string>
     <string name="volunteer_mode_alltime_label">مجموع تمامی زمان‌ها</string>
-    <string name="smart_connect">اتصال هوشمند (پیش‌گزیده)</string>
+    <string name="smart_connect">اتّصال هوشمند (پیش‌گزیده)</string>
     <string name="direct_connect">اتّصال مستقیم به تور</string>
     <string name="get_a_bridge">پل از تور (Obfs4)</string>
     <string name="custom_bridge">پل شخصی</string>
@@ -252,7 +252,7 @@
     <string name="snowflake_subtitle">وصل شدن از طریق داوطلبان تور. رد شدن از برخی مسدودیت‌های تور.</string>
     <string name="direct_connect_subtitle">بهترین روش وصل شدن به تور. استفاده در صورت مسدود نبودن تور.</string>
     <string name="get_a_bridge_subtitle">پنهان کردن شدآمدتان. رد شدن از برخی مسدودیت‌های تور.</string>
-    <string name="custom_bridge_subtitle">بیش‌ترین احتمال برای وصل نگه داشتنتان به تور در صورت اندسداد شدید. نیازمند یک نشانی پل از کسی که اطمینان دارید.</string>
+    <string name="custom_bridge_subtitle">بیش‌ترین احتمال برای وصل نگه داشتنتان به تور در صورت انسداد شدید. نیازمند یک نشانی پل از کسی که اطمینان دارید.</string>
     <string name="having_trouble">مشکل دارید</string>
     <string name="having_trouble_subtitle">در ادامه برای استفاده از یک پل تور تلاش می‌کنیم، ولی نیازمند کمکتانیم</string>
     <string name="bridges_obtained_connecting">پل‌ها گرفته شدند! وصل شدن به تور…</string>
@@ -271,11 +271,11 @@
     <string name="pref_isolate_port">درگاه‌های مقصد را مجزا کنید</string>
     <string name="pref_isolate_port_summary">برای هر درگاه مقصد از مدار متفاوتی استفاده کنید</string>
     <string name="pref_isolate_protocol">شیوه‌نامه‌های کلاینت را مجزا کنید</string>
-    <string name="pref_isolate_protocol_summary">برای هر شیوه‌نامه اتصال از مدار متفاوتی استفاده کنید</string>
+    <string name="pref_isolate_protocol_summary">برای هر شیوه‌نامهٔ اتّصال از مدار متفاوتی استفاده کنید</string>
     <string name="snowflake_amp">دانه برف (AMP)</string>
-    <string name="ask_tor">از Tor بپرسید</string>
+    <string name="ask_tor">از تور بپرسید</string>
     <string name="not_sure">مطمئن نیستید؟</string>
-    <string name="many_ways">راه های زیادی برای رسیدن به Tor وجود دارد. برخی ممکن است بهتر از دیگران برای شما کار کنند.</string>
+    <string name="many_ways">راه‌های زیادی برای اتّصال به تور وجود دارد. برخی ممکن است بهتر از دیگران برای شما کار کنند.</string>
     <string name="action_use">استفاده</string>
     <string name="asking">پرسیدن...</string>
     <string name="hello_blank_fragment">سلام قطعه خالی</string>
@@ -283,5 +283,6 @@
     <string name="no_internet_subtitle">شما برای استفاده از ربات‌پیازی به اینترنت نیاز دارید.</string>
     <string name="kindness_adjust_title">زمانی که اجرا می‌شود تنظیم کنید...</string>
     <string name="kindess_config_detail">پیکربندی کنید که چگونه و چه زمانی دستگاه شما می‌تواند به عنوان یک پروکسی دانه برف برای سایر کاربران Tor عمل کند.</string>
-    <string name="log_copied">گزارش کپی شد</string>
+    <string name="log_copied">گزارشات رونوشت شدند</string>
+    <string name="btn_copy_log">رونوشت گزارشات</string>
 </resources>

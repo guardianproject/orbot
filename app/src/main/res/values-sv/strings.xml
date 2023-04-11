@@ -167,12 +167,12 @@
     <string name="pref_reduced_circuit_padding">Minskad kretsstoppning</string>
     <string name="testing_tor_direct">Testar anslutning till Tor…</string>
     <string name="testing_tor_direct_success">Framgång. Tor-anslutningen är bra!</string>
-    <string name="connected_title">Du är ansluten!</string>
+    <string name="connected_title">Ansluten</string>
     <string name="btn_start_vpn">Starta VPN</string>
-    <string name="btn_configure">Konfigurera</string>
-    <string name="volunteer_mode">Patreon-läge</string>
+    <string name="btn_configure">Välj hur du ansluter</string>
+    <string name="volunteer_mode">Läge för vänlighet</string>
     <string name="volunteer_mode_subtitle">Hjälp andra att ansluta sig</string>
-    <string name="trying_to_connect_title">Försöker ansluta till Tor…</string>
+    <string name="trying_to_connect_title">Anslutning…</string>
     <string name="btn_choose_apps">Välj appar</string>
     <string name="btn_change_exit">Ändra utgång</string>
     <string name="btn_refresh">Uppdatera</string>
@@ -204,7 +204,7 @@
     <string name="request_bridges">Begär broar</string>
     <string name="refresh_captcha">Uppdatera CAPTCHA</string>
     <string name="solve_captcha_instruction">Lös CAPTCHA för att begära broar.</string>
-    <string name="enter_characters_from_image">Ange tecken från bilden</string>
+    <string name="enter_characters_from_image">Ange texten ovan</string>
     <string name="request_bridges_from_torproject">Begär broar från torproject.org</string>
     <string name="custom_bridges">Anpassade broar</string>
     <string name="configure_custom_bridges">Konfigurera anpassade broar</string>
@@ -220,8 +220,68 @@
     <string name="use_qr_code">Använd QR-kod</string>
     <string name="bridge_snowflake">Anslut via andra Tor-användare med Snowflake (metod 1)</string>
     <string name="be_a_snowflake_desc">Tillåt andra Tor-användare att ansluta till Tor via din enhet. (Detta kan inte användas om du ansluter tillsammans med broar)</string>
-    <string name="secure_your_connection_title">Säkra din anslutning med Tor</string>
-    <string name="secure_your_connection_subtitle">Orbot ger dig en säker och oavbruten anslutning till dina appar.</string>
+    <string name="secure_your_connection_title">Redo att ansluta</string>
+    <string name="secure_your_connection_subtitle">Dölj appar från nätverksövervakning och få tillgång till dem när de är blockerade.</string>
     <string name="captcha_title">Låt oss veta att du är mänsklig</string>
-    <string name="msg_taking_too_long">Detta verkar ta lång tid</string>
+    <string name="msg_taking_too_long">Detta tycks ta för lång tid</string>
+    <string name="volunteer_mode_title">Hjälpa andra
+\nansluta till Tor</string>
+    <string name="volunteer_mode_label">Läge för vänlighet</string>
+    <string name="volunteer_mode_weekly_label">Totalt per vecka</string>
+    <string name="direct_connect">Direkt anslutning till Tor</string>
+    <string name="snowflake_amp">Snöflinga (AMP)</string>
+    <string name="bridges_obtained_connecting">Broar erhållna! Anslutning till tor...</string>
+    <string name="having_trouble">Har problem</string>
+    <string name="power_user_mode">Power User Mode (strömförsörjningsläge)</string>
+    <string name="power_user_description">För användare som är bekanta med Tor. Gör det möjligt att starta Orbot utan VPN-inställning och visar öppna SOCKS- och HTTP-portar</string>
+    <string name="action_activate">Aktivera</string>
+    <string name="volunteer_status_title">Idag är bättre
+\ntack vare dig.</string>
+    <string name="title_choose_apps">Välj appar</string>
+    <string name="action_use">Använd</string>
+    <string name="asking">FRÅGAR...</string>
+    <string name="hello_blank_fragment">Hej tomt fragment</string>
+    <string name="no_interent_title">Anslut till internet</string>
+    <string name="no_internet_subtitle">Du behöver en internetuppkoppling för att använda Orbot.</string>
+    <string name="kindness_adjust_title">Justera när det går...</string>
+    <string name="configure_header">Konfigurera din Tor-anslutning</string>
+    <string name="drawer_close">Stäng</string>
+    <string name="proxy_ports">Proxy-portar</string>
+    <string name="drawer_open">Öppna</string>
+    <string name="volunteer_mode_alltime_label">Alltid Totalt</string>
+    <string name="smart_connect">Smart Connect (standard)</string>
+    <string name="smart_connect_subtitle">Orbot försöker ansluta till Tor på alla möjliga sätt: Direkt, Snowflake, Bridge.</string>
+    <string name="snowflake">Snowflake (original)</string>
+    <string name="get_a_bridge_subtitle">Döljer din trafik. Tar sig runt vissa Tor-blockeringar.</string>
+    <string name="custom_bridge">Anpassad bro</string>
+    <string name="direct_connect_subtitle">Det bästa sättet att ansluta till Tor. Använd om Tor inte är blockerad.</string>
+    <string name="get_a_bridge">Bro från Tor (Obfs4)</string>
+    <string name="solve_captcha">Lös Captcha</string>
+    <string name="pref_isolate_port_summary">Använd en annan krets för varje destinationsport</string>
+    <string name="not_sure">Är du inte säker\?</string>
+    <string name="pref_isolate_protocol">Isolera klientprotokoll</string>
+    <string name="pref_isolate_port">Isolera destinationsportar</string>
+    <string name="pref_isolate_protocol_summary">Använd en annan krets för varje anslutningsprotokoll</string>
+    <string name="snowflake_subtitle">Anslutningar genom Tor-volontärer. Tar sig runt vissa Tor-blockeringar.</string>
+    <string name="log_copied">Logg kopierad</string>
+    <string name="custom_bridge_subtitle">Det är mest troligt att du kan hålla dig ansluten om Tor är blockerad. Kräver en broadress från någon du litar på.</string>
+    <string name="next">Nästa</string>
+    <string name="incorrect_solution">Felaktig lösning</string>
+    <string name="custom_bridge_description">En skräddarsydd bro tillhandahålls av någon du känner. Fråga i dina betrodda nätverk och organisationer om det finns någon som är värd för en sådan.</string>
+    <string name="ports_not_set">Portar inte inställda</string>
+    <string name="volunteer_mode_subtitle_desc">Med läget för vänlighet kan din enhet bli en bro för andra. Det hjälper människor att använda Tor på platser där det är blockerat.
+\n
+\n- Det tömmer inte batteriet.
+\n- Det kommer inte att sakta ner ditt internet.
+\n- Det kan endast köras via wifi.
+\n- Den kan stängas av när som helst</string>
+    <string name="connect">Anslut</string>
+    <string name="having_trouble_subtitle">Vi kan försöka med en Tor-brygga härnäst, men vi behöver din hjälp</string>
+    <string name="app_suggested_subtitle">Orbot fungerar bäst med appar för meddelanden och sociala medier.</string>
+    <string name="apps_suggested_title">Föreslagna appar</string>
+    <string name="apps_other_apps">Andra appar</string>
+    <string name="ask_tor">Fråga Tor</string>
+    <string name="many_ways">Det finns många sätt att nå Tor. Vissa kanske fungerar bättre än andra för dig.</string>
+    <string name="kindess_config_detail">Konfigurera hur och när din enhet kan fungera som en Snowflake-proxy för andra Tor-användare.</string>
+    <string name="hide_apps">Dölj appar från nätverksövervakning och få tillgång till dem när de är blockerade.</string>
 </resources>

@@ -5,10 +5,11 @@ Orbot este singura aplicație care creează o conexiune la internet cu adevărat
 Tor a câștigat în 2012 premiul pentru pionieri al Electronic Frontier Foundation (EFF).
 
 ★ NU ACCEPTĂ ÎNLOCUITORI: Orbot este cel mai sigur mod de a utiliza internetul pe Android. Punct. Orbot vă face să ricoșeze traficul criptat de mai multe ori prin computere din întreaga lume, în loc să vă conecteze direct, cum fac VPN-urile și proxies. Acest proces durează ceva mai mult, dar cea mai puternică protecție a confidențialității și a identității disponibilă merită așteptarea.
-★ CONFIDENȚIALITATE PENTRU APPS: Orice aplicație instalată poate folosi Tor prin intermediul funcției Orbot VPN sau, dacă are o funcție proxy, folosind setările găsite aici: https://goo.gl/2OA1y Utilizați Orbot cu Twitter sau încercați căutarea privată pe web cu DuckDuckGo: https://goo.gl/lgh1p
+★ CONFIDENȚIALITATE PENTRU APLICAȚII: Orice aplicație poate fi direcționată prin Tor prin intermediul funcției Orbot VPN
 ★ CONFIDENȚIALITATE PENTRU TOATĂ LUMEA: Orbot împiedică pe cineva care vă urmărește conexiunea să știe ce aplicații utilizați sau ce site-uri web vizitați. Tot ceea ce poate vedea cineva care vă monitorizează traficul de rețea este faptul că utilizați Tor.
 
 ***Ne place feedback-ul***
+★ AFLAȚI MAI MULTE: Aflați mai multe despre Orbot și implicați-vă la https://orbot.app
 ★ DESPRE NOI: Guardian Project este un grup de dezvoltatori care realizează aplicații mobile sigure și coduri open-source pentru un viitor mai bun.
 ★ OPEN-SOURCE: Orbot este un software liber. Aruncați o privire la codul nostru sursă sau alăturați-vă comunității pentru a-l face mai bun: https://github.com/guardianproject/orbot
 ★ TRIMITEȚI-NE UN MESAJ: Ne lipsește caracteristica ta preferată? Ați găsit un bug enervant? Ne-ar face plăcere să avem vești de la tine! Trimiteți-ne un e-mail: support@guardianproject.info

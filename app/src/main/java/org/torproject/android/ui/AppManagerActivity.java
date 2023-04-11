@@ -46,10 +46,10 @@ import java.util.StringTokenizer;
 
 public class AppManagerActivity extends AppCompatActivity implements OnClickListener, OrbotConstants {
 
-    static ArrayList<TorifiedApp> mApps, mAppsSuggested = null;
+    private ArrayList<TorifiedApp> mApps, mAppsSuggested = null;
 
-    PackageManager pMgr = null;
-    SharedPreferences mPrefs = null;
+    private PackageManager pMgr = null;
+    private SharedPreferences mPrefs = null;
     private GridView listAppsAll, listAppsSuggested;
     private ListAdapter adapterAppsAll, adapterAppsSuggested;
     private ProgressBar progressBar;
@@ -76,6 +76,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         listAppsAll = findViewById(R.id.applistview);
         progressBar = findViewById(R.id.progressBar);
 
+        //need a better way to manage this list
         alSuggested = new ArrayList<>();
         alSuggested.add("org.thoughtcrime.securesms");
         alSuggested.add("com.whatsapp");
@@ -86,6 +87,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         alSuggested.add("com.facebook.orca");
         alSuggested.add("com.facebook.mlite");
         alSuggested.add("com.brave.browser");
+        alSuggested.add("org.mozilla.focus");
 
     }
 
@@ -96,10 +98,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         reloadApps();
     }
 
-    /*
-     * Create the UI Options Menu (non-Javadoc)
-     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -111,10 +109,11 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.menu_refresh_apps) {
-            mApps = null;
-            reloadApps();
-        } else if (item.getItemId() == android.R.id.home) {
+        if (item.getItemId() == R.id.menu_save_apps) {
+            saveAppSettings();
+            finish();
+        }
+        else if (item.getItemId() == android.R.id.home) {
             finish();
             return true;
         }
@@ -151,7 +150,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     entry = (ListEntry) convertView.getTag();
 
                 View row = convertView.findViewById(R.id.itemRow);
-                row.setOnClickListener(AppManagerActivity.this);
+               // row.setOnClickListener(AppManagerActivity.this);
 
                 if (entry == null) {
                     // Inflate a new view
@@ -170,6 +169,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                         try {
                             entry.icon.setImageDrawable(pMgr.getApplicationIcon(app.getPackageName()));
                             entry.icon.setTag(entry.box);
+                            entry.icon.setOnClickListener(AppManagerActivity.this);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -178,6 +178,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     if (entry.text != null) {
                         entry.text.setText(app.getName());
                         entry.text.setTag(entry.box);
+                        entry.text.setOnClickListener(AppManagerActivity.this);
                     }
 
                     if (entry.box != null) {
@@ -216,7 +217,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     entry = (ListEntry) convertView.getTag();
 
                 View row = convertView.findViewById(R.id.itemRow);
-                row.setOnClickListener(AppManagerActivity.this);
+               // row.setOnClickListener(AppManagerActivity.this);
 
                 if (entry == null) {
                     // Inflate a new view
@@ -224,6 +225,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     entry.icon = convertView.findViewById(R.id.itemicon);
                     entry.box = convertView.findViewById(R.id.itemcheck);
                     entry.text = convertView.findViewById(R.id.itemtext);
+                    row.setTag(entry);
                     convertView.setTag(entry);
                 }
 
@@ -235,6 +237,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                         try {
                             entry.icon.setImageDrawable(pMgr.getApplicationIcon(app.getPackageName()));
                             entry.icon.setTag(entry.box);
+                            entry.icon.setOnClickListener(AppManagerActivity.this);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -243,6 +246,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                     if (entry.text != null) {
                         entry.text.setText(app.getName());
                         entry.text.setTag(entry.box);
+                        entry.text.setOnClickListener(AppManagerActivity.this);
                     }
 
                     if (entry.box != null) {
@@ -363,7 +367,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         return apps;
     }
 
-    public void saveAppSettings() {
+    private void saveAppSettings() {
 
         StringBuilder tordApps = new StringBuilder();
         Intent response = new Intent();
@@ -409,7 +413,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                 cbox.setChecked(app.isTorified());
             }
 
-            saveAppSettings();
         }
     }
 

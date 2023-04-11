@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:backgroundTint="@color/new_background"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    >
-
-
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/new_background">
     <ProgressBar
         tools:visibility="visible"
         android:visibility="invisible"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ivStatus"
         android:id="@+id/progressBar"
         style="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal"
         tools:progress="33"
@@ -25,17 +23,16 @@
         android:id="@+id/ivStatus"
         android:layout_width="148dp"
         android:layout_height="166dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/orbioff"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progressBar" />
-
+        app:layout_constraintStart_toStartOf="parent"/>
     <ImageView
         android:id="@+id/ivShadow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="15dp"
         android:src="@drawable/orbieshadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +43,7 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ready to Connect"
+        android:text="@string/secure_your_connection_title"
         android:textColor="@android:color/white"
         android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
         android:fontFamily="sans-serif-black"
@@ -76,6 +73,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSubtitle"
+        android:maxLines="3"
         android:text="@string/btn_start_vpn"
         android:id="@+id/btnStart"
         android:layout_width="wrap_content"
@@ -85,8 +83,7 @@
         android:paddingLeft="@dimen/button_horizontal_large_margin"
         android:paddingRight="@dimen/button_horizontal_large_margin"
         android:paddingTop="@dimen/activity_horizontal_margin"
-        android:paddingBottom="@dimen/activity_horizontal_margin"
-        />
+        android:paddingBottom="@dimen/activity_horizontal_margin" />
 
     <TextView
         android:id="@+id/tvConfigure"
@@ -98,9 +95,7 @@
         android:text="@string/btn_configure"
         android:layout_marginTop="24dp"
         android:textAllCaps="true"
-        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-
-        />
+        android:textAppearance="@style/TextAppearance.Material3.BodySmall" />
 
     <ListView
         android:drawSelectorOnTop="true"
@@ -115,5 +110,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/lvConnected"/>
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

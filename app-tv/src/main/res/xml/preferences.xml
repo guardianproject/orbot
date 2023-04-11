@@ -1,11 +1,15 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="@string/pref_general_group">
+    <PreferenceCategory android:title="@string/pref_general_group"
+        android:iconSpaceReserved="false"
+        >
         <ListPreference
             android:key="pref_default_locale"
             android:title="@string/set_locale_title"
             android:enabled="true"
-            android:selectable="true" />
+            android:selectable="true"
+
+            />
 
         <CheckBoxPreference
             android:defaultValue="true"

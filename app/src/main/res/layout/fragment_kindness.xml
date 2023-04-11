@@ -5,9 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/button_horizontal_large_margin"
-    >
-
+    android:layout_marginBottom="@dimen/button_horizontal_large_margin">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,16 +14,14 @@
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/panel_kindness_activate"
         android:visibility="gone"
-        android:alpha="0"
-        >
+        android:alpha="0">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivHeart"
-            android:clickable="true"
-            >
+            android:clickable="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -72,13 +68,8 @@
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
                     android:textColor="@android:color/darker_gray"
-
-
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-
-
-                    />
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
 
                 <Button
@@ -107,8 +98,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/panel_kindness_status"
         android:visibility="gone"
-        android:alpha="0"
-        >
+        android:alpha="0">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,8 +111,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginBottom="120dp"
-                >
+                android:layout_marginBottom="120dp">
         <ImageView
             android:id="@+id/ivHeader"
             android:layout_width="140sp"
@@ -130,8 +119,7 @@
             android:src="@drawable/kindness"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            />
+            app:layout_constraintHorizontal_bias="0.5" />
 
         <TextView
             android:id="@+id/tvTitle"
@@ -144,8 +132,7 @@
             android:gravity="center_horizontal"
             android:padding="15dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivHeader"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/ivHeader" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -157,8 +144,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
             android:padding="@dimen/activity_horizontal_margin"
             android:background="@color/panel_widget_background"
-            android:layout_margin="10dp"
-            >
+            android:layout_margin="10dp">
             <TextView
                 android:id="@+id/swVolunteerHeader"
                 android:layout_width="wrap_content"
@@ -174,9 +160,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:showText="false"
                 android:textSize="24dp"
-                android:padding="@dimen/activity_horizontal_margin"
-
-                />
+                android:padding="@dimen/activity_horizontal_margin" />
 
             <TextView
                 android:id="@+id/swVolunteerAdjust"
@@ -204,8 +188,7 @@
             android:orientation="horizontal"
             android:background="@color/panel_widget_background"
             android:layout_margin="10dp"
-            android:id="@+id/volunteer_display_weekly"
-            >
+            android:id="@+id/volunteer_display_weekly">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -214,8 +197,7 @@
                 android:textSize="20dp"
                 android:padding="@dimen/activity_horizontal_margin"
                 android:fontFamily="sans-serif-medium"
-                android:textAllCaps="true"
-                />
+                android:textAllCaps="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -224,9 +206,7 @@
                 android:textSize="24dp"
                 android:padding="@dimen/activity_horizontal_margin"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:fontFamily="sans-serif-medium"
-
-                />
+                android:fontFamily="sans-serif-medium" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -237,8 +217,7 @@
             app:layout_constraintTop_toBottomOf="@+id/volunteer_display_weekly"
             android:orientation="horizontal"
             android:background="@color/panel_widget_background"
-            android:layout_margin="10dp"
-            >
+            android:layout_margin="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -247,9 +226,7 @@
                 android:textSize="20dp"
                 android:padding="@dimen/activity_horizontal_margin"
                 android:textAllCaps="true"
-                android:fontFamily="sans-serif-medium"
-
-                />
+                android:fontFamily="sans-serif-medium" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -258,9 +235,7 @@
                 android:textSize="24dp"
                 android:padding="@dimen/activity_horizontal_margin"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:fontFamily="sans-serif-medium"
-
-                />
+                android:fontFamily="sans-serif-medium" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

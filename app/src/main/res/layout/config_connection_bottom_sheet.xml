@@ -21,8 +21,7 @@
         android:fontFamily="sans-serif-light"
         android:text="@string/many_ways"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvConfigHeader"
-        />
+        app:layout_constraintTop_toBottomOf="@id/tvConfigHeader" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/tvConfigAskTor"
@@ -32,11 +31,11 @@
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:padding="6dp"
-        app:layout_constraintTop_toBottomOf="@id/tvConfigSubHeader"
-        >
+        app:layout_constraintTop_toBottomOf="@id/tvConfigSubHeader">
 
         <TextView style="@style/BottomSheetRadioHeader"
             android:layout_height="wrap_content"
+            android:id="@+id/tvNotSure"
             android:layout_width="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -45,6 +44,7 @@
 
 
         <Button
+            android:maxLines="2"
             android:id="@+id/btnAskTor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,9 +53,10 @@
             android:paddingLeft="@dimen/button_horizontal_med_margin"
             android:paddingRight="@dimen/button_horizontal_med_margin"
             android:text="@string/ask_tor"
+            app:layout_constraintWidth_max="300dp"
             android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

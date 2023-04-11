@@ -18,8 +18,6 @@ public class Prefs {
     private final static String PREF_BRIDGES_LIST = "pref_bridges_list";
     private final static String PREF_DEFAULT_LOCALE = "pref_default_locale";
     private final static String PREF_ENABLE_LOGGING = "pref_enable_logging";
-    private final static String PREF_EXPANDED_NOTIFICATIONS = "pref_expanded_notifications";
-    private final static String PREF_PERSIST_NOTIFICATIONS = "pref_persistent_notifications";
     private final static String PREF_START_ON_BOOT = "pref_start_boot";
     private final static String PREF_ALLOW_BACKGROUND_STARTS = "pref_allow_background_starts";
     private final static String PREF_OPEN_PROXY_ON_ALL_INTERFACES = "pref_open_proxy_on_all_interfaces";
@@ -140,10 +138,6 @@ public class Prefs {
         return prefs.getBoolean(PREF_BE_A_SNOWFLAKE_LIMIT_CHARGING,false);
     }
 
-    public static boolean showExpandedNotifications() {
-        return prefs.getBoolean(PREF_EXPANDED_NOTIFICATIONS, true);
-    }
-
     public static boolean useDebugLogging() {
         return prefs.getBoolean(PREF_ENABLE_LOGGING, false);
     }
@@ -226,7 +220,4 @@ public class Prefs {
         return prefs.getBoolean(PREF_POWER_USER_MODE, false);
     }
 
-    public static boolean onboardPending() {
-        return prefs.getBoolean("connect_first_time", true);
-    }
 }

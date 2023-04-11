@@ -33,12 +33,24 @@ class Languages private constructor(activity: Activity) {
                 Locale.ITALIAN, Locale.JAPANESE, Locale.KOREAN,
                 Locale.TRADITIONAL_CHINESE, Locale.SIMPLIFIED_CHINESE,
                 TIBETAN, Locale("af"), Locale("am"),
-                Locale("ar"), Locale("ay"), Locale("az"), Locale("bg"),
+                Locale("ar"), Locale("ay"), Locale("az"),
+            Locale("bg"),Locale("be"),Locale("bn","BD"),
+            Locale("bn","IN"),
                 Locale("bn"), Locale("ca"), Locale("cs"),
                 Locale("da"), Locale("el"), Locale("es"),
+                Locale("es", "MX"),
+            Locale("es", "AR"),
+                Locale("en","GB"),
+                Locale("eo"),
                 Locale("et"), Locale("eu"), Locale("fa"),
-                Locale("fi"), Locale("gl"), Locale("hi"),
-                Locale("hr"), Locale("hu"), Locale("hy"),
+            Locale("fr"),
+                Locale("fi"), Locale("gl"),
+            Locale("gu"),
+            Locale("guc"),
+            Locale("gum"),
+            Locale("hi"),
+                Locale("hr"), Locale("hu"), Locale("hy","AM"),
+            Locale("ia"),
                 Locale("in"), Locale("hy"), Locale("in"),
                 Locale("is"), Locale("it"), Locale("iw"),
                 Locale("ka"), Locale("kk"), Locale("km"),
@@ -46,10 +58,15 @@ class Languages private constructor(activity: Activity) {
                 Locale("lt"), Locale("lv"), Locale("mk"),
                 Locale("ml"), Locale("mn"), Locale("mr"),
                 Locale("ms"), Locale("my"), Locale("nb"),
-                Locale("ne"), Locale("nl"), Locale("pl"),
+                Locale("ne"), Locale("nl"),
+            Locale("pa"),
+            Locale("pbb"),
+
+            Locale("pl"),
+            Locale("pt","BR"),
                 Locale("pt"), Locale("rm"), Locale("ro"),
-                Locale("ru"), Locale("si"), Locale("sk"),
-                Locale("sl"), Locale("sn"), Locale("sr"),
+                Locale("ru"), Locale("si","LK"), Locale("sk"),
+                Locale("sl"), Locale("sn"), Locale("sq"), Locale("sr"),
                 Locale("sv"), Locale("sw"), Locale("ta"),
                 Locale("te"), Locale("th"), Locale("tl"),
                 Locale("tr"), Locale("uk"), Locale("ur"),
@@ -161,8 +178,18 @@ class Languages private constructor(activity: Activity) {
                 tmpMap[Locale.SIMPLIFIED_CHINESE.toString()] = "中文 (中国)" // Chinese (China)
             } else if (locale == Locale.TRADITIONAL_CHINESE) {
                 tmpMap[Locale.TRADITIONAL_CHINESE.toString()] = "中文 (台灣)" // Chinese (Taiwan)
-            } else {
-                tmpMap[locale.toString()] = locale.getDisplayLanguage(locale)
+            }
+            else if (locale.language.equals("pbb")) {
+                tmpMap["pbb"] = "Páez"
+            }
+            else if (locale.language.equals("gum")) {
+                tmpMap["gum"] = "Guambiano"
+            }
+            else if (locale.language.equals("guc")) {
+                tmpMap["guc"] = "Wayuu"
+            }
+            else {
+                tmpMap[locale.toString()] = locale.getDisplayLanguage(locale) + " " + locale.getDisplayCountry(locale)
             }
         }
 

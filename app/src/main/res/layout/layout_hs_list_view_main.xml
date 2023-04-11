@@ -30,14 +30,14 @@
 
         <RadioButton
             android:id="@+id/radioUserServices"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClick"
             android:text="@string/user_services" />
 
         <RadioButton
             android:id="@+id/radioAppServices"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClick"
             android:text="@string/app_services" />
@@ -46,5 +46,5 @@
     <ListView
         android:id="@+id/onion_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
 </LinearLayout>

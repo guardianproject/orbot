@@ -1,7 +1,7 @@
 package org.torproject.android
 
+import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +13,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import org.torproject.android.OrbotActivity.Companion.REQUEST_CODE_SETTINGS
 import org.torproject.android.OrbotActivity.Companion.REQUEST_VPN_APP_SELECT
-import org.torproject.android.core.ui.SettingsPreferencesActivity
+import org.torproject.android.core.ui.SettingsActivity
+import org.torproject.android.core.ui.SettingsPreferencesFragment
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.OrbotService
 import org.torproject.android.ui.*
@@ -37,6 +38,12 @@ class MoreFragment : Fragment() {
 
     private lateinit var lvMore : ListView;
 
+
+    var httpPort = -1
+    var socksPort = -1
+
+    private lateinit var tvStatus : TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -45,17 +52,51 @@ class MoreFragment : Fragment() {
         }
     }
 
+    override fun onAttach(activity: Activity) {
+        super.onAttach(activity)
+        (activity as OrbotActivity).fragMore = this
+    }
+
+
+    fun setPorts (newHttpPort : Int, newSocksPort: Int) {
+        httpPort = newHttpPort
+        socksPort = newSocksPort
+
+        updateStatus()
+    }
+
+    fun updateStatus () {
+        var sb = java.lang.StringBuilder()
+
+        sb.append(getString(R.string.proxy_ports)).append(" ")
+
+        if (httpPort != -1 && socksPort != -1) {
+            sb.append("HTTP:").append(httpPort).append(" ").append(" SOCKS:").append(socksPort)
+        }
+        else
+        {
+            sb.append("none")
+        }
+
+        sb.append("\n\n")
+
+        val manager = requireActivity().packageManager
+        val info = manager.getPackageInfo(requireActivity().packageName, PackageManager.GET_ACTIVITIES)
+        sb.append(getString(R.string.app_name)).append(" ").append(info.versionName).append("\n")
+        sb.append("Tor v").append(getTorVersion())
+
+        tvStatus.text = sb.toString()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_more, container, false)
+        tvStatus = view.findViewById<TextView>(R.id.tvVersion)
 
-        val tvVersion = view.findViewById<TextView>(R.id.tvVersion)
-        tvVersion.text = "Tor v" + getTorVersion()
-
-
+        updateStatus()
         lvMore = view.findViewById(R.id.lvMoreActions)
 
         val listItems = arrayListOf(
@@ -65,7 +106,9 @@ class MoreFragment : Fragment() {
                 activity?.startActivityForResult(Intent(requireActivity(), AppManagerActivity::class.java), REQUEST_VPN_APP_SELECT)
             },
             OrbotMenuAction(R.string.menu_settings, R.drawable.ic_settings_gear) {
-                activity?.startActivityForResult(SettingsPreferencesActivity.createIntent(requireActivity(), R.xml.preferences), REQUEST_CODE_SETTINGS)
+
+              //  activity?.startActivityForResult(SettingsPreferencesFragment.createIntent(requireActivity(), R.xml.preferences), REQUEST_CODE_SETTINGS)
+                activity?.startActivityForResult(Intent(context, SettingsActivity::class.java), REQUEST_CODE_SETTINGS)
                                                                                  },
             OrbotMenuAction(R.string.menu_log, R.drawable.ic_log) { showLog()},
             OrbotMenuAction(R.string.menu_about, R.drawable.ic_about) { AboutDialogFragment()

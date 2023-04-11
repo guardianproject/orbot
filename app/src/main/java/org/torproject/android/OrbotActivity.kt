@@ -25,12 +25,12 @@ import org.torproject.android.ui.v3onionservice.PermissionManager
 
 class OrbotActivity : AppCompatActivity() {
 
-    private lateinit var tvPorts: TextView
   //  private lateinit var torStatsGroup: Group
     private lateinit var bottomNavigationView: BottomNavigationView
 
     private lateinit var logBottomSheet: LogBottomSheet
     lateinit var fragConnect : ConnectFragment
+    lateinit var fragMore : MoreFragment
 
     var previousReceivedTorStatus: String? = null
 
@@ -54,6 +54,8 @@ class OrbotActivity : AppCompatActivity() {
         }
 
         requestNotificationPermission()
+
+        Prefs.initWeeklyWorker()
     }
 
     private fun requestNotificationPermission () {
@@ -164,7 +166,8 @@ class OrbotActivity : AppCompatActivity() {
                 }
                 OrbotConstants.LOCAL_ACTION_LOG -> {
                     intent.getStringExtra(OrbotConstants.LOCAL_EXTRA_BOOTSTRAP_PERCENT)?.let {
-                        fragConnect?.progressBar?.progress = Integer.parseInt(it)
+                        // todo progress bar shouldn't be accessed directly here, *tell* the connect fragment to update
+                        fragConnect.progressBar.progress = Integer.parseInt(it)
                     }
                     intent.getStringExtra(OrbotConstants.LOCAL_EXTRA_LOG)?.let {
                         logBottomSheet.appendLog(it)
@@ -173,7 +176,7 @@ class OrbotActivity : AppCompatActivity() {
                 OrbotConstants.LOCAL_ACTION_PORTS -> {
                     val socks = intent.getIntExtra(OrbotConstants.EXTRA_SOCKS_PROXY_PORT, -1)
                     val http = intent.getIntExtra(OrbotConstants.EXTRA_HTTP_PROXY_PORT, -1)
-//                    if (http > 0 && socks > 0) tvPorts.text = "SOCKS $socks | HTTP $http"
+                    if (http > 0 && socks > 0) fragMore?.setPorts(http, socks)
                 }
                 else -> {}
             }

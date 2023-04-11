@@ -22,14 +22,23 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:id="@+id/ivAction"/>
-        <TextView
+
+        <FrameLayout
+            android:layout_margin="2dp"
             android:visibility="gone"
-            android:textSize="20sp"
-            android:layout_gravity="center|left"
-            android:id="@+id/tvEmoji"
-            android:text="@string/globe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:id="@+id/textContainer"
+            android:layout_width="24dp"
+            android:layout_height="24dp">
+            <TextView
+                android:textAlignment="center"
+                android:textSize="19sp"
+                android:layout_gravity="center"
+                android:id="@+id/tvEmoji"
+                android:text="@string/globe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </FrameLayout>
+
     </FrameLayout>
 
 
@@ -49,12 +58,26 @@
         android:id="@+id/llBoxShortcuts"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:visibility="visible"
-        >
+        android:visibility="visible">
+
+
+
         <LinearLayout
             android:orientation="horizontal"
             android:id="@+id/llBoxShortcutsInner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+                    >
+            <TextView
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:text="@string/full_device_vpn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:id="@+id/llBoxShortcutsText"
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                />
+        </LinearLayout>
     </HorizontalScrollView>
 </LinearLayout>
