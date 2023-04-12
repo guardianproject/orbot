@@ -214,7 +214,6 @@
     <string name="msg_taking_too_long">Isso parece estar demorando demais</string>
     <string name="msg_try_something_else">Tente outra coisa</string>
     <string name="bridge_snowflake_amp">Ligar através de outros utilizadores Tor usando Floco de Neve (Método 2)</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Proxy do floco de neve activado</string>
     <string name="snowflake_proxy_msg_description">Mostre uma mensagem quando o seu floco de neve ajuda alguém a contornar a censura</string>
     <string name="snowflake_proxy_msg_title">Mostrar notificação de ligação</string>
     <string name="strict_nodes_description">Tratar as definições de Excluir Nós como um requisito para a construção de todos os circuitos. Isto pode quebrar a funcionalidade se nenhum circuito for capaz de ser gerado com as suas definições de Excluir Nós.</string>

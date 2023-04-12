@@ -188,7 +188,6 @@
     <string name="use_custom_bridges">Χρήση προσαρμοσμένων γεφυρών</string>
     <string name="in_a_browser">Σε ένα πρόγραμμα περιήγησης, επισκεφθείτε το %s και πατήστε Get Bridges &gt; Just Give Me Bridges!</string>
     <string name="bridge_snowflake_amp">Συνδεθείτε μέσω άλλων χρηστών Tor χρησιμοποιώντας το Snowflake (Μέθοδος 2)</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Ενεργοποιημένος διακομιστής μεσολάβησης Snowflake</string>
     <string name="snowflake_proxy_msg_title">Εμφάνιση ειδοποίησης σύνδεσης</string>
     <string name="paste_bridges">Επικόλληση γεφυρών</string>
     <string name="use_qr_code">Χρήση κώδικα QR</string>

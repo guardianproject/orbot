@@ -189,7 +189,6 @@
     <string name="paste_bridges">Поставяне на мостове</string>
     <string name="snowflake_proxy_msg_title">Известие за връзка</string>
     <string name="bridge_snowflake_amp">Свързване чрез други потребители на Тор с помощта на Снежинка (Метод 2 - AMP)</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Прокси сървърът на Снежинка работи</string>
     <string name="in_a_browser">Посетете %s и докоснете Get Bridges &gt; Just Give Me Bridges!</string>
     <string name="v3_hosted_services">Собствени услуги на Onion</string>
     <string name="consider_enable_battery_optimizations">Собствените услуги не работят, помислете дали да не включите оптимизацията на батерията</string>

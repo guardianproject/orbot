@@ -203,7 +203,6 @@
     <string name="use_qr_code">Kasutage QR-koodi</string>
     <string name="bridge_snowflake">Ühenduse loomine teiste Tori kasutajate kaudu Snowflake\'i abil (meetod 1)</string>
     <string name="bridge_snowflake_amp">Ühenduse loomine teiste Tori kasutajate kaudu Snowflake\'i abil (meetod 2)</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Snowflake proxy lubatud</string>
     <string name="snowflake_proxy_msg_title">Näita ühenduse teadet</string>
     <string name="snowflake_proxy_msg_description">Näita sõnumit, kui sinu lumehelbeke aitab kellelgi tsensuurist mööda minna</string>
     <string name="pref_disable_ipv4_summary">Ütleb väljumistele, et nad ei ühenduksid IPv4-aadressidega</string>

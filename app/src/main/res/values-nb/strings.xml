@@ -189,7 +189,6 @@
     <string name="v3_onion">v3-.onion-domene</string>
     <string name="v3_backup_key">Sikkerhetskopier klient-identitetbekreftelsesnøkkel</string>
     <string name="v3_backup_name_hint">Sikkerhetskopier filnavn …</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Snøflak-mellomtjenermodus påslått</string>
     <string name="snowflake_proxy_msg_title">Vis tilkoblingsmerknad</string>
     <string name="snowflake_proxy_msg_description">Vis en melding når ditt snøflak hjelper noen å omgå sensur</string>
 </resources>

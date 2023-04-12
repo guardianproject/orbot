@@ -112,7 +112,6 @@
     <string name="consider_disable_battery_optimizations">Spustené hostované služby, zvážte vypnutie optimalizácie batérie</string>
     <string name="pref_isolate_dest_summary">Pre každú cieľovú adresu použite iný okruh</string>
     <string name="use_qr_code">Používanie kódu QR</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Povolenie proxy servera Snowflake</string>
     <string name="menu_new_identity">Nová identita</string>
     <string name="enter_characters_from_image">Zadajte znaky z obrázka</string>
     <string name="custom_bridges">Vlastné mosty</string>

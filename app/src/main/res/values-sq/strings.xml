@@ -195,7 +195,6 @@
     <string name="trouble_connecting">Problem për t’u lidhur\?</string>
     <string name="vpn_disabled">VPN e Çaktivizuar</string>
     <string name="menu_new_identity">Identitet i Ri</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Ndërmjetës Snowflake i aktivizuar</string>
     <string name="incorrect_solution">Zgjidhje e Pasaktë</string>
     <string name="bridges_obtained_connecting">Urat u morën! Po lidhet me Tor-in…</string>
     <string name="having_trouble">Keni probleme</string>

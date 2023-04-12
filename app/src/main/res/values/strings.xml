@@ -198,9 +198,8 @@
     <string name="use_qr_code">Use QR Code</string>
     <string name="bridge_snowflake">Connect through other Tor users using Snowflake (Method 1 - Fastly)</string>
     <string name="bridge_snowflake_amp">Connect through other Tor users using Snowflake (Method 2 - AMP)</string>
-    <string name="snowflake_proxy_enabled" formatted="true">Snowflake proxy enabled</string>
     <string name="snowflake_proxy_msg_title">Show Connection Notification</string>
-    <string name="snowflake_proxy_msg_description">Show a message when your snowflake helps someone circumvent censorship</string>
+    <string name="snowflake_proxy_msg_description">Show a message when you help someone circumvent censorship</string>
     <!-- new UX -->
     <string name="volunteer_mode">Kindness Mode</string>
     <string name="secure_your_connection_title">Ready to connect</string>

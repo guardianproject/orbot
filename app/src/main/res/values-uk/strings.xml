@@ -189,7 +189,6 @@
     <string name="deny">Заборонити</string>
     <string name="allow">Дозволити</string>
     <string name="backup_port_exist">Помилка: служба Onion вже використовує порт %s</string>
-    <string name="snowflake_proxy_enabled">Проксі Snowflake увімкнено</string>
     <string name="version">Версія:</string>
     <string name="license">Ліцензія:</string>
     <string name="snowflake_proxy_msg_title">Показувати сповіщення про з’єднання</string>

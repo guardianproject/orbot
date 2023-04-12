@@ -189,7 +189,6 @@
     <string name="kibibyte">КБ</string>
     <string name="deny">Отказать</string>
     <string name="allow">Разрешить</string>
-    <string name="snowflake_proxy_enabled">Режим Snowflake активирован</string>
     <string name="bridge_snowflake_amp">Использовать Snowflake (AMP)</string>
     <string name="connected_title">Подключено</string>
     <string name="btn_configure">Настроить подключение</string>

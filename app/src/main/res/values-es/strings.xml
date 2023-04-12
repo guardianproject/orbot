@@ -195,7 +195,6 @@
     <string name="in_a_browser">En un navegador, visite %s y pulse Obtener puentes &gt; ¡Sólo dame puentes!</string>
     <string name="paste_bridges">Puentes de pasta</string>
     <string name="use_qr_code">Utilizar el código QR</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Proxy Snowflake activado</string>
     <string name="snowflake_proxy_msg_title">Mostrar notificación de conexión</string>
     <string name="snowflake_proxy_msg_description">Muestre un mensaje cuando su copo de nieve ayude a alguien a eludir la censura</string>
     <string name="bridge_snowflake_amp">Conectarse a través de otros usuarios de Tor usando Snowflake (Método 2)</string>

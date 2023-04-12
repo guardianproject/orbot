@@ -199,7 +199,6 @@
     <string name="bridge_snowflake">Snowflakeを使って他のTorユーザーを経由して接続する(方法第1 - Fastly)</string>
     <string name="bridge_snowflake_amp">Snowflakeを使って他のTorユーザーを経由して接続する(方法第2 - AMP)</string>
     <string name="use_custom_bridges">カスタムブリッジの使用</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Snowflakeプロキシが有効</string>
     <string name="snowflake_proxy_msg_description">あなたのsnowflakeが誰かの検閲迂回を助けたら、メッセージを表示する</string>
     <string name="kibibyte">KiB</string>
     <string name="get_bridges_email_request">電子メールによるブリッジのリクエスト</string>

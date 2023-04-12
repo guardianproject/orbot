@@ -145,7 +145,6 @@
     <string name="v3_backup_name_hint">Varmuuskopioi tiedostonimi…</string>
     <string name="v3_backup_key">Varmuuskopioi päätteen todennusavain</string>
     <string name="v3_key_hash">Yksityinen Base32 x25519 -avain</string>
-    <string name="snowflake_proxy_enabled">Snowflake-välityspalvelin on käytössä</string>
     <string name="bridge_snowflake">Yhdistä muiden Tor-käyttäjien välityksellä käyttäen Snowflakea (menetelmä 1 - Nopeasti)</string>
     <string name="paste_bridges">Liitä sillat</string>
     <string name="use_custom_bridges">Käytä omia siltoja</string>

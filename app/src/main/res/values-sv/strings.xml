@@ -208,7 +208,6 @@
     <string name="configure_custom_bridges">Konfigurera anpassade broar</string>
     <string name="use_custom_bridges">Använd anpassade broar</string>
     <string name="in_a_browser">Besök %s i en webbläsare och tryck på Get Bridges &gt; Just Give Me Bridges!</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Snowflake-proxy aktiverad</string>
     <string name="no_thx">Nej tack</string>
     <string name="menu_help_others">Hjälp andra</string>
     <string name="strict_nodes_description">Behandla inställningarna för Exclude Nodes som ett krav för att bygga alla kretsar. Detta kan störa funktionaliteten om inga kretsar kan genereras med dina inställningar för exkluderade noder.</string>

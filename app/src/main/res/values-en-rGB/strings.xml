@@ -130,7 +130,6 @@
     <string name="custom_bridges">Custom Bridges</string>
     <string name="use_custom_bridges">Use Custom Bridges</string>
     <string name="use_qr_code">Use QR Code</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Snowflake proxy enabled</string>
     <string name="snowflake_proxy_msg_title">Show Connection Notification</string>
     <string name="configure_header">Configure your Tor Connection</string>
     <string name="drawer_open">Open</string>

@@ -185,7 +185,6 @@
     <string name="use_qr_code">استفاده از رمز QR</string>
     <string name="paste_bridges">چسباندن پل‌ها</string>
     <string name="configure_custom_bridges">پیکربندی پل‌های سفارشی</string>
-    <string formatted="true" name="snowflake_proxy_enabled">پیشکار اسنوفلیک به کار افتاده</string>
     <string name="pref_prefer_ipv6_summary">اعلام ترجیح نشانی‌های IPv6 به خروجی‌ها</string>
     <string name="refresh_captcha">نوسازی کپچا</string>
     <string name="request_bridges">درخواست پل</string>

@@ -189,7 +189,6 @@
     <string name="menu_about">Apie</string>
     <string name="menu_stop">Sustabdyti</string>
     <string name="app_description">„Orbot“ yra nemokama įgaliotojo serverio programa, kuri leidžia kitoms programoms saugiau naudotis internetu. „Orbot“ naudoja „Tor“, kad užšifruotų jūsų interneto srautą ir paslėptų jį per kelis kompiuterius visame pasaulyje. „Tor“ yra nemokama programinė įranga ir atviras tinklas, padedantis apsisaugoti nuo tinklo stebėjimo, keliančio grėsmę asmens laisvei ir privatumui, konfidencialiai verslo veiklai ir santykiams bei valstybės saugumui, vadinamo srauto analize.</string>
-    <string name="snowflake_proxy_enabled">Įjungtas „Snowflake“ įgaliotasis serveris</string>
     <string name="version">Versija:</string>
     <string name="license">Licencija:</string>
     <string name="secure_your_connection_title">Paruošta prisijungti</string>

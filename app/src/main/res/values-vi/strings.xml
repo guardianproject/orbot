@@ -189,7 +189,6 @@
     <string name="vpn_default_world">Toàn cầu (Tự động)</string>
     <string name="apps_mode">Chế độ VPN</string>
     <string name="get_bridges_email_request">Yêu cầu cầu nối qua Email</string>
-    <string name="snowflake_proxy_enabled">Chế độ proxy Snowflake đang bật</string>
     <string name="version">Phiên bản:</string>
     <string name="license">Giấy phép:</string>
 </resources>

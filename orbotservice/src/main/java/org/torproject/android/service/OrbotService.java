@@ -203,7 +203,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
         else if (mCurrentStatus.equals(STATUS_ON)) {
             title = getString(R.string.status_activated);
             if (IPtProxy.isSnowflakeProxyRunning()) {
-                title += " (" + SNOWFLAKE_EMOJI + " " + snowflakeClientsConnected + ")";
+                // todo now that kindness mode is a whole thing i don't think we should put snowflakes up here ...
+//                title += " (" + SNOWFLAKE_EMOJI + " " + snowflakeClientsConnected + ")";
             }
         }
 
@@ -374,7 +375,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             snowflakeClientsConnected++;
             Prefs.addSnowflakeServed();
             if (!Prefs.showSnowflakeProxyMessage()) return;
-            var  message = String.format(getString(R.string.snowflake_proxy_client_connected_msg), SNOWFLAKE_EMOJI, SNOWFLAKE_EMOJI);
+            var  message = String.format(getString(R.string.snowflake_proxy_client_connected_msg), ONION_EMOJI, ONION_EMOJI);
             new Handler(getMainLooper()).post(() -> Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show());
         });
         logNotice(getString(R.string.log_notice_snowflake_proxy_enabled));

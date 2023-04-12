@@ -190,7 +190,6 @@
     <string name="captcha">Captcha</string>
     <string name="configure_header">Skonfiguruj swoje połączenie Tor</string>
     <string name="bridge_snowflake">Połącz się przez innych użytkowników sieci Tor za pomocą Snowflake (Metoda 2 - Szybko)</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Snowflake Proxy włączone</string>
     <string name="proxy_ports">Porty Proxy</string>
     <string name="drawer_close">Zamknij</string>
     <string name="ports_not_set">Porty nie są ustawione</string>

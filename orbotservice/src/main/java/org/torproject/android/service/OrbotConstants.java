@@ -165,5 +165,5 @@ public interface OrbotConstants {
             "org.briarproject.briar.android" // https://github.com/guardianproject/orbot/issues/474
     );
 
-    String SNOWFLAKE_EMOJI = "❄️";
+    String ONION_EMOJI = "\uD83E\uDDC5";
 }

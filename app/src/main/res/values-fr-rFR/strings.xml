@@ -191,7 +191,6 @@
     <string name="v3_onion">Domaine .onion</string>
     <string name="version">Version :</string>
     <string name="license">Licence :</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Proxy Snowflake activé</string>
     <string name="bridge_snowflake_amp">Se connecter par d’autres utilisateurs de Tor grâce à Snowflake (méthode 2 – AMP)</string>
     <string name="snowflake_proxy_msg_title">Afficher la notification de connexion</string>
     <string name="snowflake_proxy_msg_description">Afficher un message quand votre Snowflake aide quelqu’un à contourner la censure</string>

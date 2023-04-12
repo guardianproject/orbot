@@ -168,7 +168,6 @@
     <string name="connect">Hubungkan</string>
     <string name="next">Lanjutkan</string>
     <string name="solve_captcha">Selesaikan Captcha</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Proksi Snowflake nyala</string>
     <string name="ports_not_set">Porta Tidak Ditetapkan</string>
     <string name="secure_your_connection_title">Siap untuk menghubungkan</string>
     <string name="connected_title">Terhubung</string>

@@ -218,5 +218,4 @@
     <string name="bridge_snowflake">Povežite se prek drugih uporabnikov omrežja Tor z uporabo storitve Snowflake (metoda 1)</string>
     <string name="request_bridges">Zahteva Mostovi</string>
     <string name="in_a_browser">V brskalniku obiščite %s in tapnite Get Bridges &gt; Just Give Me Bridges!</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Omogočen posredniški strežnik Snowflake</string>
 </resources>

@@ -189,7 +189,6 @@
     <string name="deny">Reddet</string>
     <string name="allow">İzin ver</string>
     <string name="backup_port_exist">Hata: Bir Onion hizmeti zaten %s bağlantı noktasını kullanıyor</string>
-    <string name="snowflake_proxy_enabled">Snowflake vekili etkin</string>
     <string name="version">Sürüm:</string>
     <string name="license">Lisans:</string>
     <string name="bridge_snowflake_amp">Snowflake kullanarak diğer Tor kullanıcıları aracılığıyla bağlanın (Yöntem 2 - AMP)</string>

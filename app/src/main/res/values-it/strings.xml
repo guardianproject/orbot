@@ -170,7 +170,6 @@
     <string name="kibibyte">KiB</string>
     <string name="deny">Nega</string>
     <string name="allow">Permetti</string>
-    <string name="snowflake_proxy_enabled">MODALITÀ PROXY SNOWFLAKE ATTIVA</string>
     <string name="bridge_snowflake">Connetti tramite altri peer di Tor (sperimentale)</string>
     <string name="use_qr_code">Usa codice QR</string>
     <string name="paste_bridges">Incolla i bridge</string>

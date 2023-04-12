@@ -211,7 +211,6 @@
     <string name="use_qr_code">Usar código QR</string>
     <string name="bridge_snowflake">Conéctate a través de otros usuarios de Tor usando Snowflake (Método 1 - Rápidamente)</string>
     <string name="bridge_snowflake_amp">Conéctate a través de otros usuarios de Tor usando Snowflake (Método 2 - AMP)</string>
-    <string name="snowflake_proxy_enabled" formatted="true">Proxy de Snowflake Habilitado</string>
     <string name="snowflake_proxy_msg_title">Mostrar notificación de conexión</string>
     <string name="snowflake_proxy_msg_description">Muestra un mensaje cuando tu Snowflake ayuda a alguien a eludir la censura</string>
     <string name="volunteer_mode">Modo Solidario</string>

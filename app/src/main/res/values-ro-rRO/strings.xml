@@ -189,7 +189,6 @@
     <string name="pref_proxy_host_dialog">Introduceți Proxy Host</string>
     <string name="pref_proxy_host_summary">Numele de gazdă al serverului proxy</string>
     <string name="pref_proxy_host_title">Gazdă Proxy de ieșire</string>
-    <string name="snowflake_proxy_enabled">Proxy Snowflake activat</string>
     <string name="version">Versiunea:</string>
     <string name="license">Licență:</string>
     <string name="bridge_snowflake_amp">Conectați-vă prin intermediul altor utilizatori Tor folosind Snowflake (Metoda 2 - AMP)</string>

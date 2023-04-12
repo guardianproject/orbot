@@ -189,7 +189,6 @@
     <string name="deny">Negue</string>
     <string name="allow">Permita</string>
     <string name="backup_port_exist">Erro: Um serviço Onion já está usando a porta %s</string>
-    <string name="snowflake_proxy_enabled">O proxy snowflake está ativado</string>
     <string name="version">Versão:</string>
     <string name="license">Licença:</string>
     <string name="bridge_snowflake_amp">Conecte-se através de outros usuários do Tor usando snowflake (Método 2 - AMP)</string>

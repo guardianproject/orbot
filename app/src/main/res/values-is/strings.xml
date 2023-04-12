@@ -189,7 +189,6 @@
     <string name="v3_hosted_services">Hýstar onion-þjónustur</string>
     <string name="deny">Hafna</string>
     <string name="allow">Leyfa</string>
-    <string name="snowflake_proxy_enabled">Snowflake milliþjónusta virkjuð</string>
     <string name="version">Útgáfa:</string>
     <string name="license">Notkunarleyfi:</string>
     <string name="bridge_snowflake_amp">Tengjast í gegnum aðra Tor-notendur með Snowflake (aðferð 2 - AMP)</string>

@@ -186,7 +186,6 @@
     <string name="paste_bridges">Brücken einfügen</string>
     <string name="version">Version:</string>
     <string name="license">Lizenz:</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Snowflake-Proxy aktiviert</string>
     <string name="snowflake_proxy_msg_description">Eine Meldung anzeigen, wenn Snowflake jemandem hilft, die Zensur zu umgehen</string>
     <string name="in_a_browser">Im Browser %s aufrufen und auf Get Bridges &gt; Just Give Me Bridges tippen!</string>
     <string name="snowflake_proxy_msg_title">Verbindungsbenachrichtigung anzeigen</string>

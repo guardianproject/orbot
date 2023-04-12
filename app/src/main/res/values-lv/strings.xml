@@ -153,7 +153,6 @@
     <string name="configure_custom_bridges">Pielāgotu tiltu konfigurēšana</string>
     <string name="paste_bridges">Ielīmējiet tiltus</string>
     <string name="bridge_snowflake_amp">Savienošanās ar citiem Tor lietotājiem, izmantojot Snowflake (2 metode)</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Ieslēgts Snowflake proxy</string>
     <string name="snowflake_proxy_msg_title">Rādīt savienojuma paziņojumu</string>
     <string name="snowflake_proxy_msg_description">Rādīt ziņu, kad jūsu sniegpārsliņa palīdz kādam apiet cenzūru</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Atvērt starpniekserveri visās saskarnēs</string>
