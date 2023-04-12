@@ -15,6 +15,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.ContextCompat
 import org.torproject.android.service.OrbotConstants
+import org.torproject.android.service.OrbotService
 import org.torproject.android.service.util.Prefs
 import org.w3c.dom.Text
 
@@ -56,6 +57,10 @@ class KindnessFragment : Fragment() {
         swVolunteerMode.setOnCheckedChangeListener { _, isChecked ->
             Prefs.setBeSnowflakeProxy(isChecked)
             showPanelStatus(isChecked)
+            sendIntentToService(
+                Intent(requireActivity(), OrbotService::class.java)
+                    .setAction(OrbotConstants.CMD_SNOWFLAKE_PROXY)
+            )
         }
 
         view.findViewById<TextView>(R.id.swVolunteerAdjust).setOnClickListener {

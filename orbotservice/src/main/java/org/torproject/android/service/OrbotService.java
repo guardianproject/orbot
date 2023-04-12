@@ -60,6 +60,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Random;
 import java.util.StringTokenizer;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
@@ -362,7 +363,10 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var capacity = 1;
         var keepLocalAddresses = false;
         var unsafeLogging = false;
-        var stunUrl = getCdnFront("snowflake-stun");
+        var stunServers = getCdnFront("snowflake-stun").split(",");
+        Random generator = new Random();
+        int randomIndex = generator.nextInt(stunServers.length);
+        var stunUrl = stunServers[randomIndex];
         var relayUrl = getCdnFront("snowflake-relay-url");//"wss://snowflake.bamsoftware.com";
         var natProbeUrl = getCdnFront("snowflake-nat-probe");//"https://snowflake-broker.torproject.net:8443/probe";
         var brokerUrl = getCdnFront("snowflake-target-direct");//https://snowflake-broker.torproject.net/";
@@ -488,6 +492,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
         ifilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
         registerReceiver(mPowerReceiver, ifilter);
 
+        manageSnowflakeProxy ();
+
+    }
+
+    public void manageSnowflakeProxy () {
         if (Prefs.beSnowflakeProxy()) {
 
             if (Prefs.limitSnowflakeProxyingCharging())
@@ -497,8 +506,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
             else if (Prefs.limitSnowflakeProxyingWifi())
             {
                 //check if on wifi
-               ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-               boolean hasWifi = false;
+                ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                boolean hasWifi = false;
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     hasWifi = connMgr.getNetworkCapabilities(connMgr.getActiveNetwork()).hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
@@ -556,7 +565,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
             else
                 enableSnowflakeProxy();
         }
-
     }
 
     protected String getCurrentStatus() {
