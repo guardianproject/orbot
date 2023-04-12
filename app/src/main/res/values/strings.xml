@@ -206,7 +206,6 @@
     <string name="snowflake_proxy_enabled" formatted="true">Snowflake proxy enabled</string>
     <string name="snowflake_proxy_msg_title">Show Connection Notification</string>
     <string name="snowflake_proxy_msg_description">Show a message when your snowflake helps someone circumvent censorship</string>
-
     <!-- new UX -->
     <string name="volunteer_mode">Kindness Mode</string>
     <string name="secure_your_connection_title">Ready to connect</string>

@@ -157,7 +157,7 @@
     <string name="be_a_snowflake_title_limit">Ограничения прокси Snowflake</string>
     <string name="be_a_snowflake_desc">Разрешить другим пользователям подключаться к Tor через ваше устройство. (Невозможно использовать при активации мостов)</string>
     <string name="be_a_snowflake_title">Запустить прокси Snowflake</string>
-    <string name="bridge_snowflake">Использовать Snowflake (метод 1)</string>
+    <string name="bridge_snowflake">Использовать Snowflake</string>
     <string name="use_qr_code">Использовать QR-код</string>
     <string name="paste_bridges">Вставить мосты</string>
     <string name="in_a_browser">В браузере зайдите на сайт %s и нажмите \"Get Bridges\" &gt; \"Just Give Me Bridges\"!</string>
@@ -194,7 +194,7 @@
     <string name="deny">Отказать</string>
     <string name="allow">Разрешить</string>
     <string name="snowflake_proxy_enabled">Режим Snowflake активирован</string>
-    <string name="bridge_snowflake_amp">Использовать Snowflake (метод 2)</string>
+    <string name="bridge_snowflake_amp">Использовать Snowflake (AMP)</string>
     <string name="connected_title">Подключено</string>
     <string name="btn_configure">Настроить подключение</string>
     <string name="trying_to_connect_title">Подключение…</string>
@@ -229,7 +229,7 @@
     <string name="volunteer_mode_label">Режим доброты</string>
     <string name="volunteer_mode_weekly_label">Итого за неделю</string>
     <string name="volunteer_mode_alltime_label">Итого за всё время</string>
-    <string name="snowflake">Snowflake (оригинал)</string>
+    <string name="snowflake">Snowflake</string>
     <string name="get_a_bridge_subtitle">Маскировка вашего трафика. Обходит некоторые блокировки Tor.</string>
     <string name="custom_bridge_subtitle">Скорее всего, это поможет сохранить подключение, даже если Tor будет жёстко заблокирован. Требуется адрес моста от кого-то, кому вы доверяете.</string>
     <string name="custom_bridge">Пользовательский мост</string>
