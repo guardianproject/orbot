@@ -12,8 +12,6 @@
     <string name="status_activated">Prisijungta prie „Tor“ tinklo</string>
     <string name="app_name">Orbot</string>
     <string name="enter_exclude_nodes">Įveskite neįtrauktinus mazgus</string>
-    <string name="be_a_snowflake_desc_limit">Tik tada, kai prietaisas yra prijungtas ir įjungtas „Wi-Fi“</string>
-    <string name="be_a_snowflake_desc">Leiskite kitiems „Tor“ naudotojams prisijungti prie „Tor“ per savo įrenginį. (To negalima naudoti, jei jungiatės kartu su tiltais)</string>
     <string name="pref_disable_ipv4_summary">Nurodo išėjimams nesijungti prie IPv4 adresų</string>
     <string name="pref_prefer_ipv6_summary">Nurodo, kad pirmenybė teikiama IPv6 adresams</string>
     <string name="pref_reduced_circuit_padding_summary">Norėdami sumažinti duomenų ir akumuliatoriaus naudojimą, naudokite žemesnius užpildymo algoritmus</string>
@@ -57,8 +55,6 @@
     <string name="pref_proxy_title">Išeinančio tinklo įgaliotasis serveris (pasirinktinai)</string>
     <string name="pref_start_boot_title">Paleisti „Orbot“ paleidimo metu</string>
     <string name="status_shutting_down">„Orbot“ išsijungia</string>
-    <string name="be_a_snowflake_title_limit">„Snowflake“ įgaliotojo serverio limitai</string>
-    <string name="be_a_snowflake_title">Paleisti „Snowflake“ įgaliotąjį serverį</string>
     <string name="v3_delete_client_authorization_confirm">Naikinti kliento autorizavimą</string>
     <string name="v3_client_auth_activity_title">Kliento autorizacija</string>
     <string name="v3_onion">.onion domenas</string>
@@ -220,7 +216,6 @@
     <string name="msg_taking_too_long">Atrodo, kad tai trunka per ilgai</string>
     <string name="msg_try_something_else">Išbandykite ką nors kita</string>
     <string name="strict_nodes_description">Išskirti mazgų nustatymus vertinkite kaip reikalavimą kuriant visas grandines. Tai gali sutrikdyti funkcionalumą, jei nepavyks sugeneruoti jokių grandinių, naudojant nustatymus Išskirti mazgus.</string>
-    <string name="snowflake_proxy_pref_category">„Snowflake“ įgaliotasis serveris (eksperimentinis)</string>
     <string name="bridge_snowflake_amp">Prisijungimas per kitus „Tor“ naudotojus naudojant „Snowflake“ (2 būdas)</string>
     <string name="snowflake_proxy_msg_title">Rodyti pranešimą apie ryšį</string>
     <string name="snowflake_proxy_msg_description">Parodykite pranešimą, kai jūsų „Snowflake“ padeda kam nors apeiti cenzūrą</string>

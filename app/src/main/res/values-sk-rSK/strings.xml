@@ -38,7 +38,6 @@
     <string name="v3_delete_client_authorization_confirm">Odstránenie autorizácie klienta</string>
     <string name="delete_service">Odstránenie služby</string>
     <string name="in_a_browser">V prehliadači navštívte stránku %s a ťuknite na položky Získať mosty &gt; Len mi daj mosty!</string>
-    <string name="be_a_snowflake_desc_limit">Len keď je zariadenie pripojené k sieti Wi-Fi</string>
     <string name="exit_nodes">Výstupné uzly</string>
     <string name="relays">Relé</string>
     <string name="pref_prefer_ipv6">Uprednostňovanie pripojení IPv6</string>
@@ -114,7 +113,6 @@
     <string name="pref_isolate_dest_summary">Pre každú cieľovú adresu použite iný okruh</string>
     <string name="use_qr_code">Používanie kódu QR</string>
     <string formatted="true" name="snowflake_proxy_enabled">Povolenie proxy servera Snowflake</string>
-    <string name="be_a_snowflake_title_limit">Limity snehovej vločky Proxy</string>
     <string name="menu_new_identity">Nová identita</string>
     <string name="enter_characters_from_image">Zadajte znaky z obrázka</string>
     <string name="custom_bridges">Vlastné mosty</string>
@@ -176,9 +174,7 @@
     <string name="captcha">Captcha</string>
     <string name="request_bridges_from_torproject">Žiadosť o mosty z torproject.org</string>
     <string name="paste_bridges">Vložiť mosty</string>
-    <string name="snowflake_proxy_pref_category">Snehová vločka Proxy (experimentálne)</string>
     <string name="bridge_snowflake_amp">Pripojenie prostredníctvom iných používateľov Tor pomocou aplikácie Snowflake (metóda 2)</string>
-    <string name="be_a_snowflake_title">Spustenie služby Snowflake Proxy</string>
     <string name="snowflake_proxy_msg_title">Zobraziť oznámenie o pripojení</string>
     <string name="snowflake_proxy_msg_description">Zobrazte správu, keď vaša vločka pomôže niekomu obísť cenzúru</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Ak vaša mobilná sieť aktívne blokuje Tor, môžete ako alternatívnu cestu použiť \"Bridge Server\". Vyberte jednu z možností konfigurácie a otestujte…</string>
@@ -223,5 +219,4 @@
     <string name="secure_your_connection_title">Zabezpečenie pripojenia pomocou Tor</string>
     <string name="solve_captcha_instruction">Vyriešte CAPTCHA a požiadajte o mosty.</string>
     <string name="btn_configure">Konfigurácia stránky</string>
-    <string name="be_a_snowflake_desc">Povoľte ostatným používateľom Tor pripojiť sa k Tor prostredníctvom vášho zariadenia. (Toto nie je možné použiť, ak sa pripájate popri mostoch)</string>
 </resources>

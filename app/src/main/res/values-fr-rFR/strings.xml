@@ -175,8 +175,6 @@
     <string name="mebibyte">Mio</string>
     <string name="kibibyte">Kio</string>
     <string name="get_bridges_email_request">Demander des ponts par courriel</string>
-    <string name="be_a_snowflake_desc">Autorisez les autres utilisateurs de Tor de se connecter à Tor à travers votre appareil. (Ceci ne peut pas être utilisé si vous vous connectez le long de ponts)</string>
-    <string name="be_a_snowflake_title">Exécuter le mandataire Snowflake</string>
     <string name="confirm">Confirmer</string>
     <string name="v3_import_auth_private">Importer .auth_private</string>
     <string name="v3_backup_name_hint">Nom du fichier de sauvegarde…</string>
@@ -191,13 +189,10 @@
     <string name="backup_port_exist">Erreur : Un service Onion utilise déjà le port %s</string>
     <string name="v3_backup_key">Sauvegarder la clé d’autorisation client</string>
     <string name="v3_onion">Domaine .onion</string>
-    <string name="be_a_snowflake_desc_limit">Seulement quand l’appareil est branché et sur le Wi-Fi</string>
-    <string name="be_a_snowflake_title_limit">Limites du mandataire Snowflake</string>
     <string name="version">Version :</string>
     <string name="license">Licence :</string>
     <string formatted="true" name="snowflake_proxy_enabled">Proxy Snowflake activé</string>
     <string name="bridge_snowflake_amp">Se connecter par d’autres utilisateurs de Tor grâce à Snowflake (méthode 2 – AMP)</string>
-    <string name="snowflake_proxy_pref_category">Mandataire Snowflake (expérimental)</string>
     <string name="snowflake_proxy_msg_title">Afficher la notification de connexion</string>
     <string name="snowflake_proxy_msg_description">Afficher un message quand votre Snowflake aide quelqu’un à contourner la censure</string>
     <string name="power_user_mode">Mode utilisateur avancé</string>

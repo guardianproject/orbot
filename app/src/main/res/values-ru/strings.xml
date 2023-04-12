@@ -153,11 +153,7 @@
     <string name="pref_http_title">Tor HTTP</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Разрешить пирам Wi-Fi, привязанным устройствам и всем, кто может подключиться к вашему IP, доступ к Tor</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Открыть прокси на всех интерфейсах</string>
-    <string name="be_a_snowflake_desc_limit">Только когда устройство подключено к зарядному устройству и сети Wi-Fi</string>
-    <string name="be_a_snowflake_title_limit">Ограничения прокси Snowflake</string>
-    <string name="be_a_snowflake_desc">Разрешить другим пользователям подключаться к Tor через ваше устройство. (Невозможно использовать при активации мостов)</string>
-    <string name="be_a_snowflake_title">Запустить прокси Snowflake</string>
-    <string name="bridge_snowflake">Использовать Snowflake</string>
+    <string name="bridge_snowflake">Использовать Snowflake (метод 1)</string>
     <string name="use_qr_code">Использовать QR-код</string>
     <string name="paste_bridges">Вставить мосты</string>
     <string name="in_a_browser">В браузере зайдите на сайт %s и нажмите \"Get Bridges\" &gt; \"Just Give Me Bridges\"!</string>
@@ -210,7 +206,6 @@
     <string name="menu_header_learn">Узнать больше</string>
     <string name="btn_use_custom_bridge">Использовать пользовательский мост</string>
     <string name="msg_taking_too_long">Кажется, это займёт очень много времени</string>
-    <string name="snowflake_proxy_pref_category">Прокси Snowflake (экспериментально)</string>
     <string name="snowflake_proxy_msg_title">Показывать уведомление о подключении</string>
     <string name="snowflake_proxy_msg_description">Показывать уведомление, когда ваш Snowflake помогает кому-то обходить цензуру</string>
     <string name="version">Версия:</string>

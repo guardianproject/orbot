@@ -122,7 +122,6 @@
     <string name="pref_prefer_ipv6">Prefer IPv6 connections</string>
     <string name="testing_tor_direct">Testing connection to Tor…</string>
     <string name="paste_bridges">Paste Bridges</string>
-    <string name="be_a_snowflake_desc_limit">Only when device is plugged in and on wifi</string>
     <string name="volunteer_mode_weekly_label">Weekly Total</string>
     <string name="full_device_vpn">Full Device VPN</string>
     <string name="volunteer_mode_label">Kindness Mode</string>
@@ -131,9 +130,6 @@
     <string name="custom_bridges">Custom Bridges</string>
     <string name="use_custom_bridges">Use Custom Bridges</string>
     <string name="use_qr_code">Use QR Code</string>
-    <string name="snowflake_proxy_pref_category">Snowflake Proxy (Experimental)</string>
-    <string name="be_a_snowflake_title">Run Snowflake Proxy</string>
-    <string name="be_a_snowflake_desc">Allow other Tor users to connect to Tor through your device. (This can\'t be used if you connect alongside bridges)</string>
     <string formatted="true" name="snowflake_proxy_enabled">Snowflake proxy enabled</string>
     <string name="snowflake_proxy_msg_title">Show Connection Notification</string>
     <string name="configure_header">Configure your Tor Connection</string>
@@ -227,7 +223,6 @@
     <string name="enter_characters_from_image">Enter text above</string>
     <string name="request_bridges_from_torproject">Request Bridges from torproject.org</string>
     <string name="configure_custom_bridges">Configure Custom Bridges</string>
-    <string name="be_a_snowflake_title_limit">Snowflake Proxy Limits</string>
     <string name="snowflake_proxy_msg_description">Show a message when your snowflake helps someone circumvent censorship</string>
     <string name="strict_nodes_description">Treat Exclude Nodes settings as a requirement for building all circuits. This may break functionality if no circuits are able to be generated with your Exclude Nodes settings.</string>
     <string name="pref_use_expanded_notifications">Display in the notification the country and IP Address of your tor exit node when available</string>

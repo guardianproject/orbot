@@ -203,10 +203,6 @@
     <string name="in_a_browser">Besøg %s i en browser, og tryk på Få broer &gt; Bare giv mig broer!</string>
     <string name="paste_bridges">Broer med pasta</string>
     <string name="use_qr_code">Brug QR-kode</string>
-    <string name="snowflake_proxy_pref_category">Snowflake Proxy</string>
-    <string name="be_a_snowflake_title">Kør Snowflake Proxy</string>
-    <string name="be_a_snowflake_title_limit">Snowflake Proxy-grænser</string>
-    <string name="be_a_snowflake_desc_limit">Kun når enheden er tilsluttet og tilsluttet wifi</string>
     <string name="snowflake_proxy_msg_title">Vis meddelelse om forbindelse</string>
     <string name="snowflake_proxy_msg_description">Vis en besked, når din snefnug hjælper nogen med at omgå censuren</string>
     <string name="pref_http_dialog">Konfiguration af HTTP-port</string>
@@ -222,6 +218,5 @@
     <string name="pref_connection_padding_summary">Aktiverer altid forbindelsespolstring for at beskytte mod visse former for trafikanalyse. Standard: auto</string>
     <string name="pref_connection_padding">Polstring af forbindelsen</string>
     <string name="trouble_connecting">Har du problemer med at oprette forbindelse\?</string>
-    <string name="be_a_snowflake_desc">Tillad andre Tor-brugere at oprette forbindelse til Tor via din enhed. (Dette kan ikke bruges, hvis du opretter forbindelse ved siden af broer)</string>
     <string name="request_bridges_from_torproject">Anmodning om broer fra torproject.org</string>
 </resources>

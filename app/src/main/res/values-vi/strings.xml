@@ -111,8 +111,6 @@
     <string name="allow">Cho phép</string>
     <string name="hidden_service_request">Một ứng dụng muốn mở máy chủ onion ở cổng %1$s vào mạng Tor. Việc này là an toàn nếu bạn tin tưởng ứng dụng đó.</string>
     <string name="wizard_details_msg">Orbot là một ứng dụng mã nguồn mở chứa Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, LibEvent. Nó cung cấp một proxy HTTP cục bộ (8118) và một proxy SOCKS (9050) vào mạng Tor.</string>
-    <string name="be_a_snowflake_desc">Cho phép những người dùng Tor khác kết nối đến Tor qua thiết bị của bạn</string>
-    <string name="be_a_snowflake_title">Chạy proxy Snowflake</string>
     <string name="bridge_snowflake">Kết nối qua các thiết bị Tor ngang hàng khác (thử nghiệm)</string>
     <string name="use_qr_code">Sử dụng mã QR</string>
     <string name="paste_bridges">Dán các cầu nối</string>
@@ -191,8 +189,6 @@
     <string name="vpn_default_world">Toàn cầu (Tự động)</string>
     <string name="apps_mode">Chế độ VPN</string>
     <string name="get_bridges_email_request">Yêu cầu cầu nối qua Email</string>
-    <string name="be_a_snowflake_desc_limit">Chỉ khi thiết bị đang sạc và có Wi-Fi</string>
-    <string name="be_a_snowflake_title_limit">Giới hạn Proxy Snowflake</string>
     <string name="snowflake_proxy_enabled">Chế độ proxy Snowflake đang bật</string>
     <string name="version">Phiên bản:</string>
     <string name="license">Giấy phép:</string>

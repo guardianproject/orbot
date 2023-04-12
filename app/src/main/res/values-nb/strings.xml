@@ -180,7 +180,6 @@
     <string name="allow">Tillat</string>
     <string name="license">Lisens:</string>
     <string name="version">Versjon:</string>
-    <string name="snowflake_proxy_pref_category">Snøflak-mellomtjener (eksperimentelt)</string>
     <string name="v3_delete_client_authorization_confirm">Slett klientidentitetsbekreftelse</string>
     <string name="v3_client_auth_activity_title">Klient-identitetsbekreftelse</string>
     <string name="v3_delete_client_authorization">Slett klientidentitetbekreftelsesnøkkel</string>
@@ -190,9 +189,6 @@
     <string name="v3_onion">v3-.onion-domene</string>
     <string name="v3_backup_key">Sikkerhetskopier klient-identitetbekreftelsesnøkkel</string>
     <string name="v3_backup_name_hint">Sikkerhetskopier filnavn …</string>
-    <string name="be_a_snowflake_title">Kjør Snøflak-mellomtjener</string>
-    <string name="be_a_snowflake_desc">Tillat andre Tor-brukere å koble til Tor gjennom din enhet. (dette kan ikke brukes hvis du kobler til over broer)</string>
-    <string name="be_a_snowflake_title_limit">Grenser for Snøflak-mellomtjener</string>
     <string formatted="true" name="snowflake_proxy_enabled">Snøflak-mellomtjenermodus påslått</string>
     <string name="snowflake_proxy_msg_title">Vis tilkoblingsmerknad</string>
     <string name="snowflake_proxy_msg_description">Vis en melding når ditt snøflak hjelper noen å omgå sensur</string>

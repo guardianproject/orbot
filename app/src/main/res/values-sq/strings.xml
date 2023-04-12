@@ -70,7 +70,6 @@
     <string name="testing_tor_direct_success">Sukses. Lidhja me Tor-in është e mirë!</string>
     <string name="bridge_direct_connect">Lidhu drejt e me Tor-in (Më e mira)</string>
     <string name="bridge_cloud">Lidhu përmes shërbyesish në re</string>
-    <string name="be_a_snowflake_title">Vini në punë Ndërmjetësin Snowflake</string>
     <string name="onion">.onion</string>
     <string name="configure_custom_bridges">Formësoni Ura Vetjake</string>
     <string name="use_custom_bridges">Përdorni Ura Vetjake</string>
@@ -151,8 +150,6 @@
     <string name="custom_bridges">Ura Vetjake</string>
     <string name="in_a_browser">Që nga një shfletues, vizitoni %s dhe prekni Merrni ura &gt; Thjesht Më Jepni Ura!</string>
     <string name="use_qr_code">Përdorni kod QR</string>
-    <string name="snowflake_proxy_pref_category">Ndërmjetës Snowflake (Eksperimental)</string>
-    <string name="be_a_snowflake_title_limit">Kufij të Ndërmjetësit Snowflake</string>
     <string name="deny">Mohoje</string>
     <string name="kibibyte">KiB</string>
     <string name="newnym">Kaluat te një identitet i ri Tor!</string>
@@ -227,7 +224,6 @@
     <string name="custom_bridge_description">Një urë vetjake jepet nga dikush që e njihni. Pyetni mes rrjeteve dhe enteve tuaj të besuar, për të parë nëse dikush strehon të tillë.</string>
     <string name="app_suggested_subtitle">Më mirë se me gjithçka tjetër, Orbot-i funksionon me aplikacione shkëmbimi mesazhesh dhe mediash shoqërore.</string>
     <string name="secure_your_connection_subtitle">Fshihini aplikacione mbikëqyrjes së rrjetit dhe përfitoni hyrje kur janë të bllokuar.</string>
-    <string name="be_a_snowflake_desc">Lejojuni përdoruesve të tjerë të Tor-it të lidhen me Tor-in përmes pajisjes suaj. (Kjo s’mund të përdoret, nëse lidheni tok me ura)</string>
     <string name="volunteer_mode">Mënyra Dashamirësi</string>
     <string name="volunteer_mode_label">Mënyra Dashamirësi</string>
     <string name="snowflake_subtitle">Lidhuni përmes vullnetarësh Tor. Anashkalohen disa bllokime Tor-i.</string>
@@ -249,7 +245,6 @@
     <string name="consider_disable_battery_optimizations">Me shërbime të strehuara në funksionim, shihni mundësinë e çaktivizimit të optimizimeve të baterisë</string>
     <string name="pref_disable_ipv4_summary">U thotë daljeve të mos lidhen me adresa IPv4</string>
     <string name="bridge_snowflake_amp">Lidhuni përmes përdoruesish të tjerë të Tor-it, duke përdorur Snowflake (Metoda 1 - AMP)</string>
-    <string name="be_a_snowflake_desc_limit">Vetëm kur pajisja është në prizë dhe në wifi</string>
     <string name="snowflake_proxy_msg_description">Shfaqni një mesazh kur Snowflake-u juaj ndihmon dikë të anashkalojë censurim</string>
     <string name="having_trouble_subtitle">Më pas mund të provojmë një urë Tor, por do të na duhet ndihma juaj</string>
     <string name="pref_allow_background_starts_title">Lejo Nisje Në Prapaskenë</string>

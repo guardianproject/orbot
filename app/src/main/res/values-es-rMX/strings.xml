@@ -84,7 +84,6 @@
     <string name="consider_enable_battery_optimizations">No hay servicios alojados en ejecución, considera habilitar optimizaciones de batería</string>
     <string name="menu_new_identity">Nueva identidad</string>
     <string name="request_bridges_from_torproject">Solicita puentes de torproject.org</string>
-    <string name="be_a_snowflake_desc">Permite que otros usuarios de Tor se conecten a Tor a través de tu dispositivo. (Esto no se puede usar si te conectas junto a los puentes)</string>
     <string name="secure_your_connection_subtitle">Oculta las aplicaciones de la supervisión de la red y obten acceso cuando estan bloqueadas.</string>
     <string name="btn_change_exit">Cambiar salida</string>
     <string name="pref_circuit_padding_summary">Habilita el relleno de circuito para defenderte contra algunas formas de análisis de tráfico</string>
@@ -210,12 +209,8 @@
     <string name="in_a_browser">En un navegador, visita %s y toca Obtener puentes &gt; ¡Solo dame puentes!</string>
     <string name="paste_bridges">Pegar puentes</string>
     <string name="use_qr_code">Usar código QR</string>
-    <string name="snowflake_proxy_pref_category">Proxy de Snowflake (experimental)</string>
     <string name="bridge_snowflake">Conéctate a través de otros usuarios de Tor usando Snowflake (Método 1 - Rápidamente)</string>
     <string name="bridge_snowflake_amp">Conéctate a través de otros usuarios de Tor usando Snowflake (Método 2 - AMP)</string>
-    <string name="be_a_snowflake_title">Ejecutar proxy de Snowflake</string>
-    <string name="be_a_snowflake_title_limit">Limites del Snowflake Proxy</string>
-    <string name="be_a_snowflake_desc_limit">Solo cuando el dispositivo está enchufado y en wifi</string>
     <string name="snowflake_proxy_enabled" formatted="true">Proxy de Snowflake Habilitado</string>
     <string name="snowflake_proxy_msg_title">Mostrar notificación de conexión</string>
     <string name="snowflake_proxy_msg_description">Muestra un mensaje cuando tu Snowflake ayuda a alguien a eludir la censura</string>

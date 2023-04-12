@@ -149,10 +149,6 @@
     <string name="v3_client_auth_activity_title">Εξουσιοδότηση πελάτη</string>
     <string name="v3_key_hash">x25519 Ιδιωτικό κλειδί σε Base32</string>
     <string name="v3_onion">.onion Τομέας</string>
-    <string name="be_a_snowflake_title">Εκτέλεση Snowflake Proxy</string>
-    <string name="be_a_snowflake_desc">Επιτρέψτε σε άλλους χρήστες του Tor να συνδεθούν στο Tor μέσω της συσκευής σας. (Αυτό δεν μπορεί να χρησιμοποιηθεί αν συνδέεστε παράλληλα με γέφυρες)</string>
-    <string name="be_a_snowflake_title_limit">Όρια μεσολάβησης Snowflake</string>
-    <string name="be_a_snowflake_desc_limit">Μόνο όταν η συσκευή είναι συνδεδεμένη στην πρίζα και στο wifi</string>
     <string name="bridge_snowflake">Συνδεθείτε μέσω άλλων χρηστών Tor χρησιμοποιώντας το Snowflake (Μέθοδος 1)</string>
     <string name="secure_your_connection_title">Ετοιμοι για σύνδεση</string>
     <string name="secure_your_connection_subtitle">Απόκρυψη εφαρμογών από την παρακολούθηση του δικτύου και πρόσβαση σε αυτές όταν είναι μπλοκαρισμένες.</string>
@@ -196,7 +192,6 @@
     <string name="snowflake_proxy_msg_title">Εμφάνιση ειδοποίησης σύνδεσης</string>
     <string name="paste_bridges">Επικόλληση γεφυρών</string>
     <string name="use_qr_code">Χρήση κώδικα QR</string>
-    <string name="snowflake_proxy_pref_category">Χιονονιφάδα μεσολάβησης</string>
     <string name="snowflake_proxy_msg_description">Εμφάνιση μηνύματος όταν η χιονονιφάδα σας βοηθάει κάποιον να παρακάμψει τη λογοκρισία</string>
     <string name="pref_http_title">Tor HTTP</string>
     <string name="pref_http_dialog">Διαμόρφωση θύρας HTTP</string>

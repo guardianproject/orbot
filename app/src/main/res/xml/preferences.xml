@@ -282,15 +282,9 @@
             android:title="@string/pref_disable_network_title" />
 
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/snowflake_proxy_pref_category"
-
+    <PreferenceCategory android:title="@string/volunteer_mode"
         app:iconSpaceReserved="false"
         >
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="pref_be_a_snowflake"
-            android:title="@string/be_a_snowflake_title"
-            android:summary="@string/be_a_snowflake_desc" />
 
         <CheckBoxPreference
             android:defaultValue="false"
@@ -298,11 +292,6 @@
             android:title="@string/snowflake_proxy_msg_title"
             android:summary="@string/snowflake_proxy_msg_description"/>
 
-<!--        <CheckBoxPreference-->
-<!--            android:defaultValue="false"-->
-<!--            android:key="pref_be_a_snowflake_limit"-->
-<!--            android:title="@string/be_a_snowflake_title_limit"-->
-<!--            android:summary="@string/be_a_snowflake_desc_limit" />-->
     </PreferenceCategory>
 
 </PreferenceScreen>

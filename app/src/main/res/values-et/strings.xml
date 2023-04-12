@@ -98,7 +98,6 @@
     <string name="menu_share_bridge">Jaga BridgeQR</string>
     <string name="share_as_qr">Jaga kui QR</string>
     <string name="app_shortcuts">Tor-toega rakendused</string>
-    <string name="be_a_snowflake_desc">Lubage teistel Tor\'i kasutajatel teie seadme kaudu Tor\'iga ühendust luua. (Seda ei saa kasutada, kui ühendute koos sildadega)</string>
     <string name="pref_allow_background_starts_title">Lubage taustakäivitusi</string>
     <string name="pref_allow_background_starts_summary">Lase mis tahes rakendusel Orbotile öelda, et ta käivitab Tori ja sellega seotud teenused</string>
     <string name="version">Versioon:</string>
@@ -202,18 +201,14 @@
     <string name="configure_custom_bridges">Kohandatud sildade konfigureerimine</string>
     <string name="in_a_browser">Külastage brauseris %s ja koputage nuppu Get Bridges &gt; Just Give Me Bridges!</string>
     <string name="use_qr_code">Kasutage QR-koodi</string>
-    <string name="snowflake_proxy_pref_category">Lumehelbeke Proxy</string>
     <string name="bridge_snowflake">Ühenduse loomine teiste Tori kasutajate kaudu Snowflake\'i abil (meetod 1)</string>
     <string name="bridge_snowflake_amp">Ühenduse loomine teiste Tori kasutajate kaudu Snowflake\'i abil (meetod 2)</string>
-    <string name="be_a_snowflake_title">Käivita Snowflake Proxy</string>
-    <string name="be_a_snowflake_title_limit">Snowflake Proxy piirangud</string>
     <string formatted="true" name="snowflake_proxy_enabled">Snowflake proxy lubatud</string>
     <string name="snowflake_proxy_msg_title">Näita ühenduse teadet</string>
     <string name="snowflake_proxy_msg_description">Näita sõnumit, kui sinu lumehelbeke aitab kellelgi tsensuurist mööda minna</string>
     <string name="pref_disable_ipv4_summary">Ütleb väljumistele, et nad ei ühenduksid IPv4-aadressidega</string>
     <string name="request_bridges">Taotlus Sillad</string>
     <string name="request_bridges_from_torproject">Taotlus Bridges alates torproject.org</string>
-    <string name="be_a_snowflake_desc_limit">Ainult siis, kui seade on ühendatud ja wifi sisse lülitatud</string>
     <string name="menu_app_settings">Rakenduse seaded</string>
     <string name="pref_socks_summary">Port, millel Tor pakub oma SOCKS proxy\'d (vaikimisi: 9050 või 0, et keelata)</string>
     <string name="pref_use_expanded_notifications">Kuvage teates riik ja IP-aadress, kui see on saadaval, teie tor väljumissõlme kohta</string>

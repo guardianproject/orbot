@@ -158,7 +158,6 @@
     <string name="kibibyte">КБ</string>
     <string name="mebibyte">МБ</string>
     <string name="bridge_snowflake">Свързване чрез други потребители на Тор с помощта на Снежинка (Метод 1 - Fastly)</string>
-    <string name="be_a_snowflake_desc">Разрешете на други потребители на Тор да се свързват с Тор посредством вашето устройство. (Не може да се използва, ако се използват мостове)</string>
     <string name="snowflake_proxy_msg_description">Показва известие, когато Снежинка помогне на някого да заобиколи цензурата</string>
     <string name="backup_service">Услуга за архивиране <i>(Внимание: така могат да бъдат разкрити настройките на услугата от други приложения)</i></string>
     <string name="wizard_details_msg">Orbot е приложение с отворен код, което съдържа Тор, IPtProxy (Obfs4Proxy, Meek, Снежинка), Go-Tun2Socks и LibEvent. Предоставя тунел на ВЧМ, местен мрежов посредник на HTTP (HTTPS само на порт 8118) и посредник на SOCKS (9050) към мрежата на Тор.</string>
@@ -167,9 +166,6 @@
     <string name="backup_restored">Резервното копие е възстановено</string>
     <string name="start_tor_again_for_finish_the_process">За да завърши процеса пуснете Тор отново</string>
     <string name="confirm_service_deletion">Потвърждаване премахване на услуга</string>
-    <string name="be_a_snowflake_title">Стартиране на прокси сървър на Снежинка</string>
-    <string name="be_a_snowflake_title_limit">Ограничения на прокси сървъра на Снежинка</string>
-    <string name="be_a_snowflake_desc_limit">Само когато устройството се зарежда и използва безжична мрежа</string>
     <string name="pref_http_title">Тор по HTTP</string>
     <string name="pref_http_summary">Порт, на който Тор предлага HTTP прокси (подразбиран: 8118 или 0 за изключване)</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Ако мобилната мрежа актовно спира Тор като алтернатива можете да използвате „BridgeServer“. Изберете от вариантите за настройка и проба…</string>
@@ -191,7 +187,6 @@
     <string name="configure_custom_bridges">Настройка на потребителски мостове</string>
     <string name="custom_bridges">Потребителски мостове</string>
     <string name="paste_bridges">Поставяне на мостове</string>
-    <string name="snowflake_proxy_pref_category">Прокси сървър на Снежинка (експериментално)</string>
     <string name="snowflake_proxy_msg_title">Известие за връзка</string>
     <string name="bridge_snowflake_amp">Свързване чрез други потребители на Тор с помощта на Снежинка (Метод 2 - AMP)</string>
     <string formatted="true" name="snowflake_proxy_enabled">Прокси сървърът на Снежинка работи</string>

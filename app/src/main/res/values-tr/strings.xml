@@ -175,8 +175,6 @@
     <string name="get_bridges_email_request">Köprüleri E-postayla İste</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
-    <string name="be_a_snowflake_desc">Diğer Tor kullanıcılarının aygıtınız üzerinden Tor\'a bağlanmasına izin verin. (Köprülerle birlikte bağlanırsanız bu kullanılamaz)</string>
-    <string name="be_a_snowflake_title">Snowflake Vekil Sunucusu Çalıştır</string>
     <string name="confirm">Onayla</string>
     <string name="v3_import_auth_private">.auth_private içe aktar</string>
     <string name="v3_backup_name_hint">Yedekleme dosyası adı…</string>
@@ -191,12 +189,9 @@
     <string name="deny">Reddet</string>
     <string name="allow">İzin ver</string>
     <string name="backup_port_exist">Hata: Bir Onion hizmeti zaten %s bağlantı noktasını kullanıyor</string>
-    <string name="be_a_snowflake_title_limit">Snowflake Vekil Sınırları</string>
-    <string name="be_a_snowflake_desc_limit">Yalnızca aygıt prize takılı ve kablosuz ağa bağlıysa</string>
     <string name="snowflake_proxy_enabled">Snowflake vekili etkin</string>
     <string name="version">Sürüm:</string>
     <string name="license">Lisans:</string>
-    <string name="snowflake_proxy_pref_category">Snowflake Vekil Sunucusu (Deneysel)</string>
     <string name="bridge_snowflake_amp">Snowflake kullanarak diğer Tor kullanıcıları aracılığıyla bağlanın (Yöntem 2 - AMP)</string>
     <string name="snowflake_proxy_msg_title">Bağlantı Bildirimi Göster</string>
     <string name="snowflake_proxy_msg_description">Snowflake sayesinde birinin sansürü atlatmasına yardımcı olunduğunda bir mesaj göster</string>

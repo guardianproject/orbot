@@ -175,8 +175,6 @@
     <string name="testing_tor_direct">Prófa tengingu við Tor…</string>
     <string name="get_bridges_email_request">Biðja um brýr með tölvupósti</string>
     <string name="mebibyte">MiB</string>
-    <string name="be_a_snowflake_desc">Leyfa öðrum Tor-notendum að tengjast Tor í gegnum tækið þitt. (Þetta er ekki hægt að nota ef þú tengist líka með brúm)</string>
-    <string name="be_a_snowflake_title">Keyra Snowflake-milliþjón</string>
     <string name="backup_port_exist">Villa: Önnur onion-þjónusta er þegar að nota gátt %s</string>
     <string name="confirm">Staðfesta</string>
     <string name="v3_import_auth_private">Flytja inn .auth_private</string>
@@ -192,12 +190,9 @@
     <string name="deny">Hafna</string>
     <string name="allow">Leyfa</string>
     <string name="snowflake_proxy_enabled">Snowflake milliþjónusta virkjuð</string>
-    <string name="be_a_snowflake_desc_limit">Aðeins þegar tækið er tengt við rafmagn og á Wi-Fi neti</string>
-    <string name="be_a_snowflake_title_limit">Takmörk Snowflake-milliþjóns</string>
     <string name="version">Útgáfa:</string>
     <string name="license">Notkunarleyfi:</string>
     <string name="bridge_snowflake_amp">Tengjast í gegnum aðra Tor-notendur með Snowflake (aðferð 2 - AMP)</string>
-    <string name="snowflake_proxy_pref_category">Snowflake milliþjónn (á tilraunastigi)</string>
     <string name="snowflake_proxy_msg_title">Birta tilkynningu um tengingu</string>
     <string name="snowflake_proxy_msg_description">Birta skilaboð þegar Snowflake-tilvikið þitt hjálpar einhverjum að komast framhjá ritskoðun</string>
     <string name="configure_header">Stilla Tor-tenginguna þína</string>

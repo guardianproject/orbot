@@ -171,7 +171,6 @@
     <string name="snowflake_proxy_msg_title">Pokaż powiadomienie o połączeniu</string>
     <string name="app_suggested_subtitle">Orbot działa najlepiej z komunikatorami i aplikacjami mediów społecznościowych.</string>
     <string name="power_user_mode">Tryb użytkownika zaawansowanego</string>
-    <string name="be_a_snowflake_desc">Zezwól innym użytkownikom Tor na łączenie się z Tor przez Twoje urządzenie. (Nie można tego użyć, jeśli łączysz się obok mostów)</string>
     <string name="snowflake_subtitle">Łączy się przez wolontariuszy Tor. Pozwala obejść niektóre blokady sieci Tor.</string>
     <string name="drawer_open">Otwórz</string>
     <string name="volunteer_mode_title">Pomóż innym
@@ -190,7 +189,6 @@
     <string name="v3_delete_client_authorization_confirm">Usuń autoryzację klienta</string>
     <string name="captcha">Captcha</string>
     <string name="configure_header">Skonfiguruj swoje połączenie Tor</string>
-    <string name="snowflake_proxy_pref_category">Snowflake Proxy (eksperymentalne)</string>
     <string name="bridge_snowflake">Połącz się przez innych użytkowników sieci Tor za pomocą Snowflake (Metoda 2 - Szybko)</string>
     <string formatted="true" name="snowflake_proxy_enabled">Snowflake Proxy włączone</string>
     <string name="proxy_ports">Porty Proxy</string>
@@ -246,9 +244,6 @@
     <string name="solve_captcha_instruction">Rozwiąż CAPTCHA, aby poprosić o mostki.</string>
     <string name="refresh_captcha">Odśwież CAPTCHA</string>
     <string name="bridge_snowflake_amp">Połącz się przez innych użytkowników sieci Tor za pomocą Snowflake (Metoda 2 - AMP)</string>
-    <string name="be_a_snowflake_title">Uruchom Proxy Snowflake</string>
-    <string name="be_a_snowflake_desc_limit">Tylko wtedy, gdy urządzenie jest podłączone i włączone Wi-Fi</string>
-    <string name="be_a_snowflake_title_limit">Limity Proxy Snowflake</string>
     <string name="strict_nodes_description">Traktuj ustawienia wykluczonych węzłów jako wymóg dla budowania wszystkich obwodów. Może to spowodować przerwanie funkcjonalności, jeśli żadne obwody nie będą mogły być wygenerowane z twoimi ustawieniami wykluczonych węzłów.</string>
     <string name="confirm">Potwierdź</string>
     <string name="backup_port_exist">Błąd: Usługa Onion używa już portu %s</string>
