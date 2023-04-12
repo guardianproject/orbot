@@ -81,7 +81,7 @@
     <string name="proxy_ports">Porta Ndërmjetësi</string>
     <string name="smart_connect">Lidhje e Mençur (parazgjedhje)</string>
     <string name="direct_connect">Lidhje e drejtpërdrejtë me Tor-in</string>
-    <string name="snowflake">Snowflake</string>
+    <string name="snowflake">Snowflake (Origjinali)</string>
     <string name="get_a_bridge">Merrni një Urë nga Tor (Obfs4)</string>
     <string name="custom_bridge">Urë Vetjake</string>
     <string name="connect">Lidhu</string>
