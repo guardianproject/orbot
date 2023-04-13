@@ -288,4 +288,10 @@
     <string name="pref_isolate_protocol">Isolasi protokol klien</string>
     <string name="pref_isolate_protocol_summary">Gunakan sirkuit yang berbeda untuk setiap protokol penghubungan</string>
     <string name="btn_copy_log">Salin Catatan</string>
+    <string name="setting_padding">Bantalan</string>
+    <string name="setting_debug">Pengawakutuan</string>
+    <string name="menu_kindness">Kebaikan</string>
+    <string name="menu_more">Lainnya</string>
+    <string name="option_only_on_wifi">Hanya pada Wi-Fi</string>
+    <string name="option_only_when_charging">Hanya saat mengisi daya</string>
 </resources>
