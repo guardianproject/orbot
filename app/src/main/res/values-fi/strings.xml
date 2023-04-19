@@ -7,7 +7,6 @@
     <string name="status_shutting_down">Orbot samuu</string>
     <string name="menu_settings">Asetukset</string>
     <string name="menu_log">Loki</string>
-    <string name="menu_start">Käynnistä</string>
     <string name="menu_stop">Pysäytä</string>
     <string name="menu_about">Tietoja</string>
     <string name="main_layout_download">Lataus</string>
