@@ -8,7 +8,6 @@
     <string name="vpn_setup_sub">完全な匿名性ではないが、ファイアウォールを擦り抜けるには役立ちます。</string>
     <string name="action_vpn_choose">アプリを選択</string>
 
-    <string name="hello">こんにちは</string>
     <string name="welcome">モバイル版 Tor へようこそ</string>
 
     <string name="browser_the_internet">期待するとおりにインターネットをブラウズしましょう。</string>
