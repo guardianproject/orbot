@@ -269,7 +269,6 @@
     <string name="ask_tor">Запросить Tor</string>
     <string name="action_use">Использовать</string>
     <string name="asking">ЗАПРОС…</string>
-    <string name="hello_blank_fragment">Пустой фрагмент</string>
     <string name="no_interent_title">Подключиться к интернету</string>
     <string name="no_internet_subtitle">Для использования Orbot необходимо подключение к интернету.</string>
     <string name="kindness_adjust_title">Настройка работы...</string>

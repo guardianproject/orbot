@@ -270,7 +270,6 @@
     <string name="many_ways">Hay muchas formas de conectarse a Tor. Algunas pueden funcionar mejor que otros para ti.</string>
     <string name="action_use">Usar</string>
     <string name="asking">PREGUNTANDO...</string>
-    <string name="hello_blank_fragment">Hola fragmento vacio</string>
     <string name="no_internet_subtitle">Necesitas una conexión a Internet para usar Orbot.</string>
     <string name="kindness_adjust_title">Ajustar cuando se ejecuta...</string>
     <string name="kindess_config_detail">Configura cómo y cuándo tu dispositivo puede actuar como un proxy Snowflake para otros usuarios de Tor.</string>

@@ -274,7 +274,6 @@
     <string name="no_interent_title">Se connecter à l\'internet</string>
     <string name="menu_kindness">La gentillesse</string>
     <string name="option_only_on_wifi">Uniquement sur Wifi</string>
-    <string name="hello_blank_fragment">Bonjour fragment vierge</string>
     <string name="volunteer_mode_label">Mode gentillesse</string>
     <string name="ports_not_set">Ports non définis</string>
     <string name="volunteer_mode">Mode gentillesse</string>

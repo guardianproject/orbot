@@ -246,7 +246,6 @@
     <string name="many_ways">Υπάρχουν πολλοί τρόποι για να φτάσετε στην Tor. Μερικοί μπορεί να λειτουργούν καλύτερα από άλλους για εσάς.</string>
     <string name="action_use">Χρήση</string>
     <string name="asking">ΕΡΩΤΩΝΤΑΣ...</string>
-    <string name="hello_blank_fragment">Γεια σας κενό θραύσμα</string>
     <string name="no_interent_title">Σύνδεση στο διαδίκτυο</string>
     <string name="no_internet_subtitle">Χρειάζεστε σύνδεση στο διαδίκτυο για να χρησιμοποιήσετε το Orbot.</string>
     <string name="action_activate">Ενεργοποίηση</string>

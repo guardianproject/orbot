@@ -270,7 +270,6 @@
     <string name="ask_tor">Pergunte ao Tor</string>
     <string name="action_use">Usar</string>
     <string name="asking">PEDIDO...</string>
-    <string name="hello_blank_fragment">Fragmento \"Hello\" em branco</string>
     <string name="no_interent_title">Conectar à internet</string>
     <string name="kindness_adjust_title">Ajuste quando for executado...</string>
     <string name="no_internet_subtitle">Você precisa de uma conexão com a Internet para usar o Orbot.</string>

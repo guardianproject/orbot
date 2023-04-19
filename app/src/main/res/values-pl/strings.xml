@@ -274,7 +274,6 @@
     <string name="pref_isolate_port_summary">Użyj innego obwodu dla każdego portu docelowego</string>
     <string name="pref_isolate_protocol_summary">Użyj innego obwodu dla każdego protokołu łączącego</string>
     <string name="ask_tor">Zapytaj Tora</string>
-    <string name="hello_blank_fragment">Witaj pusty fragmencie</string>
     <string name="no_interent_title">Podłączenie do Internetu</string>
     <string name="kindess_config_detail">Skonfiguruj, jak i kiedy Twoje urządzenie może działać jako proxy Snowflake dla innych użytkowników Tor.</string>
     <string name="log_copied">Dziennik Skopiowany</string>

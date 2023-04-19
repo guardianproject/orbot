@@ -271,7 +271,6 @@
     <string name="many_ways">There are many ways to reach Tor. Some may work better than others for you.</string>
     <string name="action_use">Use</string>
     <string name="asking">ASKING...</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_internet_subtitle">You need an Internet connection to use Orbot.</string>
     <string name="kindness_adjust_title">Adjust when it runs...</string>
     <string name="kindess_config_detail">Configure how and when your device can act as a Snowflake proxy for other Tor users.</string>

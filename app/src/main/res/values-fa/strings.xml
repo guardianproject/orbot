@@ -272,7 +272,6 @@
     <string name="many_ways">راه‌های زیادی برای اتّصال به تور وجود دارد. برخی ممکن است بهتر از دیگران برای شما کار کنند.</string>
     <string name="action_use">استفاده</string>
     <string name="asking">پرسیدن...</string>
-    <string name="hello_blank_fragment">سلام قطعه خالی</string>
     <string name="no_interent_title">به اینترنت وصل شوید</string>
     <string name="no_internet_subtitle">شما برای استفاده از ربات‌پیازی به اینترنت نیاز دارید.</string>
     <string name="kindness_adjust_title">زمانی که اجرا می‌شود تنظیم کنید...</string>

@@ -271,7 +271,6 @@
     <string name="kindess_config_detail">Määritä miten ja milloin laitteesi voi toimia Snowflake-välityspalvelimena muille Tor-käyttäjille.</string>
     <string name="not_sure">Etkö osaa valita\?</string>
     <string name="many_ways">Tor voidaan tavoittaa monilla tavoilla. Jotkin saattavat sopia sinulle muita paremmin.</string>
-    <string name="hello_blank_fragment">Hei, tyhjä sirpale</string>
     <string name="no_interent_title">Yhdistä Internetiin</string>
     <string name="pref_isolate_protocol">Eristä pääteprotokollat</string>
     <string name="pref_isolate_port">Eristä kohdeportit</string>
