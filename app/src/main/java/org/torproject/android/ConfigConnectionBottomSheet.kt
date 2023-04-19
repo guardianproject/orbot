@@ -1,7 +1,6 @@
 package org.torproject.android
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.telephony.TelephonyManager
@@ -227,27 +226,23 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
 
         circumventionApiBridges?.let {
             if (it.size == circumventionApiIndex) {
-              //  Log.d("bim", "tried all attempts, got nowhere!!!")
                 circumventionApiBridges = null
                 circumventionApiIndex = 0
                 rbDirect.isChecked = true
-                btnAskTor.text = Prefs.PATHWAY_DIRECT
+                btnAskTor.text = getString(R.string.connection_direct)
 
                 return
             }
             val b = it[circumventionApiIndex]!!.bridges
             if (b.type == CircumventionApiManager.BRIDGE_TYPE_SNOWFLAKE) {
-               // Log.d("bim", "trying snowflake")
-                //Prefs.putPrefSmartTrySnowflake(true)
                 Prefs.putConnectionPathway(Prefs.PATHWAY_SNOWFLAKE)
                 rbSnowflake.isChecked = true
-                btnAskTor.text = Prefs.PATHWAY_SNOWFLAKE
+                btnAskTor.text = getString(R.string.connection_snowflake)
 
             } else if (b.type == CircumventionApiManager.BRIDGE_TYPE_OBFS4) {
-              //  Log.d("bim", "trying obfs4 ${b.source}")
 
                 rbCustom.isChecked = true
-                btnAskTor.text = Prefs.PATHWAY_CUSTOM
+                btnAskTor.text = getString(R.string.connection_custom)
 
                 var bridgeStrings = ""
                 b.bridge_strings!!.forEach { bridgeString ->
