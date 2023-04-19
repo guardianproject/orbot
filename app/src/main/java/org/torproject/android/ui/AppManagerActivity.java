@@ -234,7 +234,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         };
     }
 
-    public static ArrayList<TorifiedApp> getApps(Context context, SharedPreferences prefs, ArrayList<String> filterInclude, ArrayList<String> filterRemove) {
+    public static ArrayList<TorifiedApp> getApps(Context context, SharedPreferences prefs, List<String> filterInclude, List<String> filterRemove) {
 
         PackageManager pMgr = context.getPackageManager();
         String tordAppString = prefs.getString(PREFS_KEY_TORIFIED, "");
