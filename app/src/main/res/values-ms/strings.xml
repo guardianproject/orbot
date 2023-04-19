@@ -1,9 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
-    <string name="status_starting_up">Orbot telah dimulakan..</string>
-  <string name="status_activated">Bersambung ke rangkaian Tor</string>
-  <string name="status_shutting_down">Orbot sedang ditutup</string>
   <string name="menu_settings">Tetapan</string>
   <string name="menu_log">Log</string>
     <string name="menu_stop">Henti</string>

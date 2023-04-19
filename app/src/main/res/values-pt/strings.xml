@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="status_starting_up">O Orbot está a iniciar…</string>
-    <string name="status_activated">Conetado à rede Tor</string>
     <string name="menu_settings">Configurações</string>
     <string name="menu_log">Registo</string>
     <string name="menu_stop">Parar</string>
@@ -151,7 +149,6 @@
     <string name="pref_node_configuration_summary">Aqui estão as configurações avançadas que podem reduzir o seu anonimato</string>
     <string name="pref_node_configuration">Configuração do Nó</string>
     <string name="wizard_details_msg">O Orbot é um software de código aberto que contem Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, LibEvent. Ele fornece um proxy local HTTP (8118) e um proxy SOCKS (9050) como acesso a rede Tor. Orbot também tem a habilidade, em aparelhos com acesso root, de enviar todo o trafego de Internet via rede Tor.</string>
-    <string name="status_shutting_down">Orbot está a fechar</string>
     <string name="app_description">Orbot é uma app de proxy livre que capacita outras aplicações a usar a internet com mais segurança. O Orbot usa o Tor para criptografar o seu tráfego na internet e então o esconde \"saltando\" entre uma série de computadores ao redor do mundo. Tor é um software livre e de rede aberta que ajuda a se defender de certas formas de vigilância que ameaçam privacidade e liberdade pessoais, atividades e relações comerciais confidenciais e segurança estatal conhecida como análise de tráfego.</string>
     <string name="bridge_snowflake">Ligar através de outros utilizadores Tor usando o Floco de Neve (Método 1)</string>
     <string name="use_qr_code">Use um Código QR</string>

@@ -1,8 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
-    <string name="status_starting_up">Nagsisimula na ang Orbot…</string>
-  <string name="status_activated">Konektado sa Tor network</string>
   <string name="menu_settings">Settings</string>
   <string name="menu_log">Tala</string>
     <string name="menu_stop">Ihinto</string>

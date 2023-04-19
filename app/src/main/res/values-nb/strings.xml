@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot er et friprog-mellomtjeningsprogram som gjør det mulig for andre programmer å bruke Internett sikrere. Orbot bruker Tor for å kryptere din Internettrafikk, og skjuler da din trafikk ved å sende trafikken gjennom en lang rekke datamaskiner over hele verden. Tor er fri programvare, og et åpent nettverk som hjelper deg å forsvare deg mot en form for nettverksovervåking som truer din personlige frihet og privatliv, konfidensiell bedriftsvirksomhet og relasjoner, og statlig snoking kjent som trafikkanalyse.</string>
-    <string name="status_starting_up">Orbot starter…</string>
-    <string name="status_activated">Koblet til Tor-nettverket</string>
-    <string name="status_shutting_down">Tor-tjenesten avsluttes</string>
     <string name="menu_settings">Innstillinger</string>
     <string name="menu_log">Logg</string>
     <string name="menu_stop">Stopp</string>

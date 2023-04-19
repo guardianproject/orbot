@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot es una aplicación libre de proxy (interpuesto) que faculta a otras aplicaciones para usar Internet de forma más segura. Orbot utiliza Tor para cifrar su tráfico de Internet, y luego lo oculta rebotándolo a través de una serie de computadoras por todo el mundo. Tor es software libre y una red abierta que le ayuda a defenderse contra una forma de vigilancia de red conocida como análisis de tráfico que amenaza la libertad y la privacidad personales, las actividades y relaciones comerciales confidenciales, y la seguridad de estado.</string>
-    <string name="status_starting_up">Orbot está iniciandose…</string>
-    <string name="status_activated">Conectado a la red Tor</string>
-    <string name="status_shutting_down">Orbot cierra</string>
     <string name="menu_settings">Ajustes</string>
     <string name="menu_log">Registro (log)</string>
     <string name="menu_stop">Detener</string>

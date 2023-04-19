@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot </string>
     <string name="app_description">Orbotax proxyn mä wakichawipawa, llikatuq jan lunthatayasiñatakiw yaqha wakichawinakampachar yanapi. Orbotax Toratuqiw uraqpachan luratanak jañ uñjayasiñatak atamirinaktuq jark\'aqi. Torax Software Libre ukhamawa, ukampirus maynin luratanakapa, aruskipatanakapa, amuyunakap jan uñjayasiñatakiw jark\'aqi. </string>
-    <string name="status_starting_up">Orbotax qalltaskiwa…</string>
-    <string name="status_activated">Tor llikatuqir waythapitawa</string>
-    <string name="status_shutting_down">Tor wakichawix jist\'antasiskiwa</string>
     <string name="menu_settings">Mayjt\'ayaña</string>
     <string name="menu_log">Imata</string>
     <string name="menu_stop">Sayt\'ayaña</string>

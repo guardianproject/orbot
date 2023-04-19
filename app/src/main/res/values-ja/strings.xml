@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbotは、他のアプリがインターネットをより安全に使用できるようにする無料のプロキシアプリです。OrbotはTorを使用してインターネットトラフィックを暗号化し、世界中の一連のコンピュータを経由してバウンスすることでそれを隠蔽しています。Torはフリーソフトウェアであり、オープンネットワークです。個人の自由やプライバシー、機密のビジネス活動や関係、国家安全保障を脅かすネットワーク監視の一形態であるトラフィック解析から身を守るのに役立ちます。</string>
-    <string name="status_starting_up">Orbotが開始されています…</string>
-    <string name="status_activated">Torネットワークに接続しました</string>
-    <string name="status_shutting_down">Orbotが終了しています</string>
     <string name="menu_settings">設定</string>
     <string name="menu_log">履歴</string>
     <string name="menu_stop">停止</string>

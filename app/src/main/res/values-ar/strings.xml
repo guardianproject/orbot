@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">اوربوت</string>
     <string name="app_description">اوربوت هو تطبيق الوكيل-البروكسي الحر الذي يمكّن تطبيقات أخرى لاستخدام الإنترنت بأمان أكثر . يُستخدم اوربوت تور لتشفير تحركات مرورك على الإنترنت ، ثم يخفيك ويجعلك وهمي من خلال سلسلة من أجهزة الكمبيوتر في جميع أنحاء العالم . تور هو تطبيق حر وشبكة مفتوحة والتي تساعدك على حماية نفسك من مراقبة الشبكات التي تهدد الحرية الشخصية والخصوصية ، والأنشطة التجارية السرية والعلاقات ، وأمن الدولة والحكومات القمعيّة والتي تستخدم مايعرف باسم تحليل حركة مرور البيانات .</string>
-    <string name="status_starting_up">جاري تشغيل اوربوت…</string>
-    <string name="status_activated">متصل بشبكة تور</string>
-    <string name="status_shutting_down">جاري ايقاف خدمة تور</string>
     <string name="menu_settings">إعدادات</string>
     <string name="menu_log">السجل</string>
     <string name="menu_stop">توقف</string>

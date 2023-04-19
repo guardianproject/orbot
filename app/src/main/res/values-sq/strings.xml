@@ -32,8 +32,6 @@
     <string name="volunteer_status_title">Për hir tuajin sot
 \nështë më mirë.</string>
     <string name="title_choose_apps">Zgjidhni Aplikacione</string>
-    <string name="status_starting_up">Orbot-i po niset…</string>
-    <string name="status_activated">I lidhur me rrjetin Tor</string>
     <string name="allow">Lejoje</string>
     <string name="user_services">Shërbime përdoruesi</string>
     <string name="app_services">Shërbime aplikacionesh</string>
@@ -102,7 +100,6 @@
     <string name="menu_help_others">Ndihmoni të Tjerët</string>
     <string name="menu_app_settings">Rregullime Aplikacioni</string>
     <string name="menu_faq">PBR</string>
-    <string name="status_shutting_down">Orbot-i po fiket</string>
     <string name="menu_log">Regjistër</string>
     <string name="main_layout_upload">Ngarkim</string>
     <string name="menu_scan">Skanoni BridgeQR</string>

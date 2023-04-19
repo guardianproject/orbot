@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot jest darmową aplikacją proxy która wspomaga inne aplikacje do używania internetu bezpiecznie. Orbot używa Tora do szyfrowania Twojego ruchu internetowego i następnie przepuszczania go przez wiele innych komputereów pororzucanych na całym świecie. Tor jest darmowym oprogramowaniem i otwartą siecią która pomaga Tobie w obronie przed monitoringiem sieci która zagrarza osobistej wolności i prywatności, poufnym biznesowym aktywnościom.</string>
-    <string name="status_starting_up">Orbot uruchamia się…</string>
-    <string name="status_activated">Podłączony do sieci Tor</string>
-    <string name="status_shutting_down">Orbot wyłącza się</string>
     <string name="menu_settings">Ustawienia</string>
     <string name="menu_log">Logi</string>
     <string name="menu_stop">Zatrzymaj</string>

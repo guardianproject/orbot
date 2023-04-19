@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot on vabalt kasutatav proxy rakendus, mis võimaldab teistel rakendustel Interneti turvalisemat kasutust. Orbot krüpteerib ja peidab teie Internetiliikluse Tor abil paljude maailma arvutite vahel põrgatades. Tor on vaba tarkvara ja vaba võrgustik mis aitab teil kaitsta oma privaatsust, vabadust, konfidentsiaalset äritegevust, suhteid ja riiklikku julgeolekut arvutivõrgus toimuva liikluse analüüsi eest.</string>
-    <string name="status_starting_up">Orbot käivitub…</string>
-    <string name="status_activated">Ühendatud Tor võrgustikku</string>
-    <string name="status_shutting_down">Orbot lõpetab tegevuse</string>
     <string name="menu_settings">Seaded</string>
     <string name="menu_log">Logi</string>
     <string name="menu_stop">Stopp</string>

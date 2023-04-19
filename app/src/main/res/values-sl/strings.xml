@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="status_starting_up">Orbot se zaganja…</string>
-    <string name="status_activated">Povezan v omrežje Tor</string>
     <string name="menu_settings">Nastavitve</string>
     <string name="menu_log">Dnevnik</string>
     <string name="menu_stop">Ustavi</string>
@@ -81,7 +79,6 @@
     <string name="btn_use_custom_bridge">Uporaba mostu po meri</string>
     <string name="msg_taking_too_long">Zdi se, da to traja dolgo</string>
     <string name="msg_try_something_else">Poskusite kaj drugega</string>
-    <string name="status_shutting_down">Orbot se zapira</string>
     <string name="menu_scan">Skeniranje BridgeQR</string>
     <string name="menu_share_bridge">Skupna raba BridgeQR</string>
     <string name="pref_start_boot_summary">Samodejno zaženite Orbot in povežite Tor, ko se naprava s sistemom Android zažene</string>

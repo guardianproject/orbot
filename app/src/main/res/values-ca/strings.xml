@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">L\'Orbot és una aplicació de servidor intermediari gratuïta que capacita a les altres aplicacions per utilitzar internet de forma més segura. L\'Orbot utilitza Tor per xifrar les vostres comunicacions per Internet i ocultar-les fent-les saltar per una sèrie d\'ordinadors repartits per tot el món. Tor és un programari lliure i una xarxa oberta que us ajuda a defensar-vos d\'un tipus de vigilància a la xarxa que amenaça la llibertat personal i la privadesa, activitats empresarials i relacions confidencials i la seguretat en general, coneguda com anàlisi de trànsit.</string>
-    <string name="status_starting_up">L\'Orbot s\'està iniciant…</string>
-    <string name="status_activated">Esteu connectat a la xarxa Tor</string>
-    <string name="status_shutting_down">El servei Tor s\'està desactivant</string>
     <string name="menu_settings">Preferències</string>
     <string name="menu_log">Registre</string>
     <string name="menu_stop">Atura</string>

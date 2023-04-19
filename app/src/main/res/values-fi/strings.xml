@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot on ilmainen välityspalvelinsovellus, joka tarjoaa muille sovelluksille mahdollisuuden käyttää internetiä turvallisemmin. Orbot käyttää Toria kryptaamaan verkkoliikenteesi ja sitten piilottaa sen kierrättämällä sitä usean tietokoneen kautta ympäri maailman. Tor on vapaa ohjelmisto ja avoin verkosto, jotka auttavat puolustautumaan vapautta ja yksityisyyttä uhkaavalta verkkovalvonnalta ja valtioiden verkonseurannalta sekä suojaamaan salaisia liiketoimintoja ja -yhteyksiä.</string>
-    <string name="status_starting_up">Orbot käynnistyy…</string>
-    <string name="status_activated">Yhdistetty Tor-verkkoon</string>
-    <string name="status_shutting_down">Orbot samuu</string>
     <string name="menu_settings">Asetukset</string>
     <string name="menu_log">Loki</string>
     <string name="menu_stop">Pysäytä</string>

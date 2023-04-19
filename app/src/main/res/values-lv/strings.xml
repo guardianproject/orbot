@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot ir starpniekserveru bezmaksas lietotne, kas sniedz iespēju citām lietotnēm drošāk lietot internetu. Orbot izmanto Tor, lai šifrētu Jūsu interneta datplūsmu, tad to paslēpj, pārsūtot to caur daudziem datoriem visā pasaulē. Tor ir bezmaksas programmatūra un atvērts tīkls, kas palīdz Jums aizsargāties pret tīkla uzraudzības veidu - datplūsmas analīzi -, ar kuras palīdzību tiek apdraudēta personiskā brīvība un privātums, konfidenciālas lietišķas darbības un attiecības, kā arī valsts drošība.  </string>
-    <string name="status_starting_up">Orbot startē…</string>
-    <string name="status_activated">Izveidots savienojums ar tīklu Tor</string>
-    <string name="status_shutting_down">Orbot tiek slēgts</string>
     <string name="menu_settings">Iestatījumi</string>
     <string name="menu_log">Žurnāls</string>
     <string name="menu_stop">Apturēt</string>

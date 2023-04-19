@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot - це безплатний проксі-сервер, який дає змогу іншим застосункам безпечніше користуватися інтернетом. Orbot використовує Tor для шифрування вашого інтернет-трафіку, а потім приховує його, пересилаючи через низку комп\'ютерів по всьому світу. Tor - це вільне програмне забезпечення і відкрита мережа, яка допомагає вам захиститися від форми мережевого стеження, що загрожує особистій свободі і приватності, конфіденційній діловій діяльності та відносинам, а також державній безпеці, відомої як аналіз трафіку.</string>
-    <string name="status_starting_up">Запуск Orbot…</string>
-    <string name="status_activated">Під\'єднано до мережі Tor</string>
-    <string name="status_shutting_down">Orbot вимикається</string>
     <string name="menu_settings">Налаштування</string>
     <string name="menu_log">Журнал</string>
     <string name="menu_stop">Зупинити</string>

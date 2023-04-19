@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot är en gratis proxyapp som möjliggör andra appar att använda internet mer säkert. Orbot använder Tor för att kryptera din internettrafik och döljer den genom att den studsar genom ett antal datorer världen över. Tor är fri programvara och ett öppet nätverk som hjälper dig att skydda dig mot en form av nätverksövervakning som hotar personlig integritet och frihet, hemliga affärsaktiviteter och relationer, och skyddar mot statlig övervakning även kallad trafikanalys.</string>
-    <string name="status_starting_up">Orbot startar…</string>
-    <string name="status_activated">Uppkopplad till Tor-nätverket</string>
-    <string name="status_shutting_down">Orbot stänger ner</string>
     <string name="menu_settings">Inställningar</string>
     <string name="menu_log">Logg</string>
     <string name="menu_stop">Stopp</string>

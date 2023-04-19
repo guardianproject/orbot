@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot е безплатно приложение-посредник, което дава възможност на други приложения да използват интерент по-сигурно. За да шифрова трафика, който се предава интернет Orbot използва Тор, като след това го скрива, препращайки го през няколко компютъра по целия свят. Тор е безплатен софтуер и отворена мрежа, която помага да се предпазите от шпиониране по мрежата, което заплашва свободата и личното пространство, конфиденциални бизнес отношения и връзки, и от вид правителствено следене наречено анализ на трафика.</string>
-    <string name="status_starting_up">Orbot стартира…</string>
-    <string name="status_activated">Има връзка с мрежата на Тор</string>
-    <string name="status_shutting_down">Orbot спира</string>
     <string name="menu_settings">Настройки</string>
     <string name="menu_log">Дневник</string>
     <string name="menu_stop">Спиране</string>

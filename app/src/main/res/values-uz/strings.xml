@@ -1,8 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
-    <string name="status_starting_up">Orbot ishga tushirilmoqda…</string>
-  <string name="status_activated">Tor tarmog\'iga ulangan</string>
     <string name="menu_settings">Moslamalar</string>
     <string name="menu_stop">To‘xtatish</string>
   <string name="menu_about">Dastur haqida</string>

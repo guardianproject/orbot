@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot adalah aplikasi proxy gratis yang membuat aplikasi-aplikasi lainnya dapat terkoneksi dengan internet secara aman. Orbot menggunakan Tor untuk mengenkripsi hubungan internet Anda dan menyalurkannya melewati berbagai komputer di seluruh dunia. Tor adalah software gratis dan layanan terbuka, yang membantu Anda menghindari pengawasan jaringan yang mengancam kebebasan pribadi dan privasi, aktivitas bisnis rahasia dan relasi, serta keamanan negara yang dikenal dengan analisis traffic.</string>
-    <string name="status_starting_up">Orbot sedang memulai…</string>
-    <string name="status_activated">Tersambung ke jaringan Tor</string>
-    <string name="status_shutting_down">Orbot sedang dimatikan</string>
     <string name="menu_settings">Pengaturan</string>
     <string name="menu_log">Log</string>
     <string name="menu_stop">Berhenti</string>

@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Το Orbot είναι μια δωρεάν εφαρμογή μεσολάβησης που επιτρέπει σε άλλες εφαρμογές να χρησιμοποιούν το Διαδίκτυο με περισσότερη ασφάλεια. Το Orbot χρησιμοποιεί τον Tor για την κρυπτογράφηση της διαδικτυακής σας κίνησης και στη συνέχεια την κρύβει αναπηδώντας μέσω μιας σειράς υπολογιστών σε όλο τον κόσμο. Το Tor είναι ελεύθερο λογισμικό και ένα ανοιχτό δίκτυο που σας βοηθά να σταθείτε ενάντια σε μια μορφή επιτήρησης δικτύου που απειλεί την προσωπική ελευθερία και ιδιωτικότητα, εμπιστευτικές επιχειρηματικές δραστηριότητες και σχέσεις, και την κρατική ασφάλεια γνωστή ως traffic analysis.</string>
-    <string name="status_starting_up">Το Orbot ξεκινά</string>
-    <string name="status_activated">Συνδέθηκε στο δίκτυο Tor</string>
-    <string name="status_shutting_down">Η Orbot κλείνει</string>
     <string name="menu_settings">Ρυθμίσεις</string>
     <string name="menu_log">Καταγραφή</string>
     <string name="menu_stop">Διακοπή</string>

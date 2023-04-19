@@ -9,7 +9,6 @@
     <!--TipsAndTricks screen-->
     <!--Transparent Proxy screen-->
     <string name="menu_settings">Nustatymai</string>
-    <string name="status_activated">Prisijungta prie „Tor“ tinklo</string>
     <string name="app_name">Orbot</string>
     <string name="enter_exclude_nodes">Įveskite neįtrauktinus mazgus</string>
     <string name="pref_disable_ipv4_summary">Nurodo išėjimams nesijungti prie IPv4 adresų</string>
@@ -54,7 +53,6 @@
     <string name="copy_address_to_clipboard">Kopijuoti adresą į iškarpinę</string>
     <string name="pref_proxy_title">Išeinančio tinklo įgaliotasis serveris (pasirinktinai)</string>
     <string name="pref_start_boot_title">Paleisti „Orbot“ paleidimo metu</string>
-    <string name="status_shutting_down">„Orbot“ išsijungia</string>
     <string name="v3_delete_client_authorization_confirm">Naikinti kliento autorizavimą</string>
     <string name="v3_client_auth_activity_title">Kliento autorizacija</string>
     <string name="v3_onion">.onion domenas</string>
@@ -91,7 +89,6 @@
     <string name="pref_proxy_type_title">Išeinančio įgaliotojo serverio tipas</string>
     <string name="pref_allow_background_starts_title">Leisti paleisti fone</string>
     <string name="pref_entrance_node_dialog">Įveskite įėjimo mazgus</string>
-    <string name="status_starting_up">„Orbot“ paleidžiama…</string>
     <string name="v3_import_auth_private">Importuoti .auth_private</string>
     <string name="v3_backup_name_hint">Atsarginės kopijos failo pavadinimas…</string>
     <string name="paste_bridges">Įklijuoti tiltus</string>

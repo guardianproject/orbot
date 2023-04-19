@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot là một ứng dụng proxy miễn phí làm cho các ứng dụng khác sử dụng internet một cách bảo mật hơn. Orbot sử dụng Tor để mã hóa lưu lượng Internet rồi ẩn nó bằng cách đưa qua một loạt máy tính trên khắp thế giới. Tor là phần mềm tự do và là một mạng lưới mở giúp bạn chống lại một dạng của sự giám sát trên mạng đe dọa quyền riêng tư và tự do cá nhân, những hoạt động và mối quan hệ bí mật trong kinh doanh, và an ninh tiểu bang được biết đến là phân tích lưu lượng mạng.</string>
-    <string name="status_starting_up">Orbot đang khởi động…</string>
-    <string name="status_activated">Đã kết nối với mạng Tor</string>
-    <string name="status_shutting_down">Đang tắt dịch vụ Tor</string>
     <string name="menu_settings">Cài đặt</string>
     <string name="menu_log">Nhật ký</string>
     <string name="menu_stop">Dừng</string>
