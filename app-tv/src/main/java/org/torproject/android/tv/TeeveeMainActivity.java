@@ -760,8 +760,6 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
 
             imgStatus.setImageResource(R.drawable.toron);
 
-            //lblStatus.setText(getString(R.string.status_activated));
-
             if (autoStartFromIntent) {
                 autoStartFromIntent = false;
                 Intent resultIntent = lastStatusIntent;
