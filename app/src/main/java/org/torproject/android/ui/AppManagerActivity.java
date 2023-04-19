@@ -142,21 +142,23 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
             suggestedApps = getApps(AppManagerActivity.this, mPrefs, alSuggested, null);
 
         final LayoutInflater inflater = getLayoutInflater();
-
-        TorifiedAppWrapper headerSuggested = new TorifiedAppWrapper();
-        headerSuggested.header = getString(R.string.apps_suggested_title);
-        uiList.add(headerSuggested);
-        TorifiedAppWrapper subheaderSuggested = new TorifiedAppWrapper();
-        subheaderSuggested.subheader = getString(R.string.app_suggested_subtitle);
-        uiList.add(subheaderSuggested);
-        for (TorifiedApp app : suggestedApps) {
-            TorifiedAppWrapper taw = new TorifiedAppWrapper();
-            taw.app = app;
-            uiList.add(taw);
+        // only show suggested apps, text, etc and other apps header if there are any suggested apps installed...
+        if (suggestedApps.size() > 0) {
+            TorifiedAppWrapper headerSuggested = new TorifiedAppWrapper();
+            headerSuggested.header = getString(R.string.apps_suggested_title);
+            uiList.add(headerSuggested);
+            TorifiedAppWrapper subheaderSuggested = new TorifiedAppWrapper();
+            subheaderSuggested.subheader = getString(R.string.app_suggested_subtitle);
+            uiList.add(subheaderSuggested);
+            for (TorifiedApp app : suggestedApps) {
+                TorifiedAppWrapper taw = new TorifiedAppWrapper();
+                taw.app = app;
+                uiList.add(taw);
+            }
+            TorifiedAppWrapper headerAllApps = new TorifiedAppWrapper();
+            headerAllApps.header = getString(R.string.apps_other_apps);
+            uiList.add(headerAllApps);
         }
-        TorifiedAppWrapper headerAllApps = new TorifiedAppWrapper();
-        headerAllApps.header = getString(R.string.apps_other_apps);
-        uiList.add(headerAllApps);
         for (TorifiedApp app : allApps) {
             TorifiedAppWrapper taw = new TorifiedAppWrapper();
             taw.app = app;
