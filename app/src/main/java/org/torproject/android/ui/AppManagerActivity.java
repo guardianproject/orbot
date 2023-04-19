@@ -58,7 +58,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     private GridView listAppsAll;
     private ListAdapter adapterAppsAll;
     private ProgressBar progressBar;
-    private ArrayList<String> alSuggested;
+    private List<String> alSuggested;
 
     /**
      * @return true if the app is "enabled", not Orbot, and not in
@@ -81,18 +81,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         progressBar = findViewById(R.id.progressBar);
 
         //need a better way to manage this list
-        alSuggested = new ArrayList<>();
-        alSuggested.add("org.thoughtcrime.securesms");
-        alSuggested.add("com.whatsapp");
-        alSuggested.add("com.instagram.android");
-        alSuggested.add("im.vector.app");
-        alSuggested.add("org.telegram.messenger");
-        alSuggested.add("com.twitter.android");
-        alSuggested.add("com.facebook.orca");
-        alSuggested.add("com.facebook.mlite");
-        alSuggested.add("com.brave.browser");
-        alSuggested.add("org.mozilla.focus");
-
+        alSuggested = VPN_SUGGESTED_APPS;
     }
 
     @Override

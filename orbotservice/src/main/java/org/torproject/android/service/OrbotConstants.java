@@ -168,5 +168,18 @@ public interface OrbotConstants {
             "org.briarproject.briar.android" // https://github.com/guardianproject/orbot/issues/474
     );
 
+    List<String> VPN_SUGGESTED_APPS = Arrays.asList(
+            "org.thoughtcrime.securesms", // Signal
+            "com.whatsapp",
+            "com.instagram.android",
+            "im.vector.app",
+            "org.telegram.messenger",
+            "com.twitter.android",
+            "com.facebook.orca",
+            "com.facebook.mlite",
+            "com.brave.browser",
+            "org.mozilla.focus"
+    );
+
     String ONION_EMOJI = "\uD83E\uDDC5";
 }
