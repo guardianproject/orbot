@@ -130,6 +130,7 @@ public class CustomBridgesActivity extends AppCompatActivity implements TextWatc
                     int urlIdx = results.indexOf("://");
 
                     if (urlIdx != -1) {
+                        //noinspection CharsetObjectCanBeUsed   -- requires API 19, we are 18
                         results = URLDecoder.decode(results, "UTF-8");
                         results = results.substring(urlIdx + 3);
 
