@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot คือแอปพร็อกซีฟรีที่ช่วยเพิ่มประสิทธิภาพให้กับแอปอื่นๆ ให้สามารถใช้งานอินเตอร์เน็ตได้อย่างปลอดภัยมากขึ้น Orbot ใช้ Tor ในการเข้ารหัสการรับส่งข้อมูลทางอินเตอร์เน็ตของคุณและทำการซ่อนข้อมูลโดยการสะท้อนการเชื่อมต่อผ่านกลุ่มของเครื่องคอมพิวเตอร์ทั่วโลก Tor เป็นซอฟท์แวร์ฟรีและเป็นเครือข่ายแบบเปิดที่ช่วยปกป้องคุณจากการสอดส่องเครือข่ายที่คุกคามอิสรภาพและความเป็นส่วนตัวของผู้คน รักษาความลับทางธุรกิจและความสัมพันธ์ และการสร้างความปลอดภัยจากการวิเคราะห์การรับส่งข้อมูล</string>
-    <string name="status_starting_up">Orbot กำลังเริ่มต้น…</string>
-    <string name="status_activated">เชื่อมต่อกับเครือข่าย Tor แล้ว</string>
-    <string name="status_shutting_down">กำลังปิดการทำงาน TorService </string>
     <string name="menu_settings">การตั้งค่า</string>
     <string name="menu_log">บันทึก</string>
     <string name="menu_stop">หยุด</string>

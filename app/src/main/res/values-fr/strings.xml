@@ -2,9 +2,6 @@
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot est une appli libre de serveur mandataire permettant aux applis d’utiliser Internet avec une sécurité accrue. Orbot utilise Tor pour chiffrer votre trafic Internet et le cache ensuite en le relayant au travers d’ordinateurs de par le monde. Tor est un logiciel libre et un réseau ouvert qui vous aide à vous défendre contre une forme de surveillance réseau qui menace la liberté personnelle et la protection des données personnelles, les activités professionnelles confidentielles et les relations, et l’analyse du trafic des gouvernements.</string>
-    <string name="status_starting_up">Orbot démarre…</string>
-  <string name="status_activated">Connecté au réseau Tor</string>
-  <string name="status_shutting_down">TorService est en cours d’extinction</string>
   <string name="menu_settings">Paramètres</string>
   <string name="menu_log">Journal</string>
     <string name="menu_stop">Arrêter</string>

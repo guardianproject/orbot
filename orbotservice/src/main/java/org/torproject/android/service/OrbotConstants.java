@@ -72,6 +72,9 @@ public interface OrbotConstants {
     String ACTION_STOP_VPN = "org.torproject.android.intent.action.STOP_VPN";
     String ACTION_RESTART_VPN = "org.torproject.android.intent.action.RESTART_VPN";
 
+    String ACTION_LOCAL_LOCALE_SET = "org.torproject.android.intent.LOCAL_LOCALE_SET";
+    String EXTRA_LOCALE = "org.torproject.android.intent.extra.LOCALE";
+
 
     String ACTION_UPDATE_ONION_NAMES = "org.torproject.android.intent.action.UPDATE_ONION_NAMES";
 
@@ -165,5 +168,5 @@ public interface OrbotConstants {
             "org.briarproject.briar.android" // https://github.com/guardianproject/orbot/issues/474
     );
 
-    String SNOWFLAKE_EMOJI = "❄️";
+    String ONION_EMOJI = "\uD83E\uDDC5";
 }

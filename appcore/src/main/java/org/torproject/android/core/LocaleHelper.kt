@@ -57,9 +57,7 @@ object LocaleHelper {
         val resources = context.resources
         val configuration = resources.configuration
         configuration.locale = locale
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            configuration.setLayoutDirection(locale)
-        }
+        configuration.setLayoutDirection(locale)
         resources.updateConfiguration(configuration, resources.displayMetrics)
         return context
     }

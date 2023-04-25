@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbotは、他のアプリがインターネットをより安全に使用できるようにする無料のプロキシアプリです。OrbotはTorを使用してインターネットトラフィックを暗号化し、世界中の一連のコンピュータを経由してバウンスすることでそれを隠蔽しています。Torはフリーソフトウェアであり、オープンネットワークです。個人の自由やプライバシー、機密のビジネス活動や関係、国家安全保障を脅かすネットワーク監視の一形態であるトラフィック解析から身を守るのに役立ちます。</string>
-    <string name="status_starting_up">Orbotが開始されています…</string>
-    <string name="status_activated">Torネットワークに接続しました</string>
-    <string name="status_shutting_down">Orbotが終了しています</string>
     <string name="menu_settings">設定</string>
     <string name="menu_log">履歴</string>
     <string name="menu_stop">停止</string>
@@ -199,11 +196,7 @@
     <string name="bridge_snowflake">Snowflakeを使って他のTorユーザーを経由して接続する(方法第1 - Fastly)</string>
     <string name="bridge_snowflake_amp">Snowflakeを使って他のTorユーザーを経由して接続する(方法第2 - AMP)</string>
     <string name="use_custom_bridges">カスタムブリッジの使用</string>
-    <string name="snowflake_proxy_pref_category">Snowflakeプロキシ(実験的)</string>
-    <string name="be_a_snowflake_title">Snowflakeプロキシを実行</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Snowflakeプロキシが有効</string>
     <string name="snowflake_proxy_msg_description">あなたのsnowflakeが誰かの検閲迂回を助けたら、メッセージを表示する</string>
-    <string name="be_a_snowflake_title_limit">Snowflakeプロキシ制限</string>
     <string name="kibibyte">KiB</string>
     <string name="get_bridges_email_request">電子メールによるブリッジのリクエスト</string>
     <string name="v3_client_auth_activity_title">クライアント認証</string>
@@ -215,9 +208,7 @@
     <string name="testing_tor_direct_success">成功しました。Tor接続は良好です!</string>
     <string name="enter_characters_from_image">上のテキストを入力</string>
     <string name="in_a_browser">ブラウザで%sに訪れ、Get Bridges &gt; Just Give Me Bridges!をタップ</string>
-    <string name="be_a_snowflake_desc_limit">デバイスが接続され、wifiに接続されているときのみ</string>
     <string name="snowflake_proxy_msg_title">接続通知を表示</string>
-    <string name="be_a_snowflake_desc">他のTorユーザーがあなたの端末を介してTorに接続することを許可する。(ブリッジと平行して接続する場合は使用できません)</string>
     <string name="volunteer_mode_subtitle">他の人の接続を助ける</string>
     <string name="menu_header_features">特徴</string>
     <string name="v3_onion">.onionドメイン</string>
@@ -282,7 +273,6 @@
     <string name="ask_tor">トールに聞く</string>
     <string name="asking">アスク...</string>
     <string name="kindness_adjust_title"></string>
-    <string name="hello_blank_fragment">ハローブランフレグメント</string>
     <string name="kindess_config_detail">あなたの端末が他のTor利用者用のSnowflakeプロキシとしてどう動作するか、いつ動作するかを設定します。</string>
     <string name="btn_copy_log">ログをコピー</string>
     <string name="setting_padding">パディング</string>

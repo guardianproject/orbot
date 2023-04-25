@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="status_starting_up">O Orbot está a iniciar…</string>
-    <string name="status_activated">Conetado à rede Tor</string>
     <string name="menu_settings">Configurações</string>
     <string name="menu_log">Registo</string>
     <string name="menu_stop">Parar</string>
@@ -151,10 +149,7 @@
     <string name="pref_node_configuration_summary">Aqui estão as configurações avançadas que podem reduzir o seu anonimato</string>
     <string name="pref_node_configuration">Configuração do Nó</string>
     <string name="wizard_details_msg">O Orbot é um software de código aberto que contem Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, LibEvent. Ele fornece um proxy local HTTP (8118) e um proxy SOCKS (9050) como acesso a rede Tor. Orbot também tem a habilidade, em aparelhos com acesso root, de enviar todo o trafego de Internet via rede Tor.</string>
-    <string name="status_shutting_down">Orbot está a fechar</string>
     <string name="app_description">Orbot é uma app de proxy livre que capacita outras aplicações a usar a internet com mais segurança. O Orbot usa o Tor para criptografar o seu tráfego na internet e então o esconde \"saltando\" entre uma série de computadores ao redor do mundo. Tor é um software livre e de rede aberta que ajuda a se defender de certas formas de vigilância que ameaçam privacidade e liberdade pessoais, atividades e relações comerciais confidenciais e segurança estatal conhecida como análise de tráfego.</string>
-    <string name="be_a_snowflake_desc">Permitir que outros utilizadores se liguem ao Tor através do seu dispositivo. (Isto não pode ser usado se se ligar ao longo de pontes)</string>
-    <string name="be_a_snowflake_title">Execute o proxy Snowflake</string>
     <string name="bridge_snowflake">Ligar através de outros utilizadores Tor usando o Floco de Neve (Método 1)</string>
     <string name="use_qr_code">Use um Código QR</string>
     <string name="paste_bridges">Colar as Pontes</string>
@@ -217,13 +212,9 @@
     <string name="btn_use_custom_bridge">Usar ponte personalizada</string>
     <string name="msg_taking_too_long">Isso parece estar demorando demais</string>
     <string name="msg_try_something_else">Tente outra coisa</string>
-    <string name="be_a_snowflake_title_limit">Limites de Proxy do Floco de Neve</string>
-    <string name="be_a_snowflake_desc_limit">Apenas quando o dispositivo está ligado e ligado à rede wifi</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Proxy do floco de neve activado</string>
     <string name="snowflake_proxy_msg_title">Mostrar notificação de ligação</string>
     <string name="snowflake_proxy_msg_description">Mostre uma mensagem quando o seu floco de neve ajuda alguém a contornar a censura</string>
     <string name="strict_nodes_description">Tratar as definições de Excluir Nós como um requisito para a construção de todos os circuitos. Isto pode quebrar a funcionalidade se nenhum circuito for capaz de ser gerado com as suas definições de Excluir Nós.</string>
-    <string name="snowflake_proxy_pref_category">Proxy do Floco de Neve (Experimental)</string>
     <string name="power_user_mode">Modo de utilizador avançado</string>
     <string name="action_activate">Ativar</string>
     <string name="power_user_description">Para utilizadores familiarizados com Tor. Permite que inicie o Orbot sem a configuração VPN e mostra as portas SOCKS e HTTP que estejam abertas</string>

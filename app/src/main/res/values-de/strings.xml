@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot ist eine kostenlose Proxy-App, die andere Apps in die Lage versetzt, das Internet sicherer zu nutzen. Orbot verwendet Tor, um Ihren Traffic im Internet zu verschlüsseln, und verbirgt ihn dann, indem er ihn durch eine Reihe von Computern auf der ganzen Welt hüpfen lässt. Tor ist freie Software und ein offenes Netzwerk, das dabei hilft, sich vor Formen der Netzüberwachung zu schützen, die persönliche Freiheiten und Privatsphäre, vertrauliche Geschäftsaktivitäten und -beziehungen bedrohen, sowie vor Maßnahmen der Staatssicherheit, die als Traffic-Analyse bekannt sind.</string>
-    <string name="status_starting_up">Orbot startet …</string>
-    <string name="status_activated">Verbunden mit dem Tor-Netzwerk</string>
-    <string name="status_shutting_down">Orbot wird heruntergefahren</string>
     <string name="menu_settings">Einstellungen</string>
     <string name="menu_log">Protokoll</string>
     <string name="menu_stop">Stopp</string>
@@ -183,15 +180,9 @@
     <string name="get_bridges_email_request">Brücken via E-Mail anfordern</string>
     <string name="deny">Ablehnen</string>
     <string name="allow">Erlauben</string>
-    <string name="be_a_snowflake_desc_limit">Nur wenn das Gerät angeschlossen und mit WLAN verbunden ist</string>
     <string name="paste_bridges">Brücken einfügen</string>
     <string name="version">Version:</string>
     <string name="license">Lizenz:</string>
-    <string name="snowflake_proxy_pref_category">Snowflake Proxy (Experimentell)</string>
-    <string name="be_a_snowflake_title">Snowflake Proxy betreiben</string>
-    <string name="be_a_snowflake_desc">Anderen Tor-Nutzern erlauben, sich über dein Gerät mit Tor zu verbinden. (Kann nicht verwendet werden, wenn du über Brücken verbunden bist)</string>
-    <string name="be_a_snowflake_title_limit">Grenzen des Snowflake Proxy</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Snowflake-Proxy aktiviert</string>
     <string name="snowflake_proxy_msg_description">Eine Meldung anzeigen, wenn Snowflake jemandem hilft, die Zensur zu umgehen</string>
     <string name="in_a_browser">Im Browser %s aufrufen und auf Get Bridges &gt; Just Give Me Bridges tippen!</string>
     <string name="snowflake_proxy_msg_title">Verbindungsbenachrichtigung anzeigen</string>

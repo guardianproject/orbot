@@ -1,9 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Orbot</string>
-    <string name="status_starting_up">Orbot ŝaltiĝas…</string>
-  <string name="status_activated">Konektita al Tor-reto</string>
-  <string name="menu_settings">Agordoj</string>
+    <string name="menu_settings">Agordoj</string>
   <string name="menu_log">Protokolo</string>
     <string name="menu_stop">Halti</string>
   <string name="menu_about">Pri</string>

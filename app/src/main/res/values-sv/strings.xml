@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot är en gratis proxyapp som möjliggör andra appar att använda internet mer säkert. Orbot använder Tor för att kryptera din internettrafik och döljer den genom att den studsar genom ett antal datorer världen över. Tor är fri programvara och ett öppet nätverk som hjälper dig att skydda dig mot en form av nätverksövervakning som hotar personlig integritet och frihet, hemliga affärsaktiviteter och relationer, och skyddar mot statlig övervakning även kallad trafikanalys.</string>
-    <string name="status_starting_up">Orbot startar…</string>
-    <string name="status_activated">Uppkopplad till Tor-nätverket</string>
-    <string name="status_shutting_down">Orbot stänger ner</string>
     <string name="menu_settings">Inställningar</string>
     <string name="menu_log">Logg</string>
     <string name="menu_stop">Stopp</string>
@@ -159,7 +156,6 @@
     <string name="get_bridges_email_request">Begär broar via e-post</string>
     <string name="v3_hosted_services">Tjänster för värdväxling av lökar</string>
     <string name="v3_onion">.onion-domän</string>
-    <string name="be_a_snowflake_desc_limit">Endast när enheten är inkopplad och på wifi</string>
     <string name="v3_key_hash">x25519 Privat nyckel i Base32</string>
     <string name="v3_delete_client_authorization">Ta bort klientens auktorisationsnyckel</string>
     <string name="v3_client_auth_activity_title">Kundtillstånd</string>
@@ -189,7 +185,6 @@
     <string name="deny">Förneka</string>
     <string name="captcha">Captcha</string>
     <string name="paste_bridges">Klistra in broar</string>
-    <string name="snowflake_proxy_pref_category">Snowflake Proxy</string>
     <string name="bridge_snowflake_amp">Anslut via andra Tor-användare med Snowflake (metod 2)</string>
     <string name="snowflake_proxy_msg_title">Visa meddelande om anslutning</string>
     <string name="snowflake_proxy_msg_description">Visa ett meddelande när din snöflinga hjälper någon att kringgå censuren</string>
@@ -210,16 +205,12 @@
     <string name="configure_custom_bridges">Konfigurera anpassade broar</string>
     <string name="use_custom_bridges">Använd anpassade broar</string>
     <string name="in_a_browser">Besök %s i en webbläsare och tryck på Get Bridges &gt; Just Give Me Bridges!</string>
-    <string name="be_a_snowflake_title">Kör Snowflake Proxy</string>
-    <string name="be_a_snowflake_title_limit">Snowflake Proxy-gränser</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Snowflake-proxy aktiverad</string>
     <string name="no_thx">Nej tack</string>
     <string name="menu_help_others">Hjälp andra</string>
     <string name="strict_nodes_description">Behandla inställningarna för Exclude Nodes som ett krav för att bygga alla kretsar. Detta kan störa funktionaliteten om inga kretsar kan genereras med dina inställningar för exkluderade noder.</string>
     <string name="backup_port_exist">Fel: En Onion-tjänst använder redan port %s</string>
     <string name="use_qr_code">Använd QR-kod</string>
     <string name="bridge_snowflake">Anslut via andra Tor-användare med Snowflake (metod 1)</string>
-    <string name="be_a_snowflake_desc">Tillåt andra Tor-användare att ansluta till Tor via din enhet. (Detta kan inte användas om du ansluter tillsammans med broar)</string>
     <string name="secure_your_connection_title">Redo att ansluta</string>
     <string name="secure_your_connection_subtitle">Dölj appar från nätverksövervakning och få tillgång till dem när de är blockerade.</string>
     <string name="captcha_title">Låt oss veta att du är mänsklig</string>
@@ -240,7 +231,6 @@
     <string name="title_choose_apps">Välj appar</string>
     <string name="action_use">Använd</string>
     <string name="asking">FRÅGAR...</string>
-    <string name="hello_blank_fragment">Hej tomt fragment</string>
     <string name="no_interent_title">Anslut till internet</string>
     <string name="no_internet_subtitle">Du behöver en internetuppkoppling för att använda Orbot.</string>
     <string name="kindness_adjust_title">Justera när det går...</string>

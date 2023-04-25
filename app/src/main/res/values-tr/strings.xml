@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot başka uygulamaların İnterneti daha güvenli olarak kullanmasını sağlayan özgür bir vekil sunucu uygulamasıdır. Orbot, Tor kullanarak İnternet trafiğinizi şifreler ve dünya üzerindeki pek çok farklı bilgisayardan geçirerek gizler. Tor kişisel özgürlüğünüze ve bilgilerinize, gizli ticari işlemlerinize ve ilişkilerinize, devlet güvenliğine karşı tehdit oluşturan ve trafik analizi olarak bilinen ağ izlemelerine karşı koruma sağlayan bir özgür yazılım ve açık ağdır.</string>
-    <string name="status_starting_up">Orbot başlatılıyor…</string>
-    <string name="status_activated">Tor ağına bağlandı</string>
-    <string name="status_shutting_down">Orbot kapatılıyor</string>
     <string name="menu_settings">Ayarlar</string>
     <string name="menu_log">Günlük</string>
     <string name="menu_stop">Durdur</string>
@@ -175,8 +172,6 @@
     <string name="get_bridges_email_request">Köprüleri E-postayla İste</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
-    <string name="be_a_snowflake_desc">Diğer Tor kullanıcılarının aygıtınız üzerinden Tor\'a bağlanmasına izin verin. (Köprülerle birlikte bağlanırsanız bu kullanılamaz)</string>
-    <string name="be_a_snowflake_title">Snowflake Vekil Sunucusu Çalıştır</string>
     <string name="confirm">Onayla</string>
     <string name="v3_import_auth_private">.auth_private içe aktar</string>
     <string name="v3_backup_name_hint">Yedekleme dosyası adı…</string>
@@ -191,12 +186,8 @@
     <string name="deny">Reddet</string>
     <string name="allow">İzin ver</string>
     <string name="backup_port_exist">Hata: Bir Onion hizmeti zaten %s bağlantı noktasını kullanıyor</string>
-    <string name="be_a_snowflake_title_limit">Snowflake Vekil Sınırları</string>
-    <string name="be_a_snowflake_desc_limit">Yalnızca aygıt prize takılı ve kablosuz ağa bağlıysa</string>
-    <string name="snowflake_proxy_enabled">Snowflake vekili etkin</string>
     <string name="version">Sürüm:</string>
     <string name="license">Lisans:</string>
-    <string name="snowflake_proxy_pref_category">Snowflake Vekil Sunucusu (Deneysel)</string>
     <string name="bridge_snowflake_amp">Snowflake kullanarak diğer Tor kullanıcıları aracılığıyla bağlanın (Yöntem 2 - AMP)</string>
     <string name="snowflake_proxy_msg_title">Bağlantı Bildirimi Göster</string>
     <string name="snowflake_proxy_msg_description">Snowflake sayesinde birinin sansürü atlatmasına yardımcı olunduğunda bir mesaj göster</string>
@@ -274,7 +265,6 @@
     <string name="many_ways">Tor\'a erişmenin birçok yolu vardır. Bazıları sizin için diğerlerinden daha iyi çalışabilir.</string>
     <string name="action_use">Kullan</string>
     <string name="asking">SORUYOR...</string>
-    <string name="hello_blank_fragment">Merhaba boş parça</string>
     <string name="no_interent_title">İnternete bağlan</string>
     <string name="kindness_adjust_title">Ne zaman çalışacağını ayarlayın...</string>
     <string name="snowflake_amp">Snowflake (AMP)</string>

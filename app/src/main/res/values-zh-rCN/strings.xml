@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot 是一款免费的代理应用，能够让其他应用更安全地使用互联网。通过在位于世界各地的一系列计算机之间进行跳转，Orbot 可利用 Tor 对网络通信进行加密并隐藏。Tor 是一款自由软件，并且是一个开放的网络。它可以保护用户免受流量分析的危害，这种网络监控可对个人自由与隐私、商业机密活动和关系以及国家安全造成威胁。</string>
-    <string name="status_starting_up">Orbot 正在启动…</string>
-    <string name="status_activated">已连接到 Tor 网络</string>
-    <string name="status_shutting_down">Orbot 正在关闭</string>
     <string name="menu_settings">设置</string>
     <string name="menu_log">日志</string>
     <string name="menu_stop">停止</string>
@@ -175,8 +172,6 @@
     <string name="get_bridges_email_request">通过电子邮件请求网桥</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
-    <string name="be_a_snowflake_desc">允许其他 Tor 用户通过你的设备连接到 Tor。（如您同时通过网桥连接，则无法使用该方法）</string>
-    <string name="be_a_snowflake_title">运行 Snowflake 代理</string>
     <string name="confirm">确认</string>
     <string name="v3_import_auth_private">导入 .auth_private</string>
     <string name="v3_backup_name_hint">备份文件名…</string>
@@ -191,12 +186,8 @@
     <string name="deny">拒绝</string>
     <string name="allow">允许</string>
     <string name="backup_port_exist">错误：一个 Onion 服务已经在使用端口 %s</string>
-    <string name="be_a_snowflake_desc_limit">仅当设备接通电源并连接到 Wi-Fi 时</string>
-    <string name="be_a_snowflake_title_limit">Snowflake 代理限制</string>
-    <string name="snowflake_proxy_enabled">Snowflake 代理已启用</string>
     <string name="license">许可证：</string>
     <string name="version">版本：</string>
-    <string name="snowflake_proxy_pref_category">Snowflake 代理（实验性）</string>
     <string name="bridge_snowflake_amp">使用 Snowflake 通过其他 Tor 用户连接（方法 2 - AMP）</string>
     <string name="snowflake_proxy_msg_title">显示连接通知</string>
     <string name="snowflake_proxy_msg_description">当您的 Snowflake 帮助某人规避审查时显示一条消息</string>

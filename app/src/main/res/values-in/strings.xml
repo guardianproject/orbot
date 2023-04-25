@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot adalah aplikasi proxy gratis yang membuat aplikasi-aplikasi lainnya dapat terkoneksi dengan internet secara aman. Orbot menggunakan Tor untuk mengenkripsi hubungan internet Anda dan menyalurkannya melewati berbagai komputer di seluruh dunia. Tor adalah software gratis dan layanan terbuka, yang membantu Anda menghindari pengawasan jaringan yang mengancam kebebasan pribadi dan privasi, aktivitas bisnis rahasia dan relasi, serta keamanan negara yang dikenal dengan analisis traffic.</string>
-    <string name="status_starting_up">Orbot sedang memulai…</string>
-    <string name="status_activated">Tersambung ke jaringan Tor</string>
-    <string name="status_shutting_down">Orbot sedang dimatikan</string>
     <string name="menu_settings">Pengaturan</string>
     <string name="menu_log">Log</string>
     <string name="menu_stop">Berhenti</string>
@@ -138,18 +135,13 @@
     <string name="version">Versi:</string>
     <string name="license">Lisensi:</string>
     <string name="bridge_cloud">Hubungkan melalui server awan</string>
-    <string name="be_a_snowflake_desc">Perbolehkan pengguna Tor lain untuk menghubungkan ke Tor melalui perangkat Anda. (Ini tidak dapat digunakan dengan jembatan secara bersamaan)</string>
-    <string name="be_a_snowflake_title_limit">Batasan Proksi Snowflake</string>
-    <string name="be_a_snowflake_title">Jalankan Proksi Snowflake</string>
     <string name="solve_captcha_instruction">Selesaikan CAPTCHA untuk meminta jembatan.</string>
     <string name="enter_characters_from_image">Masukkan teks di atas</string>
     <string name="request_bridges_from_torproject">Minta Jembatan dari torproject.org</string>
     <string name="in_a_browser">Dalam sebuah peramban, kunjungi %s dan ketuk Get Bridgs &gt; Just Give Me Bridges!</string>
     <string name="paste_bridges">Tempelkan Jembatan</string>
-    <string name="snowflake_proxy_pref_category">Proksi Snowflake (Eksperimental)</string>
     <string name="bridge_snowflake">Hubungkan melalui pengguna Tor lain menggunakan Snowflake (Metode 1 - Fastly)</string>
     <string name="bridge_snowflake_amp">Hubungkan melalui pengguna Tor lain menggunakan Snowflake (Metode 2 - AMP)</string>
-    <string name="be_a_snowflake_desc_limit">Hanya ketika perangkat dicas dan wifi nyala</string>
     <string name="snowflake_proxy_msg_title">Tampilkan Notifikasi Koneksi</string>
     <string name="snowflake_proxy_msg_description">Tampilkan pesan ketika snowflake Anda membantu seseorang melewati sensor</string>
     <string name="configure_header">Konfigurasi Koneksi Tor Anda</string>
@@ -173,7 +165,6 @@
     <string name="connect">Hubungkan</string>
     <string name="next">Lanjutkan</string>
     <string name="solve_captcha">Selesaikan Captcha</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Proksi Snowflake nyala</string>
     <string name="ports_not_set">Porta Tidak Ditetapkan</string>
     <string name="secure_your_connection_title">Siap untuk menghubungkan</string>
     <string name="connected_title">Terhubung</string>
@@ -276,7 +267,6 @@
     <string name="not_sure">Tidak yakin\?</string>
     <string name="ask_tor">Tanyakan Tor</string>
     <string name="many_ways">Ada lebih banyak cara untuk mencapai Tor. Beberapa dapat bekerja dengan baik daripada yang lain untuk Anda.</string>
-    <string name="hello_blank_fragment">Fragmen kosong halo</string>
     <string name="no_interent_title">Hubungkan ke internet</string>
     <string name="no_internet_subtitle">Anda membutuhkan koneksi internet untuk menggunakan Orbot.</string>
     <string name="kindness_adjust_title">Atur ketika berjalan…</string>

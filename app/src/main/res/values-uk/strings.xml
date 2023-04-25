@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot - це безплатний проксі-сервер, який дає змогу іншим застосункам безпечніше користуватися інтернетом. Orbot використовує Tor для шифрування вашого інтернет-трафіку, а потім приховує його, пересилаючи через низку комп\'ютерів по всьому світу. Tor - це вільне програмне забезпечення і відкрита мережа, яка допомагає вам захиститися від форми мережевого стеження, що загрожує особистій свободі і приватності, конфіденційній діловій діяльності та відносинам, а також державній безпеці, відомої як аналіз трафіку.</string>
-    <string name="status_starting_up">Запуск Orbot…</string>
-    <string name="status_activated">Під\'єднано до мережі Tor</string>
-    <string name="status_shutting_down">Orbot вимикається</string>
     <string name="menu_settings">Налаштування</string>
     <string name="menu_log">Журнал</string>
     <string name="menu_stop">Зупинити</string>
@@ -175,8 +172,6 @@
     <string name="pref_reduced_circuit_padding">Скорочене заповнення ланцюга</string>
     <string name="pref_circuit_padding_summary">Увімкнути підкладку ланцюга для захисту від деяких форм аналізу трафіку</string>
     <string name="pref_circuit_padding">Підкладка ланцюга</string>
-    <string name="be_a_snowflake_desc">Дозволити іншим користувачам Tor підʼєднуватися до Tor через ваш пристрій. (Не можна вмикати, якщо ви підʼєднуєтеся через мости)</string>
-    <string name="be_a_snowflake_title">Запуск проксі-сервера Snowflake</string>
     <string name="confirm">Схвалити</string>
     <string name="v3_import_auth_private">Імпорт .auth_private</string>
     <string name="v3_backup_name_hint">Назва файлу резервної копії…</string>
@@ -191,13 +186,9 @@
     <string name="deny">Заборонити</string>
     <string name="allow">Дозволити</string>
     <string name="backup_port_exist">Помилка: служба Onion вже використовує порт %s</string>
-    <string name="be_a_snowflake_desc_limit">Лише якщо пристрій заряджається і під\'єднаний до мережі Wi-Fi</string>
-    <string name="be_a_snowflake_title_limit">Обмеження проксі Snowflake</string>
-    <string name="snowflake_proxy_enabled">Проксі Snowflake увімкнено</string>
     <string name="version">Версія:</string>
     <string name="license">Ліцензія:</string>
     <string name="snowflake_proxy_msg_title">Показувати сповіщення про з’єднання</string>
-    <string name="snowflake_proxy_pref_category">Проксі Snowflake (експериментально)</string>
     <string name="snowflake_proxy_msg_description">Показувати повідомлення, коли snowflake допомагає комусь обійти цензуру</string>
     <string name="bridge_snowflake_amp">Підʼєднатися через інших користувачів Tor за допомогою Snowflake (Метод 2 - AMP)</string>
     <string name="strict_nodes_description">Ставитися до налаштувань виключити вузли як до обов\'язкової вимоги для побудови всіх схем. Це може призвести до порушення функціональності, якщо не вдасться згенерувати жодної схеми за допомогою налаштувань Виключити вузли.</string>
@@ -279,7 +270,6 @@
     <string name="no_internet_subtitle">Щоб використовувати Orbot, вам потрібне підключення до Інтернету.</string>
     <string name="kindness_adjust_title">Налаштуйте під час запуску...</string>
     <string name="kindess_config_detail">Налаштуйте, як і коли ваш пристрій може діяти як проксі-сервер Snowflake для інших користувачів Tor.</string>
-    <string name="hello_blank_fragment">Привіт, порожній фрагменте</string>
     <string name="pref_isolate_port">Ізолювати порти призначення</string>
     <string name="pref_isolate_port_summary">Використовувати різні схеми для кожного порту призначення</string>
     <string name="pref_isolate_protocol">Ізолювати клієнтські протоколи</string>

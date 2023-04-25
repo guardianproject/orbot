@@ -146,14 +146,8 @@ class Languages private constructor(activity: Activity) {
         private fun setLocale(contextWrapper: ContextWrapper, locale: Locale?) {
             val resources = contextWrapper.resources
             val configuration = resources.configuration
-            val displayMetrics = resources.displayMetrics
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                configuration.setLocale(locale)
-                contextWrapper.applicationContext.createConfigurationContext(configuration)
-            } else {
-                configuration.locale = locale
-                resources.updateConfiguration(configuration, displayMetrics)
-            }
+            configuration.setLocale(locale)
+            contextWrapper.applicationContext.createConfigurationContext(configuration)
         }
     }
 

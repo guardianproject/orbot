@@ -2,9 +2,6 @@
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot은 다른 앱이 인터넷을 더 안전하게 이용할 수 있도록 도와주는 무료 프록시 앱입니다. Orbot은 Tor를 이용하여 여러분의 인터넷 트래픽을 암호화하고 전 세계에 연결된 컴퓨터를 거쳐서 숨깁니다. Tor는 무료 소프트웨어이면서 개방 네트워크로서 여러분을 개인의 자유, 사생활, 은밀한 사업 활동, 관계, 국가 안보를 위협하는 네트워크 감시인 트래픽 분석으로부터 보호합니다.</string>
-    <string name="status_starting_up">Orbot 시작 중…</string>
-  <string name="status_activated">Tor 네트워크에 연결됨</string>
-  <string name="status_shutting_down">토르 서비스가 종료되는 중입니다</string>
   <string name="menu_settings">설정</string>
   <string name="menu_log">로그</string>
     <string name="menu_stop">중지</string>

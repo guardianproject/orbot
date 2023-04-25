@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot là một ứng dụng proxy miễn phí làm cho các ứng dụng khác sử dụng internet một cách bảo mật hơn. Orbot sử dụng Tor để mã hóa lưu lượng Internet rồi ẩn nó bằng cách đưa qua một loạt máy tính trên khắp thế giới. Tor là phần mềm tự do và là một mạng lưới mở giúp bạn chống lại một dạng của sự giám sát trên mạng đe dọa quyền riêng tư và tự do cá nhân, những hoạt động và mối quan hệ bí mật trong kinh doanh, và an ninh tiểu bang được biết đến là phân tích lưu lượng mạng.</string>
-    <string name="status_starting_up">Orbot đang khởi động…</string>
-    <string name="status_activated">Đã kết nối với mạng Tor</string>
-    <string name="status_shutting_down">Đang tắt dịch vụ Tor</string>
     <string name="menu_settings">Cài đặt</string>
     <string name="menu_log">Nhật ký</string>
     <string name="menu_stop">Dừng</string>
@@ -111,8 +108,6 @@
     <string name="allow">Cho phép</string>
     <string name="hidden_service_request">Một ứng dụng muốn mở máy chủ onion ở cổng %1$s vào mạng Tor. Việc này là an toàn nếu bạn tin tưởng ứng dụng đó.</string>
     <string name="wizard_details_msg">Orbot là một ứng dụng mã nguồn mở chứa Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, LibEvent. Nó cung cấp một proxy HTTP cục bộ (8118) và một proxy SOCKS (9050) vào mạng Tor.</string>
-    <string name="be_a_snowflake_desc">Cho phép những người dùng Tor khác kết nối đến Tor qua thiết bị của bạn</string>
-    <string name="be_a_snowflake_title">Chạy proxy Snowflake</string>
     <string name="bridge_snowflake">Kết nối qua các thiết bị Tor ngang hàng khác (thử nghiệm)</string>
     <string name="use_qr_code">Sử dụng mã QR</string>
     <string name="paste_bridges">Dán các cầu nối</string>
@@ -191,9 +186,6 @@
     <string name="vpn_default_world">Toàn cầu (Tự động)</string>
     <string name="apps_mode">Chế độ VPN</string>
     <string name="get_bridges_email_request">Yêu cầu cầu nối qua Email</string>
-    <string name="be_a_snowflake_desc_limit">Chỉ khi thiết bị đang sạc và có Wi-Fi</string>
-    <string name="be_a_snowflake_title_limit">Giới hạn Proxy Snowflake</string>
-    <string name="snowflake_proxy_enabled">Chế độ proxy Snowflake đang bật</string>
     <string name="version">Phiên bản:</string>
     <string name="license">Giấy phép:</string>
 </resources>

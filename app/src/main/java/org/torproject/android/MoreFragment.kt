@@ -14,43 +14,19 @@ import androidx.fragment.app.Fragment
 import org.torproject.android.OrbotActivity.Companion.REQUEST_CODE_SETTINGS
 import org.torproject.android.OrbotActivity.Companion.REQUEST_VPN_APP_SELECT
 import org.torproject.android.core.ui.SettingsActivity
-import org.torproject.android.core.ui.SettingsPreferencesFragment
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.OrbotService
 import org.torproject.android.ui.*
 import org.torproject.android.ui.v3onionservice.OnionServiceActivity
 import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MoreFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MoreFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
     private lateinit var lvMore : ListView;
 
-
-    var httpPort = -1
-    var socksPort = -1
+    private var httpPort = -1
+    private var socksPort = -1
 
     private lateinit var tvStatus : TextView
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
@@ -65,13 +41,13 @@ class MoreFragment : Fragment() {
         updateStatus()
     }
 
-    fun updateStatus () {
-        var sb = java.lang.StringBuilder()
+    private fun updateStatus () {
+        val sb = java.lang.StringBuilder()
 
         sb.append(getString(R.string.proxy_ports)).append(" ")
 
         if (httpPort != -1 && socksPort != -1) {
-            sb.append("HTTP:").append(httpPort).append(" ").append(" SOCKS:").append(socksPort)
+            sb.append("HTTP: ").append(httpPort).append(" - ").append(" SOCKS: ").append(socksPort)
         }
         else
         {
@@ -88,13 +64,10 @@ class MoreFragment : Fragment() {
         tvStatus.text = sb.toString()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_more, container, false)
-        tvStatus = view.findViewById<TextView>(R.id.tvVersion)
+        tvStatus = view.findViewById(R.id.tvVersion)
 
         updateStatus()
         lvMore = view.findViewById(R.id.lvMoreActions)
@@ -125,26 +98,6 @@ class MoreFragment : Fragment() {
     }
 
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MoreFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MoreFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
-
     private fun doExit() {
         val killIntent = Intent(requireActivity(), OrbotService::class.java)
             .setAction(OrbotConstants.ACTION_STOP)
@@ -156,13 +109,9 @@ class MoreFragment : Fragment() {
 
     private fun sendIntentToService(intent: Intent) = ContextCompat.startForegroundService(requireActivity(), intent)
     private fun sendIntentToService(action: String) = sendIntentToService(
-        android.content.Intent(
-            requireActivity(),
-            org.torproject.android.service.OrbotService::class.java
-        ).apply {
+        Intent(requireActivity(), OrbotService::class.java).apply {
             this.action = action
         })
-
 
     private fun showLog() {
         (activity as OrbotActivity).showLog()

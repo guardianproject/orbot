@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot 是一款免費的網絡代理應用程式，用來保護其他應用程式的上網安全。Orbot 使用 Tor 在全球一系列的電腦間跳躍，達到加密並隱藏網路流量。Tor 是個自由軟體也是個開放網路，能幫您抵禦流量分析這種網路監控模式，它威脅到個人的自由與隱私、商業機密活動與商務關係、甚至威脅國家安全。</string>
-    <string name="status_starting_up">Orbot 正在啟動中…</string>
-    <string name="status_activated">已連線至 Tor 網路</string>
-    <string name="status_shutting_down">Tor服務 正在關閉</string>
     <string name="menu_settings">設定</string>
     <string name="menu_log">記錄檔</string>
     <string name="menu_stop">停止</string>

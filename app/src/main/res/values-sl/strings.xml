@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="status_starting_up">Orbot se zaganja…</string>
-    <string name="status_activated">Povezan v omrežje Tor</string>
     <string name="menu_settings">Nastavitve</string>
     <string name="menu_log">Dnevnik</string>
     <string name="menu_stop">Ustavi</string>
@@ -81,7 +79,6 @@
     <string name="btn_use_custom_bridge">Uporaba mostu po meri</string>
     <string name="msg_taking_too_long">Zdi se, da to traja dolgo</string>
     <string name="msg_try_something_else">Poskusite kaj drugega</string>
-    <string name="status_shutting_down">Orbot se zapira</string>
     <string name="menu_scan">Skeniranje BridgeQR</string>
     <string name="menu_share_bridge">Skupna raba BridgeQR</string>
     <string name="pref_start_boot_summary">Samodejno zaženite Orbot in povežite Tor, ko se naprava s sistemom Android zažene</string>
@@ -183,10 +180,7 @@
     <string name="refresh_apps">Osvežitev aplikacij</string>
     <string name="refresh_captcha">Osveži CAPTCHA</string>
     <string name="captcha">Captcha</string>
-    <string name="snowflake_proxy_pref_category">Snežna kosmiča Proxy</string>
     <string name="bridge_snowflake_amp">Povežite se prek drugih uporabnikov omrežja Tor z uporabo storitve Snowflake (metoda 2)</string>
-    <string name="be_a_snowflake_title">Zaženi proxy Snežinke</string>
-    <string name="be_a_snowflake_title_limit">Omejitve posredniškega strežnika Snowflake</string>
     <string name="snowflake_proxy_msg_description">Pokaži sporočilo, ko tvoja snežinka pomaga nekomu zaobiti cenzuro lol</string>
     <string name="pref_proxy_port_dialog">Vnesite vrata posredniškega strežnika</string>
     <string name="app_description">Orbot je brezplačna aplikacija proxy, ki drugim aplikacijam omogoča varnejšo uporabo interneta. Orbot uporablja Tor za šifriranje vašega internetnega prometa, nato pa ga skrije tako, da ga preusmeri skozi več računalnikov po vsem svetu. Tor je brezplačna programska oprema in odprto omrežje, ki vam pomaga pri obrambi pred obliko nadzora omrežja, ki ogroža osebno svobodo in zasebnost, zaupne poslovne dejavnosti in odnose ter državno varnost, znano kot analiza prometa.</string>
@@ -221,7 +215,4 @@
     <string name="bridge_snowflake">Povežite se prek drugih uporabnikov omrežja Tor z uporabo storitve Snowflake (metoda 1)</string>
     <string name="request_bridges">Zahteva Mostovi</string>
     <string name="in_a_browser">V brskalniku obiščite %s in tapnite Get Bridges &gt; Just Give Me Bridges!</string>
-    <string name="be_a_snowflake_desc">Drugim uporabnikom omrežja Tor omogočite, da se z njim povežejo prek vaše naprave. (Tega ni mogoče uporabiti, če se povežete poleg mostov)</string>
-    <string name="be_a_snowflake_desc_limit">Samo ko je naprava priključena in v omrežju wifi</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Omogočen posredniški strežnik Snowflake</string>
 </resources>

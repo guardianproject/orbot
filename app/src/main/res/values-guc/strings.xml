@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot es una aplicación libre de proxy (interpuesto) que faculta a otras aplicaciones para usar Internet de forma más segura. Orbot utiliza Tor para cifrar su tráfico de Internet, y luego lo oculta rebotándolo a través de una serie de computadoras por todo el mundo. Tor es software libre y una red abierta que le ayuda a defenderse contra una forma de vigilancia de red conocida como análisis de tráfico que amenaza la libertad y la privacidad personales, las actividades y relaciones comerciales confidenciales, y la seguridad de estado.</string>
-    <string name="status_starting_up">Orbot está iniciandose…</string>
-    <string name="status_activated">Conectado a la red Tor</string>
-    <string name="status_shutting_down">Orbot cierra</string>
     <string name="menu_settings">Ajustes</string>
     <string name="menu_log">Registro (log)</string>
     <string name="menu_stop">Detener</string>
@@ -195,10 +192,6 @@
     <string name="in_a_browser">En un navegador, visite %s y pulse Obtener puentes &gt; ¡Sólo dame puentes!</string>
     <string name="paste_bridges">Puentes de pasta</string>
     <string name="use_qr_code">Utilizar el código QR</string>
-    <string name="be_a_snowflake_title">Ejecutar el Proxy Snowflake</string>
-    <string name="be_a_snowflake_title_limit">Límites de proxy del copo de nieve</string>
-    <string name="be_a_snowflake_desc_limit">Sólo cuando el dispositivo está enchufado y con wifi</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Proxy Snowflake activado</string>
     <string name="snowflake_proxy_msg_title">Mostrar notificación de conexión</string>
     <string name="snowflake_proxy_msg_description">Muestre un mensaje cuando su copo de nieve ayude a alguien a eludir la censura</string>
     <string name="bridge_snowflake_amp">Conectarse a través de otros usuarios de Tor usando Snowflake (Método 2)</string>
@@ -215,13 +208,11 @@
     <string name="captcha">Captcha</string>
     <string name="enter_characters_from_image">Introduzca los caracteres de la imagen</string>
     <string name="request_bridges_from_torproject">Solicitar puentes a torproject.org</string>
-    <string name="be_a_snowflake_desc">Permitir que otros usuarios de Tor se conecten a Tor a través de su dispositivo. (Esto no se puede utilizar si se conecta junto a los puentes)</string>
     <string name="v3_onion">Dominio .onion</string>
     <string name="strict_nodes_description">Trate la configuración de los Nodos Excluidos como un requisito para construir todos los circuitos. Esto puede romper la funcionalidad si no se pueden generar circuitos con su configuración de Nodos Excluidos.</string>
     <string name="bridge_snowflake">Conéctate a través de otros usuarios de Tor usando Snowflake (Método 1)</string>
     <string name="configure_custom_bridges">Configurar puentes personalizados</string>
     <string name="btn_refresh">Actualizar</string>
-    <string name="snowflake_proxy_pref_category">Proxy de copos de nieve</string>
     <string name="btn_tor_off">Apagar Tor</string>
     <string name="secure_your_connection_subtitle">Orbot te ofrece una conexión segura e ininterrumpida con tus aplicaciones.</string>
     <string name="get_a_bridge">Obtener un puente de Tor (Obsf4)</string>

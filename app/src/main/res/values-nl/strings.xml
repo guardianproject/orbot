@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot is een vrije proxy-app die het andere apps mogelijk maakt het internet veiliger te gebruiken. Orbot gebruikt Tor om je internetverkeer te versleutelen en het vervolgens te verhullen het door het door een serie computers over de hele wereld te routeren. Tor is vrije software en een open netwerk dat je helpt te verdedigen tegen een vorm van netwerktoezicht, genaamd \'verkeersanalyse\', die persoonlijke vrijheid en privacy, vertrouwelijke bedrijfsactiviteiten en relaties en staatsveiligheid bedreigt.</string>
-    <string name="status_starting_up">Orbot is bezig met starten…</string>
-    <string name="status_activated">Verbonden met het Tor-netwerk</string>
-    <string name="status_shutting_down">TorService wordt afgesloten</string>
     <string name="menu_settings">Instellingen</string>
     <string name="menu_log">Logboek</string>
     <string name="menu_stop">Stop</string>

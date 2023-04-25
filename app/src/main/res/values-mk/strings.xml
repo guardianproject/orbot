@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot е слободна прокси апликација која им овозможува на другите апликации да го користат Интернетот побезбедно. Orbot користи Tor за енкриптирање на интернет сообраќајот, а потоа го сокрива и го потскокнува преку серија компјутери низ целиот свет. Tor е слободен софтвер и отворена мрежа кој ви помага да се одбарните од форми на надзор на мрежата кој им се заканува на вашата лична слобода и приватност, доверливите деловни активности и односи, и државната безбедност позната како анализа на сообраќајот.</string>
-    <string name="status_starting_up">Орбот се стартува…</string>
-    <string name="status_activated">Поврзан на мрежата на Tor</string>
-    <string name="status_shutting_down">Tor-Сервисот се исклучува</string>
     <string name="menu_settings">Поставки</string>
     <string name="menu_log">Дневник</string>
     <string name="menu_stop">Запри</string>

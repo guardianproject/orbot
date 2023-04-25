@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</string>
-    <string name="status_starting_up">Orbot is starting…</string>
-    <string name="status_activated">Connected to the Tor network</string>
-    <string name="status_shutting_down">Orbot is shutting down</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_log">Log</string>
     <string name="menu_stop">Stop</string>
@@ -196,17 +193,10 @@
     <string name="in_a_browser">In a browser, visit %s and tap "Get Bridges" &gt; "Just Give Me Bridges!"</string>
     <string name="paste_bridges">Paste Bridges</string>
     <string name="use_qr_code">Use QR Code</string>
-    <string name="snowflake_proxy_pref_category">Snowflake Proxy (Experimental)</string>
     <string name="bridge_snowflake">Connect through other Tor users using Snowflake (Method 1 - Fastly)</string>
     <string name="bridge_snowflake_amp">Connect through other Tor users using Snowflake (Method 2 - AMP)</string>
-    <string name="be_a_snowflake_title">Run Snowflake Proxy</string>
-    <string name="be_a_snowflake_desc">Allow other Tor users to connect to Tor through your device. (This can\'t be used if you connect alongside bridges)</string>
-    <string name="be_a_snowflake_title_limit">Snowflake Proxy Limits</string>
-    <string name="be_a_snowflake_desc_limit">Only when device is plugged in and on wifi</string>
-    <string name="snowflake_proxy_enabled" formatted="true">Snowflake proxy enabled</string>
     <string name="snowflake_proxy_msg_title">Show Connection Notification</string>
-    <string name="snowflake_proxy_msg_description">Show a message when your snowflake helps someone circumvent censorship</string>
-
+    <string name="snowflake_proxy_msg_description">Show a message when you help someone circumvent censorship</string>
     <!-- new UX -->
     <string name="volunteer_mode">Kindness Mode</string>
     <string name="secure_your_connection_title">Ready to connect</string>
@@ -277,11 +267,9 @@
     <string name="many_ways">There are many ways to reach Tor. Some may work better than others for you.</string>
     <string name="action_use">Use</string>
     <string name="asking">ASKING...</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_interent_title">Connect to internet</string>
     <string name="no_internet_subtitle">You need an internet connection to use Orbot.</string>
-    <string name="kindness_adjust_title">Adjust when it runs...</string>
+    <string name="kindness_adjust_title">Adjust when it runs…</string>
     <string name="kindess_config_detail">Configure how and when your device can act as a Snowflake proxy for other Tor users.</string>
     <string name="menu_kindness">Kindness</string>
     <string name="menu_more">More</string>
@@ -289,4 +277,8 @@
     <string name="option_only_when_charging">Only when charging</string>
     <string name="setting_padding">Padding</string>
     <string name="setting_debug">Debug</string>
+
+    <string name="connection_direct">Direct</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Custom</string>
 </resources>

@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot ir starpniekserveru bezmaksas lietotne, kas sniedz iespēju citām lietotnēm drošāk lietot internetu. Orbot izmanto Tor, lai šifrētu Jūsu interneta datplūsmu, tad to paslēpj, pārsūtot to caur daudziem datoriem visā pasaulē. Tor ir bezmaksas programmatūra un atvērts tīkls, kas palīdz Jums aizsargāties pret tīkla uzraudzības veidu - datplūsmas analīzi -, ar kuras palīdzību tiek apdraudēta personiskā brīvība un privātums, konfidenciālas lietišķas darbības un attiecības, kā arī valsts drošība.  </string>
-    <string name="status_starting_up">Orbot startē…</string>
-    <string name="status_activated">Izveidots savienojums ar tīklu Tor</string>
-    <string name="status_shutting_down">Orbot tiek slēgts</string>
     <string name="menu_settings">Iestatījumi</string>
     <string name="menu_log">Žurnāls</string>
     <string name="menu_stop">Apturēt</string>
@@ -116,7 +113,6 @@
     <string name="menu_new_identity">Jauna identitāte</string>
     <string name="use_custom_bridges">Pielāgotu tiltu izmantošana</string>
     <string name="use_qr_code">QR koda izmantošana</string>
-    <string name="be_a_snowflake_title">Palaist Snowflake Proxy</string>
     <string name="wizard_details_msg">Orbot ir atvērtā koda lietojumprogramma, kas satur Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks un LibEvent. Tā nodrošina VPN tuneli, vietējo HTTP Connect proxy (tikai HTTPS portā 8118) un SOCKS proxy (9050) uz Tor tīklu.</string>
     <string name="secure_your_connection_subtitle">Orbot nodrošina drošu un nepārtrauktu savienojumu ar lietotnēm.</string>
     <string name="connected_title">Jūs esat savienots!</string>
@@ -153,12 +149,7 @@
     <string name="custom_bridges">Pielāgotie tilti</string>
     <string name="configure_custom_bridges">Pielāgotu tiltu konfigurēšana</string>
     <string name="paste_bridges">Ielīmējiet tiltus</string>
-    <string name="be_a_snowflake_title_limit">Sniegpārslu proxy ierobežojumi</string>
-    <string name="be_a_snowflake_desc_limit">Tikai tad, ja ierīce ir pievienota un ir ieslēgts wifi</string>
-    <string name="snowflake_proxy_pref_category">Sniegpārslu proxy (eksperimentālā versija)</string>
     <string name="bridge_snowflake_amp">Savienošanās ar citiem Tor lietotājiem, izmantojot Snowflake (2 metode)</string>
-    <string name="be_a_snowflake_desc">Atļaujiet citiem Tor lietotājiem izveidot savienojumu ar Tor, izmantojot ierīci. (To nevar izmantot, ja izveidojat savienojumu kopā ar tiltiem)</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Ieslēgts Snowflake proxy</string>
     <string name="snowflake_proxy_msg_title">Rādīt savienojuma paziņojumu</string>
     <string name="snowflake_proxy_msg_description">Rādīt ziņu, kad jūsu sniegpārsliņa palīdz kādam apiet cenzūru</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Atvērt starpniekserveri visās saskarnēs</string>

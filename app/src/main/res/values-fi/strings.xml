@@ -2,12 +2,8 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot on ilmainen välityspalvelinsovellus, joka tarjoaa muille sovelluksille mahdollisuuden käyttää internetiä turvallisemmin. Orbot käyttää Toria kryptaamaan verkkoliikenteesi ja sitten piilottaa sen kierrättämällä sitä usean tietokoneen kautta ympäri maailman. Tor on vapaa ohjelmisto ja avoin verkosto, jotka auttavat puolustautumaan vapautta ja yksityisyyttä uhkaavalta verkkovalvonnalta ja valtioiden verkonseurannalta sekä suojaamaan salaisia liiketoimintoja ja -yhteyksiä.</string>
-    <string name="status_starting_up">Orbot käynnistyy…</string>
-    <string name="status_activated">Yhdistetty Tor-verkkoon</string>
-    <string name="status_shutting_down">Orbot samuu</string>
     <string name="menu_settings">Asetukset</string>
     <string name="menu_log">Loki</string>
-    <string name="menu_start">Käynnistä</string>
     <string name="menu_stop">Pysäytä</string>
     <string name="menu_about">Tietoja</string>
     <string name="main_layout_download">Lataus</string>
@@ -145,11 +141,6 @@
     <string name="v3_backup_name_hint">Varmuuskopioi tiedostonimi…</string>
     <string name="v3_backup_key">Varmuuskopioi päätteen todennusavain</string>
     <string name="v3_key_hash">Yksityinen Base32 x25519 -avain</string>
-    <string name="snowflake_proxy_enabled">Snowflake-välityspalvelin on käytössä</string>
-    <string name="be_a_snowflake_desc_limit">Vain silloin, kun laite on kytkettynä ja wlanissa</string>
-    <string name="be_a_snowflake_title_limit">Välityspalvelimen rajoitukset</string>
-    <string name="be_a_snowflake_desc">Salli muiden Tor-käyttäjien muodostaa Tor-yhteys laitteesi kautta (tämä ei toimi, jos muodostat yhteyden siltojen rinnalla).</string>
-    <string name="be_a_snowflake_title">Käytä Snowflake-välityspalvelinta</string>
     <string name="bridge_snowflake">Yhdistä muiden Tor-käyttäjien välityksellä käyttäen Snowflakea (menetelmä 1 - Nopeasti)</string>
     <string name="paste_bridges">Liitä sillat</string>
     <string name="use_custom_bridges">Käytä omia siltoja</string>
@@ -217,7 +208,6 @@
     <string name="msg_taking_too_long">Tämä näyttää kestävän liian kauan</string>
     <string name="msg_try_something_else">Kokeile jotain muuta</string>
     <string name="strict_nodes_description">Käsittele Ohitettavat solmut -määrityksiä kaikkien ketjujen rakennusehtona. Tämä saattaa rikkoa toiminnan, jos ohitusmäärityksillä ei kyetä luomaan ketjuja.</string>
-    <string name="snowflake_proxy_pref_category">Snowflake-välityspalvelin (kokeellinen)</string>
     <string name="bridge_snowflake_amp">Yhdistä muiden Tor-käyttäjien välityksellä käyttäen Snowflakea (menetelmä 2 - AMP)</string>
     <string name="snowflake_proxy_msg_title">Näytä yhteysilmoitus</string>
     <string name="snowflake_proxy_msg_description">Näytä viesti, kun SnowFlake-palvelimesi auttaa jotakuta kiertämään sensuurin.</string>
@@ -277,7 +267,6 @@
     <string name="kindess_config_detail">Määritä miten ja milloin laitteesi voi toimia Snowflake-välityspalvelimena muille Tor-käyttäjille.</string>
     <string name="not_sure">Etkö osaa valita\?</string>
     <string name="many_ways">Tor voidaan tavoittaa monilla tavoilla. Jotkin saattavat sopia sinulle muita paremmin.</string>
-    <string name="hello_blank_fragment">Hei, tyhjä sirpale</string>
     <string name="no_interent_title">Yhdistä Internetiin</string>
     <string name="pref_isolate_protocol">Eristä pääteprotokollat</string>
     <string name="pref_isolate_port">Eristä kohdeportit</string>

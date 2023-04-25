@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot er et friprog-mellomtjeningsprogram som gjør det mulig for andre programmer å bruke Internett sikrere. Orbot bruker Tor for å kryptere din Internettrafikk, og skjuler da din trafikk ved å sende trafikken gjennom en lang rekke datamaskiner over hele verden. Tor er fri programvare, og et åpent nettverk som hjelper deg å forsvare deg mot en form for nettverksovervåking som truer din personlige frihet og privatliv, konfidensiell bedriftsvirksomhet og relasjoner, og statlig snoking kjent som trafikkanalyse.</string>
-    <string name="status_starting_up">Orbot starter…</string>
-    <string name="status_activated">Koblet til Tor-nettverket</string>
-    <string name="status_shutting_down">Tor-tjenesten avsluttes</string>
     <string name="menu_settings">Innstillinger</string>
     <string name="menu_log">Logg</string>
     <string name="menu_stop">Stopp</string>
@@ -180,7 +177,6 @@
     <string name="allow">Tillat</string>
     <string name="license">Lisens:</string>
     <string name="version">Versjon:</string>
-    <string name="snowflake_proxy_pref_category">Snøflak-mellomtjener (eksperimentelt)</string>
     <string name="v3_delete_client_authorization_confirm">Slett klientidentitetsbekreftelse</string>
     <string name="v3_client_auth_activity_title">Klient-identitetsbekreftelse</string>
     <string name="v3_delete_client_authorization">Slett klientidentitetbekreftelsesnøkkel</string>
@@ -190,10 +186,6 @@
     <string name="v3_onion">v3-.onion-domene</string>
     <string name="v3_backup_key">Sikkerhetskopier klient-identitetbekreftelsesnøkkel</string>
     <string name="v3_backup_name_hint">Sikkerhetskopier filnavn …</string>
-    <string name="be_a_snowflake_title">Kjør Snøflak-mellomtjener</string>
-    <string name="be_a_snowflake_desc">Tillat andre Tor-brukere å koble til Tor gjennom din enhet. (dette kan ikke brukes hvis du kobler til over broer)</string>
-    <string name="be_a_snowflake_title_limit">Grenser for Snøflak-mellomtjener</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Snøflak-mellomtjenermodus påslått</string>
     <string name="snowflake_proxy_msg_title">Vis tilkoblingsmerknad</string>
     <string name="snowflake_proxy_msg_description">Vis en melding når ditt snøflak hjelper noen å omgå sensur</string>
 </resources>

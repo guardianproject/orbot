@@ -2,9 +2,6 @@
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Pulsuz proksi tətbiqetməsi olan Orbot başqa tətbiqetmələrə internetdən daha təhlükəsiz istifadə etmək imkanı verir. Orbot sizin internet trafikinizi şifrələmək üçün Tordan istifadə edir və dünyanın hər yerində kompüterlərin birindən o birinə sıçramaqla bunu gizlədir. Tor pulsuz proqram təminatıdır, eyni zamanda sizin şəxsi azadlığınız və təhlükəsizliyinizə, gizli biznes fəaliyyəti və əlaqələrə, o cümlədən trafik analiz adlanan dövlət təhlükəsizliyinə xələl gətirə biləcək şəbəkə nəzarəti formalarından müdafiə olunmağa yardım edən açıq şəbəkədir.</string>
-    <string name="status_starting_up">Orbot başlayır…</string>
-  <string name="status_activated">Tor şəbəkəsinə bağlandı</string>
-  <string name="status_shutting_down">Tor xidməti işini başa vurur</string>
   <string name="menu_settings">Quraşdırmalar</string>
   <string name="menu_log">Jurnal</string>
     <string name="menu_stop">Dur</string>

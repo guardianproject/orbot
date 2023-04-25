@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot — гэта свабодная праграма для проксі-злучэнняў, яна дазваляе іншым дадаткам больш бяспечна выкарыстоўваць інтэрнэт-злучэнне. Orbot ужывае Tor для шыфравання інтэрнэт-трафіка, які потым хаваецца падчас перасылання праз некалькі кампутараў у розных частках планеты. Tor з\'яўляецца свабодным праграмным дадаткам, а таксама адкрытай сеткай, якая дапамагае абараніцца ад сачэння ў сетках, якая пагражае асабістай волі і прыватным жыцці, прыватнасці бізнес-дзейнасці і кантактаў, а таксама дзяржаўнай праграме бяспекі, вядомай як аналіз трафіка.</string>
-    <string name="status_starting_up">Orbot запускаецца…</string>
-    <string name="status_activated">Падлучаны да сеткі Tor</string>
-    <string name="status_shutting_down">Служба Tor выключаецца</string>
     <string name="menu_settings">Налады</string>
     <string name="menu_log">Журнал</string>
     <string name="menu_stop">Стоп</string>

@@ -2,8 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot הינה אפליקציית פרוקסי חינמית המאפשרת לאפליקציות אחרות להשתמש באינטרנט בבטחה. Orbot נעזרת ב-Tor כדי להצפין את תעבורת האינטרנט שלך ולהסוותה באמצעותה ניתובה דרך מספר מחשבים ברחבי העולם. Tor היא תוכנה חופשית ורשת פתוחה המסייעת לך להתגונן מפני סוגים מסוימים של אמצעי ניטור ומעקב אחר רשת האינטרנט המאיימים על הפרטיות, החירות האישית, פעילויות עסקיות ומערכות יחסים חשאיות.</string>
-    <string name="status_starting_up">Orbot מתחיל…</string>
-    <string name="status_activated">מחובר לרשת Tor</string>
     <string name="menu_settings">הגדרות</string>
     <string name="menu_log">רישום</string>
     <string name="menu_stop">עצור</string>
@@ -81,7 +79,6 @@
     <string name="pref_proxy_title">מתווך רשת ליציאה (רשות)</string>
     <string name="pref_allow_background_starts_summary">לאפשר לכל יישומון להפעיל את Tor ואת השירותים הקשורים</string>
     <string name="pref_allow_background_starts_title">לאפשר הפעלות ברקע</string>
-    <string name="status_shutting_down">שירות Tor נכבה</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">טביעות אצבע, כינויים, מדינות וכתובות עבור נקודת הגישור האחרונה</string>
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">טביעות אצבע, כינויים, מדינות וכתובות להחרגה</string>
     <string name="ports_reachable_behind_a_restrictive_firewall">פתחות נגישות מאחורי חומת אש מגבילה</string>

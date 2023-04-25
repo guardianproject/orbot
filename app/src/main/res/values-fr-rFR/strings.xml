@@ -2,9 +2,6 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot est une appli libre de serveur mandataire qui permet aux applis d’utiliser Internet avec une sécurité accrue. Orbot utilise Tor pour chiffrer votre trafic Internet et le cache ensuite en le relayant au travers d’ordinateurs de par le monde. Tor est un logiciel libre et un réseau ouvert qui vous aident à vous défendre contre une forme de surveillance réseau qui menace la liberté personnelle et la protection des données personnelles, les activités professionnelles confidentielles et les relations, et l’analyse du trafic des gouvernements.</string>
-    <string name="status_starting_up">Orbot démarre…</string>
-    <string name="status_activated">Connecté au réseau Tor</string>
-    <string name="status_shutting_down">Orbot est en cours de fermeture</string>
     <string name="menu_settings">Paramètres</string>
     <string name="menu_log">Journal</string>
     <string name="menu_stop">Arrêter</string>
@@ -175,8 +172,6 @@
     <string name="mebibyte">Mio</string>
     <string name="kibibyte">Kio</string>
     <string name="get_bridges_email_request">Demander des ponts par courriel</string>
-    <string name="be_a_snowflake_desc">Autorisez les autres utilisateurs de Tor de se connecter à Tor à travers votre appareil. (Ceci ne peut pas être utilisé si vous vous connectez le long de ponts)</string>
-    <string name="be_a_snowflake_title">Exécuter le mandataire Snowflake</string>
     <string name="confirm">Confirmer</string>
     <string name="v3_import_auth_private">Importer .auth_private</string>
     <string name="v3_backup_name_hint">Nom du fichier de sauvegarde…</string>
@@ -191,13 +186,9 @@
     <string name="backup_port_exist">Erreur : Un service Onion utilise déjà le port %s</string>
     <string name="v3_backup_key">Sauvegarder la clé d’autorisation client</string>
     <string name="v3_onion">Domaine .onion</string>
-    <string name="be_a_snowflake_desc_limit">Seulement quand l’appareil est branché et sur le Wi-Fi</string>
-    <string name="be_a_snowflake_title_limit">Limites du mandataire Snowflake</string>
     <string name="version">Version :</string>
     <string name="license">Licence :</string>
-    <string formatted="true" name="snowflake_proxy_enabled">Proxy Snowflake activé</string>
     <string name="bridge_snowflake_amp">Se connecter par d’autres utilisateurs de Tor grâce à Snowflake (méthode 2 – AMP)</string>
-    <string name="snowflake_proxy_pref_category">Mandataire Snowflake (expérimental)</string>
     <string name="snowflake_proxy_msg_title">Afficher la notification de connexion</string>
     <string name="snowflake_proxy_msg_description">Afficher un message quand votre Snowflake aide quelqu’un à contourner la censure</string>
     <string name="power_user_mode">Mode utilisateur avancé</string>
@@ -280,7 +271,6 @@
     <string name="no_interent_title">Se connecter à l\'internet</string>
     <string name="menu_kindness">La gentillesse</string>
     <string name="option_only_on_wifi">Uniquement sur Wifi</string>
-    <string name="hello_blank_fragment">Bonjour fragment vierge</string>
     <string name="volunteer_mode_label">Mode gentillesse</string>
     <string name="ports_not_set">Ports non définis</string>
     <string name="volunteer_mode">Mode gentillesse</string>
