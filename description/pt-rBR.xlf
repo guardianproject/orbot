@@ -45,7 +45,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="universalmode">
         <source>UNIVERSAL MODE: Orbot can be configured to transparently proxy all of your Internet traffic through Tor. You can also choose which specific apps you want to use through Tor.</source>
-        <target>MODO UNIVERSAL: Orbot pode ser configurado de forma transparente para transportar todo o seu tráfego de Internet através da rede Tor. Você também pode escolher quais aplicativos específicos deseja utilizar através da rede Tor.</target>
+        <target>MODO UNIVERSAL: Orbot pode ser configurado de forma transparente para transportar todo o seu tráfego de Internet através da rede Tor. Você também pode escolher quais aplicativos em específico deseja utilizar através da rede Tor.</target>
       </trans-unit>
       <trans-unit id="wespeakyourlanguage">
         <source>★ WE SPEAK YOUR LANGUAGE: Orbot is available for friends who speak:</source>
@@ -58,7 +58,7 @@ IT’S OFFICIAL: This is the official version of the Tor onion routing service f
       </trans-unit>
       <trans-unit id="helptranslate">
         <source>Don’t see your language? Join us and help translate the app:</source>
-        <target>Não vê seu idioma? Junte-se a nós e ajude a traduzir o aplicativo:</target>
+        <target>Não encontrou o seu idioma? Junte-se a nós e ajude a traduzir o aplicativo:</target>
       </trans-unit>
       <trans-unit id="helptranslateurl" translate="no">
         <source>https://www.transifex.com/projects/p/orbot</source>

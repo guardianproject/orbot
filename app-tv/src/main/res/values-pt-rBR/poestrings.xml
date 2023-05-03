@@ -5,7 +5,7 @@
     <string name="action_more">FALE MAIS SOBRE</string>
 
     <string name="vpn_setup">Você pode habilitar qualquer aplicativo para passar pela rede Tor utilizando a nossa VPN integrada.</string>
-    <string name="vpn_setup_sub">Isso não te faz anônimo, mas irá te ajudar a transpassar firewalls.</string>
+    <string name="vpn_setup_sub">Isso não te deixa anônimo, mas irá te ajudar a passar por cima de firewalls.</string>
     <string name="action_vpn_choose">ESCOLHA OS APLICATIVOS</string>
 
     <string name="hello">Olá</string>
