@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">O Orbot é um aplicativo de proxy livre que capacita outros aplicativos a usar a internet com mais segurança. O Orbot usa o Tor para criptografar o seu tráfego na internet e então o esconde \"saltando\" entre uma série de computadores ao redor do mundo. O Tor é um software livre e de rede aberta que ajuda você a se defender de certas formas de vigilância que ameacem a privacidade e a sua liberdade pessoal, as atividades e as relações comerciais confidenciais e o estado de segurança conhecida como análise de tráfego.</string>
-    <string name="menu_settings">Definições</string>
+    <string name="app_description">Orbot é um aplicativo de proxy livre que permite que outros aplicativos acessem a internet com mais segurança. Orbot usa o Tor para criptografar seu tráfego na internet e então o esconde \"pulando\" entre uma série de computadores ao redor do mundo. Tor é um software livre e de rede aberta que ajuda você a se defender de certas formas de vigilância que ameaçam privacidade e liberdade pessoais, atividades e relações comerciais confidenciais e segurança estatal conhecida como análise de tráfego.</string>
+    <string name="menu_settings">Configurações</string>
     <string name="menu_log">Registro</string>
     <string name="menu_stop">Parar</string>
     <string name="menu_about">Sobre</string>
@@ -27,10 +27,10 @@
     <string name="pref_node_configuration">Configuração do Nó</string>
     <string name="pref_node_configuration_summary">Aqui estão as configurações avançadas que podem reduzir o seu anonimato</string>
     <string name="pref_entrance_node">Nós de Entrada</string>
-    <string name="pref_entrance_node_summary">Impressões digitais, apelidos, países e endereços para a primeira etapa</string>
+    <string name="pref_entrance_node_summary">Impressões digitais, nicknames, países e endereços para a primeira etapa</string>
     <string name="pref_entrance_node_dialog">Insira os Nós de Entrada</string>
     <string name="pref_allow_background_starts_title">Permitir inicializações em segundo plano</string>
-    <string name="pref_allow_background_starts_summary">Deixar um aplicativo dizer ao Orbot para iniciar o Tor e os seus serviços relacionados</string>
+    <string name="pref_allow_background_starts_summary">Permitir que qualquer aplicativo diga ao Orbot para iniciar o Tor e os seus serviços relacionados</string>
     <string name="pref_proxy_title">Proxy de Saída da Rede (Opcional)</string>
     <string name="pref_proxy_type_title">Tipo de Proxy</string>
     <string name="pref_proxy_type_summary">Protocolo para usar no servidor proxy: HTTP, HTTPS, SOCKS4, SOCKS5</string>
@@ -49,23 +49,23 @@
     <string name="pref_proxy_password_dialog">Digite a Senha do Proxy</string>
     <string name="error">Erro</string>
     <string name="exit_nodes">Nós de Saída</string>
-    <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Impressões digitais, apelidos, países e endereços para a última etapa</string>
+    <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Impressões digitais, nicknames, países e endereços para a última etapa</string>
     <string name="enter_exit_nodes">Insira os Nós de Saída</string>
     <string name="exclude_nodes">Nós Excluídos</string>
-    <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Impressões digitais, apelidos, países e endereços para excluir</string>
+    <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Impressões digitais, nicknames, países e endereços para excluir</string>
     <string name="enter_exclude_nodes">Insira os Nós Excluídos</string>
     <string name="strict_nodes">Nós Estritos</string>
     <string name="bridges">Pontes</string>
     <string name="use_bridges">Usar Pontes</string>
     <string name="relays">Retransmissores</string>
     <string name="relaying">Retransmitindo</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Ativar o seu dispositivo para não ser um retransmissor de saída</string>
+    <string name="enable_your_device_to_be_a_non_exit_relay">Ativar o seu dispositivo para ser retransmissor sem saída</string>
     <string name="relay_port">Porta Retransmissora</string>
     <string name="listening_port_for_your_tor_relay">Ouvindo a porta do seu retransmissor Tor</string>
     <string name="enter_or_port">Insira a porta OR</string>
-    <string name="relay_nickname">Apelido do Retransmissor</string>
-    <string name="the_nickname_for_your_tor_relay">O apelido para o seu retransmissor Tor</string>
-    <string name="enter_a_custom_relay_nickname">Insira um apelido de retransmissão customizado</string>
+    <string name="relay_nickname">Nickname do Retransmissor</string>
+    <string name="the_nickname_for_your_tor_relay">O nickname para o seu retransmissor Tor</string>
+    <string name="enter_a_custom_relay_nickname">Insira um nickname de retransmissão personalizado</string>
     <string name="reachable_addresses">Endereços Atingíveis</string>
     <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">Rodar como um cliente atrás de um firewall com políticas restritivas</string>
     <string name="reachable_ports">Portas Atingíveis</string>
@@ -75,10 +75,10 @@
     <string name="project_home">Site do projeto:</string>
     <string name="third_party_software">Software de Terceiros:</string>
     <string name="hidden_service_request">Um aplicativo quer abrir uma porta no servidor onion %1$s para a rede Tor. É seguro caso você confie neste aplicativo.</string>
-    <string name="pref_use_expanded_notifications">Exibe na notificação o país e o endereço IP do seu nó de saída do tor quando estiver disponível</string>
+    <string name="pref_use_expanded_notifications">Exibe na notificação o país e o endereço IP do seu nó de saída do Tor quando estiver disponível</string>
     <string name="pref_use_expanded_notifications_title">Notificações Expandidas</string>
     <string name="set_locale_title">Idioma</string>
-    <string name="pref_disable_network_title">Sem Rede, Modo de Espera Automático</string>
+    <string name="pref_disable_network_title">Sem rede. Modo de Espera Automático</string>
     <string name="pref_disable_network_summary">Colocar o Tor em modo de espera quando não houver Internet disponível</string>
     <string name="newnym">Você trocou para uma nova identidade Tor!</string>
     <string name="pref_socks_title">Tor SOCKS</string>
@@ -91,10 +91,10 @@
     <string name="pref_dnsport_summary">Porta que Tor oferece seu DNS no (padrão: 5400 ou 0 para desativar)</string>
     <string name="pref_dnsport_dialog">Config da Porta DNS</string>
     <string name="pref_torrc_title">Config Personalizada do Torrc</string>
-    <string name="pref_torrc_summary">SOMENTE EXPERIENTES: adicione sua própria linha de configuração torrc</string>
+    <string name="pref_torrc_summary">SOMENTE EXPERIENTES: adicione sua própria linha de configuração Torrc</string>
     <string name="pref_torrc_dialog">Torrc Personalizado</string>
     <string name="bridges_updated">Pontes Atualizadas</string>
-    <string name="restart_orbot_to_use_this_bridge_">Por favor reinicie Orbot para habilitar as mundanças</string>
+    <string name="restart_orbot_to_use_this_bridge_">Por favor, reinicie o Orbot para habilitar as mundanças</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Se sua rede de dados bloqueia o Tor, você pode utilizar um \'Servidor Bridge\' como alternativa contra o bloqueio. Selecione umas das opções para configurar e testar…</string>
     <string name="get_bridges_email">E-mail</string>
     <string name="apps_mode">Modo VPN</string>
@@ -102,7 +102,7 @@
     <string name="vpn_default_world">Global (Automático)</string>
     <string name="hidden_services">Serviços Ocultos</string>
     <string name="menu_hidden_services">Serviços Ocultos</string>
-    <string name="save">Salve</string>
+    <string name="save">Salvar</string>
     <string name="local_port">Porta Local</string>
     <string name="onion_port">Porta Onion</string>
     <string name="name">Nome</string>
@@ -124,16 +124,16 @@
     <string name="bridge_direct_connect">Conecte-se diretamente ao Tor (Melhor forma)</string>
     <string name="bridge_community">Conecte-se através de servidores da comunidade</string>
     <string name="bridge_cloud">Conecte-se através de servidores em nuvem</string>
-    <string name="trouble_connecting">Problemas na conexão ? </string>
+    <string name="trouble_connecting">Problemas na conexão?</string>
     <string name="full_device_vpn">VPN PARA TODO O DISPOSITIVO</string>
     <string name="refresh_apps">Atualizar os Aplicativos</string>
     <string name="app_services">Serviços dos Aplicativos</string>
     <string name="user_services">Serviços ao Usuário</string>
     <string name="menu_new_identity">Nova Identidade</string>
     <string name="vpn_disabled">VPN Desativada</string>
-    <string name="pref_disable_ipv4_summary">Informa às saídas para não se conectarem aos endereços IPv4</string>
+    <string name="pref_disable_ipv4_summary">Informa às saídas para não se conectarem a endereços IPv4</string>
     <string name="pref_disable_ipv4">Desativar as conexões IPv4</string>
-    <string name="pref_prefer_ipv6_summary">Diz que os endereços IPv6 tem preferência</string>
+    <string name="pref_prefer_ipv6_summary">Diz que os endereços IPv6 têm preferência</string>
     <string name="pref_prefer_ipv6">Prefira conexões IPv6</string>
     <string name="pref_reduced_connection_padding_summary">Fecha as conexões de retransmissão mais cedo e envia menos pacotes de preenchimento para reduzir a utilização de dados e da bateria</string>
     <string name="pref_reduced_connection_padding">Preenchimento de conexão reduzido</string>
@@ -146,14 +146,14 @@
     <string name="onion">.onion</string>
     <string name="start_tor_again_for_finish_the_process">Inicie o Tor novamente para encerrar o processo</string>
     <string name="pref_http_dialog">Configuração da Porta HTTP</string>
-    <string name="pref_http_summary">Porta HTTP onde o proxy do Tor está escutando (a predefinição é: 8118 ou 0 para desativar)</string>
+    <string name="pref_http_summary">Porta HTTP onde o proxy do Tor está escutando (padrão: 8118 ou 0 para desativar)</string>
     <string name="pref_http_title">HTTP do Tor</string>
-    <string name="pref_open_proxy_on_all_interfaces_summary">Permita que os pares Wi-Fi, dispositivos com fio e que qualquer outra pessoa possa se conectar ao seu IP para acessar o Tor</string>
+    <string name="pref_open_proxy_on_all_interfaces_summary">Permita que os pares Wi-Fi, dispositivos com fio e qualquer outra pessoa que consiga se conectar ao seu IP possa acessar o Tor</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Abra o Proxy em Todas as Interfaces</string>
     <string name="bridge_snowflake">Conecte-se através de outros usuários do Tor usando o snowflake (Método 1 - Rápido)</string>
     <string name="use_qr_code">Use um Código QR</string>
     <string name="paste_bridges">Colar as Pontes</string>
-    <string name="in_a_browser">Visite o %s com um navegador e toque no Get Bridges &gt; Just Give Me Bridges!</string>
+    <string name="in_a_browser">Visite o %s com um navegador e toque no Get Bridges &gt; \"Just Give Me Bridges!\"</string>
     <string name="use_custom_bridges">Use Pontes Personalizadas</string>
     <string name="configure_custom_bridges">Configure as Pontes Personalizadas</string>
     <string name="custom_bridges">Pontes Personalizadas</string>
@@ -161,7 +161,7 @@
     <string name="refresh_captcha">Atualize o CAPTCHA</string>
     <string name="testing_tor_direct_success">Sucesso. A conexão com o Tor é boa!</string>
     <string name="testing_tor_direct">Testando a conexão com o Tor…</string>
-    <string name="pref_reduced_circuit_padding_summary">Use menos algoritmos de preenchimento para reduzir o uso dos dados e da bateria</string>
+    <string name="pref_reduced_circuit_padding_summary">Use menos algoritmos de preenchimento para reduzir o uso de dados e de bateria</string>
     <string name="pref_reduced_circuit_padding">Preenchimento reduzido do circuito</string>
     <string name="pref_circuit_padding_summary">Ative o preenchimento do circuito para se defender contra algumas formas de análise de tráfego</string>
     <string name="pref_circuit_padding">Preenchimento do circuito</string>
@@ -172,7 +172,7 @@
     <string name="get_bridges_email_request">Solicite Pontes através do E-mail</string>
     <string name="mebibyte">MiB</string>
     <string name="kibibyte">KiB</string>
-    <string name="confirm">Confirme</string>
+    <string name="confirm">Confirmar</string>
     <string name="v3_import_auth_private">Importe o .auth_private</string>
     <string name="v3_backup_name_hint">Nome do arquivo de backup…</string>
     <string name="v3_delete_client_authorization_confirm">Exclua a autorização do cliente</string>
@@ -183,8 +183,8 @@
     <string name="v3_key_hash">Chave privada x25519 na Base 32</string>
     <string name="v3_client_auth_activity_title">Autorização do cliente</string>
     <string name="v3_hosted_services">Serviços Onion hospedados</string>
-    <string name="deny">Negue</string>
-    <string name="allow">Permita</string>
+    <string name="deny">Negar</string>
+    <string name="allow">Permitir</string>
     <string name="backup_port_exist">Erro: Um serviço Onion já está usando a porta %s</string>
     <string name="version">Versão:</string>
     <string name="license">Licença:</string>
@@ -203,7 +203,7 @@
     <string name="secure_your_connection_subtitle">Oculte o aplicativos do monitoramento da rede e obtenha acesso quando eles estiverem bloqueados.</string>
     <string name="btn_configure">Escolha como se conectar</string>
     <string name="btn_start_vpn">Iniciar a VPN</string>
-    <string name="volunteer_mode">Modo bondade</string>
+    <string name="volunteer_mode">Modo Bondade</string>
     <string name="trying_to_connect_title">Conectando…</string>
     <string name="btn_change_exit">Altere a saída</string>
     <string name="menu_help_others">Ajude os outros</string>
@@ -212,14 +212,14 @@
     <string name="btn_tor_off">Desligar o Tor</string>
     <string name="no_thx">Não, obrigado</string>
     <string name="menu_header_features">Características</string>
-    <string name="captcha_title">Diga-nos que é humano</string>
+    <string name="captcha_title">Prove que é humano</string>
     <string name="menu_tor_connection">Conexão Tor</string>
     <string name="btn_use_custom_bridge">Use uma ponte personalizada</string>
     <string name="configure_header">Configure a sua conexão Tor</string>
-    <string name="volunteer_mode_subtitle_desc">O modo bondade permite que o seu dispositivo seja uma ponte para os outros. Ajuda as pessoas a usar o Tor em lugares onde ele esteja bloqueado.
+    <string name="volunteer_mode_subtitle_desc">O modo Bondade permite que o seu dispositivo seja uma ponte para os outros. Ajuda as pessoas a usar o Tor em lugares onde ele esteja bloqueado.
 \n
-\n• Não drenará a sua bateria
-\n• Não desacelerará a sua internet
+\n• Não drena a sua bateria
+\n• Não desacelera a sua internet
 \n• Só funciona via wi-fi
 \n• Pode ser desligado a qualquer momento</string>
     <string name="drawer_open">Abrir</string>
@@ -233,7 +233,7 @@
     <string name="proxy_ports">Portas do proxy</string>
     <string name="volunteer_mode_title">Ajude outros
 \na se conectar ao Tor</string>
-    <string name="volunteer_mode_label">Modo bondade</string>
+    <string name="volunteer_mode_label">Modo Bondade</string>
     <string name="volunteer_mode_weekly_label">Total semanal</string>
     <string name="volunteer_mode_alltime_label">Total de todos os períodos</string>
     <string name="ports_not_set">Portas não definidas</string>
@@ -251,8 +251,8 @@
     <string name="having_trouble">Tendo problemas</string>
     <string name="power_user_description">Para usuários familiarizados com Tor. Permite que você inicie o Orbot sem a configuração VPN e mostra as portas SOCKS e HTTP que estejam abertas</string>
     <string name="action_activate">Ativar</string>
-    <string name="volunteer_status_title">Hoje está melhor
-\npor sua causa.</string>
+    <string name="volunteer_status_title">Hoje o dia está melhor
+\ngraças a você.</string>
     <string name="title_choose_apps">Escolha os aplicativos</string>
     <string name="app_suggested_subtitle">O Orbot funciona melhor com aplicativos de mensagens e mídias sociais.</string>
     <string name="apps_suggested_title">Sugestões de aplicativos</string>
@@ -261,8 +261,8 @@
     <string name="hide_apps">Oculte os aplicativos de monitoramento da rede e obtenha acesso quando eles estiverem bloqueados.</string>
     <string name="log_copied">Registro log copiado</string>
     <string name="snowflake_amp">Snowflake (AMP)</string>
-    <string name="not_sure">Não tem certeza\?</string>
-    <string name="kindess_config_detail">Configure como e quando o seu dispositivo poder atuar como um proxy Snowflake para outros usuários do Tor.</string>
+    <string name="not_sure">Não tem certeza?</string>
+    <string name="kindess_config_detail">Configure como e quando o seu dispositivo pode atuar como um proxy Snowflake para outros usuários do Tor.</string>
     <string name="many_ways">Existem muitas maneiras de chegar ao Tor. Alguns podem funcionar melhor do que outros para você.</string>
     <string name="ask_tor">Pergunte ao Tor</string>
     <string name="action_use">Usar</string>
@@ -278,7 +278,7 @@
     <string name="setting_debug">Depurar</string>
     <string name="option_only_on_wifi">Apenas no WiFi</string>
     <string name="option_only_when_charging">Apenas ao carregar</string>
-    <string name="menu_kindness">Delicadeza</string>
+    <string name="menu_kindness">Bondade</string>
     <string name="setting_padding">Preenchimento</string>
     <string name="menu_more">Mais</string>
 </resources>
