@@ -21,6 +21,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
     namespace 'org.torproject.android.core'
 }
 
