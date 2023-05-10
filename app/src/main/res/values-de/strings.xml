@@ -225,7 +225,7 @@
     <string name="smart_connect_subtitle">Orbot versucht, sich mit Tor über jeden verfügbaren Weg zu verbinden: Direkt, Snowflake, Bridge.</string>
     <string name="direct_connect">Direkte Verbindung zu Tor</string>
     <string name="direct_connect_subtitle">Der beste Weg, sich mit Tor zu verbinden. Benutze ihn, wenn Tor nicht blockiert wird.</string>
-    <string name="snowflake">Schneeflocke</string>
+    <string name="snowflake">Snowflake</string>
     <string name="snowflake_subtitle">Verbindet sich durch Tor-Freiwillige. Umgeht einige Tor-Blockierungen.</string>
     <string name="get_a_bridge">Eine Brücke von Tor erhalten (Obfs4)</string>
     <string name="get_a_bridge_subtitle">Tarnt deinen Datenverkehr. Umgeht einige Tor-Blockierungen.</string>
