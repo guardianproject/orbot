@@ -36,6 +36,22 @@ class OrbotActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        try {
+            createOrbot ()
+
+        }
+        catch (re: RuntimeException) {
+            //catch this to avoid malicious launches as document Cure53 Audit: ORB-01-009 WP1/2: Orbot DoS via exported activity (High)
+
+            //clear malicious intent
+            intent = null
+            finish()
+        }
+
+    }
+
+    private fun createOrbot () {
         setContentView(R.layout.activity_orbot)
 
         logBottomSheet = LogBottomSheet()

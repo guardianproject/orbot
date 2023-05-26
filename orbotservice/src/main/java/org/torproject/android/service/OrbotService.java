@@ -235,13 +235,21 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (mCurrentStatus.equals(STATUS_OFF))
-            showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor);
+        try {
+            if (mCurrentStatus.equals(STATUS_OFF))
+                showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor);
 
-        if (intent != null)
-            mExecutor.execute(new IncomingIntentRouter(intent));
-        else
-            Log.d(TAG, "Got null onStartCommand() intent");
+            if (intent != null)
+                mExecutor.execute(new IncomingIntentRouter(intent));
+            else
+                Log.d(TAG, "Got null onStartCommand() intent");
+
+        }
+        catch (RuntimeException re)
+        {
+            //catch this to avoid malicious launches as document Cure53 Audit: ORB-01-009 WP1/2: Orbot DoS via exported activity (High)
+        }
+
 
         return Service.START_REDELIVER_INTENT;
     }
@@ -421,80 +429,84 @@ public class OrbotService extends VpnService implements OrbotConstants {
     public void onCreate() {
         super.onCreate();
 
-        //set proper content URIs for current build flavor
-        V3_ONION_SERVICES_CONTENT_URI = Uri.parse("content://" + getApplicationContext().getPackageName() + ".ui.v3onionservice/v3");
-        V3_CLIENT_AUTH_URI = Uri.parse("content://" + getApplicationContext().getPackageName() + ".ui.v3onionservice.clientauth/v3auth");
-
         try {
-            mHandler = new Handler();
-
-            appBinHome = getFilesDir();
-            if (!appBinHome.exists())
-                appBinHome.mkdirs();
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                appCacheHome = new File(getDataDir(), DIRECTORY_TOR_DATA);
-            } else {
-                appCacheHome = getDir(DIRECTORY_TOR_DATA, Application.MODE_PRIVATE);
-            }
-
-            if (!appCacheHome.exists())
-                appCacheHome.mkdirs();
-
-            mV3OnionBasePath = new File(getFilesDir().getAbsolutePath(), ONION_SERVICES_DIR);
-            if (!mV3OnionBasePath.isDirectory())
-                mV3OnionBasePath.mkdirs();
-
-            mV3AuthBasePath = new File(getFilesDir().getAbsolutePath(), V3_CLIENT_AUTH_DIR);
-            if (!mV3AuthBasePath.isDirectory())
-                mV3AuthBasePath.mkdirs();
-
-            if (mNotificationManager == null) {
-                mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            }
-
-            IntentFilter filter = new IntentFilter(TorControlCommands.SIGNAL_NEWNYM);
-            filter.addAction(CMD_ACTIVE);
-            filter.addAction(ACTION_STATUS);
-            filter.addAction(ACTION_ERROR);
-            filter.addAction(LOCAL_ACTION_NOTIFICATION_START);
-
-            mActionBroadcastReceiver = new ActionBroadcastReceiver();
-            registerReceiver(mActionBroadcastReceiver, filter);
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                createNotificationChannel();
+            //set proper content URIs for current build flavor
+            V3_ONION_SERVICES_CONTENT_URI = Uri.parse("content://" + getApplicationContext().getPackageName() + ".ui.v3onionservice/v3");
+            V3_CLIENT_AUTH_URI = Uri.parse("content://" + getApplicationContext().getPackageName() + ".ui.v3onionservice.clientauth/v3auth");
 
             try {
-                CustomTorResourceInstaller installer = new CustomTorResourceInstaller(this, appBinHome);
-                installer.installGeoIP();
+                mHandler = new Handler();
+
+                appBinHome = getFilesDir();
+                if (!appBinHome.exists())
+                    appBinHome.mkdirs();
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    appCacheHome = new File(getDataDir(), DIRECTORY_TOR_DATA);
+                } else {
+                    appCacheHome = getDir(DIRECTORY_TOR_DATA, Application.MODE_PRIVATE);
+                }
+
+                if (!appCacheHome.exists())
+                    appCacheHome.mkdirs();
+
+                mV3OnionBasePath = new File(getFilesDir().getAbsolutePath(), ONION_SERVICES_DIR);
+                if (!mV3OnionBasePath.isDirectory())
+                    mV3OnionBasePath.mkdirs();
+
+                mV3AuthBasePath = new File(getFilesDir().getAbsolutePath(), V3_CLIENT_AUTH_DIR);
+                if (!mV3AuthBasePath.isDirectory())
+                    mV3AuthBasePath.mkdirs();
+
+                if (mNotificationManager == null) {
+                    mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                }
+
+                IntentFilter filter = new IntentFilter(TorControlCommands.SIGNAL_NEWNYM);
+                filter.addAction(CMD_ACTIVE);
+                filter.addAction(ACTION_STATUS);
+                filter.addAction(ACTION_ERROR);
+                filter.addAction(LOCAL_ACTION_NOTIFICATION_START);
+
+                mActionBroadcastReceiver = new ActionBroadcastReceiver();
+                registerReceiver(mActionBroadcastReceiver, filter);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    createNotificationChannel();
+
+                try {
+                    CustomTorResourceInstaller installer = new CustomTorResourceInstaller(this, appBinHome);
+                    installer.installGeoIP();
+                } catch (IOException io) {
+                    Log.e(TAG, "Error installing geoip files", io);
+                    logNotice(getString(R.string.log_notice_geoip_error));
+                }
+
+                pluggableTransportInstall();
+
+                mVpnManager = new OrbotVpnManager(this);
+
+                loadCdnFronts(this);
+            } catch (Exception e) {
+                Log.e(TAG, "Error setting up Orbot", e);
+                logNotice(getString(R.string.couldn_t_start_tor_process_) + " " + e.getClass().getSimpleName());
             }
-            catch (IOException io) {
-                Log.e(TAG, "Error installing geoip files", io);
-                logNotice(getString(R.string.log_notice_geoip_error));
-            }
 
-            pluggableTransportInstall();
+            snowflakeClientsConnected = Prefs.getSnowflakesServed();
 
-            mVpnManager = new OrbotVpnManager(this);
+            mPowerReceiver = new PowerConnectionReceiver(this);
 
-            loadCdnFronts(this);
-        } catch (Exception e) {
-            Log.e(TAG, "Error setting up Orbot", e);
-            logNotice(getString(R.string.couldn_t_start_tor_process_) + " " + e.getClass().getSimpleName());
+            IntentFilter ifilter = new IntentFilter();
+            ifilter.addAction(Intent.ACTION_POWER_CONNECTED);
+            ifilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
+            registerReceiver(mPowerReceiver, ifilter);
+
+            manageSnowflakeProxy();
+
+        } catch (RuntimeException re)
+        {
+            //catch this to avoid malicious launches as document Cure53 Audit: ORB-01-009 WP1/2: Orbot DoS via exported activity (High)
         }
-
-        snowflakeClientsConnected = Prefs.getSnowflakesServed();
-
-        mPowerReceiver = new PowerConnectionReceiver(this);
-
-        IntentFilter ifilter = new IntentFilter();
-        ifilter.addAction(Intent.ACTION_POWER_CONNECTED);
-        ifilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
-        registerReceiver(mPowerReceiver, ifilter);
-
-        manageSnowflakeProxy ();
-
     }
 
     public void manageSnowflakeProxy () {
