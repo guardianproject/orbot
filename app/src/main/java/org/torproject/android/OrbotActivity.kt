@@ -74,6 +74,10 @@ class OrbotActivity : AppCompatActivity() {
         Prefs.initWeeklyWorker()
     }
 
+    override fun onBackPressed() {
+        finish()
+    }
+
     private fun requestNotificationPermission () {
         when (PackageManager.PERMISSION_GRANTED) {
             ContextCompat.checkSelfPermission(
