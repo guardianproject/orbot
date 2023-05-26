@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.XmlRes
 import androidx.preference.*
@@ -44,6 +45,15 @@ class SettingsPreferencesFragment : PreferenceFragmentCompat() {
             findPreference<Preference>("pref_persistent_notifications")?.let {
                 it.parent?.removePreference(it)
             }
+        }
+
+        val prefFlagSecure = findPreference<CheckBoxPreference>("pref_flag_secure")
+        prefFlagSecure?.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _: Preference?, newValue: Any? ->
+
+            Prefs.setSecureWindow(newValue as Boolean)
+            (activity as BaseActivity)?.resetSecureFlags()
+
+            true
         }
 
 

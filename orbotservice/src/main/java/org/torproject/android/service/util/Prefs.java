@@ -42,6 +42,7 @@ public class Prefs {
     public static final String PATHWAY_SMART = "smart", PATHWAY_DIRECT = "direct",
         PATHWAY_SNOWFLAKE = "snowflake", PATHWAY_SNOWFLAKE_AMP = "snowflake_amp", PATHWAY_CUSTOM = "custom";
 
+    public static final String PREF_SECURE_WINDOW_FLAG = "pref_flag_secure";
 
     private static SharedPreferences prefs;
 
@@ -220,4 +221,11 @@ public class Prefs {
         return prefs.getBoolean(PREF_POWER_USER_MODE, false);
     }
 
+    public static void setSecureWindow (boolean isFlagSecure) {
+        putBoolean(PREF_SECURE_WINDOW_FLAG, isFlagSecure);
+    }
+
+    public static boolean isSecureWindow () {
+        return prefs.getBoolean(PREF_SECURE_WINDOW_FLAG, true);
+    }
 }

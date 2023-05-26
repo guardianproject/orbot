@@ -17,13 +17,14 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.torproject.android.core.LocaleHelper
+import org.torproject.android.core.ui.BaseActivity
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.util.Prefs
 import org.torproject.android.ui.LogBottomSheet
 import org.torproject.android.ui.v3onionservice.PermissionManager
 
 
-class OrbotActivity : AppCompatActivity() {
+class OrbotActivity : BaseActivity() {
 
   //  private lateinit var torStatsGroup: Group
     private lateinit var bottomNavigationView: BottomNavigationView

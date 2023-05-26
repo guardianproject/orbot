@@ -50,6 +50,14 @@
             app:iconSpaceReserved="false"
             />
 
+        <CheckBoxPreference
+            android:key="pref_flag_secure"
+            android:defaultValue="true"
+            android:summary="@string/pref_flag_secure_summary"
+            android:title="@string/pref_flag_secure_title"
+            app:iconSpaceReserved="false"
+            />
+
     </PreferenceCategory>
 
     <PreferenceCategory

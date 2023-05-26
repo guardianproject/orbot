@@ -5,11 +5,12 @@
 
     <application>
         <activity
+            android:name=".BaseActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.SettingsActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat"
-            >
-        </activity>
+            android:theme="@style/Theme.AppCompat"></activity>
     </application>
 
 </manifest>

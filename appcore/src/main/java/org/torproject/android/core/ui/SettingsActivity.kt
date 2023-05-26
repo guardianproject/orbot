@@ -2,13 +2,10 @@ package org.torproject.android.core.ui
 
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
-import org.torproject.android.core.R
 
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportFragmentManager
