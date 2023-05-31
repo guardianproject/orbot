@@ -10,12 +10,12 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.scottyab.rootbeer.RootBeer
 import org.torproject.android.core.LocaleHelper
 import org.torproject.android.core.ui.BaseActivity
 import org.torproject.android.service.OrbotConstants
@@ -73,6 +73,17 @@ class OrbotActivity : BaseActivity() {
         requestNotificationPermission()
 
         Prefs.initWeeklyWorker()
+
+        val rootBeer = RootBeer(this)
+        if (rootBeer.isRooted) {
+            //we found indication of root
+            val toast = Toast.makeText(applicationContext, getString(R.string.root_warning), Toast.LENGTH_LONG)
+            toast.show()
+
+        } else {
+            //we didn't find indication of root
+        }
+
     }
 
     override fun onBackPressed() {
