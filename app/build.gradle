@@ -20,7 +20,7 @@ android {
     defaultConfig {
         applicationId "org.torproject.android"
         versionName getVersionName()
-        minSdkVersion 18
+        minSdkVersion 24
         compileSdkVersion 33
         targetSdkVersion 33
         multiDexEnabled true
