@@ -57,7 +57,7 @@ dependencies {
             libs.androidx_localbroadcast,
         //    libs.ipt_proxy,
             libs.guardian_jsocks,
-            libs.portmapper,
+        //    libs.portmapper,
             libs.pcap_core,
             libs.pcap_factory,
             libs.androidx_work,
