@@ -42,6 +42,7 @@
         android:label="@string/app_name"
         android:theme="@style/DefaultTheme"
         tools:replace="android:allowBackup"
+        android:hasFragileUserData="false"
         android:taskAffinity=""
         >
 
