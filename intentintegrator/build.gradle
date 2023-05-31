@@ -3,7 +3,7 @@ apply from: "../commons.gradle"
 
 android {
     defaultConfig {
-        minSdkVersion 24
+        minSdkVersion 23
         targetSdkVersion 33
         consumerProguardFiles "consumer-rules.pro"
     }
