@@ -1,11 +1,18 @@
-apply from: '../dependencies.gradle'
-apply from: '../commons-device.gradle'
+apply from: '../commons.gradle'
 
 android {
+    compileSdk 34
+    namespace 'org.torproject.android.tv'
+
     defaultConfig {
         applicationId "org.torproject.android.tv"
-        minSdkVersion 23
-        targetSdkVersion 33
+        minSdk 23
+        targetSdk 34
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     buildTypes {
@@ -20,39 +27,38 @@ android {
     productFlavors {
         teevee {
             dimension "teevee"
-            minSdkVersion 23 
+            minSdk 23
             applicationId 'org.torproject.android.tv'
-            compileSdkVersion 33
+            compileSdk 33
             versionCode 10020000
             versionName 'orbot-tv-1.0.1-tor-0.4.7.14'
             archivesBaseName = "Orbot-TV-$versionName"
         }
     }
-    namespace 'org.torproject.android.tv'
 }
 
 configurations {
-    all {
+    configureEach {
         exclude group: 'androidx.lifecycle', module: 'lifecycle-viewmodel-ktx'
     }
 }
 
 dependencies {
-    implementation(
-            project(':appcore'),
-            project(':intentintegrator'),
-            project(':orbotservice'),
-            libs.android_material,
-            libs.android_snowfall,
-            libs.androidx_constraint,
-            libs.androidx_coordinator,
-            libs.androidx_leanback_core,
-            libs.androidx_leanback_paging,
-            libs.androidx_leanback_preferences,
-            libs.androidx_leanback_tab,
-            libs.androidx_palette,
-            libs.androidx_recyclerview,
-            libs.apl_appintro
-    )
-    androidTestImplementation libs.fastlane_screengrab
+    implementation project(':appcore')
+    implementation project(':intentintegrator')
+    implementation project(':orbotservice')
+
+    implementation libs.android.material
+    implementation libs.android.snowfall
+    implementation libs.androidx.constraint
+    implementation libs.androidx.coordinator
+    implementation libs.androidx.leanback.core
+    implementation libs.androidx.leanback.paging
+    implementation libs.androidx.leanback.preferences
+    implementation libs.androidx.leanback.tab
+    implementation libs.androidx.palette
+    implementation libs.androidx.recyclerview
+    implementation libs.apl.appintro
+
+    androidTestImplementation libs.fastlane.screengrab
 }

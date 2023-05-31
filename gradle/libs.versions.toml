@@ -1,37 +1,37 @@
 [versions]
-android-material = '1.9.0'
+android-material = '1.11.0'
 android-shell = "1.0.0"
 android-snowfall = "1.2.1"
-android-volley = "1.2.0"
+android-volley = "1.2.1"
 androidx-appcompat = "1.6.1"
 androidx-constraint = "2.1.4"
-androidx-coordinator = "1.1.0"
-androidx-core = "1.10.1"
-androidx-leanback = "1.2.0-alpha01"
-androidx-leanback-paging = "1.1.0-alpha09"
+androidx-coordinator = "1.2.0"
+androidx-core = "1.12.0"
+androidx-leanback = "1.2.0-alpha04"
+androidx-leanback-paging = "1.1.0-alpha11"
 androidx-leanback-tab = "1.1.0-beta01"
 androidx-localbroadcast = "1.1.0"
 androidx-multidex = "2.0.1"
-androidx-navigation = "2.5.3"
+androidx-navigation = "2.7.6"
 androidx-palette = "1.0.0"
-androidx-preference = "1.2.0"
-androidx-recyclerview = "1.3.0"
+androidx-preference = "1.2.1"
+androidx-recyclerview = "1.3.2"
 androidx-test-espresso = "3.5.1"
 androidx-test-junit = "1.1.5"
-androidx-work = "2.8.1"
+androidx-work = "2.9.0"
 apl-appintro = "v4.2.3"
 bclogic-pulsator = "1.0.3"
-jraska-falcon = "2.1.1"
 fastlane-screengrab = "2.0.0"
 guardian-jsocks = "1.0.4"
 guardian-jtorctl = "0.4.5.7"
 ipt-proxy = "1.7.1"
 junit-junit = "4.13.2"
-portmapper = "2.0.6"
+kotlin-stdlib-jdk8 = "1.9.20"
 squareup = "2.9.0"
-tor-android = "0.4.7.11"
+tor-android = "0.4.8.7"
 pcap-core = "2.0.0-alpha.6"
 pcap-factory = "2.0.0-alpha.6"
+rootbeer = "0.1.0"
 
 [libraries]
 android-material = { group = "com.google.android.material", name = "material", version.ref = "android-material" }
@@ -60,15 +60,15 @@ androidx-work = { group = "androidx.work", name = "work-runtime", version.ref = 
 androidx-work-kotlin = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "androidx-work" }
 apl-appintro = { group = "com.github.apl-devs", name = "appintro", version.ref = "apl-appintro" }
 bclogic-pulsator = { group = "pl.bclogic", name = "pulsator4droid", version.ref = "bclogic-pulsator" }
-jraska-falcon = { group = "com.jraska", name = "falcon", version.ref = "jraska-falcon" }
 fastlane-screengrab = { group = "tools.fastlane", name = "screengrab", version.ref = "fastlane-screengrab" }
 guardian-jsocks = { group = "com.gitlab.guardianproject", name = "jsocksandroid", version.ref = "guardian-jsocks" }
 guardian-jtorctl = { group = "info.guardianproject", name = "jtorctl", version.ref = "guardian-jtorctl" }
 ipt-proxy = { group = "com.github.bitmold", name = "OrbotIPtProxy", version.ref = "ipt-proxy" }
 junit-junit = { group = "junit", name = "junit", version.ref = "junit-junit" }
-portmapper = { group = "com.offbynull.portmapper", name = "portmapper", version.ref = "portmapper" }
+kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin-stdlib-jdk8" }
 squareup-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "squareup" }
 squareup-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "squareup" }
 tor-android = { group = "info.guardianproject", name = "tor-android", version.ref = "tor-android" }
 pcap-core = { group = "org.pcap4j", name = "pcap4j-core", version.ref = "pcap-core" }
 pcap-factory  = { group = "org.pcap4j", name = "pcap4j-packetfactory-static", version.ref = "pcap-factory" }
+scottyab-rootbeer = { group = "com.scottyab", name = "rootbeer-lib", version.ref = "rootbeer" }

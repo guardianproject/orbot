@@ -1,18 +1,23 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
 }
-apply from: "../commons.gradle"
-apply from : '../dependencies.gradle'
 
 android {
+    compileSdk 34
+    namespace 'org.torproject.android.core'
+
     defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 33
+        minSdk 23
+        targetSdk 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     buildTypes {
@@ -25,17 +30,12 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
-
-    namespace 'org.torproject.android.core'
 }
 
 dependencies {
-    implementation(
-            project(':orbotservice'),
-            "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
-            libs.androidx_appcompat,
-            "androidx.preference:preference:1.1.0"
-    )
-    implementation 'com.google.android.material:material:1.9.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation project(':orbotservice')
+    implementation libs.android.material
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.preference
+    implementation libs.androidx.constraint
 }
