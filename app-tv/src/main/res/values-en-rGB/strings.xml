@@ -19,7 +19,7 @@
     <string name="btn_okay">Okay</string>
     <!--Welcome Wizard strings (DJH)-->
   <string name="wizard_details">Some Orbot Details</string>
-  <string name="wizard_details_msg">Orbot is an open-source application that contains Tor, Obfs4Proxy, BadVPN, Tun2Socks and LibEvent. It provides a local HTTP proxy (8118) and a SOCKS proxy (9050) into the Tor network. Orbot also has the ability, on rooted device, to send all internet traffic through Tor.</string>
+  <string name="wizard_details_msg">Orbot is an open-source application that contains Tor, Obfs4Proxy, BadVPN, Tun2Socks and LibEvent. It provides a local HTTP proxy (8118) and a SOCKS proxy (9050) into the Tor network. Orbot also has the ability, on rooted device, to send all Internet traffic through Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
   <!--New Wizard Strings-->
   <!--Title Screen-->

@@ -15,11 +15,11 @@
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
-        <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
+        <source>Orbot is a free proxy app that empowers other apps to use the Internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
         <target>اربت یک برنامه پروکسی مجانی است٬ که دیگر برنامه ها را  به استفاده امن از اینترنت توانمند می کند. اربت از تور برای رمزگذاری کردن ترافیک اینترنت استفاده می کند و بعد آن ها را از طریق کامپیوترهای متفاوت در نقاط مختلف جهان مخفی می کند. تور یک برنامه مجانی و شبکه باز است که  از شما در مقابل زیر نظر بودن در شبکه٬‌ تهدید آزادی های شخصی٬ خصوصی٬ فعالیت های کاری و رابطه های شخصی بطور امن محافظت می کند. </target>
       </trans-unit>
       <trans-unit id="intro2">
-        <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
+        <source>Orbot is the only app that creates a truly private Internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
         <target>اربت تنها برنامه ای است که امکان ارتباط مطمئن اینترنتی را فراهم می کند. همانطور که روزنامه نیویورک تامیز نوشته٬ وقتی که ارتباطات از سمت تور می آید ما نمی توانیم دریابیم که  از کجا آمده یا از طرف چه کسی است. تور برنده جایزه تازه های الکترونیک (EFF)  در سال 2012 شد.</target>
       </trans-unit>
       <trans-unit id="intro2">

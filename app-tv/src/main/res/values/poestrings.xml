@@ -11,7 +11,7 @@
     <string name="hello">"Hello"</string>
     <string name="welcome">"Welcome to Tor on mobile."</string>
 
-    <string name="browser_the_internet">"Browse the internet how you expect you should."</string>
+    <string name="browser_the_internet">"Browse the Internet how you expect you should."</string>
     <string name="no_tracking">"No tracking. No censorship."</string>
 
 </resources>

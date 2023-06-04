@@ -14,7 +14,7 @@ a secure, anonymous smartphone for use by human rights activists, journalists
 and others around the world. Learn more: https://guardianproject.info/
 
 ***********************************************
-Tor protects your privacy on the internet by hiding the connection
+Tor protects your privacy on the Internet by hiding the connection
 between your Internet address and the services you use. We believe Tor
 is reasonably secure, but please ensure you read the instructions and
 configure it properly. Learn more at https://torproject.org/

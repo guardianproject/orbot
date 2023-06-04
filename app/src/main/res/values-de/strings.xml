@@ -203,7 +203,7 @@
 \n
 \n- Er verlangsamt dein Internet nicht
 \n
-\n- Es kann nur über Wifi laufen
+\n- Es kann nur über Wi-Fi laufen
 \n
 \n- Es kann jederzeit ausgeschaltet werden</string>
     <string name="power_user_description">Für Benutzer, die mit Tor vertraut sind. Ermöglicht den Start von Orbot ohne die VPN-Einstellung und zeigt offene SOCKS- und HTTP-Ports an</string>

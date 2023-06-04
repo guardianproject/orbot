@@ -15,11 +15,11 @@
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
-        <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
+        <source>Orbot is a free proxy app that empowers other apps to use the Internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
         <target>ऑर्बॉट एक विनामूल्य प्रॉक्सी अॅप आहे जो इतर अॅप्सना इंटरनेटचा अधिक सुरक्षितपणे वापर करण्यास सक्षम करते. ऑर्बॉट आपल्या इंटरनेट रहदारीची एन्क्रिप्ट करण्यासाठी टोरचा वापर करते आणि नंतर जगभरातील संगणकांच्या मालिकेद्वारे उडी मारून लपवते. टोर हा एक विनामूल्य सॉफ्टवेअर आणि एक खुला नेटवर्क आहे जो आपल्याला नेटवर्क स्वतंत्रता आणि गोपनीयता, गोपनीय व्यवसाय क्रियाकलाप आणि नातेसंबंध आणि रहदारी विश्लेषणास म्हणून ओळखल्या जाणार्या राज्य सुरक्षेस धमकी देणार्या नेटवर्क निरीक्षणाचे रक्षण करण्यास मदत करते.</target>
       </trans-unit>
       <trans-unit id="intro2">
-        <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
+        <source>Orbot is the only app that creates a truly private Internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
       </trans-unit>
       <trans-unit id="intro2">
         <source>ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.</source>

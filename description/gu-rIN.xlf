@@ -15,11 +15,11 @@
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
-        <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
+        <source>Orbot is a free proxy app that empowers other apps to use the Internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
         <target>ઓરબોટ એક મફતનું એપ છે જે બીજા એપને સુરક્ષિત ઇન્ટરનેટ વાપરવામાં ઉપયોગી છે. ઓરબોટ ટોર વાપરે છે અને તમારા ઇન્ટરનેટ ટ્રાફિકને એનક્રિપ્ટ કરી  પછી સમગ્ર વિશ્વમાં કમ્પ્યુટર્સની એક શ્રેણી દ્વારા છુપાવી દે. ટોર એક મફત સોફ્ટવેર અને સાર્વજનિક નેટવર્ક છે જે નેટવર્કની જાસૂસી,અંગત વ્યાપાર, અને રાજ્ય સુરક્ષા ને ટ્રાફિક સ્તોત્રથી સ્વતંત્રતા અપાવે છે. </target>
       </trans-unit>
       <trans-unit id="intro2">
-        <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
+        <source>Orbot is the only app that creates a truly private Internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
         <target>ઓરબોટ માત્ર એપ્લિકેશન છે કે જે  સાચુ ખાનગી ઇન્ટરનેટ કનેક્શન બનાવે છે. ન્યૂ યોર્ક ટાઇમ્સ લખે છે કે, &quot;જ્યારે સંચાર ટોર માંથી આવે છે, તમને ક્યારેય ખબર નહીં પડે કે એ ક્યાથી આવ્યું છે કે કોનું છે.&quot; ટોર 2012 ઇલેક્ટ્રોનિક ફ્રન્ટીયર ફાઉન્ડેશન (ઇએફએફ) પાયોનિયર એવોર્ડ જીત્યો છે.</target>
       </trans-unit>
       <trans-unit id="intro2">

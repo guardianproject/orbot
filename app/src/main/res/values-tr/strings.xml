@@ -240,7 +240,7 @@
 \n
 \n• Pilinizi boşaltmaz
 \n• İnternetinizi yavaşlatmaz
-\n• Yalnızca wi-fi üzerinden çalışabilir
+\n• Yalnızca Wi-Fi üzerinden çalışabilir
 \n• İstenildiği zaman kapatılabilir</string>
     <string name="smart_connect_subtitle">Orbot, Tor\'a kullanılabilir herhangi bir yolla bağlanmayı dener: Doğrudan, Snowflake, Köprü.</string>
     <string name="snowflake">Snowflake (Orijinal)</string>

@@ -101,7 +101,7 @@
 \n
 \n• No ralentizará tu Internet
 \n
-\n• Puede funcionar solo cuando estas conectado a wifi
+\n• Puede funcionar solo cuando estas conectado a Wi-Fi
 \n
 \n• Lo puedes detener en cualquier momento</string>
     <string name="direct_connect_subtitle">La mejor manera de conectarse a Tor. Usar si Tor no está bloqueado.</string>
@@ -272,7 +272,7 @@
     <string name="kindess_config_detail">Configura cómo y cuándo tu dispositivo puede actuar como un proxy Snowflake para otros usuarios de Tor.</string>
     <string name="menu_more">Mas</string>
     <string name="option_only_when_charging">Solo cuando estes cargando tu telefono</string>
-    <string name="option_only_on_wifi">Solo cuando tengas acceso a Wifi</string>
+    <string name="option_only_on_wifi">Solo cuando tengas acceso a Wi-Fi</string>
     <string name="menu_kindness">Solidaridad</string>
     <string name="setting_padding">Acolchado</string>
     <string name="setting_debug">Depurar</string>

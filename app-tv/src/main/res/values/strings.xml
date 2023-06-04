@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">orbot tv</string>
-    <string name="app_description">Orbot TV is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</string>
+    <string name="app_description">Orbot TV is a free proxy app that empowers other apps to use the Internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</string>
     <string name="status_starting_up">Orbot TV is starting&#8230;</string>
     <string name="status_activated">Connected to the Tor network</string>
     <string name="status_shutting_down">TorService is shutting down</string>
@@ -19,7 +19,7 @@
     <string name="btn_okay">Okay</string>
     <!--Welcome Wizard strings (DJH)-->
     <string name="wizard_details">Some Orbot Details</string>
-    <string name="wizard_details_msg">Orbot is an open-source application that contains Tor, Obfs4Proxy, BadVPN, Tun2Socks and LibEvent. It provides a local HTTP proxy (8118) and a SOCKS proxy (9050) into the Tor network. Orbot also has the ability, on rooted device, to send all internet traffic through Tor.</string>
+    <string name="wizard_details_msg">Orbot is an open-source application that contains Tor, Obfs4Proxy, BadVPN, Tun2Socks and LibEvent. It provides a local HTTP proxy (8118) and a SOCKS proxy (9050) into the Tor network. Orbot also has the ability, on rooted device, to send all Internet traffic through Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">General</string>
     <string name="pref_start_boot_title">Start Orbot on Boot</string>
@@ -104,7 +104,7 @@
 
     <string name="set_locale_title">Language</string>
     <string name="pref_disable_network_title">No Network Auto-Sleep</string>
-    <string name="pref_disable_network_summary">Put Tor to sleep when there is no internet available</string>
+    <string name="pref_disable_network_summary">Put Tor to sleep when there is no Internet available</string>
     <string name="newnym">You\'ve switched to a new Tor identity!</string>
 
     <string name="pref_open_proxy_on_all_interfaces_title">Open Proxy on All Interfaces</string>
@@ -217,8 +217,8 @@
     <string name="send_your_app_traffic_over_tor">Send app data over Tor</string>
     <string name="turn_off_apps">Turn off app data</string>
     <string name="stop_apps_from_using_the_network">Stop app from using the network (coming soon!)</string>
-    <string name="wifi_only">Wifi only</string>
-    <string name="keep_your_apps_from_using_mobile_data">Only allow connection over wifi (coming soon!)</string>
+    <string name="wifi_only">Wi-Fi only</string>
+    <string name="keep_your_apps_from_using_mobile_data">Only allow connection over Wi-Fi (coming soon!)</string>
     <string name="remove">Remove</string>
     <string name="snowflake_mode">Snowflake</string>
 </resources>

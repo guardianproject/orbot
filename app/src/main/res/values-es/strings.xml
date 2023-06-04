@@ -233,7 +233,7 @@
 \n
 \n- No ralentizará tu internet
 \n
-\n- Puede funcionar sólo a través de wifi
+\n- Puede funcionar sólo a través de Wi-Fi
 \n
 \n- Se puede apagar en cualquier momento</string>
     <string name="smart_connect">Conexión inteligente (default)</string>
@@ -280,7 +280,7 @@
     <string name="option_only_when_charging">Solo cuando estas cargando tu telefono</string>
     <string name="pref_isolate_port_summary">Usa un circuito diferente para cada puerto de destino</string>
     <string name="menu_more">Mas</string>
-    <string name="option_only_on_wifi">Solo cuando estas conectado a Wifi</string>
+    <string name="option_only_on_wifi">Solo cuando estas conectado a Wi-Fi</string>
     <string name="btn_copy_log">Copiar registro</string>
     <string name="setting_padding">Acolchado</string>
     <string name="setting_debug">Depurar</string>

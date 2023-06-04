@@ -13,7 +13,7 @@
     <string name="menu_scan">Scan BridgeQR</string>
     <string name="menu_share_bridge">Share BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details_msg">Orbot is an open-source application that contains IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, and LibEvent. It provides a local HTTP proxy (8118) and a SOCKS proxy (9050) into the Tor network. Orbot also has the ability, on rooted device, to send all internet traffic through Tor.</string>
+    <string name="wizard_details_msg">Orbot is an open-source application that contains IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, and LibEvent. It provides a local HTTP proxy (8118) and a SOCKS proxy (9050) into the Tor network. Orbot also has the ability, on rooted device, to send all Internet traffic through Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->
     <!--Title Screen-->
@@ -139,8 +139,8 @@
     <string name="volunteer_mode_subtitle_desc">Kindness mode allows your device to be a bridge for others. It helps people use Tor in places where it is blocked.
 \n
 \n• It will not drain your battery
-\n• It will not slow down your internet
-\n• It can run only over wifi
+\n• It will not slow down your Internet
+\n• It can run only over Wi-Fi
 \n• It can be turned off anytime</string>
     <string name="smart_connect">Smart Connect (default)</string>
     <string name="smart_connect_subtitle">Orbot tries connecting to Tor through any way available: Direct, Snowflake, Bridge.</string>
@@ -162,10 +162,10 @@
     <string name="btn_start_vpn">Start VPN</string>
     <string name="btn_configure">Choose How To Connect</string>
     <string name="volunteer_mode_subtitle">Help others connect</string>
-    <string name="btn_choose_apps">Choose apps</string>
-    <string name="btn_change_exit">Change exit</string>
-    <string name="btn_refresh">Refresh</string>
-    <string name="btn_tor_off">Turn Tor off</string>
+    <string name="btn_choose_apps">Choose apps to include</string>
+    <string name="btn_change_exit">Change exit node</string>
+    <string name="btn_refresh">Refresh identity</string>
+    <string name="btn_tor_off">Turn off Tor</string>
     <string name="no_thx">No Thanks</string>
     <string name="menu_header_features">Features</string>
     <string name="captcha_title">Let us know you\'re human</string>
@@ -225,7 +225,7 @@
     <string name="backup_restored">Backup restored</string>
     <string name="backup_port_exist">Error: An Onion service is already using port %s</string>
     <string name="service_type">Service type</string>
-    <string name="pref_disable_network_summary">Put Tor to sleep when there is no internet available</string>
+    <string name="pref_disable_network_summary">Put Tor to sleep when there is no Internet available</string>
     <string name="newnym">You\'ve switched to a new Tor identity!</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Allow Wi-Fi peers, tethered devices and anyone else who can connect to your IP, to access Tor</string>
     <string name="pref_socks_summary">Port that Tor offers its SOCKS proxy on (default: 9050 or 0 to disable)</string>
@@ -275,7 +275,7 @@
     <string name="pref_isolate_protocol">Isolate client protocols</string>
     <string name="no_interent_title">Connect to Internet</string>
     <string name="setting_padding">Padding</string>
-    <string name="option_only_on_wifi">Only on Wifi</string>
+    <string name="option_only_on_wifi">Only on Wi-Fi</string>
     <string name="option_only_when_charging">Only when charging</string>
     <string name="menu_more">More</string>
     <string name="setting_debug">Debug</string>

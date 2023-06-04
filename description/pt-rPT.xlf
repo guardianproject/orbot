@@ -15,11 +15,11 @@
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
-        <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
+        <source>Orbot is a free proxy app that empowers other apps to use the Internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
         <target>Orbot é uma app proxy gratuita que fortifica outras apps para utilizar a internet mais seguramente. Orbot usa Tor para encriptar o seu tráfego de Internet e ocultá-lo saltando entre uma série de computadores no mundo todo. Tor é um software gratuito e uma rede aberta que ajuda-lhe a defender contra uma forma de rede de vigilância que ameaça a liberdade pessoal e privacidade, actividades de negócios confidenciais e parentesco, e segurança de estado conhecido como análise de tráfego.</target>
       </trans-unit>
       <trans-unit id="intro2">
-        <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
+        <source>Orbot is the only app that creates a truly private Internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
         <target>Orbot é a unica app que cria uma conexão de internet realmente privada. Tal como o New York Times escreve, ''quando uma comunicação chega ao Tor, nunca poderá saber de onde vem ou de quem é''. Tor ganhou em 2012 o Pioneer Award da Electronic Frontier Foundation (EFF).</target>
       </trans-unit>
       <trans-unit id="intro2">

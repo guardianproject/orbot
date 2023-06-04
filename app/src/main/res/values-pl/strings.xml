@@ -176,7 +176,7 @@
 \n
 \n- Nie powoduje wyczerpania baterii
 \n- Nie spowalnia działania internetu.
-\n- Może działać tylko przez Wifi
+\n- Może działać tylko przez Wi-Fi
 \n- Może być wyłączony w każdej chwili</string>
     <string name="pref_reduced_connection_padding_summary">Zamyka połączenia przekaźnikowe wcześniej i wysyła mniej pakietów wypełniających, aby zmniejszyć zużycie danych i baterii</string>
     <string name="custom_bridges">Mostki niestandardowe</string>
