@@ -15,11 +15,11 @@
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
-        <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
+        <source>Orbot is a free proxy app that empowers other apps to use the Internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
         <target>Orbot er frjálst og ókeypis milliþjóns-smáforrit (proxy) sem gerir öðrum smáforritum kleift að nota veraldarvefinn á öruggari hátt. Orbot notar Tor til að dulkóða umferð þína á netinu og felur hana svo með að hoppa í gegnum fjölda tölva um allan heim. Tor er frjáls hugbúnaður og opið net sem aðstoðar þig við að verjast eftirliti á netinu sem vinnur gegn frelsi einkalífsins og friðhelgi; vinnur gegn viðkvæmum viðskiptamálum og samböndum og þeirri tegund ríkisöryggis sem þekkt er sem umferðargreining.</target>
       </trans-unit>
       <trans-unit id="intro2">
-        <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
+        <source>Orbot is the only app that creates a truly private Internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
         <target>Orbot er eina smáforritið sem býr til raunverulega einkatengingu við veraldarvefinn. Eins og New York Times skrifar, &quot;þegar samskipti koma frá Tor, geturðu aldrei vitað frá hverjum eða hvaðan það kemur.&quot; Tor vann frumkvöðlaverðlaun Electronic Frontier Foundation (EFF) árið 2012.</target>
       </trans-unit>
       <trans-unit id="intro2">

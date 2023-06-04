@@ -231,7 +231,7 @@
 \n
 \n• Það mun ekki eyða rafhlöðunni þinni um of
 \n• Það mun ekki hægja á internetinu
-\n• Það getur aðeins notað þráðlaust wi-fi net
+\n• Það getur aðeins notað þráðlaust Wi-Fi net
 \n• Hægt er að slökkva á því hvenær sem er</string>
     <string name="smart_connect_subtitle">Orbot reynir að tengjast við Tor með öllum tiltækum ráðum: Beint, með Snowflake, með brúm.</string>
     <string name="direct_connect_subtitle">Besta leiðin til að tengjast við Tor. Notist ef ekki er lokað á Tor.</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</string>
+    <string name="app_description">Orbot is a free proxy app that empowers other apps to use the Internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_log">Log</string>
     <string name="menu_stop">Stop</string>
@@ -82,7 +82,7 @@
     <string name="pref_use_expanded_notifications_title">Expanded Notifications</string>
     <string name="set_locale_title">Language</string>
     <string name="pref_disable_network_title">No Network Auto-Sleep</string>
-    <string name="pref_disable_network_summary">Put Tor to sleep when there is no internet available</string>
+    <string name="pref_disable_network_summary">Put Tor to sleep when there is no Internet available</string>
     <string name="newnym">You\'ve switched to a new Tor identity!</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Open Proxy on All Interfaces</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Allow Wi-Fi peers, tethered devices and anyone else who can connect to your IP, to access Tor</string>
@@ -207,10 +207,10 @@
     <string name="configure_header">Configure your Tor Connection</string>
     <string name="volunteer_mode_subtitle">Help others connect</string>
     <string name="trying_to_connect_title">Connecting…</string>
-    <string name="btn_choose_apps">Choose apps</string>
-    <string name="btn_change_exit">Change exit</string>
-    <string name="btn_refresh">Refresh</string>
-    <string name="btn_tor_off">Turn Tor off</string>
+    <string name="btn_choose_apps">Choose apps to include</string>
+    <string name="btn_change_exit">Change exit node</string>
+    <string name="btn_refresh">Refresh identity</string>
+    <string name="btn_tor_off">Turn off Tor</string>
     <string name="no_thx">No Thanks</string>
     <string name="menu_header_features">Features</string>
     <string name="captcha_title">Let us know you\'re human</string>
@@ -231,7 +231,7 @@
     <string name="volunteer_mode_label">Kindness Mode</string>
     <string name="volunteer_mode_weekly_label">Weekly Total</string>
     <string name="volunteer_mode_alltime_label">All Time Total</string>
-    <string name="volunteer_mode_subtitle_desc">Kindness mode allows your device to be a bridge for others. It helps people use Tor in places where it is blocked.\n\n• It will not drain your battery\n• It will not slow down your internet\n• It can run only over wifi\n• It can be turned off anytime</string>
+    <string name="volunteer_mode_subtitle_desc">Kindness mode allows your device to be a bridge for others. It helps people use Tor in places where it is blocked.\n\n• It will not drain your battery\n• It will not slow down your Internet\n• It can run only over Wi-Fi\n• It can be turned off anytime</string>
     <string name="smart_connect">Smart Connect (default)</string>
     <string name="smart_connect_subtitle">Orbot tries connecting to Tor through any way available: Direct, Snowflake, Bridge.</string>
     <string name="direct_connect">Direct Connection to Tor</string>
@@ -267,13 +267,13 @@
     <string name="many_ways">There are many ways to reach Tor. Some may work better than others for you.</string>
     <string name="action_use">Use</string>
     <string name="asking">ASKING...</string>
-    <string name="no_interent_title">Connect to internet</string>
-    <string name="no_internet_subtitle">You need an internet connection to use Orbot.</string>
+    <string name="no_interent_title">Connect to Internet</string>
+    <string name="no_internet_subtitle">You need an Internet connection to use Orbot.</string>
     <string name="kindness_adjust_title">Adjust when it runs…</string>
     <string name="kindess_config_detail">Configure how and when your device can act as a Snowflake proxy for other Tor users.</string>
     <string name="menu_kindness">Kindness</string>
     <string name="menu_more">More</string>
-    <string name="option_only_on_wifi">Only on Wifi</string>
+    <string name="option_only_on_wifi">Only on Wi-Fi</string>
     <string name="option_only_when_charging">Only when charging</string>
     <string name="setting_padding">Padding</string>
     <string name="setting_debug">Debug</string>

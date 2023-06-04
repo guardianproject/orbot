@@ -15,11 +15,11 @@
         <note from="developer">This is limited by Google to 80 characters</note>
       </trans-unit>
       <trans-unit id="intro">
-        <source>Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
+        <source>Orbot is a free proxy app that empowers other apps to use the Internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.</source>
         <target>Orbot 是一款免費（自由）的代理伺服器程式，用來保護其他程式上網時的安全。Orbot 使用 Tor 來加密你的網路連線，並藉由在全球的許多電腦之間轉傳，而達到隱藏網路行蹤。Tor 是個自由且開源的網路，能幫您抵禦流量分析這種網路監控，這種數位監控威脅到個人的自由和隱私、商業機密和夥伴關係、甚至危及國家安全。</target>
       </trans-unit>
       <trans-unit id="intro2">
-        <source>Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
+        <source>Orbot is the only app that creates a truly private Internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.</source>
         <target>Orbot 是唯一能建立真正私人網路連線的應用程式。如紐約時報寫道：「當一則資訊從Tor抵達時，您永遠也無法知道它從誰或從哪裡而來。」Tor 獲得了電子前哨基金會 (EFF) 2012年的先鋒獎。</target>
       </trans-unit>
       <trans-unit id="intro2">

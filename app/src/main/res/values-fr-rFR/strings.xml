@@ -209,7 +209,7 @@
 \n
 \n- Il n\'épuise pas votre batterie
 \n- Il ne ralentit pas l\'accès à l\'internet
-\n- Il ne peut fonctionner qu\'en wifi
+\n- Il ne peut fonctionner qu\'en Wi-Fi
 \n- Il peut être désactivé à tout moment</string>
     <string name="smart_connect">Connexion intelligente (par défault)</string>
     <string name="smart_connect_subtitle">Orbot essaie de se connecter à Tor par n\'importe quel moyen disponible : Direct, Snowflake, Pont.</string>
@@ -270,7 +270,7 @@
     <string name="power_user_description">Pour les utilisateurs familiers avec Tor. Permet de démarrer Orbot sans le paramètre VPN et montre les ports SOCKS et HTTP ouverts</string>
     <string name="no_interent_title">Se connecter à l\'internet</string>
     <string name="menu_kindness">La gentillesse</string>
-    <string name="option_only_on_wifi">Uniquement sur Wifi</string>
+    <string name="option_only_on_wifi">Uniquement sur Wi-Fi</string>
     <string name="volunteer_mode_label">Mode gentillesse</string>
     <string name="ports_not_set">Ports non définis</string>
     <string name="volunteer_mode">Mode gentillesse</string>
