@@ -69,7 +69,7 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
 
         IPtProxy.setStateLocation(fileCacheDir.absolutePath)
 
-        IPtProxy.startObfs4Proxy("DEBUG", false, false, null)
+        IPtProxy.startLyrebird("DEBUG", false, false, null)
 
         val phs = ProxiedHurlStack(
             "127.0.0.1", IPtProxy.meekPort().toInt(),

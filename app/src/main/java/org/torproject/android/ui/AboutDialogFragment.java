@@ -46,7 +46,7 @@ public class AboutDialogFragment extends DialogFragment {
         tvAbout = view.findViewById(R.id.aboutother);
 
         TextView tvObfs4 = view.findViewById(R.id.tvObfs4);
-        tvObfs4.setText(getString(R.string.obfs4_url, IPtProxy.obfs4ProxyVersion()));
+        tvObfs4.setText(getString(R.string.obfs4_url, IPtProxy.lyrebirdVersion()));
 
         TextView tvSnowflake = view.findViewById(R.id.tvSnowflake);
         tvSnowflake.setText(getString(R.string.snowflake_url, IPtProxy.snowflakeVersion()));
