@@ -220,7 +220,7 @@
     <string name="volunteer_mode_label">Режим доброты</string>
     <string name="volunteer_mode_weekly_label">Итого за неделю</string>
     <string name="volunteer_mode_alltime_label">Итого за всё время</string>
-    <string name="snowflake">Snowflake</string>
+    <string name="snowflake">Snowflake (оригинал)</string>
     <string name="get_a_bridge_subtitle">Маскировка вашего трафика. Обходит некоторые блокировки Tor.</string>
     <string name="custom_bridge_subtitle">Скорее всего, это поможет сохранить подключение, даже если Tor будет жёстко заблокирован. Требуется адрес моста от кого-то, кому вы доверяете.</string>
     <string name="custom_bridge">Пользовательский мост</string>

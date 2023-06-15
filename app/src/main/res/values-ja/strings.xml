@@ -57,15 +57,15 @@
     <string name="strict_nodes">Strictノード</string>
     <string name="bridges">ブリッジ</string>
     <string name="use_bridges">ブリッジを使う</string>
-    <string name="relays">リレー</string>
-    <string name="relaying">リレーする</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">この端末を非出口リレーにする</string>
-    <string name="relay_port">リレーのポート</string>
-    <string name="listening_port_for_your_tor_relay">このTorリレーのリスニングポート</string>
+    <string name="relays">中継</string>
+    <string name="relaying">中継する</string>
+    <string name="enable_your_device_to_be_a_non_exit_relay">この端末を非出口中継にする</string>
+    <string name="relay_port">中継のポート</string>
+    <string name="listening_port_for_your_tor_relay">このTor中継のリスニングポート</string>
     <string name="enter_or_port">ORポートを入力</string>
-    <string name="relay_nickname">リレーのニックネーム</string>
-    <string name="the_nickname_for_your_tor_relay">このTorリレーのニックネーム</string>
-    <string name="enter_a_custom_relay_nickname">リレーのカスタムニックネームを入力</string>
+    <string name="relay_nickname">中継のニックネーム</string>
+    <string name="the_nickname_for_your_tor_relay">このTor中継のニックネーム</string>
+    <string name="enter_a_custom_relay_nickname">中継のカスタムニックネームを入力</string>
     <string name="reachable_addresses">到達可能アドレス</string>
     <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">制限付きのポリシーを持つファイアウォールの背後で、クライアントとして実行する</string>
     <string name="reachable_ports">到達可能ポート</string>
@@ -129,7 +129,7 @@
     <string name="pref_connection_padding">接続水増し</string>
     <string name="pref_connection_padding_summary">ある種のトラフィック解析から防御するために、接続水増しを常に有効にします。デフォルト: 自動</string>
     <string name="pref_reduced_connection_padding">節減型通信水増し</string>
-    <string name="pref_reduced_connection_padding_summary">データと電池の消費量を減らすために、リレー接続を早めに閉じ、水増しパケットを少なく送信します</string>
+    <string name="pref_reduced_connection_padding_summary">データと電池の消費量を減らすために、中継接続を早めに閉じ、水増しパケットを少なく送信します</string>
     <string name="app_shortcuts">Torが有効化されたアプリ</string>
     <string name="bridge_direct_connect">Torに直接接続する(最良)</string>
     <string name="bridge_community">コミュニティーサーバーを介して接続する</string>
@@ -275,10 +275,10 @@
     <string name="kindness_adjust_title"></string>
     <string name="kindess_config_detail">あなたの端末が他のTor利用者用のSnowflakeプロキシとしてどう動作するか、いつ動作するかを設定します。</string>
     <string name="btn_copy_log">ログをコピー</string>
-    <string name="setting_padding">パディング</string>
-    <string name="menu_more">もっと見る</string>
+    <string name="setting_padding">水増し</string>
+    <string name="menu_more">詳細を表示</string>
     <string name="option_only_on_wifi">Wifiのみ</string>
-    <string name="menu_kindness">優しさ</string>
+    <string name="menu_kindness">親切</string>
     <string name="option_only_when_charging">充電時のみ</string>
     <string name="setting_debug">デバッグ</string>
 </resources>
