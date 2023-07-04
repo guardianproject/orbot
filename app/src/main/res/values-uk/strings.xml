@@ -189,7 +189,7 @@
     <string name="version">Версія:</string>
     <string name="license">Ліцензія:</string>
     <string name="snowflake_proxy_msg_title">Показувати сповіщення про з’єднання</string>
-    <string name="snowflake_proxy_msg_description">Показувати повідомлення, коли snowflake допомагає комусь обійти цензуру</string>
+    <string name="snowflake_proxy_msg_description">Показувати повідомлення, коли ви допомагаєте комусь обійти цензуру</string>
     <string name="bridge_snowflake_amp">Підʼєднатися через інших користувачів Tor за допомогою Snowflake (Метод 2 - AMP)</string>
     <string name="strict_nodes_description">Ставитися до налаштувань виключити вузли як до обов\'язкової вимоги для побудови всіх схем. Це може призвести до порушення функціональності, якщо не вдасться згенерувати жодної схеми за допомогою налаштувань Виключити вузли.</string>
     <string name="secure_your_connection_title">Готовий до з\'єднання</string>
@@ -268,7 +268,7 @@
     <string name="ask_tor">Запитайте Tor</string>
     <string name="asking">ЗАПИТУЄМО...</string>
     <string name="no_internet_subtitle">Щоб використовувати Orbot, вам потрібне підключення до Інтернету.</string>
-    <string name="kindness_adjust_title">Налаштуйте під час запуску...</string>
+    <string name="kindness_adjust_title">Налаштуйте, коли він працює…</string>
     <string name="kindess_config_detail">Налаштуйте, як і коли ваш пристрій може діяти як проксі-сервер Snowflake для інших користувачів Tor.</string>
     <string name="pref_isolate_port">Ізолювати порти призначення</string>
     <string name="pref_isolate_port_summary">Використовувати різні схеми для кожного порту призначення</string>
@@ -281,4 +281,10 @@
     <string name="menu_more">Докладніше</string>
     <string name="setting_padding">Набивання</string>
     <string name="setting_debug">Налагодження</string>
+    <string name="connection_direct">Пряме</string>
+    <string name="pref_flag_secure_summary">Заборонити іншим застосункам робити знімок екрану Orbot</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Власне</string>
+    <string name="pref_flag_secure_title">Захист екрану</string>
+    <string name="root_warning">Orbot виявив, що ваш пристрій рутовано, що може спричинити проблеми з безпекою.</string>
 </resources>
