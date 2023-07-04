@@ -150,4 +150,25 @@
     <string name="pref_http_dialog">กําหนดค่าพอร์ต HTTP</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">อนุญาติให้ คู่Wi-Fi,อุปกรณ์ที่เชื่อมต่อ และ ใครก็ตามที่สามารถเชื่อมต่อเข้า IP คุณ, เข้าถึง Tor</string>
     <string name="pref_http_title">Tor HTTP</string>
+    <string name="allow">อนุญาต</string>
+    <string name="deny">ห้าม</string>
+    <string name="connected_title">เชื่อมต่อสำเร็จ</string>
+    <string name="trying_to_connect_title">กำลังเชื่อมต่อ…</string>
+    <string name="btn_refresh">รีเฟรช</string>
+    <string name="menu_header_features">คุณลักษณะ</string>
+    <string name="menu_faq">FAQ</string>
+    <string name="menu_header_learn">เรียนรู้เพิ่มเติม</string>
+    <string name="drawer_open">เปิด</string>
+    <string name="drawer_close">ปิด</string>
+    <string name="connection_custom">กำหนดเอง</string>
+    <string name="title_choose_apps">เลือกโปรแกรม</string>
+    <string name="action_use">ใช้</string>
+    <string name="action_activate">เปิดใช้งาน</string>
+    <string name="setting_debug">ดีบั๊ก</string>
+    <string name="menu_kindness">อ่อนโยน</string>
+    <string name="menu_more">เพิ่มเติม</string>
+    <string name="confirm">ยืนยัน</string>
+    <string name="connect">เชื่อมต่อ</string>
+    <string name="next">ต่อไป</string>
+    <string name="connection_snowflake">เกล็ดหิมะ</string>
 </resources>

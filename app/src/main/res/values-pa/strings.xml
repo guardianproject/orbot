@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="menu_settings">ਪਰਿਸਥਿਤੀ</string>
     <string name="menu_about">ਇਸ ਬਾਰੇ</string>
@@ -6,14 +6,40 @@
     <string name="menu_exit">ਬੰਦ ਕਰੋ</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
-  <!--New Wizard Strings-->
-  <!--Title Screen-->
-  <!--Warning screen-->
-  <!--Permissions screen-->
-  <!--TipsAndTricks screen-->
-  <!--Transparent Proxy screen-->
+    <!--New Wizard Strings-->
+    <!--Title Screen-->
+    <!--Warning screen-->
+    <!--Permissions screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
     <string name="error">ਗਲਤੀ:</string>
     <string name="set_locale_title">ਭਾਸ਼ਾ</string>
-  <string name="save">ਸੰਭਾਲੋ</string>
-  <string name="name">ਨਾਂ</string>
+    <string name="save">ਸੰਭਾਲੋ</string>
+    <string name="name">ਨਾਂ</string>
+    <string name="confirm">ਤਸਦੀਕ ਕਰੋ</string>
+    <string name="menu_hidden_services">ਓਨਿਅਨ ਸ਼ੇਵਾਵਾਂ</string>
+    <string name="disable">ਅਸਮਰੱਥ</string>
+    <string name="enable">ਸਮਰੱਥ</string>
+    <string name="trying_to_connect_title">ਕੁਨੈਕਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…</string>
+    <string name="menu_header_features">ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ</string>
+    <string name="connection_snowflake">ਬਰਫੀਲਾ ਤਿਣਕਾ</string>
+    <string name="connection_custom">Custom</string>
+    <string name="menu_new_identity">ਨਵੀਂ ਪਛਾਣ</string>
+    <string name="title_choose_apps">ਐਪਸ ਚੁਣੋ</string>
+    <string name="setting_debug">ਡੀ-ਬੱਗ</string>
+    <string name="license">ਲਸੰਸ:</string>
+    <string name="connect">ਕੁਨੈਕਟ ਕਰੋ</string>
+    <string name="drawer_open">ਖੋਲ੍ਹੋ</string>
+    <string name="pref_general_group">ਸਧਾਰਨ</string>
+    <string name="btn_refresh">ਤਾਜ਼ਾ ਕਰੋ</string>
+    <string name="menu_stop">ਰੁੱਕੋ</string>
+    <string name="main_layout_download">ਡਾਊਨਲੋਡ ਕਰੋ</string>
+    <string name="bridges">ਪੁੱਲ ਬਨ੍ਹਨਾ</string>
+    <string name="allow">ਮਨਜ਼ੂਰ</string>
+    <string name="hidden_services">ਓਨਿਅਨ ਸ਼ੇਵਾਵਾਂ</string>
+    <string name="drawer_close">ਬੰਦ ਕਰੋ</string>
+    <string name="next">ਅਗਲਾ</string>
+    <string name="action_use">ਵਰਤੋ</string>
+    <string name="menu_more">ਹੋਰ</string>
+    <string name="get_bridges_email">Email</string>
 </resources>

@@ -243,4 +243,6 @@
     <string name="custom_bridge_description">Un puente personalizado lo proporciona alguien que usted conoce. Pregunte dentro de sus redes y organizaciones de confianza para ver si alguien está alojando uno.</string>
     <string name="having_trouble">¿Estas teniendo problemas\?</string>
     <string name="having_trouble_subtitle">Podemos probar un puente Tor a continuación, pero necesitaremos su ayuda.</string>
+    <string name="hide_apps">Orbot te ofrece una conexión segura e ininterrumpida con tus aplicaciones.</string>
+    <string name="connection_snowflake">Snowflake</string>
 </resources>

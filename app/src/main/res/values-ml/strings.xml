@@ -1,19 +1,56 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="menu_stop">നിര്‍ത്തുക</string>
-  <string name="menu_about">വിവരം</string>
+    <string name="menu_about">വിവരം</string>
     <string name="button_about">വിവരം</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
-  <string name="pref_general_group">പൊതുവായത്</string>
-  <!--New Wizard Strings-->
-  <!--Title Screen-->
-  <!--Warning screen-->
-  <!--Permissions screen-->
-  <!--TipsAndTricks screen-->
-  <!--Transparent Proxy screen-->
+    <string name="pref_general_group">പൊതുവായത്</string>
+    <!--New Wizard Strings-->
+    <!--Title Screen-->
+    <!--Warning screen-->
+    <!--Permissions screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
     <string name="error">പിശക്</string>
     <string name="save">സംരക്ഷിക്കുക</string>
-  <string name="name">Name</string>
-  <string name="disable">പ്രവർത്തനരഹിതമാക്കു </string>
+    <string name="name">Name</string>
+    <string name="disable">പ്രവർത്തനരഹിതമാക്കു </string>
+    <string name="app_name">ഓര്‍ബോട്ട്</string>
+    <string name="connection_direct">നേരിട്ടു്</string>
+    <string name="connection_snowflake">സ്നോഫ്ളൈക്</string>
+    <string name="connection_custom">നടപടിക്രമം</string>
+    <string name="set_locale_title">ഭാഷ</string>
+    <string name="trying_to_connect_title">കണ്ണെക്റ്റിംഗ് / ബന്ധിപ്പിക്കുന്നു ..</string>
+    <string name="menu_faq">എഫ് ഏ ക്യൂ</string>
+    <string name="menu_header_learn">കൂടുതൽ അറിയു</string>
+    <string name="version">പതിപ്പ് :</string>
+    <string name="license">ലൈസന്‍സ്:</string>
+    <string name="allow">അനുവദിക്കുക</string>
+    <string name="connected_title">ബന്ധിപ്പിച്ചു</string>
+    <string name="btn_refresh">റീഫ്രെഷ്</string>
+    <string name="menu_header_features">സവിശേഷതകൾ</string>
+    <string name="drawer_open">തുറക്കുക</string>
+    <string name="next">അടുത്തത്</string>
+    <string name="action_activate">സജീവമാക്കുക</string>
+    <string name="title_choose_apps">ആപ്പുകൾ തിരഞ്ഞെടുക്കുക</string>
+    <string name="no_interent_title">ഇന്റർനെറ്റ് ആയിട്ട് ബന്ധിപ്പിക്കുക</string>
+    <string name="setting_padding">പാഡിങ്</string>
+    <string name="setting_debug">ഡീബഗ്</string>
+    <string name="menu_more">കൂടുതൽ</string>
+    <string name="connect">ബന്ധിപ്പിക്കുക</string>
+    <string name="menu_settings">ക്രമീകരണങ്ങൾ</string>
+    <string name="menu_log">പ്രശ്നക്കുറിപ്പ്</string>
+    <string name="bridges">ബ്രിഡ്ജുകൾ</string>
+    <string name="menu_new_identity">പുതിയ ഡിജിറ്റൽ വ്യക്തിത്വം</string>
+    <string name="menu_exit">പുറത്തേക്കുള്ള വഴി</string>
+    <string name="confirm">സ്ഥിരീകരിക്കുക</string>
+    <string name="menu_hidden_services">ഒണിയൻ സേവനങ്ങൾ</string>
+    <string name="done">പൂര്‍ത്തിയായി!</string>
+    <string name="enable">സജ്ജമാക്കുക</string>
+    <string name="drawer_close">അടയ്ക്കുക</string>
+    <string name="main_layout_download">ഡൗൺലോഡ്</string>
+    <string name="main_layout_upload">Upload</string>
+    <string name="get_bridges_email">ഇമെയിൽ</string>
+    <string name="hidden_services">ഒണിയൻ സേവനങ്ങൾ</string>
 </resources>

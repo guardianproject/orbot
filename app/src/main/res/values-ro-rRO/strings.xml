@@ -245,4 +245,37 @@
     <string name="custom_bridge">Punte personalizată</string>
     <string name="kindness_adjust_title">Reglați când funcționează…</string>
     <string name="snowflake_subtitle">Se conectează prin intermediul voluntarilor Tor. Ocolește unele blocaje Tor.</string>
+    <string name="secure_your_connection_title">Gata de conectare</string>
+    <string name="snowflake">Snowflake (Original)</string>
+    <string name="log_copied">Jurnalul a fost copiat</string>
+    <string name="bridges_obtained_connecting">Punți obținute! Se conectează la Tor...</string>
+    <string name="custom_bridge_description">O punte personalizată este oferită de cineva cunoscut. Întrebați în cadrul rețelelor și organizațiilor de încredere să vedeți dacă cineva găzduiește una.</string>
+    <string name="having_trouble">Am probleme</string>
+    <string name="power_user_description">Pentru utilizatorii familiarizați cu Tor. Vă permite să porniți Orbot fără setarea VPN și afișează porturile SOCKS și HTTP deschise</string>
+    <string name="action_activate">Activați</string>
+    <string name="title_choose_apps">Selectează aplicații</string>
+    <string name="apps_suggested_title">Aplicații sugerate</string>
+    <string name="apps_other_apps">Alte aplicații</string>
+    <string name="hide_apps">Ascundeți aplicațiile de la monitorizarea rețelei și obțineți acces atunci când sunt blocate.</string>
+    <string name="not_sure">Nu sunteți siguri\?</string>
+    <string name="ask_tor">Adresați-vă Tor</string>
+    <string name="many_ways">Există mai multe modalități de a vă conecta la Tor. Unele pot funcționa mai bine decât altele pentru dumneavoastră.</string>
+    <string name="action_use">Utilizați</string>
+    <string name="snowflake_proxy_msg_title">Afișați notificarea de conectare</string>
+    <string name="volunteer_mode">Modul Bunătate</string>
+    <string name="incorrect_solution">Soluție incorectă</string>
+    <string name="having_trouble_subtitle">Putem încerca o punte Tor, dar vom avea nevoie de ajutorul vostru</string>
+    <string name="power_user_mode">Mod utilizator expert</string>
+    <string name="app_suggested_subtitle">Orbot funcționează cel mai bine cu aplicațiile de mesagerie și social media.</string>
+    <string name="setting_debug">Depanare</string>
+    <string name="menu_more">Mai mult</string>
+    <string name="secure_your_connection_subtitle">Ascundeți aplicațiile de la monitorizarea rețelei și obțineți acces atunci când sunt blocate.</string>
+    <string name="connected_title">Conectată</string>
+    <string name="volunteer_status_title">Astăzi este mai bine
+\ndatorită vouă.</string>
+    <string name="next">Următorul</string>
+    <string name="solve_captcha">Rezolvă Captcha</string>
+    <string name="connection_direct">Direct</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Personalizat</string>
 </resources>

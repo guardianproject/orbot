@@ -1,29 +1,43 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Orbot</string>
+    <string name="app_name">Orbot</string>
     <string name="menu_settings">Moslamalar</string>
     <string name="menu_stop">To‘xtatish</string>
-  <string name="menu_about">Dastur haqida</string>
-  <string name="main_layout_download">Yuklab olish</string>
-  <string name="main_layout_upload">Yuklash</string>
+    <string name="menu_about">Dastur haqida</string>
+    <string name="main_layout_download">Yuklab olish</string>
+    <string name="main_layout_upload">Yuklash</string>
     <string name="button_about">Dasur haqida</string>
     <string name="menu_exit">Chiqish</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
-  <string name="pref_general_group">Umumiy</string>
-  <!--New Wizard Strings-->
-  <!--Title Screen-->
-  <!--Warning screen-->
-  <!--Permissions screen-->
-  <!--TipsAndTricks screen-->
-  <!--Transparent Proxy screen-->
-  <string name="pref_proxy_type_dialog">Proksi turini kiriting</string>
-  <string name="pref_proxy_password_summary">Proksi maxfiy so\'zi (Qo\'shimcha)</string>
-  <string name="pref_proxy_password_dialog">Proksi maxfiy so\'zini kiriting</string>
+    <string name="pref_general_group">Umumiy</string>
+    <!--New Wizard Strings-->
+    <!--Title Screen-->
+    <!--Warning screen-->
+    <!--Permissions screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
+    <string name="pref_proxy_type_dialog">Proksi turini kiriting</string>
+    <string name="pref_proxy_password_summary">Proksi maxfiy so\'zi (Qo\'shimcha)</string>
+    <string name="pref_proxy_password_dialog">Proksi maxfiy so\'zini kiriting</string>
     <string name="error">Xato</string>
-  <string name="set_locale_title">Til</string>
+    <string name="set_locale_title">Til</string>
     <string name="get_bridges_email">E-pochta manzili</string>
-  <string name="send_email">Email jo\'natish</string>
+    <string name="send_email">Email jo\'natish</string>
     <string name="save">Saqlash</string>
-  <string name="name">Ism</string>
+    <string name="name">Ism</string>
+    <string name="menu_new_identity">Yangi identifikatsiya</string>
+    <string name="trying_to_connect_title">Ulanmoqda…</string>
+    <string name="btn_refresh">Yangilash</string>
+    <string name="menu_more">Kõproq</string>
+    <string name="connection_custom">Boshqa</string>
+    <string name="connected_title">Ulandi</string>
+    <string name="drawer_close">Yopish</string>
+    <string name="setting_debug">Tuzatish</string>
+    <string name="disable">O\'chirish</string>
+    <string name="connect">Ulanish</string>
+    <string name="next">Keyingi</string>
+    <string name="kibibyte">KiB</string>
+    <string name="confirm">Tasdiqlash</string>
+    <string name="mebibyte">MiB</string>
 </resources>

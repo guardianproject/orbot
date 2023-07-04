@@ -188,4 +188,24 @@
     <string name="v3_backup_name_hint">Sikkerhetskopier filnavn …</string>
     <string name="snowflake_proxy_msg_title">Vis tilkoblingsmerknad</string>
     <string name="snowflake_proxy_msg_description">Vis en melding når ditt snøflak hjelper noen å omgå sensur</string>
+    <string name="connected_title">Tilkoblet</string>
+    <string name="btn_refresh">Gjenoppfrisk</string>
+    <string name="menu_header_features">Funksjoner</string>
+    <string name="menu_faq">O-S-S</string>
+    <string name="menu_header_learn">Lær mer</string>
+    <string name="drawer_open">Åpne</string>
+    <string name="drawer_close">Lukk</string>
+    <string name="connect">Koble til</string>
+    <string name="action_activate">Aktiver</string>
+    <string name="title_choose_apps">Velg programmer</string>
+    <string name="no_interent_title">Koble til internett</string>
+    <string name="connection_direct">Direkte</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Egendefinert</string>
+    <string name="next">Neste</string>
+    <string name="action_use">Bruk</string>
+    <string name="setting_padding">Spaltefyll</string>
+    <string name="setting_debug">Feilsøking</string>
+    <string name="menu_more">Mer</string>
+    <string name="trying_to_connect_title">Kobler til…</string>
 </resources>
