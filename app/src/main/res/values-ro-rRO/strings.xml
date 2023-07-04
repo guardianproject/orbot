@@ -278,4 +278,13 @@
     <string name="connection_direct">Direct</string>
     <string name="connection_snowflake">Snowflake</string>
     <string name="connection_custom">Personalizat</string>
+    <string name="snowflake_proxy_msg_description">Afișați un mesaj atunci când ajutați pe cineva să ocolească cenzura</string>
+    <string name="setting_padding">Căptușeală</string>
+    <string name="option_only_on_wifi">Doar pe Wi-Fi</string>
+    <string name="option_only_when_charging">Numai la încărcare</string>
+    <string name="btn_copy_log">Copiere jurnal</string>
+    <string name="menu_kindness">Bunătate</string>
+    <string name="pref_flag_secure_summary">Împiedicați alte aplicații să facă capturi de ecran din Orbot</string>
+    <string name="pref_flag_secure_title">Ecran de securitate</string>
+    <string name="root_warning">Orbot a detectat că dispozitivul dvs. este deblocat (root), ceea ce poate cauza probleme de securitate.</string>
 </resources>
