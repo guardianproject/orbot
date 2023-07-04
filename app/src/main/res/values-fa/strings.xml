@@ -280,10 +280,10 @@
     <string name="connection_custom">سفارشی</string>
     <string name="setting_debug">اشکال‌زدایی</string>
     <string name="menu_more">بیشتر</string>
-    <string name="setting_padding">لفافه</string>
+    <string name="setting_padding">لایه‌گذاری</string>
     <string name="menu_kindness">مهربانی</string>
-    <string name="option_only_on_wifi">فقط با وایفای</string>
-    <string name="option_only_when_charging">فقط در زمان شارژشدن</string>
+    <string name="option_only_on_wifi">فقط با وای‌فای</string>
+    <string name="option_only_when_charging">فقط هنگام شارژ شدن</string>
     <string name="pref_flag_secure_summary">از تصویربرداری برنامه های دیگر از روبات پیازی جلوگیری کنید</string>
     <string name="pref_flag_secure_title">امنیت صفحه‌نمایش</string>
     <string name="root_warning">روبات پیازی تشخیص داده است که دستگاه شما root شده است، که می تواند باعث مشکلات امنیتی شود.</string>
