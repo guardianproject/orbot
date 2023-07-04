@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">روبوت پیازی</string>
-    <string name="app_description">روبوت پیازی کارهٔ پیشکار آزادی است که دیگر کاره‌ها را در استفاده امن از اینترنت توانمند می‌کند . روبوت پیازی برای رمزگذاری شدآمد اینترنتتان و نهفتنش با عبور از میان دنباله‌ای از رایانه‌ها در سراسر جهان، از تور استفاده می‌کند. تور نرم‌افزار آزاد و شبکه‌ای باز است که به شما در برابر شکلی از نظارت شبکه با نام تجزیهٔ شدآمد که محرمانگی و آزادی فردی، فعّالیت‌های تجاری محرمانه و امنیت ملّی را تهدید می‌کند، یاری می‌رساند.</string>
+    <string name="app_name">ربات پیازی</string>
+    <string name="app_description">ربات پیازی کاره پیشکار آزادی است که دیگر کاره‌ها را در استفاده امن از اینترنت توانمند می‌کند. روبوت پیازی برای رمزگذاری شدآمد اینترنت‌تان و نهفتنش با عبور از میان دنباله‌ای از رایانه‌ها در سراسر جهان، از تور استفاده می‌کند. تور نرم‌افزار آزاد و شبکه‌ای باز است که به شما در برابر شکلی از نظارت شبکه با نام تجزیهٔ شدآمد که محرمانگی و آزادی فردی، فعّالیت‌های تجاری محرمانه و امنیت ملّی را تهدید می‌کند، یاری می‌رساند.</string>
     <string name="menu_settings">تنظیمات</string>
     <string name="menu_log">گزارشات</string>
     <string name="menu_stop">توقّف</string>
@@ -188,7 +188,7 @@
     <string name="refresh_apps">تازه‌سازی کاره‌ها</string>
     <string name="captcha">کپچا</string>
     <string name="bridge_snowflake_amp">وصل شدن از طریق دیگر کاربران تور با استفاده از اسنوفلیک (روش ۲ -AMP)</string>
-    <string name="snowflake_proxy_msg_description">نمایش یک پیام هنگامی که اسنوفلیکتان به کسی در عبور از سانسور کمک می‌کند</string>
+    <string name="snowflake_proxy_msg_description">نمایش یک پیام هنگامی که شما به کسی در عبور از سانسور کمک می‌کنید</string>
     <string name="snowflake_proxy_msg_title">نمایش آگاهی اتّصال</string>
     <string name="solve_captcha_instruction">برای درخواست پل، کپچا را حل کنید.</string>
     <string name="secure_your_connection_title">آمادهٔ وصل شدن</string>
@@ -271,13 +271,20 @@
     <string name="asking">پرسیدن...</string>
     <string name="no_interent_title">به اینترنت وصل شوید</string>
     <string name="no_internet_subtitle">شما برای استفاده از ربات‌پیازی به اینترنت نیاز دارید.</string>
-    <string name="kindness_adjust_title">زمانی که اجرا می‌شود تنظیم کنید...</string>
+    <string name="kindness_adjust_title">زمانی که اجرا می‌شود تنظیم کنید…</string>
     <string name="kindess_config_detail">پیکربندی کنید که چگونه و چه زمانی دستگاه شما می‌تواند به عنوان یک پروکسی دانه برف برای سایر کاربران Tor عمل کند.</string>
     <string name="log_copied">گزارشات رونوشت شدند</string>
     <string name="btn_copy_log">رونوشت گزارشات</string>
-    <string name="connection_direct">Direct</string>
+    <string name="connection_direct">مستقیم</string>
     <string name="connection_snowflake">Snowflake</string>
     <string name="connection_custom">سفارشی</string>
     <string name="setting_debug">اشکال‌زدایی</string>
     <string name="menu_more">بیشتر</string>
+    <string name="setting_padding">لفافه</string>
+    <string name="menu_kindness">مهربانی</string>
+    <string name="option_only_on_wifi">فقط با وایفای</string>
+    <string name="option_only_when_charging">فقط در زمان شارژشدن</string>
+    <string name="pref_flag_secure_summary">از تصویربرداری برنامه های دیگر از روبات پیازی جلوگیری کنید</string>
+    <string name="pref_flag_secure_title">امنیت صفحه‌نمایش</string>
+    <string name="root_warning">روبات پیازی تشخیص داده است که دستگاه شما root شده است، که می تواند باعث مشکلات امنیتی شود.</string>
 </resources>
