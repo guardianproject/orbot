@@ -203,7 +203,7 @@
     <string name="btn_use_custom_bridge">Использовать пользовательский мост</string>
     <string name="msg_taking_too_long">Кажется, это займёт очень много времени</string>
     <string name="snowflake_proxy_msg_title">Показывать уведомление о подключении</string>
-    <string name="snowflake_proxy_msg_description">Показывать уведомление, когда ваш Snowflake помогает кому-то обходить цензуру</string>
+    <string name="snowflake_proxy_msg_description">Показывать уведомление, когда вы помогаете кому-то обходить цензуру</string>
     <string name="version">Версия:</string>
     <string name="license">Лицензия:</string>
     <string name="btn_tor_off">Выключить Tor</string>
@@ -268,7 +268,7 @@
     <string name="asking">ЗАПРОС…</string>
     <string name="no_interent_title">Подключиться к интернету</string>
     <string name="no_internet_subtitle">Для использования Orbot необходимо подключение к интернету.</string>
-    <string name="kindness_adjust_title">Настройка работы...</string>
+    <string name="kindness_adjust_title">Настройка работы…</string>
     <string name="kindess_config_detail">Настройте, как и когда ваше устройство может использоваться в качестве прокси-сервера Snowflake для других пользователей Tor.</string>
     <string name="pref_isolate_protocol">Изолировать протоколы клиентов</string>
     <string name="pref_isolate_port_summary">Использовать разные цепочки подключения для каждого порта назначения</string>
@@ -281,4 +281,10 @@
     <string name="menu_kindness">Помощь другим</string>
     <string name="setting_padding">Прокладка</string>
     <string name="setting_debug">Отладка</string>
+    <string name="connection_direct">Прямое</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Настраиваемое</string>
+    <string name="pref_flag_secure_title">Защита экрана</string>
+    <string name="pref_flag_secure_summary">Не позволять другим приложениям получать снимки экрана Orbot</string>
+    <string name="root_warning">Orbot обнаружил root-доступ на вашем устройстве, что снижает его защищённость.</string>
 </resources>
