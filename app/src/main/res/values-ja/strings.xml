@@ -272,7 +272,7 @@
     <string name="not_sure">わからない？</string>
     <string name="ask_tor">トールに聞く</string>
     <string name="asking">アスク...</string>
-    <string name="kindness_adjust_title"/>
+    <string name="kindness_adjust_title">実行時に調整する…</string>
     <string name="kindess_config_detail">あなたの端末が他のTor利用者用のSnowflakeプロキシとしてどう動作するか、いつ動作するかを設定します。</string>
     <string name="btn_copy_log">ログをコピー</string>
     <string name="setting_padding">水増し</string>
