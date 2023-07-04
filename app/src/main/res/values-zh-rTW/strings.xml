@@ -170,4 +170,5 @@
     <string name="btn_refresh">重新整理</string>
     <string name="connect">連接</string>
     <string name="menu_more">展開</string>
+    <string name="pref_http_title">Tor HTTP</string>
 </resources>
