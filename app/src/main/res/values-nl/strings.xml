@@ -174,5 +174,7 @@
     <string name="deny">Weigeren</string>
     <string name="menu_tor_connection">Torverbinding</string>
     <string name="confirm">Bevestigen</string>
-    <string name="pref_open_proxy_on_all_interfaces_summary">Sta Wi-Fi peers, aangesloten apparaten en iedereen die met je IP kan verbinding toegang tot Tor toe.</string>
+    <string name="pref_open_proxy_on_all_interfaces_summary">Sta Wi-Fi peers, verbonden apparaten en alle anderen die verbinden kunnen maken met jouw IP-adres toe om verbinding te maken met Tor</string>
+    <string name="pref_open_proxy_on_all_interfaces_title">Open proxy op alle interfaces</string>
+    <string name="pref_http_dialog">HTTP port configuratie</string>
 </resources>
