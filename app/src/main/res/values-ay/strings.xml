@@ -97,7 +97,7 @@
     <string name="restart_orbot_to_use_this_bridge_">Mayjt\'ayatanak aqtayañatak Orbot mayamp qhant\'ayam, amp suma</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jawsañ apnaqirinakax Tor jark\'antañ yatipk ukjax \'Jalakipañ yanapiri\' mantañatak apnaqarakismawa. Yant\'añataki, mayjt\'ayañatakix AJLLT\'AM…</string>
     <string name="get_bridges_email">Imaylu (Email)</string>
-    <string name="apps_mode">VPN</string>
+    <string name="apps_mode">VPN uka</string>
     <string name="send_email">Qillqat apayaña</string>
     <string name="vpn_default_world">Uraqpacha (justupaki)</string>
     <string name="hidden_services">Imantat lurañanaka</string>
@@ -134,8 +134,11 @@
     <string name="bridge_direct_connect">Tor ukar chiqak waykattaña (juk\'amp khusa)</string>
     <string name="bridge_community">Yanapirinakan atamirinakapamp waythapiña</string>
     <string name="bridge_cloud">Llikan imirinakamp waythapiña</string>
-    <string name="trouble_connecting">¿Waythapiykasat jan walt\'xï?</string>
+    <string name="trouble_connecting">Janit waythapki</string>
     <string name="full_device_vpn">Taqpach wakichäwinakaw VPN ukamp apnaqatäni</string>
     <string name="vpn_disabled">VPN jiwt\'ayatawa</string>
     <string name="action_activate">Qhantayaña</string>
+    <string name="deny">Janiw saña</string>
+    <string name="version">Uñsta:</string>
+    <string name="v3_import_auth_private">.auth_private apaniña</string>
 </resources>
