@@ -152,7 +152,7 @@
     <string name="pref_open_proxy_on_all_interfaces_summary">Permitir que sus compañeros de Wi-Fi, dispositivos conectados y cualquier otra persona que pueda conectarse a su IP pueda acceder a Tor</string>
     <string name="allow">Permitir</string>
     <string name="deny">Denegar</string>
-    <string name="pref_circuit_padding">Relleno del circuito</string>
+    <string name="pref_circuit_padding">Relleno de circuito</string>
     <string name="request_bridges">Solicitar puentes</string>
     <string name="version">Versión:</string>
     <string name="license">licencia:</string>
@@ -179,10 +179,10 @@
     <string name="msg_taking_too_long">Esto parece estar tomando mucho tiempo</string>
     <string name="msg_try_something_else">Prueba otra cosa</string>
     <string name="get_bridges_email_request">Solicitar puentes por correo electrónico</string>
-    <string name="v3_backup_key_warning">Advertencia: Esto podría exponer su clave a otras aplicaciones</string>
+    <string name="v3_backup_key_warning">Advertencia: Esto podría exponer tu clave a otras aplicaciones</string>
     <string name="v3_delete_client_authorization">Borrar la clave de autorización del cliente</string>
     <string name="backup_port_exist">Error: Un servicio de Onion ya está usando el puerto %s</string>
-    <string name="pref_circuit_padding_summary">Habilitar el relleno de circuitos para defenderse de algunas formas de análisis de tráfico</string>
+    <string name="pref_circuit_padding_summary">Habilita el relleno de circuitos para defenderte de algunas formas de análisis de tráfico</string>
     <string name="pref_reduced_circuit_padding">Reducción del relleno del circuito</string>
     <string name="pref_reduced_circuit_padding_summary">Utilizar algoritmos de relleno de menor carga para reducir el uso de datos y de la batería</string>
     <string name="testing_tor_direct">Probando la conexión con Tor…</string>
