@@ -24,7 +24,7 @@
     <!--TipsAndTricks screen-->
     <!--Transparent Proxy screen-->
     <string name="pref_node_configuration">Solmumääritykset</string>
-    <string name="pref_node_configuration_summary">Nämä ovat lisäasetuksia, jotka voivat vähentää anonyymiyttäsi</string>
+    <string name="pref_node_configuration_summary">Lisäasetuksia, jotka voivat heikentää anonyymiteettiäsi.</string>
     <string name="pref_entrance_node">Lähtösolmut</string>
     <string name="pref_entrance_node_summary">Leimat, nimimerkit, maat ja osoitteet ensimmäiseen hyppyyn.</string>
     <string name="pref_entrance_node_dialog">Syötä lähtösolmut</string>
@@ -71,7 +71,7 @@
     <string name="ports_reachable_behind_a_restrictive_firewall">Rajoittavan palomuurin takaa tavoitettavat portit.</string>
     <string name="enter_ports">Kirjoita portit</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Käytä vianselvityslokin lähetystä (tarkastelu adb:n tai aLogCat-sovelluksen kautta).</string>
-    <string name="project_home">Projektin koti:</string>
+    <string name="project_home">Projektin kotisivusto:</string>
     <string name="third_party_software">3. osapuolen ohjelmistot:</string>
     <string name="pref_use_expanded_notifications">Näytä Tor-päätössolmun maa ja IP-osoite ilmoituksessa, jos saatavilla.</string>
     <string name="pref_use_expanded_notifications_title">Laajennetut ilmoitukset</string>
@@ -210,7 +210,7 @@
     <string name="strict_nodes_description">Käsittele Ohitettavat solmut -määrityksiä kaikkien ketjujen rakennusehtona. Tämä saattaa rikkoa toiminnan, jos ohitusmäärityksillä ei kyetä luomaan ketjuja.</string>
     <string name="bridge_snowflake_amp">Yhdistä muiden Tor-käyttäjien välityksellä käyttäen Snowflakea (menetelmä 2 - AMP)</string>
     <string name="snowflake_proxy_msg_title">Näytä yhteysilmoitus</string>
-    <string name="snowflake_proxy_msg_description">Näytä viesti, kun SnowFlake-palvelimesi auttaa jotakuta kiertämään sensuurin.</string>
+    <string name="snowflake_proxy_msg_description">Näytä viesti, kun autat jotakuta kiertämään sensuurin.</string>
     <string name="secure_your_connection_title">Valmis yhdistämään</string>
     <string name="trying_to_connect_title">Yhdistetään…</string>
     <string name="secure_your_connection_subtitle">Piilota sovelluksia verkkoseurannalta ja käytä estettyjä palveluita.</string>
@@ -258,10 +258,10 @@
     <string name="having_trouble_subtitle">Seuraavaksi voidaan kokeilla Tor-siltaa, mutta se edellyttää apuasi.</string>
     <string name="having_trouble">Kohdataan ongelmia</string>
     <string name="log_copied">Lokitiedot kopioitu</string>
-    <string name="kindness_adjust_title">Määritä milloin se suoritetaan...</string>
+    <string name="kindness_adjust_title">Määritä milloin se suoritetaan…</string>
     <string name="snowflake_amp">Snowflake (AMP)</string>
     <string name="ask_tor">Kysy Torilta</string>
-    <string name="action_use">Käytä</string>
+    <string name="action_use">Tapa:</string>
     <string name="asking">KYSYTÄÄN...</string>
     <string name="no_internet_subtitle">Tarvitset Internet-yhteyden Orbotin käyttöön.</string>
     <string name="kindess_config_detail">Määritä miten ja milloin laitteesi voi toimia Snowflake-välityspalvelimena muille Tor-käyttäjille.</string>
@@ -275,7 +275,14 @@
     <string name="connection_direct">Suora</string>
     <string name="connection_snowflake">Snowflake</string>
     <string name="connection_custom">Mukautettu</string>
-    <string name="setting_padding">Täyte</string>
-    <string name="setting_debug">Virheenkorjaus</string>
+    <string name="setting_padding">Pehmustus</string>
+    <string name="setting_debug">Vianselvitys</string>
     <string name="menu_more">Lisää</string>
+    <string name="pref_flag_secure_title">Näytön suojaus</string>
+    <string name="option_only_on_wifi">Vain Wi-Fi-verkossa</string>
+    <string name="option_only_when_charging">Vain ladattaessa</string>
+    <string name="menu_kindness">Ystävällisyys</string>
+    <string name="btn_copy_log">Kopioi loki</string>
+    <string name="pref_flag_secure_summary">Estä muita sovelluksia ottamasta kuvankaappauksia Orbotista.</string>
+    <string name="root_warning">Orbot on havainnut laitteesi olevan rootattu ja tästä voi aiheutua tietoturvaongelmia.</string>
 </resources>
