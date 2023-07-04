@@ -175,8 +175,8 @@
     <string name="testing_tor_direct_success">پیروزی. اتّصال تور خوب است!</string>
     <string name="testing_tor_direct">آزمودن اتّصال به تور…</string>
     <string name="pref_disable_ipv4_summary">اعلام وصل نشدن به نشانی‌های IPv4 به خروجی‌ها</string>
-    <string name="pref_reduced_circuit_padding">فاصله‌گذاری مدار کاهش‌یافته</string>
-    <string name="pref_reduced_circuit_padding_summary">استفاده از الگوریتم‌های فاصله‌گذاری با سربار پایین‌تر برای کاهش مصرف باتری و داده</string>
+    <string name="pref_reduced_circuit_padding">کاهش لایه‌گذاری مدار</string>
+    <string name="pref_reduced_circuit_padding_summary">استفاده از الگوریتم‌های لایه‌گذاری با سربار پایین‌تر برای کاهش مصرف باتری و داده</string>
     <string name="custom_bridges">پل‌های سفارشی</string>
     <string name="enter_characters_from_image">ورود متن بالا</string>
     <string name="use_qr_code">استفاده از رمز QR</string>
@@ -279,5 +279,5 @@
     <string name="connection_snowflake">Snowflake</string>
     <string name="connection_custom">سفارشی</string>
     <string name="setting_debug">اشکال‌زدایی</string>
-    <string name="menu_more">بیش‌تر</string>
+    <string name="menu_more">بیشتر</string>
 </resources>
