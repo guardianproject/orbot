@@ -1,16 +1,46 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">ಆರ್ಬೋಟ್</string>
+    <string name="app_name">ಆರ್ಬೋಟ್</string>
     <string name="menu_about">ಬಗ್ಗೆ</string>
     <string name="button_about">ಬಗ್ಗೆ</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
-  <!--New Wizard Strings-->
-  <!--Title Screen-->
-  <!--Warning screen-->
-  <!--Permissions screen-->
-  <!--TipsAndTricks screen-->
-  <!--Transparent Proxy screen-->
+    <!--New Wizard Strings-->
+    <!--Title Screen-->
+    <!--Warning screen-->
+    <!--Permissions screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
     <string name="set_locale_title">ಭಾಷೆ</string>
-  <string name="name">Name</string>
+    <string name="name">Name</string>
+    <string name="trying_to_connect_title">ಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ…</string>
+    <string name="next">ಮುಂದೆ</string>
+    <string name="title_choose_apps">ಅಪ್ಲಿಕೇಶನ್‌ಗಳನ್ನು ಆರಿಸಿ</string>
+    <string name="main_layout_download">ಡೌನ್‌ಲೋಡ್</string>
+    <string name="menu_exit">ನಿರ್ಗಮಿಸು</string>
+    <string name="confirm">ಖಚಿತಪಡಿಸಿ</string>
+    <string name="enable">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
+    <string name="connected_title">ಸಂಪರ್ಕಗೊಂಡಿದೆ</string>
+    <string name="menu_header_features">Features</string>
+    <string name="menu_faq">FAQ</string>
+    <string name="setting_debug">ಡೀಬಗ್ ಮಾಡಿ</string>
+    <string name="connection_custom">ಕಸ್ಟಮ್</string>
+    <string name="connect">ಸಂಪರ್ಕಿಸಿ</string>
+    <string name="disable">ಹೆಳವುಗೊಳಿಸು</string>
+    <string name="menu_log">ಲಾಗ್</string>
+    <string name="menu_stop">ನಿಲ್ಲಿಸಿ</string>
+    <string name="menu_more">ಇನ್ನಷ್ಟು</string>
+    <string name="license">ಲೈಸನ್ಸ್</string>
+    <string name="allow">ಅನುಮತಿಸಿ</string>
+    <string name="drawer_open">ತೆರೆ</string>
+    <string name="drawer_close">ಕ್ಲೋಸ್</string>
+    <string name="pref_general_group">ಸಾಮಾನ್ಯ</string>
+    <string name="menu_settings">ಸೆಟ್ಟಿಂಗ್ಸ್</string>
+    <string name="error">ದೋಷ</string>
+    <string name="version">ಪ್ರತಿ</string>
+    <string name="main_layout_upload">Upload</string>
+    <string name="get_bridges_email">ಮಿಂಚಂಚೆ</string>
+    <string name="save">ಸೇವ್</string>
+    <string name="menu_new_identity">New Identity</string>
+    <string name="btn_refresh">ರಿಫ್ರೆಶ್</string>
 </resources>

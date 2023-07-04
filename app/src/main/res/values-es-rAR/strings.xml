@@ -83,4 +83,25 @@
     <string name="save">Guardar</string>
     <string name="name">Nombre</string>
     <string name="disable">Deshabilitar</string>
+    <string name="menu_hidden_services">Servicios Onion</string>
+    <string name="deny">Negar</string>
+    <string name="btn_refresh">Actualizar</string>
+    <string name="menu_header_features">Características</string>
+    <string name="action_activate">Activar</string>
+    <string name="title_choose_apps">Elegir aplicaciones</string>
+    <string name="connection_custom">Personalizado</string>
+    <string name="menu_faq">Preguntas Frecuentes</string>
+    <string name="drawer_open">Abrir</string>
+    <string name="connect">Conectar</string>
+    <string name="next">Siguiente</string>
+    <string name="allow">Permitir</string>
+    <string name="restore_backup">Restaurar copia de seguridad</string>
+    <string name="connected_title">Conectado</string>
+    <string name="menu_more">Más</string>
+    <string name="version">Versión:</string>
+    <string name="license">Licencia:</string>
+    <string name="drawer_close">Cerrar</string>
+    <string name="enable">Habilitar</string>
+    <string name="hidden_services">Servicios Onion</string>
+    <string name="confirm">Confirmar</string>
 </resources>

@@ -137,4 +137,25 @@
     <string name="trouble_connecting">Проблеми со поврзувањето?</string>
     <string name="full_device_vpn">Целосен VPN  уред</string>
     <string name="vpn_disabled">VPN оневозможен</string>
+    <string name="menu_tor_connection">Tor Поврзување</string>
+    <string name="action_activate">Aktiviraj</string>
+    <string name="menu_more">Повеќе</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Прилагоден(о)</string>
+    <string name="trying_to_connect_title">Се поврзува…</string>
+    <string name="menu_faq">FAQ</string>
+    <string name="menu_header_learn">Научи повеќе</string>
+    <string name="drawer_close">Затвори</string>
+    <string name="next">Следно</string>
+    <string name="setting_debug">Дебагирање</string>
+    <string name="version">Verzija:</string>
+    <string name="confirm">Потврди</string>
+    <string name="menu_new_identity">Нов идентитет</string>
+    <string name="connected_title">Поврзано</string>
+    <string name="deny">Одбиј</string>
+    <string name="allow">Dozvolete</string>
+    <string name="btn_refresh">Osvezi</string>
+    <string name="menu_header_features">Карактеристики</string>
+    <string name="connect">Поврзи</string>
+    <string name="drawer_open">Отвори</string>
 </resources>

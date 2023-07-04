@@ -1,14 +1,23 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="menu_settings">सेटिंग्स</string>
+    <string name="menu_settings">सेटिंग्स</string>
     <string name="menu_exit">अोंखारलां</string>
     <!--Welcome Wizard strings (DJH)-->
-  <!--END Welcome Wizard strings (DJH)-->
-  <!--New Wizard Strings-->
-  <!--Title Screen-->
-  <!--Warning screen-->
-  <!--Permissions screen-->
-  <!--TipsAndTricks screen-->
-  <!--Transparent Proxy screen-->
+    <!--END Welcome Wizard strings (DJH)-->
+    <!--New Wizard Strings-->
+    <!--Title Screen-->
+    <!--Warning screen-->
+    <!--Permissions screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
     <string name="save">थिना दोन</string>
+    <string name="menu_stop">थाथ\'</string>
+    <string name="pref_general_group">सरासनस्रा</string>
+    <string name="set_locale_title">राव</string>
+    <string name="get_bridges_email">इ-मेइल</string>
+    <string name="name">मुं</string>
+    <string name="drawer_open">खेव</string>
+    <string name="next">उननि</string>
+    <string name="connection_custom">कास्टम</string>
+    <string name="error">गोरोन्थि</string>
 </resources>

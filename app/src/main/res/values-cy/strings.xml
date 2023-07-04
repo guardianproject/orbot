@@ -1,36 +1,59 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Orbot</string>
+    <string name="app_name">Orbot</string>
     <string name="menu_settings">Gosodiadau</string>
-  <string name="menu_log">Log</string>
+    <string name="menu_log">Log</string>
     <string name="menu_stop">Stop</string>
-  <string name="menu_about">Amdanom ni</string>
-  <string name="main_layout_download">Llwytho i lawr</string>
-  <string name="main_layout_upload">Llwytho i fyny</string>
+    <string name="menu_about">Amdanom ni</string>
+    <string name="main_layout_download">Llwytho i lawr</string>
+    <string name="main_layout_upload">Llwytho i fyny</string>
     <string name="button_about">Amdanom ni</string>
     <string name="menu_exit">Gadael</string>
-  <!--Welcome Wizard strings (DJH)-->
+    <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
-  <string name="pref_general_group">Cyffredinol</string>
-  <!--New Wizard Strings-->
-  <!--Title Screen-->
-  <!--Warning screen-->
+    <string name="pref_general_group">Cyffredinol</string>
+    <!--New Wizard Strings-->
+    <!--Title Screen-->
+    <!--Warning screen-->
     <!--Permissions screen-->
-  <!--TipsAndTricks screen-->
-  <!--Transparent Proxy screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
     <string name="pref_node_configuration">Ffurfweddiad nod</string>
-  <string name="pref_entrance_node">Nodau mynediad</string>
-  <string name="pref_entrance_node_dialog">I mewn i nodau mynediad</string>
-  <string name="pref_proxy_password_summary">Cyfrinair y Dirprwy (Dewisol)</string>
+    <string name="pref_entrance_node">Nodau mynediad</string>
+    <string name="pref_entrance_node_dialog">I mewn i nodau mynediad</string>
+    <string name="pref_proxy_password_summary">Cyfrinair y Dirprwy (Dewisol)</string>
     <string name="error">Gwall</string>
-  <string name="exit_nodes">Nodau Gadael</string>
-  <string name="enter_exit_nodes">I mewn i Nodau Gadael</string>
-  <string name="exclude_nodes">Yn eithrio Nodau</string>
-  <string name="enter_exclude_nodes">I mewn i Nodau Eithrio</string>
+    <string name="exit_nodes">Nodau Gadael</string>
+    <string name="enter_exit_nodes">I mewn i Nodau Gadael</string>
+    <string name="exclude_nodes">Yn eithrio Nodau</string>
+    <string name="enter_exclude_nodes">I mewn i Nodau Eithrio</string>
     <string name="third_party_software">Meddalwedd 3ydd-parti</string>
     <string name="set_locale_title">Iaith</string>
-  <string name="hidden_services">Gwasanaethau Cudd</string>
+    <string name="hidden_services">Gwasanaethau Cudd</string>
     <string name="menu_hidden_services">Gwasanaethau Cudd</string>
-  <string name="save">Cadw</string>
-  <string name="name">Enw</string>
+    <string name="save">Cadw</string>
+    <string name="name">Enw</string>
+    <string name="license">Trwydded:</string>
+    <string name="deny">Gwrthod</string>
+    <string name="confirm">Cadarnhau</string>
+    <string name="disable">Diffodd</string>
+    <string name="connect">Cysylltu</string>
+    <string name="action_activate">Ysgogi</string>
+    <string name="action_use">Wynebfath</string>
+    <string name="connection_direct">Preifat</string>
+    <string name="connection_custom">Cyfaddas</string>
+    <string name="version">Fersiwn:</string>
+    <string name="menu_new_identity">New Identity</string>
+    <string name="trying_to_connect_title">Yn cysylltu</string>
+    <string name="btn_refresh">Ail-lwytho</string>
+    <string name="menu_header_features">Nodweddion</string>
+    <string name="title_choose_apps">Dewis Apiau</string>
+    <string name="menu_more">Mwy</string>
+    <string name="drawer_open">Agor</string>
+    <string name="drawer_close">Cau</string>
+    <string name="next">Nesaf</string>
+    <string name="menu_faq">Cwestiynau Cyffredin</string>
+    <string name="allow">Caniatáu</string>
+    <string name="get_bridges_email">E-bost</string>
+    <string name="enable">Galluogi</string>
 </resources>

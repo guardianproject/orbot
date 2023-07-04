@@ -275,4 +275,8 @@
     <string name="pref_isolate_port">Изолиране на целевите портове</string>
     <string name="pref_isolate_protocol_summary">Използване на различен обход за всеки протокол за свързване</string>
     <string name="btn_copy_log">Копиране на дневника</string>
+    <string name="menu_more">Повече</string>
+    <string name="connection_snowflake">Снежинка</string>
+    <string name="connection_custom">По избор</string>
+    <string name="setting_debug">Отстраняване на грешки</string>
 </resources>

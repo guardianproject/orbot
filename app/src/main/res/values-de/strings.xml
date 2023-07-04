@@ -264,4 +264,13 @@
     <string name="hide_apps">Verstecke Apps vor der Netzwerküberwachung und erhalte Zugriff, wenn sie blockiert sind.</string>
     <string name="pref_isolate_port">Zielports isolieren</string>
     <string name="pref_isolate_protocol">Clientprotokolle isolieren</string>
+    <string name="connection_direct">Direkt</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Benutzerdefiniert</string>
+    <string name="action_use">Verwenden</string>
+    <string name="no_interent_title">Mit dem Internet verbinden</string>
+    <string name="setting_padding">Rahmenabstand</string>
+    <string name="setting_debug">Debug</string>
+    <string name="menu_kindness">Freundlichkeit</string>
+    <string name="menu_more">Mehr</string>
 </resources>

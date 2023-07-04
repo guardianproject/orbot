@@ -73,4 +73,27 @@
     <string name="menu_hidden_services">Perkhidmatan tersembunyi</string>
     <string name="save">Simpan</string>
     <string name="name">Nama</string>
+    <string name="version">Versi:</string>
+    <string name="license">Lesen:</string>
+    <string name="kibibyte">KiB</string>
+    <string name="confirm">Sahkan</string>
+    <string name="menu_new_identity">Identiti Baharu</string>
+    <string name="trying_to_connect_title">Menyambung…</string>
+    <string name="menu_header_learn">Ketahui Lebih Lanjut</string>
+    <string name="drawer_close">Tutup</string>
+    <string name="next">Seterusnya</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Suai</string>
+    <string name="btn_refresh">Segarkan</string>
+    <string name="menu_header_features">Fitur</string>
+    <string name="setting_debug">Nyahpepijat</string>
+    <string name="menu_more">Lagi</string>
+    <string name="drawer_open">Buka</string>
+    <string name="connected_title">Bersambung</string>
+    <string name="menu_faq">FAQ</string>
+    <string name="disable">Lumpuhkan</string>
+    <string name="mebibyte">MiB</string>
+    <string name="get_bridges_email">Email</string>
+    <string name="deny">Nafi</string>
+    <string name="connect">Sambung</string>
 </resources>

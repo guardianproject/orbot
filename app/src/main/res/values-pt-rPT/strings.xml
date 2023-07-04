@@ -261,4 +261,12 @@
     <string name="app_suggested_subtitle">O Orbot funciona melhor com apps de mensagens e mídias sociais.</string>
     <string name="apps_suggested_title">Sugestões de apps</string>
     <string name="apps_other_apps">Outras apps</string>
+    <string name="action_use">Usar</string>
+    <string name="setting_padding">Preenchimento</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Personalizado</string>
+    <string name="setting_debug">Debug</string>
+    <string name="menu_kindness">Bondade</string>
+    <string name="menu_more">Mais</string>
+    <string name="hide_apps">Oculte apps do monitoramento da rede e obtenha acesso quando eles estiverem bloqueados.</string>
 </resources>

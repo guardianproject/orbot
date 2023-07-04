@@ -281,4 +281,6 @@
     <string name="menu_kindness">Delicadeza</string>
     <string name="setting_padding">Preenchimento</string>
     <string name="menu_more">Mais</string>
+    <string name="connection_custom">Personalizado</string>
+    <string name="connection_snowflake">Snowflake</string>
 </resources>

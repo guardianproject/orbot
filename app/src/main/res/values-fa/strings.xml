@@ -275,4 +275,9 @@
     <string name="kindess_config_detail">پیکربندی کنید که چگونه و چه زمانی دستگاه شما می‌تواند به عنوان یک پروکسی دانه برف برای سایر کاربران Tor عمل کند.</string>
     <string name="log_copied">گزارشات رونوشت شدند</string>
     <string name="btn_copy_log">رونوشت گزارشات</string>
+    <string name="connection_direct">Direct</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">سفارشی</string>
+    <string name="setting_debug">اشکال‌زدایی</string>
+    <string name="menu_more">بیش‌تر</string>
 </resources>

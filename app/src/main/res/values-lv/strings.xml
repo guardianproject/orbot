@@ -215,4 +215,14 @@
     <string name="trying_to_connect_title">Mēģinājums izveidot savienojumu ar Tor…</string>
     <string name="menu_faq">FAQ</string>
     <string name="menu_header_learn">Uzzināt vairāk</string>
+    <string name="drawer_open">Atvērt</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Pielāgots</string>
+    <string name="action_activate">Atjaunot</string>
+    <string name="title_choose_apps">Izvēlēties lietotnes</string>
+    <string name="setting_debug">Atkļūdot</string>
+    <string name="menu_more">Vairāk</string>
+    <string name="drawer_close">Aizvērt</string>
+    <string name="connect">Veidot savienojumu</string>
+    <string name="next">Nākamais</string>
 </resources>

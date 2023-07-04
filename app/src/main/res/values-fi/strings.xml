@@ -272,4 +272,10 @@
     <string name="pref_isolate_port">Eristä kohdeportit</string>
     <string name="pref_isolate_port_summary">Käytä jokaiselle kohdeportille eri ketjua.</string>
     <string name="pref_isolate_protocol_summary">Käytä jokaiselle yhteysprotokollalle eri ketjua.</string>
+    <string name="connection_direct">Suora</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Mukautettu</string>
+    <string name="setting_padding">Täyte</string>
+    <string name="setting_debug">Virheenkorjaus</string>
+    <string name="menu_more">Lisää</string>
 </resources>

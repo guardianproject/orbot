@@ -274,4 +274,10 @@
     <string name="no_interent_title">Podłączenie do Internetu</string>
     <string name="kindess_config_detail">Skonfiguruj, jak i kiedy Twoje urządzenie może działać jako proxy Snowflake dla innych użytkowników Tor.</string>
     <string name="log_copied">Dziennik Skopiowany</string>
+    <string name="connection_direct">Bezpośrednio</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Niestandardowe</string>
+    <string name="setting_padding">Wypełnienie</string>
+    <string name="setting_debug">Debugowanie</string>
+    <string name="menu_more">Więcej</string>
 </resources>

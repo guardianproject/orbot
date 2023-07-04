@@ -284,4 +284,7 @@
     <string name="menu_more">Lainnya</string>
     <string name="option_only_on_wifi">Hanya pada Wi-Fi</string>
     <string name="option_only_when_charging">Hanya saat mengisi daya</string>
+    <string name="connection_direct">Direct</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Kustom</string>
 </resources>

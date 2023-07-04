@@ -1,20 +1,37 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="menu_settings">Configurationes</string>
     <string name="menu_about">Circa</string>
     <string name="button_about">Circa</string>
-  <string name="menu_exit">Sortir</string>
+    <string name="menu_exit">Sortir</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
-  <string name="pref_general_group">General</string>
-  <!--New Wizard Strings-->
-  <!--Title Screen-->
-  <!--Warning screen-->
+    <string name="pref_general_group">General</string>
+    <!--New Wizard Strings-->
+    <!--Title Screen-->
+    <!--Warning screen-->
     <!--Permissions screen-->
-  <!--TipsAndTricks screen-->
-  <!--Transparent Proxy screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
     <string name="error">Error</string>
     <string name="set_locale_title">Linguage</string>
     <string name="save">Salveguardar</string>
-  <string name="name">Nomine</string>
+    <string name="name">Nomine</string>
+    <string name="disable">Disable</string>
+    <string name="menu_faq">FAQ</string>
+    <string name="btn_refresh">Refresh</string>
+    <string name="menu_header_features">Features</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="enable">Enable</string>
+    <string name="menu_stop">Stop</string>
+    <string name="main_layout_download">Download</string>
+    <string name="main_layout_upload">Upload</string>
+    <string name="setting_debug">Depuration</string>
+    <string name="menu_more">Plus</string>
+    <string name="get_bridges_email">Email</string>
+    <string name="menu_new_identity">Nove identitate</string>
+    <string name="connect">Connecter</string>
+    <string name="next">Next</string>
+    <string name="connection_custom">Custom</string>
 </resources>

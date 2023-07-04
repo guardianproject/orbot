@@ -1,18 +1,52 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Orbot</string>
-  <string name="menu_about">Մասին</string>
-  <string name="button_about">Մասին</string>
+    <string name="app_name">Orbot</string>
+    <string name="menu_about">Մասին</string>
+    <string name="button_about">Մասին</string>
     <string name="menu_exit">Ելք</string>
     <!--Welcome Wizard strings (DJH)-->
-  <!--END Welcome Wizard strings (DJH)-->
-  <!--New Wizard Strings-->
-  <!--Title Screen-->
-  <!--Warning screen-->
+    <!--END Welcome Wizard strings (DJH)-->
+    <!--New Wizard Strings-->
+    <!--Title Screen-->
+    <!--Warning screen-->
     <!--Permissions screen-->
-  <!--TipsAndTricks screen-->
-  <!--Transparent Proxy screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
     <string name="error">Սխալ</string>
     <string name="save">Պահել</string>
-  <string name="name">Անուն</string>
+    <string name="name">Անուն</string>
+    <string name="menu_faq">Հաճախակի տրվող հարցեր (FAQ)</string>
+    <string name="menu_header_learn">Իմանալ ավելին</string>
+    <string name="drawer_close">Փակել</string>
+    <string name="action_activate">Ակտիվացնել</string>
+    <string name="title_choose_apps">Ընտրել ափփեր</string>
+    <string name="allow">Allow</string>
+    <string name="hidden_services">Onion ծառայություններ</string>
+    <string name="disable">Կարողազրկել</string>
+    <string name="enable">Միացնել</string>
+    <string name="next">Հաջորդը</string>
+    <string name="connection_direct">Direct</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Հարմարեցրած</string>
+    <string name="bridges">Կամուրջներ</string>
+    <string name="version">Տարբերակ:</string>
+    <string name="set_locale_title">Լեզու</string>
+    <string name="get_bridges_email">Էլ․հասցե</string>
+    <string name="connected_title">Միացվեց</string>
+    <string name="menu_settings">Կարգավորումներ</string>
+    <string name="menu_more">Ավելին</string>
+    <string name="confirm">Հաստատել</string>
+    <string name="menu_new_identity">Նոր ինքնություն</string>
+    <string name="btn_refresh">Թարմացնել</string>
+    <string name="menu_stop">Դադարեցնել</string>
+    <string name="main_layout_download">Ներբեռնել</string>
+    <string name="main_layout_upload">Upload</string>
+    <string name="pref_general_group">General</string>
+    <string name="license">Արտոնագիր․</string>
+    <string name="menu_hidden_services">Onion ծառայություններ</string>
+    <string name="trying_to_connect_title">Միացում…</string>
+    <string name="menu_header_features">Հատկություններ</string>
+    <string name="menu_tor_connection">Tor միացում</string>
+    <string name="drawer_open">Աշխատանքային ժամերը</string>
+    <string name="connect">Միացնել</string>
 </resources>

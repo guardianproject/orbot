@@ -284,4 +284,7 @@
     <string name="btn_copy_log">Copiar registro</string>
     <string name="setting_padding">Acolchado</string>
     <string name="setting_debug">Depurar</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Personalizado</string>
+    <string name="connection_direct">Directo</string>
 </resources>

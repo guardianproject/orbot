@@ -1,12 +1,30 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
-  <!--New Wizard Strings-->
-  <!--Title Screen-->
-  <!--Warning screen-->
-  <!--Permissions screen-->
-  <!--TipsAndTricks screen-->
-  <!--Transparent Proxy screen-->
+    <!--New Wizard Strings-->
+    <!--Title Screen-->
+    <!--Warning screen-->
+    <!--Permissions screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
     <string name="name">Name</string>
+    <string name="set_locale_title">ژبه</string>
+    <string name="menu_new_identity">New Identity</string>
+    <string name="connected_title">ونښلول شو</string>
+    <string name="title_choose_apps">کاریالونه ټاکل</string>
+    <string name="drawer_open">پرانېستل</string>
+    <string name="connect">نښلول</string>
+    <string name="next">بل</string>
+    <string name="menu_settings">امستنې</string>
+    <string name="menu_stop">تمول</string>
+    <string name="menu_about">په اړه</string>
+    <string name="main_layout_download">ښکته کول</string>
+    <string name="button_about">په اړه</string>
+    <string name="menu_exit">Exit</string>
+    <string name="app_name">اوربوټ</string>
+    <string name="menu_hidden_services">د Onion خدمات</string>
+    <string name="bridges">پلونه</string>
+    <string name="hidden_services">د Onion خدمات</string>
+    <string name="drawer_close">Close</string>
 </resources>

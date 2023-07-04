@@ -37,4 +37,19 @@
     <string name="pref_node_configuration">নোড কনফিগারেশন</string>
     <string name="pref_start_boot_summary">অরবোটটি স্বয়ংক্রিয়ভাবে শুরু করো এবং তোমার অ্যান্ড্রয়েড ডিভাইস বুট হওয়ার পরে টরে সংযুক্ত করো</string>
     <string name="pref_allow_background_starts_summary">যে কোন অ্যাপ অরবটকে টর এবং সংশ্লিষ্ট পরিষেবাগুলি চালু করতে বলতে পারে</string>
+    <string name="menu_hidden_services">ওনিওন সেবা</string>
+    <string name="connected_title">সংযুক্ত হয়েছে</string>
+    <string name="btn_refresh">রিফ্রেশ</string>
+    <string name="connect">সংযোগ করুন</string>
+    <string name="next">পরেরটা</string>
+    <string name="title_choose_apps">অ্যাপ নির্বাচন</string>
+    <string name="setting_debug">ডিবাগ</string>
+    <string name="menu_more">আরো</string>
+    <string name="allow">অনুমোদন</string>
+    <string name="enable">সক্ষম করো</string>
+    <string name="hidden_services">ওনিওন সেবা</string>
+    <string name="get_bridges_email">ইমেইল</string>
+    <string name="menu_header_features">বৈশিষ্ট্যসমূহ</string>
+    <string name="drawer_open">খুলো</string>
+    <string name="drawer_close">বন্ধ করুন</string>
 </resources>

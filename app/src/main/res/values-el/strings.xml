@@ -281,4 +281,7 @@
     <string name="option_only_on_wifi">Μόνο στο Wifi</string>
     <string name="option_only_when_charging">Μόνο κατά τη φόρτιση</string>
     <string name="btn_copy_log">Αντιγραφή αρχείου καταγραφής</string>
+    <string name="connection_direct">Απευθείας</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Προσαρμοσμένο</string>
 </resources>
