@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbotは、他のアプリがインターネットをより安全に使用できるようにする無料のプロキシアプリです。OrbotはTorを使用してインターネットトラフィックを暗号化し、世界中の一連のコンピュータを経由してバウンスすることでそれを隠蔽しています。Torはフリーソフトウェアであり、オープンネットワークです。個人の自由やプライバシー、機密のビジネス活動や関係、国家安全保障を脅かすネットワーク監視の一形態であるトラフィック解析から身を守るのに役立ちます。</string>
+    <string name="app_description">Orbotは、他のアプリがインターネットをより安全に使用できるようにする、無料のプロキシアプリです。OrbotはTorを使用してインターネットトラフィックを暗号化し、世界中の一連のコンピュータを通して中継することで、それを隠蔽しています。Torは自由ソフトウェアかつ開放的なネットワークであり、個人の自由とプライバシー脅かすネットワーク監視と対決し、機密のビジネス活動、そして国家情報機関によるトラフィック分析から防御することを助けてくれます。</string>
     <string name="menu_settings">設定</string>
     <string name="menu_log">履歴</string>
     <string name="menu_stop">停止</string>
@@ -196,7 +196,7 @@
     <string name="bridge_snowflake">Snowflakeを使って他のTorユーザーを経由して接続する(方法第1 - Fastly)</string>
     <string name="bridge_snowflake_amp">Snowflakeを使って他のTorユーザーを経由して接続する(方法第2 - AMP)</string>
     <string name="use_custom_bridges">カスタムブリッジの使用</string>
-    <string name="snowflake_proxy_msg_description">あなたのsnowflakeが誰かの検閲迂回を助けたら、メッセージを表示する</string>
+    <string name="snowflake_proxy_msg_description">あなたが誰かの検閲迂回を助けたら、メッセージを表示する</string>
     <string name="kibibyte">KiB</string>
     <string name="get_bridges_email_request">電子メールによるブリッジのリクエスト</string>
     <string name="v3_client_auth_activity_title">クライアント認証</string>
@@ -284,4 +284,7 @@
     <string name="connection_direct">メンション</string>
     <string name="connection_snowflake">Snowflake</string>
     <string name="connection_custom">カスタム</string>
+    <string name="pref_flag_secure_summary">他のアプリがOrbotのスクリーンショットを撮るのを防ぐ</string>
+    <string name="pref_flag_secure_title">画面の安全</string>
+    <string name="root_warning">Orbotは端末が、安全問題の原因になり得るroot化状態であると検知しました。</string>
 </resources>
