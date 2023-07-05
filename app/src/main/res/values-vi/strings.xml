@@ -188,4 +188,24 @@
     <string name="get_bridges_email_request">Yêu cầu cầu nối qua Email</string>
     <string name="version">Phiên bản:</string>
     <string name="license">Giấy phép:</string>
+    <string name="btn_refresh">Làm tươi</string>
+    <string name="drawer_close">Đóng</string>
+    <string name="menu_kindness">Tử Tế</string>
+    <string name="connection_direct">Nhắn riêng</string>
+    <string name="connection_snowflake">Cầu Bridge Snowflake</string>
+    <string name="connection_custom">Tùy chỉnh</string>
+    <string name="connected_title">Đã kết nối</string>
+    <string name="trying_to_connect_title">Đang kết nối…</string>
+    <string name="menu_header_features">Tính năng</string>
+    <string name="menu_tor_connection">Kết nối Tor</string>
+    <string name="menu_faq">FAQ</string>
+    <string name="menu_header_learn">Tìm hiểu thêm</string>
+    <string name="drawer_open">Mở</string>
+    <string name="action_activate">Kích hoạt</string>
+    <string name="title_choose_apps">Chọn ứng dụng</string>
+    <string name="setting_debug">Gỡ lỗi</string>
+    <string name="menu_more">Thêm</string>
+    <string name="connect">Kết nối</string>
+    <string name="next">Tiếp theo</string>
+    <string name="action_use">Dùng</string>
 </resources>

@@ -1,20 +1,28 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="menu_settings">Ырастоолор</string>
     <string name="menu_stop">Токтоо</string>
-  <string name="menu_about">Программа жөнүндө</string>
+    <string name="menu_about">Программа жөнүндө</string>
     <string name="button_about">Программа жөнүндө</string>
-  <string name="menu_exit">Чыгуу</string>
+    <string name="menu_exit">Чыгуу</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
-  <!--New Wizard Strings-->
-  <!--Title Screen-->
-  <!--Warning screen-->
-  <!--Permissions screen-->
-  <!--TipsAndTricks screen-->
-  <!--Transparent Proxy screen-->
+    <!--New Wizard Strings-->
+    <!--Title Screen-->
+    <!--Warning screen-->
+    <!--Permissions screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
     <string name="error">Ката</string>
     <string name="set_locale_title">Тил</string>
-  <string name="save">Сактоо</string>
-  <string name="name">Аты-жөнү</string>
+    <string name="save">Сактоо</string>
+    <string name="name">Аты-жөнү</string>
+    <string name="kibibyte">КиБ</string>
+    <string name="connect">Туташуу</string>
+    <string name="menu_new_identity">Жаңы инсан</string>
+    <string name="setting_debug">Катаны оңдоо</string>
+    <string name="mebibyte">МиБ</string>
+    <string name="main_layout_download">Түшүрүп алуу</string>
+    <string name="pref_general_group">Негизгилер</string>
+    <string name="connection_custom">Тандооңуз боюнча</string>
 </resources>

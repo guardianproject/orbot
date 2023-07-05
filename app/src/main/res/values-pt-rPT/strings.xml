@@ -191,7 +191,7 @@
     <string name="secure_your_connection_subtitle">Oculte apps do monitoramento da rede e obtenha acesso quando eles estiverem bloqueados.</string>
     <string name="connected_title">Conectado</string>
     <string name="btn_start_vpn">Iniciar VPN</string>
-    <string name="btn_configure">Configurar</string>
+    <string name="btn_configure">Escolha como se ligar</string>
     <string name="volunteer_mode">Modo bondade</string>
     <string name="volunteer_mode_subtitle">Ajudar os outros a ligarem-se</string>
     <string name="trying_to_connect_title">Conectando…</string>
@@ -211,16 +211,16 @@
     <string name="msg_taking_too_long">Isso parece estar demorando demais</string>
     <string name="msg_try_something_else">Tente outra coisa</string>
     <string name="bridge_snowflake_amp">Ligar através de outros utilizadores Tor usando Floco de Neve (Método 2)</string>
-    <string name="snowflake_proxy_msg_description">Mostre uma mensagem quando o seu floco de neve ajuda alguém a contornar a censura</string>
+    <string name="snowflake_proxy_msg_description">Mostrar uma mensagem quando se ajuda alguém a contornar a censura</string>
     <string name="snowflake_proxy_msg_title">Mostrar notificação de ligação</string>
     <string name="strict_nodes_description">Tratar as definições de Excluir Nós como um requisito para a construção de todos os circuitos. Isto pode quebrar a funcionalidade se nenhum circuito for capaz de ser gerado com as suas definições de Excluir Nós.</string>
     <string name="version">Versão:</string>
     <string name="volunteer_mode_weekly_label">Total semanal</string>
     <string name="volunteer_mode_alltime_label">Total de todos os períodos</string>
     <string name="title_choose_apps">Escolha as apps</string>
-    <string name="snowflake">Snowflake</string>
+    <string name="snowflake">Snowflake (Original)</string>
     <string name="snowflake_subtitle">Conecta-se através de voluntários do Tor. Contorna alguns bloqueios do Tor.</string>
-    <string name="get_a_bridge">Obter uma ponte do Tor (Obfs4)</string>
+    <string name="get_a_bridge">Ponte do Tor (Obfs4)</string>
     <string name="having_trouble">Tendo problemas</string>
     <string name="configure_header">Configure a sua conexão Tor</string>
     <string name="drawer_open">Abrir</string>
@@ -230,15 +230,12 @@
     <string name="volunteer_mode_title">Ajude outros
 \na se conectar ao Tor</string>
     <string name="volunteer_mode_label">Modo bondade</string>
-    <string name="volunteer_mode_subtitle_desc">O modo bondade permite que o seu aparelho seja uma ponte para os outros. Ajuda as pessoas a usar o Tor em lugares onde ele esteja bloqueado.
+    <string name="volunteer_mode_subtitle_desc">O modo bondade permite que o seu aparelho seja uma ponte para os outros. Ajuda as pessoas a usar o Tor em lugares onde ele está bloqueado.
 \n
-\n- Não drenará a sua bateria
-\n
-\n- Não desacelerará a sua internet
-\n
-\n- Só funciona via wi-fi
-\n
-\n- Pode ser desligado a qualquer momento</string>
+\n• Não esgota a bateria
+\n• Não desacelera a sua Internet
+\n• Só funciona através de Wi-Fi
+\n• Pode ser desligado em qualquer momento</string>
     <string name="smart_connect">Conexão inteligente (padrão)</string>
     <string name="smart_connect_subtitle">O Orbot tenta se conectar ao Tor por qualquer meio disponível: Direto, Snowflake, Ponte.</string>
     <string name="direct_connect">Conexão direta com o Tor</string>
@@ -261,4 +258,33 @@
     <string name="app_suggested_subtitle">O Orbot funciona melhor com apps de mensagens e mídias sociais.</string>
     <string name="apps_suggested_title">Sugestões de apps</string>
     <string name="apps_other_apps">Outras apps</string>
+    <string name="action_use">Usar</string>
+    <string name="setting_padding">Preenchimento</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Personalizado</string>
+    <string name="setting_debug">Debug</string>
+    <string name="menu_kindness">Bondade</string>
+    <string name="menu_more">Mais</string>
+    <string name="hide_apps">Oculte apps do monitoramento da rede e obtenha acesso quando eles estiverem bloqueados.</string>
+    <string name="pref_isolate_protocol">Isolar os protocolos do cliente</string>
+    <string name="no_interent_title">Ligar à Internet</string>
+    <string name="kindness_adjust_title">Ajustar quando for ativo…</string>
+    <string name="option_only_on_wifi">Apenas ligado à Wi-Fi</string>
+    <string name="option_only_when_charging">Só durante o carregamento</string>
+    <string name="pref_isolate_port">Isolar as portas de destino</string>
+    <string name="btn_copy_log">Copia registo</string>
+    <string name="log_copied">Registo copiado</string>
+    <string name="ask_tor">Pergunte ao Tor</string>
+    <string name="many_ways">Existem muitas maneiras de se ligar ao Tor. Algumas podem funcionar melhor do que outras para você.</string>
+    <string name="asking">A PERGUNTAR…</string>
+    <string name="no_internet_subtitle">Precisa de uma ligação à Internet para utilizar o Orbot.</string>
+    <string name="kindess_config_detail">Configure como e quando seu dispositivo pode atuar como um proxy Snowflake para outros usuários Tor.</string>
+    <string name="connection_direct">Direto</string>
+    <string name="pref_flag_secure_summary">Impedir que outras aplicações tirem capturas de ecrã do Orbot</string>
+    <string name="pref_flag_secure_title">Segurança do ecrã</string>
+    <string name="root_warning">O Orbot detectou que o seu dispositivo tem root, e isso pode causar problemas de segurança.</string>
+    <string name="pref_isolate_protocol_summary">Utilizar um circuito diferente para cada protocolo de ligação</string>
+    <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="not_sure">Não tem a certeza\?</string>
+    <string name="pref_isolate_port_summary">Utilizar um circuito diferente para cada porta de destino</string>
 </resources>

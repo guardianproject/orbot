@@ -1,13 +1,48 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Orbot</string>
-  <string name="app_description">ऑर्बॉट एक विनामूल्य प्रॉक्सी अॅप आहे जो इतर अॅप्सना इंटरनेटचा अधिक सुरक्षितपणे वापर करण्यास सक्षम करते. ऑर्बॉट आपल्या इंटरनेट रहदारीची एन्क्रिप्ट करण्यासाठी टोरचा वापर करते आणि नंतर जगभरातील संगणकांच्या मालिकेद्वारे उडी मारून लपवते. टोर हा एक विनामूल्य सॉफ्टवेअर आणि एक खुला नेटवर्क आहे जो आपल्याला नेटवर्क स्वतंत्रता आणि गोपनीयता, गोपनीय व्यवसाय क्रियाकलाप आणि नातेसंबंध आणि रहदारी विश्लेषणास म्हणून ओळखल्या जाणार्या राज्य सुरक्षेस धमकी देणार्या नेटवर्क निरीक्षणाचे रक्षण करण्यास मदत करते.</string>
+    <string name="app_name">Orbot</string>
+    <string name="app_description">ऑर्बॉट एक विनामूल्य प्रॉक्सी अॅप आहे जो इतर अॅप्सना इंटरनेटचा अधिक सुरक्षितपणे वापर करण्यास सक्षम करते. ऑर्बॉट आपल्या इंटरनेट रहदारीची एन्क्रिप्ट करण्यासाठी टोरचा वापर करते आणि नंतर जगभरातील संगणकांच्या मालिकेद्वारे उडी मारून लपवते. टोर हा एक विनामूल्य सॉफ्टवेअर आणि एक खुला नेटवर्क आहे जो आपल्याला नेटवर्क स्वतंत्रता आणि गोपनीयता, गोपनीय व्यवसाय क्रियाकलाप आणि नातेसंबंध आणि रहदारी विश्लेषणास म्हणून ओळखल्या जाणार्या राज्य सुरक्षेस धमकी देणार्या नेटवर्क निरीक्षणाचे रक्षण करण्यास मदत करते.</string>
     <!--Welcome Wizard strings (DJH)-->
-  <!--END Welcome Wizard strings (DJH)-->
-  <!--New Wizard Strings-->
-  <!--Title Screen-->
-  <!--Warning screen-->
-  <!--Permissions screen-->
-  <!--TipsAndTricks screen-->
-  <!--Transparent Proxy screen-->
+    <!--END Welcome Wizard strings (DJH)-->
+    <!--New Wizard Strings-->
+    <!--Title Screen-->
+    <!--Warning screen-->
+    <!--Permissions screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
+    <string name="menu_about">आमच्या बद्दल</string>
+    <string name="main_layout_download">डाउनलोड</string>
+    <string name="main_layout_upload">Upload</string>
+    <string name="button_about">आमच्या बद्दल</string>
+    <string name="menu_exit">बाहेर पडा</string>
+    <string name="get_bridges_email">ईमेल</string>
+    <string name="hidden_services">ओनियॉन सेवा</string>
+    <string name="confirm">पुष्टी करा</string>
+    <string name="menu_hidden_services">ओनियॉन सेवा</string>
+    <string name="name">नाव</string>
+    <string name="disable">Disable</string>
+    <string name="enable">लागू</string>
+    <string name="menu_faq">FAQ</string>
+    <string name="connect">जोडा</string>
+    <string name="connection_snowflake">स्नोफ्लेक</string>
+    <string name="connection_custom">कस्टम</string>
+    <string name="bridges">पूल</string>
+    <string name="menu_new_identity">New Identity</string>
+    <string name="connected_title">जुळले</string>
+    <string name="next">पुढे</string>
+    <string name="title_choose_apps">अँप्स निवडा</string>
+    <string name="deny">अमान्य</string>
+    <string name="menu_more">अधिक</string>
+    <string name="pref_general_group">जनरल</string>
+    <string name="error">त्रुटी</string>
+    <string name="menu_settings">सेटिंग्स</string>
+    <string name="menu_stop">थांबा</string>
+    <string name="allow">अनुमती द्या</string>
+    <string name="save">साठवा</string>
+    <string name="trying_to_connect_title">कनेक्ट करीत आहे…</string>
+    <string name="btn_refresh">रीफ्रेश</string>
+    <string name="menu_header_features">वैशिष्ट्ये</string>
+    <string name="set_locale_title">भाषा</string>
+    <string name="drawer_open">उघडा</string>
+    <string name="drawer_close">बंद करा</string>
 </resources>

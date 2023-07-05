@@ -2,10 +2,12 @@
 <resources>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
-  <!--New Wizard Strings-->
-  <!--Title Screen-->
-  <!--Warning screen-->
-  <!--Permissions screen-->
-  <!--TipsAndTricks screen-->
-  <!--Transparent Proxy screen-->
+    <!--New Wizard Strings-->
+    <!--Title Screen-->
+    <!--Warning screen-->
+    <!--Permissions screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
+    <string name="get_bridges_email">ઈમેલ</string>
+    <string name="menu_settings">સેટિંગ્સ</string>
 </resources>

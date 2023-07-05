@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Orbot </string>
+    <string name="app_name">Orbot</string>
     <string name="app_description">Orbotax proxyn mä wakichawipawa, llikatuq jan lunthatayasiñatakiw yaqha wakichawinakampachar yanapi. Orbotax Toratuqiw uraqpachan luratanak jañ uñjayasiñatak atamirinaktuq jark\'aqi. Torax Software Libre ukhamawa, ukampirus maynin luratanakapa, aruskipatanakapa, amuyunakap jan uñjayasiñatakiw jark\'aqi. </string>
     <string name="menu_settings">Mayjt\'ayaña</string>
     <string name="menu_log">Imata</string>
@@ -17,7 +17,7 @@
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Wakiskiri</string>
     <string name="pref_start_boot_title">Orbot qhantaykas qalltaña</string>
-    <string name="pref_start_boot_summary">Android aqtaykasax Orbot, Tor justupak aqtayam.</string>
+    <string name="pref_start_boot_summary">Android aqtaykasax Orbot, Tor justupak aqtayam</string>
     <!--New Wizard Strings-->
     <!--Title Screen-->
     <!--Warning screen-->
@@ -25,7 +25,7 @@
     <!--TipsAndTricks screen-->
     <!--Transparent Proxy screen-->
     <string name="pref_node_configuration">Puriñawjanak mayjt\'ayaña</string>
-    <string name="pref_node_configuration_summary">Akanakax jan amuykay tukuñaman mayjt\'ayañatakiwa.</string>
+    <string name="pref_node_configuration_summary">Akanakax jan amuykay tukuñaman mayjt\'ayañatakiwa</string>
     <string name="pref_entrance_node">Puriñawjan mantañanaka</string>
     <string name="pref_entrance_node_summary">Nayrïr jalakipañanakan ampar luk\'an chimpunaka, ñanqha sutinaka, markanaka, chiqawjanakapa</string>
     <string name="pref_entrance_node_dialog">Puriñawjan mantañanak qillqantaña</string>
@@ -73,7 +73,7 @@
     <string name="enter_ports">Apayañ thakhinak qillqantam</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">imatanak ajllirañ qhantayaña (uñjañatakix adb jan ukax aLogCat apnaqañamawa)</string>
     <string name="project_home">Nayrïr uñsta janja:</string>
-    <string name="third_party_software">3ar jaljat-Software </string>
+    <string name="third_party_software">3ar jaljat-Software:</string>
     <string name="hidden_service_request">Imantat apayañ thakhinak Tor llikar mä wakichäwiw jist\'arañ muni %1$s. Wakichawitix uñt\'atachixa, iyaw sama.</string>
     <string name="pref_use_expanded_notifications">Kawkja markans IP ukamp Toramp  uñstani uka yatiyäw juk\'amp uñacht\'ayaña</string>
     <string name="pref_use_expanded_notifications_title">Phuqhat yatiyäwinaka</string>
@@ -97,7 +97,7 @@
     <string name="restart_orbot_to_use_this_bridge_">Mayjt\'ayatanak aqtayañatak Orbot mayamp qhant\'ayam, amp suma</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jawsañ apnaqirinakax Tor jark\'antañ yatipk ukjax \'Jalakipañ yanapiri\' mantañatak apnaqarakismawa. Yant\'añataki, mayjt\'ayañatakix AJLLT\'AM…</string>
     <string name="get_bridges_email">Imaylu (Email)</string>
-    <string name="apps_mode">VPN</string>
+    <string name="apps_mode">VPN uka</string>
     <string name="send_email">Qillqat apayaña</string>
     <string name="vpn_default_world">Uraqpacha (justupaki)</string>
     <string name="hidden_services">Imantat lurañanaka</string>
@@ -134,7 +134,11 @@
     <string name="bridge_direct_connect">Tor ukar chiqak waykattaña (juk\'amp khusa)</string>
     <string name="bridge_community">Yanapirinakan atamirinakapamp waythapiña</string>
     <string name="bridge_cloud">Llikan imirinakamp waythapiña</string>
-    <string name="trouble_connecting">¿Waythapiykasat jan walt\'xï?</string>
+    <string name="trouble_connecting">Janit waythapki</string>
     <string name="full_device_vpn">Taqpach wakichäwinakaw VPN ukamp apnaqatäni</string>
     <string name="vpn_disabled">VPN jiwt\'ayatawa</string>
+    <string name="action_activate">Qhantayaña</string>
+    <string name="deny">Janiw saña</string>
+    <string name="version">Uñsta:</string>
+    <string name="v3_import_auth_private">.auth_private apaniña</string>
 </resources>

@@ -281,4 +281,6 @@
     <string name="setting_debug">Debug</string>
     <string name="menu_kindness">Kindness</string>
     <string name="btn_copy_log">Copy Log</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Custom</string>
 </resources>

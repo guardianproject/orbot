@@ -261,4 +261,20 @@
     <string name="action_activate">激活</string>
     <string name="volunteer_status_title">今天因你
 \n而更好。</string>
+    <string name="action_use">使用方法</string>
+    <string name="no_interent_title">连接到互联网</string>
+    <string name="menu_more">更多</string>
+    <string name="connection_direct">私信</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">自定义</string>
+    <string name="setting_padding">间距</string>
+    <string name="setting_debug">调试</string>
+    <string name="menu_kindness">友好</string>
+    <string name="hide_apps">从网络监控中隐藏应用，并在它们被阻止时获得访问权限。</string>
+    <string name="pref_isolate_port">隔离目标端口</string>
+    <string name="pref_isolate_protocol">隔离客户端协议</string>
+    <string name="pref_isolate_protocol_summary">为每个连接协议使用不同的回路</string>
+    <string name="pref_isolate_port_summary">对每个目标端口使用不同的回路</string>
+    <string name="btn_copy_log">复制日志</string>
+    <string name="log_copied">日志已复制</string>
 </resources>

@@ -250,4 +250,10 @@
     <string name="pref_proxy_port_title">Portë Ndërmjetësi Në Dalje</string>
     <string name="pref_proxy_username_title">Emër Përdoruesi Ndërmjetësi Në Dalje</string>
     <string name="pref_proxy_password_title">Fjalëkalim Ndërmjetësi Në Dalje</string>
+    <string name="action_use">Përdoreni</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Vetjake</string>
+    <string name="setting_debug">Diagnostiojeni</string>
+    <string name="menu_more">Më tepër</string>
+    <string name="hide_apps">Fshihini aplikacione mbikëqyrjes së rrjetit dhe përfitoni hyrje kur janë të bllokuar.</string>
 </resources>

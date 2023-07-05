@@ -261,4 +261,11 @@
     <string name="smart_connect_subtitle">„Orbot“ bando prisijungti prie „Tor“ bet kokiu būdu: tiesioginiu, „Snowflake“, tiltu.</string>
     <string name="direct_connect">Tiesioginis ryšys su „Tor“</string>
     <string name="custom_bridge_description">Pasirinktinį tiltą pateikia pažįstamas asmuo. Paklauskite savo patikimų tinklų ir organizacijų, kad sužinotumėte, ar kas nors jį palaiko.</string>
+    <string name="hide_apps">Paslėpkite programėles nuo tinklo stebėjimo ir gaukite prieigą, kai jos blokuojamos.</string>
+    <string name="menu_more">Daugiau</string>
+    <string name="connection_snowflake">„Snowflake“</string>
+    <string name="connection_custom">Pasirinktinis</string>
+    <string name="setting_debug">Derinimas</string>
+    <string name="action_use">Naudoti</string>
+    <string name="no_interent_title">Prisijunkite prie interneto</string>
 </resources>

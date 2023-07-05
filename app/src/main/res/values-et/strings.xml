@@ -274,4 +274,8 @@
     <string name="get_a_bridge">Tori sild (Obfs4)</string>
     <string name="not_sure">Ei ole kindel\?</string>
     <string name="action_use">Kasutage</string>
+    <string name="connection_direct">Otse</string>
+    <string name="connection_custom">Kohandatud</string>
+    <string name="setting_debug">Silumine</string>
+    <string name="menu_more">Rohkem</string>
 </resources>

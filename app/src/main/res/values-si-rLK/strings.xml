@@ -68,4 +68,24 @@
     <string name="menu_hidden_services">සැගවුණු සේවා </string>
     <string name="save">සුරකින්න</string>
     <string name="name">නම</string>
+    <string name="disable">Disable</string>
+    <string name="enable">සක්‍රිය කරන්න</string>
+    <string name="menu_new_identity">නව හැදුනුම</string>
+    <string name="allow">Allow</string>
+    <string name="btn_refresh">නැවුම් කරන්න</string>
+    <string name="menu_header_features">විශේෂාංග</string>
+    <string name="menu_faq">නිති අසන පැණ</string>
+    <string name="no_interent_title">අන්තර්ජාලයට සබඳින්න</string>
+    <string name="connection_direct">Direct</string>
+    <string name="connection_custom">අභිරුචි</string>
+    <string name="drawer_open">අරින්න</string>
+    <string name="drawer_close">වසන්න</string>
+    <string name="connect">සබඳින්න</string>
+    <string name="action_activate">ක්‍රියාකරවන්න</string>
+    <string name="menu_more">තව</string>
+    <string name="confirm">තහවුරු කරන්න</string>
+    <string name="license">බලපත්‍රය:</string>
+    <string name="next">ඊළඟ</string>
+    <string name="get_bridges_email">විද්‍යුත් තැපැල් ලිපිනය</string>
+    <string name="trying_to_connect_title">සම්බන්ධ වෙමින්…</string>
 </resources>

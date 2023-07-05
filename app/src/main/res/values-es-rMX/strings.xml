@@ -276,4 +276,5 @@
     <string name="menu_kindness">Solidaridad</string>
     <string name="setting_padding">Acolchado</string>
     <string name="setting_debug">Depurar</string>
+    <string name="connection_custom">Personalizado</string>
 </resources>

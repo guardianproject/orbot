@@ -215,4 +215,15 @@
     <string name="secure_your_connection_title">Zabezpečenie pripojenia pomocou Tor</string>
     <string name="solve_captcha_instruction">Vyriešte CAPTCHA a požiadajte o mosty.</string>
     <string name="btn_configure">Konfigurácia stránky</string>
+    <string name="drawer_open">Otvoriť</string>
+    <string name="drawer_close">Zatvoriť</string>
+    <string name="connect">Pripojiť</string>
+    <string name="title_choose_apps">Vybrať aplikácie</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Vlastné</string>
+    <string name="next">Ďalšie</string>
+    <string name="action_activate">Kedy aktivovať...</string>
+    <string name="setting_debug">Ladenie</string>
+    <string name="menu_more">Viac</string>
+    <string name="action_use">Použiť</string>
 </resources>

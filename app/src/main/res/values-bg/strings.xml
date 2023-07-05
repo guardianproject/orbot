@@ -155,7 +155,7 @@
     <string name="kibibyte">КБ</string>
     <string name="mebibyte">МБ</string>
     <string name="bridge_snowflake">Свързване чрез други потребители на Тор с помощта на Снежинка (Метод 1 - Fastly)</string>
-    <string name="snowflake_proxy_msg_description">Показва известие, когато Снежинка помогне на някого да заобиколи цензурата</string>
+    <string name="snowflake_proxy_msg_description">Показва известие, когато помагате на някого да заобиколи цензурата</string>
     <string name="backup_service">Услуга за архивиране <i>(Внимание: така могат да бъдат разкрити настройките на услугата от други приложения)</i></string>
     <string name="wizard_details_msg">Orbot е приложение с отворен код, което съдържа Тор, IPtProxy (Obfs4Proxy, Meek, Снежинка), Go-Tun2Socks и LibEvent. Предоставя тунел на ВЧМ, местен мрежов посредник на HTTP (HTTPS само на порт 8118) и посредник на SOCKS (9050) към мрежата на Тор.</string>
     <string name="pref_circuit_padding">Уплътняване на обходите</string>
@@ -275,4 +275,16 @@
     <string name="pref_isolate_port">Изолиране на целевите портове</string>
     <string name="pref_isolate_protocol_summary">Използване на различен обход за всеки протокол за свързване</string>
     <string name="btn_copy_log">Копиране на дневника</string>
+    <string name="menu_more">Повече</string>
+    <string name="connection_snowflake">Снежинка</string>
+    <string name="connection_custom">По избор</string>
+    <string name="setting_debug">Отстраняване на грешки</string>
+    <string name="pref_flag_secure_title">Сигурност на екрана</string>
+    <string name="setting_padding">Уплътняване</string>
+    <string name="option_only_on_wifi">Само на безжична мрежа</string>
+    <string name="option_only_when_charging">Само при зареждане</string>
+    <string name="menu_kindness">Доброта</string>
+    <string name="connection_direct">Директно</string>
+    <string name="pref_flag_secure_summary">Предотвратяване на други приложения да заснемат екрана на Orbot</string>
+    <string name="root_warning">Orbot е установил, достъп до суперпотребителя, което снижава сигурността на устройството.</string>
 </resources>

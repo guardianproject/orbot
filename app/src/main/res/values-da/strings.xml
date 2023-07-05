@@ -215,4 +215,18 @@
     <string name="pref_connection_padding">Polstring af forbindelsen</string>
     <string name="trouble_connecting">Har du problemer med at oprette forbindelse\?</string>
     <string name="request_bridges_from_torproject">Anmodning om broer fra torproject.org</string>
+    <string name="action_use">Brug</string>
+    <string name="menu_more">Mere</string>
+    <string name="connection_direct">Direkte</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Brugerdefinerede</string>
+    <string name="title_choose_apps">Vælg Apps</string>
+    <string name="no_interent_title">Forbind til internettet</string>
+    <string name="action_activate">Aktivér</string>
+    <string name="setting_padding">Spaltefyld</string>
+    <string name="setting_debug">Fejlfinding</string>
+    <string name="drawer_open">Åbn</string>
+    <string name="drawer_close">Luk</string>
+    <string name="connect">Forbinde</string>
+    <string name="next">Næste</string>
 </resources>

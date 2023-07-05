@@ -1,12 +1,22 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
-  <!--New Wizard Strings-->
-  <!--Title Screen-->
-  <!--Warning screen-->
-  <!--Permissions screen-->
-  <!--TipsAndTricks screen-->
-  <!--Transparent Proxy screen-->
+    <!--New Wizard Strings-->
+    <!--Title Screen-->
+    <!--Warning screen-->
+    <!--Permissions screen-->
+    <!--TipsAndTricks screen-->
+    <!--Transparent Proxy screen-->
     <string name="name">Name</string>
+    <string name="menu_about">সম্পর্কিত</string>
+    <string name="main_layout_download">ডাউনলোউড</string>
+    <string name="button_about">সম্পর্কিত</string>
+    <string name="error">ত্রুটি</string>
+    <string name="btn_refresh">রিফ্রেশ</string>
+    <string name="menu_settings">সেটিংস</string>
+    <string name="menu_stop">বন্ধ করুন</string>
+    <string name="setting_debug">ডিবাগ</string>
+    <string name="set_locale_title">ভাষা</string>
+    <string name="drawer_close">বন্ধ করুন</string>
 </resources>

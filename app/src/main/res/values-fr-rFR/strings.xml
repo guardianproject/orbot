@@ -281,4 +281,7 @@
     <string name="log_copied">Journal copié</string>
     <string name="strict_nodes_description">Traiter les paramètres des nœuds d\'exclusion comme une exigence pour la construction de tous les circuits. Cela risque d\'interrompre la fonctionnalité si aucun circuit ne peut être généré avec vos paramètres de nœuds d\'exclusion.</string>
     <string name="not_sure">Vous n\'êtes pas sûr \?</string>
+    <string name="connection_direct">Direct</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Personnalisé</string>
 </resources>

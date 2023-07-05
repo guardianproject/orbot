@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbotは、他のアプリがインターネットをより安全に使用できるようにする無料のプロキシアプリです。OrbotはTorを使用してインターネットトラフィックを暗号化し、世界中の一連のコンピュータを経由してバウンスすることでそれを隠蔽しています。Torはフリーソフトウェアであり、オープンネットワークです。個人の自由やプライバシー、機密のビジネス活動や関係、国家安全保障を脅かすネットワーク監視の一形態であるトラフィック解析から身を守るのに役立ちます。</string>
+    <string name="app_description">Orbotは、より安全にインターネットを使用するために他のアプリを強化する無料のプロキシアプリです。OrbotはTorを使ってインターネットトラフィックを暗号化し、世界中のコンピュータを経由することでトラフィックを隠します。Torはフリーソフトウェアであり、個人の自由やプライバシーを侵害し、機密のビジネス活動や人間関係のトラフィック解析を行う国家安全保障という名目のネットワーク監視から身を守るためのオープンネットワークです。</string>
     <string name="menu_settings">設定</string>
     <string name="menu_log">履歴</string>
     <string name="menu_stop">停止</string>
@@ -196,7 +196,7 @@
     <string name="bridge_snowflake">Snowflakeを使って他のTorユーザーを経由して接続する(方法第1 - Fastly)</string>
     <string name="bridge_snowflake_amp">Snowflakeを使って他のTorユーザーを経由して接続する(方法第2 - AMP)</string>
     <string name="use_custom_bridges">カスタムブリッジの使用</string>
-    <string name="snowflake_proxy_msg_description">あなたのsnowflakeが誰かの検閲迂回を助けたら、メッセージを表示する</string>
+    <string name="snowflake_proxy_msg_description">あなたが誰かの検閲迂回を助けたら、メッセージを表示する</string>
     <string name="kibibyte">KiB</string>
     <string name="get_bridges_email_request">電子メールによるブリッジのリクエスト</string>
     <string name="v3_client_auth_activity_title">クライアント認証</string>
@@ -272,7 +272,7 @@
     <string name="not_sure">わからない？</string>
     <string name="ask_tor">トールに聞く</string>
     <string name="asking">アスク...</string>
-    <string name="kindness_adjust_title"></string>
+    <string name="kindness_adjust_title">実行時に調整する…</string>
     <string name="kindess_config_detail">あなたの端末が他のTor利用者用のSnowflakeプロキシとしてどう動作するか、いつ動作するかを設定します。</string>
     <string name="btn_copy_log">ログをコピー</string>
     <string name="setting_padding">水増し</string>
@@ -281,4 +281,10 @@
     <string name="menu_kindness">親切</string>
     <string name="option_only_when_charging">充電時のみ</string>
     <string name="setting_debug">デバッグ</string>
+    <string name="connection_direct">メンション</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">カスタム</string>
+    <string name="pref_flag_secure_summary">他のアプリがOrbotのスクリーンショットを撮るのを防ぐ</string>
+    <string name="pref_flag_secure_title">画面の安全</string>
+    <string name="root_warning">Orbotは端末が、安全問題の原因になり得るroot化状態であると検知しました。</string>
 </resources>

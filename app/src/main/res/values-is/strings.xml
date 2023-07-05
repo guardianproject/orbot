@@ -273,4 +273,8 @@
     <string name="not_sure">Ekki viss\?</string>
     <string name="asking">SPYR...</string>
     <string name="log_copied">Atvikaskrá afrituð</string>
+    <string name="menu_more">Meira</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_custom">Sérsniðið</string>
+    <string name="setting_debug">Aflúsa</string>
 </resources>
