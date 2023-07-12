@@ -267,6 +267,7 @@ public class OrbotMainActivity extends AppCompatActivity implements OrbotConstan
     private void sendIntentToService(final String action) {
         Intent intent = new Intent(OrbotMainActivity.this, OrbotService.class);
         intent.setAction(action);
+        intent.putExtra(OrbotConstants.EXTRA_NOT_SYSTEM, true);
         sendIntentToService(intent);
     }
 

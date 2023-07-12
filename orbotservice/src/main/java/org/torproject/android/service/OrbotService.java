@@ -224,10 +224,18 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
+        final boolean shouldStartVpn = Prefs.onboardPending() && (intent == null
+                || !intent.getBooleanExtra(OrbotConstants.EXTRA_NOT_SYSTEM, false));
         if (mCurrentStatus.equals(STATUS_OFF))
             showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor);
 
-        if (intent != null)
+        if (shouldStartVpn) {
+            Log.d(TAG, "Starting VPN from system intent: " + intent);
+            showToolbarNotification(getString(R.string.status_starting_up), NOTIFY_ID, R.drawable.ic_stat_tor);
+            mExecutor.execute(new IncomingIntentRouter(new Intent(ACTION_START)));
+            mExecutor.execute(new IncomingIntentRouter(new Intent(ACTION_START_VPN)));
+        }
+        else if (intent != null)
             mExecutor.execute(new IncomingIntentRouter(intent));
         else
             Log.d(TAG, "Got null onStartCommand() intent");

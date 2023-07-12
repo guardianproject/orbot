@@ -107,6 +107,14 @@ public interface OrbotConstants {
 
     String EXTRA_DNS_PORT = "org.torproject.android.intent.extra.DNS_PORT";
     String EXTRA_TRANS_PORT = "org.torproject.android.intent.extra.TRANS_PORT";
+    /**
+     * When present, indicates with certainty that the system itself did *not* send the Intent.
+     * Effectively, the lack of this extra indicates that the VPN is being started by the system
+     * as a result of the user's always-on preference for the VPN.
+     * See: <a href="https://developer.android.com/guide/topics/connectivity/vpn#detect_always-on">
+     * Detect always-on | VPN | Android Developers</a>
+     */
+    String EXTRA_NOT_SYSTEM = "org.torproject.android.intent.extra.NOT_SYSTEM";
 
     String LOCAL_ACTION_LOG = "log";
     String LOCAL_ACTION_STATUS = "status";
