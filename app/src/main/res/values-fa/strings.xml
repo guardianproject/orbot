@@ -10,8 +10,8 @@
     <string name="main_layout_upload">بارگذاری</string>
     <string name="button_about">درباره</string>
     <string name="menu_exit">خروج</string>
-    <string name="menu_scan">پویش کد کیوآر پُل‌ها</string>
-    <string name="menu_share_bridge">هم‌رسانی کد کیوآر پُل‌ها</string>
+    <string name="menu_scan">پویش پاس پل</string>
+    <string name="menu_share_bridge">هم‌رسانی پاس پل</string>
     <!--Welcome Wizard strings (DJH)-->
     <string name="wizard_details_msg">روبوت پیازی نرم‌افزاری آزاد است که شامل تور، IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks و LibEvent می‌شود. این نرم‌افزار یک تونل وی‌پی‌ان، یک پیشکار HTTP محلّی (فقط HTTPS روی ۸۱۱۸) و یک پیشکار ساکس (۹۰۵۰) به شبکهٔ تور فراهم می‌کند.</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -250,7 +250,7 @@
     <string name="incorrect_solution">روش نادرست</string>
     <string name="custom_bridge_description">یک پل شخصی به دست فردی که می‌شناسید فراهم شده. در سازمان‌ها و شبکه‌های مورد اطمینانتان بپرسید که کسی پلی میزبانی می‌کند یا نه.</string>
     <string name="power_user_mode">حالت کاربری قدرتمند</string>
-    <string name="action_activate">فعّال</string>
+    <string name="action_activate">فعّال کردن</string>
     <string name="volunteer_status_title">به لطفتان امروز
 \nروز بهتری است.</string>
     <string name="title_choose_apps">گزینش کاره‌ها</string>
