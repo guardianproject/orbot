@@ -190,7 +190,7 @@
     <string name="license">Notkunarleyfi:</string>
     <string name="bridge_snowflake_amp">Tengjast í gegnum aðra Tor-notendur með Snowflake (aðferð 2 - AMP)</string>
     <string name="snowflake_proxy_msg_title">Birta tilkynningu um tengingu</string>
-    <string name="snowflake_proxy_msg_description">Birta skilaboð þegar Snowflake-tilvikið þitt hjálpar einhverjum að komast framhjá ritskoðun</string>
+    <string name="snowflake_proxy_msg_description">Birta skilaboð þegar þú hjálpar einhverjum að komast framhjá ritskoðun</string>
     <string name="configure_header">Stilla Tor-tenginguna þína</string>
     <string name="drawer_open">Opna</string>
     <string name="drawer_close">Loka</string>
@@ -267,7 +267,7 @@
     <string name="action_use">Nota</string>
     <string name="no_interent_title">Tengjast við internetið</string>
     <string name="no_internet_subtitle">Þú þarft internettengingu til að nota Orbot.</string>
-    <string name="kindness_adjust_title">Aðlagaðu þegar það keyrir...</string>
+    <string name="kindness_adjust_title">Aðlaga þegar það keyrir…</string>
     <string name="pref_isolate_port_summary">Nota mismunandi rás fyrir hverja markgátt</string>
     <string name="hide_apps">Feldu forrit fyrir netvöktun og náðu aðgangi þegar lokað er á þau.</string>
     <string name="not_sure">Ekki viss\?</string>
@@ -277,4 +277,11 @@
     <string name="connection_snowflake">Snowflake</string>
     <string name="connection_custom">Sérsniðið</string>
     <string name="setting_debug">Aflúsa</string>
+    <string name="option_only_when_charging">Aðeins við hleðslu</string>
+    <string name="btn_copy_log">Afrita atvikaskráningu</string>
+    <string name="menu_kindness">Umhyggja</string>
+    <string name="option_only_on_wifi">Aðeins á þráðlausu Wi-Fi</string>
+    <string name="connection_direct">Beint</string>
+    <string name="pref_flag_secure_summary">Koma í veg fyrir að önnur forrit taki sjámyndir af Orbot</string>
+    <string name="pref_flag_secure_title">Öryggi skjás</string>
 </resources>
