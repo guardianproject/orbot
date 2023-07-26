@@ -284,4 +284,5 @@
     <string name="connection_direct">Direct</string>
     <string name="connection_snowflake">Snowflake</string>
     <string name="connection_custom">Personnalisé</string>
+    <string name="pref_flag_secure_summary">Empêcher les autres applications de prendre des captures d\'écran d\'Orbot</string>
 </resources>
