@@ -205,7 +205,7 @@
     <string name="msg_try_something_else">试试别的</string>
     <string name="secure_your_connection_subtitle">从网络监控中隐藏应用，并在它们被阻止时获得访问权限。</string>
     <string name="btn_start_vpn">启动 VPN</string>
-    <string name="btn_configure">配置</string>
+    <string name="btn_configure">配置连接方式</string>
     <string name="no_thx">不，谢谢</string>
     <string name="menu_help_others">帮助其他人</string>
     <string name="btn_choose_apps">选择应用</string>
@@ -277,4 +277,17 @@
     <string name="pref_isolate_port_summary">对每个目标端口使用不同的回路</string>
     <string name="btn_copy_log">复制日志</string>
     <string name="log_copied">日志已复制</string>
+    <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="kindess_config_detail">配置您的设备如何以及何时作为Snowflake代理为其他Tor用户提供服务。</string>
+    <string name="not_sure">不确定吗？</string>
+    <string name="ask_tor">询问Tor</string>
+    <string name="many_ways">有许多途径可以连接到Tor，其中一些可能对您来说更有效。</string>
+    <string name="asking">正在咨询…</string>
+    <string name="no_internet_subtitle">你需要连接网络来使用Orbot。</string>
+    <string name="kindness_adjust_title">在运行时调整…</string>
+    <string name="option_only_on_wifi">仅打开Wi-Fi时</string>
+    <string name="option_only_when_charging">仅在充电时</string>
+    <string name="pref_flag_secure_summary">禁止其他App对Orbot进行截屏</string>
+    <string name="pref_flag_secure_title">屏幕安全</string>
+    <string name="root_warning">Orbot检测到您的设备已经取得了root权限，这可能会导致安全问题。</string>
 </resources>

@@ -1,0 +1,9 @@
+- 30% jisk’a instalación (APK) tama, 10MB ukjat juk’ampi!
+- tor 0.3.3.5 ukar machaqar tukuyata (Onion Services v3 yanapt’awi ukat juk’ampinaka)
+- walja askichawinaka tor, enchufable transporte binario instalación ukataki
+- Janiw juk'amp "Polipo" HTTP servidor ukax utjxaniti, Tor machaq lurat ch'amampi apnaqañakiw wakisi
+- app ukan aru ajlliñax juk’amp sumaptatawa
+
+MACHAQ PIRMISU: "Almacenamiento Externo" ukar mantañax ch’uñu servicios ukanakatakix yatiyawinak jark’aqasiñatakiw utji.
+
+Phuqat uñt’ayawix aka chiqanw uñt’ayasi: https://github.com/n8fr8/orbot/releases/tag/16.0.2-RC-1

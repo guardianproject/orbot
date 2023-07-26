@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbot es una aplicación proxy gratuita que permite a otras aplicaciones utilizar Internet de forma más segura. Orbot utiliza Tor para cifrar su tráfico de Internet y luego lo oculta rebotando a través de una serie de ordenadores en todo el mundo. Tor es un software gratuito y una red abierta que te ayuda a defenderte de una forma de vigilancia de la red que amenaza la libertad y la privacidad personal, las actividades y relaciones comerciales confidenciales y la seguridad del Estado, conocida como análisis del tráfico.</string>
+    <string name="app_description">Orbot es una aplicación proxy gratuita que permite a otras aplicaciones utilizar Internet de forma más segura. Orbot utiliza Tor para cifrar tu tráfico de Internet y luego lo oculta rebotando a través de una serie de ordenadores en todo el mundo. Tor es un software gratuito y una red abierta que te ayuda a defenderte de una forma de vigilancia de la red que amenaza la libertad y la privacidad personal, las actividades y relaciones comerciales confidenciales y la seguridad del Estado, conocida como análisis del tráfico.</string>
     <string name="menu_settings">Ajustes</string>
     <string name="menu_log">Registro (log)</string>
     <string name="menu_stop">Detener</string>
@@ -56,7 +56,7 @@
     <string name="enter_exclude_nodes">Introduzca repetidores a evitar</string>
     <string name="strict_nodes">Hacer estricta la exclusión de nodos (incluso si falla la comunicación)</string>
     <string name="bridges">Bridges (repetidores puente) </string>
-    <string name="use_bridges">Usar bridges</string>
+    <string name="use_bridges">Usar puentes</string>
     <string name="relays">Repetidores</string>
     <string name="relaying">Repetición de tráfico</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Habilite su dispositivo para que sea un relé sin salida</string>
@@ -193,7 +193,7 @@
     <string name="paste_bridges">Puentes de pasta</string>
     <string name="use_qr_code">Utilizar el código QR</string>
     <string name="snowflake_proxy_msg_title">Mostrar notificación de conexión</string>
-    <string name="snowflake_proxy_msg_description">Muestre un mensaje cuando su copo de nieve ayude a alguien a eludir la censura</string>
+    <string name="snowflake_proxy_msg_description">Muestra un mensaje cuando ayude a alguien a eludir la censura</string>
     <string name="bridge_snowflake_amp">Conectarse a través de otros usuarios de Tor usando Snowflake (Método 2)</string>
     <string name="kibibyte">KiB</string>
     <string name="mebibyte">MiB</string>
@@ -270,7 +270,7 @@
     <string name="asking">Preguntando...</string>
     <string name="no_interent_title">Conectarse a Internet</string>
     <string name="no_internet_subtitle">Necesitas estar conectado a Internet para usar Orbot.</string>
-    <string name="kindness_adjust_title">Establecer cuando esta activado...</string>
+    <string name="kindness_adjust_title">Ajústalo cuando se ejecuta…</string>
     <string name="ask_tor">Preguntale a Tor</string>
     <string name="kindess_config_detail">Configura cómo y cuándo tu dispositivo puede actuar como un proxy Snowflake para otros usuarios de Tor.</string>
     <string name="pref_isolate_port">Aislar puertos de destino</string>
@@ -287,4 +287,7 @@
     <string name="connection_snowflake">Snowflake</string>
     <string name="connection_custom">Personalizado</string>
     <string name="connection_direct">Directo</string>
+    <string name="pref_flag_secure_summary">Evita que otras aplicaciones tomen capturas de pantalla de Orbot</string>
+    <string name="pref_flag_secure_title">Seguridad de la pantalla</string>
+    <string name="root_warning">Orbot ha detectado que tu dispositivo está rooteado, lo que puede causar problemas de seguridad.</string>
 </resources>
