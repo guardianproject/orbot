@@ -10,8 +10,8 @@
     <string name="main_layout_upload">بارگذاری</string>
     <string name="button_about">درباره</string>
     <string name="menu_exit">خروج</string>
-    <string name="menu_scan">پویش BridgeQR</string>
-    <string name="menu_share_bridge">هم‌رسانی BridgeQR</string>
+    <string name="menu_scan">پویش کد کیوآر پُل‌ها</string>
+    <string name="menu_share_bridge">هم‌رسانی کد کیوآر پُل‌ها</string>
     <!--Welcome Wizard strings (DJH)-->
     <string name="wizard_details_msg">روبوت پیازی نرم‌افزاری آزاد است که شامل تور، IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks و LibEvent می‌شود. این نرم‌افزار یک تونل وی‌پی‌ان، یک پیشکار HTTP محلّی (فقط HTTPS روی ۸۱۱۸) و یک پیشکار ساکس (۹۰۵۰) به شبکهٔ تور فراهم می‌کند.</string>
     <!--END Welcome Wizard strings (DJH)-->
@@ -276,7 +276,7 @@
     <string name="log_copied">گزارشات رونوشت شدند</string>
     <string name="btn_copy_log">رونوشت گزارشات</string>
     <string name="connection_direct">مستقیم</string>
-    <string name="connection_snowflake">Snowflake</string>
+    <string name="connection_snowflake">دانه برف</string>
     <string name="connection_custom">سفارشی</string>
     <string name="setting_debug">اشکال‌زدایی</string>
     <string name="menu_more">بیشتر</string>
