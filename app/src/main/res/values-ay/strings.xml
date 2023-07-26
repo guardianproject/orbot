@@ -75,7 +75,7 @@
     <string name="project_home">Nayrïr uñsta janja:</string>
     <string name="third_party_software">Yaqhanakankir software:</string>
     <string name="hidden_service_request">Imantat apayañ thakhinak Tor llikar mä wakichäwiw jist\'arañ muni %1$s. Wakichawitix uñt\'atachixa, iyaw sama.</string>
-    <string name="pref_use_expanded_notifications">"Inaskani ukjax tor ukan mistur puriñawjaman markapamp IP katjiripamp  yatiyan uñachayaña"</string>
+    <string name="pref_use_expanded_notifications">Inaskani ukjax tor ukan mistur puriñawjaman markapamp IP katjiripamp yatiyan uñachayaña</string>
     <string name="pref_use_expanded_notifications_title">Phuqhat yatiyäwinaka</string>
     <string name="set_locale_title">Aru</string>
     <string name="pref_disable_network_title">Jan jiwt\'ayas suyt\'aña</string>
@@ -165,7 +165,7 @@
     <string name="license">Lisinsa:</string>
     <string name="refresh_captcha">CAPTCHA jichhaptayaña</string>
     <string name="captcha">Captcha</string>
-    <string name="in_a_browser">"Mä thaqhirinxa, %s  ukar mantam ukat Jalakipañanak jikxataña limt\'am &gt; ¡Jalakipañanakak churita!"</string>
+    <string name="in_a_browser">Mä thaqhirinxa, %s ukar mantam ukat Jalakipañanak jikxataña limt\'am &gt; ¡Jalakipañanakak churita!</string>
     <string name="btn_start_vpn">VPN qalltaña</string>
     <string name="connected_title">Waythapita</string>
     <string name="btn_tor_off">Tor jiwt\'ayaña</string>
@@ -235,7 +235,7 @@
     <string name="snowflake_subtitle">Tor ukan inak irnaqirinakaptuqiw waythapisi. Yaqhippachax janiw Tor ukar jark\'antaykiti.</string>
     <string name="volunteer_mode_alltime_label">Taqpach pachat taqpacha</string>
     <string name="having_trouble">Jan walt\'äwinakat utjtama</string>
-    <string name="having_trouble_subtitle">"Akxarux mä Tor jalakipañ yant\'snawa, ukampis  yanapam munapxä"</string>
+    <string name="having_trouble_subtitle">Akxarux mä Tor jalakipañ yant\'snawa, ukampis yanapam munapxä</string>
     <string name="volunteer_status_title">Jichhürux kusawa
 \njumïpana.</string>
     <string name="not_sure">Pächastati</string>
@@ -243,7 +243,7 @@
     <string name="no_interent_title">Internetar waythapiyaña</string>
     <string name="pref_flag_secure_title">Pantalla jark\'aqäwi</string>
     <string name="many_ways">Tor ukarux kunaymantuqit waythapiyasispa. Yaqhipanakax yaqhanakat sipan kusa jumatak irnaqi.</string>
-    <string name="kindess_config_detail">"Yaqha Tor apnaqirinakatakix kunjama ukat kunawsas tispusitiwumax Snowflake proxy ukjam  tukuspa uk mayjt\'ayam."</string>
+    <string name="kindess_config_detail">Yaqha Tor apnaqirinakatakix kunjama ukat kunawsas tispusitiwumax Snowflake proxy ukjam tukuspa uk mayjt\'ayam.</string>
     <string name="action_use">Apnaqaña</string>
     <string name="solve_captcha_instruction">Jalakipañanak mayiñatakix CAPTCHA askicham.</string>
     <string name="bridge_snowflake_amp">Snowflake apnaqas yaqha Tor apnaqirinaktuq mantaña (Thakhi 2 )</string>
@@ -252,7 +252,7 @@
     <string name="v3_delete_client_authorization">Apnaqirir iyawsañ chimpu pichsuña</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Wi-Fi peers, waythapiyat tispusitiwunaka ukat khiti yaqha jaqis IP ukamar waythapiykaspa jupax Tor ukar mantakispaw saña</string>
     <string name="backup_port_exist">Pantjata: Mä Onion sirwisyux waythapiwj apnaqxiwa %s</string>
-    <string name="v3_hosted_services">"Yapt\'at  Siwulla sirwisyunaka"</string>
+    <string name="v3_hosted_services">Yapt\'at Siwulla sirwisyunaka</string>
     <string name="v3_backup_key">Jark\'aqat waraqäwin apnaqirir iyawsañ chimpupa</string>
     <string name="v3_backup_name_hint">Imatan sutipan jark\'aqat waraqäwipa…</string>
     <string name="pref_disable_ipv4_summary">IPv4 katjirinakarux jan waythapisipxamti saw mistuñanakar si</string>
