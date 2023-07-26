@@ -1,0 +1,8 @@
+***UKATARAKI: MACHAQ WIRSYUN ORBOTATX TAQPACH UTJIRINAKAW PICHSUTAT.***
+Root ukamp qhana proxy apnaqkpachax Orbot jan ukax Orfox "VPN aplikasyunanak" apnaqam. 
+* 0.3.1.8  Tor ukar jichhakiptayam
+* Root apnaqañatakix sipurtix phichsusiwa/ Transproxy janiw chiqjamakit ukatx janiw yant'atakiti
+* Proxy transparente  ukatak VPN SUMAPTAYATA  ukat machaq aplikasyuna "Aplikasyuna"
+apnaqiritak chhijllañ interfaz 
+* Obfs4proxyn jan walt'aw yatiyaw lisinsya apayaña
+* Tor ukankirimp qhipa uñachayir Meek  puñtinak jichhakiptayaña
