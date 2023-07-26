@@ -1,0 +1,18 @@
+Orbot ukax mä proxy app ukawa, ukax yaqha apps ukanakaruw internet uksan juk’amp seguro apnaqañapatak ch’amanchaski. Orbot ukax Tor ukampiw Internet uksan trafico ukar encriptar ukat ukatx imantarakiw mä serie de computadoras uraqpachan rebotar ukamp. Tor ukax software libre ukat mä red abierto ukawa, ukax mä forma de vigilancia de red ukar arxatañatakiw yanapt’i, ukax libertad personal ukat privacidad ukaruw jan walt’ayi, negocios confidenciales actividades ukat relaciones, ukat seguridad estatal ukax análisis de tráfico ukham uñt’atawa.
+
+Orbot ukax mä sapa app ukawa, ukax chiqpachan mä conexión privada de internet uñstayi. Kunjamtï New York Times qillqatax qillqt’kixa, “kunawsatix Tor markat mä yatiyäwix purinxi ukhax janipuniw kawkhans jan ukax khitinakats yatkasmati”.
+
+Tor jupax 2012 maran Fundación Frontera Electrónica (EFF) ukan Premio Pionero ukan atipt’awayi.
+
+★ JANIW SUSTITUTOS UKAX AKT’AÑATI: Orbot ukax Android ukan Internet apnaqañax juk’amp seguro ukhamawa. Pacha. Orbot ukax walja kutiw uraqpachan computadoranaka tuqix encriptado tráfico ukar rebotar, VPNs ukat proxy ukanakar uñtasit chiqak uñt’ayañat sipansa. Aka lurawix mä juk’a pachaw munasispa, ukampis juk’amp ch’aman privacidad ukat identidad jark’aqasiñax utjki ukax suyt’añax wakisiwa.
+★ PRIVACIDAD APPS UKANAKATAKI: Kawkïr apps Tor tuqix Orbot VPN uka tuqiw uñt’ayasispa
+★ PRIVACIDAD TAQI TUQITA: Orbot ukax khitirus conexión uñch’ukiñ jark’iwa, kuna apps ukanakas apnaqaski jan ukax sitios web ukar mantaski uk yatiñataki. Taqi khititix red ukan trafico ukar uñjki ukax Tor apnaqañapawa.
+
+***Jiwasax Munasiñaw Retroalimentación***
+★ JISK’A YATIQAÑA: Orbot tuqit juk’amp yatxatañamawa ukat https://orbot.app ukan chikancht’asiñamawa
+★ JIWASANAKATAKI: Guardian Project ukax mä tama desarrolladores ukanakawa, jupanakax seguras apps móviles ukat código abierto de código fuente ukanak lurapxi, mä suma qharürutaki.
+★ FUENTE ABIERTA: Orbot ukax software libre ukawa. Jiwasan código fuente ukar uñakipt’apxam, jan ukax comunidad ukar mantapxam juk’amp suma lurañataki: https://github.com/guardianproject/orbot
+★ MENSAJE: ¿Jan wali munat lurawimarux faltasktanti? ¿Mä chuym ustʼayir bug jikjjattati? ¡Jumanakat ist’añ munapxsma! Mä correo electrónico ukar apayanipxsma: support@guardianproject.info
+
+***Janiw kunas utjkiti***
+Guardian Project ukax apps ukanakaw lurasi, ukax seguridad ukat jan uñt’ayasiñ jark’aqañatakiw wakicht’ata. Protocolos ukax apnaqktan ukax estado de arte ukhamaw tecnología de seguridad ukanx wali uñt’ata. Jiwasax sapa kutiw software ukar machaqar tukuyktanxa, qhipa jan walt’awinakar saykatañataki ukhamarak jan walt’awinak chhaqtayañataki, janiw kuna tecnologías 100% jan loqheñjamäkiti. Jach’a seguridad ukat jan uñt’ayasiñatakix apnaqirinakax askinjam lurawinakampiw apnaqapxañapa, ukhamat jan kuna jan walt’awis utjañapataki. Aka tuqinakatx mä suma uñt’ayawi guia ukaw https://securityinabox.org ukan jikxatasi
