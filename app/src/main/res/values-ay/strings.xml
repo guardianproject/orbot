@@ -257,16 +257,16 @@
     <string name="v3_backup_name_hint">Imatan sutipan jark\'aqat waraqäwipa…</string>
     <string name="pref_disable_ipv4_summary">IPv4 katjirinakarux jan waythapisipxamti saw mistuñanakar si</string>
     <string name="pref_isolate_port_summary">Sapa puriñawjatak yaqha sarawj apnaqam</string>
-    <string name="title_choose_apps">APlikasyunanak ajllim</string>
+    <string name="title_choose_apps">Aplikasyunanak ajllim</string>
     <string name="power_user_mode">Ukjarst apnaqañanaka</string>
-    <string name="apps_suggested_title">Uñtayanit Aplikasyunanaka</string>
-    <string name="apps_other_apps">Yaqha Aplikasyunanaka</string>
+    <string name="apps_suggested_title">Uñtayanit aplikasyunanaka</string>
+    <string name="apps_other_apps">Yaqha aplikasyunanaka</string>
     <string name="strict_nodes_description">Ajllinukut mayjt\'ayañ yant\'am sirkuytunak utjayañatak mayiwjama. Ajllinukutax janitï mayjt\'atakaspax lurawx suyt\'ayaspawa.</string>
     <string name="pref_prefer_ipv6_summary">IPu6 wakiskir mistuñ thakhinak uñt\'ayaña</string>
     <string name="hide_apps">Llikankir uñakipat aplikasyunanak imantam ukat kunawsatï jark\'atakan ukha mantam.</string>
     <string name="get_a_bridge_subtitle">Yatiy thakhi imantaña. Tor jan jark\'antayañataki.</string>
     <string name="btn_choose_apps">Aplikasyunanak ajllt\'ama</string>
-    <string name="refresh_apps">Aplikasyun jichhaptayaña</string>
+    <string name="refresh_apps">Aplikasyunanak jichhaptayaña</string>
     <string name="pref_circuit_padding">Sirkuyt phuqhachata</string>
     <string name="pref_circuit_padding_summary">Jan walt\'ayirinakat jark\'aqasiñatak phuqhachat sirkuyt naktayaña</string>
     <string name="pref_reduced_circuit_padding">Phuqhachat sirkuyt juk\'aptayawi</string>
@@ -283,4 +283,5 @@
     <string name="log_copied">Mantatax waruqatawa</string>
     <string name="v3_backup_key_warning">Ukataraki: Akax yaqha aplikasyunanakaruw chimpum uñachayaspa</string>
     <string name="pref_isolate_protocol_summary">Sapa waythapiyañatak yaqha yaqh sirkuyt apnaqam</string>
+    <string name="paste_bridges">Bridges lip\'katayaña</string>
 </resources>
