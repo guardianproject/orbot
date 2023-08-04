@@ -201,7 +201,7 @@
     <string name="bridge_snowflake">Ühenduse loomine teiste Tori kasutajate kaudu Snowflake\'i abil (meetod 1)</string>
     <string name="bridge_snowflake_amp">Ühenduse loomine teiste Tori kasutajate kaudu Snowflake\'i abil (meetod 2)</string>
     <string name="snowflake_proxy_msg_title">Näita ühenduse teadet</string>
-    <string name="snowflake_proxy_msg_description">Näita sõnumit, kui sinu lumehelbeke aitab kellelgi tsensuurist mööda minna</string>
+    <string name="snowflake_proxy_msg_description">Näita sõnumit, kui aitad kedagi tsensuurist kõrvale hoida</string>
     <string name="pref_disable_ipv4_summary">Ütleb väljumistele, et nad ei ühenduksid IPv4-aadressidega</string>
     <string name="request_bridges">Taotlus Sillad</string>
     <string name="request_bridges_from_torproject">Taotlus Bridges alates torproject.org</string>
@@ -222,7 +222,7 @@
     <string name="title_choose_apps">Vali rakendused</string>
     <string name="apps_other_apps">Muud rakendused</string>
     <string name="asking">KÜSIMINE...</string>
-    <string name="kindness_adjust_title">Reguleerige, kui see jookseb...</string>
+    <string name="kindness_adjust_title">Reguleerige, kui see jookseb…</string>
     <string name="volunteer_mode_title">Aidata teisi
 \nühendada Toriga</string>
     <string name="volunteer_mode_label">Sõbralikkuse režiim</string>
@@ -278,4 +278,13 @@
     <string name="connection_custom">Kohandatud</string>
     <string name="setting_debug">Silumine</string>
     <string name="menu_more">Rohkem</string>
+    <string name="setting_padding">Pehmendus</string>
+    <string name="option_only_on_wifi">Ainult Wifi</string>
+    <string name="option_only_when_charging">Ainult laadimisel</string>
+    <string name="menu_kindness">Headus</string>
+    <string name="pref_flag_secure_summary">Vältige, et teised rakendused ei saaks Orbotist ekraanipilte teha</string>
+    <string name="pref_flag_secure_title">Ekraani turvalisus</string>
+    <string name="root_warning">Orbot on tuvastanud, et teie seade on juurdunud, mis võib põhjustada turvaprobleeme.</string>
+    <string name="btn_copy_log">Logi kopeerimine</string>
+    <string name="connection_snowflake">Snowflake</string>
 </resources>

@@ -1,9 +1,9 @@
-- 30% ukhats juk'aki (APK) tama, 10MB ukat juk’aki!
-- tor 0.3.3.5 ukar machaqar tukuyata (Onion Services v3 yanapt’a ukat juk’ampinaka)
-- walja askichawinaka tor, enchufable transporte binario instalación ukataki
-- Janiw juk'amp "Polipo" HTTP servidor ukax utjxaniti, Tor machaq lurat ch'amampi apnaqañakiw wakisi
-- app ukan aru ajlliñax juk’amp sumaptatawa
+- (APK) uchaña 30% ukhaki, ¡10 MB ukats juk'aki!
+- Tor 0.3.3.5 ukar jichhaptayata (v3 Imantat Lurañamp ch'amanchat ukat yaqhampi)
+- Tor askichawi, paypach uchantaña
+- Janiw HTTP "Pilopo" apnaqirxa, tor ukan utjirinak apnaqasa
+- Aru chhijllañax sumaptayatawa
 
-MACHAQ PIRMISU: "Almacenamiento Externo" ukar mantañax ch’uñu servicios ukanakatakix yatiyawinak jark’aqasiñatakiw utji.
+MACHAQ MAYIWI: "Anqax imañar" imantat lurañatak yatiñ mantañawa
 
-Phuqhatpachax aka chiqanw uñt’ayasi: https://github.com/n8fr8/orbot/releases/tag/16.0.2-RC-1
+Taqpachanaka: https://github.com/n8fr8/orbot/releases/tag/16.0.2-RC-1

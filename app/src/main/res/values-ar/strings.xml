@@ -78,7 +78,7 @@
     <string name="set_locale_title">اللغة</string>
     <string name="pref_disable_network_title">لاتوجد شبكة نوم-آلي</string>
     <string name="pref_disable_network_summary">ضع تور في وضعية النوم عند عدم وجود الأنترنت</string>
-    <string name="newnym">لقد تحولت الى هوية تور جديدة</string>
+    <string name="newnym">لقد حولت الى هوية تور جديدة!</string>
     <string name="pref_socks_title">تور  سوكس</string>
     <string name="pref_socks_summary">منفذ الشبكات الحاسوبية او بورت الذي يقدمه تور الى وحدة الخدمة النائبة البروكسي في سوكس. (الوضعية الأصلية: 9050 او 0 للتعطيل)</string>
     <string name="pref_socks_dialog">ترتيبات منفذ الشبكات الحاسوبية بورت الخاص ب سوكس</string>
@@ -105,7 +105,7 @@
     <string name="name">الاسم</string>
     <string name="done">تم !</string>
     <string name="copy_address_to_clipboard">نسخ العنوان إلى الحافظة</string>
-    <string name="backup_service">النسخ الإحتياطي للخدمة</string>
+    <string name="backup_service">النسخ الإحتياطي للخدمة<i>(تحذير: هذا قد يكشف تضبيط خدمتك لتطبيقات الأخرى)</i></string>
     <string name="delete_service">حذف الخدمة</string>
     <string name="backup_saved_at_external_storage">تمت عملية حفظ النسخة الإحتياطية في ذاكرة التخزين الخارجية</string>
     <string name="backup_restored">تمت استعادة النسخة الإحتياطية</string>
@@ -140,7 +140,7 @@
     <string name="v3_client_auth_activity_title">تفويض العميل</string>
     <string name="confirm">تأكيد</string>
     <string name="trying_to_connect_title">جاري الاتصال …</string>
-    <string name="btn_refresh">تحديث</string>
+    <string name="btn_refresh">أعِد التحميل</string>
     <string name="kibibyte">ك.بايت</string>
     <string name="menu_more">المزيد</string>
     <string name="allow">السماح</string>
