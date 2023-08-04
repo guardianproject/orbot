@@ -1,8 +1,8 @@
-- (APK) uchaña 30% ukhaki, 10 MB ukats juk'aki!
-- tor 0.3.3.5 ukar jichhaptayata (v3 Imantat Lurañamp ch'amanchat ukat yaqhampi)
-- tor askichawi, paypach uchantaña
+- (APK) uchaña 30% ukhaki, ¡10 MB ukats juk'aki!
+- Tor 0.3.3.5 ukar jichhaptayata (v3 Imantat Lurañamp ch'amanchat ukat yaqhampi)
+- Tor askichawi, paypach uchantaña
 - Janiw HTTP "Pilopo" apnaqirxa, tor ukan utjirinak apnaqasa
-- Aru chhijlllatax askichatawa
+- Aru chhijllañax sumaptayatawa
 
 MACHAQ MAYIWI: "Anqax imañar" imantat lurañatak yatiñ mantañawa
 

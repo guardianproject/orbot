@@ -1,9 +1,9 @@
 - (APK) uchaña 30% ukhaki, 10 MB ukats juk'aki!
-- tor 0.3.3.5 ukar jichhaptayata (v3 Imantat Lurañamp ch'amanchat ukat yaqhampi)
-- tor askichawi, paypach uchantaña
+- Tor 0.3.3.5 ukar jichhaptayata (Onion Services v3 yanapa ukat juk'ampi)
+- Tor askichawi, paypach uchantaña
 - Janiw HTTP "Pilopo" apnaqirxa, tor ukan utjirinak apnaqasa
-- Aru chhijlllatax askichatawa
+- Aru chhijllañax sumaptayatawa
 
-MACHAQ MAYIWI: "Anqax imañar" imantat lurañatak yatiñ mantañawa
+MACHAQ MAYIWI: "Anqa imañar" imantat lurañatak yatiñ mantañawa
 
 Taqpachanaka: https://github.com/n8fr8/orbot/releases/tag/16.0.2-RC-1
