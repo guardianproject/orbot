@@ -1,6 +1,6 @@
 ext {
     versions = [
-            android_material             : "1.5.0",
+            android_material             : "1.9.0",
             android_shell                : "1.0.0",
             android_snowfall             : "1.2.1",
             android_volley               : "1.2.0",
