@@ -15,7 +15,7 @@
     <!--Welcome Wizard strings (DJH)-->
     <string name="wizard_details_msg">Orbot wakichawix inakiwa ukatx Tor ukaniwa, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, ukhamarak LibEvent. Proxy HTTP (8118) ukhamarak mä proxy SOCKS (9050) Tor taypin utjayi. Mä rooteat atamirinx Orbotax Tor tuqiw taqpach llika yatiyäwinak  apayarakispawa.</string>
     <!--END Welcome Wizard strings (DJH)-->
-    <string name="pref_general_group">Taqpacha</string>
+    <string name="pref_general_group">Wakiskiri</string>
     <string name="pref_start_boot_title">Orbot qhantaykas qalltaña</string>
     <string name="pref_start_boot_summary">Android aqtaykasax Orbot, Tor justupak aqtayam</string>
     <!--New Wizard Strings-->
@@ -25,10 +25,10 @@
     <!--TipsAndTricks screen-->
     <!--Transparent Proxy screen-->
     <string name="pref_node_configuration">Puriñawjanak mayjt\'ayaña</string>
-    <string name="pref_node_configuration_summary">Akanakax jan amuykay tukuñaman mayjt\'ayañatakiwa</string>
-    <string name="pref_entrance_node">Puriñawjan mantañanaka</string>
+    <string name="pref_node_configuration_summary">Aka suma mayjt\'ayäwix jan uñt\'ayasiñam juk\'aruchayaspawa</string>
+    <string name="pref_entrance_node">Mantanir puriñawjanaka</string>
     <string name="pref_entrance_node_summary">Nayrïr jalakipañanakan ampar luk\'an chimpunaka, ñanqha sutinaka, markanaka, chiqawjanakapa</string>
-    <string name="pref_entrance_node_dialog">Puriñawjan mantañanak qillqantaña</string>
+    <string name="pref_entrance_node_dialog">Mantanir puriñawjanak qillqantam</string>
     <string name="pref_allow_background_starts_title">Wakichäwinak qhiparkipstayaña</string>
     <string name="pref_allow_background_starts_summary">Toramp kikip luratanakamp qalltañapataki, yaqha wakichäwinakamp Orbot apnaqayam</string>
     <string name="pref_proxy_title">Llikan uñstir proxy (munsta ukaki)</string>
@@ -110,7 +110,7 @@
     <string name="copy_address_to_clipboard">Utjirinak waruqañawjar imam</string>
     <string name="backup_service">Yanapirit imat luratanak waruqaña <i>(Ukataraki: Akax yanapirin mayjt\'ayawipx yaqha aplikasyunanakaruw uñacht\'ayaspa)</i></string>
     <string name="delete_service">Lurañanak pichsuña</string>
-    <string name="backup_saved_at_external_storage">Imat luratanakamax yaqha yänakar imataxiwa</string>
+    <string name="backup_saved_at_external_storage">Jark\'aqat waraqäwix anqa imañawjar imatawa</string>
     <string name="backup_restored">Jark\'aqat waraqäwix jakatatayatawa</string>
     <string name="restore_backup">Jark\'aqat waraqäw jakatatayaña</string>
     <string name="create_a_backup_first">Jark\'aqat waraqäw nayraqat uñstayam</string>
@@ -123,7 +123,7 @@
     <string name="disable">Jiwt\'ayaña</string>
     <string name="enable">Aqtayaña</string>
     <string name="consider_disable_battery_optimizations">Imat sirwisyunakax sarantaskiwa, ch\'amanchir pist\'ki ukjax q\'alt\'añkam aqaskañapatakik amuyt\'am</string>
-    <string name="consider_enable_battery_optimizations">Imat sirwisyux janiw irnaqkiti, ch\'amanchir pist\'k ukjax jiwt\'añkam jan aqañapatak amuyt\'am</string>
+    <string name="consider_enable_battery_optimizations">Imat sirwisyux janiw irnaqkiti, ch\'amanchir pist\'ki ukjax jiwt\'añkam jan aqañapatak amuyt\'am</string>
     <string name="pref_isolate_dest">Apayañ chiqanak jark\'aqaña</string>
     <string name="pref_isolate_dest_summary">Sapa apayañ chiqatak kunayman thakhinak apnaqaña</string>
     <string name="pref_connection_padding">Waythapiñ ch\'amachiri</string>
