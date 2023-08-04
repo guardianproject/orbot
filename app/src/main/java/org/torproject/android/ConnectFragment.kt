@@ -307,12 +307,12 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         }
         ivOnion.setImageResource(R.drawable.orbistarting)
         val animHover = AnimationUtils.loadAnimation(context, R.anim.hover);
-        animHover.repeatCount = Animation.INFINITE
+        animHover.repeatCount = 7
         animHover.repeatMode = Animation.REVERSE
         ivOnion.animation = animHover
         animHover.start()
         val animShadow = AnimationUtils.loadAnimation(context, R.anim.shadow);
-        animShadow.repeatCount = Animation.INFINITE
+        animShadow.repeatCount = 7
         animShadow.repeatMode = Animation.REVERSE
         ivOnionShadow.animation = animShadow
         animShadow.start()
