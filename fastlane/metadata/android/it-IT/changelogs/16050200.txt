@@ -1,1 +1,1 @@
-Risolve il crash relativo all'avvio di un servizio in background
+Risolve il crash relativo all'avvio di un servizio in secondo piano

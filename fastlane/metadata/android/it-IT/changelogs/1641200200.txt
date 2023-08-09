@@ -1,0 +1,4 @@
+* supporto per OnionServices v3
+* miglioramenti alla configurazione del bridge
+* assicura che la modalità VPN sia trattata come "rete non a consumo"
+* modalità sperimentale per attivare la funzionalità proxy Snowflake

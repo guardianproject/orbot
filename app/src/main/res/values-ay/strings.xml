@@ -13,7 +13,7 @@
     <string name="menu_scan">Jalakipañ QR waruqaña</string>
     <string name="menu_share_bridge">Jalakipañ QR ch\'iqiyaña</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details_msg">Orbot aplikasyunax inakiwa ukatx Tor ukaniwa, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, ukhamarak LibEvent. Proxy HTTP (8118) ukhamarak mä proxy SOCKS (9050) Tor taypin utjayi. Mä rooteat atamirinx Orbotax Tor tuqiw taqpach llika yatiyäwinak apayarakispa.</string>
+    <string name="wizard_details_msg">Orbot aplikasyunax inakiwa ukatx Tor ukaniwa, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, ukhamarak LibEvent. Proxy HTTP (8118) ukhamarak mä proxy SOCKS (9050) Tor taypin utjayi. Mä rutiyat atamirinx Orbotax Tor tuqiw taqpach llika yatiyäwinak apayarakispa.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Wakiskiri</string>
     <string name="pref_start_boot_title">Orbot qhantaykas qalltaña</string>
@@ -163,7 +163,7 @@
     <string name="request_bridges_from_torproject">torproject.org ukar jalakipañanak mayiña</string>
     <string name="configure_custom_bridges">Maynichat jalakipañanak mayjt\'ayaña</string>
     <string name="use_qr_code">QR chimpu apnaqaña</string>
-    <string name="license">Lisinsa:</string>
+    <string name="license">Lisinsya:</string>
     <string name="refresh_captcha">CAPTCHA jichhaptayaña</string>
     <string name="captcha">Captcha</string>
     <string name="in_a_browser">Mä thaqhirinxa, %s ukar mantam ukat Jalakipañanak jikxataña limt\'am &gt; ¡Jalakipañanakak churita!</string>
@@ -285,7 +285,7 @@
     <string name="v3_backup_key_warning">Ukataraki: Akax yaqha aplikasyunanakaruw chimpum uñachayaspa</string>
     <string name="pref_isolate_protocol_summary">Sapa waythapiyañatak yaqha yaqh sirkuyt apnaqam</string>
     <string name="paste_bridges">Bridges lip\'katayaña</string>
-    <string name="root_warning">Jawsañax rutiyataw ukwa Orbotax jikxati, jark\'aqañaruw jan waltayaspa.</string>
+    <string name="root_warning">Jawsañamax rutiyataw ukwa Orbotax katji, jark\'aqañaruw jan walt\'ayaspa.</string>
     <string name="setting_padding">K\'iruntata</string>
     <string name="custom_bridge_description">Mayninkir chakax yaqha uñt\'ataruw iyawst\'i. Llikan utjirinakam chiqa jiskt\'am ukhamat kawkniris imatask uka uñjañataki.</string>
 </resources>

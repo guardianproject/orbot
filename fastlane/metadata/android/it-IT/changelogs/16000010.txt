@@ -1,7 +1,7 @@
 - Importante aggiornamento dell'interfaccia utente!
 - Nuove procedure guidate per l'installazione e la configurazione del bridge
 - Funzionalità VPN migliorate
-- Correzioni per arresti anomali della configurazione del servizio Onion / Hidden
+- Correzioni per arresti anomali della configurazione del servizio Onion/nascosto
 
 e altro ancora...
 

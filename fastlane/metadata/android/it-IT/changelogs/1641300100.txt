@@ -1,0 +1,3 @@
+- rimosso il bridge "Cloud" Meek poiché non è più supportato
+- altri miglioramenti al supporto del servizio Onion V3
+- per #441, corregge la ricerca di app per la selezione VPN basata su app
