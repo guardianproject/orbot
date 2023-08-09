@@ -56,14 +56,14 @@
     <string name="app_shortcuts">Aplikacije s podporo Tor</string>
     <string name="vpn_disabled">Onemogočeno omrežje VPN</string>
     <string name="wizard_details_msg">Orbot je odprtokodna aplikacija, ki vsebuje Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks in LibEvent. Zagotavlja predor VPN, lokalni posrednik HTTP Connect (samo HTTPS na vratih 8118) in posrednik SOCKS (9050) v omrežje Tor.</string>
-    <string name="secure_your_connection_title">Varna povezava z omrežjem Tor</string>
-    <string name="secure_your_connection_subtitle">Orbot omogoča varno in neprekinjeno povezavo z vašimi aplikacijami.</string>
-    <string name="connected_title">Povezani ste!</string>
+    <string name="secure_your_connection_title">Pripravljen na povezavo</string>
+    <string name="secure_your_connection_subtitle">Skrijte aplikacije pred nadzorom omrežja in pridobite dostop, ko so blokirane.</string>
+    <string name="connected_title">Povezano</string>
     <string name="btn_start_vpn">Začetek omrežja VPN</string>
-    <string name="btn_configure">Konfiguracija spletne strani</string>
-    <string name="volunteer_mode">Način Patreon</string>
+    <string name="btn_configure">Izberi kako se povezati</string>
+    <string name="volunteer_mode">Način prijaznosti</string>
     <string name="volunteer_mode_subtitle">Pomagajte drugim, da se povežejo</string>
-    <string name="trying_to_connect_title">Poskušam vzpostaviti povezavo s storitvijo Tor…</string>
+    <string name="trying_to_connect_title">Povezovanje …</string>
     <string name="btn_choose_apps">Izberite aplikacije</string>
     <string name="btn_change_exit">Sprememba izhoda</string>
     <string name="btn_refresh">Osvežitev</string>
@@ -77,7 +77,7 @@
     <string name="menu_faq">FAQ</string>
     <string name="menu_header_learn">Preberite več</string>
     <string name="btn_use_custom_bridge">Uporaba mostu po meri</string>
-    <string name="msg_taking_too_long">Zdi se, da to traja dolgo</string>
+    <string name="msg_taking_too_long">Zdi se, da to traja predolgo</string>
     <string name="msg_try_something_else">Poskusite kaj drugega</string>
     <string name="menu_scan">Skeniranje BridgeQR</string>
     <string name="menu_share_bridge">Skupna raba BridgeQR</string>
@@ -111,7 +111,7 @@
     <string name="project_home">Projekt Domov:</string>
     <string name="get_bridges_email">E-pošta</string>
     <string name="share_as_qr">Delite kot QR</string>
-    <string name="enter_characters_from_image">Vnesite znake iz slike</string>
+    <string name="enter_characters_from_image">Vnesite zgornje besedilo</string>
     <string name="custom_bridges">Mostovi po meri</string>
     <string name="configure_custom_bridges">Konfiguracija mostov po meri</string>
     <string name="use_custom_bridges">Uporaba mostov po meri</string>
@@ -181,9 +181,9 @@
     <string name="refresh_captcha">Osveži CAPTCHA</string>
     <string name="captcha">Captcha</string>
     <string name="bridge_snowflake_amp">Povežite se prek drugih uporabnikov omrežja Tor z uporabo storitve Snowflake (metoda 2)</string>
-    <string name="snowflake_proxy_msg_description">Pokaži sporočilo, ko tvoja snežinka pomaga nekomu zaobiti cenzuro lol</string>
+    <string name="snowflake_proxy_msg_description">Pokaži sporočilo, ko pomagaš nekomu zaobiti cenzuro</string>
     <string name="pref_proxy_port_dialog">Vnesite vrata posredniškega strežnika</string>
-    <string name="app_description">Orbot je brezplačna aplikacija proxy, ki drugim aplikacijam omogoča varnejšo uporabo interneta. Orbot uporablja Tor za šifriranje vašega internetnega prometa, nato pa ga skrije tako, da ga preusmeri skozi več računalnikov po vsem svetu. Tor je brezplačna programska oprema in odprto omrežje, ki vam pomaga pri obrambi pred obliko nadzora omrežja, ki ogroža osebno svobodo in zasebnost, zaupne poslovne dejavnosti in odnose ter državno varnost, znano kot analiza prometa.</string>
+    <string name="app_description">Orbot je brezplačna proksi aplikacija, ki drugim aplikacijam omogoča varnejšo uporabo interneta. Orbot uporablja Tor za šifriranje vašega internetnega prometa, nato pa ga skrije tako, da ga preusmeri skozi več računalnikov po vsem svetu. Tor je brezplačna programska oprema in odprto omrežje, ki vam pomaga pri obrambi pred obliko nadzora omrežja, ki ogroža osebno svobodo in zasebnost, zaupne poslovne dejavnosti in odnose ter državno varnost, znano kot analiza prometa.</string>
     <string name="pref_start_boot_title">Zagon programa Orbot ob zagonu</string>
     <string name="pref_node_configuration_summary">To so napredne nastavitve, ki lahko zmanjšajo vašo anonimnost</string>
     <string name="pref_proxy_host_title">Gostitelj izhodnega posredniškega strežnika</string>
@@ -226,4 +226,65 @@
     <string name="setting_debug">Razhroščevanje</string>
     <string name="menu_more">Več</string>
     <string name="connect">Poveži</string>
+    <string name="pref_isolate_port">Izolirajte ciljna vrata</string>
+    <string name="pref_isolate_protocol">Izolirajte odjemalske protokole</string>
+    <string name="volunteer_mode_label">Način prijaznosti</string>
+    <string name="having_trouble">Škripanje</string>
+    <string name="not_sure">Niste prepričani\?</string>
+    <string name="ask_tor">Vprašajte Tor</string>
+    <string name="asking">SPRAŠEVANJE ...</string>
+    <string name="no_internet_subtitle">Za uporabo Orbota potrebujete internetno povezavo.</string>
+    <string name="power_user_description">Za uporabnike, ki poznajo Tor. Omogoča zagon Orbota brez nastavitve VPN in prikazuje odprta vrata SOCKS in HTTP</string>
+    <string name="power_user_mode">Napredni uporabniški način</string>
+    <string name="setting_padding">Oblazinjenje</string>
+    <string name="menu_kindness">Prijaznost</string>
+    <string name="option_only_when_charging">Samo ko se polni</string>
+    <string name="option_only_on_wifi">Samo na Wi-Fi-ju</string>
+    <string name="pref_isolate_port_summary">Uporabite drugo vezje za vsaka ciljna vrata</string>
+    <string name="pref_isolate_protocol_summary">Uporabite drugo vezje za vsak povezovalni protokol</string>
+    <string name="volunteer_mode_title">Pomagajte se drugim
+\npovezati na Tor</string>
+    <string name="volunteer_mode_subtitle_desc">Način prijaznosti omogoča, da je vaša naprava most za druge. Ljudem pomaga uporabljati Tor na mestih, kjer je blokiran.
+\n
+\n• Ne bo praznil vaše baterije
+\n• Ne bo upočasnil vašega interneta
+\n• Deluje lahko samo prek Wi-Fi-ja
+\n• Kadar koli ga je mogoče izklopiti</string>
+    <string name="smart_connect_subtitle">Orbot se poskuša povezati s Torom prek katerega koli razpoložljivega načina: neposredno, snažinka, most.</string>
+    <string name="custom_bridge_description">Most po meri zagotovi nekdo, ki ga poznate. Povprašajte v svojih zaupanja vrednih omrežjih in organizacijah, ali jih kdo gosti.</string>
+    <string name="log_copied">Dnevnik kopiran</string>
+    <string name="no_interent_title">Povežite se z internetom</string>
+    <string name="kindess_config_detail">Konfigurirajte, kako in kdaj lahko vaša naprava deluje kot proksi snežinka za druge uporabnike Tora.</string>
+    <string name="root_warning">Orbot je zaznal, da je vaša naprava korenirana, kar lahko povzroči varnostne težave.</string>
+    <string name="configure_header">Natavite svojo Tor povezavo</string>
+    <string name="direct_connect">Neposredna povezava s Torom</string>
+    <string name="ports_not_set">Vrata niso nastavljena</string>
+    <string name="hide_apps">Skrijte aplikacije pred nadzorom omrežja in pridobite dostop, ko so blokirane.</string>
+    <string name="custom_bridge_subtitle">Najverjetneje da boste ostali povezani, če je Tor močno blokiran. Zahteva naslov mosta nekoga, ki mu zaupate.</string>
+    <string name="solve_captcha">Rešite Captcha</string>
+    <string name="incorrect_solution">Napačna rešitev</string>
+    <string name="bridges_obtained_connecting">Mostovi pridobljeni! Povezovanje s Torom ...</string>
+    <string name="having_trouble_subtitle">Naslednjič lahko poskusimo s Torovim mostom, vendar bomo potrebovali vašo pomoč</string>
+    <string name="volunteer_status_title">Danes je bolje
+\nzaradi tebe.</string>
+    <string name="app_suggested_subtitle">Orbot najbolje deluje z aplikacijami za sporočanje in družbena omrežja.</string>
+    <string name="apps_suggested_title">Predlagane aplikacije</string>
+    <string name="apps_other_apps">Ostale aplikacije</string>
+    <string name="btn_copy_log">Kopiraj dnevnik</string>
+    <string name="many_ways">Tor lahko dosežete na več načinov. Nekateri morda za vas delujejo bolje kot drugi.</string>
+    <string name="kindness_adjust_title">Prilagodite, ko teče …</string>
+    <string name="connection_snowflake">Snežinka</string>
+    <string name="pref_flag_secure_summary">Preprečite drugim aplikacijam snemanje posnetkov zaslona Orbota</string>
+    <string name="pref_flag_secure_title">Varnost zaslona</string>
+    <string name="snowflake">Snežinka (originalno)</string>
+    <string name="custom_bridge">Most po meri</string>
+    <string name="proxy_ports">Proksi vrata</string>
+    <string name="volunteer_mode_weekly_label">Skupaj tedensko</string>
+    <string name="volunteer_mode_alltime_label">Skupaj vseh časov</string>
+    <string name="smart_connect">Pametno poveži (privzeto)</string>
+    <string name="direct_connect_subtitle">Najboljši način povezave s Torom. Uporabite če Tor ni blokiran.</string>
+    <string name="snowflake_amp">Snežinka (AMP)</string>
+    <string name="snowflake_subtitle">Povezuje se prek Torovih prostovoljcev. Zaobide nekaj Torovih preprek.</string>
+    <string name="get_a_bridge">Most it Tora (Obfs4)</string>
+    <string name="get_a_bridge_subtitle">Prikrije vaš promet. Zaobide nekaj Torovih preprek.</string>
 </resources>
