@@ -79,15 +79,16 @@ public final class IntentResult {
   public String getErrorCorrectionLevel() {
     return errorCorrectionLevel;
   }
-  
+
   @Override
   public String toString() {
-      int rawBytesLength = rawBytes == null ? 0 : rawBytes.length;
-      String dialogText = "Format: " + formatName + '\n' +
-              "Contents: " + contents + '\n' +
-              "Raw bytes: (" + rawBytesLength + " bytes)\n" +
-              "Orientation: " + orientation + '\n' +
-              "EC level: " + errorCorrectionLevel + '\n';
+    int rawBytesLength = rawBytes == null ? 0 : rawBytes.length;
+    String dialogText;
+    dialogText = "Format: " + formatName + '\n' +
+            "Contents: " + contents + '\n' +
+            "Raw bytes: (" + rawBytesLength + " bytes)\n" +
+            "Orientation: " + orientation + '\n' +
+            "EC level: " + errorCorrectionLevel + '\n';
     return dialogText;
   }
 

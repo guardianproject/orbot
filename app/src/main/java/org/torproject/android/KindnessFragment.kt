@@ -1,23 +1,21 @@
 package org.torproject.android
 
-import android.animation.Animator.AnimatorListener
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation.AnimationListener
 import android.widget.Button
 import android.widget.TextView
+
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.OrbotService
 import org.torproject.android.service.util.Prefs
-import org.w3c.dom.Text
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,12 +29,12 @@ private const val ARG_PARAM2 = "param2"
  */
 class KindnessFragment : Fragment() {
 
-    private lateinit var tvAlltimeTotal : TextView;
-    private lateinit var tvWeeklyTotal : TextView;
-    private lateinit var swVolunteerMode : SwitchCompat;
-    private lateinit var btnActionActivate : Button;
-    private lateinit var pnlActivate : View;
-    private lateinit var pnlStatus : View;
+    private lateinit var tvAlltimeTotal : TextView
+    private lateinit var tvWeeklyTotal : TextView
+    private lateinit var swVolunteerMode : SwitchCompat
+    private lateinit var btnActionActivate : Button
+    private lateinit var pnlActivate : View
+    private lateinit var pnlStatus : View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,10 +42,10 @@ class KindnessFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_kindness, container, false)
-        tvAlltimeTotal = view.findViewById<TextView>(R.id.tvAlltimeTotal)
-        tvWeeklyTotal = view.findViewById<TextView>(R.id.tvWeeklyTotal)
-        swVolunteerMode = view.findViewById<SwitchCompat>(R.id.swVolunteerMode)
-        btnActionActivate = view.findViewById<Button>(R.id.btnActionActivate)
+        tvAlltimeTotal = view.findViewById(R.id.tvAlltimeTotal)
+        tvWeeklyTotal = view.findViewById(R.id.tvWeeklyTotal)
+        swVolunteerMode = view.findViewById(R.id.swVolunteerMode)
+        btnActionActivate = view.findViewById(R.id.btnActionActivate)
         pnlActivate = view.findViewById(R.id.panel_kindness_activate)
         pnlStatus = view.findViewById(R.id.panel_kindness_status)
         tvAlltimeTotal.text = Prefs.getSnowflakesServed().toString()
@@ -104,24 +102,20 @@ class KindnessFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
     }
 
     private fun sendIntentToService(intent: Intent) = ContextCompat.startForegroundService(requireContext(), intent)
     private fun sendIntentToService(action: String) = sendIntentToService(
-        android.content.Intent(
+        Intent(
             requireContext(),
-            org.torproject.android.service.OrbotService::class.java
+            OrbotService::class.java
         ).apply {
         this.action = action
     })
 
-
-
     private fun showPanelStatus(isActivated: Boolean) {
 
-        var duration = 250L
+        val duration = 250L
 
         if (isActivated) {
 

@@ -37,7 +37,7 @@ object LocaleHelper {
 
         if (language.contains("_"))
         {
-            var parts = locale.split("_")
+            val parts = locale.split("_")
             language = parts[0]
             region = parts[1]
         }

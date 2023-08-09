@@ -24,7 +24,7 @@ class OnBootReceiver : BroadcastReceiver() {
 
         }
         catch (re: java.lang.RuntimeException) {
-            //catch this to avoid malicious launches as document Cure53 Audit: ORB-01-009 WP1/2: Orbot DoS via exported activity (High)
+            // Catch this to avoid malicious launches as document Cure53 Audit: ORB-01-009 WP1/2: Orbot DoS via exported activity (High)
         }
     }
 

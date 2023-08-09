@@ -64,9 +64,8 @@ public class RequestPacketHandler implements Runnable {
 
                     IpPacket respPacket = null;
 
-                    if (packet instanceof IpV4Packet) {
+                    if (packet instanceof IpV4Packet ipPacket) {
 
-                        IpV4Packet ipPacket = (IpV4Packet)packet;
                         IpV4Packet.Builder ipv4Builder = new IpV4Packet.Builder();
                         ipv4Builder
                                 .version(ipPacket.getHeader().getVersion())
@@ -94,6 +93,7 @@ public class RequestPacketHandler implements Runnable {
                     }
 
 
+                    assert respPacket != null;
                     byte[] rawResponse = respPacket.getRawData();
                     pFlow.writePacket(rawResponse);
                 }

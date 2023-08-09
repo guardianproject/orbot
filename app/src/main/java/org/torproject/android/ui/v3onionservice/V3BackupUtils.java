@@ -1,5 +1,6 @@
 package org.torproject.android.ui.v3onionservice;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -24,6 +25,7 @@ import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
+import java.util.Objects;
 
 public class V3BackupUtils {
     private static final String configFileName = "config.json";
@@ -46,6 +48,7 @@ public class V3BackupUtils {
         String fileText = OrbotService.buildV3ClientAuthFile(domain, keyHash);
         try {
             ParcelFileDescriptor pfd = mContext.getContentResolver().openFileDescriptor(backupFile, "w");
+            assert pfd != null;
             FileOutputStream fos = new FileOutputStream(pfd.getFileDescriptor());
             fos.write(fileText.getBytes());
             fos.close();
@@ -57,6 +60,7 @@ public class V3BackupUtils {
     }
 
     // todo this doesn't export data for onions that orbot hosts which have authentication (not supported yet...)
+    @SuppressLint("Range")
     private String[] createFilesForZippingV3(String relativePath) {
         final String v3BasePath = getV3BasePath() + "/" + relativePath + "/";
         final String hostnamePath = v3BasePath + "hostname",
@@ -124,14 +128,15 @@ public class V3BackupUtils {
                 mResolver.insert(OnionServiceContentProvider.CONTENT_URI, fields);
             else
                 mResolver.update(OnionServiceContentProvider.CONTENT_URI, fields, OnionServiceContentProvider.OnionService.PORT + "=" + port, null);
+            assert dbService != null;
             dbService.close();
 
             configFile.delete();
             if (v3Path.renameTo(new File(v3BasePath, "/v3" + port))) {
                 Toast.makeText(mContext, R.string.backup_restored, Toast.LENGTH_LONG).show();
             } else {
-                // collision, clean up files
-                for (File file: v3Path.listFiles())
+                // Collision, clean up files
+                for (File file: Objects.requireNonNull(v3Path.listFiles()))
                     file.delete();
                 v3Path.delete();
                 Toast.makeText(mContext, mContext.getString(R.string.backup_port_exist, ("" + port)), Toast.LENGTH_LONG).show();
@@ -159,6 +164,7 @@ public class V3BackupUtils {
 
     public void restoreZipBackupV3(Uri zipUri) {
         Cursor returnCursor = mResolver.query(zipUri, null, null, null, null);
+        assert returnCursor != null;
         int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
         returnCursor.moveToFirst();
         String backupName = returnCursor.getString(nameIndex);

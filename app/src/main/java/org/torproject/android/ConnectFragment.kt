@@ -19,10 +19,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.ListView
+import android.widget.ProgressBar
+import android.widget.TextView
+
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+
 import net.freehaven.tor.control.TorControlCommands
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.OrbotService
@@ -151,7 +157,6 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
 
     private fun startTorAndVpnDelay(@Suppress("SameParameterValue") ms: Long) = Handler(Looper.getMainLooper()).postDelayed({startTorAndVpn()}, ms)
 
-
      fun startTorAndVpn() {
         val vpnIntent = VpnService.prepare(requireActivity())
         if (vpnIntent != null && (!Prefs.isPowerUserMode())) {
@@ -170,7 +175,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         val listItems = arrayListOf(OrbotMenuAction(R.string.btn_change_exit, 0) {openExitNodeDialog()},
             OrbotMenuAction(R.string.btn_refresh, R.drawable.ic_refresh) {sendNewnymSignal()},
             OrbotMenuAction(R.string.btn_tor_off, R.drawable.ic_power) {stopTorAndVpn()})
-        if (OrbotActivity.CAN_DO_APP_ROUTING && (!Prefs.isPowerUserMode())) listItems.add(0, OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {
+        if ((!Prefs.isPowerUserMode())) listItems.add(0, OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {
             startActivityForResult(Intent(requireActivity(), AppManagerActivity::class.java), OrbotActivity.REQUEST_VPN_APP_SELECT)
         })
         lvConnectedActions.adapter = OrbotMenuActionAdapter(context, listItems)
@@ -262,13 +267,13 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
 
             var connectStr = ""
             if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_DIRECT))
-                connectStr = context.getString(R.string.action_use) + ' ' + getString(R.string.direct_connect);
+                connectStr = context.getString(R.string.action_use) + ' ' + getString(R.string.direct_connect)
             else if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SNOWFLAKE))
-                connectStr = context.getString(R.string.action_use) + ' ' + getString(R.string.snowflake);
+                connectStr = context.getString(R.string.action_use) + ' ' + getString(R.string.snowflake)
             else if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SNOWFLAKE_AMP))
-                connectStr = context.getString(R.string.action_use) + ' ' + getString(R.string.snowflake_amp);
+                connectStr = context.getString(R.string.action_use) + ' ' + getString(R.string.snowflake_amp)
             else if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_CUSTOM))
-                connectStr = context.getString(R.string.action_use) + ' ' + getString(R.string.custom_bridge);
+                connectStr = context.getString(R.string.action_use) + ' ' + getString(R.string.custom_bridge)
 
             text = if (Prefs.isPowerUserMode())
                 getString(R.string.connect)
@@ -279,14 +284,12 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
 
 
             isEnabled = true
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                backgroundTintList = ColorStateList.valueOf(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.orbot_btn_enabled_purple
-                    )
+            backgroundTintList = ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.orbot_btn_enabled_purple
                 )
-            }
+            )
             setOnClickListener { startTorAndVpn() }
             //logBottomSheet.resetLog()
         }
@@ -308,12 +311,12 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
             visibility = View.VISIBLE
         }
         ivOnion.setImageResource(R.drawable.orbistarting)
-        val animHover = AnimationUtils.loadAnimation(context, R.anim.hover);
+        val animHover = AnimationUtils.loadAnimation(context, R.anim.hover)
         animHover.repeatCount = 7
         animHover.repeatMode = Animation.REVERSE
         ivOnion.animation = animHover
         animHover.start()
-        val animShadow = AnimationUtils.loadAnimation(context, R.anim.shadow);
+        val animShadow = AnimationUtils.loadAnimation(context, R.anim.shadow)
         animShadow.repeatCount = 7
         animShadow.repeatMode = Animation.REVERSE
         ivOnionShadow.animation = animShadow
@@ -323,14 +326,12 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         with(btnStartVpn) {
             text = context.getString(android.R.string.cancel)
             isEnabled = true
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                backgroundTintList = ColorStateList.valueOf(
-                    ContextCompat.getColor(
-                        context,
-                        R.color.orbot_btn_enabled_purple
-                    )
+            backgroundTintList = ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    context,
+                    R.color.orbot_btn_enabled_purple
                 )
-            }
+            )
             setOnClickListener {
                 stopTorAndVpn()
             }

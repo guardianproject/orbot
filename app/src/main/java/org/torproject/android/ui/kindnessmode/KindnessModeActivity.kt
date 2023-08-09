@@ -22,11 +22,11 @@ class KindnessModeActivity: AppCompatActivity() {
         setContentView(R.layout.activity_volunteer)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-     //   var tvWeeklyTotal = findViewById<TextView>(R.id.tvWeeklyTotal)
-        var tvAlltimeTotal = findViewById<TextView>(R.id.tvAlltimeTotal)
-        var tvWeeklyTotal = findViewById<TextView>(R.id.tvWeeklyTotal)
-        var swVolunteerMode = findViewById<SwitchCompat>(R.id.swVolunteerMode)
-        var btnActionActivate = findViewById<Button>(R.id.btnActionActivate)
+    //  var tvWeeklyTotal = findViewById<TextView>(R.id.tvWeeklyTotal)
+        val tvAlltimeTotal = findViewById<TextView>(R.id.tvAlltimeTotal)
+        val tvWeeklyTotal = findViewById<TextView>(R.id.tvWeeklyTotal)
+        val swVolunteerMode = findViewById<SwitchCompat>(R.id.swVolunteerMode)
+        val btnActionActivate = findViewById<Button>(R.id.btnActionActivate)
 
         tvAlltimeTotal.text = Prefs.getSnowflakesServed().toString()
         tvWeeklyTotal.text = (Prefs.getSnowflakesServedWeekly()).toString()

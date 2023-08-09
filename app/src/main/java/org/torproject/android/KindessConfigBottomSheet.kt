@@ -7,10 +7,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CompoundButton
 import android.widget.EditText
-import androidx.appcompat.widget.SwitchCompat
-import org.torproject.android.service.util.Prefs
 
-class KindessConfigBottomSheet(): OrbotBottomSheetDialogFragment() {
+import androidx.appcompat.widget.SwitchCompat
+
+import org.torproject.android.service.util.Prefs
+import org.torproject.android.ui.OrbotBottomSheetDialogFragment
+
+class KindessConfigBottomSheet : OrbotBottomSheetDialogFragment() {
     companion object {
         const val TAG = "KindnessConfig"
     }
@@ -39,18 +42,13 @@ class KindessConfigBottomSheet(): OrbotBottomSheetDialogFragment() {
         }
 
         configWifi.isChecked = Prefs.limitSnowflakeProxyingWifi()
-        configWifi.setOnCheckedChangeListener { compoundButton: CompoundButton, b: Boolean ->
+        configWifi.setOnCheckedChangeListener { _: CompoundButton, _: Boolean ->
         }
 
         configCharging.isChecked = Prefs.limitSnowflakeProxyingCharging()
-        configCharging.setOnCheckedChangeListener { compoundButton: CompoundButton, b: Boolean ->
+        configCharging.setOnCheckedChangeListener { _: CompoundButton, _: Boolean ->
         }
-
-
 
         return v
     }
-
-
-
 }

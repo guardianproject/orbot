@@ -16,7 +16,7 @@ public class StartTorReceiver extends BroadcastReceiver implements OrbotConstant
     public void onReceive(Context context, Intent intent) {
 
         try {
-            /* sanitize the Intent before forwarding it to OrbotService */
+            // Sanitize the Intent before forwarding it to OrbotService
             Prefs.setContext(context);
             String action = intent.getAction();
             if (TextUtils.equals(action, ACTION_START)) {
@@ -29,8 +29,7 @@ public class StartTorReceiver extends BroadcastReceiver implements OrbotConstant
                     }
                     ContextCompat.startForegroundService(context, startTorIntent);
                 } else if (!TextUtils.isEmpty(packageName)) {
-                    // let the requesting app know that the user has disabled
-                    // starting via Intent
+                    // Let the requesting app know that the user has disabled starting via Intent
                     Intent startsDisabledIntent = new Intent(ACTION_STATUS);
                     startsDisabledIntent.putExtra(EXTRA_STATUS, STATUS_STARTS_DISABLED);
                     startsDisabledIntent.setPackage(packageName);
@@ -39,7 +38,8 @@ public class StartTorReceiver extends BroadcastReceiver implements OrbotConstant
             }
         }
         catch (RuntimeException re) {
-            //catch this to avoid malicious launches as document Cure53 Audit: ORB-01-009 WP1/2: Orbot DoS via exported activity (High)
+            // Catch this to avoid malicious launches as documented in
+            // Cure53 Audit: ORB-01-009 WP1/2: Orbot DoS via exported activity (High)
         }
     }
 }

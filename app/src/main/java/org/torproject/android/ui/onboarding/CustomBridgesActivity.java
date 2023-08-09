@@ -89,9 +89,10 @@ public class CustomBridgesActivity extends AppCompatActivity implements TextWatc
             String setBridges = Prefs.getBridgesList();
             if (!TextUtils.isEmpty(setBridges)) {
                 try {
+                    // noinspection CharsetObjectCanBeUsed
                     integrator.shareText("bridge://" + URLEncoder.encode(setBridges, "UTF-8"));
                 } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 }
             }
         });

@@ -1,5 +1,6 @@
 package org.torproject.android.ui.v3onionservice.clientauth;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -28,10 +29,12 @@ public class ClientAuthListAdapter extends CursorAdapter {
         return mLayoutInflator.inflate(R.layout.layout_client_cookie_list_item, null);
     }
 
+    @SuppressLint("Range")
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         int id = cursor.getInt(cursor.getColumnIndex(ClientAuthContentProvider.V3ClientAuth._ID));
         final String where = ClientAuthContentProvider.V3ClientAuth._ID + "=" + id;
+
         TextView domain = view.findViewById(R.id.cookie_onion);
         String url = cursor.getString(cursor.getColumnIndex(ClientAuthContentProvider.V3ClientAuth.DOMAIN)) + ".onion";
         domain.setText(url);

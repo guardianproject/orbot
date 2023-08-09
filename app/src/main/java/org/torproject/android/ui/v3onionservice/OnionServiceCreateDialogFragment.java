@@ -34,15 +34,15 @@ public class OnionServiceCreateDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_hs_data_dialog, null);
+        final View dialogView = requireActivity().getLayoutInflater().inflate(R.layout.layout_hs_data_dialog, null);
         etServer = dialogView.findViewById(R.id.hsName);
         etLocalPort = dialogView.findViewById(R.id.hsLocalPort);
         etOnionPort = dialogView.findViewById(R.id.hsOnionPort);
 
-        AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+        AlertDialog alertDialog = new AlertDialog.Builder(requireActivity())
                 .setTitle(R.string.hidden_services)
                 .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.cancel())
-                .setPositiveButton(R.string.save, (dialog, which) -> doSave(getContext()))
+                .setPositiveButton(R.string.save, (dialog, which) -> doSave(requireContext()))
                 .setView(dialogView)
                 .create();
 
@@ -92,7 +92,7 @@ public class OnionServiceCreateDialogFragment extends DialogFragment {
         ContentResolver cr = context.getContentResolver();
         cr.insert(OnionServiceContentProvider.CONTENT_URI, fields);
         Toast.makeText(context, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_SHORT).show();
-        ((OnionServiceActivity) getActivity()).showBatteryOptimizationsMessageIfAppropriate();
+        ((OnionServiceActivity) requireActivity()).showBatteryOptimizationsMessageIfAppropriate();
     }
 
 }

@@ -40,9 +40,11 @@ public class ZipUtilities {
         try {
             BufferedInputStream origin;
             ParcelFileDescriptor pdf = contentResolver.openFileDescriptor(zipFile, "w");
+            assert pdf != null;
             FileOutputStream dest = new FileOutputStream(pdf.getFileDescriptor());
             ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
             byte[] data = new byte[BUFFER];
+            assert files != null;
             for (String file : files) {
                 FileInputStream fi = new FileInputStream(file);
                 origin = new BufferedInputStream(fi, BUFFER);

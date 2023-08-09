@@ -4,6 +4,7 @@
 package org.torproject.android.ui;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -43,12 +44,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.StringTokenizer;
 
 public class AppManagerActivity extends AppCompatActivity implements OnClickListener, OrbotConstants {
 
 
-    class TorifiedAppWrapper {
+    static class TorifiedAppWrapper {
         String header = null;
         String subheader = null;
         TorifiedApp app = null;
@@ -77,7 +79,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         pMgr = getPackageManager();
 
         this.setContentView(R.layout.layout_apps);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         listAppsAll = findViewById(R.id.applistview);
         progressBar = findViewById(R.id.progressBar);
 
@@ -249,7 +251,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
             tordApps[tordIdx++] = st.nextToken();
         }
         Arrays.sort(tordApps);
-        List<ApplicationInfo> lAppInfo = pMgr.getInstalledApplications(0);
+        @SuppressLint("QueryPermissionsNeeded") List<ApplicationInfo> lAppInfo = pMgr.getInstalledApplications(0);
         Iterator<ApplicationInfo> itAppInfo = lAppInfo.iterator();
         ArrayList<TorifiedApp> apps = new ArrayList<>();
 

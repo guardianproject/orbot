@@ -9,12 +9,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.FrameLayout
+import android.widget.HorizontalScrollView
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+
 import org.torproject.android.R
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.util.Prefs
 import org.torproject.android.service.util.Utils
-import java.util.*
+
+import java.util.TreeMap
+import java.util.ArrayList
 
 
 class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>) : ArrayAdapter<OrbotMenuAction>(context,
@@ -68,7 +76,7 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
             .getString(OrbotConstants.PREFS_KEY_TORIFIED, "")
         if (!TextUtils.isEmpty(tordAppString)) {
 
-            val packageManager: PackageManager = context.getPackageManager()
+            val packageManager: PackageManager = context.packageManager
             val tordApps = tordAppString!!.split("|").toTypedArray()
             val container = llBoxShortcuts.getChildAt(0) as LinearLayout
 
@@ -92,7 +100,7 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
                         params.setMargins(1, 10, 1, 1)
                         iv.layoutParams = params
 
-                        iv.setOnClickListener { v: View? ->
+                        iv.setOnClickListener {
                             openBrowser(
                                 URL_TOR_CHECK,
                                 false,
@@ -102,7 +110,7 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
                         icons[packageManager.getApplicationLabel(applicationInfo).toString()] = iv
                     } catch (e: PackageManager.NameNotFoundException) {
                         //couldn't draw icon for the package name
-                        Log.d("Orbot", "error getting package info for: " + tordApp);
+                        Log.d("Orbot", "error getting package info for: $tordApp");
 
                     }
                 }
@@ -117,7 +125,7 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
         return false
     }
 
-    final val URL_TOR_CHECK = "https://check.torproject.org"
+    private val URL_TOR_CHECK = "https://check.torproject.org"
 
     private fun openBrowser(checkUrl: String, doSomething: Boolean, packageName: String)
     {
@@ -127,7 +135,7 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
 
     private fun startIntent(context: Context, pkg: String, action: String, data: Uri) {
         val i = Intent()
-        val pm: PackageManager = context.getPackageManager()
+        val pm: PackageManager = context.packageManager
         try {
             /**
              * if (pkg != null) {

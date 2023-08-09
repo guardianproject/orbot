@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
 
+import androidx.annotation.NonNull;
+
 import org.torproject.android.core.Languages;
 import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.service.OrbotConstants;
@@ -22,7 +24,7 @@ public class OrbotTeeVeeApp extends Application implements OrbotConstants {
             Languages.setLanguage(this, Prefs.getDefaultLocale(), true);
         }
 
-        //no hosting of onion services!
+        // No hosting of onion services!
         Prefs.putHostOnionServicesEnabled(false);
     }
 
@@ -33,7 +35,7 @@ public class OrbotTeeVeeApp extends Application implements OrbotConstants {
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
         if (!Prefs.getDefaultLocale().equals(Locale.getDefault().getLanguage()))

@@ -31,19 +31,17 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -135,8 +133,9 @@ public class TCPSourceApp {
                 while (m6.find()) {
                     String addressEntry = m6.group(1);
                     String portEntry = m6.group(2);
-                    int pidEntry = Integer.valueOf(m6.group(3));
+                    int pidEntry = Integer.parseInt(Objects.requireNonNull(m6.group(3)));
 
+                    assert portEntry != null;
                     if (Integer.parseInt(portEntry, 16) == dport) {
                         PackageManager manager = context.getPackageManager();
                         String[] packagesForUid = manager.getPackagesForUid(pidEntry);
@@ -151,14 +150,6 @@ public class TCPSourceApp {
                     }
                 }
 
-        } catch (SocketException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NameNotFoundException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -182,8 +173,9 @@ public class TCPSourceApp {
             while (m4.find()) {
                 String addressEntry = m4.group(1);
                 String portEntry = m4.group(2);
-                int pidEntry = Integer.valueOf(m4.group(3));
+                int pidEntry = Integer.parseInt(Objects.requireNonNull(m4.group(3)));
 
+                assert portEntry != null;
                 if (Integer.parseInt(portEntry, 16) == dport) {
                     PackageManager manager = context.getPackageManager();
                     String[] packagesForUid = manager.getPackagesForUid(pidEntry);
@@ -198,14 +190,6 @@ public class TCPSourceApp {
                 }
             }
 
-        } catch (SocketException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NameNotFoundException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -223,7 +207,7 @@ public class TCPSourceApp {
 
             for (InetAddress addr : addrs) {
                 if (!addr.isLoopbackAddress()) {
-                    String sAddr = addr.getHostAddress().toUpperCase();
+                    String sAddr = Objects.requireNonNull(addr.getHostAddress()).toUpperCase();
 
                     boolean isIPv4 = addr instanceof Inet4Address;
 

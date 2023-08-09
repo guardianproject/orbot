@@ -25,12 +25,12 @@ public class ClientAuthCreateDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.dialog_add_v3_client_auth, null);
+        final View dialogView = requireActivity().getLayoutInflater().inflate(R.layout.dialog_add_v3_client_auth, null);
         final AlertDialog ad = new AlertDialog.Builder(getActivity())
                 .setView(dialogView)
                 .setTitle(R.string.v3_client_auth_activity_title)
                 .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
-                .setPositiveButton(R.string.save, (dialog, which) -> doSave(getContext()))
+                .setPositiveButton(R.string.save, (dialog, which) -> doSave(requireContext()))
                 .create();
 
 

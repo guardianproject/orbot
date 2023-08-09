@@ -1,22 +1,29 @@
 package org.torproject.android.tv.ui;
 
+import static org.torproject.android.service.OrbotConstants.PREFS_KEY_TORIFIED;
+import static org.torproject.android.tv.TeeveeMainActivity.getApp;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
+import android.os.Build;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Switch;
-import org.torproject.android.tv.R;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import org.torproject.android.service.OrbotConstants;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorifiedApp;
+import org.torproject.android.tv.R;
 
-import static org.torproject.android.service.OrbotConstants.PREFS_KEY_TORIFIED;
-import static org.torproject.android.tv.TeeveeMainActivity.getApp;
+import java.util.Objects;
 
 public class AppConfigActivity extends AppCompatActivity {
 
@@ -24,6 +31,7 @@ public class AppConfigActivity extends AppCompatActivity {
 
     private SharedPreferences mPrefs;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +39,7 @@ public class AppConfigActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         final String pkgId = getIntent().getStringExtra(Intent.EXTRA_PACKAGE_NAME);
 
@@ -46,7 +54,7 @@ public class AppConfigActivity extends AppCompatActivity {
 
             setTitle(mApp.getName());
         }
-        catch (Exception e){}
+        catch (Exception ignored){}
 
         boolean mAppTor = mPrefs.getBoolean(pkgId + OrbotConstants.APP_TOR_KEY, true);
         boolean mAppData = mPrefs.getBoolean(pkgId + OrbotConstants.APP_DATA_KEY, false);
@@ -55,7 +63,7 @@ public class AppConfigActivity extends AppCompatActivity {
         Switch switchAppTor = findViewById(R.id.switch_app_tor);
         switchAppTor.setChecked(mAppTor);
         switchAppTor.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            mPrefs.edit().putBoolean(pkgId + OrbotConstants.APP_TOR_KEY,isChecked).commit();
+            mPrefs.edit().putBoolean(pkgId + OrbotConstants.APP_TOR_KEY,isChecked).apply();
 
             Intent response = new Intent();
             setResult(RESULT_OK,response);
@@ -64,7 +72,7 @@ public class AppConfigActivity extends AppCompatActivity {
         Switch switchAppData = findViewById(R.id.switch_app_data);
         switchAppData.setChecked(mAppData);
         switchAppData.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            mPrefs.edit().putBoolean(pkgId + OrbotConstants.APP_DATA_KEY,isChecked).commit();
+            mPrefs.edit().putBoolean(pkgId + OrbotConstants.APP_DATA_KEY,isChecked).apply();
 
             Intent response = new Intent();
             setResult(RESULT_OK,response);
@@ -74,7 +82,7 @@ public class AppConfigActivity extends AppCompatActivity {
         Switch switchAppWifi = findViewById(R.id.switch_app_wifi);
         switchAppWifi.setChecked(mAppWifi);
         switchAppWifi.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            mPrefs.edit().putBoolean(pkgId + OrbotConstants.APP_WIFI_KEY,isChecked).commit();
+            mPrefs.edit().putBoolean(pkgId + OrbotConstants.APP_WIFI_KEY,isChecked).apply();
 
             Intent response = new Intent();
             setResult(RESULT_OK,response);
@@ -95,7 +103,7 @@ public class AppConfigActivity extends AppCompatActivity {
 
         SharedPreferences.Editor edit = mPrefs.edit();
         edit.putString(PREFS_KEY_TORIFIED, tordAppString);
-        edit.commit();
+        edit.apply();
 
         Intent response = new Intent();
         setResult(RESULT_OK,response);
@@ -113,11 +121,10 @@ public class AppConfigActivity extends AppCompatActivity {
 
         SharedPreferences.Editor edit = mPrefs.edit();
         edit.putString(PREFS_KEY_TORIFIED, tordAppString);
-        edit.commit();
+        edit.apply();
 
         Intent response = new Intent();
         setResult(RESULT_OK,response);
-
     }
 
     /*
@@ -125,7 +132,7 @@ public class AppConfigActivity extends AppCompatActivity {
      * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
      */
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.app_config, menu);
@@ -134,7 +141,6 @@ public class AppConfigActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         if (item.getItemId() == android.R.id.home) {
             finish();
             return true;
@@ -146,8 +152,4 @@ public class AppConfigActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
 }

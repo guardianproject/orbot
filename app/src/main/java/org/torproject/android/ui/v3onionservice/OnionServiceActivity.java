@@ -1,5 +1,6 @@
 package org.torproject.android.ui.v3onionservice;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,10 +14,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -27,7 +26,7 @@ import org.torproject.android.R;
 import org.torproject.android.core.DiskUtils;
 import org.torproject.android.core.LocaleHelper;
 
-import java.io.File;
+import java.util.Objects;
 
 public class OnionServiceActivity extends AppCompatActivity {
 
@@ -41,6 +40,7 @@ public class OnionServiceActivity extends AppCompatActivity {
     private OnionV3ListAdapter mAdapter;
     private CoordinatorLayout mLayoutRoot;
 
+    @SuppressLint("Range")
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -49,7 +49,7 @@ public class OnionServiceActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         mLayoutRoot = findViewById(R.id.hostedServiceCoordinatorLayout);
         fab = findViewById(R.id.fab);
@@ -113,31 +113,10 @@ public class OnionServiceActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_restore_backup) {
-            if (DiskUtils.supportsStorageAccessFramework()) {
-                Intent readFileIntent = DiskUtils.createReadFileIntent(ZipUtilities.ZIP_MIME_TYPE);
-                startActivityForResult(readFileIntent, REQUEST_CODE_READ_ZIP_BACKUP);
-            } else { // APIs 16, 17, 18
-                doRestoreLegacy();
-            }
+            Intent readFileIntent = DiskUtils.createReadFileIntent(ZipUtilities.ZIP_MIME_TYPE);
+            startActivityForResult(readFileIntent, REQUEST_CODE_READ_ZIP_BACKUP);
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void doRestoreLegacy() { // APIs 16, 17, 18
-        File backupDir = DiskUtils.getOrCreateLegacyBackupDir(getString(R.string.app_name));
-        File[] files = backupDir.listFiles(ZipUtilities.FILTER_ZIP_FILES);
-        if (files == null || files.length == 0) {
-            Toast.makeText(this, R.string.create_a_backup_first, Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        CharSequence[] fileNames = new CharSequence[files.length];
-        for (int i = 0; i < files.length; i++) fileNames[i] = files[i].getName();
-
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.restore_backup)
-                .setItems(fileNames, (dialog, which) -> new V3BackupUtils(this).restoreZipBackupV3Legacy(files[which]))
-                .show();
     }
 
     @Override
@@ -170,7 +149,6 @@ public class OnionServiceActivity extends AppCompatActivity {
     }
 
     void showBatteryOptimizationsMessageIfAppropriate() {
-        if (!PermissionManager.isAndroidM()) return;
         Cursor activeServices = getContentResolver().query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION,
                 OnionServiceContentProvider.OnionService.ENABLED + "=1", null, null);
         if (activeServices == null) return;

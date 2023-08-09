@@ -32,9 +32,9 @@ public class ClientAuthActionsDialogFragment extends DialogFragment {
                 .create();
         ad.getListView().setOnItemClickListener((parent, view, position, id) -> {
             if (position == 0)
-                new ClientAuthBackupDialogFragment(getArguments()).show(getActivity().getSupportFragmentManager(), ClientAuthBackupDialogFragment.class.getSimpleName());
+                new ClientAuthBackupDialogFragment(getArguments()).show(requireActivity().getSupportFragmentManager(), ClientAuthBackupDialogFragment.class.getSimpleName());
             else
-                new ClientAuthDeleteDialogFragment(getArguments()).show(getActivity().getSupportFragmentManager(), ClientAuthDeleteDialogFragment.class.getSimpleName());
+                new ClientAuthDeleteDialogFragment(getArguments()).show(requireActivity().getSupportFragmentManager(), ClientAuthDeleteDialogFragment.class.getSimpleName());
             ad.dismiss();
         });
         return ad;

@@ -4,6 +4,7 @@
 package org.torproject.android.tv.ui;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -11,7 +12,11 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -35,6 +40,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.StringTokenizer;
 
 public class AppManagerActivity extends AppCompatActivity implements OrbotConstants {
@@ -51,7 +57,7 @@ public class AppManagerActivity extends AppCompatActivity implements OrbotConsta
 
         this.setContentView(R.layout.layout_apps);
         setTitle("");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         listApps = findViewById(R.id.applistview);
         progressBar = findViewById(R.id.progressBar);
     }
@@ -70,7 +76,7 @@ public class AppManagerActivity extends AppCompatActivity implements OrbotConsta
      * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
      */
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.app_main, menu);
@@ -94,6 +100,7 @@ public class AppManagerActivity extends AppCompatActivity implements OrbotConsta
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressLint("StaticFieldLeak")
     private void reloadApps () {
         new AsyncTask<Void, Void, Void>() {
             protected void onPreExecute() {
@@ -125,6 +132,8 @@ public class AppManagerActivity extends AppCompatActivity implements OrbotConsta
 
         adapterApps = new ArrayAdapter<TorifiedApp>(this, R.layout.layout_apps_item, R.id.itemtext,mApps) {
 
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @NonNull
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -215,7 +224,7 @@ public class AppManagerActivity extends AppCompatActivity implements OrbotConsta
         while (itAppInfo.hasNext())
         {
             aInfo = itAppInfo.next();
-            // don't include apps user has disabled, often these ship with the device
+            // Don't include apps user has disabled, often these ship with the device
             if (!aInfo.enabled) continue;
             app = new TorifiedApp();
 
@@ -294,7 +303,7 @@ public class AppManagerActivity extends AppCompatActivity implements OrbotConsta
 
         Editor edit = mPrefs.edit();
         edit.putString(PREFS_KEY_TORIFIED, tordApps.toString());
-        edit.commit();
+        edit.apply();
 
         setResult(RESULT_OK,response);
     }

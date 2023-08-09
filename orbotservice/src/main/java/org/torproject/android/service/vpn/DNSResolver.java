@@ -32,5 +32,4 @@ public class DNSResolver {
 
         return packet.getData();
     }
-
 }

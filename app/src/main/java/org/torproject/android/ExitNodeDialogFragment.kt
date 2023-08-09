@@ -3,14 +3,16 @@ package org.torproject.android
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
+
 import androidx.fragment.app.DialogFragment
+
 import org.torproject.android.service.util.Prefs
 import org.torproject.android.service.util.Utils
+
 import java.text.Collator
 import java.util.*
 
 class ExitNodeDialogFragment(private val callback: ExitNodeSelectedCallback) : DialogFragment() {
-
 
     interface ExitNodeSelectedCallback {
         fun onExitNodeSelected(countryCode: String, displayCountryName: String)

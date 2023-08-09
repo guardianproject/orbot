@@ -1,4 +1,4 @@
-package org.torproject.android
+package org.torproject.android.ui
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -8,6 +8,7 @@ import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.view.View
 import android.widget.EditText
+
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -31,14 +32,14 @@ open class OrbotBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
     override fun onCancel(dialog: DialogInterface) {
         if (!backPressed) {
-            // todo this method only works for now because OrbotActivity is locked in portrait mode
+           // TODO: this method only works for now because OrbotActivity is locked in portrait mode
            // closeAllSheetsInternal()
             dismiss()
         }
     }
 
     protected fun closeAllSheets() {
-       // closeAllSheetsInternal()
+     // closeAllSheetsInternal()
         dismiss()
     }
 
@@ -63,7 +64,7 @@ open class OrbotBottomSheetDialogFragment : BottomSheetDialogFragment() {
     }
 
     private fun getHeight() : Int{
-        // todo handle bigger device heights
+        // TODO: handle bigger device heights
         val displayMetrics = DisplayMetrics()
         requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
         return displayMetrics.heightPixels * 65 / 100

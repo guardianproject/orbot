@@ -65,16 +65,12 @@ public interface OrbotConstants {
     String ACTION_START = "org.torproject.android.intent.action.START";
     String ACTION_STOP = "org.torproject.android.intent.action.STOP";
 
-    // needed when Orbot exits and tor is not running, but the notification is still active
+    // Needed when Orbot exits and tor is not running, but the notification is still active
     String ACTION_STOP_FOREGROUND_TASK = "org.torproject.android.intent.action.STOP_FOREGROUND_TASK";
 
     String ACTION_START_VPN = "org.torproject.android.intent.action.START_VPN";
     String ACTION_STOP_VPN = "org.torproject.android.intent.action.STOP_VPN";
     String ACTION_RESTART_VPN = "org.torproject.android.intent.action.RESTART_VPN";
-
-    String ACTION_LOCAL_LOCALE_SET = "org.torproject.android.intent.LOCAL_LOCALE_SET";
-    String EXTRA_LOCALE = "org.torproject.android.intent.extra.LOCALE";
-
 
     String ACTION_UPDATE_ONION_NAMES = "org.torproject.android.intent.action.UPDATE_ONION_NAMES";
 

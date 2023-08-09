@@ -1,6 +1,7 @@
 package org.torproject.android
 
 import IPtProxy.IPtProxy
+
 import android.app.Activity
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -14,17 +15,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+
 import org.json.JSONException
 import org.json.JSONObject
+
 import org.torproject.android.service.OrbotService
 import org.torproject.android.service.util.Prefs
+import org.torproject.android.ui.OrbotBottomSheetDialogFragment
 import org.torproject.android.ui.onboarding.ProxiedHurlStack
+
 import java.io.File
 
 class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBottomSheetDialogFragment(), View.OnClickListener {
@@ -34,7 +40,8 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
         ivCaptcha = v.findViewById(R.id.ivCaptcha)
         etSolution = v.findViewById(R.id.solutionEt)
         etSolution.setOnEditorActionListener { textView, _, keyEvent ->
-            // handle pressing of enter key TODO this isn't working properly
+            // Handle pressing of enter key
+            // TODO: this isn't working properly
             if (keyEvent != null && keyEvent.keyCode == KeyEvent.KEYCODE_ENTER) {
                 if (keyEvent.action == KeyEvent.ACTION_UP) {
                     val imm = requireContext().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager?
@@ -101,7 +108,7 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
                 mBtnAction.isEnabled = true
             } catch (e: JSONException) {
                 Log.d(TAG, "Error decoding answer: $response")
-                displayError(e, response)
+                displayError(e)
             }
         }
 
@@ -134,7 +141,7 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
                 onBridgeRequestSuccess(sb.toString())
             } catch (e: JSONException) {
                 Log.d(TAG, "Error decoding answer: $response")
-                displayError(e, response)
+                displayError(e)
                 onBridgeRequestFailed()
             }
         }
@@ -168,7 +175,7 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
                 mProgressBar.visibility = View.GONE
                 Log.d(TAG, "Error response.")
                 error.printStackTrace()
-                displayError(error, null)
+                displayError(error)
             }
         ) {
             override fun getBodyContentType(): String {
@@ -180,7 +187,7 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
         return request
     }
 
-    private fun displayError(exception: Exception, response: JSONObject?) {
+    private fun displayError(exception: Exception) {
         Log.d("MoatBottomSheet", "DISPLAY ERROR: $exception")
     }
 

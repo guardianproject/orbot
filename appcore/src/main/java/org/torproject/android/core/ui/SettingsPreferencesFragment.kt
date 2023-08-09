@@ -40,7 +40,7 @@ class SettingsPreferencesFragment : PreferenceFragmentCompat() {
         findPreference<Preference>("pref_show_snowflake_proxy_msg")?.isEnabled = !bridgesEnabled
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // if defined in XML, disable the persistent notification preference on Oreo+
+            // If defined in XML, disable the persistent notification preference on Oreo+
             findPreference<Preference>("pref_persistent_notifications")?.let {
                 it.parent?.removePreference(it)
             }
@@ -50,17 +50,13 @@ class SettingsPreferencesFragment : PreferenceFragmentCompat() {
         prefFlagSecure?.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _: Preference?, newValue: Any? ->
 
             Prefs.setSecureWindow(newValue as Boolean)
-            (activity as BaseActivity)?.resetSecureFlags()
+            (activity as BaseActivity).resetSecureFlags()
 
             true
         }
-
-
-
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-
         setPreferencesFromResource(R.xml.preferences, rootKey)
         initPrefs()
     }

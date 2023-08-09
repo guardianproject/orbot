@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -74,7 +75,7 @@ public class Utils {
             ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(
                     dest));
             if (sourceFile.isDirectory()) {
-                zipSubFolder(out, sourceFile, sourceFile.getParent().length());
+                zipSubFolder(out, sourceFile, Objects.requireNonNull(sourceFile.getParent()).length());
             } else {
                 byte[] data = new byte[BUFFER];
                 FileInputStream fi = new FileInputStream(sourcePath);
@@ -99,6 +100,7 @@ public class Utils {
 
         File[] fileList = folder.listFiles();
         BufferedInputStream origin;
+        assert fileList != null;
         for (File file : fileList) {
             if (file.isDirectory()) {
                 zipSubFolder(out, file, basePathLength);

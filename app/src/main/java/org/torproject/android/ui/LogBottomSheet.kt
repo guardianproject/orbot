@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import org.torproject.android.OrbotBottomSheetDialogFragment
+
 import org.torproject.android.R
 
 

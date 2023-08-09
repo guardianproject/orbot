@@ -7,26 +7,31 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.widget.*
+
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.scottyab.rootbeer.RootBeer
+
 import org.torproject.android.core.LocaleHelper
 import org.torproject.android.core.ui.BaseActivity
 import org.torproject.android.service.OrbotConstants
+import org.torproject.android.service.OrbotService
 import org.torproject.android.service.util.Prefs
 import org.torproject.android.ui.LogBottomSheet
-import org.torproject.android.ui.v3onionservice.PermissionManager
 
 
 class OrbotActivity : BaseActivity() {
 
-  //  private lateinit var torStatsGroup: Group
+//  private lateinit var torStatsGroup: Group
     private lateinit var bottomNavigationView: BottomNavigationView
 
     private lateinit var logBottomSheet: LogBottomSheet
@@ -39,20 +44,17 @@ class OrbotActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         try {
-            createOrbot ()
-
+            createOrbot()
         }
         catch (re: RuntimeException) {
-            //catch this to avoid malicious launches as document Cure53 Audit: ORB-01-009 WP1/2: Orbot DoS via exported activity (High)
-
-            //clear malicious intent
+            // catch this to avoid malicious launches as document Cure53 Audit: ORB-01-009 WP1/2: Orbot DoS via exported activity (High)
+            // clear malicious intent
             intent = null
             finish()
         }
-
     }
 
-    private fun createOrbot () {
+    private fun createOrbot() {
         setContentView(R.layout.activity_orbot)
 
         logBottomSheet = LogBottomSheet()
@@ -70,7 +72,9 @@ class OrbotActivity : BaseActivity() {
             registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_SMART_CONNECT_EVENT))
         }
 
-        requestNotificationPermission()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requestNotificationPermission()
+        }
 
         Prefs.initWeeklyWorker()
 
@@ -90,6 +94,7 @@ class OrbotActivity : BaseActivity() {
         finish()
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun requestNotificationPermission () {
         when (PackageManager.PERMISSION_GRANTED) {
             ContextCompat.checkSelfPermission(
@@ -141,7 +146,7 @@ class OrbotActivity : BaseActivity() {
 
     private fun sendIntentToService(intent: Intent) = ContextCompat.startForegroundService(this, intent)
     private fun sendIntentToService(action: String) = sendIntentToService(
-        android.content.Intent(this, org.torproject.android.service.OrbotService::class.java)
+        Intent(this, OrbotService::class.java)
             .apply {
             this.action = action
         })
@@ -198,7 +203,7 @@ class OrbotActivity : BaseActivity() {
                 }
                 OrbotConstants.LOCAL_ACTION_LOG -> {
                     intent.getStringExtra(OrbotConstants.LOCAL_EXTRA_BOOTSTRAP_PERCENT)?.let {
-                        // todo progress bar shouldn't be accessed directly here, *tell* the connect fragment to update
+                        // TODO: progress bar shouldn't be accessed directly here, *tell* the connect fragment to update
                         fragConnect.progressBar.progress = Integer.parseInt(it)
                     }
                     intent.getStringExtra(OrbotConstants.LOCAL_EXTRA_LOG)?.let {
@@ -208,7 +213,7 @@ class OrbotActivity : BaseActivity() {
                 OrbotConstants.LOCAL_ACTION_PORTS -> {
                     val socks = intent.getIntExtra(OrbotConstants.EXTRA_SOCKS_PROXY_PORT, -1)
                     val http = intent.getIntExtra(OrbotConstants.EXTRA_HTTP_PROXY_PORT, -1)
-                    if (http > 0 && socks > 0) fragMore?.setPorts(http, socks)
+                    if (http > 0 && socks > 0) fragMore.setPorts(http, socks)
                 }
                 else -> {}
             }
@@ -219,11 +224,9 @@ class OrbotActivity : BaseActivity() {
         const val REQUEST_CODE_VPN = 1234
         const val REQUEST_CODE_SETTINGS = 2345
         const val REQUEST_VPN_APP_SELECT = 2432
-        val CAN_DO_APP_ROUTING = PermissionManager.isLollipopOrHigher()
     }
 
     fun showLog() {
         logBottomSheet.show(supportFragmentManager, OrbotActivity::class.java.simpleName)
-
     }
 }

@@ -1,12 +1,15 @@
 package org.torproject.android.service.vpn;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+
+import androidx.annotation.NonNull;
 
 import org.torproject.android.service.OrbotConstants;
 
@@ -51,7 +54,7 @@ public class TorifiedApp implements Comparable {
         //else load the apps up
         PackageManager pMgr = context.getPackageManager();
 
-        List<ApplicationInfo> lAppInfo = pMgr.getInstalledApplications(0);
+        @SuppressLint("QueryPermissionsNeeded") List<ApplicationInfo> lAppInfo = pMgr.getInstalledApplications(0);
 
         Iterator<ApplicationInfo> itAppInfo = lAppInfo.iterator();
 
@@ -84,7 +87,7 @@ public class TorifiedApp implements Comparable {
             }
 
             if ((aInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 1) {
-                //System app
+                // System app
                 app.setUsesInternet(true);
             }
 
@@ -211,6 +214,7 @@ public class TorifiedApp implements Comparable {
         return this.toString().compareToIgnoreCase(another.toString());
     }
 
+    @NonNull
     @Override
     public String toString() {
         return getName();

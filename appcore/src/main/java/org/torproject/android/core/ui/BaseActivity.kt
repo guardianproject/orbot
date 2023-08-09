@@ -8,7 +8,6 @@ import org.torproject.android.service.util.Prefs
 open class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         resetSecureFlags()
     }
 
