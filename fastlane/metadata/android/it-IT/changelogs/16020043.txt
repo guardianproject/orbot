@@ -1,6 +1,9 @@
-- Dimensioni dell'installazione (APK) inferiori del 30%, inferiori a 10 MB!
-  - aggiornato alla versione 0.3.3.5 (supporto Onion Services v3 e altro)
-  - molte correzioni per tor, installazione binaria di trasporto collegabile
-  - Niente più server HTTP "Polipo", ma solo utilizzando la nuova funzionalità integrata di Tor
-  - migliorata la selezione della lingua nell'app
-NUOVA AUTORIZZAZIONE: L'accesso a "Memoria esterna" consente di conservare le informazioni di backup per i servizi cipolla
+- Dimensioni dell'installazione (APK) inferiori del 30%, meno di 10 MB!
+  - Aggiornato alla versione 0.3.3.5 (supporto Onion Services v3 e altro)
+  - Molte correzioni per tor, installazione pluggable transport
+  - Niente più server HTTP "Polipo", si usa solo la nuova funzione integrata di Tor
+  - Migliorata selezione della lingua
+
+NUOVA AUTORIZZAZIONE: l'accesso a "Memoria esterna" per conservare le info di backup dei servizi onion.
+
+Altro: https://github.com/n8fr8/orbot/releases/tag/16.0.2-RC-1

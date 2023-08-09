@@ -1,23 +1,18 @@
-Orbot è un'app proxy gratuita che consente ad altre app di utilizzare Internet in modo più sicuro. Orbot usa Tor per crittografare il tuo traffico Internet e poi lo nasconde rimbalzando attraverso una serie di computer in tutto il mondo. Tor è un software gratuito e una rete aperta che ti aiuta a difenderti da una forma di sorveglianza della rete che minaccia la libertà personale e la privacy, le attività commerciali e le relazioni riservate e la sicurezza dello stato nota come analisi del traffico.
+Orbot è un'app proxy libera che consente ad altre app di usare internet in modo più sicuro. Orbot usa Tor per crittografare il tuo traffico internet e poi lo nasconde rimbalzando attraverso una serie di computer in tutto il mondo. Tor è un software libero e una rete aperta che ti aiuta a difenderti da una forma di sorveglianza della rete che minaccia la libertà personale e la privacy, le attività commerciali, le relazioni riservate e la sicurezza dello Stato, nota come analisi del traffico.
 
-*** UTENTI SAMSUNG GALAXY ***
-Su alcuni dispositivi, un'app Samsung è in ascolto sulla stessa porta di rete di cui Orbot ha bisogno. Scarica "SockStat" da Google Play. Cerca l'app sulla porta 9050. Forza l'arresto e disabilita l'app. Puoi anche provare a cambiare l'impostazione "Tor SOCKS" di Orbot nella sezione Debug su 9051 o AUTO. Puoi vedere la correzione in questo video: https://www.youtube.com/watch?v=yK-nK4F67_g
-*****
+Orbot è l'unica app che crea una connessione internet veramente privata. Come scrive il New York Times, "quando arriva una comunicazione da Tor, non si può mai sapere da dove o da chi provenga".
 
-Orbot è l'unica app che crea una connessione Internet veramente privata. Come scrive il New York Times, "quando arriva una comunicazione da Tor, non si può mai sapere da dove o da dove provenga". Tor ha vinto il Pioneer Award della Electronic Frontier Foundation (EFF) del 2012.
+Tor ha vinto il Pioneer Award della Electronic Frontier Foundation (EFF) del 2012.
 
-★ NON ACCETTARE SOSTITUTI: Orbot è il modo più sicuro di usare Internet su Android. Periodo. Orbot rimbalza più volte il tuo traffico crittografato attraverso i computer di tutto il mondo, invece di connetterti direttamente come VPN e proxy. Questo processo richiede un po 'più di tempo, ma vale la pena aspettare la più forte protezione della privacy e dell'identità disponibile.
-★ WEB SURFING PRIVATO: utilizza con Orfox, il modo più anonimo per accedere a qualsiasi sito Web, anche se è normalmente bloccato, monitorato o sul Web nascosto. Ottieni Orfox: https://play.google.com/store/apps/details?id=info.guardianproject.orfox
-★ MESSAGGI CHAT PRIVATI: Usa ChatSecure con Orbot per chattare in modo confidenziale con chiunque, ovunque gratuitamente. Ottieni ChatSecure: https://goo.gl/O3FfS
-★ PRIVACY PER LE APP: Qualsiasi app installata può usare Tor se ha una funzione proxy, usando le impostazioni trovate qui: https://goo.gl/2OA1y Usa Orbot con Twitter o prova la ricerca web privata con DuckDuckGo: https: // goo.gl/lgh1p
-★ PRIVACY PER TUTTI: Tor può aiutarti a cercare confidenzialmente un concorrente, aggirare il blocco di Facebook a scuola o aggirare un firewall per guardare gli sport al lavoro.
-★ PRIVACY FACILE: dai un'occhiata alla nostra procedura interattiva interattiva: https://guardianproject.info/howto/browsefreely
-★ È UFFICIALE: questa è la versione ufficiale del servizio di routing delle cipolle Tor per Android.
+★ NON ACCETTARE SOSTITUTI: Orbot è il modo più sicuro di usare internet su Android. Punto. Orbot rimbalza più volte il tuo traffico crittografato attraverso computer di tutto il mondo, invece di connetterti direttamente come le VPN e i proxy. Questo processo richiede un po' più di tempo, ma la più robusta protezione disponibile per privacy e identità vale l'attesa.
+★ PRIVACY PER LE APP: qualsiasi app può essere instradata via Tor usando la funzionalità VPN di Orbot
+★ PRIVACY PER TUTTI: Orbot evita che qualsiasi persona stia monitorando la tua connessione possa scoprire quali app usi o siti visiti. Tutto ciò che può vedere è che stai usando Tor.
 
-*** We Love Feedback ***
-★ CHI SIAMO: Guardian Project è un gruppo di sviluppatori che realizza app mobili sicure e codice open source per un domani migliore.
-★ OPEN-SOURCE: Orbot è un software gratuito. Dai un'occhiata al nostro codice sorgente o unisciti alla community per migliorarlo: https://gitweb.torproject.org/orbot.git
-★ MESSAGGI: ci manca la tua funzione preferita? Hai trovato un fastidioso bug? Ci piacerebbe avere tue notizie! Inviaci una mail: support@guardianproject.info
+***Apprezziamo la tua opinione***
+★ MAGGIORI INFORMAZIONI: leggi altro riguardo Orbot e partecipa su https://orbot.app
+★ CHI SIAMO: Guardian Project è un gruppo di sviluppatori che realizza app mobili sicure e codice open-source per un futuro migliore.
+★ OPEN-SOURCE: Orbot è un software libero. Dai un'occhiata al nostro codice sorgente o unisciti alla comunità per migliorarlo: https://github.com/guardianproject/orbot
+★ SCRIVICI: manca la tua funzionalità preferita? Hai trovato un errore fastidioso? Faccelo sapere! Inviaci una mail: support@guardianproject.info
 
-***Clausola di esclusione della responsabilità***
-The Guardian Project crea app progettate per proteggere la tua sicurezza e l'anonimato. I protocolli che utilizziamo sono ampiamente considerati come lo stato dell'arte nella tecnologia di sicurezza. Mentre aggiorniamo costantemente il nostro software per combattere le ultime minacce ed eliminare i bug, nessuna tecnologia è sicura al 100%. Per la massima sicurezza e anonimato, gli utenti devono utilizzare le migliori pratiche per mantenersi al sicuro. Puoi trovare una b
+***Clausola di esonero da responsabilità***
+Guardian Project crea app progettate per proteggere la tua sicurezza e l'anonimato. I protocolli che utilizziamo sono ampiamente considerati come lo stato dell'arte nella tecnologia di sicurezza. Sebbene aggiorniamo costantemente il nostro software per combattere le ultime minacce ed eliminare errori, nessuna tecnologia è sicura al 100%. Per la massima sicurezza e anonimato, gli utenti devono attenersi alle migliori pratiche per mantenersi al sicuro. Puoi trovare una buona guida introduttiva riguardo questi argomenti su https://securityinabox.org
