@@ -1,17 +1,18 @@
-Orbot es una aplicación de proxy gratuita que permite a otras aplicaciones utilizar Internet de forma más segura. Orbot usa Tor para encriptar su tráfico de Internet y luego lo oculta rebotando a través de una serie de computadoras en todo el mundo. Tor es un software gratuito y una red abierta que lo ayuda a defenderse contra una forma de vigilancia de la red que amenaza la libertad personal y la privacidad, las actividades y relaciones comerciales confidenciales y la seguridad del estado conocida como análisis de tráfico.
+Orbot es una aplicación de proxy gratuita que permite a otras aplicaciones utilizar Internet de forma más segura. Orbot usa Tor para encriptar tu tráfico de Internet y luego lo oculta rebotando a través de una serie de computadoras en todo el mundo. Tor es un software gratuito y una red abierta que te ayuda a defenderte contra una forma de vigilancia de la red que amenaza la libertad personal y la privacidad, las actividades y relaciones comerciales confidenciales y la seguridad del estado conocida como análisis de tráfico.
 
 Orbot es la única aplicación que crea una conexión a Internet verdaderamente privada. Como escribe el New York Times, "cuando llega una comunicación de Tor, nunca se puede saber de dónde o de quién es". 
 
 Tor ganó el premio Pioneer de Electronic Frontier Foundation (EFF) de 2012.
 
-★ NO ACEPTE SUSTITUTOS: Orbot es la forma más segura de usar Internet en Android. Período. Orbot rebota su tráfico cifrado varias veces a través de computadoras en todo el mundo, en lugar de conectarlo directamente como VPN y proxies. Este proceso lleva un poco más de tiempo, pero vale la pena esperar con la protección de identidad y privacidad más sólida disponible.
-★ PRIVACIDAD PARA APLICACIONES: cualquier aplicación instalada puede usar Tor a través de la función VPN de Orbot, o si tiene una función de proxy, usando la configuración que se encuentra aquí: https://goo.gl/2OA1y Use Orbot con Twitter, o intente una búsqueda web privada con DuckDuckGo: https://goo.gl/lgh1p
-★ PRIVACIDAD PARA TODOS: Orbot evita que alguien que esté viendo tu conexión sepa qué aplicaciones estás usando o sitios web que visitas. Todo lo que cualquier persona que controle el tráfico de su red puede ver es que está utilizando Tor.
+★ NO ACEPTES SUSTITUTOS: Orbot es la forma más segura de usar Internet en Android. Período. Orbot rebota su tráfico cifrado varias veces a través de computadoras en todo el mundo, en lugar de conectarlo directamente como VPN y proxies. Este proceso lleva un poco más de tiempo, pero vale la pena esperar con la protección de identidad y una privacidad más sólida disponible.
+★ PRIVACIDAD PARA LAS APLICACIONES: cualquier aplicación se puede enrutar a través de Tor a través de la función Orbot VPN
+★ PRIVACIDAD PARA TODOS: Orbot evita que alguien que esté viendo tu conexión sepa qué aplicaciones estás usando o sitios web que visitas. Todo lo que cualquier persona que controle el tráfico de tu red puede ver que está utilizando Tor.
 
 ***Nos encantan los comentarios***
+★ MÁS INFORMACIÓN: Obtén más información sobre Orbot y participa en https://orbot.app
 ★ ACERCA DE NOSOTROS: Guardian Project es un grupo de desarrolladores que crea aplicaciones móviles seguras y código fuente abierto para un mañana mejor.
 ★ CÓDIGO ABIERTO: Orbot es un software gratuito. Eche un vistazo a nuestro código fuente o únase a la comunidad para mejorarlo: https://github.com/guardianproject/orbot
 ★ ENVÍANOS UN MENSAJE: ¿Nos falta tu función favorita? ¿Encontraste un error molesto? ¡Nos encantaría saber de usted! Envíenos un correo electrónico: support@guardianproject.info
 
 ***Descargo de responsabilidad***
-Guardian Project crea aplicaciones diseñadas para proteger su seguridad y anonimato. Los protocolos que utilizamos son ampliamente considerados como lo último en tecnología de seguridad. Si bien actualizamos constantemente nuestro software para combatir las últimas amenazas y eliminar errores, ninguna tecnología es 100 % infalible. Para obtener la máxima seguridad y anonimato, los usuarios deben utilizar las mejores prácticas para mantenerse a salvo.  Puede encontrar una buena guía introductoria a estos temas en https://securityinabox.org
+Guardian Project crea aplicaciones diseñadas para proteger tu seguridad y anonimato. Los protocolos que utilizamos son ampliamente considerados como lo último en tecnología de seguridad. Si bien actualizamos constantemente nuestro software para combatir las últimas amenazas y eliminar errores, ninguna tecnología es 100 % infalible. Para obtener la máxima seguridad y anonimato, los usuarios deben utilizar las mejores prácticas para mantenerse a salvo.  Puedes encontrar una buena guía introductoria a estos temas en https://securityinabox.org
