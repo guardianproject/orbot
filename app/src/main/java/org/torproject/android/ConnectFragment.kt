@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.graphics.Paint
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.VpnService
@@ -254,6 +255,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         tvSubtitle.text = getString(R.string.secure_your_connection_subtitle)
         tvConfigure.visibility = View.VISIBLE
         tvConfigure.text = getString(R.string.btn_configure)
+        tvConfigure.paintFlags = Paint.UNDERLINE_TEXT_FLAG
         tvConfigure.setOnClickListener {openConfigureTorConnection()}
         with(btnStartVpn) {
             visibility = View.VISIBLE
