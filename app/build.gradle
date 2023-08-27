@@ -37,6 +37,10 @@ android {
         }
     }
 
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
     flavorDimensions "free"
 
     productFlavors {
