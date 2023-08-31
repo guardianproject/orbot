@@ -516,7 +516,8 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
 
             if (urlString != null) {
 
-                if (urlString.toLowerCase().startsWith("bridge://")) {
+                var loc = new Locale.Builder().setLanguage(Prefs.getDefaultLocale()).build();
+                if (urlString.toLowerCase(loc).startsWith("bridge://")) {
                     String newBridgeValue = urlString.substring(9); //remove the bridge protocol piece
                     newBridgeValue = URLDecoder.decode(newBridgeValue); //decode the value here
 
