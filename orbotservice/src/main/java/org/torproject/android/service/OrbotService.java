@@ -856,13 +856,17 @@ public class OrbotService extends VpnService implements OrbotConstants {
         if (onionServices != null) {
             try {
                 while (onionServices.moveToNext()) {
-                    var domain = onionServices.getString(onionServices.getColumnIndex(OnionService.DOMAIN));
+                    var domain_index = onionServices.getColumnIndex(OnionService.DOMAIN);
+                    var path_index = onionServices.getColumnIndex(OnionService.PATH);
+                    var id_index = onionServices.getColumnIndex(OnionService._ID);
+                    if (domain_index < 0 || path_index < 0 || id_index < 0) continue;
+                    var domain = onionServices.getString(domain_index);
                     if (domain == null || TextUtils.isEmpty(domain)) {
-                        var path = onionServices.getString(onionServices.getColumnIndex(OnionService.PATH));
+                        var path = onionServices.getString(path_index);
                         var v3OnionDirPath = new File(mV3OnionBasePath.getAbsolutePath(), path).getCanonicalPath();
                         var hostname = new File(v3OnionDirPath, "hostname");
                         if (hostname.exists()) {
-                            int id = onionServices.getInt(onionServices.getColumnIndex(OnionService._ID));
+                            int id = onionServices.getInt(id_index);
                             domain = Utils.readString(new FileInputStream(hostname)).trim();
                             var fields = new ContentValues();
                             fields.put(OnionService.DOMAIN, domain);
