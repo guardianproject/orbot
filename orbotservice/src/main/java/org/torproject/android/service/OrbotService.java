@@ -1275,11 +1275,20 @@ public class OrbotService extends VpnService implements OrbotConstants {
             var onionServices = contentResolver.query(V3_ONION_SERVICES_CONTENT_URI, V3_ONION_SERVICE_PROJECTION, OnionService.ENABLED + "=1", null, null);
             if (onionServices != null) {
                 while (onionServices.moveToNext()) {
-                    var id = onionServices.getInt(onionServices.getColumnIndex(OnionService._ID));
-                    var localPort = onionServices.getInt(onionServices.getColumnIndex(OnionService.PORT));
-                    var onionPort = onionServices.getInt(onionServices.getColumnIndex(OnionService.ONION_PORT));
-                    var path = onionServices.getString(onionServices.getColumnIndex(OnionService.PATH));
-                    var domain = onionServices.getString(onionServices.getColumnIndex(OnionService.DOMAIN));
+                    var id_index = onionServices.getColumnIndex(OnionService._ID);
+                    var port_index = onionServices.getColumnIndex(OnionService.PORT);
+                    var onion_port_index = onionServices.getColumnIndex(OnionService.ONION_PORT);
+                    var path_index = onionServices.getColumnIndex(OnionService.PATH);
+                    var domain_index = onionServices.getColumnIndex(OnionService.DOMAIN);
+                    // Ensure that are have all the indexes before trying to use them
+                    if (id_index < 0 || port_index < 0 || onion_port_index < 0 || path_index < 0 || domain_index < 0)
+                      continue;
+
+                    var id = onionServices.getInt(id_index);
+                    var localPort = onionServices.getInt(port_index);
+                    var onionPort = onionServices.getInt(onion_port_index);
+                    var path = onionServices.getString(path_index);
+                    var domain = onionServices.getString(domain_index);
                     if (path == null) {
                         path = "v3";
                         if (domain == null)
@@ -1317,8 +1326,13 @@ public class OrbotService extends VpnService implements OrbotConstants {
             try {
                 int i = 0;
                 while (v3auths.moveToNext()) {
-                    var domain = v3auths.getString(v3auths.getColumnIndex(V3ClientAuth.DOMAIN));
-                    var hash = v3auths.getString(v3auths.getColumnIndex(V3ClientAuth.HASH));
+                    var domain_index = v3auths.getColumnIndex(V3ClientAuth.DOMAIN);
+                    var hash_index = v3auths.getColumnIndex(V3ClientAuth.HASH);
+                    // Ensure that are have all the indexes before trying to use them
+                    if (domain_index < 0 || hash_index < 0 )
+                      continue;
+                    var domain = v3auths.getString(domain_index);
+                    var hash = v3auths.getString(hash_index);
                     var authFile = new File(mV3AuthBasePath, (i++) + ".auth_private");
                     authFile.createNewFile();
                     var fos = new FileOutputStream(authFile);
