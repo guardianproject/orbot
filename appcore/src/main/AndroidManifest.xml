@@ -5,7 +5,7 @@
 
     <application>
         <activity
-            android:name=".BaseActivity"
+            android:name=".ui.BaseActivity"
             android:exported="false" />
         <activity
             android:name=".ui.SettingsActivity"
