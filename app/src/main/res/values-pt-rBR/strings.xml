@@ -153,7 +153,7 @@
     <string name="bridge_snowflake">Conecte-se através de outros usuários do Tor usando o snowflake (Método 1 - Rápido)</string>
     <string name="use_qr_code">Use um Código QR</string>
     <string name="paste_bridges">Colar as Pontes</string>
-    <string name="in_a_browser">Visite o %s com um navegador e toque no Get Bridges &gt; \"Just Give Me Bridges!\"</string>
+    <string name="in_a_browser">Visite o %s com um navegador e toque no Get Bridges &gt; Just Give Me Bridges!</string>
     <string name="use_custom_bridges">Use Pontes Personalizadas</string>
     <string name="configure_custom_bridges">Configure as Pontes Personalizadas</string>
     <string name="custom_bridges">Pontes Personalizadas</string>
