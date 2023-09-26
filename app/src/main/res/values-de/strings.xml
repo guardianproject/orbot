@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbot ist eine kostenlose Proxy-App, die andere Apps in die Lage versetzt, das Internet sicherer zu nutzen. Orbot verwendet Tor, um Ihren Traffic im Internet zu verschlüsseln, und verbirgt ihn dann, indem er ihn durch eine Reihe von Computern auf der ganzen Welt hüpfen lässt. Tor ist freie Software und ein offenes Netzwerk, das dabei hilft, sich vor Formen der Netzüberwachung zu schützen, die persönliche Freiheiten und Privatsphäre, vertrauliche Geschäftsaktivitäten und -beziehungen bedrohen, sowie vor Maßnahmen der Staatssicherheit, die als Traffic-Analyse bekannt sind.</string>
+    <string name="app_description">Orbot ist eine kostenlose Proxy-App, die andere Apps in die Lage versetzt, das Internet sicherer zu nutzen. Orbot verwendet Tor, um deinen Traffic im Internet zu verschlüsseln, und verbirgt ihn dann, indem er ihn durch eine Reihe von Computern auf der ganzen Welt hüpfen lässt. Tor ist freie Software und ein offenes Netzwerk, das dabei hilft, sich vor Formen der Netzüberwachung zu schützen, die persönliche Freiheiten und Privatsphäre, vertrauliche Geschäftsaktivitäten und -beziehungen bedrohen, sowie vor Maßnahmen der Staatssicherheit, die als Traffic-Analyse bekannt sind.</string>
     <string name="menu_settings">Einstellungen</string>
     <string name="menu_log">Protokoll</string>
     <string name="menu_stop">Stopp</string>
@@ -25,7 +25,7 @@
     <!--TipsAndTricks screen-->
     <!--Transparent Proxy screen-->
     <string name="pref_node_configuration">Netzknoten-Konfiguration</string>
-    <string name="pref_node_configuration_summary">Dies sind Erweiterte Einstellungen, die Ihre Anonymität beeinträchtigen können</string>
+    <string name="pref_node_configuration_summary">Dies sind Erweiterte Einstellungen, die deine Anonymität beeinträchtigen können</string>
     <string name="pref_entrance_node">Eingangs-Netzknoten</string>
     <string name="pref_entrance_node_summary">Fingerabdrücke, Spitznamen, Länder und Adressen für den ersten Knotenpunkt</string>
     <string name="pref_entrance_node_dialog">Eingangs-Netzknoten eingeben</string>
@@ -59,12 +59,12 @@
     <string name="use_bridges">Brücken benutzen</string>
     <string name="relays">Relais</string>
     <string name="relaying">Weiterleitung</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Ihr Gerät als Nichtausgangsrelais aktivieren</string>
+    <string name="enable_your_device_to_be_a_non_exit_relay">Dein Gerät als Nichtausgangsrelais aktivieren</string>
     <string name="relay_port">Relais-Port</string>
-    <string name="listening_port_for_your_tor_relay">Port für Ihr Tor-Relais, auf den gehört werden soll</string>
+    <string name="listening_port_for_your_tor_relay">Port für dein Tor-Relais, auf das gehört werden soll</string>
     <string name="enter_or_port">OR-Anschluss eingeben</string>
     <string name="relay_nickname">Relais-Spitzname</string>
-    <string name="the_nickname_for_your_tor_relay">Der Spitzname für Ihr Tor-Relais</string>
+    <string name="the_nickname_for_your_tor_relay">Der Spitzname für dein Tor-Relais</string>
     <string name="enter_a_custom_relay_nickname">Benutzerdefinierten Nicknamen für das Relais eingeben</string>
     <string name="reachable_addresses">Erreichbare Adressen</string>
     <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">Als Client hinter einer Firewall mit restriktiven Richtlinien ausführen</string>
@@ -74,13 +74,13 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Ausgabe des Fehlerprotokolls ermöglichen (benötigt adb oder aLogCat zur Ansicht)</string>
     <string name="project_home">Internetseite des Projektes:</string>
     <string name="third_party_software">Drittanbieteranwendungen:</string>
-    <string name="hidden_service_request">Eine App möchte den Onion-Server auf Port %1$s zum Tor-Netzwerk öffnen. Dies ist sicher, wenn Sie der App vertrauen.</string>
+    <string name="hidden_service_request">Eine App möchte den Onion-Server auf Port %1$s zum Tor-Netzwerk öffnen. Dies ist sicher, wenn du der App vertraust.</string>
     <string name="pref_use_expanded_notifications">In der Benachrichtigung, wenn vorhanden, das Land und die IP-Adresse des Tor-Ausgangsknotens anzeigen</string>
     <string name="pref_use_expanded_notifications_title">Erweiterte Benachrichtigungen</string>
     <string name="set_locale_title">Sprache</string>
     <string name="pref_disable_network_title">Kein Automatischer Netzwerk-Ruhezustand</string>
     <string name="pref_disable_network_summary">Tor in den Ruhezustand versetzen, wenn kein Internet verfügbar ist</string>
-    <string name="newnym">Sie haben zu einer neuen Tor-Identität gewechselt!</string>
+    <string name="newnym">Du hast zu einer neuen Tor-Identität gewechselt!</string>
     <string name="pref_socks_title">Tor-SOCKS</string>
     <string name="pref_socks_summary">Port, der den SOCKS-Proxy von Tor bereitstellt (Standard: 9050 oder 0, um ihn zu deaktivieren)</string>
     <string name="pref_socks_dialog">SOCKS-Port-Konfiguration</string>
@@ -95,7 +95,7 @@
     <string name="pref_torrc_dialog">Benutzerdefinierter Torrc</string>
     <string name="bridges_updated">Brücken aktualisiert</string>
     <string name="restart_orbot_to_use_this_bridge_">Bitte Orbot neu starten, damit die Änderungen wirksam werden</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Wenn Ihr mobiles Netzwerk Tor blockiert, können Sie einen „Brücken-Server“ als alternativen Weg verwenden. Wählen Sie eine der Optionen zum Konfigurieren und Testen…</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Wenn dein Mobilfunknetz Tor blockiert, kannst du einen „Brücken-Server“ als alternativen Weg verwenden. Wähle eine der Optionen zum Konfigurieren und Testen…</string>
     <string name="get_bridges_email">E-Mail</string>
     <string name="apps_mode">VPN-Modus</string>
     <string name="send_email">E-Mail senden</string>
@@ -108,7 +108,7 @@
     <string name="name">Name</string>
     <string name="done">Fertig!</string>
     <string name="copy_address_to_clipboard">Adresse in die Zwischenablage kopieren</string>
-    <string name="backup_service">Sicherungsdienst <i>(Warnung: Dadurch könnte Ihre Dienstkonfiguration anderen Apps zugänglich gemacht werden)</i></string>
+    <string name="backup_service">Sicherungsdienst <i>(Warnung: Dadurch könnte deine Dienstkonfiguration anderen Apps zugänglich gemacht werden)</i></string>
     <string name="delete_service">Dienst löschen</string>
     <string name="backup_saved_at_external_storage">Sicherung auf externem Speicher abgelegt</string>
     <string name="backup_restored">Sicherung wiederhergestellt</string>
@@ -124,8 +124,8 @@
     <string name="enable">Aktivieren</string>
     <string name="consider_disable_battery_optimizations">Laufende Host-Dienste, erwäge die Deaktivierung der Akku-Optimierung</string>
     <string name="consider_enable_battery_optimizations">Keine laufenden Host-Dienste, erwäge die Aktivierung der Akku-Optimierung</string>
-    <string name="pref_isolate_dest">Isolierte Zieladressen</string>
-    <string name="pref_isolate_dest_summary">Für jeden Netzwerk-Kreislauf eine andere Zieladresse verwenden</string>
+    <string name="pref_isolate_dest">Zieladressen isolieren</string>
+    <string name="pref_isolate_dest_summary">Für jede Zieladresse eine andere Leitung verwenden</string>
     <string name="pref_connection_padding">Verbindungsauffüllung</string>
     <string name="pref_connection_padding_summary">Aktiviert immer die Verbindungsauffüllung, um einige Formen der Verkehrsanalyse zu verhindern. Standard: Automatisch</string>
     <string name="pref_reduced_connection_padding">Reduzierte Verbindungsauffüllung</string>
@@ -149,7 +149,7 @@
     <string name="app_services">Appdienste</string>
     <string name="refresh_apps">Apps neu einlesen</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Proxy an allen Schnittstellen öffnen</string>
-    <string name="pref_open_proxy_on_all_interfaces_summary">WLAN-Rechnernetzen, per Tethering verbundenen Geräten und allen anderen, die sich mit Ihrer IP verbinden können, erlauben, auf Tor zuzugreifen</string>
+    <string name="pref_open_proxy_on_all_interfaces_summary">WLAN-Rechnernetzen, per Tethering verbundenen Geräten und allen anderen, die sich mit deiner IP verbinden können, erlauben, auf Tor zuzugreifen</string>
     <string name="use_qr_code">QR-Code verwenden</string>
     <string name="confirm">Bestätigen</string>
     <string name="mebibyte">MiB</string>
@@ -171,7 +171,7 @@
     <string name="v3_delete_client_authorization_confirm">Client-Autorisierung löschen</string>
     <string name="v3_hosted_services">Gehostete Onion-Dienste</string>
     <string name="v3_delete_client_authorization">Schlüssel für Client-Autorisierung löschen</string>
-    <string name="v3_backup_key_warning">Warnung: Dadurch könnten Ihre Schlüssel anderen Apps zugänglich gemacht werden</string>
+    <string name="v3_backup_key_warning">Warnung: Dadurch könnten deine Schlüssel anderen Apps zugänglich gemacht werden</string>
     <string name="v3_backup_key">Schlüssel für Client-Autorisierung sichern</string>
     <string name="v3_onion">.onion-Domain</string>
     <string name="v3_key_hash">x25519 Privater Schlüssel in Base32</string>
@@ -190,22 +190,19 @@
     <string name="bridge_snowflake_amp">Mittels Snowflake über andere Tor-Nutzer verbinden (Methode 2 - AMP)</string>
     <string name="pref_reduced_circuit_padding">Reduziertes Circuit-Padding</string>
     <string name="pref_circuit_padding_summary">Circuit-Padding zum Schutz vor einigen Formen der Verkehrsanalyse aktivieren</string>
-    <string name="strict_nodes_description">Behandeln Sie die Einstellungen „Knoten ausschließen“ als Voraussetzung für die Erstellung aller Kreisläufe. Dies kann die Funktionalität beeinträchtigen, wenn keine Kreisläufe mit Ihren Einstellungen für Ausschlussknoten erstellt werden können.</string>
+    <string name="strict_nodes_description">Behandle die Einstellungen „Knoten ausschließen“ als Voraussetzung für die Erstellung aller „circuits“. Dies kann die Funktionalität beeinträchtigen, falls mit deinen „Knoten ausschließen“-Einstellungen keine „circuits“ erstellt werden können.</string>
     <string name="pref_circuit_padding">Circuit-Padding</string>
     <string name="secure_your_connection_title">Bereit zum Verbinden</string>
     <string name="power_user_mode">Power-User-Modus</string>
-    <string name="custom_bridge_description">Eine benutzerdefinierte Brücke wird von jemandem bereitgestellt, den Sie kennen. Fragen Sie in Ihren vertrauenswürdigen Netzwerken und Organisationen nach, ob jemand eine solche Brücke bereitstellt.</string>
+    <string name="custom_bridge_description">Eine benutzerdefinierte Brücke wird von jemandem angeboten, den du kennst. Frage in den Netzwerken und Organisationen, denen du vertraust, nach, ob jemand eine solche Brücke bereitstellt.</string>
     <string name="action_activate">Aktivieren</string>
     <string name="apps_suggested_title">Vorgeschlagene Apps</string>
-    <string name="volunteer_mode_subtitle_desc">Der Freundlichkeitsmodus erlaubt es deinem Gerät, eine Brücke für andere zu sein. Er hilft Menschen, Tor an Orten zu benutzen, wo es blockiert ist.
+    <string name="volunteer_mode_subtitle_desc">Der Freundlichkeitsmodus erlaubt es deinem Gerät, eine Brücke für andere zu sein. Er hilft Menschen, Tor an Orten zu nutzen, wo es blockiert wird.
 \n
-\n- Er wird deinen Akku nicht entladen
-\n
-\n- Er verlangsamt dein Internet nicht
-\n
-\n- Es kann nur über Wifi laufen
-\n
-\n- Es kann jederzeit ausgeschaltet werden</string>
+\n• Er wird deinen Akku nicht entladen
+\n• Er verlangsamt dein Internet nicht
+\n• Er kann nur über WLAN laufen
+\n• Er kann jederzeit ausgeschaltet werden</string>
     <string name="power_user_description">Für Benutzer, die mit Tor vertraut sind. Ermöglicht den Start von Orbot ohne die VPN-Einstellung und zeigt offene SOCKS- und HTTP-Ports an</string>
     <string name="title_choose_apps">Apps auswählen</string>
     <string name="volunteer_status_title">Heute ist es besser
@@ -221,13 +218,13 @@
     <string name="volunteer_mode_label">Freundlichkeitsmodus</string>
     <string name="volunteer_mode_weekly_label">Wöchentlich Insgesamt</string>
     <string name="volunteer_mode_alltime_label">Gesamtzeit Gesamt</string>
-    <string name="smart_connect">Smart Connect (default)</string>
+    <string name="smart_connect">Smart Connect (Voreinstellung)</string>
     <string name="smart_connect_subtitle">Orbot versucht, sich mit Tor über jeden verfügbaren Weg zu verbinden: Direkt, Snowflake, Bridge.</string>
     <string name="direct_connect">Direkte Verbindung zu Tor</string>
     <string name="direct_connect_subtitle">Der beste Weg, sich mit Tor zu verbinden. Benutze ihn, wenn Tor nicht blockiert wird.</string>
     <string name="snowflake">Snowflake</string>
     <string name="snowflake_subtitle">Verbindet sich durch Tor-Freiwillige. Umgeht einige Tor-Blockierungen.</string>
-    <string name="get_a_bridge">Eine Brücke von Tor erhalten (Obfs4)</string>
+    <string name="get_a_bridge">Tor-Brücke (Obfs4)</string>
     <string name="get_a_bridge_subtitle">Tarnt deinen Datenverkehr. Umgeht einige Tor-Blockierungen.</string>
     <string name="custom_bridge">Benutzerdefinierte Brücke</string>
     <string name="custom_bridge_subtitle">Hält die Verbindung am ehesten aufrecht, wenn Tor stark blockiert ist. Erfordert eine Brückenadresse von jemandem, dem du vertraust.</string>
@@ -263,7 +260,7 @@
     <string name="having_trouble_subtitle">Als Nächstes können wir eine Tor-Brücke ausprobieren, aber dazu brauchen wir deine Hilfe</string>
     <string name="hide_apps">Verstecke Apps vor der Netzwerküberwachung und erhalte Zugriff, wenn sie blockiert sind.</string>
     <string name="pref_isolate_port">Zielports isolieren</string>
-    <string name="pref_isolate_protocol">Clientprotokolle isolieren</string>
+    <string name="pref_isolate_protocol">Client-Protokolle isolieren</string>
     <string name="connection_direct">Direkt</string>
     <string name="connection_snowflake">Snowflake</string>
     <string name="connection_custom">Benutzerdefiniert</string>
@@ -273,4 +270,21 @@
     <string name="setting_debug">Debug</string>
     <string name="menu_kindness">Freundlichkeit</string>
     <string name="menu_more">Mehr</string>
+    <string name="no_internet_subtitle">Du brauchst eine Internetverbindung, um Orbot zu verwenden.</string>
+    <string name="not_sure">Nicht sicher\?</string>
+    <string name="ask_tor">Tor fragen</string>
+    <string name="option_only_when_charging">Nur beim Laden</string>
+    <string name="pref_isolate_port_summary">Für jeden Zielport eine andere Leitung verwenden</string>
+    <string name="kindness_adjust_title">Anpassen, wenn es läuft …</string>
+    <string name="log_copied">Log kopiert</string>
+    <string name="btn_copy_log">Log kopieren</string>
+    <string name="option_only_on_wifi">Nur über WLAN</string>
+    <string name="asking">FRAGEN ...</string>
+    <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="pref_flag_secure_title">Bildschirmsicherheit</string>
+    <string name="root_warning">Orbot hat herausgefunden, dass dein Gerät gerootet ist, was Sicherheitsprobleme auslösen kann.</string>
+    <string name="kindess_config_detail">Einstellen, wie und wann dein Gerät für andere Tor-Nutzer als Snowflake-Proxy auftreten kann.</string>
+    <string name="pref_isolate_protocol_summary">Für jedes Verbindungsprotokoll eine andere Leitung verwenden</string>
+    <string name="pref_flag_secure_summary">Andere Apps daran hindern, Screenshots von Orbot zu machen</string>
+    <string name="many_ways">Es gibt viele Wege, Tor zu erreichen. Manche funktionieren vielleicht besser als andere für dich.</string>
 </resources>
