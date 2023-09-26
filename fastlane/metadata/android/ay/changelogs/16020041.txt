@@ -4,6 +4,6 @@
 - Janiw HTTP "Pilopo" apnaqirxa, tor ukan utjirinak apnaqasa
 - Aru chhijllañax sumaptayatawa
 
-MACHAQ MAYIWI: "Anqa imañar" imantat lurañatak yatiñ mantañawa
+MACHAQ PIRMISU: "Anqa imaña" mantañax siwulla sirwisyunaka ukatakix yatiyäwinak jark’aqasiñatakiw utji.
 
 Taqpachanaka: https://github.com/n8fr8/orbot/releases/tag/16.0.2-RC-1
