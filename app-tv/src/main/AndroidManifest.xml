@@ -51,9 +51,6 @@
         </activity> <!-- This is for ensuring the background service still runs when/if the app is swiped away -->
 
         <activity
-            android:name="org.torproject.android.core.ui.SettingsPreferencesFragment"
-            android:label="@string/app_name" />
-        <activity
             android:name=".ui.AppManagerActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light" />
