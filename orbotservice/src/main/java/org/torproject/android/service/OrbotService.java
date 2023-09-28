@@ -282,7 +282,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         if (connectionPathway.startsWith(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
             IPtProxy.stopSnowflake();
         } else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
-            IPtProxy.stopObfs4Proxy();
+            IPtProxy.stopLyrebird();
         }
 
         stopTor();
@@ -1466,7 +1466,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         private void handleACTIONSTARTOLD() {
             if (Prefs.bridgesEnabled()) {
                 if (useIPtObfsMeekProxy())
-                    IPtProxy.startObfs4Proxy("DEBUG", false, false, null);
+                    IPtProxy.startLyrebird("DEBUG", false, false, null);
                 else if (useIPtSnowflakeProxyDomainFronting())
                     startSnowflakeClientDomainFronting();
                 else if (useIPtSnowflakeProxyAMPRendezvous())
@@ -1503,7 +1503,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                     startSnowflakeClientAmpRendezvous();
                 }
                 else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
-                    IPtProxy.startObfs4Proxy("DEBUG", false, false, null);
+                    IPtProxy.startLyrebird("DEBUG", false, false, null);
                 }
                 startTor();
                 replyWithStatus(mIntent);
