@@ -284,4 +284,7 @@
     <string name="connection_direct">Beint</string>
     <string name="pref_flag_secure_summary">Koma í veg fyrir að önnur forrit taki sjámyndir af Orbot</string>
     <string name="pref_flag_secure_title">Öryggi skjás</string>
+    <string name="setting_padding">Útvíkkun</string>
+    <string name="root_warning">Orbot hefur skynjað að tækið þitt sé með rótaraðgangi (rooted), sem getur valdið öryggisvandamálum.</string>
+    <string name="kindess_config_detail">Stilltu hvernig og hvenær tækið þitt getur unnið sem Snowflake-milliþjónn fyrir aðra Tor-notendur.</string>
 </resources>
