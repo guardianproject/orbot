@@ -127,7 +127,12 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
                 Prefs.putConnectionPathway(Prefs.PATHWAY_SNOWFLAKE_AMP)
                 closeAndConnect()
             } **/else if (rbCustom.isChecked) {
-                CustomBridgeBottomSheet(callbacks).show(requireActivity().supportFragmentManager, CustomBridgeBottomSheet.TAG)
+                CustomBridgeBottomSheet(object : ConnectionHelperCallbacks {
+                    override fun tryConnecting() {
+                        Prefs.putConnectionPathway(Prefs.PATHWAY_CUSTOM)
+                        callbacks.tryConnecting()
+                    }
+                }).show(requireActivity().supportFragmentManager, CustomBridgeBottomSheet.TAG)
             }
         }
 
