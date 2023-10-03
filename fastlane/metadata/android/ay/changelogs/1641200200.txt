@@ -1,4 +1,5 @@
-* OnionServices v3 ukatak yanapt’aña
-* Chaka configuración ukar juk’amp askinak luraña
-* VPN modalidad ukax "conexión sin medidas" ukham uñjatawa.
-* modalidad experimental ukax mä proxy Snowflake ukham apnaqañ yanapt’añataki
+* OnionServices v3 ukatak yanapa
+* Chaka mayjt'ayäwi ukan sumaptayanaka
+* "Jan tuput waythapïwi" ukjam VPN uka 
+uñjasiñap karantisi
+* Mä Snowflake proxy ukjam sarantayasiñapatak yant'a uka

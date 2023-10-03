@@ -5,4 +5,4 @@ Root proxy lantix Orbot "Aplikasyunanakan VPN" jan ukax Orfox thaqhiri apnaqam.
 * Jan yant'atjam kutikiptata ukjamaw Root/Transproxy phunsyunanakatak supurtix phichsusi
 * VPN proxy ukat machaq "Aplikasyunanaka" ukatak SUMAPTAYAT yanapa
 * Obfs4proxy lisinsya yatiyäw ajlliñxat jan walt'äw uñjaña
-* Tor kikipt'ir Meek jalakipañanakan qhipha chiqawjanakapar jichhaptayaña
+* Tor ukamp kikipt'ir Meek chakanakan qhipa chiqawjanakapar jichhaptayaña
