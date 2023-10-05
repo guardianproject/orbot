@@ -1,5 +1,6 @@
 package org.torproject.android
 
+import IPtProxy.IPtProxy
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -11,10 +12,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CompoundButton
 import android.widget.RadioButton
+import android.widget.Toast
 import org.torproject.android.circumvention.Bridges
 import org.torproject.android.circumvention.CircumventionApiManager
 import org.torproject.android.circumvention.SettingsRequest
+import org.torproject.android.service.OrbotService
 import org.torproject.android.service.util.Prefs
+import java.io.File
+import java.net.Authenticator
+import java.net.PasswordAuthentication
 import java.util.*
 
 class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbacks) : OrbotBottomSheetDialogFragment() {
@@ -170,6 +176,26 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
         btnAskTor.text = getString(R.string.asking)
         btnAskTor.setCompoundDrawablesWithIntrinsicBounds(dLeft, null, null, null)
 
+        val fileCacheDir = File(requireActivity().cacheDir, "pt")
+        if (!fileCacheDir.exists()) {
+            fileCacheDir.mkdir()
+        }
+
+        IPtProxy.setStateLocation(fileCacheDir.absolutePath)
+        IPtProxy.startLyrebird("DEBUG", false, false, null)
+        var pUsername = "url=" + OrbotService.getCdnFront("moat-url") + ";front=" + OrbotService.getCdnFront("moat-front")
+        var pPassword = "\u0000"
+
+        //    Log.d(getClass().getSimpleName(), String.format("mHost=%s, mPort=%d, mUsername=%s, mPassword=%s", mHost, mPort, mUsername, mPassword));
+        val authenticator: Authenticator = object : Authenticator() {
+            override fun getPasswordAuthentication(): PasswordAuthentication {
+                Log.d(javaClass.simpleName, "getPasswordAuthentication!")
+                return PasswordAuthentication(pUsername, pPassword.toCharArray())
+            }
+        }
+
+        Authenticator.setDefault(authenticator)
+
         val countryCodeValue: String? = getDeviceCountryCode(requireContext())
 
         CircumventionApiManager().getSettings(SettingsRequest(countryCodeValue), {
@@ -189,10 +215,13 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
                     //got bridges, let's set them
                     setPreferenceForSmartConnect()
                 }
+
+                IPtProxy.stopLyrebird()
             }
         }, {
             // TODO what happens to the app in this case?!
             Log.e("bim", "Couldn't hit circumvention API... $it")
+            Toast.makeText(requireContext(),"Ask Tor was not available",Toast.LENGTH_LONG).show()
         })
     }
 

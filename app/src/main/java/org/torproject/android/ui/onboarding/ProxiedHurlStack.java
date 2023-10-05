@@ -37,7 +37,7 @@ public class ProxiedHurlStack extends HurlStack {
                 InetSocketAddress.createUnresolved(mHost, mPort));
 
         if (mUsername != null && mPassword != null) {
-            Log.d(getClass().getSimpleName(), String.format("mHost=%s, mPort=%d, mUsername=%s, mPassword=%s", mHost, mPort, mUsername, mPassword));
+        //    Log.d(getClass().getSimpleName(), String.format("mHost=%s, mPort=%d, mUsername=%s, mPassword=%s", mHost, mPort, mUsername, mPassword));
 
             Authenticator authenticator = new Authenticator() {
                 @Override

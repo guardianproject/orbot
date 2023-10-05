@@ -1,6 +1,9 @@
 package org.torproject.android.circumvention
 
+import IPtProxy.IPtProxy
 import okhttp3.OkHttpClient
+import org.torproject.android.service.OrbotService
+import org.torproject.android.ui.onboarding.ProxiedHurlStack
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -9,6 +12,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import java.net.InetSocketAddress
+import java.net.Proxy
+
 
 interface CircumventionEndpoints {
 
@@ -30,7 +36,12 @@ interface CircumventionEndpoints {
 }
 
 object ServiceBuilder {
-    private val client = OkHttpClient.Builder().build()
+
+
+    var proxy: Proxy = Proxy(Proxy.Type.SOCKS, InetSocketAddress("127.0.0.1", IPtProxy.meekPort().toInt()))
+
+
+    private val client = OkHttpClient.Builder().proxy(proxy).build()
 
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://bridges.torproject.org/moat/circumvention/")
