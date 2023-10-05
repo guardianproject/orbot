@@ -250,7 +250,7 @@
     <string name="incorrect_solution">Solución incorrecta</string>
     <string name="bridges_obtained_connecting">¡Puentes obtenidos! Conectando a tor...</string>
     <string name="custom_bridge_description">Un puente personalizado lo proporciona alguien que usted conoce. Pregunte dentro de sus redes y organizaciones de confianza para ver si alguien está alojando uno.</string>
-    <string name="having_trouble">¿Estas teniendo problemas\?</string>
+    <string name="having_trouble">¿Tienes problemas\?</string>
     <string name="having_trouble_subtitle">Podemos probar un puente Tor a continuación, pero necesitaremos su ayuda.</string>
     <string name="power_user_mode">Modo de usuario avanzado</string>
     <string name="power_user_description">Para usuarios familiarizados con Tor. Permite iniciar Orbot sin la configuración de la VPN y muestra los puertos SOCKS y HTTP abiertos</string>
