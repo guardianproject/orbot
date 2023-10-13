@@ -13,7 +13,7 @@
     <string name="menu_scan">סרוק BridgeQR</string>
     <string name="menu_share_bridge">שתף BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details_msg">Orbot הוא יישומון קוד פתוח הכולל את Tor,‏ Obfs4Proxy,‏, Go-Tun2Socks ו־LibEvent. הוא מתחבר לרשת Tor באמצעות שרת מתווך HTTP מקומי (8118) ושרת מתווך SOCKS (פורט 9050). Orbot יכול בנוסף עם הרשאות על לנתב את כל תעבורת האינטרנט של המכשיר דרך Tor כבררת מחדל.</string>
+    <string name="wizard_details_msg">Orbot הוא יישום קוד פתוח שמכיל Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks ו-LibEvent. הוא מספק מנהרת VPN, פרוקסי HTTP Connect מקומי (HTTPS רק ביציאה 8118) ופרוקסי SOCKS (9050) לרשת Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">כללי</string>
     <string name="pref_start_boot_title">התחל את Orbot בהדלקת המכשיר</string>
@@ -192,4 +192,99 @@
     <string name="pref_reduced_circuit_padding_summary">להשתמש באלגוריתמים עם תקורת ריפוד נמוכה כדי לחסוך בתעבורת נתונים ובניצולת סוללה</string>
     <string name="pref_circuit_padding_summary">אפשר להפעיל ריפוד מעגל כדי להגן מפני מגוון צורות של ניתוח תעבורה</string>
     <string name="pref_reduced_circuit_padding">ריפוד מעגל מופחת</string>
+    <string name="volunteer_mode_alltime_label">כל הזמן סך הכל</string>
+    <string name="custom_bridge_description">גשר מותאם אישית מסופק על ידי מישהו שאתה מכיר. בקש מתוך הרשתות והארגונים המהימנים שלך כדי לראות אם מישהו מארח אחד.</string>
+    <string name="proxy_ports">יציאות פרוקסי</string>
+    <string name="no_internet_subtitle">אתה צריך חיבור לאינטרנט כדי להשתמש ב-Orbot.</string>
+    <string name="not_sure">לא בטוח\?</string>
+    <string name="snowflake_subtitle">מתחבר דרך מתנדבי Tor. עוקף קצת חסימת Tor.</string>
+    <string name="use_custom_bridges">השתמש בגשרים מותאמים אישית</string>
+    <string name="volunteer_mode_label">מצב חסד</string>
+    <string name="custom_bridges">גשרים מותאמים אישית</string>
+    <string name="volunteer_mode_subtitle_desc">מצב חסד מאפשר למכשיר שלך להיות גשר עבור אחרים. זה עוזר לאנשים להשתמש ב- Tor במקומות שבהם הוא חסום.
+\n
+\n• זה לא ירוקן את הסוללה שלך
+\n• זה לא יאט את האינטרנט שלך
+\n• זה יכול לפעול רק על wifi
+\n• ניתן לכבות אותו בכל עת</string>
+    <string name="ports_not_set">יציאות לא מוגדרות</string>
+    <string name="ask_tor">שאל Tor</string>
+    <string name="solve_captcha">פתור את הקפצ\'ה</string>
+    <string name="custom_bridge">גשר מותאם אישית</string>
+    <string name="menu_help_others">סיוע לאחרים</string>
+    <string name="consider_disable_battery_optimizations">שירותים מתארחים פועלים, שקול להשבית את אופטימיזציית הסוללה</string>
+    <string name="power_user_mode">מצב משתמש כוח</string>
+    <string name="btn_choose_apps">בחר אפליקציות</string>
+    <string name="v3_backup_key">מפתח הרשאת לקוח גיבוי</string>
+    <string name="smart_connect">חיבור חכם (ברירת מחדל)</string>
+    <string name="apps_other_apps">אפליקציות אחרות</string>
+    <string name="volunteer_mode_subtitle">עזרו לאחרים להתחבר</string>
+    <string name="option_only_when_charging">רק בעת טעינה</string>
+    <string name="hide_apps">הסתר אפליקציות מניטור רשת וקבל גישה כשהן חסומות.</string>
+    <string name="snowflake_proxy_msg_title">הצג הודעת חיבור</string>
+    <string name="secure_your_connection_subtitle">הסתר אפליקציות מניטור רשת וקבל גישה כשהן חסומות.</string>
+    <string name="enter_characters_from_image">הזן טקסט למעלה</string>
+    <string name="custom_bridge_subtitle">סביר להניח שישאיר אותך מחובר אם Tor נחסם קשות. דורש כתובת גשר ממישהו שאתה סומך עליו.</string>
+    <string name="paste_bridges">הדבק גשרים</string>
+    <string name="volunteer_mode_weekly_label">סך הכל שבועי</string>
+    <string name="request_bridges">בקש גשרים</string>
+    <string name="kindness_adjust_title">התאם מתי הוא פועל…</string>
+    <string name="apps_suggested_title">אפליקציות מוצעות</string>
+    <string name="log_copied">יומן הועתק</string>
+    <string name="btn_copy_log">העתק יומן</string>
+    <string name="btn_configure">בחר כיצד להתחבר</string>
+    <string name="request_bridges_from_torproject">בקש גשרים מ-torproject.org</string>
+    <string name="action_use">להשתמש</string>
+    <string name="option_only_on_wifi">רק ב-Wifi</string>
+    <string name="consider_enable_battery_optimizations">אין שירותים מתארחים פועלים, שקול לאפשר אופטימיזציות של סוללה</string>
+    <string name="refresh_captcha">רענן את CAPTCHA</string>
+    <string name="testing_tor_direct">בודק חיבור ל-Tor…</string>
+    <string name="bridge_snowflake">התחבר דרך משתמשי Tor אחרים באמצעות Snowflake (שיטה 1 - Fastly)</string>
+    <string name="having_trouble_subtitle">אנחנו יכולים לנסות גשר Tor בשלב הבא אבל נזדקק לעזרתכם</string>
+    <string name="having_trouble">נתקל בבעיות</string>
+    <string name="direct_connect">־חיבור ישיר ל-Tor</string>
+    <string name="connection_direct">ישיר</string>
+    <string name="v3_backup_name_hint">שם קובץ גיבוי…</string>
+    <string name="asking">שואל...</string>
+    <string name="power_user_description">למשתמשים שמכירים את Tor. מאפשר לך להפעיל את Orbot ללא הגדרת ה-VPN ומציג יציאות SOCKS ו-HTTP פתוחות</string>
+    <string name="snowflake_amp">פתית שלג (AMP)</string>
+    <string name="get_bridges_email_request">בקש גשרים באמצעות דואר אלקטרוני</string>
+    <string name="menu_kindness">חסד</string>
+    <string name="solve_captcha_instruction">פתרו את ה-CAPTCHA כדי לבקש גשרים.</string>
+    <string name="v3_import_auth_private">ייבוא .auth_private</string>
+    <string name="use_qr_code">השתמש בקוד QR</string>
+    <string name="pref_flag_secure_title">אבטחת מסך</string>
+    <string name="menu_app_settings">הגדרות אפליקציה</string>
+    <string name="root_warning">Orbot זיהה שהמכשיר שלך מושרש, מה שעלול לגרום לבעיות אבטחה.</string>
+    <string name="btn_change_exit">שנה יציאה</string>
+    <string name="snowflake">פתית שלג (מקורי)</string>
+    <string name="backup_port_exist">שגיאה: שירות Onion כבר משתמש ביציאה %s</string>
+    <string name="get_a_bridge_subtitle">מסווה את התנועה שלך. עוקף קצת חסימת Tor.</string>
+    <string name="snowflake_proxy_msg_description">הצג הודעה כשאתה עוזר למישהו לעקוף את הצנזורה</string>
+    <string name="kindess_config_detail">הגדר כיצד ומתי המכשיר שלך יכול לפעול כפרוקסי של Snowflake עבור משתמשי Tor אחרים.</string>
+    <string name="smart_connect_subtitle">אורבוט מנסה להתחבר ל-Tor בכל דרך זמינה: ישירה, פתית שלג, גשר.</string>
+    <string name="v3_backup_key_warning">אזהרה: זה עלול לחשוף את המפתח שלך לאפליקציות אחרות</string>
+    <string name="v3_delete_client_authorization">מחק מפתח הרשאת לקוח</string>
+    <string name="incorrect_solution">פתרון לא נכון</string>
+    <string name="bridge_snowflake_amp">התחבר דרך משתמשי Tor אחרים באמצעות Snowflake (שיטה 2 - AMP)</string>
+    <string name="volunteer_mode">מצב חסד</string>
+    <string name="bridges_obtained_connecting">הושגו גשרים! מתחבר ל-tor...</string>
+    <string name="testing_tor_direct_success">הַצלָחָה. חיבור Tor הוא טוב!</string>
+    <string name="btn_start_vpn">התחל VPN</string>
+    <string name="strict_nodes_description">התייחס להגדרות אי הכללה של צמתים כדרישה לבניית כל המעגלים. זה עלול לשבור את הפונקציונליות אם לא ניתן ליצור מעגלים עם הגדרות \'אי הכללה של צמתים\'.</string>
+    <string name="app_suggested_subtitle">Orbot עובד הכי טוב עם אפליקציות הודעות ומדיה חברתית.</string>
+    <string name="configure_custom_bridges">הגדר גשרים מותאמים אישית</string>
+    <string name="get_a_bridge">גשר מ-Tor (Obfs4)</string>
+    <string name="secure_your_connection_title">מוכן להתחבר</string>
+    <string name="volunteer_mode_title">עזור לאחרים
+\nלהתחבר ל-Tor</string>
+    <string name="v3_delete_client_authorization_confirm">מחק את הרשאת הלקוח</string>
+    <string name="captcha">Captcha</string>
+    <string name="pref_flag_secure_summary">מנע מאפליקציות אחרות לצלם צילומי מסך של Orbot</string>
+    <string name="direct_connect_subtitle">הדרך הטובה ביותר להתחבר ל-Tor. השתמש אם Tor אינו חסום.</string>
+    <string name="volunteer_status_title">היום יותר טוב
+\nבגללך.</string>
+    <string name="many_ways">ישנן דרכים רבות להגיע ל-Tor. חלקם עשויים לעבוד טוב יותר מאחרים עבורכם.</string>
+    <string name="in_a_browser">בדפדפן, בקר ב-%s והקש על קבל גשרים &gt; רק תן לי גשרים!</string>
+    <string name="configure_header">הגדר את חיבור ה-Tor שלך</string>
 </resources>

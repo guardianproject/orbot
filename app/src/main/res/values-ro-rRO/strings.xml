@@ -102,7 +102,7 @@
     <string name="done">Gata!</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Vă rugăm reporniţi Orbot pentru a aplica modificările</string>
     <string name="disable">Dezactivează</string>
-    <string name="enable">Activează:</string>
+    <string name="enable">Activează</string>
     <string name="pref_open_proxy_on_all_interfaces_title">Deschideți Proxy pe toate interfețele</string>
     <string name="pref_http_summary">Portul pe care Tor își oferă proxy-ul HTTP (implicit: 8118 sau 0 pentru dezactivare)</string>
     <string name="v3_client_auth_activity_title">Autorizare Client</string>
@@ -246,7 +246,7 @@
     <string name="kindness_adjust_title">Reglați când funcționează…</string>
     <string name="snowflake_subtitle">Se conectează prin intermediul voluntarilor Tor. Ocolește unele blocaje Tor.</string>
     <string name="secure_your_connection_title">Gata de conectare</string>
-    <string name="snowflake">Snowflake (Original)</string>
+    <string name="snowflake">Fulg de zăpadă (original)</string>
     <string name="log_copied">Jurnalul a fost copiat</string>
     <string name="bridges_obtained_connecting">Punți obținute! Se conectează la Tor...</string>
     <string name="custom_bridge_description">O punte personalizată este oferită de cineva cunoscut. Întrebați în cadrul rețelelor și organizațiilor de încredere să vedeți dacă cineva găzduiește una.</string>

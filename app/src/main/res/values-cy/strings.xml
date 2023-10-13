@@ -27,7 +27,7 @@
     <string name="enter_exit_nodes">I mewn i Nodau Gadael</string>
     <string name="exclude_nodes">Yn eithrio Nodau</string>
     <string name="enter_exclude_nodes">I mewn i Nodau Eithrio</string>
-    <string name="third_party_software">Meddalwedd 3ydd-parti</string>
+    <string name="third_party_software">Meddalwedd 3ydd-parti:</string>
     <string name="set_locale_title">Iaith</string>
     <string name="hidden_services">Gwasanaethau Cudd</string>
     <string name="menu_hidden_services">Gwasanaethau Cudd</string>

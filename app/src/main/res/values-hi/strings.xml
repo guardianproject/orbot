@@ -226,7 +226,7 @@
     <string name="pref_isolate_protocol">क्लाइंट प्रोटोकॉल अलग करें</string>
     <string name="pref_isolate_protocol_summary">हर जुड़नेवाले प्रोटोकॉल के लिए अलग सर्किट इस्तेमाल करें</string>
     <string name="pref_isolate_port_summary">हर मंज़िल पोर्ट के लिए अलग सर्किट इस्तेमाल करें</string>
-    <string name="in_a_browser">किसी ब्राउज़र में, %s पे जाएं, और दबाएं \"ब्रिज लें\" और फिर \"मुझे बस ब्रिज दो!\"</string>
+    <string name="in_a_browser">ब्राउज़र में, %s पर जाएँ और गेट ब्रिजेज़ &gt; जस्ट गिव मी ब्रिजेज़ पर टैप करें!</string>
     <string name="request_bridges_from_torproject">torproject.org से ब्रिज मांगें</string>
     <string name="msg_try_something_else">कुछ और आज़माएं</string>
     <string name="direct_connect">टॉर से सीधा कनेक्शन</string>
@@ -286,4 +286,5 @@
     <string name="paste_bridges">ब्रिज डालें</string>
     <string name="btn_start_vpn">वीपीएन शुरू करें</string>
     <string name="refresh_captcha">कैप्चा रीफ्रेश करें</string>
+    <string name="strict_nodes_description">सभी सर्किटों के निर्माण के लिए बहिष्कृत नोड्स सेटिंग्स को एक आवश्यकता के रूप में मानें। यदि आपकी बहिष्कृत नोड्स सेटिंग्स के साथ कोई सर्किट उत्पन्न नहीं हो पाता है तो यह कार्यक्षमता को तोड़ सकता है।</string>
 </resources>

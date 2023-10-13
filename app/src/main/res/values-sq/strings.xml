@@ -206,13 +206,10 @@
     <string name="consider_enable_battery_optimizations">Pa shërbime të strehuara në funksionim, shihni mundësinë e aktivizimit të optimizimeve të baterisë</string>
     <string name="volunteer_mode_subtitle_desc">Mënyra dashamirësi e lejon pajisjen tuaj të jetë një urë për të tjera. I ndihmon njerëzit të përdorin Tor-in në vende ku e bllokojnë.
 \n
-\n- S’do të thajë baterinë tuaj
-\n
-\n- S’do të ngadalësojë internetin tuaj
-\n
-\n- Mund të punojë vetëm me wifi
-\n
-\n- Mund të çaktivizohet kurdo</string>
+\n• S’do të thajë baterinë tuaj
+\n• S’do të ngadalësojë internetin tuaj
+\n• Mund të punojë vetëm me wifi
+\n• Mund të çaktivizohet kurdo</string>
     <string name="smart_connect_subtitle">Orbot-i provon të lidhet me Tor-in përmes çfarëdo rruge të mundshme: Drejtpërdrejt, Snowflake, Urë.</string>
     <string name="direct_connect_subtitle">Rruga më e mirë për t’u lidhur me Tor-in. Përdoreni nëse Tor-i s’është i bllokuar.</string>
     <string name="get_a_bridge_subtitle">Fsheh trafikun tuaj. Anashkalohet ca bllokim Tor-i.</string>
