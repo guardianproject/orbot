@@ -95,7 +95,7 @@
     <string name="pref_torrc_dialog">Torrcをカスタム</string>
     <string name="bridges_updated">ブリッジを更新しました</string>
     <string name="restart_orbot_to_use_this_bridge_">変更を有効にするには、Orbotを再起動してください</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">もしあなたのモバイルネットワークがTorを積極的にブロックするなら、代替手段として\'ブリッジサーバ\'を使用することができます。設定と試験のために、選択肢の一つを選択してください…</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">もしあなたのモバイルネットワークがTorを積極的に遮断するなら、代替手段として\'ブリッジサーバ\'を使用することができます。設定と試験のために、選択肢の一つを選択してください…</string>
     <string name="get_bridges_email">電子メール</string>
     <string name="apps_mode">VPN方式</string>
     <string name="send_email">電子メール送信</string>
@@ -160,7 +160,7 @@
     <string name="v3_hosted_services">オニオンサービスによるホスト</string>
     <string name="custom_bridges">カスタムブリッジ</string>
     <string name="secure_your_connection_title">接続準備完了</string>
-    <string name="secure_your_connection_subtitle">アプリをネットワーク監視から隠し、ブロックされているときにはアクセスできるようにします。</string>
+    <string name="secure_your_connection_subtitle">アプリをネットワーク監視から隠し、遮断されているときにはアクセスできるようにします。</string>
     <string name="connected_title">接続されました</string>
     <string name="btn_start_vpn">VPNを開始</string>
     <string name="btn_configure">接続の仕方を選択</string>
@@ -256,7 +256,7 @@
     <string name="apps_suggested_title">提案されたアプリ</string>
     <string name="app_suggested_subtitle">Orbotは、メッセージングアプリやソーシャルメディアアプリとの相性が抜群です。</string>
     <string name="action_activate">有効化</string>
-    <string name="hide_apps">アプリをネットワーク監視から隠し、ブロックされているときにはアクセスできるようにします。</string>
+    <string name="hide_apps">アプリをネットワーク監視から隠し、遮断されているときにはアクセスできるようにします。</string>
     <string name="pref_isolate_port">宛先ポートを分離</string>
     <string name="pref_isolate_port_summary">宛先ポートごとに別の回路を使用する</string>
     <string name="pref_isolate_protocol">クライアントプロトコルを分離</string>
