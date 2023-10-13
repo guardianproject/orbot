@@ -79,14 +79,14 @@
     <string name="smart_connect">Lidhje e Mençur (parazgjedhje)</string>
     <string name="direct_connect">Lidhje e drejtpërdrejtë me Tor-in</string>
     <string name="snowflake">Snowflake (Origjinali)</string>
-    <string name="get_a_bridge">Merrni një Urë nga Tor (Obfs4)</string>
+    <string name="get_a_bridge">Urë nga Tor (Obfs4)</string>
     <string name="custom_bridge">Urë Vetjake</string>
     <string name="connect">Lidhu</string>
     <string name="next">Pasuesi</string>
     <string name="solve_captcha">Zgjidhni CAPTCHA-n</string>
     <string name="ports_not_set">Porta të Paujdisura</string>
     <string name="btn_start_vpn">Nise VPN-në</string>
-    <string name="btn_configure">Formësoje</string>
+    <string name="btn_configure">Zgjidhni Si të Lidhet</string>
     <string name="volunteer_mode_subtitle">Ndihmoni të tjerët të lidhen</string>
     <string name="trying_to_connect_title">Po lidhjet…</string>
     <string name="btn_choose_apps">Zgjidhni aplikacione</string>
@@ -206,13 +206,10 @@
     <string name="consider_enable_battery_optimizations">Pa shërbime të strehuara në funksionim, shihni mundësinë e aktivizimit të optimizimeve të baterisë</string>
     <string name="volunteer_mode_subtitle_desc">Mënyra dashamirësi e lejon pajisjen tuaj të jetë një urë për të tjera. I ndihmon njerëzit të përdorin Tor-in në vende ku e bllokojnë.
 \n
-\n- S’do të thajë baterinë tuaj
-\n
-\n- S’do të ngadalësojë internetin tuaj
-\n
-\n- Mund të punojë vetëm me wifi
-\n
-\n- Mund të çaktivizohet kurdo</string>
+\n• S’do të thajë baterinë tuaj
+\n• S’do të ngadalësojë internetin tuaj
+\n• Mund të punojë vetëm me wifi
+\n• Mund të çaktivizohet kurdo</string>
     <string name="smart_connect_subtitle">Orbot-i provon të lidhet me Tor-in përmes çfarëdo rruge të mundshme: Drejtpërdrejt, Snowflake, Urë.</string>
     <string name="direct_connect_subtitle">Rruga më e mirë për t’u lidhur me Tor-in. Përdoreni nëse Tor-i s’është i bllokuar.</string>
     <string name="get_a_bridge_subtitle">Fsheh trafikun tuaj. Anashkalohet ca bllokim Tor-i.</string>
@@ -256,4 +253,28 @@
     <string name="setting_debug">Diagnostiojeni</string>
     <string name="menu_more">Më tepër</string>
     <string name="hide_apps">Fshihini aplikacione mbikëqyrjes së rrjetit dhe përfitoni hyrje kur janë të bllokuar.</string>
+    <string name="no_internet_subtitle">Që të përdorni Orbot-in, ju duhet një lidhje internet.</string>
+    <string name="not_sure">Jo i sigurt\?</string>
+    <string name="ask_tor">Pyetni Tor-in</string>
+    <string name="option_only_when_charging">Vetëm kur ngarkohet bateria</string>
+    <string name="pref_isolate_port_summary">Përdorni një qark të ndryshëm për çdo portë vendmbërritje</string>
+    <string name="no_interent_title">Lidhu në internet</string>
+    <string name="pref_isolate_protocol">Izolo protokolle klienti</string>
+    <string name="kindness_adjust_title">Përimtojeni kur xhiron…</string>
+    <string name="full_device_vpn">VPN Për Krejt Pajisjen</string>
+    <string name="log_copied">Regjistri u Kopjua</string>
+    <string name="btn_copy_log">Kopjo Regjistrin</string>
+    <string name="option_only_on_wifi">Vetëm me Wifi</string>
+    <string name="connection_direct">Drejtpërsëdrejti</string>
+    <string name="pref_isolate_port">Izolo porta vendmbërritje</string>
+    <string name="asking">PO PYETET…</string>
+    <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="pref_flag_secure_title">Siguri Ekrani</string>
+    <string name="root_warning">Orbot-i ka pikasur se është shtënë në dorë kontrolli i pajisjes tuaj, çka mund të shkaktojë probleme sigurie.</string>
+    <string name="kindess_config_detail">Formësoni si dhe kur pajisja juaj mund të veprojë si një ndërmjetës Snowflake për përdorues të tjerë të Tor-it.</string>
+    <string name="menu_share_bridge">Ndani me të tjerët BridgeQR</string>
+    <string name="pref_isolate_protocol_summary">Përdorni një qark të ndryshëm për çdo protokoll lidhjeje</string>
+    <string name="pref_reduced_connection_padding_summary">I mbyll më herët lidhjet me relenë dhe dërgon më pak pakete “padding”, për të zvogëluar përdorim të dhënash dhe bateriebattery usage</string>
+    <string name="pref_flag_secure_summary">Pengo aplikacione të tjerë të bëjnë foto ekrani të Orbot-it</string>
+    <string name="many_ways">Ka mjaft mënyra për të mbërritur te Tor-i. Disa mund të funksionojnë më mirë se të tjerat për ju.</string>
 </resources>

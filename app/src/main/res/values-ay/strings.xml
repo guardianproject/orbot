@@ -126,7 +126,7 @@
     <string name="consider_disable_battery_optimizations">Imat sirwisyunakax sarantaskiwa, ch\'amanchir pist\'ki ukjax q\'alt\'añkam aqaskañapatakik amuyt\'am</string>
     <string name="consider_enable_battery_optimizations">Imat sirwisyux janiw irnaqkiti, ch\'amanchir pist\'ki ukjax jiwt\'añkam jan aqañapatak amuyt\'am</string>
     <string name="pref_isolate_dest">Apayañ chiqanak jark\'aqaña</string>
-    <string name="pref_isolate_dest_summary">Sapa apayañ chiqatak kunayman thakhinak apnaqaña</string>
+    <string name="pref_isolate_dest_summary">Sapa apayañ chiqatak mä mayja sirkuytu apnaqaña</string>
     <string name="pref_connection_padding">Waythapiñ ch\'amachiri</string>
     <string name="pref_connection_padding_summary">Yaqhip apayat uñsusirinakat jark\'aqasiñataki, waythapiñ ch\'amachir aqtayapunim. Utt\'ayata: justupacha</string>
     <string name="pref_reduced_connection_padding">Juk\'aptayat waythapiñ ch\'amañchiri</string>
@@ -269,8 +269,8 @@
     <string name="btn_choose_apps">Aplikasyunanak ajllt\'ama</string>
     <string name="refresh_apps">Aplikasyunanak jichhaptayaña</string>
     <string name="pref_circuit_padding">Sirkuytu phuqhacha</string>
-    <string name="pref_circuit_padding_summary">Jan walt\'ayirinakat jark\'aqasiñatak phuqhachat sirkuyt naktayaña</string>
-    <string name="pref_reduced_circuit_padding">Phuqhachat sirkuyt juk\'aptayawi</string>
+    <string name="pref_circuit_padding_summary">Yaqhip yatiy thakhi uñakipaña ukanakat jark\'aqasiñamatakix sirkuytu phuqhach naktayam</string>
+    <string name="pref_reduced_circuit_padding">Sirkuytu phuqhach juk\'aptayäwi</string>
     <string name="pref_reduced_circuit_padding_summary">Llikamp watiriyamp jan tukusuñatakix juk\'aruchayir aljuritmunak apnaqam</string>
     <string name="menu_new_identity">Machaq khitïtasa/Machaq uñt\'aya</string>
     <string name="app_services">Aplikasyunanakan sirwisyunakapa</string>
@@ -283,7 +283,7 @@
     <string name="btn_copy_log">Mantat waruqaña</string>
     <string name="log_copied">Mantatax waruqatawa</string>
     <string name="v3_backup_key_warning">Ukataraki: Akax yaqha aplikasyunanakaruw chimpum uñachayaspa</string>
-    <string name="pref_isolate_protocol_summary">Sapa waythapiyañatak yaqha yaqh sirkuyt apnaqam</string>
+    <string name="pref_isolate_protocol_summary">Sapa waythapiyañ prutukulutakix yaqh yaqha sirkuytu apnaqam</string>
     <string name="paste_bridges">Chakanak lip\'katayaña</string>
     <string name="root_warning">Jawsañamax rutiyataw ukwa Orbotax katji, jark\'aqañaruw jan walt\'ayaspa.</string>
     <string name="setting_padding">K\'iruntata</string>

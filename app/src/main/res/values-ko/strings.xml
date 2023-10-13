@@ -24,12 +24,12 @@
     <!--TipsAndTricks screen-->
     <!--Transparent Proxy screen-->
     <string name="pref_node_configuration">노드 설정</string>
-    <string name="pref_node_configuration_summary">귀하의 익명성을 감소시킬 수 있는 고급 설정이 있습니다.</string>
+    <string name="pref_node_configuration_summary">귀하의 익명성을 감소시킬 수 있는 고급 설정이 있습니다</string>
     <string name="pref_entrance_node">입구 노드</string>
     <string name="pref_entrance_node_summary">첫번째 Hop을 위한핑거프린트, 별칭, 나라와 주소</string>
     <string name="pref_entrance_node_dialog">입구 노드 입력</string>
     <string name="pref_allow_background_starts_title">백그라운드에서 시작 허용</string>
-    <string name="pref_allow_background_starts_summary">모든 어플리케이션이 Orbot에 Tor를 시작하고 관련 서비스를 시작할 수 있도록 지시하는것을 허락합니다.</string>
+    <string name="pref_allow_background_starts_summary">모든 어플리케이션이 Orbot에 Tor를 시작하고 관련 서비스를 시작할 수 있도록 지시하는것을 허락합니다</string>
     <string name="pref_proxy_title">외부 네트워크 프록시 (선택)</string>
     <string name="pref_proxy_type_title">외부 프록시 유형</string>
     <string name="pref_proxy_type_summary">프록시 서버를 위한 사용되는 프로토콜 : HTTP, HTTPS, Socks4, Socks5</string>
@@ -118,7 +118,7 @@
     <string name="connect">연결</string>
     <string name="next">다음</string>
     <string name="menu_more">더 보기</string>
-    <string name="setting_padding">Padding</string>
+    <string name="setting_padding">패딩</string>
     <string name="connection_direct">다이렉트</string>
     <string name="connection_snowflake">Snowflake</string>
     <string name="connection_custom">사용자 정의</string>
