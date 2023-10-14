@@ -1,34 +1,27 @@
+apply from: './dependencies.gradle'
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    apply from: './dependencies.gradle'
-    ext {
-        kotlin_version = '1.7.10'
-    }
-    repositories {
-        mavenCentral()
-        google()
-        maven { url 'https://jitpack.io' }
-     //   maven { url "https://raw.githubusercontent.com/guardianproject/gpmaven/master" }
+    ext.kotlin_version = '1.7.10'
 
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    //  maven { url "https://raw.githubusercontent.com/guardianproject/gpmaven/master" }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.1.2'
+        classpath "com.android.tools.build:gradle:7.4.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
 allprojects {
     repositories {
-
-        mavenCentral()
         google()
-        maven { url 'https://jitpack.io' }
+        mavenCentral()
+        maven { url "https://jitpack.io" }
         maven { url "https://raw.githubusercontent.com/guardianproject/gpmaven/master" }
-
-        /**
-        flatDir {
-            dirs 'libs'
-        }**/
     }
 }
