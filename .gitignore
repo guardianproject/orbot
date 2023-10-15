@@ -10,8 +10,6 @@ proguard.cfg
 proguard-project.txt
 #
 releases
-docs
-doc
 .directory
 keystore.properties
 

@@ -19,4 +19,4 @@ A build will do a few things:
 
 ### Secrets
 
-Bitrise builds can require secrets.  In our case, the secrets are our Browserstack credentials.  Thus, before kicking off a build for a PR, be sure that PR isn't trying to log our credentials from environment variables.
+Bitrise builds can require secrets. In our case, the secrets are our Browserstack credentials. Thus, before kicking off a build for a PR, be sure that PR isn't trying to log our credentials from environment variables.
