@@ -203,4 +203,21 @@
     <string name="use_custom_bridges">Xüsusi körpülərdən istifadə edin</string>
     <string name="configure_custom_bridges">Xüsusi körpüləri konfiqurasiya edin</string>
     <string name="in_a_browser">Brauzerdə %s-ə daxil olun və Körpüləri Al &gt; Sadəcə Mənə Körpüləri verin!</string>
+    <string name="no_thx">Xeyr, təşəkkürlər</string>
+    <string name="btn_choose_apps">Proqramları seçin</string>
+    <string name="volunteer_mode_subtitle">Başqalarına qoşulmağa kömək edin</string>
+    <string name="snowflake_proxy_msg_title">Bağlantı bildirişini göstərin</string>
+    <string name="secure_your_connection_subtitle">Tətbiqləri şəbəkə monitorinqindən gizlədin və bloklandıqda giriş əldə edin.</string>
+    <string name="paste_bridges">Körpüləri yapışdırın</string>
+    <string name="btn_tor_off">Tor-u söndürün</string>
+    <string name="btn_configure">Necə Qoşulacağını seçin</string>
+    <string name="bridge_snowflake">Snowflake istifadə edərək digər Tor istifadəçiləri ilə əlaqə saxlayın (Metod 1 - Sürətlə)</string>
+    <string name="use_qr_code">QR kodundan istifadə edin</string>
+    <string name="btn_change_exit">Çıxışı dəyişdirin</string>
+    <string name="snowflake_proxy_msg_description">Kiməsə senzuradan yayınmağa kömək etdiyiniz zaman mesaj göstərin</string>
+    <string name="bridge_snowflake_amp">Snowflake istifadə edərək digər Tor istifadəçiləri ilə əlaqə saxlayın (Metod 2 - AMP)</string>
+    <string name="volunteer_mode">Xeyirxahlıq rejimi</string>
+    <string name="btn_start_vpn">VPN işə salın</string>
+    <string name="secure_your_connection_title">Qoşulmağa hazırdır</string>
+    <string name="configure_header">Tor bağlantınızı konfiqurasiya edin</string>
 </resources>
