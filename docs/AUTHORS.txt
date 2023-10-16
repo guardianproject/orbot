@@ -1,0 +1,44 @@
+This file lists the authors for Orbot, a free software project to provide
+anonymity on the Internet on Android smartphones.
+
+For more information about Orbot, see https://guardianproject.info/apps/orbot
+
+If you got this file as a part of a larger bundle, there are probably
+other authors that you should be aware of.
+
+Main Authors:
+-------------
+Nathan Freitas <nathan@freitas.net> developed the primary Android
+application and managed the porting of Tor to Android.
+
+Jake Appelbaum <jacob@appelbaum.net> regularly gave Nathan a swift kick
+in the rear to get this done. He has also provided extensive guidance
+and review. Most recently he has been promoted to Chief Application
+Resource Editor.
+
+Derek Halliday <derek@guardianproject.info> has designed and implemented
+new user interface components and layouts since the 1.0.4 release. 
+
+Contributors:
+-------------
+Nick Mathewson <nickm@freehaven.net> wrote some of the patch code to
+support the compiling of Tor and Libevent on Android, and generally
+provided guidance in the entire effort.
+
+Adam Langley made the original valiant effort to port Tor to Android.
+
+Sathyanarayanan <gsathya@torproject.org> created a patch for the wizard
+which updated the icon and link for the secure chat app info to point
+to Gibberbot, and hopefully will continue to contribute useful patches.
+
+__sporkbomb <manuel@acanthephyra.net> implemented an updated set of logic
+in TorTransProxy for handling the "transproxy all" mode of operation. Before
+certain system processes were leaking traffic, and this was also detected
+by his excellent auditing.
+
+Amogh Pradeep <amoghbl1@gmail.com> submitted a patch to address an issue
+with the ongoing data transfer notification dying now and then, and is
+working on improving the notification display in general
+ 
+We found a nice new power button vector set here under the CC license:
+http://vector4free.com/vector/free-vector-power-buttons/
