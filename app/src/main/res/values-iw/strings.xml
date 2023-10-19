@@ -13,7 +13,7 @@
     <string name="menu_scan">סרוק BridgeQR</string>
     <string name="menu_share_bridge">שתף BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details_msg">Orbot הוא יישום קוד פתוח שמכיל Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks ו-LibEvent. הוא מספק מנהרת VPN, פרוקסי HTTP Connect מקומי (HTTPS רק ביציאה 8118) ופרוקסי SOCKS (9050) לרשת Tor.</string>
+    <string name="wizard_details_msg">Orbot הוא יישומון קוד פתוח שמכיל Tor,‏ IPtProxy‏ (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks ו־LibEvent. הוא מספק מנהרת VPN, מתווך HTTP Connect מקומי (HTTPS רק ביציאה 8118) ומתווך SOCKS‏ (9050) לרשת Tor.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">כללי</string>
     <string name="pref_start_boot_title">התחל את Orbot בהדלקת המכשיר</string>
@@ -193,7 +193,7 @@
     <string name="pref_circuit_padding_summary">אפשר להפעיל ריפוד מעגל כדי להגן מפני מגוון צורות של ניתוח תעבורה</string>
     <string name="pref_reduced_circuit_padding">ריפוד מעגל מופחת</string>
     <string name="volunteer_mode_alltime_label">סיכום לכל הזמן</string>
-    <string name="custom_bridge_description">גשר מותאם אישית מסופק על ידי מישהו שאתה מכיר. בקש מתוך הרשתות והארגונים המהימנים שלך כדי לראות אם מישהו מארח אחד.</string>
+    <string name="custom_bridge_description">גשר מותאם אישית מסופק על ידי גופים שמוכרים לך. כדאי לבקש מתוך הרשתות והארגונים המהימנים שלך כדי לראות אם מישהו מארח אחד.</string>
     <string name="proxy_ports">פתחות מתווך</string>
     <string name="no_internet_subtitle">צריך חיבור לאינטרנט כדי להשתמש ב־Orbot.</string>
     <string name="not_sure">בספק\?</string>
@@ -209,7 +209,7 @@
 \n• ניתן לכבות אותו בכל עת</string>
     <string name="ports_not_set">לא מוגדרות פתחות</string>
     <string name="ask_tor">לשאול את Tor</string>
-    <string name="solve_captcha">פתור את הקפצ\'ה</string>
+    <string name="solve_captcha">יש לפתור את ה־Captcha</string>
     <string name="custom_bridge">גשר מותאם אישית</string>
     <string name="menu_help_others">סיוע לאחרים</string>
     <string name="consider_disable_battery_optimizations">שירותים מתארחים פועלים, כדאי להשבית את מיטוב הסוללה</string>
@@ -241,7 +241,7 @@
     <string name="testing_tor_direct">החיבור ל־Tor נבדק…</string>
     <string name="bridge_snowflake">התחברות דרך משתמשי Tor אחרים באמצעות Snowflake (שיטה 1 - Fastly)</string>
     <string name="having_trouble_subtitle">אפשר לנסות גשר Tor בשלב הבא אבל נזדקק לעזרתך</string>
-    <string name="having_trouble">נתקל בבעיות</string>
+    <string name="having_trouble">צצות בעיות</string>
     <string name="direct_connect">חיבור ישיר ל־Tor</string>
     <string name="connection_direct">ישיר</string>
     <string name="v3_backup_name_hint">שם קובץ גיבוי…</string>
@@ -265,13 +265,13 @@
     <string name="smart_connect_subtitle">אורבוט מנסה להתחבר ל־Tor בכל דרך זמינה: ישירה, Snowflake, גשר.</string>
     <string name="v3_backup_key_warning">אזהרה: עלול לחשוף את המפתח שלך ליישומונים אחרים</string>
     <string name="v3_delete_client_authorization">מחיקת מפתח הרשאת לקוח</string>
-    <string name="incorrect_solution">פתרון לא נכון</string>
+    <string name="incorrect_solution">פתרון שגוי</string>
     <string name="bridge_snowflake_amp">התחברות דרך משתמשי Tor אחרים באמצעות Snowflake (שיטה 2 - AMP)</string>
     <string name="volunteer_mode">מצב חסד</string>
     <string name="bridges_obtained_connecting">הושגו גשרים! מתחברים ל־tor...</string>
     <string name="testing_tor_direct_success">הצלחנו. החיבור ל־Tor טוב!</string>
     <string name="btn_start_vpn">התחלת VPN</string>
-    <string name="strict_nodes_description">התייחס להגדרות אי הכללה של צמתים כדרישה לבניית כל המעגלים. זה עלול לשבור את הפונקציונליות אם לא ניתן ליצור מעגלים עם הגדרות \'אי הכללה של צמתים\'.</string>
+    <string name="strict_nodes_description">התייחסות להגדרות החרגה של צמתים כדרישה לבניית כל המעגלים. זה עלול לשבור את השימושיות אם לא ניתן ליצור מעגלים עם הגדרות ‚החרגה של צמתים’.</string>
     <string name="app_suggested_subtitle">Orbot עובד הכי טוב עם יישומוני הודעות ומדיה חברתית.</string>
     <string name="configure_custom_bridges">הגדרת גשרים מותאמים אישית</string>
     <string name="get_a_bridge">גשר מ־Tor‏ (Obfs4)</string>
