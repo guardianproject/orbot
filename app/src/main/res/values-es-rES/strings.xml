@@ -72,7 +72,7 @@
     <string name="ports_reachable_behind_a_restrictive_firewall">Puertos accesibles detrás de un firewall restrictivo (80 y 443 por defecto)</string>
     <string name="enter_ports">Introduzca puertos</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Habilitar el registro de depuración (debug log) a la salida (debe utilizar adb o aLogCat para verlo)</string>
-    <string name="project_home">Proyecto de casa:</string>
+    <string name="project_home">Página web:</string>
     <string name="third_party_software">Software de terceros:</string>
     <string name="hidden_service_request">Una aplicación quiere abrir un servidor cebolla en el puerto %1$s a la red Tor. Esto es seguro si confías en la aplicación.</string>
     <string name="pref_use_expanded_notifications">Mostrar en la notificación el país y la dirección IP de su nodo de salida de tor cuando esté disponible</string>
