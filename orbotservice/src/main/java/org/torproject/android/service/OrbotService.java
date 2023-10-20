@@ -356,8 +356,34 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var front = getCdnFront("snowflake-front");
         var stunServer = getCdnFront("snowflake-stun");
 
-        IPtProxy.startSnowflake(stunServer, target, front, null,
+        /*
+        / @param ice Comma-separated list of ICE servers.
+//
+// @param url URL of signaling broker.
+//
+// @param front Front domain.
+//
+// @param fronts OPTIONAL. Comma-separated list of front domains.
+//
+// @param ampCache OPTIONAL. URL of AMP cache to use as a proxy for signaling.
+//
+//      Only needed when you want to do the rendezvous over AMP instead of a domain fronted server.
+//
+// @param logFile Name of log file. OPTIONAL. Defaults to no log.
+//
+// @param logToStateDir Resolve the log file relative to Tor's PT state dir.
+//
+// @param keepLocalAddresses Keep local LAN address ICE candidates.
+//
+// @param unsafeLogging Prevent logs from being scrubbed.
+//
+// @param maxPeers Capacity for number of multiplexed WebRTC peers. DEFAULTs to 1 if less than that.
+//
+
+         */
+        IPtProxy.startSnowflake(stunServer, target, front, null, null,
                  null, true, false, false, 1);
+
     }
 
     private void startSnowflakeClientAmpRendezvous() {
@@ -365,7 +391,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var target =  getCdnFront("snowflake-target-direct");//"https://snowflake-broker.torproject.net/";
         var front = getCdnFront("snowflake-amp-front");//"www.google.com";
         var ampCache =getCdnFront("snowflake-amp-cache");//"https://cdn.ampproject.org/";
-        IPtProxy.startSnowflake(stunServers, target, front, ampCache, null, true, false, false, 1);
+        IPtProxy.startSnowflake(stunServers, target, front, ampCache, null, null, true, false, false, 1);
     }
 
     private SecureRandom mSecureRandGen = new SecureRandom(); //used to randomly select STUN servers for snowflake
