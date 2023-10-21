@@ -241,13 +241,7 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
         if (countryCode != null && countryCode.length == 2)
                   return countryCode.lowercase(Locale.getDefault())
 
-
-        // If network country not available (tablets maybe), get country code from Locale class
-        countryCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            context.resources.configuration.locales[0].country
-        } else {
-            context.resources.configuration.locale.country
-        }
+        countryCode = context.resources.configuration.locales[0].country
 
         return if (countryCode != null && countryCode.length == 2)
             countryCode.lowercase(Locale.getDefault()) else "us"
