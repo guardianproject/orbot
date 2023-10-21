@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.CompoundButton
 import android.widget.RadioButton
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import org.torproject.android.circumvention.Bridges
 import org.torproject.android.circumvention.CircumventionApiManager
 import org.torproject.android.circumvention.SettingsRequest
@@ -172,7 +173,7 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
 
     private fun askTor () {
 
-        val dLeft = activity?.getDrawable(R.drawable.ic_faq)
+        val dLeft = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_faq)
         btnAskTor.text = getString(R.string.asking)
         btnAskTor.setCompoundDrawablesWithIntrinsicBounds(dLeft, null, null, null)
 
@@ -255,7 +256,7 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
 
     private fun setPreferenceForSmartConnect() {
 
-        val dLeft = activity?.getDrawable(R.drawable.ic_green_check)
+        val dLeft = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_green_check)
         btnAskTor.setCompoundDrawablesWithIntrinsicBounds(dLeft, null, null, null)
 
         circumventionApiBridges?.let {
