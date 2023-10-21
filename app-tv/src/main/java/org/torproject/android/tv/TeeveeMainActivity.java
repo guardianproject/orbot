@@ -435,7 +435,7 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
         try {
             String aboutText = readFromAssets(this, "LICENSE");
             aboutText = aboutText.replace("\n", "<br/>");
-            aboutOther.setText(Html.fromHtml(aboutText));
+            aboutOther.setText(Html.fromHtml(aboutText, Html.FROM_HTML_MODE_LEGACY));
         } catch (Exception e) {
         }
 

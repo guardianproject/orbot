@@ -25,7 +25,7 @@ public class ClientAuthActionsDialogFragment extends DialogFragment {
         AlertDialog ad = new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.v3_client_auth_activity_title)
                 .setItems(new CharSequence[]{
-                        Html.fromHtml(getString(R.string.v3_backup_key)),
+                        Html.fromHtml(getString(R.string.v3_backup_key), Html.FROM_HTML_MODE_LEGACY),
                         getString(R.string.v3_delete_client_authorization)
                 }, null)
                 .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())

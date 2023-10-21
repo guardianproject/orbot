@@ -273,9 +273,9 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
             text = if (Prefs.isPowerUserMode())
                 getString(R.string.connect)
             else if (connectStr.isEmpty())
-                Html.fromHtml("<big>${getString(R.string.btn_start_vpn)}</big>")
+                Html.fromHtml("<big>${getString(R.string.btn_start_vpn)}</big>", Html.FROM_HTML_MODE_LEGACY)
             else
-                Html.fromHtml("<big>${getString(R.string.btn_start_vpn)}</big><br/><small>${connectStr}</small>")
+                Html.fromHtml("<big>${getString(R.string.btn_start_vpn)}</big><br/><small>${connectStr}</small>", Html.FROM_HTML_MODE_LEGACY)
 
 
             isEnabled = true

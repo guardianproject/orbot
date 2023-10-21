@@ -35,7 +35,7 @@ public class OnionServiceActionsDialogFragment extends DialogFragment {
         AlertDialog ad = new AlertDialog.Builder(getActivity())
                 .setItems(new CharSequence[]{
                         getString(R.string.copy_address_to_clipboard),
-                        Html.fromHtml(getString(R.string.backup_service)),
+                        Html.fromHtml(getString(R.string.backup_service), Html.FROM_HTML_MODE_LEGACY),
                         getString(R.string.delete_service)}, null)
                 .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
                 .setTitle(R.string.hidden_services)
