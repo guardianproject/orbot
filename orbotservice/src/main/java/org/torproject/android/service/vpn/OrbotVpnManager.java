@@ -28,6 +28,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.os.ParcelFileDescriptor;
+import android.system.OsConstants;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -223,7 +224,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
         return true;
     }
 
-    public final static String FAKE_DNS = "10.10.10.10";
+    public final static String FAKE_DNS = "10.0.0.1";
 
     private synchronized void setupTun2Socks(final VpnService.Builder builder) {
         try {
@@ -239,13 +240,9 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                 .addDnsServer(FAKE_DNS) //just setting a value here so DNS is captured by TUN interface
                 .addRoute(FAKE_DNS, 32);
 
-            //route all traffic through VPN (we might offer country specific exclude lists in the future)
-            //    builder.addRoute(defaultRoute, 0);
-
-
             //handle ipv6
-            //builder.addAddress("fdfe:dcba:9876::1", 126);
-            //builder.addRoute("::", 0);
+            builder.addAddress("fdfe:dcba:9876::1", 126);
+            builder.addRoute("::", 0);
 
             /**
              * Can't use this since our HTTP proxy is only CONNECT and not a full proxy
@@ -260,15 +257,15 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 builder.setMetered(false);
 
+                // Explicitly allow both families, so we do not block
+                // traffic for ones without DNS servers (issue 129).
+                builder.allowFamily(OsConstants.AF_INET);
+                builder.allowFamily(OsConstants.AF_INET6);
 
                 /**
                  // Allow applications to bypass the VPN
                  builder.allowBypass();
 
-                 // Explicitly allow both families, so we do not block
-                 // traffic for ones without DNS servers (issue 129).
-                 builder.allowFamily(OsConstants.AF_INET);
-                 builder.allowFamily(OsConstants.AF_INET6);
                  **/
             }
 
@@ -332,6 +329,10 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                                     IpPacket ipPacket = (IpPacket) packet;
                                     if (isPacketDNS(ipPacket))
                                         mExec.execute(new RequestPacketHandler(ipPacket, pFlow, mDnsResolver));
+                                    else if (isPacketICMP(ipPacket))
+                                    {
+                                        //do nothing, drop!
+                                    }
                                     else
                                         IPtProxy.inputPacket(pdata);
                                 }
@@ -354,6 +355,9 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
             return up.getHeader().getDstPort() == UdpPort.DOMAIN;
         }
         return false;
+    }
+    private static boolean isPacketICMP(IpPacket p) {
+        return (p.getHeader().getProtocol() == IpNumber.ICMPV4 || p.getHeader().getProtocol() == IpNumber.ICMPV4);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
