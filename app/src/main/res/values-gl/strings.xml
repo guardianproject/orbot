@@ -72,10 +72,10 @@
     <string name="ports_reachable_behind_a_restrictive_firewall">Portos alcanzábeis detrás dun firewall restritivo</string>
     <string name="enter_ports">Inserir portos</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">habilitar rexistro de depuración na saída (debe usar adb ou aLogCat para ver)</string>
-    <string name="project_home">Páxina(s) de Inicio do Proxecto:</string>
+    <string name="project_home">Inicio do Proxecto:</string>
     <string name="third_party_software">Software de Terceiros:</string>
     <string name="hidden_service_request">Unha aplicación quere abrir o porto oculto de servidor %1$s a rede Tor. Esto é seguro se vostede confía na app.</string>
-    <string name="pref_use_expanded_notifications">Mostar notificación extendida co país de saída de Tor e IP</string>
+    <string name="pref_use_expanded_notifications">Mostra na notificación o país e o enderezo IP do teu nodo de saída cando estea dispoñible</string>
     <string name="pref_use_expanded_notifications_title">Notificacións extendidas</string>
     <string name="set_locale_title">Idioma</string>
     <string name="pref_disable_network_title">Auto-Parado Sen Rede</string>
@@ -95,7 +95,7 @@
     <string name="pref_torrc_dialog">Torrc personalizado</string>
     <string name="bridges_updated">Pontes actualizadas</string>
     <string name="restart_orbot_to_use_this_bridge_">Por favor, reinicie Orbot para activar os cambios</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Si a súa rede móbil bloquea Tor de xeito activo, pode utilizar un \'Servidor Ponte\' como modo alternativo. ESCOLL unha das opcións para configurar e probar…</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Se a túa rede móbil bloquea Tor activamente, podes usar un \"Servidor Bridge\" como forma alternativa de entrar. Selecciona unha das opcións para configurar e probar…</string>
     <string name="get_bridges_email">Email</string>
     <string name="apps_mode">Modo VPN</string>
     <string name="send_email">Enviar correo</string>
@@ -108,7 +108,7 @@
     <string name="name">Nome</string>
     <string name="done">Feito!</string>
     <string name="copy_address_to_clipboard">Copiar enderezo ao portapapeis</string>
-    <string name="backup_service">Servizo de respaldo</string>
+    <string name="backup_service">Servizo de copia de seguranza <i>(Aviso: isto podería expoñer a configuración do teu servizo a outras aplicacións)</i></string>
     <string name="delete_service">Eliminar servizo</string>
     <string name="backup_saved_at_external_storage">Respaldo gardado en almacenamento externo</string>
     <string name="backup_restored">Respaldo restaurado</string>
@@ -122,8 +122,8 @@
     <string name="share_as_qr">Compartir como QR</string>
     <string name="disable">Inhabilitar</string>
     <string name="enable">Activar</string>
-    <string name="consider_disable_battery_optimizations">Considere desactivar as optimizacións da batería</string>
-    <string name="consider_enable_battery_optimizations">Considere activar as optimizacións da batería</string>
+    <string name="consider_disable_battery_optimizations">Servizos aloxados en execución, considera desactivar as optimizacións da batería</string>
+    <string name="consider_enable_battery_optimizations">Non se executa ningún servizo aloxado, considera habilitar as optimizacións da batería</string>
     <string name="pref_isolate_dest">Illar enderezos de destino</string>
     <string name="pref_isolate_dest_summary">Utilizar un circuito diferente para cada enderezo de destino</string>
     <string name="pref_connection_padding">Espazado da conexión</string>
@@ -162,4 +162,23 @@
     <string name="btn_refresh">Anovar</string>
     <string name="action_use">Utilizar</string>
     <string name="menu_header_features">Funcións</string>
+    <string name="v3_hosted_services">Servizos de cebola aloxados</string>
+    <string name="pref_http_dialog">Config do porto HTTP</string>
+    <string name="v3_backup_key">Clave de autorización do cliente de copia de seguranza</string>
+    <string name="v3_backup_name_hint">Copia de seguranza do nome do ficheiro…</string>
+    <string name="pref_isolate_port">Illar os portos de destino</string>
+    <string name="get_bridges_email_request">Solicite Bridges por correo electrónico</string>
+    <string name="pref_open_proxy_on_all_interfaces_title">Abre o proxy en todas as interfaces</string>
+    <string name="v3_import_auth_private">Importar .auth_private</string>
+    <string name="pref_http_title">Tor HTTP</string>
+    <string name="v3_client_auth_activity_title">Autorización do cliente</string>
+    <string name="backup_port_exist">Erro: un servizo de Onion xa está usando o porto %s</string>
+    <string name="pref_open_proxy_on_all_interfaces_summary">Permitir que os pares de wifi, os dispositivos conectados e calquera outra persoa que se poida conectar á túa IP accedan a Tor</string>
+    <string name="v3_backup_key_warning">Aviso: isto podería expor a túa chave a outras aplicacións</string>
+    <string name="v3_delete_client_authorization">Eliminar a clave de autorización do cliente</string>
+    <string name="strict_nodes_description">Trate a configuración de Exclusión de nodos como un requisito para construír todos os circuítos. Isto pode romper a funcionalidade se non se poden xerar circuítos coa túa configuración de Exclusión de nós.</string>
+    <string name="v3_delete_client_authorization_confirm">Eliminar a autorización do cliente</string>
+    <string name="pref_http_summary">Porto no que Tor ofrece o seu proxy HTTP (predeterminado: 8118 ou 0 para desactivar)</string>
+    <string name="v3_onion">Dominio .cebola</string>
+    <string name="v3_key_hash">x25519 Chave privada en Base32</string>
 </resources>

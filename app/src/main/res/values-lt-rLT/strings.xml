@@ -233,13 +233,10 @@
     <string name="power_user_description">Vartotojams, susipažinusiems su . Leidžia paleisti „Orbot“ be VPN nustatymo ir rodo atvirus SOCKS ir HTTP prievadus</string>
     <string name="volunteer_mode_subtitle_desc">Gerumo režimas leidžia jūsų įrenginiui būti tiltu kitiems. Tai padeda žmonėms naudoti „Tor“ vietose, kur jis užblokuotas.
 \n
-\n- Tai neišsekins jūsų baterijos
-\n
-\n- Tai nesustabdys jūsų interneto
-\n
-\n- Jis gali veikti tik per WI-FI
-\n
-\n- Jį galima bet kada išjungti</string>
+\n• Tai neišsekins jūsų baterijos
+\n• Tai nesustabdys jūsų interneto
+\n• Jis gali veikti tik per WI-FI
+\n• Jį galima bet kada išjungti</string>
     <string name="smart_connect">Gudrusis ryšys (numatytasis)</string>
     <string name="snowflake">„Snowflake“</string>
     <string name="snowflake_subtitle">Prisijungia per „Tor“ savanorius. Apeina tam tikrą „Tor“ blokavimą.</string>
