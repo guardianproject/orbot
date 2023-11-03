@@ -4,11 +4,11 @@
     <string name="app_description">Orbot je besplatna proxy aplikacija koja omogućuje ostalim aplikacijama da koriste internet sigurnije. Orbot koristi Tor za enkripciju Vašeg Internet prometa, a zatim ga skriva šaljući ga kroz seriju računala diljem svijeta. Tor je besplatan software i otvorena mreža koja pomaže u borbi protiv nadzora mreže koji ugrožava osobne slobode i privatnost, povjerljive poslovne aktivnosti i odnose, te pomaže u borbi protiv analize prometa.</string>
     <string name="menu_settings">Postavke</string>
     <string name="menu_log">Dnevnik</string>
-    <string name="menu_stop">Zaustavi</string>
-    <string name="menu_about">O</string>
+    <string name="menu_stop">Prekini</string>
+    <string name="menu_about">Informacije</string>
     <string name="main_layout_download">Preuzimanje</string>
     <string name="main_layout_upload">Slanje</string>
-    <string name="button_about">O</string>
+    <string name="button_about">Informacije</string>
     <string name="menu_exit">Izlaz</string>
     <string name="menu_scan">Skeniraj BridgeQR</string>
     <string name="menu_share_bridge">Podijeli BridgeQR</string>
