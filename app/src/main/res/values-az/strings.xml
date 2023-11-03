@@ -220,4 +220,6 @@
     <string name="btn_start_vpn">VPN işə salın</string>
     <string name="secure_your_connection_title">Qoşulmağa hazırdır</string>
     <string name="configure_header">Tor bağlantınızı konfiqurasiya edin</string>
+    <string name="volunteer_mode_label">Xeyirxahlıq rejimi</string>
+    <string name="hide_apps">Tətbiqləri şəbəkə monitorinqindən gizlədin və bloklandıqda giriş əldə edin.</string>
 </resources>

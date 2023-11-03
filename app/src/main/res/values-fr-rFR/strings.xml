@@ -190,7 +190,7 @@
     <string name="license">Licence :</string>
     <string name="bridge_snowflake_amp">Se connecter par d’autres utilisateurs de Tor grâce à Snowflake (méthode 2 – AMP)</string>
     <string name="snowflake_proxy_msg_title">Afficher la notification de connexion</string>
-    <string name="snowflake_proxy_msg_description">Afficher un message quand votre Snowflake aide quelqu’un à contourner la censure</string>
+    <string name="snowflake_proxy_msg_description">Afficher un message lorsque vous aidez quelqu\'un à contourner la censure</string>
     <string name="power_user_mode">Mode utilisateur avancé</string>
     <string name="action_activate">Activer</string>
     <string name="volunteer_status_title">Aujourd’hui, c’est meilleur
@@ -257,7 +257,7 @@
     <string name="action_use">Utilisation</string>
     <string name="ask_tor">Demander à Tor</string>
     <string name="no_internet_subtitle">Vous avez besoin d\'une connexion internet pour utiliser Orbot.</string>
-    <string name="kindness_adjust_title">Ajuster lorsqu\'il fonctionne...</string>
+    <string name="kindness_adjust_title">Ajuster quand il fonctionne…</string>
     <string name="asking">DEMANDER...</string>
     <string name="setting_padding">Rembourrage</string>
     <string name="setting_debug">Débogage</string>
@@ -285,4 +285,6 @@
     <string name="connection_snowflake">Snowflake</string>
     <string name="connection_custom">Personnalisé</string>
     <string name="pref_flag_secure_summary">Empêcher les autres applications de prendre des captures d\'écran d\'Orbot</string>
+    <string name="pref_flag_secure_title">Sécurité de l\'écran</string>
+    <string name="root_warning">Orbot a détecté que votre appareil est rooté, ce qui peut entraîner des problèmes de sécurité.</string>
 </resources>

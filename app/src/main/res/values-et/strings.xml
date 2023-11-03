@@ -62,7 +62,7 @@
     <string name="the_nickname_for_your_tor_relay">Teie Tor edastaja hüüdnimi</string>
     <string name="enter_a_custom_relay_nickname">Sisestage edastaja kohandatud hüüdnimi</string>
     <string name="reachable_addresses">Juurdepääsetavad aadressid</string>
-    <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">Käivita kui piirava poliitikaga tulemüüri taga asuvat klienti.</string>
+    <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">Käivita kui piirava poliitikaga tulemüüri taga asuvat klienti</string>
     <string name="reachable_ports">Juurdepääsetavad pordid</string>
     <string name="ports_reachable_behind_a_restrictive_firewall">Piirava poliitikaga tulemüüris avatud pordid</string>
     <string name="enter_ports">Sisestage pordid</string>
@@ -180,7 +180,7 @@
     <string name="pref_connection_padding">Ühenduse polsterdamine</string>
     <string name="pref_connection_padding_summary">Võimaldab alati ühenduse polsterdamist, et kaitsta end mõne liikluse analüüsi vormi eest. Vaikimisi: auto</string>
     <string name="pref_reduced_connection_padding">Vähendatud ühenduse polsterdamine</string>
-    <string name="pref_circuit_padding_summary">Võimaldab vooluahela polsterdamist, et kaitsta end mõnede liiklusanalüüsi vormide eest.</string>
+    <string name="pref_circuit_padding_summary">Võimaldab vooluahela polsterdamist, et kaitsta end mõnede liiklusanalüüsi vormide eest</string>
     <string name="pref_prefer_ipv6_summary">Ütleb väljumistele, et IPv6-aadressid on eelistatud</string>
     <string name="testing_tor_direct">Toriga ühenduse testimine…</string>
     <string name="testing_tor_direct_success">Edu. Tor ühendus on hea!</string>

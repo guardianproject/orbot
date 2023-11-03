@@ -192,7 +192,7 @@
     <string name="secure_your_connection_subtitle">Paslėpkite programėles nuo tinklo stebėjimo ir gaukite prieigą, kai jos blokuojamos.</string>
     <string name="connected_title">Prisijungta</string>
     <string name="btn_start_vpn">Pradėti VPN</string>
-    <string name="btn_configure">Konfigūruoti</string>
+    <string name="btn_configure">Pasirinkite, kaip prisijungti</string>
     <string name="volunteer_mode">Gerumo režimas</string>
     <string name="volunteer_mode_subtitle">Padėkite kitiems prisijungti</string>
     <string name="trying_to_connect_title">Prisijungiama…</string>
@@ -214,7 +214,7 @@
     <string name="strict_nodes_description">Išskirti mazgų nustatymus vertinkite kaip reikalavimą kuriant visas grandines. Tai gali sutrikdyti funkcionalumą, jei nepavyks sugeneruoti jokių grandinių, naudojant nustatymus Išskirti mazgus.</string>
     <string name="bridge_snowflake_amp">Prisijungimas per kitus „Tor“ naudotojus naudojant „Snowflake“ (2 būdas)</string>
     <string name="snowflake_proxy_msg_title">Rodyti pranešimą apie ryšį</string>
-    <string name="snowflake_proxy_msg_description">Parodykite pranešimą, kai jūsų „Snowflake“ padeda kam nors apeiti cenzūrą</string>
+    <string name="snowflake_proxy_msg_description">Rodyti pranešimą, kai padedate kam nors apeiti cenzūrą</string>
     <string name="configure_header">Konfigūruoti savo „Tor“ ryšį</string>
     <string name="drawer_open">Atidaryti</string>
     <string name="drawer_close">Uždaryti</string>
@@ -233,17 +233,14 @@
     <string name="power_user_description">Vartotojams, susipažinusiems su . Leidžia paleisti „Orbot“ be VPN nustatymo ir rodo atvirus SOCKS ir HTTP prievadus</string>
     <string name="volunteer_mode_subtitle_desc">Gerumo režimas leidžia jūsų įrenginiui būti tiltu kitiems. Tai padeda žmonėms naudoti „Tor“ vietose, kur jis užblokuotas.
 \n
-\n- Tai neišsekins jūsų baterijos
-\n
-\n- Tai nesustabdys jūsų interneto
-\n
-\n- Jis gali veikti tik per WI-FI
-\n
-\n- Jį galima bet kada išjungti</string>
+\n• Tai neišsekins jūsų baterijos
+\n• Tai nesustabdys jūsų interneto
+\n• Jis gali veikti tik per WI-FI
+\n• Jį galima bet kada išjungti</string>
     <string name="smart_connect">Gudrusis ryšys (numatytasis)</string>
-    <string name="snowflake">„Snowflake“</string>
+    <string name="snowflake">Snowflake (originalus)</string>
     <string name="snowflake_subtitle">Prisijungia per „Tor“ savanorius. Apeina tam tikrą „Tor“ blokavimą.</string>
-    <string name="get_a_bridge">Gaukite tiltą iš „Tor“ (Obfs4)</string>
+    <string name="get_a_bridge">Tiltas iš Tor (Obfs4)</string>
     <string name="connect">Prisijungti</string>
     <string name="next">Toliau</string>
     <string name="solve_captcha">Išspręskite „Captcha“</string>
@@ -268,4 +265,26 @@
     <string name="setting_debug">Derinimas</string>
     <string name="action_use">Naudoti</string>
     <string name="no_interent_title">Prisijunkite prie interneto</string>
+    <string name="no_internet_subtitle">Norint naudotis \"Orbot\", reikia interneto ryšio.</string>
+    <string name="not_sure">Nesate tikri\?</string>
+    <string name="ask_tor">Paklauskite Tor</string>
+    <string name="option_only_when_charging">Tik įkraunant</string>
+    <string name="pref_isolate_port_summary">Kiekvienam paskirties prievadui naudokite skirtingą grandinę</string>
+    <string name="pref_isolate_protocol">Izoliuoti kliento protokolus</string>
+    <string name="kindness_adjust_title">Reguliuokite, kai jis veikia…</string>
+    <string name="log_copied">Nukopijuotas žurnalas</string>
+    <string name="btn_copy_log">Kopijavimo žurnalas</string>
+    <string name="setting_padding">Paminkštinimas</string>
+    <string name="option_only_on_wifi">Tik per Wifi</string>
+    <string name="connection_direct">Tiesioginis</string>
+    <string name="pref_isolate_port">Išskirti paskirties prievadai</string>
+    <string name="asking">KLAUSIMAS...</string>
+    <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="menu_kindness">Gerumas</string>
+    <string name="pref_flag_secure_title">Ekrano apsauga</string>
+    <string name="root_warning">\"Orbot\" nustatė, kad jūsų įrenginys yra įsišaknijęs, o tai gali sukelti saugumo problemų.</string>
+    <string name="kindess_config_detail">Konfigūruokite, kaip ir kada jūsų įrenginys gali veikti kaip \"Snowflake\" tarpinis serveris kitiems \"Tor\" naudotojams.</string>
+    <string name="pref_isolate_protocol_summary">Kiekvienam jungiamajam protokolui naudokite skirtingą grandinę</string>
+    <string name="pref_flag_secure_summary">Neleiskite kitoms programoms daryti \"Orbot\" ekrano nuotraukų</string>
+    <string name="many_ways">Yra daugybė būdų pasiekti Tor. Vieni iš jų jums gali tikti labiau nei kiti.</string>
 </resources>
