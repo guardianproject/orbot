@@ -65,7 +65,9 @@ import org.torproject.android.service.vpn.TorifiedApp;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -73,6 +75,7 @@ import java.util.StringTokenizer;
 
 public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLongClickListener {
 
+    private static final String DEFAULT_ENCODING = StandardCharsets.UTF_8.name();
     private static final int RESULT_CLOSE_ALL = 0;
     private final static int REQUEST_VPN = 8888;
     private final static int REQUEST_SETTINGS = 0x9874;
@@ -435,7 +438,7 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
         try {
             String aboutText = readFromAssets(this, "LICENSE");
             aboutText = aboutText.replace("\n", "<br/>");
-            aboutOther.setText(Html.fromHtml(aboutText));
+            aboutOther.setText(Html.fromHtml(aboutText, Html.FROM_HTML_MODE_LEGACY));
         } catch (Exception e) {
         }
 
@@ -519,7 +522,11 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
                 var loc = new Locale.Builder().setLanguage(Prefs.getDefaultLocale()).build();
                 if (urlString.toLowerCase(loc).startsWith("bridge://")) {
                     String newBridgeValue = urlString.substring(9); //remove the bridge protocol piece
-                    newBridgeValue = URLDecoder.decode(newBridgeValue); //decode the value here
+                    try {
+                        newBridgeValue = URLDecoder.decode(newBridgeValue, DEFAULT_ENCODING); //decode the value here
+                    } catch (UnsupportedEncodingException e) {
+                        throw new RuntimeException(e);
+                    }
 
                     showAlert(getString(R.string.bridges_updated), getString(R.string.restart_orbot_to_use_this_bridge_) + newBridgeValue, false);
 
@@ -636,7 +643,7 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
                     int urlIdx = results.indexOf("://");
 
                     if (urlIdx != -1) {
-                        results = URLDecoder.decode(results, "UTF-8");
+                        results = URLDecoder.decode(results, DEFAULT_ENCODING);
                         results = results.substring(urlIdx + 3);
 
                         showAlert(getString(R.string.bridges_updated), getString(R.string.restart_orbot_to_use_this_bridge_) + results, false);

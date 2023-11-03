@@ -29,6 +29,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import org.torproject.android.BuildConfig;
 import org.torproject.android.R;
@@ -222,10 +223,10 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
                 convertView.setOnFocusChangeListener((v, hasFocus) -> {
                     if (hasFocus)
-                        v.setBackgroundColor(getResources().getColor(R.color.dark_purple));
+                        v.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.dark_purple));
                     else
                     {
-                        v.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                        v.setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
                     }
                 });
 

@@ -3,6 +3,7 @@ package org.torproject.android.tv.ui.onboarding;
 import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import com.github.paolorotolo.appintro.AppIntro;
 
@@ -29,8 +30,8 @@ public class OnboardingActivity extends AppIntro {
 
         // OPTIONAL METHODS
         // Override bar/separator color.
-        setBarColor(getResources().getColor(R.color.dark_green));
-        setSeparatorColor(getResources().getColor(R.color.panel_background_main));
+        setBarColor(ContextCompat.getColor(this, R.color.dark_green));
+        setSeparatorColor(ContextCompat.getColor(this, R.color.panel_background_main));
 
         // Hide Skip/Done button.
         showSkipButton(false);

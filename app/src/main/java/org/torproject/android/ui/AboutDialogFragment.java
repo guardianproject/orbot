@@ -65,7 +65,7 @@ public class AboutDialogFragment extends DialogFragment {
             try {
                 String aboutText = DiskUtils.readFileFromAssets("LICENSE", getContext());
                 aboutText = aboutText.replaceAll(ABOUT_LICENSE_EQUALSIGN, "\n").replace("\n\n", "<br/><br/>").replace("\n", "");
-                tvAbout.setText(Html.fromHtml(aboutText));
+                tvAbout.setText(Html.fromHtml(aboutText, Html.FROM_HTML_MODE_LEGACY));
             } catch (IOException e) {
             }
         }
