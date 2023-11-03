@@ -42,7 +42,7 @@
     <string name="main_layout_download">Ներբեռնել</string>
     <string name="main_layout_upload">Upload</string>
     <string name="pref_general_group">General</string>
-    <string name="license">Արտոնագիր․</string>
+    <string name="license">Արտոնագիր:</string>
     <string name="menu_hidden_services">Onion ծառայություններ</string>
     <string name="trying_to_connect_title">Միացում…</string>
     <string name="menu_header_features">Հատկություններ</string>
