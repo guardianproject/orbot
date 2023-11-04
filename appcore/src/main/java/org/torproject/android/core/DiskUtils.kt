@@ -1,21 +1,17 @@
 package org.torproject.android.core
 
-import android.annotation.TargetApi
 import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Environment
+
 import java.io.BufferedReader
 import java.io.File
 import java.io.IOException
 import java.io.InputStreamReader
 
 object DiskUtils {
-
-    @JvmStatic
-    fun supportsStorageAccessFramework() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
 
     @JvmStatic
     @Throws(IOException::class)
@@ -32,7 +28,6 @@ object DiskUtils {
     }
 
     @JvmStatic
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     fun createWriteFileIntent(filename: String, mimeType: String): Intent = Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
         addCategory(Intent.CATEGORY_OPENABLE)
         type = mimeType
@@ -40,7 +35,6 @@ object DiskUtils {
     }
 
     @JvmStatic
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     fun createReadFileIntent(mimeType: String): Intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
         addCategory(Intent.CATEGORY_OPENABLE)
         type = mimeType
