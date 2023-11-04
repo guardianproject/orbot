@@ -67,7 +67,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import IPtProxy.IPtProxy;
-import androidx.annotation.ChecksSdkIntAtLeast;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
@@ -100,8 +99,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     public static File appBinHome;
     public static File appCacheHome;
     private final ExecutorService mExecutor = Executors.newCachedThreadPool();
-    @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.LOLLIPOP)
-    final boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+    final boolean mIsLollipop = true;
     OrbotRawEventListener mOrbotRawEventListener;
     OrbotVpnManager mVpnManager;
     Handler mHandler;

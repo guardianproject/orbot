@@ -16,7 +16,6 @@
 
 package org.torproject.android.service.vpn;
 
-import android.annotation.TargetApi;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -55,16 +54,11 @@ import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
-import androidx.annotation.ChecksSdkIntAtLeast;
-
 import IPtProxy.IPtProxy;
 import IPtProxy.PacketFlow;
 
 public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     private static final String TAG = "OrbotVpnService";
-    @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.LOLLIPOP)
-    private final static boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     public static int sSocksProxyServerPort = -1;
     public static String sSocksProxyLocalhost = null;
     boolean isStarted = false;
@@ -123,10 +117,6 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                         mTorSocks = torSocks;
                         mTorDns = torDns;
 
-                        if (!mIsLollipop) {
-                            startSocksBypass();
-                        }
-
                         setupTun2Socks(builder);
                     }
                 }
@@ -137,9 +127,6 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
 
     public void restartVPN (VpnService.Builder builder) {
         stopVPN();
-        if (!mIsLollipop) {
-            startSocksBypass();
-        }
         setupTun2Socks(builder);
     }
 
@@ -183,8 +170,6 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     }
 
     private void stopVPN() {
-        if (!mIsLollipop)
-            stopSocksBypass();
 
         keepRunningPacket = false;
 
@@ -250,8 +235,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                 builder.setHttpProxy(ProxyInfo.buildDirectProxy("localhost",mTorHttp));
             }**/
 
-            if (mIsLollipop)
-                doLollipopAppRouting(builder);
+            doLollipopAppRouting(builder);
 
             // https://developer.android.com/reference/android/net/VpnService.Builder#setMetered(boolean)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -272,8 +256,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
              builder.setSession(mSessionName)
                     .setConfigureIntent(null); // previously this was set to a null member variable
 
-            if (mIsLollipop)
-                builder.setBlocking(true);
+            builder.setBlocking(true);
 
             mInterface = builder.establish();
 
@@ -360,7 +343,6 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
         return (p.getHeader().getProtocol() == IpNumber.ICMPV4 || p.getHeader().getProtocol() == IpNumber.ICMPV6);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void doLollipopAppRouting(VpnService.Builder builder) throws NameNotFoundException {
         var apps = TorifiedApp.getApps(mService, prefs);
         var perAppEnabled = false;
