@@ -113,12 +113,8 @@ public class OnionServiceActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_restore_backup) {
-            if (DiskUtils.supportsStorageAccessFramework()) {
-                Intent readFileIntent = DiskUtils.createReadFileIntent(ZipUtilities.ZIP_MIME_TYPE);
-                startActivityForResult(readFileIntent, REQUEST_CODE_READ_ZIP_BACKUP);
-            } else { // APIs 16, 17, 18
-                doRestoreLegacy();
-            }
+            Intent readFileIntent = DiskUtils.createReadFileIntent(ZipUtilities.ZIP_MIME_TYPE);
+            startActivityForResult(readFileIntent, REQUEST_CODE_READ_ZIP_BACKUP);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -170,7 +166,6 @@ public class OnionServiceActivity extends AppCompatActivity {
     }
 
     void showBatteryOptimizationsMessageIfAppropriate() {
-        if (!PermissionManager.isAndroidM()) return;
         Cursor activeServices = getContentResolver().query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION,
                 OnionServiceContentProvider.OnionService.ENABLED + "=1", null, null);
         if (activeServices == null) return;

@@ -67,12 +67,8 @@ public class OnionServiceActionsDialogFragment extends DialogFragment {
             Toast.makeText(context, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG).show();
             return;
         }
-        if (DiskUtils.supportsStorageAccessFramework()) {
-            Intent createFileIntent = DiskUtils.createWriteFileIntent(filename, "application/zip");
-            startActivityForResult(createFileIntent, REQUEST_CODE_WRITE_FILE);
-        } else { // APIs 16, 17, 18
-            attemptToWriteBackup(Uri.fromFile(new File(DiskUtils.getOrCreateLegacyBackupDir(getString(R.string.app_name)), filename)));
-        }
+        Intent createFileIntent = DiskUtils.createWriteFileIntent(filename, "application/zip");
+        startActivityForResult(createFileIntent, REQUEST_CODE_WRITE_FILE);
     }
 
     @Override

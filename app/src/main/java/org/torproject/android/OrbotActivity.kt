@@ -219,7 +219,6 @@ class OrbotActivity : BaseActivity() {
         const val REQUEST_CODE_VPN = 1234
         const val REQUEST_CODE_SETTINGS = 2345
         const val REQUEST_VPN_APP_SELECT = 2432
-        val CAN_DO_APP_ROUTING = PermissionManager.isLollipopOrHigher()
     }
 
     fun showLog() {

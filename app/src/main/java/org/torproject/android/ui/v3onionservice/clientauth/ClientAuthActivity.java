@@ -115,13 +115,9 @@ public class ClientAuthActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_import_auth_priv) {
-            if (DiskUtils.supportsStorageAccessFramework()) {
-                // unfortunately no good way to filter .auth_private files
-                Intent readFileIntent = DiskUtils.createReadFileIntent(CLIENT_AUTH_SAF_MIME_TYPE);
-                startActivityForResult(readFileIntent, REQUEST_CODE_READ_ZIP_BACKUP);
-            } else { // APIs 16, 17, 18
-                doRestoreLegacy();
-            }
+            // Unfortunately no good way to filter .auth_private files
+            Intent readFileIntent = DiskUtils.createReadFileIntent(CLIENT_AUTH_SAF_MIME_TYPE);
+            startActivityForResult(readFileIntent, REQUEST_CODE_READ_ZIP_BACKUP);
         }
         return super.onOptionsItemSelected(item);
     }

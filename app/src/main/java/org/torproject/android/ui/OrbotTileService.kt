@@ -2,12 +2,10 @@ package org.torproject.android.ui
 
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
-import android.os.Build
 import android.service.quicksettings.TileService
-import androidx.annotation.RequiresApi
+
 import org.torproject.android.OrbotActivity
 
-@RequiresApi(Build.VERSION_CODES.N)
 class OrbotTileService: TileService() {
 
     // Called when the user adds your tile.
