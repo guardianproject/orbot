@@ -20,6 +20,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.VpnService;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -39,6 +40,7 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.palette.graphics.Palette;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -438,7 +440,9 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
         try {
             String aboutText = readFromAssets(this, "LICENSE");
             aboutText = aboutText.replace("\n", "<br/>");
-            aboutOther.setText(Html.fromHtml(aboutText, Html.FROM_HTML_MODE_LEGACY));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                aboutOther.setText(Html.fromHtml(aboutText, Html.FROM_HTML_MODE_LEGACY));
+            }
         } catch (Exception e) {
         }
 
@@ -589,6 +593,7 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onActivityResult(int request, int response, Intent data) {
         super.onActivityResult(request, response, data);
@@ -900,6 +905,7 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void showAppConfig(String pkgId) {
         Intent data = new Intent(this, AppConfigActivity.class);
         data.putExtra(Intent.EXTRA_PACKAGE_NAME, pkgId);
@@ -967,7 +973,9 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
 
                     avh.iv.setVisibility(View.VISIBLE);
 
-                    avh.parent.setOnClickListener(v -> showAppConfig(pkgId));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        avh.parent.setOnClickListener(v -> showAppConfig(pkgId));
+                    }
 
                     avh.parent.setOnFocusChangeListener((v, hasFocus) -> {
                         if (hasFocus)
