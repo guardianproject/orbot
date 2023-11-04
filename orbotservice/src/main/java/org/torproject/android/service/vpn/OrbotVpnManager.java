@@ -357,7 +357,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
         return false;
     }
     private static boolean isPacketICMP(IpPacket p) {
-        return (p.getHeader().getProtocol() == IpNumber.ICMPV4 || p.getHeader().getProtocol() == IpNumber.ICMPV4);
+        return (p.getHeader().getProtocol() == IpNumber.ICMPV4 || p.getHeader().getProtocol() == IpNumber.ICMPV6);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
