@@ -99,7 +99,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
     public static File appBinHome;
     public static File appCacheHome;
     private final ExecutorService mExecutor = Executors.newCachedThreadPool();
-    final boolean mIsLollipop = true;
     OrbotRawEventListener mOrbotRawEventListener;
     OrbotVpnManager mVpnManager;
     Handler mHandler;
@@ -1247,32 +1246,25 @@ public class OrbotService extends VpnService implements OrbotConstants {
     private StringBuffer processSettingsImplDirectPathway(StringBuffer extraLines) {
         var prefs = Prefs.getSharedPrefs(getApplicationContext());
         extraLines.append("UseBridges 0").append('\n');
-        if (Prefs.useVpn()) { //set the proxy here if we aren't using a bridge
-            if (!mIsLollipop) {
-                var proxyType = "socks5";
-                extraLines.append(proxyType + "Proxy" + ' ' + OrbotVpnManager.sSocksProxyLocalhost + ':' + OrbotVpnManager.sSocksProxyServerPort).append('\n');
-            }
-        } else {
-            var proxyType = prefs.getString("pref_proxy_type", null);
-            if (proxyType != null && proxyType.length() > 0) {
-                var proxyHost = prefs.getString("pref_proxy_host", null);
-                var proxyPort = prefs.getString("pref_proxy_port", null);
-                var proxyUser = prefs.getString("pref_proxy_username", null);
-                var proxyPass = prefs.getString("pref_proxy_password", null);
+        var proxyType = prefs.getString("pref_proxy_type", null);
+        if (proxyType != null && proxyType.length() > 0) {
+            var proxyHost = prefs.getString("pref_proxy_host", null);
+            var proxyPort = prefs.getString("pref_proxy_port", null);
+            var proxyUser = prefs.getString("pref_proxy_username", null);
+            var proxyPass = prefs.getString("pref_proxy_password", null);
 
-                if ((proxyHost != null && proxyHost.length() > 0) && (proxyPort != null && proxyPort.length() > 0)) {
-                    extraLines.append(proxyType).append("Proxy").append(' ').append(proxyHost).append(':').append(proxyPort).append('\n');
+            if ((proxyHost != null && proxyHost.length() > 0) && (proxyPort != null && proxyPort.length() > 0)) {
+                extraLines.append(proxyType).append("Proxy").append(' ').append(proxyHost).append(':').append(proxyPort).append('\n');
 
-                    if (proxyUser != null && proxyPass != null) {
-                        if (proxyType.equalsIgnoreCase("socks5")) {
-                            extraLines.append("Socks5ProxyUsername").append(' ').append(proxyUser).append('\n');
-                            extraLines.append("Socks5ProxyPassword").append(' ').append(proxyPass).append('\n');
-                        } else
-                            extraLines.append(proxyType).append("ProxyAuthenticator").append(' ').append(proxyUser).append(':').append(proxyPort).append('\n');
-
-                    } else if (proxyPass != null)
+                if (proxyUser != null && proxyPass != null) {
+                    if (proxyType.equalsIgnoreCase("socks5")) {
+                        extraLines.append("Socks5ProxyUsername").append(' ').append(proxyUser).append('\n');
+                        extraLines.append("Socks5ProxyPassword").append(' ').append(proxyPass).append('\n');
+                    } else
                         extraLines.append(proxyType).append("ProxyAuthenticator").append(' ').append(proxyUser).append(':').append(proxyPort).append('\n');
-                }
+
+                } else if (proxyPass != null)
+                    extraLines.append(proxyType).append("ProxyAuthenticator").append(' ').append(proxyUser).append(':').append(proxyPort).append('\n');
             }
         }
         return extraLines;
