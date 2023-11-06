@@ -159,18 +159,23 @@ public interface OrbotConstants {
     String PREFS_KEY_TORIFIED = "PrefTord";
 
     /**
-     * Include packages here to make the VPNService ignore these apps (On Lollipop+). This is to
-     * prevent tor over tor scenarios...
+     * Include packages here to make the VPNService ignore these apps (on Lollipop+).
+     * This is done to prevent Tor over Tor scenarios and certain compatibility issues.
      */
-    List<String> BYPASS_VPN_PACKAGES = Arrays.asList("org.torproject.torbrowser_alpha",
+    List<String> BYPASS_VPN_PACKAGES = Arrays.asList(
+            "org.torproject.torbrowser_alpha",
             "org.torproject.torbrowser",
             "org.onionshare.android", // issue #618
-            "org.briarproject.briar.android" // https://github.com/guardianproject/orbot/issues/474
+            "org.briarproject.briar.android", // issue #474
+            "com.whatsapp" // issue #590
     );
 
+    /**
+     * Include packages here to explicitly suggest these apps to the user (on Lollipop+).
+     * This is done for social media and communications apps that can benefit from Tor.
+     */
     List<String> VPN_SUGGESTED_APPS = Arrays.asList(
             "org.thoughtcrime.securesms", // Signal
-            "com.whatsapp",
             "com.instagram.android",
             "im.vector.app",
             "org.telegram.messenger",
