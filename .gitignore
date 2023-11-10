@@ -1,31 +1,10 @@
-# compiled NDK binary artifacts 
-orbotservice/src/main/libs/
-OrbotLib/OrbotIPtProxy
-
-# auto-generated files from Android builds
-build.xml
-ant.properties
-default.properties
-proguard.cfg
-proguard-project.txt
-#
-releases
-.directory
-keystore.properties
-
-#built application files
+# Built application files
 *.apk
 *.ap_
-
-# files for the dex VM
-*.dex
+*.aab
 
 # Java class files
 *.class
-
-# subdirs for generated files
-bin/
-gen/
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -38,37 +17,23 @@ Thumbs.db
 
 # Android Studio
 *.iml
-.idea/
-.gradle/
+.idea
+.gradle
+/build
 build/
+captures/
 
-/external/appcompat/bin/
-/external/appcompat/gen/
-/external/bin/
-/external/include/
-/external/*-build-stamp
-/external/lib/
-/external/privoxy/
-/external/test.c
-/external/test.h.gch
-/external/translation/
-bin
-gen
-native
+# NDK
+obj/
+.cxx
+.externalNativeBuild
+
+# Orbot libs
 libs/jtorctl.jar
-builds
-external/patches/*
-obj
-
 app/src/main/jniLibs/
 app/src/main/libs/
-#orbotservice/src/main/libs/
-#orbotservice/src/main/jniLibs/
-#orbotservice/src/main/assets/armeabi/
-#orbotservice/src/main/assets/x86/
-
-# emacs
-*~
+orbotservice/src/main/libs/
+OrbotLib/OrbotIPtProxy
 
 # Fastlane
 /fastlane/report.xml
