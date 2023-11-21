@@ -14,7 +14,9 @@
         android:text="@string/kindness_adjust_title"
         style="@style/BottomSheetHeader"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="106dp" />
 
     <TextView
         android:textColor="@android:color/white"
@@ -41,7 +43,7 @@
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:text="@string/option_only_on_wifi"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:paddingTop="@dimen/activity_horizontal_margin"
             android:textColor="@android:color/white"
 
@@ -52,10 +54,9 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:showText="false"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:padding="@dimen/activity_horizontal_margin"
             android:textColor="@android:color/white"
-
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -75,7 +76,7 @@
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:text="@string/option_only_when_charging"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:paddingTop="@dimen/activity_horizontal_margin"
             android:textColor="@android:color/white"
 
@@ -86,7 +87,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:showText="false"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:padding="@dimen/activity_horizontal_margin"
             android:textColor="@android:color/white"
 
@@ -101,11 +102,12 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".65"/>
 
+
     <TextView
         android:id="@+id/tvCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="208dp"
         android:text="@android:string/cancel"
         android:textColor="@android:color/white"
         android:textStyle="bold"
@@ -113,13 +115,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mainGuideline" />
 
-
     <Button
         android:id="@+id/btnAction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="192dp"
         android:backgroundTint="@color/orbot_btn_enabled_purple"
         android:text="@string/save"
         android:textColor="@android:color/white"
