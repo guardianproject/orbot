@@ -21,22 +21,27 @@
 
     <ImageView
         android:id="@+id/ivStatus"
+        android:contentDescription="Orbie"
         android:layout_width="148dp"
         android:layout_height="166dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/orbioff"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="HardcodedText" />
+
     <ImageView
         android:id="@+id/ivShadow"
+        android:contentDescription="Shadow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:src="@drawable/orbieshadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivStatus" />
+        app:layout_constraintTop_toBottomOf="@id/ivStatus"
+        tools:ignore="HardcodedText,ImageContrastCheck" />
 
     <TextView
         android:layout_marginTop="16dp"
@@ -64,7 +69,9 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         android:gravity="center_horizontal"
         android:paddingLeft="@dimen/activity_horizontal_large_margin"
-        android:paddingRight="@dimen/activity_horizontal_large_margin" />
+        android:paddingRight="@dimen/activity_horizontal_large_margin"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <Button
         tools:enabled="false"
@@ -78,8 +85,7 @@
         android:id="@+id/btnStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="32dp"
         android:paddingLeft="@dimen/button_horizontal_large_margin"
         android:paddingRight="@dimen/button_horizontal_large_margin"
         android:paddingTop="@dimen/activity_horizontal_margin"
