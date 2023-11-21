@@ -9,7 +9,7 @@
     <TextView
         android:visibility="visible"
         android:id="@+id/tvHeader"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         tools:text="@string/apps_suggested_title"
         android:textColor="@color/text_purple"
         android:layout_width="wrap_content"
@@ -24,8 +24,8 @@
         android:id="@+id/tvSubheader"
         tools:text="@string/app_suggested_subtitle"
         android:textColor="@android:color/white"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="4dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -41,10 +41,10 @@
             android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginRight="@dimen/activity_horizontal_margin" />
+            android:layout_marginEnd="@dimen/activity_horizontal_margin" />
 
         <ImageView
-            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
             android:id="@+id/itemicon"
             android:layout_width="48dp"
             android:layout_height="match_parent"
@@ -68,10 +68,10 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/itemicon"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginRight="2dp"
+            android:layout_marginEnd="2dp"
             tools:text="App Name Here that is really long"
             android:gravity="center_vertical"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+            android:layout_marginStart="@dimen/activity_horizontal_margin" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
