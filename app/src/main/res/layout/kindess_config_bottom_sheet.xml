@@ -70,8 +70,8 @@
         app:layout_constraintTop_toBottomOf="@+id/rowKindnessConfigWifi"
         android:padding="@dimen/activity_horizontal_margin"
         android:background="@color/panel_widget_background"
-        android:layout_margin="10dp"
-        >
+        android:layout_margin="10dp">
+
         <TextView
             android:layout_width="220dp"
             android:layout_height="wrap_content"
@@ -100,14 +100,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".65"/>
+        app:layout_constraintGuide_percent="0.63" />
 
 
     <TextView
         android:id="@+id/tvCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="208dp"
+        android:layout_marginTop="148dp"
         android:text="@android:string/cancel"
         android:textColor="@android:color/white"
         android:textStyle="bold"
@@ -119,7 +119,7 @@
         android:id="@+id/btnAction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="192dp"
+        android:layout_marginTop="132dp"
         android:backgroundTint="@color/orbot_btn_enabled_purple"
         android:text="@string/save"
         android:textColor="@android:color/white"

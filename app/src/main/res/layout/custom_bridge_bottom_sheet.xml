@@ -41,7 +41,6 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
 
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/mainGuideline"
         android:layout_width="wrap_content"
@@ -53,7 +52,7 @@
         android:id="@+id/tvCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="144dp"
         android:text="@android:string/cancel"
         android:textColor="@android:color/white"
         android:textStyle="bold"
@@ -61,13 +60,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mainGuideline" />
 
-
     <Button
         android:id="@+id/btnAction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="128dp"
         android:backgroundTint="@color/orbot_btn_enabled_purple"
         android:text="@string/connect"
         android:enabled="false"
@@ -76,6 +73,5 @@
         app:layout_constraintStart_toEndOf="@id/tvCancel"
         app:layout_constraintTop_toBottomOf="@id/mainGuideline"
         app:layout_goneMarginBottom="20dp" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
