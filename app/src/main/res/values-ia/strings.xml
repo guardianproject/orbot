@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="menu_settings">Configurationes</string>
-    <string name="menu_about">Circa</string>
-    <string name="button_about">Circa</string>
+    <string name="menu_settings">Parametros</string>
+    <string name="menu_about">A proposito de</string>
+    <string name="button_about">A proposito de</string>
     <string name="menu_exit">Sortir</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
@@ -14,24 +14,31 @@
     <!--TipsAndTricks screen-->
     <!--Transparent Proxy screen-->
     <string name="error">Error</string>
-    <string name="set_locale_title">Linguage</string>
-    <string name="save">Salveguardar</string>
+    <string name="set_locale_title">Lingua</string>
+    <string name="save">Salvar</string>
     <string name="name">Nomine</string>
-    <string name="disable">Disable</string>
+    <string name="disable">Disactivar</string>
     <string name="menu_faq">FAQ</string>
-    <string name="btn_refresh">Refresh</string>
-    <string name="menu_header_features">Features</string>
-    <string name="drawer_open">Open</string>
-    <string name="drawer_close">Close</string>
-    <string name="enable">Enable</string>
-    <string name="menu_stop">Stop</string>
-    <string name="main_layout_download">Download</string>
-    <string name="main_layout_upload">Upload</string>
+    <string name="btn_refresh">Actualisar</string>
+    <string name="menu_header_features">Characteristicas</string>
+    <string name="drawer_open">Aperir</string>
+    <string name="drawer_close">Clauder</string>
+    <string name="enable">Activar</string>
+    <string name="menu_stop">Stoppar</string>
+    <string name="main_layout_download">Discarga</string>
+    <string name="main_layout_upload">Incarga</string>
     <string name="setting_debug">Depuration</string>
     <string name="menu_more">Plus</string>
-    <string name="get_bridges_email">Email</string>
+    <string name="get_bridges_email">E-mail</string>
     <string name="menu_new_identity">Nove identitate</string>
     <string name="connect">Connecter</string>
-    <string name="next">Next</string>
-    <string name="connection_custom">Custom</string>
+    <string name="next">Sequente</string>
+    <string name="connection_custom">Personalisate</string>
+    <string name="connection_snowflake">Snowflake</string>
+    <string name="apps_other_apps">Altere applicationes</string>
+    <string name="action_activate">Activar</string>
+    <string name="no_interent_title">Connecter te a internet</string>
+    <string name="connection_direct">Directe</string>
+    <string name="title_choose_apps">Seliger le applicationes</string>
+    <string name="app_name">Orbot</string>
 </resources>
