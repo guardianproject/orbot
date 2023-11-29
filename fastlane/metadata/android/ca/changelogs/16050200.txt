@@ -1,0 +1,1 @@
+Correcció d'una fallada relacionada amb l'inici d'un servei al rerefons

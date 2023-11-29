@@ -1,0 +1,2 @@
+* correccions per a la compatibilitat amb els ponts
+* actualitzat al Tor 0.4.1.5

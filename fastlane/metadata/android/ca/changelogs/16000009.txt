@@ -1,0 +1,8 @@
+- Gran actualització de la interfície d'usuari!
+- Nous assistents per a la creació i configuració de ponts.
+- Funcionalitats VPN millorades
+- Correccions per a les fallades de la configuració del servei Onion/Ocult
+
+i molt més...
+
+GRÀCIES A: pgerber, syphyr, Khsed4, BjarniRunar, Unpublished, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, arrase i altres per les notificacions d'errors, contribucions i sol·licituds d'implementació
