@@ -278,4 +278,13 @@
     <string name="pref_flag_secure_summary">Pengo aplikacione të tjerë të bëjnë foto ekrani të Orbot-it</string>
     <string name="many_ways">Ka mjaft mënyra për të mbërritur te Tor-i. Disa mund të funksionojnë më mirë se të tjerat për ju.</string>
     <string name="relaying">Përdorim Relesh</string>
+    <string name="pref_circuit_padding">Mbushje qarku</string>
+    <string name="pref_reduced_circuit_padding_summary">Përdorni algoritme më të ulëta të mbushjes për të reduktuar përdorimin e të dhënave dhe baterisë</string>
+    <string name="pref_circuit_padding_summary">Aktivizo mbushjen e qarkut për t\'u mbrojtur nga disa forma të analizës së trafikut</string>
+    <string name="setting_padding">Mbushje</string>
+    <string name="menu_kindness">Mirësia</string>
+    <string name="pref_connection_padding_summary">Gjithmonë mundëson mbushjen e lidhjes për t\'u mbrojtur nga disa forma të analizës së trafikut. Parazgjedhja: automatik</string>
+    <string name="pref_reduced_circuit_padding">Mbushje e reduktuar e qarkut</string>
+    <string name="pref_connection_padding">Mbushja e lidhjes</string>
+    <string name="pref_reduced_connection_padding">Mbushje e reduktuar e lidhjes</string>
 </resources>

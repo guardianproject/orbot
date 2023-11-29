@@ -255,7 +255,7 @@
     <string name="direct_connect">اتصال مباشر بتور</string>
     <string name="direct_connect_subtitle">أفضل طريقة للاتصال بتور. استخدم إذا لم يٌحظر تور.</string>
     <string name="snowflake">Snowflake (الأصل)</string>
-    <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="snowflake_amp">ندفة الثلج (AMP)</string>
     <string name="snowflake_subtitle">يربط من خلال متطوعي تور. يلتف حول بعض حظر تور.</string>
     <string name="get_a_bridge">جسر من تور (Obfs4)</string>
     <string name="get_a_bridge_subtitle">يخفي حركةمرورك. يلتف حول بعض حظر تور.</string>
