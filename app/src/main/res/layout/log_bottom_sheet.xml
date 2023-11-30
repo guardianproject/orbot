@@ -4,9 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/new_background"
-    android:padding="10dp"
-    >
-
+    android:padding="10dp">
 
         <TextView
             android:id="@+id/orbotLogHeader"
@@ -36,8 +34,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/orbotLogHeader"
-            android:paddingBottom="@dimen/button_horizontal_large_margin"
-            >
+            android:paddingBottom="@dimen/button_horizontal_large_margin">
+
         <TextView
             android:id="@+id/orbotLog"
             android:layout_width="match_parent"
@@ -48,11 +46,8 @@
             android:textIsSelectable="true"
             android:textSize="12sp"
             android:text=""
-            android:textAppearance="?android:attr/textAppearanceSmallInverse"
+            android:textAppearance="?android:attr/textAppearanceSmallInverse"/>
 
-            />
         </ScrollView>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
