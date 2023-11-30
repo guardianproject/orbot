@@ -1,23 +1,18 @@
-Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.
+L'Orbot és una aplicació lliure i gratuïta de servidors intermediaris que permet a altres aplicacions utilitzar l'internet de manera més segura. L'Orbot fa servir el Tor per a xifrar el trànsit d'internet i així l'oculta rebotant-lo per una sèrie d'ordinadors d'arreu del món. El Tor és programari lliure, i una xarxa oberta que us ajuda a defensar-vos contra una manera de vigilància de la xarxa anomenada anàlisi de trànsit, que amenaça la llibertat personal i la privadesa, les activitats i relacions confidencials i la seguretat de l'estat.
 
-*** SAMSUNG GALAXY USERS ***
-On some devices, a Samsung app is listening on the same network port that Orbot needs. Download 'SockStat' from Google Play. Look for the app on port 9050. Force stop and disable that app. You can also try to change Orbot's "Tor SOCKS" setting under the Debug section to 9051 or AUTO. You can see the fix in this video: https://www.youtube.com/watch?v=yK-nK4F67_g
-*****
+L'Orbot és l'única aplicació que crea una connexió realment privada a internet. Com escriuen al New York Times, «quan arriba una comunicació pel Tor, mai no podeu saber d'on o de qui prové».
 
-Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.
+El Tor va guanyar l'any 2012 el Premi Pioner de l'Electronic Frontier Foundation (EFF).
 
-★ ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.
-★ PRIVATE WEB SURFING: Use with Orfox, the most anonymous way to access any website, even if it’s normally blocked, monitored, or on the hidden web. Get Orfox: https://play.google.com/store/apps/details?id=info.guardianproject.orfox
-★ PRIVATE CHAT MESSAGING: Use ChatSecure with Orbot to chat confidentially with anyone, anywhere for free. Get ChatSecure: https://goo.gl/O3FfS
-★ PRIVACY FOR APPS: Any installed app can use Tor if it has a proxy feature, using the settings found here: https://goo.gl/2OA1y Use Orbot with Twitter, or try private web searching with DuckDuckGo: https://goo.gl/lgh1p
-★ PRIVACY FOR EVERYONE: Tor can help you confidentially research a competitor, get around the Facebook block at school, or circumvent a firewall to watch sports at work.
-★ PRIVACY MADE EASY: Check out our fun, interactive walkthrough: https://guardianproject.info/howto/browsefreely
-★ IT’S OFFICIAL: This is the official version of the Tor onion routing service for Android.
+★ NO ACCEPTEU CAP SUBSTITUT: L'Orbot és la manera més segura de fer servir l'internet a l'Android. Punt. L'Orbot rebota el vostre trànsit xifrat diverses vegades per ordinadors d'arreu del món, en compte de connectar-vos directament, com faria una VPN o un servidor intermediari. Aquest procés triga una mica més, però la privadesa més robusta i la protecció de la identitat que proporciona paga la pena l'espera.
+★ PRIVADESA PER A LES APLICACIONS: Qualsevol aplicació es pot fer passar pel Tor mitjançant la funcionalitat VPN de l'Orbot.
+★ PRIVADESA PER A TOTHOM: L'Orbot evita que qui estigui observant la vostra connexió sàpiga quines aplicacions utilitzeu o quins llocs web visiteu. Tot el que podrà veure qui estigui rastrejant el trànsit de la vostra xarxa és que esteu fent servir el Tor.
 
-***We Love Feedback***
-★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow.
-★ OPEN-SOURCE: Orbot is free software. Take a look at our source code, or join the community to make it better: https://gitweb.torproject.org/orbot.git
-★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? We’d love to hear from you! Send us an email: support@guardianproject.info
+***Ens encanten els comentaris***
+★ MÉS INFORMACIÓ: Obteniu més informació sobre l'Orbot i involucreu-vos-hi a https://orbot.app
+★ QUANT A NOSALTRES: El Guardian Project és un grup de desenvolupadors que fan aplicacions mòbils segures i de codi font obert per a millorar el demà.
+★ CODI OBERT: L'Orbot és programari lliure. Doneu una ullada al codi font, o uniu-vos a la comunitat per a millorar-lo: https://github.com/guardianproject/orbot
+★ ENVIEU-NOS MISSATGES: Trobeu a faltar alguna característica? Heu trobat cap error? Ens encantaria que ens ho féreu arribar! Envieu-nos un correu electrònic a: support@guardianproject.info
 
-***Disclaimer***
-The Guardian Project makes apps that are designed to protect your security and anonymity. The protocols that we use are widely regarded as the state of the art in security technology. While we are constantly upgrading our software to combat the latest threats and eliminate bugs, no technology is 100% foolproof. For maximum security and anonymity users must utilize best practices to keep themselves safe.  You can find a good introductory guide to these topics at https://securityinabox.org
+***Avís legal***
+El Guardian Project fa aplicacions pensades per a protegir la vostra seguretat i anonimat. Els protocols que utilitzem es consideren àmpliament comprovats al món de la seguretat tecnològica. Tot i que estem constantment actualitzant el nostre programari per a combatre les últimes amenaces i eliminar errors, cap tecnologia és 100% segura. Per a una seguretat i anonimat màxims, els usuaris han de fer servir les millors pràctiques per a mantenir-se segurs. Podeu trobar una bona guia d'introducció a aquests temes a https://securityinabox.org

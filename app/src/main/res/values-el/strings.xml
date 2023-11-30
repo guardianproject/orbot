@@ -101,7 +101,7 @@
     <string name="send_email">Στείλτε Email</string>
     <string name="vpn_default_world">Παγκόσμια (Auto)</string>
     <string name="hidden_services">Αποκρυφες υπηρεσιες</string>
-    <string name="menu_hidden_services">Αποκρυφες υπηρεσιες</string>
+    <string name="menu_hidden_services">Απόκρυφες υπηρεσίες</string>
     <string name="save">Αποθήκευση</string>
     <string name="local_port">Τοπική θύρα</string>
     <string name="onion_port">Θύρα Κρεμμυδιού</string>

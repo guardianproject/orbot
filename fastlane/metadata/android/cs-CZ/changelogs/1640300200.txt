@@ -1,0 +1,4 @@
+* přidána podpora Snowflake mostu
+* aktualizována podpora Obfs4 a Meek mostů
+* zlepšení rychlosti funkce "Request nových mostů"
+* Aktualiazce na Tor to 0.4.4.6

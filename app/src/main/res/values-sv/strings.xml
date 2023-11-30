@@ -187,7 +187,7 @@
     <string name="paste_bridges">Klistra in broar</string>
     <string name="bridge_snowflake_amp">Anslut via andra Tor-användare med Snowflake (metod 2)</string>
     <string name="snowflake_proxy_msg_title">Visa meddelande om anslutning</string>
-    <string name="snowflake_proxy_msg_description">Visa ett meddelande när din snöflinga hjälper någon att kringgå censuren</string>
+    <string name="snowflake_proxy_msg_description">Visa ett meddelande när du hjälper någon att kringgå censur</string>
     <string name="v3_backup_key">Auktorisationsnyckel för säkerhetskopieringsklienten</string>
     <string name="v3_backup_key_warning">Varning: Detta kan avslöja din nyckel för andra appar</string>
     <string name="v3_delete_client_authorization_confirm">Ta bort klientauktorisation</string>
@@ -233,7 +233,7 @@
     <string name="asking">FRÅGAR...</string>
     <string name="no_interent_title">Anslut till internet</string>
     <string name="no_internet_subtitle">Du behöver en internetuppkoppling för att använda Orbot.</string>
-    <string name="kindness_adjust_title">Justera när det går...</string>
+    <string name="kindness_adjust_title">Justera när det går…</string>
     <string name="configure_header">Konfigurera din Tor-anslutning</string>
     <string name="drawer_close">Stäng</string>
     <string name="proxy_ports">Proxy-portar</string>
@@ -280,4 +280,11 @@
     <string name="setting_padding">Stoppning</string>
     <string name="setting_debug">Felsökning</string>
     <string name="menu_more">Detaljer</string>
+    <string name="option_only_when_charging">Endast vid laddning</string>
+    <string name="btn_copy_log">Kopiera logg</string>
+    <string name="option_only_on_wifi">Endast på Wifi</string>
+    <string name="menu_kindness">Vänlighet</string>
+    <string name="pref_flag_secure_title">Säkerhet på skärmen</string>
+    <string name="root_warning">Orbot har upptäckt att din enhet är rotad, vilket kan orsaka säkerhetsproblem.</string>
+    <string name="pref_flag_secure_summary">Förhindra att andra appar tar skärmdumpar av Orbot</string>
 </resources>

@@ -222,4 +222,69 @@
     <string name="configure_header">Tor bağlantınızı konfiqurasiya edin</string>
     <string name="volunteer_mode_label">Xeyirxahlıq rejimi</string>
     <string name="hide_apps">Tətbiqləri şəbəkə monitorinqindən gizlədin və bloklandıqda giriş əldə edin.</string>
+    <string name="volunteer_mode_alltime_label">Bütün Zamanların Cəmi</string>
+    <string name="custom_bridge_description">Xüsusi körpü tanıdığınız biri tərəfindən təmin edilir. Etibarlı şəbəkələrinizdə və təşkilatlarınızdan kiminsə birinə ev sahibliyi edib-etmədiyini öyrənmək üçün soruşun.</string>
+    <string name="proxy_ports">Proksi Portlar</string>
+    <string name="msg_try_something_else">Başqa bir şey cəhd edin</string>
+    <string name="not_sure">Əmin deyilsiniz?</string>
+    <string name="snowflake_subtitle">Tor könüllüləri vasitəsilə bağlanır. Bəzi Tor bloklamalarının ətrafında olur.</string>
+    <string name="captcha_title">İnsan olduğunuzu bizə bildirin</string>
+    <string name="volunteer_mode_subtitle_desc">Xeyirxahlıq rejimi cihazınızın başqaları üçün körpü olmasına imkan verir. Bu, insanlara Torun bloklandığı yerlərdə istifadə etməyə kömək edir.
+\n
+\n• Bu, batareyanızı boşaltmayacaq
+\n• İnternetinizi yavaşlatmayacaq
+\n• Yalnız wifi üzərində işləyə bilər
+\n• İstənilən vaxt söndürülə bilər</string>
+    <string name="ports_not_set">Portlar Ayarlanmayıb</string>
+    <string name="solve_captcha">Captcha həll edin</string>
+    <string name="custom_bridge">Xüsusi körpü</string>
+    <string name="menu_help_others">Başqalarına kömək edin</string>
+    <string name="power_user_mode">Güc istifadəçi rejimi</string>
+    <string name="smart_connect">Smart Connect (defolt)</string>
+    <string name="apps_other_apps">Digər Proqramlar</string>
+    <string name="custom_bridge_subtitle">Tor ciddi şəkildə bloklanırsa, çox güman ki, sizi əlaqə saxlayacaq. Etibar etdiyiniz şəxsdən körpü ünvanı tələb edir.</string>
+    <string name="volunteer_mode_weekly_label">Həftəlik Cəmi</string>
+    <string name="apps_suggested_title">Təklif olunan proqramlar</string>
+    <string name="log_copied">Qeyd kopyalandı</string>
+    <string name="btn_copy_log">Qeydi Kopyala</string>
+    <string name="menu_header_learn">Daha ətraflı</string>
+    <string name="having_trouble_subtitle">Tor körpüsünü sınaya bilərik, lakin sizin köməyinizə ehtiyac duyacağıq</string>
+    <string name="having_trouble">Çətinlik yaşamaq</string>
+    <string name="direct_connect">Tor ilə birbaşa əlaqə</string>
+    <string name="menu_tor_connection">Tor bağlantısı</string>
+    <string name="power_user_description">Tor ilə tanış olan istifadəçilər üçün. VPN ayarı olmadan Orbot-u işə salmağa imkan verir və açıq SOCKS və HTTP portlarını göstərir</string>
+    <string name="snowflake_amp">Qar dənəciyi (AMP)</string>
+    <string name="btn_use_custom_bridge">Xüsusi körpüdən istifadə edin</string>
+    <string name="menu_app_settings">Tətbiq Parametrləri</string>
+    <string name="snowflake">Snowflake (Orijinal)</string>
+    <string name="get_a_bridge_subtitle">Trafikinizi gizlədir. Bəzi Tor bloklamalarının ətrafında olur.</string>
+    <string name="smart_connect_subtitle">Orbot Tor-a istənilən yolla qoşulmağa çalışır: Direct, Snowflake, Bridge.</string>
+    <string name="incorrect_solution">Yanlış Həll</string>
+    <string name="bridges_obtained_connecting">Körpülər alındı! tor-a qoşulur...</string>
+    <string name="app_suggested_subtitle">Orbot mesajlaşma və sosial media proqramları ilə ən yaxşı şəkildə işləyir.</string>
+    <string name="title_choose_apps">Proqramları seçin</string>
+    <string name="get_a_bridge">Tordan körpü (Obfs4)</string>
+    <string name="msg_taking_too_long">Görünür, bu çox uzun çəkir</string>
+    <string name="volunteer_mode_title">Başqalarına kömək edin
+\nTor-a qoşulun</string>
+    <string name="direct_connect_subtitle">Tor-a qoşulmağın ən yaxşı yolu. Tor bloklanmadıqda istifadə edin.</string>
+    <string name="volunteer_status_title">Bu gün daha yaxşıdır
+\nsənə görə.</string>
+    <string name="no_internet_subtitle">Orbotdan istifadə etmək üçün internet bağlantısı lazımdır.</string>
+    <string name="connection_snowflake">Qar dənəciyi</string>
+    <string name="ask_tor">Tordan soruşun</string>
+    <string name="option_only_when_charging">Yalnız şarj edərkən</string>
+    <string name="no_interent_title">İnternetə qoşulun</string>
+    <string name="kindness_adjust_title">Çalışdığı zaman tənzimləyin…</string>
+    <string name="setting_padding">Doldurma</string>
+    <string name="action_use">istifadə edin</string>
+    <string name="option_only_on_wifi">Yalnız Wi-Fi-da</string>
+    <string name="connection_direct">Birbaşa</string>
+    <string name="asking">SORUŞMAQ...</string>
+    <string name="menu_kindness">Xeyirxahlıq</string>
+    <string name="pref_flag_secure_title">Ekran Təhlükəsizliyi</string>
+    <string name="root_warning">Orbot cihazınızın köklü olduğunu aşkar etdi və bu, təhlükəsizlik problemlərinə səbəb ola bilər.</string>
+    <string name="kindess_config_detail">Cihazınızın digər Tor istifadəçiləri üçün Snowflake proksisi kimi necə və nə vaxt çıxış edə biləcəyini konfiqurasiya edin.</string>
+    <string name="pref_flag_secure_summary">Digər proqramların Orbotun skrinşotlarını çəkməsinə mane olun</string>
+    <string name="many_ways">Tor-a çatmağın bir çox yolu var. Bəziləri sizin üçün digərlərindən daha yaxşı işləyə bilər.</string>
 </resources>

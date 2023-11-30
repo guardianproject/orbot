@@ -1,0 +1,3 @@
+- s'ha eliminat el pont Meek «Cloud» perquè ja no és compatible
+- més millores a la compatibilitat del Servei Onion v3
+- per a #441, corregeix la cerca de l'aplicació de seleccions de VPN basades en aplicacions

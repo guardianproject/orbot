@@ -1,0 +1,4 @@
+* compatibilitat amb els Serveis Onion v3
+* millores a la configuració dels ponts
+* assegura que el mode VPN es tracta com a «connexió sense mètriques»
+* mode experimental per a permetre executar un servidor intermediari Snowflake
