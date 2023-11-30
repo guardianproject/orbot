@@ -8,23 +8,13 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tv_kindness_header"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/kindness_adjust_title"
-        style="@style/BottomSheetHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="106dp" />
-
-    <TextView
         android:textColor="@android:color/white"
         android:text="@string/kindess_config_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_kindness_header"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
         android:id="@+id/tvCustomBridgeSubHeader"/>
 
 

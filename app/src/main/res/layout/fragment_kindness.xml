@@ -168,7 +168,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/activity_horizontal_margin"
                 android:layout_marginBottom="@dimen/button_horizontal_large_margin"
-                android:text="@string/kindness_adjust_title"
+                android:text="@string/menu_settings"
                 android:textSize="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

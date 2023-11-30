@@ -269,7 +269,7 @@
     <string name="asking">ASKING...</string>
     <string name="no_interent_title">Connect to internet</string>
     <string name="no_internet_subtitle">You need an internet connection to use Orbot.</string>
-    <string name="kindness_adjust_title">Adjust Run Time</string>
+    <string name="kindness_adjust_title">Settings</string>
     <string name="kindess_config_detail">Configure how and when your device can act as a Snowflake proxy for other Tor users.</string>
     <string name="menu_kindness">Kindness</string>
     <string name="menu_more">More</string>
