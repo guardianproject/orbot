@@ -1,17 +1,36 @@
-include ':intentintegrator'
-include ':appcore'
-include ':orbotservice'
-include ':OrbotLib'
-//include ':tor-android'
-include ':app'
-include ':app-tv'
+import org.gradle.api.initialization.resolve.RepositoriesMode
 
-/**
-enableFeaturePreview("VERSION_CATALOGS")
-dependencyResolutionManagement {
-    versionCatalogs {
-        lib {
-            from(files("./gradle/libs.versions.toml"))
-        }
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
     }
-}**/
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        // noinspection JcenterRepositoryObsolete
+        jcenter {
+            content {
+                includeGroup('com.jraska')
+                includeGroup('tools.fastlane')
+            }
+        }
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven { url "https://raw.githubusercontent.com/guardianproject/gpmaven/master" }
+    }
+}
+
+rootProject.name = "Orbot"
+include(
+        ':app',
+        ':app-tv',
+        ':appcore',
+        ':intentintegrator',
+        ':OrbotLib',
+        ':orbotservice'
+)

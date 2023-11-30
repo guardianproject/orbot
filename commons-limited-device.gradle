@@ -1,6 +1,4 @@
-/*
-    Applies across android app module with limited capabilities: {app-tv}
- */
+// Applies across android app module with limited capabilities: app-tv
 apply from: "../commons-device.gradle"
 
 android {
