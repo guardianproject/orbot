@@ -1,3 +1,593 @@
+/** 17.1.1-RC-2-tor0.4.8.7 Dec 2023 93057ce80b0f02fac0d608972a6a1a3fab02e785 **/
+93057ce8 (HEAD -> master, tag: 17.1.1-RC-1-tor-0.4.8.7) udpate to 1711300100
+c80ff8a2 (origin/master, origin/HEAD) final tweaks to kindness mode settings
+3789724d small tweaks to kindness settings layout
+874024d4 simplify kindness mode settings
+9dcd1f45 delete aar old sources
+5736e591 Merge pull request #1002 from meenbeese/gradle-settings
+028ddc3b Merge pull request #1024 from meenbeese/minor-fixes
+44194bae Merge pull request #1014 from meenbeese/rewrite-adf
+ac4f15e2 Merge pull request #1020 from weblate/weblate-guardianproject-orbot
+33ff0d1a update OrbotLib.aar for latest IPtProxy release
+b7c4e0fb update to 1711200300
+aa92b320 Translated using Weblate (Czech)
+48f8c47e Translated using Weblate (Interlingua)
+9ddeffa7 Translated using Weblate (Greek)
+74b60d2b Translated using Weblate (Belarusian)
+67fb000c Translated using Weblate (Russian)
+412f5f4a Translated using Weblate (Catalan)
+09973c0c Translated using Weblate (Albanian)
+b378ac70 Translated using Weblate (Turkish)
+873d9a02 Translated using Weblate (Czech)
+8942f2ac Translated using Weblate (Swedish)
+b1f0291c Misc. fixes and fine-tuned adjustments
+007029d2 Center the title text in custom bridge sheet
+5d43a1ac Increase content spacing in fragment connect
+497dd306 Shift buttons and center title in kindness sheet
+e7d7171b Center main title in config bottom sheet
+62dc88ec Remove the green dot in choose apps
+e07c29e6 Merge pull request #1012 from syphyr/is_icmpv6
+1af9e953 Merge pull request #1015 from weblate/weblate-guardianproject-orbot
+49be4d41 Translated using Weblate (Latvian)
+19260af0 Translated using Weblate (Albanian)
+675ee45f Rewrite AboutDialogFrag file in Kotlin
+18481697 Ensure ICMPV6 packets are not routed
+423ea776 Only allow repo declarations in settings.gradle
+9b8b55c7 Move repository declaration to settings.gradle
+a5d5674c Merge pull request #1001 from meenbeese/fix-deprecations
+dda7cc69 Merge pull request #1000 from weblate/weblate-guardianproject-orbot
+5a156bab for #1008 manually ensure ICMP packets are not routed or bypassed also tune VPN settings to ensure IPv6 traffic routing as possible
+066b31d1 update to version 1710300200
+37dddb8a Translated using Weblate (Lithuanian)
+a19d9996 Translated using Weblate (Armenian)
+3e4ec02e Translated using Weblate (Chinese (Simplified))
+c9fbf28b Translated using Weblate (Croatian)
+23e77600 Translated using Weblate (Galician)
+09345d11 Translated using Weblate (Spanish)
+3a962e0f Translated using Weblate (Greek)
+49ed7dc8 Fix deprecation of getResources().getColor()
+84574cd3 Fix deprecation of URLDecoder.decode
+a0036c6c Fix deprecation of locale
+a291594c Fix deprecation of activity?.getDrawable
+20805bea Fix deprecation of Html.fromHtml
+bdc36e56 update startSnowflake calls to support new argument
+5cf5899e update to IPtProxy 3.2
+51180800 (tag: 17.1.1-BETA-1-tor-0.4.8.7) Merge pull request #998 from meenbeese/update-readme
+0576a96e Merge pull request #999 from weblate/weblate-guardianproject-orbot
+10917c4c update to tor-android 0.4.8.7 (hosted on gpmaven)
+0339aeb0 update OrbotLib to use IPtProxy 3.1.1 https://github.com/guardianproject/OrbotIPtProxy/commit/e1980a34097c607647a0ce1b13fb40b5b948b313
+03955de1 remove old local library include code
+e3285f83 Translated using Weblate (Spanish)
+93fabdf1 Translated using Weblate (Spanish)
+769ccc48 Translated using Weblate (Hebrew)
+5636ba2d Add badge SVGs and link them from README
+375fb39b Expand the README with more information
+75e84e09 Merge pull request #990 from meenbeese/gradle-upgrade
+66e5e02a Merge pull request #997 from syphyr/update_geoip
+387f18c1 Merge pull request #995 from weblate/weblate-guardianproject-orbot
+5599e7a1 Merge pull request #996 from meenbeese/remove-tx
+958cc419 Update geoip database to latest 0.4.7 release
+33ebe281 Reorganize and rename several files
+19a106e8 Remove unused tx config and binary
+e6fab778 Update gradle and AGP versions
+1129cc88 Translated using Weblate (Russian)
+7bce39a9 Translated using Weblate (Azerbaijani)
+a523ea9d Merge pull request #993 from meenbeese/github-templates
+df477400 Merge pull request #989 from weblate/weblate-guardianproject-orbot
+f902eca5 Translated using Weblate (Russian)
+1a8be8f6 Translated using Weblate (Albanian)
+2a1b35db Translated using Weblate (Japanese)
+57f2350e Translated using Weblate (Russian)
+8d03a14d Translated using Weblate (Russian)
+22cf6838 Translated using Weblate (Hebrew)
+1f56ac9d Translated using Weblate (Romanian)
+b823d9fa Translated using Weblate (Aymara)
+459f70c7 Configure md templates for GitHub issues
+5a3a5d87 updates for circumvention logic to access new fronts and properly use proxying
+28086635 Merge pull request #971 from hax0rbana-adam/vector-graphics-logo-with-CI
+115c315d Merge pull request #988 from weblate/weblate-guardianproject-orbot
+1bdf283e Translated using Weblate (Spanish)
+84d6b6ed Merge pull request #986 from weblate/weblate-guardianproject-orbot
+eca19730 Translated using Weblate (Spanish)
+863e7d2b Translated using Weblate (Aymara)
+a84742fe Translated using Weblate (Belarusian)
+603a2ea5 fix: updated Java version from 8 to 17
+aa32c3c7 fix: Make settings activity be an Activity object instead of a preferences fragment
+22bdc1a4 fix: ensure we can get indexes before using them
+a8e72e30 fix: Use the default locale when converting case
+a09862ec fix: resolved possibility of a -1 causing an index exception
+f876f67d fix: fixed AndroidManifest to point to the BaseActivity
+5457cf12 (tag: 17.1.0-RC-1-tor.0.4.7.14) update to version code 1710300100
+a3efaee4 remove invalid activity from manifest per #868 https://github.com/guardianproject/orbot/pull/868
+f4cb26db Merge pull request #982 from syphyr/update_iptproxy
+604e4404 Merge pull request #981 from syphyr/fix_captcha
+c7ca268b Merge pull request #979 from golfvoyager1/patch-1
+c67ca502 Merge pull request #969 from syphyr/fix_teevee
+f3fd83c2 Merge pull request #965 from hax0rbana-adam/vector-graphics-logo
+f1d126a9 Merge pull request #964 from meenbeese/kotlin-rewrite
+bdcfcbfc Merge pull request #963 from meenbeese/scripts
+5f8808a1 Merge pull request #962 from meenbeese/underline-text
+ba549406 Merge pull request #961 from weblate/weblate-guardianproject-orbot
+cb07cc96 Translated using Weblate (German)
+4ba28467 Translated using Weblate (Chinese (Simplified))
+50d8ab2c Translated using Weblate (Aymara)
+deaa3312 Translated using Weblate (Japanese)
+cd099d91 Translated using Weblate (Persian)
+46bf9a83 Translated using Weblate (Russian)
+61cc397a Translated using Weblate (Icelandic)
+cf263632 Translated using Weblate (Polish)
+2496c7c6 Translated using Weblate (Portuguese (Brazil))
+e9b3741c Translated using Weblate (Aymara)
+eaf588d5 Translated using Weblate (Arabic)
+04e81a83 Translated using Weblate (Japanese)
+c7c6d369 Update to IPtProxy 3.1.1
+60f72962 Update Orbot to Lyrebird
+594c49ed Fix snowflake Fastly and Moat Activity front
+49b84449 Set ConnectionPathway when Custom Bridges are used
+59327f15 removed icon's shadow and increased contrast
+e04c8dfc Set jvm target in app to 17
+075fe424 Exclude duplicate class androidx.lifecycle.ViewModelLazy
+ecdaeb66 Update teevee compileSdkVersion to 33
+7a65a7b1 Update teevee version to tor 0.4.7.14
+7759688d Vector image of the Orbot logo for the launcher #958
+ad3b6582 Rewrite OrbotApp file in Kotlin
+1050ed03 Remove old descriptions dir
+5e86e20f Move shell scripts to tools dir
+f6d0c6c9 Underline tvConfigure choose connc text
+2e6af867 (tag: 17.1.0-BETA-3-tor.0.4.7.14) Merge pull request #955 from weblate/weblate-guardianproject-orbot
+e0c51a48 Translated using Weblate (Slovenian)
+0ff5ed3f Translated using Weblate (Italian)
+f2896784 Translated using Weblate (English (United Kingdom))
+36bce8ab Translated using Weblate (Vietnamese)
+03005e26 Translated using Weblate (Spanish)
+aeb891a1 Translated using Weblate (Aymara)
+c1ed449e update tor-android to 0.4.7.14
+91f0a993 (tag: 17.1.0-BETA-2-tor.0.4.7.11) update build to 1710200200
+6b0d84b9 update android material design to 1.9.0
+3ca6e1a9 build from GP fork of OrbotIPtProxy
+894dd3a0 update version code to 1710200100
+878631da Merge pull request #900 from adnanbezerra/master
+3a66911e Merge pull request #916 from meenbeese/screenshots
+eb0550a2 Merge pull request #903 from syphyr/use_java17
+3ff18365 Merge pull request #879 from syphyr/orbi_animation
+4d903137 Merge pull request #887 from guardianproject/app_selection_bugz
+db6acc7a Merge pull request #917 from meenbeese/quick_tile
+9c40481b Merge pull request #951 from weblate/weblate-guardianproject-orbot
+292873e8 Translated using Weblate (Arabic)
+084be2d6 Translated using Weblate (Aymara)
+88d55235 Translated using Weblate (Aymara)
+006d65ce Translated using Weblate (Aymara)
+869ee7bb Translated using Weblate (Aymara)
+e4334981 Translated using Weblate (Finnish)
+b73af4f9 Translated using Weblate (Aymara)
+45eebce6 Translated using Weblate (Aymara)
+e1979b80 Translated using Weblate (Spanish)
+554c7cbb Translated using Weblate (Ukrainian)
+b3306177 Translated using Weblate (Aymara)
+9820d3eb Merge pull request #943 from weblate/weblate-guardianproject-orbot
+2c0e7992 Translated using Weblate (Icelandic)
+fa9fc659 Translated using Weblate (Hindi)
+1731f107 Translated using Weblate (Spanish)
+73026059 Translated using Weblate (Aymara)
+eed84cfc Translated using Weblate (Aymara)
+4dd3db1a Translated using Weblate (Vietnamese)
+1a9fe278 Translated using Weblate (Aymara)
+6a59ecae Translated using Weblate (French)
+4042dbf2 Translated using Weblate (Chinese (Simplified))
+86f45d78 Translated using Weblate (Persian)
+14666914 Translated using Weblate (Persian)
+abd779bb Added translation using Weblate (Turkmen)
+5722842f Translated using Weblate (Aymara)
+a69f39bb Merge pull request #938 from weblate/weblate-guardianproject-orbot
+ae496a47 Translated using Weblate (Polish)
+ecdbf386 Translated using Weblate (Chinese (Simplified))
+874e98b9 Translated using Weblate (Portuguese (Portugal))
+e2f2b9a7 Translated using Weblate (Aymara)
+07eea6df Translated using Weblate (Persian)
+6b0712f3 Translated using Weblate (Persian)
+dbaa7901 Translated using Weblate (Japanese)
+768a8af6 Translated using Weblate (Persian)
+4c5fdbb9 Translated using Weblate (Persian)
+8cffd2bb Translated using Weblate (German)
+dc43bc07 Translated using Weblate (Romanian)
+7482ba1b Translated using Weblate (Hindi)
+aea96d73 Translated using Weblate (Chinese (Traditional))
+fd9d6e97 Translated using Weblate (Portuguese (Brazil))
+8973c060 Translated using Weblate (Japanese)
+8e05fa7f Translated using Weblate (Indonesian)
+ba3b305d Translated using Weblate (Finnish)
+662b743c Translated using Weblate (Albanian)
+c6957ed4 Translated using Weblate (Dutch)
+0273c177 Translated using Weblate (Japanese)
+504362bf Translated using Weblate (Hebrew)
+1cd000d9 Translated using Weblate (Ukrainian)
+0407e44d Translated using Weblate (Chinese (Traditional))
+f136d886 Translated using Weblate (Spanish)
+60f861db Translated using Weblate (Aymara)
+a3004842 Translated using Weblate (Bulgarian)
+7935f8a5 Translated using Weblate (Portuguese (Portugal))
+d0942d2b Translated using Weblate (Acholi)
+b5ea345f Translated using Weblate (Turkish)
+e61ade34 Translated using Weblate (Russian)
+6dd15095 Merge pull request #937 from emmapeel2/remove-duplicates
+b6ae4115 remove more duplicates
+3410ca5e remove duplicated languages from translation
+def86d2c Merge pull request #936 from emmapeel2/translations-update
+baa4e75a Weblate translation update
+55e08fe1 (dev_gitlab/dev_audit_fix, dev_audit_fix) set hasFragileUserData to false to ensure data is not backed up ORB-01-004 WP1: Android config hardening recommendations (Info)
+e835966c ORB-01-005 WP1: Lack of root detection (Info) - add root notification support with basic message for now
+a1048e78 update to min SDK 23 to improve apk signature compatibility also maintains android-tv compat for SDK 23, while main Orbot is SDK 24 (7.0)
+3373998a update all projects to SDK 24
+eb4aa00a remove portmapper library (for now) which isn't used, and includes insecure random ORB-01-011 WP1: Usage of insecure crypto functions & PRNG
+c1d997e3 update minSDK to 24 aka Android 7
+cbd5763e switch to SecureRandom to address ORB-01-011 WP1: Usage of insecure crypto functions & PRNG
+11288030 fix for #5 on gitlab ORB-01-006 WP1: Lack of security screen incurs potential leakage (Low) adds FLAG_SECURE for activity windows, and preferences for changing in settings with default on SECURE
+f1ca866e fixes for #4 on Gitlab ORB-01-003 WP1: Potential phishing via StrandHogg 2.0 (Medium) - taskAffinity, singleInstance, and custom onBackPressed
+4150e2d2 fix for #8 on Gitlab - Cure53 Audit: ORB-01-009 WP1/2: Orbot DoS via exported activity (High)
+d90df201 update version code to 1700300100
+64ce9c48 Added quick settings tile
+f87fbbaa Better naming system for screenshots
+09587d44 Delete device-2018-01-05-122301.png
+defa98e9 Delete device-2018-01-05-122314.png
+343ed905 Set jvm target to 17
+8db5f563 Use Java 17
+5ce615d9 Improve Brazilian Portuguese translation on /app
+eda0d301 refactor: :art: improve the Brazilia Portuguese translation
+9bc9cbee revert to the old icon for now, in order to more smoothly transition users
+4e98368a remove left-hand space from preferences display
+dc0504cf Merge branch 'master' of github.com:guardianproject/orbot
+c50a9f2c (origin/app_selection_bugz) whoops
+89c0e22a move VPN suggested app data to constants interface, reference it in the activity...
+425e93ce only show suggested apps, other text, etc if there are suggested apps installed
+2f161c24 Fixes #886 suggested and all apps scrolllllyroll
+0bb5f668 needed to delete this comment to do rerfactor
+2407cdf1 remove strings and translations that orbi made obsolete...
+ffdd90e9 preference code was on the UI, add string resources to make button translatable #885
+f3521364 Removed old onboarding poestrings.xml file, not used, less for translators to pointlessly translate'
+44ef29c2 Remove unused translation of menu_start
+1113f52f remove Hello string from old onboarding
+41577f69 Remove hello blank frag string res that was unfortunately translated a bunch of times :/
+45ee0654 Removed deadcode in MoreFragment, cleaned up proxy ports display, fixed common kotlin lint mistakes
+1d3a2f5a shut up an annoying warnign
+4ba28810 upgrade android gradle plugin to 7.4.2 and gradle 7.5
+21ba286b Translated using Weblate (Albanian)
+cc7eea62 Translated using Weblate (Russian)
+b672a4e8 Translated using Weblate (Japanese)
+fc9d9c81 Translated using Weblate (Indonesian)
+59166888 Translated using Weblate (German)
+ebce7634 additional obsolete version check wrt locale
+6d75c8ad remove locale logic in appcore that was for below the min SDK
+b397428d Move away from snomwflake to kindness mode in settings and notification #869
+2f21a2b9 Do not repeat Orbi animation infinitely
+d173a811 Remove snowflake proxy from settings, delete lots of old proxy strings, rebrand settings category to kindness mode #869
+e2e1323c Merge pull request #878 from weblate/weblate-guardianproject-orbot
+58676813 Translated using Weblate (English)
+fc2c5576 Translated using Weblate (Russian)
+dbd0cd79 Closes #874 bottom sheet on connection wizard scrolls within constraint layout
+b2f746a5 make sure proxy mode is started properly, and only use one stun server for proxy mode
+cb1ec71e tweak fronts configuration
+0f1e3b73 remove snowflake-amp for now since it is not working
+9de9325c Merge branch 'master' of github.com:guardianproject/orbot
+fdf1f412 Merge branch 'trans'
+cd0f4f95 (trans/master, trans) Translated using Weblate (Japanese)
+094b1280 Translated using Weblate (Turkish)
+1d9c0062 Translated using Weblate (Portuguese (Brazil))
+99f859ef Translated using Weblate (Japanese)
+0f09676b Translated using Weblate (Spanish (Mexico))
+6e854af4 Translated using Weblate (Ukrainian)
+d7e0b4c2 Translated using Weblate (Russian)
+fe5b7d7b Translated using Weblate (Spanish (Mexico))
+031a7795 make VPN app status message area use smaller text
+01ff1e8f fix overflow of textview with long strings
+b7091db4 for now, make the default that all apps go through Tor
+810816b0 tweak app list activity layout
+bcc84465 fix start on boot to be more reliable - no need to check if network is available - no need to check if first time is complete, as on boot won't be sent unless user has run the app once
+a74d5510 added screenshot "secure window" flag protection for onion service related screens for #776
+9df6d212 "disallow" all applications from the VPN by default; the user must specifically add apps they want to route
+3dd0fdb7 move WorkManager init from Prefs into OrbotActivity to address #812 and hopefully fix onboot
+9e79dbd2 attempt to improve layout for long strings in Onion Services view for #843
+18ccc90b fixes #862 by adding proxy port display to the more tab
+92159c1c Merge pull request #865 from weblate/weblate-guardianproject-orbot
+a2a8605e Translated using Weblate (Ukrainian)
+44c9551d Translated using Weblate (Russian)
+4de2984a Translated using Weblate (Spanish (Mexico))
+d29bc980 fox #860 adds explicit SAVE button to app selection
+983df870 finally updating Settings/Preferences to not be deprecated and use androidx.preference package
+e5a3d017 update app icon to latest Orbi version
+7ee4ed67 (origin/dev, dev) externalize more strings
+7fa3b8a1 add bottom menu names to strings for localization
+bdb5e93f update language list and switcher to support more custom locales including  Wayuu (guc), Guambiano (gum), and Páez (pbb)
+b7fdcd72 remove expanded notifications feature, so we don't use it anymore
+747e617c update orbot tv version
+5aec4013 Merge pull request #864 from weblate/weblate-guardianproject-orbot
+af0beaa1 Translated using Weblate (Indonesian)
+87b1b885 Merge pull request #863 from weblate/weblate-guardianproject-orbot
+47eeaf8e Translated using Weblate (Spanish (Mexico))
+170949f1 Translated using Weblate (Persian)
+9772ef0d Merge pull request #857 from weblate/weblate-guardianproject-orbot
+0c07cf81 Added translation using Weblate (Spanish (Mexico))
+b6fc3e88 Translated using Weblate (Japanese)
+9ed30bf2 Translated using Weblate (Ukrainian)
+c30e960c Translated using Weblate (Turkish)
+58deb77a Translated using Weblate (Russian)
+5d04ece9 Translated using Weblate (Portuguese (Brazil))
+84f4023b Translated using Weblate (Persian)
+abe78b82 Translated using Weblate (Romanian)
+ac560381 Translated using Weblate (Japanese)
+4a87e133 Translated using Weblate (Bulgarian)
+00b62811 Clean up bugs in animation logic; disable touch orbi to turn off tor as per #854
+7f3b058a Closes #853, action list icons + text are aligned
+dae11ca1 Text size and style improvements, to app selection... Closes #851
+36b4169e Closes #838
+c83ea2aa kt cleanup
+c1406a8d fix screenshot 1 in #838
+70c7380b Fix screenshot 2 in #838
+4bb593f8 Present Copy Log as a string resource for translation #853
+3d017fda Merge pull request #845 from weblate/weblate-guardianproject-orbot
+3d7997fd Translated using Weblate (Japanese)
+2a1c2d2e Translated using Weblate (English (United Kingdom))
+4b62b74c Translated using Weblate (Ukrainian)
+990ee3bc Translated using Weblate (Ukrainian)
+407ea5c7 Translated using Weblate (Turkish)
+81b462e5 Translated using Weblate (Portuguese (Brazil))
+ef4c8e42 Translated using Weblate (Bulgarian)
+e90adedf Translated using Weblate (Russian)
+c9fe8f47 Translated using Weblate (Finnish)
+59629e4d Translated using Weblate (Ukrainian)
+1aca663b (tag: 17.0.0-BETA-5-tor.0.4.7.11) update to 1700200500
+b2a95e5b tweak spacing to help out on smaller screens
+8d87f4e1 removes goo.gl links from app description. fixes #826
+e0735ef4 if no connection path selected, don't display empty button line (#838)
+c5e42299 reduce button padding size to help with #838 UI glitches
+e1433700 Merge pull request #840 from weblate/weblate-guardianproject-orbot
+afcba63c adds in notification permissions check for Android 13 - relates to #837
+2d7bc4e6 Merge branch 'master' of github.com:guardianproject/orbot
+36295016 Translated using Weblate (Ukrainian)
+f39edf2b Translated using Weblate (Romanian)
+72a4d386 Translated using Weblate (Japanese)
+a4478b9b Translated using Weblate (Persian)
+20df1098 Translated using Weblate (Turkish)
+5605d9d0 Translated using Weblate (Russian)
+69dd53c1 Translated using Weblate (Portuguese (Brazil))
+dd4a1282 Translated using Weblate (Icelandic)
+d66377bf Translated using Weblate (Indonesian)
+db6e38d5 Translated using Weblate (Finnish)
+f43a98a1 Translated using Weblate (German)
+316257ad Translated using Weblate (Bulgarian)
+8708a262 kotlin clenaup
+40da8a9d back online: code cleanup
+b2b87be8 Merge pull request #835 from meenbeese/patch-1
+8268642e Merge pull request #836 from weblate/weblate-guardianproject-orbot
+f3abaf6d Translated using Weblate (Ukrainian)
+950569c5 Translated using Weblate (Ukrainian)
+956e5001 Translated using Weblate (Russian)
+12461f02 Translated using Weblate (Russian)
+85c6b4f7 Translated using Weblate (Romanian)
+193359c6 Translated using Weblate (Indonesian)
+d20d3705 Translated using Weblate (Finnish)
+a71a8c50 Translated using Weblate (Bulgarian)
+79b343c6 (tag: 17.0.0-BETA-4-tor.0.4.7.11) Merge branch 'master' of github.com:guardianproject/orbot
+aa57bb92 set versionname for archive apk name
+76167f1f Merge branch 'master' of github.com:guardianproject/orbot
+79c096a4 update app build.gradle flavors and version to 1700200400
+eac2e9d3 fix empty "Use" string display for connect type on first use
+b5363530 fix for #834 re-enabling dynamic language change setting
+01e5a39f change layout of app row to fix #833
+e599d414 Merge pull request #758 from SkewedZeppelin/moreisolate
+3305ef95 Update README.md
+10d56314 improve layouts for smaller screens
+7dae6e35 move connMgr instance inside of callback
+c2b44c32 Expose IsolateDestPort and IsolateClientProtocol
+318c3dad (tag: 17.0.0-BETA-3-tor.0.4.7.11) update to 1700200300 with new localizations
+c681853c Merge branch 'master' of github.com:guardianproject/orbot
+7cf114d6 Merge pull request #831 from weblate/weblate-guardianproject-orbot
+97ed73fb Translated using Weblate (Russian)
+a5b127c3 Translated using Weblate (Portuguese (Brazil))
+3421b3a6 Merge branch 'master' of github.com:guardianproject/orbot
+ab4a71fc Merge pull request #830 from weblate/weblate-guardianproject-orbot
+48e33128 Translated using Weblate (Turkish)
+b101fcba Translated using Weblate (Spanish)
+888cf7f8 Translated using Weblate (Greek)
+e4106dc4 Merge branch 'master' of github.com:guardianproject/orbot
+943ad4b0 Merge pull request #829 from weblate/weblate-guardianproject-orbot
+f960d77d Translated using Weblate (Romanian)
+d94e4d84 Merge branch 'master' of https://hosted.weblate.org/git/guardianproject/orbot
+418ad8c8 (tag: 17.0.0-BETA-2-tor.0.4.7.11) update to version 1700200200
+4a1609cd Merge branch 'weblate-weblate-guardianproject-orbot'
+467316e2 Merge branch 'weblate-guardianproject-orbot' of https://github.com/weblate/orbot into weblate-weblate-guardianproject-orbot
+c3f6ee18 improvements on built-in bridge configurations - unify obfs4, moat, snowflake static configuration data - remove PT bridge configuration info from code - update to latest torproject snowflake broker info - fix UI glitch related to Moat bridge requests
+d3b4443d move tor-android to 0.4.7.11 hosted on mavencentral
+27287d42 Merge branch 'master' of github.com:guardianproject/orbot
+48719e74 initial support for kindness/snowflake mode advanced features for charging and wifi
+e7b2884a add support for display "no internet" warning state
+e1e3dcb7 update test to work with new UI
+b992c859 UI update moving main functionality to three fragments with navController
+e03f49d8 implement "Ask Tor" circumvention API support in bridge config
+2fcb01af make sure our hover animation, includes the shadow!
+987c5dd1 improve display of bridge type on main button
+06a32767 Add Snowflake (AMP) support back in, and other small UI update progress
+b641059f Don't show suggested apps in "all apps" list
+51d98cf9 Translated using Weblate (Romanian)
+129c111d Merge branch 'master' of https://github.com/guardianproject/orbot
+387f439f bump orbotlib to new iptproxy
+3883b156 Translated using Weblate (Bulgarian)
+b7aec78e Translated using Weblate (Ukrainian)
+99e2ced7 Translated using Weblate (Turkish)
+f1304993 Translated using Weblate (Russian)
+3d5ecd22 Translated using Weblate (Portuguese (Brazil))
+e6784953 Translated using Weblate (Indonesian)
+8eef16a0 Translated using Weblate (Finnish)
+738aebd5 Merge pull request #823 from weblate/weblate-guardianproject-orbot
+0dfe0dc6 Translated using Weblate (Japanese)
+9ee6ace6 ran lint after deleting app-mini module, also deleted lots of old resources from the old layout and beyond...
+190b94d3 settings.gradle
+83f245c7 removed app-mini module, dead code gets buried
+fd5c06fa verbose print in IPtProxy build script
+48946156 Merge branch 'master' of https://github.com/guardianproject/orbot
+1559daa6 Merge pull request #806 from syphyr/orbotlib_rebase
+0afae0c1 Merge pull request #809 from guardianproject/fastlane
+ab7f5b14 use non-transitive R classes for suppposedly faster builds
+4b2de535 (origin/fastlane) Bump fastlane to 2.0.0 (which needed Android 18 min sdk) This means fastlane uses Android X, after this is merged only two deps will be on the old android support libraries
+9e9d553d Merge pull request #805 from syphyr/stun_server
+c69c1c7c Switch default proxy STUN server to stun.l.google.com
+f2de634a Merge pull request #807 from guardianproject/fix-unit-tests
+68fad424 Merge pull request #808 from guardianproject/ci-docs
+3a4ca063 update docs
+fb2079db update docs
+e30e1628 Link to CI from README.md
+9627206d (origin/fix-unit-tests) unbreak ui tests
+953cc491 break ui tests to confirm bitrise is working
+a5d4263d add CI docs
+801eaf3d unbreak unit test
+ce6d5ee4 make tests fail to confirm bitrise also fails
+03db823d move unit tests to appropriate spot
+f0926fec build-orbotlib: Fetch new changes and rebase
+0128c042 Remove stun.voip.blackberry.com from STUN server list
+185dfb1d Merge pull request #802 from syphyr/orbotlib_submod
+4bfaa799 Merge pull request #788 from syphyr/kotlin_stdlib
+41dcb8ea Merge branch 'master' into kotlin_stdlib
+c72708a2 Merge pull request #803 from guardianproject/setup-testing
+96a643d8 Merge pull request #804 from guardianproject/bump-minsdkversion
+a01df39a (origin/setup-testing) bump minSdkVersion for app from 16 to 18 per needs of androidx.test.uiautomator:uiautomator
+317e8bbb (origin/bump-minsdkversion) bump minSdkVersion for app from 16 to 18 per needs of androidx.test.uiautomator:uiautomator
+aa262d2e Trivial (passing) espresso and unit tests
+fd1b78cf Revert "update submod in script"
+9494835e Merge branch 'master' of https://github.com/guardianproject/orbot
+197af55e update submod in script
+0b6016c8 Merge pull request #801 from syphyr/orbotlib
+44f1c854 build-orbotlib: Check for directory before cloning
+d3f1eff4 - Fixed log fragment, logs in buffer wouldn't have new lines - When the log is created, then hidden - logs will not be added to the UI or the buffer causing missing logs - Add Toast when log is copied - Fixed a lot of Kotlin issues in MainActivity/Log Fragment
+2e171194 re #791, this targets all english non rGB string resources
+93a033dc Bump to IPtProxy 1.9.0
+5c6c15bd Merge pull request #791 from BitcoinMechanic/copy-errors
+d3375198 Remove reference to "Dr. Slash FLAT OS" in README.md; Orbot no longer uses those graphical assets
+07e416d3 Update STUN Server List
+305d8947 Merge pull request #778 from weblate/weblate-guardianproject-orbot
+b021ba10 Translated using Weblate (Japanese)
+0b8f2954 Translated using Weblate (Romanian)
+52b0798d Translated using Weblate (Persian)
+e1933ef3 Translated using Weblate (German)
+8656a496 Translated using Weblate (Bulgarian)
+0fe0094e Translated using Weblate (Polish)
+41fe6215 Merge pull request #795 from guardianproject/public-bitrise
+2d995595 (origin/public-bitrise) new bitrise status chip since app was deleted & replaced
+4382fa84 Merge pull request #792 from guardianproject/bitrise
+9ce9170d (origin/bitrise) Add bitrise status chip to README
+c11fed05 fix spelling
+61a58432 Update to kotlin-stdlib-jdk8
+88cff3ce (tag: 17.0.0-BETA-1-tor.0.4.7.11) update Orbot to 1700200100
+af306f62 Merge pull request #773 from weblate/weblate-guardianproject-orbot
+b8ec9cb1 Translated using Weblate (Ukrainian)
+7a0db223 Translated using Weblate (Russian)
+d81cbbb7 Translated using Weblate (Portuguese (Brazil))
+f0790f41 Translated using Weblate (Spanish)
+0babfdb4 Translated using Weblate (Indonesian)
+cb2fdd3b Translated using Weblate (Ukrainian)
+f3cd0b79 Translated using Weblate (Turkish)
+b0087339 Translated using Weblate (Albanian)
+a82f9af8 Translated using Weblate (Chinese (Simplified))
+08b90734 reimplement log display
+c97f3b3b fix app selection, and allow tapping on app icons to open app
+861786eb Merge pull request #768 from syphyr/kotlin_version
+84ee76ba Merge pull request #766 from weblate/weblate-guardianproject-orbot
+dc1e9e2b Translated using Weblate (French)
+ef2074cf Translated using Weblate (Spanish)
+cbf268d1 Translated using Weblate (Persian)
+f92b911b Translated using Weblate (Albanian)
+322cda17 Translated using Weblate (Persian)
+ac33e489 Optimize app-tv package names
+e21280e1 Remove extra kotlin_version definition
+09137eef fix display of exit country
+c7de687c (dev_apple) fixes for exit node settings
+5334787a updates to gradle and build tools
+1f8ba893 Merge pull request #760 from weblate/weblate-guardianproject-orbot
+9a995497 Merge branch 'master' of github.com:guardianproject/orbot
+3e1ba3dd update to latest tor-android 0.4.7.11 and fix dependencies
+c1f9e683 Translated using Weblate (Hungarian)
+e947bbf4 Translated using Weblate (Portuguese (Portugal))
+7bad4f99 Merge pull request #734 from weblate/weblate-guardianproject-orbot
+d8e0861e Translated using Weblate (Chinese (Simplified))
+653b7c15 Translated using Weblate (Icelandic)
+4e5b592a Translated using Weblate (Russian)
+1fc85f42 Translated using Weblate (Russian)
+e788a9e2 Translated using Weblate (Russian)
+9e1b65c4 Translated using Weblate (Polish)
+319137d3 Translated using Weblate (Lithuanian)
+3f8699ce Translated using Weblate (Spanish)
+51bc1f91 Translated using Weblate (Romanian)
+6f2c1130 Translated using Weblate (German)
+d2b4caca Translated using Weblate (Chinese (Simplified))
+02e36bd1 Translated using Weblate (Ukrainian)
+43324837 Translated using Weblate (Turkish)
+36781cd6 Translated using Weblate (Russian)
+6d529d5f Translated using Weblate (Portuguese (Brazil))
+5f586497 Translated using Weblate (Persian)
+7fec5275 Translated using Weblate (Bulgarian)
+d50d0796 add fastlane files for   adding localized strings for  1. Páez (pbb)      2. Guambiano (gum)      3. Wayuu (guc)
+3e377fa2 adding localized strings for  1. Páez (pbb)  2. Guambiano (gum)  3. Wayuu (guc)
+49a26355 Merge branch 'master' of github.com:guardianproject/orbot
+0296469f update builds and versions
+838b5dcc Delete Smart Connect Design Spec
+590b536c Create smart-connect-design-spec.md
+682ae4e5 Create Smart Connect Design Spec
+a00b660d remove static jar and aar libs
+782c6ad5 add geoip files directly as assets (not a jar)
+fb15163c move tor-android 0.4.7.8.1 via gpmaven repo
+764ca28e add deploy
+21d7c5c1 add choose apps to the side menu for now so it is always avialable
+52299c3b ensure tor exit node is set correctly (requires { } )
+c7f12fd0 add full app exit option back in (to stop background service)
+db246b9f ensure package name is not empty
+4d539425 set background color
+3ca4f2fc add nightly build steps to gitlab ci
+e0b2a39d updates for app-mini and app-tv to build properly
+747b5a42 target for SDK 31
+9a631bf6 update target SDKs to 32
+65c9eabf more fixes for flavor/nightly builds and content providers
+6974d8f8 specific branding for nightly build
+2b69a48d autogenerate version code for nightlies as documented here: https://f-droid.org/docs/Publishing_Nightly_Builds/
+7663d78a add nightly flavor for automated CI builds
+f6a16e84 improved support for landscape layout
+0d808986 fix issues with Orbot stop/start status handling
+17713b25 Merge branch 'master' of github.com:guardianproject/orbot
+5ceb96a2 Merge pull request #733 from syphyr/rotation
+e3b5f40b Allow app rotation
+5c60b2f1 (tag: 17.0.0-ALPHA-4-tor.0.4.7.8) updated to 1700100400
+7828f8e7 implement initial "power user" no VPN mode
+1fcceebf fixes for snowflake proxy running, weekly counter
+4487f1e3 fix spanish strings to be mixed case
+6f449229 Merge pull request #730 from weblate/weblate-guardianproject-orbot
+eaec43d9 Translated using Weblate (Spanish)
+55dfb074 Translated using Weblate (Chinese (Simplified))
+ce0ab7a2 Translated using Weblate (Ukrainian)
+1f6d2c58 Translated using Weblate (Turkish)
+c9c9ce83 Translated using Weblate (Russian)
+6383dc3a Translated using Weblate (Portuguese (Brazil))
+0d4f435e Translated using Weblate (Icelandic)
+802d4e34 Translated using Weblate (Persian)
+da50909a Translated using Weblate (German)
+2b5d4f5a Translated using Weblate (Bulgarian)
+24f5078b Translated using Weblate (Romanian)
+1959bf34 Merge branch 'master' of github.com:guardianproject/orbot
+ee9f0ec8 Merge branch 'NEW_UX'
+7860adba cleanup
+2d7b5bbb try new general app settings around largeHeap and hardware accel
+cc460827 ensure suggested apps are properly added to torified app list
+d2e09f0d (tag: 17.0.0-ALPHA-3-tor.0.4.7.8) update to v17 alpha 2
+eef245a8 (origin/NEW_UX) improve app selection and layout
+6cc17ee0 display vpn apps on main screen
+071698f6 new strings
+30bc97ae update playstore graphic
+8fb52117 update icon launcher
+0c35dda4 update exit selection to show new flag immediately
+781a4832 add refresh animation (place holder for now)
+fe3edfab improved kindness mode UI
+8cd89159 added bottom navigation bar and updated icons, assets
+c71614b3 small tweaks to onboarding layout
+55955794 increase timeouts on smart connect to 15 and 10 seconds
+02e6c91a when active command is sent, reply with current status
+ce685b43 (tag: 17.0.0-ALPHA-2-tor.0.4.7.8) update version to v17 alpha 2
+
 /** 16.6.2-RC-4-tor.0.4.7.8.1 26 Jul 2022 **/
 
 f2092a9e (HEAD -> master) update to 1662300400 RC4
