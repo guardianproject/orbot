@@ -145,6 +145,16 @@
             android:padding="@dimen/activity_horizontal_margin"
             android:background="@color/panel_widget_background"
             android:layout_margin="10dp">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_heart"
+                android:paddingTop="20dp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                />
             <TextView
                 android:id="@+id/swVolunteerHeader"
                 android:layout_width="wrap_content"
@@ -152,6 +162,10 @@
                 android:text="@string/volunteer_mode"
                 android:textSize="24dp"
                 android:paddingTop="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
                 />
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/swVolunteerMode"
@@ -173,8 +187,8 @@
                 android:id="@+id/swVolunteerAdjust"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="12dp"
-                android:layout_marginLeft="24dp"
+                android:paddingTop="10dp"
+                android:layout_marginLeft="32dp"
                 android:layout_marginBottom="@dimen/button_horizontal_large_margin"
                 android:text="@string/menu_settings"
                 android:textSize="24dp"
