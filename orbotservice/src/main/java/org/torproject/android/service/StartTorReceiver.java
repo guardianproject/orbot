@@ -23,7 +23,8 @@ public class StartTorReceiver extends BroadcastReceiver implements OrbotConstant
                 String packageName = intent.getStringExtra(EXTRA_PACKAGE_NAME);
                 if (Prefs.allowBackgroundStarts()) {
                     Intent startTorIntent = new Intent(context, OrbotService.class)
-                            .setAction(action);
+                            .setAction(action)
+                            .putExtra(OrbotConstants.EXTRA_NOT_SYSTEM, true);
                     if (packageName != null) {
                         startTorIntent.putExtra(OrbotService.EXTRA_PACKAGE_NAME, packageName);
                     }

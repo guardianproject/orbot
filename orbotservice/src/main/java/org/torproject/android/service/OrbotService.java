@@ -235,11 +235,27 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
+        final boolean shouldStartVpn =
+                !intent.getBooleanExtra(OrbotConstants.EXTRA_NOT_SYSTEM, false);
         try {
             if (mCurrentStatus.equals(STATUS_OFF))
                 showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor);
 
-            if (intent != null)
+            if (shouldStartVpn) {
+                Log.d(TAG, "Starting VPN from system intent: " + intent);
+                showToolbarNotification(getString(R.string.status_starting_up), NOTIFY_ID, R.drawable.ic_stat_tor);
+                if (VpnService.prepare(this) == null) {
+                    // Power-user mode doesn't matter here. If the system is starting the VPN, i.e.
+                    // via always-on VPN, we need to start it regardless.
+                    Prefs.putUseVpn(true);
+                    mExecutor.execute(new IncomingIntentRouter(new Intent(ACTION_START)));
+                    mExecutor.execute(new IncomingIntentRouter(new Intent(ACTION_START_VPN)));
+                } else {
+                    Log.wtf(TAG, "Could not start VPN from system because it is not prepared, "
+                            + "which should be impossible!");
+                }
+            }
+            else if (intent != null)
                 mExecutor.execute(new IncomingIntentRouter(intent));
             else
                 Log.d(TAG, "Got null onStartCommand() intent");

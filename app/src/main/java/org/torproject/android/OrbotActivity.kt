@@ -139,7 +139,10 @@ class OrbotActivity : BaseActivity() {
     }
 
 
-    private fun sendIntentToService(intent: Intent) = ContextCompat.startForegroundService(this, intent)
+    private fun Intent.putNotSystem(): Intent = this.putExtra(OrbotConstants.EXTRA_NOT_SYSTEM, true)
+
+    /** Sends intent to service, first modifying it to indicate it is not from the system */
+    private fun sendIntentToService(intent: Intent) = ContextCompat.startForegroundService(this, intent.putNotSystem())
     private fun sendIntentToService(action: String) = sendIntentToService(
         android.content.Intent(this, org.torproject.android.service.OrbotService::class.java)
             .apply {

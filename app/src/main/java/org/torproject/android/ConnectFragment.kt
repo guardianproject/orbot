@@ -153,7 +153,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
 
 
      fun startTorAndVpn() {
-        val vpnIntent = VpnService.prepare(requireActivity())
+        val vpnIntent = VpnService.prepare(requireActivity())?.putNotSystem()
         if (vpnIntent != null && (!Prefs.isPowerUserMode())) {
             startActivityForResult(vpnIntent, OrbotActivity.REQUEST_CODE_VPN)
         } else {
@@ -377,7 +377,10 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
             }
     }
 
-    private fun sendIntentToService(intent: Intent) = ContextCompat.startForegroundService(requireActivity(), intent)
+    private fun Intent.putNotSystem(): Intent = this.putExtra(OrbotConstants.EXTRA_NOT_SYSTEM, true)
+
+    /** Sends intent to service, first modifying it to indicate it is not from the system */
+    private fun sendIntentToService(intent: Intent) = ContextCompat.startForegroundService(requireActivity(), intent.putNotSystem())
     private fun sendIntentToService(action: String) = sendIntentToService(
         Intent(requireActivity(), OrbotService::class.java).apply {
         this.action = action

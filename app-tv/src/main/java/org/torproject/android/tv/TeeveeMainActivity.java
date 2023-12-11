@@ -313,6 +313,7 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
 
         Intent intent = new Intent(TeeveeMainActivity.this, OrbotService.class);
         intent.setAction(action);
+        intent.putExtra(OrbotConstants.EXTRA_NOT_SYSTEM, true);
         startService(intent);
     }
 
