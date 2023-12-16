@@ -265,7 +265,7 @@
     <string name="not_sure">Nie wiesz\?</string>
     <string name="no_internet_subtitle">Do korzystania z Orbota potrzebne jest połączenie z internetem.</string>
     <string name="action_use">Użyj</string>
-    <string name="kindness_adjust_title">Dostosuj, kiedy działa…</string>
+    <string name="kindness_adjust_title">Ustawienia</string>
     <string name="many_ways">Istnieje wiele sposobów na dotarcie do Tor. Niektóre z nich mogą działać lepiej niż inne dla Ciebie.</string>
     <string name="asking">PYTANIE...</string>
     <string name="pref_isolate_port_summary">Użyj innego obwodu dla każdego portu docelowego</string>
