@@ -82,13 +82,13 @@
     <string name="pref_disable_network_summary">利用可能なインターネット接続がない時、Torをスリープさせる</string>
     <string name="newnym">新たな Tor の身元に切り替えました！</string>
     <string name="pref_socks_title">Tor SOCKS</string>
-    <string name="pref_socks_summary">TorがSOCKSプロキシを提供するポート (デフォルト: 9050、0にすると無効)</string>
+    <string name="pref_socks_summary">TorがSOCKSプロキシを提供するポート (初期設定: 9050、0にすると無効)</string>
     <string name="pref_socks_dialog">SOCKS ポート設定</string>
     <string name="pref_transport_title">Tor透過プロキシポート</string>
-    <string name="pref_transport_summary">Torが透過プロキシを提供するポート (デフォルト: 9040、0にすると無効)</string>
+    <string name="pref_transport_summary">Torが透過プロキシを提供するポート (初期設定: 9040、0にすると無効)</string>
     <string name="pref_transport_dialog">透過プロキシポート設定</string>
     <string name="pref_dnsport_title">Tor DNS ポート</string>
-    <string name="pref_dnsport_summary">TorがDNSを提供するポート (デフォルト: 5400、0にすると無効)</string>
+    <string name="pref_dnsport_summary">TorがDNSを提供するポート (初期設定: 5400、0にすると無効)</string>
     <string name="pref_dnsport_dialog">DNS ポート設定</string>
     <string name="pref_torrc_title">Torrc カスタム設定</string>
     <string name="pref_torrc_summary">上級者のみ: 直接torrc設定行を入力します</string>
@@ -127,7 +127,7 @@
     <string name="pref_isolate_dest">宛先アドレスを分離</string>
     <string name="pref_isolate_dest_summary">宛先アドレスごとに別の回路を使用する</string>
     <string name="pref_connection_padding">接続水増し</string>
-    <string name="pref_connection_padding_summary">ある種のトラフィック解析から防御するために、接続水増しを常に有効にします。デフォルト: 自動</string>
+    <string name="pref_connection_padding_summary">ある種のトラフィック解析から防御するために、接続水増しを常に有効にします。初期設定: 自動</string>
     <string name="pref_reduced_connection_padding">節減型通信水増し</string>
     <string name="pref_reduced_connection_padding_summary">データと電池の消費量を減らすために、中継接続を早めに閉じ、水増しパケットを少なく送信します</string>
     <string name="app_shortcuts">Torが有効化されたアプリ</string>
@@ -140,7 +140,7 @@
     <string name="pref_open_proxy_on_all_interfaces_title">全インターフェイスでプロキシを開く</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Wi-Fiピア、テザリングされたデバイス、及びIPに接続できる他のユーザーに、Torへのアクセスを許可します</string>
     <string name="pref_http_title">Tor HTTP</string>
-    <string name="pref_http_summary">Tor が HTTP プロキシを提供するポート (デフォルト: 8118、0にすると無効)</string>
+    <string name="pref_http_summary">Tor が HTTP プロキシを提供するポート (初期設定: 8118、0にすると無効)</string>
     <string name="pref_http_dialog">HTTP ポート設定</string>
     <string name="pref_prefer_ipv6">IPv6接続を優先</string>
     <string name="pref_prefer_ipv6_summary">IPv6アドレスが優先されるように出口に指示します</string>
@@ -232,7 +232,7 @@
 \n• インターネットを遅くすることはありません
 \n• wifiのみで動作可能です
 \n• いつでも電源を切ることができます</string>
-    <string name="smart_connect">気の利いた接続(デフォルト)</string>
+    <string name="smart_connect">気の利いた接続(初期設定)</string>
     <string name="volunteer_mode_weekly_label">週間合計</string>
     <string name="volunteer_mode_alltime_label">全期間累計</string>
     <string name="smart_connect_subtitle">Orbotはあらゆる手段でTorに接続しようとします: 直接、Snowflake、ブリッジ。</string>
@@ -261,7 +261,7 @@
     <string name="pref_isolate_port_summary">宛先ポートごとに別の回路を使用する</string>
     <string name="pref_isolate_protocol">クライアントプロトコルを分離</string>
     <string name="pref_isolate_protocol_summary">接続中のプロトコルごとに別の回路を使用する</string>
-    <string name="many_ways">Torに到達する方法はたくさんあります。いくつかはあなたにとってより良い方法であるかもしれません。</string>
+    <string name="many_ways">Torに到達する方法はたくさんあります。いくつかは、あなたにとってより良い方法であるかもしれません。</string>
     <string name="action_use">使用</string>
     <string name="no_interent_title">インターネットに接続</string>
     <string name="no_internet_subtitle">Orbotを使用するには、インターネット接続が必要です。</string>
@@ -272,7 +272,7 @@
     <string name="not_sure">わからない？</string>
     <string name="ask_tor">トールに聞く</string>
     <string name="asking">アスク...</string>
-    <string name="kindness_adjust_title">実行時に調整する…</string>
+    <string name="kindness_adjust_title">設定</string>
     <string name="kindess_config_detail">あなたの端末が他のTor利用者用のSnowflakeプロキシとしてどう動作するか、いつ動作するかを設定します。</string>
     <string name="btn_copy_log">ログをコピー</string>
     <string name="setting_padding">水増し</string>
@@ -286,5 +286,5 @@
     <string name="connection_custom">カスタム</string>
     <string name="pref_flag_secure_summary">他のアプリがOrbotのスクリーンショットを撮るのを防ぐ</string>
     <string name="pref_flag_secure_title">画面の安全</string>
-    <string name="root_warning">Orbotは端末が、安全問題の原因になり得るroot化状態であると検知しました。</string>
+    <string name="root_warning">Orbotは、端末が安全問題の原因になり得るroot化状態であると検知しました。</string>
 </resources>
