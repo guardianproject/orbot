@@ -278,7 +278,7 @@
     <string name="ask_tor">Chiedi a Tor</string>
     <string name="many_ways">Ci sono molti modi per raggiungere Tor. Alcuni possono funzionare meglio di altri per te.</string>
     <string name="asking">RICHIESTA...</string>
-    <string name="kindness_adjust_title">Regola quando è attiva…</string>
+    <string name="kindness_adjust_title">Impostazioni</string>
     <string name="pref_flag_secure_summary">Impedisci ad altre app di catturare schermate di Orbot</string>
     <string name="pref_flag_secure_title">Sicurezza dello schermo</string>
     <string name="root_warning">Orbot ha rilevato che è stato fatto il root del dispositivo , il che può causare problemi di sicurezza.</string>
