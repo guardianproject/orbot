@@ -264,7 +264,7 @@
     <string name="action_use">Използване</string>
     <string name="asking">ЗАПИТВАНЕ…</string>
     <string name="no_interent_title">Свържете се с интернет</string>
-    <string name="kindness_adjust_title">Настройка на работата…</string>
+    <string name="kindness_adjust_title">Настройки</string>
     <string name="no_internet_subtitle">За да използвате Orbot е необходим достъп до интернет.</string>
     <string name="not_sure">Не сте сигурни\?</string>
     <string name="ask_tor">Попитайте Тор</string>
