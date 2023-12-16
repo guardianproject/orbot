@@ -270,7 +270,7 @@
     <string name="asking">Preguntando...</string>
     <string name="no_interent_title">Conectarse a Internet</string>
     <string name="no_internet_subtitle">Necesitas estar conectado a Internet para usar Orbot.</string>
-    <string name="kindness_adjust_title">Ajústalo cuando se ejecuta…</string>
+    <string name="kindness_adjust_title">Ajustes</string>
     <string name="ask_tor">Preguntale a Tor</string>
     <string name="kindess_config_detail">Configura cómo y cuándo tu dispositivo puede actuar como un proxy Snowflake para otros usuarios de Tor.</string>
     <string name="pref_isolate_port">Aislar puertos de destino</string>
