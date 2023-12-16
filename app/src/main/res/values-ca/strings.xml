@@ -214,7 +214,7 @@
     <string name="paste_bridges">Enganxa els ponts</string>
     <string name="volunteer_mode_weekly_label">Total setmanal</string>
     <string name="request_bridges">Sol·licita ponts</string>
-    <string name="kindness_adjust_title">Ajusta quan s\'executa…</string>
+    <string name="kindness_adjust_title">Paràmetres</string>
     <string name="apps_suggested_title">Aplicacions suggerides</string>
     <string name="pref_circuit_padding_summary">Activa el farciment del circuit per a defensar-se d\'algunes formes d\'anàlisis de trànsit</string>
     <string name="log_copied">S\'ha copiat el registre</string>
