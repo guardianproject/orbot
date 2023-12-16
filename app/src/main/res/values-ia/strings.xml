@@ -20,7 +20,7 @@
     <string name="disable">Disactivar</string>
     <string name="menu_faq">FAQ</string>
     <string name="btn_refresh">Actualisar</string>
-    <string name="menu_header_features">Characteristicas</string>
+    <string name="menu_header_features">Functionalitates</string>
     <string name="drawer_open">Aperir</string>
     <string name="drawer_close">Clauder</string>
     <string name="enable">Activar</string>
@@ -41,4 +41,41 @@
     <string name="connection_direct">Directe</string>
     <string name="title_choose_apps">Seliger le applicationes</string>
     <string name="app_name">Orbot</string>
+    <string name="volunteer_mode_alltime_label">Total de tote le tempore</string>
+    <string name="no_internet_subtitle">Tu besonia un connexion de Internet pro usar Orbot.</string>
+    <string name="no_thx">Non, gratias</string>
+    <string name="custom_bridge">Ponte personalisate</string>
+    <string name="menu_help_others">Adjuta a alteres</string>
+    <string name="power_user_mode">Modo de usator avantiate</string>
+    <string name="volunteer_mode_weekly_label">Total del septimana</string>
+    <string name="option_only_on_wifi">Solmente in Wi-Fi</string>
+    <string name="menu_header_learn">Plus de information</string>
+    <string name="having_trouble_subtitle">Nos pote essayar un ponte Tor, ma nos besonia tu adjuta</string>
+    <string name="having_trouble">Il ha problemas</string>
+    <string name="direct_connect">Connexion directe a Tor</string>
+    <string name="menu_tor_connection">Connexion Tor</string>
+    <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="btn_use_custom_bridge">Usar un ponte personalisate</string>
+    <string name="pref_flag_secure_title">Securitate del schermo</string>
+    <string name="menu_app_settings">Parametros del application</string>
+    <string name="app_suggested_subtitle">Orbot functiona melior con applicationes de messageria e retes social.</string>
+    <string name="get_a_bridge">Ponte de Tor (Obfs4)</string>
+    <string name="volunteer_mode_title">Adjuta a alteres
+\nin connecter se a Tor</string>
+    <string name="direct_connect_subtitle">Le melior maniera de connecter se a Tor. Usa lo si Tor non es blocate.</string>
+    <string name="volunteer_status_title">Hodie es melior
+\ngratias a te.</string>
+    <string name="pref_proxy_type_dialog">Insere typo de proxy</string>
+    <string name="copy_address_to_clipboard">Copiar adresse al area de transferentia</string>
+    <string name="version">Version:</string>
+    <string name="menu_hidden_services">Servicios onion</string>
+    <string name="delete_service">Deler le servicio</string>
+    <string name="v3_backup_name_hint">Nomine de file del copia de securitate…</string>
+    <string name="license">Licentia:</string>
+    <string name="pref_proxy_host_dialog">Insere le servitor proxy</string>
+    <string name="service_type">Typo de servicio</string>
+    <string name="app_shortcuts">Applicationes activate pro Tor</string>
+    <string name="allow">Permitter</string>
+    <string name="hidden_services">Servicios onion</string>
+    <string name="done">Facite!</string>
 </resources>
