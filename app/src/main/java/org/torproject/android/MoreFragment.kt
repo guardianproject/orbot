@@ -47,11 +47,11 @@ class MoreFragment : Fragment() {
         sb.append(getString(R.string.proxy_ports)).append(" ")
 
         if (httpPort != -1 && socksPort != -1) {
-            sb.append("HTTP: ").append(httpPort).append(" - ").append(" SOCKS: ").append(socksPort)
+            sb.append("\nHTTP: ").append(httpPort).append(" - ").append(" SOCKS: ").append(socksPort)
         }
         else
         {
-            sb.append(getString(R.string.ports_not_set))
+            sb.append(": " + getString(R.string.ports_not_set))
         }
 
         sb.append("\n\n")
