@@ -35,10 +35,11 @@ class MoreFragment : Fragment() {
 
 
     fun setPorts (newHttpPort : Int, newSocksPort: Int) {
+
         httpPort = newHttpPort
         socksPort = newSocksPort
 
-        updateStatus()
+        if (view != null) updateStatus()
     }
 
     private fun updateStatus () {
