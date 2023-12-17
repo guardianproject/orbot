@@ -21,7 +21,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.net.ProxyInfo;
 import android.net.VpnService;
 import android.os.Build;
 import android.os.Handler;
@@ -31,9 +30,6 @@ import android.os.ParcelFileDescriptor;
 import android.system.OsConstants;
 import android.util.Log;
 import android.widget.Toast;
-
-import com.runjva.sourceforge.jsocks.protocol.ProxyServer;
-import com.runjva.sourceforge.jsocks.server.ServerAuthenticatorNone;
 
 import org.pcap4j.packet.IllegalRawDataException;
 import org.pcap4j.packet.IpPacket;
@@ -50,21 +46,15 @@ import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-
-import androidx.annotation.ChecksSdkIntAtLeast;
 
 import IPtProxy.IPtProxy;
 import IPtProxy.PacketFlow;
 
 public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     private static final String TAG = "OrbotVpnService";
-    @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.LOLLIPOP)
-    private final static boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     public static int sSocksProxyServerPort = -1;
     public static String sSocksProxyLocalhost = null;
     boolean isStarted = false;
@@ -73,7 +63,6 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     private int mTorSocks = -1;
     private int mTorDns = -1;
     private int mTorHttp = -1;
-    private ProxyServer mSocksProxyServer;
     private final VpnService mService;
     private final SharedPreferences prefs;
     private DNSResolver mDnsResolver;
@@ -123,10 +112,6 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                         mTorSocks = torSocks;
                         mTorDns = torDns;
 
-                        if (!mIsLollipop) {
-                            startSocksBypass();
-                        }
-
                         setupTun2Socks(builder);
                     }
                 }
@@ -137,55 +122,10 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
 
     public void restartVPN (VpnService.Builder builder) {
         stopVPN();
-        if (!mIsLollipop) {
-            startSocksBypass();
-        }
         setupTun2Socks(builder);
     }
 
-    private void startSocksBypass() {
-        new Thread() {
-            public void run() {
-
-                //generate the proxy port that the
-                if (sSocksProxyServerPort == -1) {
-                    try {
-                        sSocksProxyLocalhost = "127.0.0.1";// InetAddress.getLocalHost().getHostAddress();
-                        sSocksProxyServerPort = (int) ((Math.random() * 1000) + 10000);
-
-                    } catch (Exception e) {
-                        Log.e(TAG, "Unable to access localhost", e);
-                        throw new RuntimeException("Unable to access localhost: " + e);
-                    }
-                }
-
-                if (mSocksProxyServer != null) {
-                    stopSocksBypass();
-                }
-
-                try {
-                    mSocksProxyServer = new ProxyServer(new ServerAuthenticatorNone(null, null));
-                    ProxyServer.setVpnService(mService);
-                    mSocksProxyServer.start(sSocksProxyServerPort, 5, InetAddress.getLocalHost());
-
-                } catch (Exception e) {
-                    Log.e(TAG, "error getting host", e);
-                }
-            }
-        }.start();
-    }
-
-    private synchronized void stopSocksBypass() {
-        if (mSocksProxyServer != null) {
-            mSocksProxyServer.stop();
-            mSocksProxyServer = null;
-        }
-    }
-
     private void stopVPN() {
-        if (!mIsLollipop)
-            stopSocksBypass();
-
         keepRunningPacket = false;
 
         if (mInterface != null) {
@@ -204,9 +144,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
 
                 mInterface.close();
                 mInterface = null;
-            } catch (Exception e) {
-                Log.d(TAG, "error stopping tun2socks", e);
-            } catch (Error e) {
+            } catch (Exception | Error e) {
                 Log.d(TAG, "error stopping tun2socks", e);
             }
         }
@@ -250,8 +188,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                 builder.setHttpProxy(ProxyInfo.buildDirectProxy("localhost",mTorHttp));
             }**/
 
-            if (mIsLollipop)
-                doLollipopAppRouting(builder);
+            doLollipopAppRouting(builder);
 
             // https://developer.android.com/reference/android/net/VpnService.Builder#setMetered(boolean)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -270,10 +207,8 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
             }
 
              builder.setSession(mSessionName)
-                    .setConfigureIntent(null); // previously this was set to a null member variable
-
-            if (mIsLollipop)
-                builder.setBlocking(true);
+                    .setConfigureIntent(null) // previously this was set to a null member variable
+                    .setBlocking(true);
 
             mInterface = builder.establish();
 

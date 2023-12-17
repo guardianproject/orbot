@@ -101,8 +101,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
     public static File appBinHome;
     public static File appCacheHome;
     private final ExecutorService mExecutor = Executors.newCachedThreadPool();
-    @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.LOLLIPOP)
-    final boolean mIsLollipop = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     OrbotRawEventListener mOrbotRawEventListener;
     OrbotVpnManager mVpnManager;
     Handler mHandler;
@@ -1258,12 +1256,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     private StringBuffer processSettingsImplDirectPathway(StringBuffer extraLines) {
         var prefs = Prefs.getSharedPrefs(getApplicationContext());
         extraLines.append("UseBridges 0").append('\n');
-        if (Prefs.useVpn()) { //set the proxy here if we aren't using a bridge
-            if (!mIsLollipop) {
-                var proxyType = "socks5";
-                extraLines.append(proxyType + "Proxy" + ' ' + OrbotVpnManager.sSocksProxyLocalhost + ':' + OrbotVpnManager.sSocksProxyServerPort).append('\n');
-            }
-        } else {
+        if (!Prefs.useVpn()) { //set the proxy here if we aren't using a bridge
             var proxyType = prefs.getString("pref_proxy_type", null);
             if (proxyType != null && proxyType.length() > 0) {
                 var proxyHost = prefs.getString("pref_proxy_host", null);
