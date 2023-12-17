@@ -21,8 +21,6 @@ import org.torproject.android.core.ui.BaseActivity
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.util.Prefs
 import org.torproject.android.ui.LogBottomSheet
-import org.torproject.android.ui.v3onionservice.PermissionManager
-
 
 class OrbotActivity : BaseActivity() {
 
@@ -220,7 +218,6 @@ class OrbotActivity : BaseActivity() {
         const val REQUEST_CODE_VPN = 1234
         const val REQUEST_CODE_SETTINGS = 2345
         const val REQUEST_VPN_APP_SELECT = 2432
-        val CAN_DO_APP_ROUTING = PermissionManager.isLollipopOrHigher()
     }
 
     fun showLog() {

@@ -20,14 +20,6 @@ public class PermissionManager {
 
     private static final int SNACK_BAR_DURATION = 5000;
 
-    public static boolean isLollipopOrHigher() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
-    }
-
-    public static boolean isAndroidM() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
-    }
-
     @SuppressLint("WrongConstant") // docs *say* you can specify custom durations...
     @TargetApi(Build.VERSION_CODES.M)
     public static void requestBatteryPermissions(FragmentActivity activity, View view) {

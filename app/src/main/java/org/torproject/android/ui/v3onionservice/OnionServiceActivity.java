@@ -170,7 +170,6 @@ public class OnionServiceActivity extends AppCompatActivity {
     }
 
     void showBatteryOptimizationsMessageIfAppropriate() {
-        if (!PermissionManager.isAndroidM()) return;
         Cursor activeServices = getContentResolver().query(OnionServiceContentProvider.CONTENT_URI, OnionServiceContentProvider.PROJECTION,
                 OnionServiceContentProvider.OnionService.ENABLED + "=1", null, null);
         if (activeServices == null) return;
