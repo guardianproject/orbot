@@ -67,6 +67,7 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Enable debug log to output (must use adb or aLogcat to view)</string>
     <string name="project_home">Project Home:</string>
     <string name="orbot_url" translatable="false">https://orbot.app/</string>
+    <string name="orbot_github" translatable="false">https://github.com/guardianproject/orbot/</string>
     <string name="tor_url" translatable="false">Tor: https://www.torproject.org</string>
     <string name="libevent_url" translatable="false">LibEvent: http://www.monkey.org/~provos/libevent/</string>
     <string name="obfs4_url" translatable="false">obfs4 v%s: https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/lyrebird</string>

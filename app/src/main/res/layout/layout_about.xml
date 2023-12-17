@@ -53,6 +53,15 @@
             android:textColor="@android:color/white"
             android:textColorLink="@android:color/white" />
 
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:text="@string/orbot_github"
+            android:textColor="@android:color/white"
+            android:textColorLink="@android:color/white" />
+
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
