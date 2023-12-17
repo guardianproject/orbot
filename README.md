@@ -30,13 +30,20 @@ is reasonably secure, but please ensure you read the usage instructions and
 learn to configure it properly. Learn more: https://torproject.org/
 
 ***********************************************
+
 <div align="center">
-- Download Orbot:
-https://github.com/guardianproject/orbot/releases/latest <br>
-- Tor FAQ (Frequently Asked Questions):
-https://support.torproject.org/faq/ <br>
-- Contribute Translations:
-https://hosted.weblate.org/engage/guardianproject/ <br>
+  <table>
+    <tr>
+      <td><a href="https://github.com/guardianproject/orbot/releases/latest">Download the Latest Orbot Release</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://support.torproject.org/faq/">Tor FAQ (Frequently Asked Questions)</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://hosted.weblate.org/engage/guardianproject/">Please Contribute Your Translations</a></td>
+    </tr>
+  </table>
+</div>
 
 ***********************************************
 **Copyright &#169; 2009-2023, Nathan Freitas, The Guardian Project**
