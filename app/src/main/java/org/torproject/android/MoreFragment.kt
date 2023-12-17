@@ -51,7 +51,7 @@ class MoreFragment : Fragment() {
         }
         else
         {
-            sb.append("none")
+            sb.append(getString(R.string.ports_not_set))
         }
 
         sb.append("\n\n")
