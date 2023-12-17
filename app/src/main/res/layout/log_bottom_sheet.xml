@@ -20,7 +20,6 @@
             android:id="@+id/btnCopyLog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:layout_marginBottom="@dimen/activity_horizontal_margin"
             android:backgroundTint="@color/orbot_btn_enabled_purple"
             android:text="@string/btn_copy_log"
@@ -33,20 +32,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/orbotLogHeader"
+            app:layout_constraintTop_toBottomOf="@+id/btnCopyLog"
             android:paddingBottom="@dimen/button_horizontal_large_margin">
 
-        <TextView
-            android:id="@+id/orbotLog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="monospace"
-            android:textColor="@color/bright_green"
-            android:gravity="start"
-            android:textIsSelectable="true"
-            android:textSize="12sp"
-            android:text=""
-            android:textAppearance="?android:attr/textAppearanceSmallInverse"/>
+                <TextView
+                    android:id="@+id/orbotLog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:textColor="@color/bright_green"
+                    android:gravity="start"
+                    android:textIsSelectable="true"
+                    android:textSize="12sp"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceSmallInverse"/>
 
         </ScrollView>
 
