@@ -58,8 +58,10 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:summary="@string/pref_node_configuration_summary"
+        android:key="category_node_config"
+        app:singleLineTitle="false"
         android:title="@string/pref_node_configuration"
+        app:summary="@string/pref_node_configuration_summary"
         app:iconSpaceReserved="false">
 
         <EditTextPreference

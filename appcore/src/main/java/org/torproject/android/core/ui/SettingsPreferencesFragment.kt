@@ -39,6 +39,11 @@ class SettingsPreferencesFragment : PreferenceFragmentCompat() {
         findPreference<Preference>("pref_be_a_snowflake_limit")?.isEnabled = !bridgesEnabled
         findPreference<Preference>("pref_show_snowflake_proxy_msg")?.isEnabled = !bridgesEnabled
 
+        // kludge for #992
+        val categoryNodeConfig = findPreference<Preference>("category_node_config")
+        categoryNodeConfig?.title = "${categoryNodeConfig?.title}" + "\n\n" + "${categoryNodeConfig?.summary}"
+        categoryNodeConfig?.summary = null
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // if defined in XML, disable the persistent notification preference on Oreo+
             findPreference<Preference>("pref_persistent_notifications")?.let {
