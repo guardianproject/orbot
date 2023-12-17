@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -455,7 +456,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        configLanguage();
         try {
             //set proper content URIs for current build flavor
             V3_ONION_SERVICES_CONTENT_URI = Uri.parse("content://" + getApplicationContext().getPackageName() + ".ui.v3onionservice/v3");
@@ -534,6 +535,14 @@ public class OrbotService extends VpnService implements OrbotConstants {
         {
             //catch this to avoid malicious launches as document Cure53 Audit: ORB-01-009 WP1/2: Orbot DoS via exported activity (High)
         }
+    }
+
+    private void configLanguage() {
+        Configuration config = getBaseContext().getResources().getConfiguration();
+        Locale locale = new Locale(Prefs.getDefaultLocale());
+        Locale.setDefault(locale);
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
     }
 
     public void manageSnowflakeProxy () {
@@ -1606,6 +1615,8 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 replyWithStatus(mIntent);
             } else if (action.equals(CMD_SET_EXIT)) {
                 setExitNode(mIntent.getStringExtra("exit"));
+            } else if (action.equals(ACTION_LOCAL_LOCALE_SET)) {
+                configLanguage();
             }
             else if (action.equals(CMD_SNOWFLAKE_PROXY)) {
                 if (Prefs.beSnowflakeProxy()) {

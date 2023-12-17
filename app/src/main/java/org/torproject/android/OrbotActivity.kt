@@ -152,6 +152,7 @@ class OrbotActivity : BaseActivity() {
             fragConnect.startTorAndVpn()
         } else if (requestCode == REQUEST_CODE_SETTINGS && resultCode == RESULT_OK) {
             Prefs.setDefaultLocale(data?.getStringExtra("locale"))
+            sendIntentToService(OrbotConstants.ACTION_LOCAL_LOCALE_SET);
             (application as OrbotApp).setLocale()
             finish()
             startActivity(Intent(this, OrbotActivity::class.java))
