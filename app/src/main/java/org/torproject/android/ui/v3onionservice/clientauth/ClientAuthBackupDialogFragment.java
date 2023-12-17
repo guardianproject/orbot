@@ -22,8 +22,6 @@ import org.torproject.android.core.DiskUtils;
 import org.torproject.android.core.ui.NoPersonalizedLearningEditText;
 import org.torproject.android.ui.v3onionservice.V3BackupUtils;
 
-import java.io.File;
-
 public class ClientAuthBackupDialogFragment extends DialogFragment {
 
     private NoPersonalizedLearningEditText etFilename;
@@ -101,12 +99,8 @@ public class ClientAuthBackupDialogFragment extends DialogFragment {
         String filename = etFilename.getText().toString().trim();
         if (!filename.endsWith(ClientAuthActivity.CLIENT_AUTH_FILE_EXTENSION))
             filename += ClientAuthActivity.CLIENT_AUTH_FILE_EXTENSION;
-        if (DiskUtils.supportsStorageAccessFramework()) {
             Intent createFileIntent = DiskUtils.createWriteFileIntent(filename, ClientAuthActivity.CLIENT_AUTH_SAF_MIME_TYPE);
             getActivity().startActivityForResult(createFileIntent, REQUEST_CODE_WRITE_FILE);
-        } else { // APIs 16, 17, 18
-            attemptToWriteBackup(Uri.fromFile(new File(DiskUtils.getOrCreateLegacyBackupDir("Orbot"), filename)));
-        }
     }
 
     @Override

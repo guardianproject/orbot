@@ -279,14 +279,12 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
 
 
             isEnabled = true
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                backgroundTintList = ColorStateList.valueOf(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.orbot_btn_enabled_purple
-                    )
+            backgroundTintList = ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.orbot_btn_enabled_purple
                 )
-            }
+            )
             setOnClickListener { startTorAndVpn() }
             //logBottomSheet.resetLog()
         }
@@ -323,14 +321,12 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         with(btnStartVpn) {
             text = context.getString(android.R.string.cancel)
             isEnabled = true
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                backgroundTintList = ColorStateList.valueOf(
-                    ContextCompat.getColor(
-                        context,
-                        R.color.orbot_btn_enabled_purple
-                    )
+            backgroundTintList = ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    context,
+                    R.color.orbot_btn_enabled_purple
                 )
-            }
+            )
             setOnClickListener {
                 stopTorAndVpn()
             }
