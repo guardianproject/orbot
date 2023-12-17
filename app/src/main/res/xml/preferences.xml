@@ -57,8 +57,7 @@
 
     </PreferenceCategory>
 
-    <android.support.v7.preference.PreferenceCategory
-
+    <PreferenceCategory
         android:summary="@string/pref_node_configuration_summary"
         android:title="@string/pref_node_configuration"
         app:iconSpaceReserved="false">
@@ -93,7 +92,7 @@
             app:iconSpaceReserved="false"
             />
 
-    </android.support.v7.preference.PreferenceCategory>
+    </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/relays"
 
