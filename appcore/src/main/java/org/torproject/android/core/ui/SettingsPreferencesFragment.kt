@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.XmlRes
 import androidx.preference.*
@@ -20,7 +19,7 @@ class SettingsPreferencesFragment : PreferenceFragmentCompat() {
     private fun initPrefs () {
         setNoPersonalizedLearningOnEditTextPreferences()
 
-        prefLocale = findPreference<ListPreference>("pref_default_locale")
+        prefLocale = findPreference("pref_default_locale")
         val languages = Languages[requireActivity()]
         prefLocale?.entries = languages!!.allNames
         prefLocale?.entryValues = languages.supportedLocales
@@ -65,8 +64,6 @@ class SettingsPreferencesFragment : PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.preferences, rootKey)
         initPrefs()
     }
-
-   // override fun attachBaseContext(newBase: Context) = super.attachBaseContext(LocaleHelper.onAttach(newBase))
 
     private fun setNoPersonalizedLearningOnEditTextPreferences() {
         val preferenceScreen = preferenceScreen

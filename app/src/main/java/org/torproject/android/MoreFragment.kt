@@ -117,44 +117,4 @@ class MoreFragment : Fragment() {
         (activity as OrbotActivity).showLog()
     }
 
-    /**
-    private fun configureNavigationMenu() {
-    navigationView.getHeaderView(0).let {
-    tvPorts = it.findViewById(R.id.tvPorts)
-    torStatsGroup = it.findViewById(R.id.torStatsGroup)
-    }
-    // apply theme to colorize menu headers
-    navigationView.menu.forEach { menu -> menu.subMenu?.let { // if it has a submenu, we want to color it
-    menu.title = SpannableString(menu.title).apply {
-    setSpan(TextAppearanceSpan(this@OrbotActivity, R.style.NavigationGroupMenuHeaders), 0, this.length, 0)
-    }
-    } }
-    // set click listeners for menu items
-    navigationView.setNavigationItemSelectedListener {
-    when (it.itemId) {
-    R.id.menu_tor_connection -> {
-    openConfigureTorConnection()
-    //closeDrawer()
-    }
-    R.id.menu_help_others -> openKindnessMode()
-    R.id.menu_choose_apps -> {
-    startActivityForResult(Intent(this, AppManagerActivity::class.java), REQUEST_VPN_APP_SELECT)
-    }
-    R.id.menu_exit -> doExit()
-    R.id.menu_log -> showLog()
-    R.id.menu_v3_onion_services -> startActivity(Intent(this, OnionServiceActivity::class.java))
-    R.id.menu_v3_onion_client_auth -> startActivity(Intent(this, ClientAuthActivity::class.java))
-    R.id.menu_settings -> startActivityForResult(SettingsPreferencesActivity.createIntent(this, R.xml.preferences), REQUEST_CODE_SETTINGS)
-    R.id.menu_faq -> Toast.makeText(this, "TODO FAQ not implemented...", Toast.LENGTH_LONG).show()
-    R.id.menu_about -> {
-    AboutDialogFragment()
-    .show(supportFragmentManager, AboutDialogFragment.TAG)
-    //closeDrawer()
-    }
-    else -> {}
-    }
-    true
-    }
-
-    }**/
 }

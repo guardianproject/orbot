@@ -1,13 +1,10 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:iconSpaceReserved="false"
-
-    >
+    app:iconSpaceReserved="false">
 
     <PreferenceCategory android:title="@string/pref_general_group"
-        app:iconSpaceReserved="false"
+        app:iconSpaceReserved="false">
 
-        >
         <ListPreference
             android:key="pref_default_locale"
             android:title="@string/set_locale_title"
@@ -60,12 +57,11 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory
+    <android.support.v7.preference.PreferenceCategory
+
         android:summary="@string/pref_node_configuration_summary"
         android:title="@string/pref_node_configuration"
-
-        app:iconSpaceReserved="false"
-        >
+        app:iconSpaceReserved="false">
 
         <EditTextPreference
             android:dialogTitle="@string/pref_entrance_node_dialog"
@@ -97,7 +93,7 @@
             app:iconSpaceReserved="false"
             />
 
-    </PreferenceCategory>
+    </android.support.v7.preference.PreferenceCategory>
 
     <PreferenceCategory android:title="@string/relays"
 

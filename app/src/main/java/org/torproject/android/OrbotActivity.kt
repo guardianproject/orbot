@@ -111,7 +111,7 @@ class OrbotActivity : BaseActivity() {
 // system permissions dialog. Save the return value, an instance of
 // ActivityResultLauncher. You can use either a val, as shown in this snippet,
 // or a lateinit var in your onAttach() or onCreate() method.
-    val requestPermissionLauncher =
+    private val requestPermissionLauncher =
         registerForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
