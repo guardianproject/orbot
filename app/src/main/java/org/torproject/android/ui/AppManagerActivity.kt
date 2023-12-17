@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
-import android.os.AsyncTask
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -25,13 +24,18 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
 import org.torproject.android.BuildConfig
 import org.torproject.android.R
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.util.Prefs
 import org.torproject.android.service.vpn.TorifiedApp
 
-import java.lang.ref.WeakReference
 import java.util.Arrays
 import java.util.StringTokenizer
 
@@ -48,6 +52,9 @@ class AppManagerActivity : AppCompatActivity(), View.OnClickListener, OrbotConst
     private var adapterAppsAll: ListAdapter? = null
     private var progressBar: ProgressBar? = null
     private var alSuggested: List<String>? = null
+
+    private val job = Job()
+    private val scope = CoroutineScope(Dispatchers.Main + job)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,7 +93,19 @@ class AppManagerActivity : AppCompatActivity(), View.OnClickListener, OrbotConst
     }
 
     private fun reloadApps() {
-        ReloadAppsAsyncTask(this).execute()
+        scope.launch {
+            progressBar?.visibility = View.VISIBLE
+            withContext(Dispatchers.IO) {
+                loadApps()
+            }
+            listAppsAll?.adapter = adapterAppsAll
+            progressBar?.visibility = View.GONE
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        job.cancel()
     }
 
     private var allApps: List<TorifiedApp>? = null
@@ -231,42 +250,6 @@ class AppManagerActivity : AppCompatActivity(), View.OnClickListener, OrbotConst
             val app = cbox.tag as TorifiedApp
             app.isTorified = !app.isTorified
             cbox.isChecked = app.isTorified
-        }
-    }
-
-    private class ReloadAppsAsyncTask(activity: AppManagerActivity) :
-        AsyncTask<Void?, Void?, Void?>() {
-        private val activity: WeakReference<AppManagerActivity>
-
-        init {
-            this.activity = WeakReference(activity)
-        }
-
-        @Deprecated("Deprecated in Java")
-        override fun onPreExecute() {
-            if (shouldStop()) return
-            activity.get()!!.progressBar!!.visibility = View.VISIBLE
-        }
-
-        @Deprecated("Deprecated in Java")
-        override fun doInBackground(vararg params: Void?): Void? {
-            if (shouldStop()) return null
-            activity.get()!!.loadApps()
-            return null
-        }
-
-        @Deprecated("Deprecated in Java")
-        override fun onPostExecute(unused: Void?) {
-            if (shouldStop()) return
-            val ama = activity.get()
-            ama!!.listAppsAll!!.adapter = ama.adapterAppsAll
-            // ama.listAppsAll.setAdapter(ama.adapterAppsAll)
-            ama.progressBar!!.visibility = View.GONE
-        }
-
-        private fun shouldStop(): Boolean {
-            val ama = activity.get()
-            return ama == null || ama.isFinishing
         }
     }
 
