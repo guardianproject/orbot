@@ -15,11 +15,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.Locale;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class Utils {
-
     public static boolean isPortOpen(final String ip, final int port, final int timeout) {
         try {
             Socket socket = new Socket();
@@ -53,6 +53,7 @@ public class Utils {
     }
 
     public static String convertCountryCodeToFlagEmoji(String countryCode) {
+        countryCode = countryCode.toUpperCase(Locale.getDefault());
         int flagOffset = 0x1F1E6;
         int asciiOffset = 0x41;
         int firstChar = Character.codePointAt(countryCode, 0) - asciiOffset + flagOffset;
