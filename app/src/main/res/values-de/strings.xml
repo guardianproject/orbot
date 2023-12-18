@@ -275,7 +275,7 @@
     <string name="ask_tor">Tor fragen</string>
     <string name="option_only_when_charging">Nur beim Laden</string>
     <string name="pref_isolate_port_summary">Für jeden Zielport eine andere Leitung verwenden</string>
-    <string name="kindness_adjust_title">Anpassen, wenn es läuft …</string>
+    <string name="kindness_adjust_title">Einstellungen</string>
     <string name="log_copied">Log kopiert</string>
     <string name="btn_copy_log">Log kopieren</string>
     <string name="option_only_on_wifi">Nur über WLAN</string>
