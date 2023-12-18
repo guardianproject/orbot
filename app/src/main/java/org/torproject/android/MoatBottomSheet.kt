@@ -27,9 +27,12 @@ import org.torproject.android.service.util.Prefs
 import org.torproject.android.ui.onboarding.ProxiedHurlStack
 import java.io.File
 
-class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBottomSheetDialogFragment(), View.OnClickListener {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v =  inflater.inflate(R.layout.moat_bottom_sheet, container, false)
+class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks) :
+    OrbotBottomSheetDialogFragment(), View.OnClickListener {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        val v = inflater.inflate(R.layout.moat_bottom_sheet, container, false)
         mProgressBar = v.findViewById(R.id.progressBar)
         ivCaptcha = v.findViewById(R.id.ivCaptcha)
         etSolution = v.findViewById(R.id.solutionEt)
@@ -37,7 +40,8 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
             // handle pressing of enter key TODO this isn't working properly
             if (keyEvent != null && keyEvent.keyCode == KeyEvent.KEYCODE_ENTER) {
                 if (keyEvent.action == KeyEvent.ACTION_UP) {
-                    val imm = requireContext().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager?
+                    val imm =
+                        requireContext().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager?
                     imm?.hideSoftInputFromWindow(textView.windowToken, 0)
                     onClick(textView)
                 }
@@ -72,9 +76,10 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
         IPtProxy.startLyrebird("DEBUG", false, false, null)
 
         val phs = ProxiedHurlStack(
-            "127.0.0.1", IPtProxy.meekPort().toInt(),
-            "url=" + OrbotService.getCdnFront("moat-url")
-                    + ";front=" + OrbotService.getCdnFront("moat-front"), "\u0000"
+            "127.0.0.1",
+            IPtProxy.meekPort().toInt(),
+            "url=" + OrbotService.getCdnFront("moat-url") + ";front=" + OrbotService.getCdnFront("moat-front"),
+            "\u0000"
         )
 
         mQueue = Volley.newRequestQueue(requireActivity(), phs)
@@ -85,8 +90,8 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
     }
 
     private fun fetchCaptcha() {
-        val request = buildRequest(ENDPOINT_FETCH,
-            "\"type\": \"client-transports\", \"supported\": [\"obfs4\"]"
+        val request = buildRequest(
+            ENDPOINT_FETCH, "\"type\": \"client-transports\", \"supported\": [\"obfs4\"]"
         ) { response: JSONObject ->
             mRequestInProgress = false
             mProgressBar.visibility = View.GONE
@@ -94,7 +99,11 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
                 val data = response.getJSONArray("data").getJSONObject(0)
                 mChallenge = data.getString("challenge")
                 mCaptcha = Base64.decode(data.getString("image"), Base64.DEFAULT)
-                ivCaptcha.setImageBitmap(BitmapFactory.decodeByteArray(mCaptcha, 0, mCaptcha!!.size))
+                ivCaptcha.setImageBitmap(
+                    BitmapFactory.decodeByteArray(
+                        mCaptcha, 0, mCaptcha!!.size
+                    )
+                )
                 ivCaptcha.visibility = View.VISIBLE
                 etSolution.text = null
                 etSolution.isEnabled = true
@@ -117,15 +126,14 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
     }
 
     private fun requestBridges(solution: String) {
-        val request = buildRequest(ENDPOINT_CHECK,
-            "\"id\": \"2\", \"type\": \"moat-solution\", \"transport\": \"obfs4\", \"challenge\": \""
-                    + mChallenge + "\", \"solution\": \"" + solution + "\", \"qrcode\": \"false\""
+        val request = buildRequest(
+            ENDPOINT_CHECK,
+            "\"id\": \"2\", \"type\": \"moat-solution\", \"transport\": \"obfs4\", \"challenge\": \"" + mChallenge + "\", \"solution\": \"" + solution + "\", \"qrcode\": \"false\""
         ) { response: JSONObject ->
             mRequestInProgress = false
             mProgressBar.visibility = View.GONE
             try {
-                val bridges =
-                    response.getJSONArray("data").getJSONObject(0).getJSONArray("bridges")
+                val bridges = response.getJSONArray("data").getJSONObject(0).getJSONArray("bridges")
                 Log.d(TAG, "Bridges: $bridges")
                 val sb = StringBuilder()
                 for (i in 0 until bridges.length()) {
@@ -148,9 +156,7 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
     }
 
     private fun buildRequest(
-        endpoint: String,
-        payload: String,
-        listener: Response.Listener<JSONObject>
+        endpoint: String, payload: String, listener: Response.Listener<JSONObject>
     ): JsonObjectRequest? {
         val requestBody: JSONObject = try {
             JSONObject("{\"data\": [{\"version\": \"0.1.0\", $payload}]}")
@@ -158,8 +164,7 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
             return null
         }
         Log.d(TAG, "Request: $requestBody")
-        val request: JsonObjectRequest = object : JsonObjectRequest(
-            Method.POST,
+        val request: JsonObjectRequest = object : JsonObjectRequest(Method.POST,
             "$MOAT_BASE/$endpoint",
             requestBody,
             listener,
@@ -169,14 +174,14 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
                 Log.d(TAG, "Error response.")
                 error.printStackTrace()
                 displayError(error, null)
-            }
-        ) {
+            }) {
             override fun getBodyContentType(): String {
                 return "application/vnd.api+json"
             }
         }
-        request.retryPolicy = DefaultRetryPolicy(30000, 3,
-            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
+        request.retryPolicy = DefaultRetryPolicy(
+            30000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        )
         return request
     }
 
@@ -188,7 +193,7 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBo
         Prefs.putConnectionPathway(Prefs.PATHWAY_CUSTOM)
         Prefs.setBridgesList(bridges)
         Prefs.putBridgesEnabled(true)
-       // Toast.makeText(requireContext(), R.string.bridges_obtained_connecting, Toast.LENGTH_LONG).show()
+        // Toast.makeText(requireContext(), R.string.bridges_obtained_connecting, Toast.LENGTH_LONG).show()
         callbacks.tryConnecting()
         closeAllSheets()
     }

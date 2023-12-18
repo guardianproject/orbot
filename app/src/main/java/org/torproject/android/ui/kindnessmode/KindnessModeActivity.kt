@@ -14,7 +14,7 @@ import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.OrbotService
 import org.torproject.android.service.util.Prefs
 
-class KindnessModeActivity: AppCompatActivity() {
+class KindnessModeActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +22,7 @@ class KindnessModeActivity: AppCompatActivity() {
         setContentView(R.layout.activity_volunteer)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-     //   var tvWeeklyTotal = findViewById<TextView>(R.id.tvWeeklyTotal)
+        //   var tvWeeklyTotal = findViewById<TextView>(R.id.tvWeeklyTotal)
         var tvAlltimeTotal = findViewById<TextView>(R.id.tvAlltimeTotal)
         var tvWeeklyTotal = findViewById<TextView>(R.id.tvWeeklyTotal)
         var swVolunteerMode = findViewById<SwitchCompat>(R.id.swVolunteerMode)
@@ -33,14 +33,14 @@ class KindnessModeActivity: AppCompatActivity() {
 
         swVolunteerMode.isChecked = Prefs.beSnowflakeProxy()
         swVolunteerMode.setOnCheckedChangeListener { _, isChecked ->
-           Prefs.setBeSnowflakeProxy(isChecked)
+            Prefs.setBeSnowflakeProxy(isChecked)
             showPanelStatus(isChecked)
         }
 
 
         btnActionActivate.setOnClickListener {
             //   Prefs.setBeSnowflakeProxy(true)
-          //  showPanelStatus(true)
+            //  showPanelStatus(true)
             swVolunteerMode.isChecked = true
             Prefs.setBeSnowflakeProxy(true)
             sendIntentToService(OrbotConstants.CMD_ACTIVE)
@@ -49,10 +49,13 @@ class KindnessModeActivity: AppCompatActivity() {
         showPanelStatus(Prefs.beSnowflakeProxy())
     }
 
-    private fun sendIntentToService(intent: Intent) = ContextCompat.startForegroundService(this, intent)
-    private fun sendIntentToService(action: String) = sendIntentToService(Intent(this, OrbotService::class.java).apply {
-        this.action = action
-    })
+    private fun sendIntentToService(intent: Intent) =
+        ContextCompat.startForegroundService(this, intent)
+
+    private fun sendIntentToService(action: String) =
+        sendIntentToService(Intent(this, OrbotService::class.java).apply {
+            this.action = action
+        })
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
@@ -68,9 +71,7 @@ class KindnessModeActivity: AppCompatActivity() {
             findViewById<View>(R.id.panel_kindness_activate).visibility = View.GONE
             findViewById<View>(R.id.panel_kindness_status).visibility = View.VISIBLE
 
-        }
-        else
-        {
+        } else {
             findViewById<View>(R.id.panel_kindness_activate).visibility = View.VISIBLE
             findViewById<View>(R.id.panel_kindness_status).visibility = View.GONE
         }

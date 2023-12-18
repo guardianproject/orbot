@@ -27,7 +27,7 @@ class OrbotApp : Application(), OrbotConstants {
 
         Languages.setup(OrbotActivity::class.java, R.string.menu_settings)
 
-        if (Prefs.getDefaultLocale() != Locale.getDefault().language ) {
+        if (Prefs.getDefaultLocale() != Locale.getDefault().language) {
             Languages.setLanguage(this, Prefs.getDefaultLocale(), true)
         }
 
@@ -38,7 +38,7 @@ class OrbotApp : Application(), OrbotConstants {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
 
-        if (Prefs.getDefaultLocale() != Locale.getDefault().language ) {
+        if (Prefs.getDefaultLocale() != Locale.getDefault().language) {
             Languages.setLanguage(this, Prefs.getDefaultLocale(), true)
         }
     }

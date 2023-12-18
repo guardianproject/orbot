@@ -23,7 +23,8 @@ class AboutDialogFragment : DialogFragment() {
     companion object {
         const val TAG = "AboutDialogFragment"
         private const val BUNDLE_KEY_TV_ABOUT_TEXT = "about_tv_txt"
-        private const val ABOUT_LICENSE_EQUALSIGN = "==============================================================================="
+        private const val ABOUT_LICENSE_EQUALSIGN =
+            "==============================================================================="
     }
 
     private lateinit var tvAbout: TextView
@@ -32,9 +33,11 @@ class AboutDialogFragment : DialogFragment() {
         val view: View? = activity?.layoutInflater?.inflate(R.layout.layout_about, null)
 
         val version: String? = try {
-            "${context?.packageManager?.getPackageInfo(
-                requireContext().packageName, 0
-            )?.versionName} (Tor ${OrbotService.BINARY_TOR_VERSION})"
+            "${
+                context?.packageManager?.getPackageInfo(
+                    requireContext().packageName, 0
+                )?.versionName
+            } (Tor ${OrbotService.BINARY_TOR_VERSION})"
         } catch (e: PackageManager.NameNotFoundException) {
             "Version Not Found"
         }
@@ -60,7 +63,9 @@ class AboutDialogFragment : DialogFragment() {
         if (buildAboutText) {
             try {
                 var aboutText = DiskUtils.readFileFromAssets("LICENSE", requireContext())
-                aboutText = aboutText.replace(ABOUT_LICENSE_EQUALSIGN, "\n").replace("\n\n", "<br/><br/>").replace("\n", "")
+                aboutText =
+                    aboutText.replace(ABOUT_LICENSE_EQUALSIGN, "\n").replace("\n\n", "<br/><br/>")
+                        .replace("\n", "")
                 tvAbout.text = Html.fromHtml(aboutText, Html.FROM_HTML_MODE_LEGACY)
             } catch (e: IOException) {
                 e.printStackTrace()

@@ -47,7 +47,6 @@ import java.util.StringTokenizer;
 
 public class AppManagerActivity extends AppCompatActivity implements OnClickListener, OrbotConstants {
 
-
     class TorifiedAppWrapper {
         String header = null;
         String subheader = null;
@@ -106,8 +105,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
         if (item.getItemId() == R.id.menu_save_apps) {
             saveAppSettings();
             finish();
-        }
-        else if (item.getItemId() == android.R.id.home) {
+        } else if (item.getItemId() == android.R.id.home) {
             finish();
             return true;
         }
@@ -123,8 +121,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     List<TorifiedAppWrapper> uiList = new ArrayList<>();
 
     private void loadApps() {
-        if (allApps == null)
-            allApps = getApps(AppManagerActivity.this, mPrefs, null, alSuggested);
+        if (allApps == null) allApps = getApps(AppManagerActivity.this, mPrefs, null, alSuggested);
 
         TorifiedApp.sortAppsForTorifiedAndAbc(allApps);
 
@@ -164,8 +161,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
                 if (convertView == null)
                     convertView = inflater.inflate(R.layout.layout_apps_item, parent, false);
-                else
-                    entry = (ListEntry) convertView.getTag();
+                else entry = (ListEntry) convertView.getTag();
 
                 if (entry == null) {
                     // Inflate a new view
@@ -224,8 +220,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                 convertView.setOnFocusChangeListener((v, hasFocus) -> {
                     if (hasFocus)
                         v.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.dark_purple));
-                    else
-                    {
+                    else {
                         v.setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
                     }
                 });
@@ -265,8 +260,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                         break;
                     }
 
-                if (!wasFound)
-                     continue;
+                if (!wasFound) continue;
             }
 
             if (filterRemove != null) {
@@ -277,8 +271,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
                         break;
                     }
 
-                if (wasFound)
-                    continue;
+                if (wasFound) continue;
             }
 
             TorifiedApp app = new TorifiedApp();
@@ -295,7 +288,6 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
 
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
@@ -307,8 +299,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
             }
 
 
-            if (!app.usesInternet())
-                continue;
+            if (!app.usesInternet()) continue;
             else {
                 apps.add(app);
             }
@@ -362,12 +353,9 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
 
         CheckBox cbox = null;
 
-        if (v instanceof CheckBox)
-            cbox = (CheckBox) v;
-        else if (v.getTag() instanceof CheckBox)
-            cbox = (CheckBox) v.getTag();
-        else if (v.getTag() instanceof ListEntry)
-            cbox = ((ListEntry) v.getTag()).box;
+        if (v instanceof CheckBox) cbox = (CheckBox) v;
+        else if (v.getTag() instanceof CheckBox) cbox = (CheckBox) v.getTag();
+        else if (v.getTag() instanceof ListEntry) cbox = ((ListEntry) v.getTag()).box;
 
         if (cbox != null) {
             final TorifiedApp app = (TorifiedApp) cbox.getTag();

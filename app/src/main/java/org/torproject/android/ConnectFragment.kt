@@ -32,13 +32,8 @@ import org.torproject.android.ui.OrbotMenuAction
 import org.torproject.android.ui.OrbotMenuActionAdapter
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ConnectFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFragment.ExitNodeSelectedCallback {
-
+class ConnectFragment : Fragment(), ConnectionHelperCallbacks,
+    ExitNodeDialogFragment.ExitNodeSelectedCallback {
 
     // main screen UI
     private lateinit var tvTitle: TextView
@@ -61,8 +56,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_connect, container, false)
@@ -91,7 +85,9 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
                     OrbotConstants.STATUS_STARTING -> doLayoutStarting(requireContext())
                     OrbotConstants.STATUS_ON -> doLayoutOn(requireContext())
                     OrbotConstants.STATUS_STOPPING -> {}
-                    else -> {doLayoutOff()}
+                    else -> {
+                        doLayoutOff()
+                    }
                 }
 
             }
@@ -104,17 +100,21 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
 
     private fun isNetworkAvailable(context: Context?): Boolean {
         if (context == null) return false
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
             if (capabilities != null) {
                 when {
                     capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
                         return true
                     }
+
                     capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
                         return true
                     }
+
                     capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
                         return true
                     }
@@ -146,13 +146,16 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
     }
 
     private fun openExitNodeDialog() {
-        ExitNodeDialogFragment(this).show(requireActivity().supportFragmentManager, "ExitNodeDialogFragment")
+        ExitNodeDialogFragment(this).show(
+            requireActivity().supportFragmentManager, "ExitNodeDialogFragment"
+        )
     }
 
-    private fun startTorAndVpnDelay(@Suppress("SameParameterValue") ms: Long) = Handler(Looper.getMainLooper()).postDelayed({startTorAndVpn()}, ms)
+    private fun startTorAndVpnDelay(@Suppress("SameParameterValue") ms: Long) =
+        Handler(Looper.getMainLooper()).postDelayed({ startTorAndVpn() }, ms)
 
 
-     fun startTorAndVpn() {
+    fun startTorAndVpn() {
         val vpnIntent = VpnService.prepare(requireActivity())?.putNotSystem()
         if (vpnIntent != null && (!Prefs.isPowerUserMode())) {
             startActivityForResult(vpnIntent, OrbotActivity.REQUEST_CODE_VPN)
@@ -161,18 +164,22 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
             Prefs.putUseVpn(!Prefs.isPowerUserMode())
             sendIntentToService(OrbotConstants.ACTION_START)
 
-            if (!Prefs.isPowerUserMode())
-                sendIntentToService(OrbotConstants.ACTION_START_VPN)
+            if (!Prefs.isPowerUserMode()) sendIntentToService(OrbotConstants.ACTION_START_VPN)
         }
     }
 
-    fun refreshMenuList (context: Context) {
-        val listItems = arrayListOf(OrbotMenuAction(R.string.btn_change_exit, 0) {openExitNodeDialog()},
-            OrbotMenuAction(R.string.btn_refresh, R.drawable.ic_refresh) {sendNewnymSignal()},
-            OrbotMenuAction(R.string.btn_tor_off, R.drawable.ic_power) {stopTorAndVpn()})
-        if (!Prefs.isPowerUserMode()) listItems.add(0, OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {
-            startActivityForResult(Intent(requireActivity(), AppManagerActivity::class.java), OrbotActivity.REQUEST_VPN_APP_SELECT)
-        })
+    fun refreshMenuList(context: Context) {
+        val listItems =
+            arrayListOf(OrbotMenuAction(R.string.btn_change_exit, 0) { openExitNodeDialog() },
+                OrbotMenuAction(R.string.btn_refresh, R.drawable.ic_refresh) { sendNewnymSignal() },
+                OrbotMenuAction(R.string.btn_tor_off, R.drawable.ic_power) { stopTorAndVpn() })
+        if (!Prefs.isPowerUserMode()) listItems.add(0,
+            OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {
+                startActivityForResult(
+                    Intent(requireActivity(), AppManagerActivity::class.java),
+                    OrbotActivity.REQUEST_VPN_APP_SELECT
+                )
+            })
         lvConnectedActions.adapter = OrbotMenuActionAdapter(context, listItems)
     }
 
@@ -189,7 +196,6 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
     }
 
     private fun doLayoutForCircumventionApi() {
-        Log.d("bim", "doLayoutForCircumventionApi")
         // TODO prompt user to request bridge over MOAT
         progressBar.progress = 0
         tvTitle.text = getString(R.string.having_trouble)
@@ -197,7 +203,9 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         tvSubtitle.visibility = View.VISIBLE
         btnStartVpn.text = getString(R.string.solve_captcha)
         btnStartVpn.setOnClickListener {
-            MoatBottomSheet(this).show(requireActivity().supportFragmentManager, "CircumventionFailed")
+            MoatBottomSheet(this).show(
+                requireActivity().supportFragmentManager, "CircumventionFailed"
+            )
         }
         tvConfigure.text = getString(android.R.string.cancel)
         tvConfigure.setOnClickListener {
@@ -206,7 +214,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
     }
 
 
-    private fun doLayoutNoInternet(context : Context) {
+    private fun doLayoutNoInternet(context: Context) {
 
         ivOnion.setImageResource(R.drawable.nointernet)
 
@@ -227,7 +235,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
 
     }
 
-    fun doLayoutOn(context : Context) {
+    fun doLayoutOn(context: Context) {
 
         ivOnion.setImageResource(R.drawable.orbion)
 
@@ -256,33 +264,34 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         tvConfigure.visibility = View.VISIBLE
         tvConfigure.text = getString(R.string.btn_configure)
         tvConfigure.paintFlags = Paint.UNDERLINE_TEXT_FLAG
-        tvConfigure.setOnClickListener {openConfigureTorConnection()}
+        tvConfigure.setOnClickListener { openConfigureTorConnection() }
         with(btnStartVpn) {
             visibility = View.VISIBLE
 
             var connectStr = ""
-            if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_DIRECT))
-                connectStr = context.getString(R.string.action_use) + ' ' + getString(R.string.direct_connect);
-            else if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SNOWFLAKE))
-                connectStr = context.getString(R.string.action_use) + ' ' + getString(R.string.snowflake);
-            else if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SNOWFLAKE_AMP))
-                connectStr = context.getString(R.string.action_use) + ' ' + getString(R.string.snowflake_amp);
-            else if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_CUSTOM))
-                connectStr = context.getString(R.string.action_use) + ' ' + getString(R.string.custom_bridge);
+            if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_DIRECT)) connectStr =
+                context.getString(R.string.action_use) + ' ' + getString(R.string.direct_connect);
+            else if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SNOWFLAKE)) connectStr =
+                context.getString(R.string.action_use) + ' ' + getString(R.string.snowflake);
+            else if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SNOWFLAKE_AMP)) connectStr =
+                context.getString(R.string.action_use) + ' ' + getString(R.string.snowflake_amp);
+            else if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_CUSTOM)) connectStr =
+                context.getString(R.string.action_use) + ' ' + getString(R.string.custom_bridge);
 
-            text = if (Prefs.isPowerUserMode())
-                getString(R.string.connect)
-            else if (connectStr.isEmpty())
-                Html.fromHtml("<big>${getString(R.string.btn_start_vpn)}</big>", Html.FROM_HTML_MODE_LEGACY)
-            else
-                Html.fromHtml("<big>${getString(R.string.btn_start_vpn)}</big><br/><small>${connectStr}</small>", Html.FROM_HTML_MODE_LEGACY)
+            text = if (Prefs.isPowerUserMode()) getString(R.string.connect)
+            else if (connectStr.isEmpty()) Html.fromHtml(
+                "<big>${getString(R.string.btn_start_vpn)}</big>", Html.FROM_HTML_MODE_LEGACY
+            )
+            else Html.fromHtml(
+                "<big>${getString(R.string.btn_start_vpn)}</big><br/><small>${connectStr}</small>",
+                Html.FROM_HTML_MODE_LEGACY
+            )
 
 
             isEnabled = true
             backgroundTintList = ColorStateList.valueOf(
                 ContextCompat.getColor(
-                    requireContext(),
-                    R.color.orbot_btn_enabled_purple
+                    requireContext(), R.color.orbot_btn_enabled_purple
                 )
             )
             setOnClickListener { startTorAndVpn() }
@@ -292,12 +301,10 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         ivOnion.setOnClickListener {
             startTorAndVpn()
         }
-
-
     }
 
 
-    fun doLayoutStarting(context : Context) {
+    fun doLayoutStarting(context: Context) {
 
         // torStatsGroup.visibility = View.VISIBLE
         tvSubtitle.visibility = View.GONE
@@ -323,8 +330,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
             isEnabled = true
             backgroundTintList = ColorStateList.valueOf(
                 ContextCompat.getColor(
-                    context,
-                    R.color.orbot_btn_enabled_purple
+                    context, R.color.orbot_btn_enabled_purple
                 )
             )
             setOnClickListener {
@@ -335,9 +341,9 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
 
 
     private fun openConfigureTorConnection() =
-//        startActivity(Intent(this, TestConnectionActivity::class.java)) // TODO debugging
-        ConfigConnectionBottomSheet(this).show(requireActivity().supportFragmentManager, OrbotActivity::class.java.simpleName)
-
+        ConfigConnectionBottomSheet(this).show(
+            requireActivity().supportFragmentManager, OrbotActivity::class.java.simpleName
+        )
 
 
     override fun tryConnecting() {
@@ -350,35 +356,23 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks, ExitNodeDialogFra
         Prefs.setExitNodes("{$exitNode}");
 
         sendIntentToService(
-            Intent(requireActivity(), OrbotService::class.java)
-                .setAction(OrbotConstants.CMD_SET_EXIT)
-                .putExtra("exit", exitNode)
+            Intent(
+                requireActivity(),
+                OrbotService::class.java
+            ).setAction(OrbotConstants.CMD_SET_EXIT).putExtra("exit", exitNode)
         )
 
         refreshMenuList(requireContext())
-
-    }
-
-    companion object {
-
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ConnectFragment().apply {
-                /**
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }**/
-            }
     }
 
     private fun Intent.putNotSystem(): Intent = this.putExtra(OrbotConstants.EXTRA_NOT_SYSTEM, true)
 
     /** Sends intent to service, first modifying it to indicate it is not from the system */
-    private fun sendIntentToService(intent: Intent) = ContextCompat.startForegroundService(requireActivity(), intent.putNotSystem())
-    private fun sendIntentToService(action: String) = sendIntentToService(
-        Intent(requireActivity(), OrbotService::class.java).apply {
-        this.action = action
-    })
+    private fun sendIntentToService(intent: Intent) =
+        ContextCompat.startForegroundService(requireActivity(), intent.putNotSystem())
+
+    private fun sendIntentToService(action: String) =
+        sendIntentToService(Intent(requireActivity(), OrbotService::class.java).apply {
+            this.action = action
+        })
 }

@@ -17,8 +17,10 @@ import org.torproject.android.service.util.Utils
 import java.util.*
 
 
-class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>) : ArrayAdapter<OrbotMenuAction>(context,
-    R.layout.action_list_view, list) {
+class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>) :
+    ArrayAdapter<OrbotMenuAction>(
+        context, R.layout.action_list_view, list
+    ) {
 
     private val layoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -36,12 +38,13 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
                     emojiContainer.visibility = View.GONE
                     imgView.visibility = View.VISIBLE
                     imgView.setImageResource(model.imgId)
-                    if (!drawAppShortcuts(hvApps))
-                    {
-                        returnView.findViewById<TextView>(R.id.llBoxShortcutsText).visibility = View.VISIBLE
+                    if (!drawAppShortcuts(hvApps)) {
+                        returnView.findViewById<TextView>(R.id.llBoxShortcutsText).visibility =
+                            View.VISIBLE
                     }
 
                 }
+
                 0 -> {
                     imgView.visibility = View.GONE
                     val currentExit = Prefs.getExitNodes().replace("{", "").replace("}", "")
@@ -50,6 +53,7 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
                     else tvAction.text = context.getString(R.string.globe)
                     emojiContainer.visibility = View.VISIBLE
                 }
+
                 else -> {
                     emojiContainer.visibility = View.GONE
                     imgView.visibility = View.VISIBLE
@@ -62,10 +66,10 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
         return returnView
     }
 
-    private fun drawAppShortcuts(llBoxShortcuts: HorizontalScrollView) : Boolean {
+    private fun drawAppShortcuts(llBoxShortcuts: HorizontalScrollView): Boolean {
 
-        val tordAppString = Prefs.getSharedPrefs(context)
-            .getString(OrbotConstants.PREFS_KEY_TORIFIED, "")
+        val tordAppString =
+            Prefs.getSharedPrefs(context).getString(OrbotConstants.PREFS_KEY_TORIFIED, "")
         if (!TextUtils.isEmpty(tordAppString)) {
 
             val packageManager: PackageManager = context.getPackageManager()
@@ -94,9 +98,7 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
 
                         iv.setOnClickListener { v: View? ->
                             openBrowser(
-                                URL_TOR_CHECK,
-                                false,
-                                applicationInfo.packageName
+                                URL_TOR_CHECK, false, applicationInfo.packageName
                             )
                         }
                         icons[packageManager.getApplicationLabel(applicationInfo).toString()] = iv
@@ -117,26 +119,16 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
         return false
     }
 
-    final val URL_TOR_CHECK = "https://check.torproject.org"
+    val URL_TOR_CHECK = "https://check.torproject.org"
 
-    private fun openBrowser(checkUrl: String, doSomething: Boolean, packageName: String)
-    {
+    private fun openBrowser(checkUrl: String, doSomething: Boolean, packageName: String) {
         startIntent(context, packageName, Intent.ACTION_VIEW, Uri.parse(checkUrl));
-
     }
 
     private fun startIntent(context: Context, pkg: String, action: String, data: Uri) {
         val i = Intent()
         val pm: PackageManager = context.getPackageManager()
         try {
-            /**
-             * if (pkg != null) {
-             * i = pm.getLaunchIntentForPackage(pkg);
-             * if (i == null)
-             * throw new PackageManager.NameNotFoundException();
-             * } else {
-             * i = new Intent();
-             * } */
             i.setPackage(pkg)
             i.action = action
             i.data = data

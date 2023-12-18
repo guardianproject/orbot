@@ -21,12 +21,12 @@ import org.torproject.android.ui.v3onionservice.OnionServiceActivity
 import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity
 
 class MoreFragment : Fragment() {
-    private lateinit var lvMore : ListView;
+    private lateinit var lvMore: ListView;
 
     private var httpPort = -1
     private var socksPort = -1
 
-    private lateinit var tvStatus : TextView
+    private lateinit var tvStatus: TextView
 
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
@@ -34,7 +34,7 @@ class MoreFragment : Fragment() {
     }
 
 
-    fun setPorts (newHttpPort : Int, newSocksPort: Int) {
+    fun setPorts(newHttpPort: Int, newSocksPort: Int) {
 
         httpPort = newHttpPort
         socksPort = newSocksPort
@@ -42,30 +42,32 @@ class MoreFragment : Fragment() {
         if (view != null) updateStatus()
     }
 
-    private fun updateStatus () {
+    private fun updateStatus() {
         val sb = java.lang.StringBuilder()
 
         sb.append(getString(R.string.proxy_ports)).append(" ")
 
         if (httpPort != -1 && socksPort != -1) {
-            sb.append("\nHTTP: ").append(httpPort).append(" - ").append(" SOCKS: ").append(socksPort)
-        }
-        else
-        {
+            sb.append("\nHTTP: ").append(httpPort).append(" - ").append(" SOCKS: ")
+                .append(socksPort)
+        } else {
             sb.append(": " + getString(R.string.ports_not_set))
         }
 
         sb.append("\n\n")
 
         val manager = requireActivity().packageManager
-        val info = manager.getPackageInfo(requireActivity().packageName, PackageManager.GET_ACTIVITIES)
+        val info =
+            manager.getPackageInfo(requireActivity().packageName, PackageManager.GET_ACTIVITIES)
         sb.append(getString(R.string.app_name)).append(" ").append(info.versionName).append("\n")
         sb.append("Tor v").append(getTorVersion())
 
         tvStatus.text = sb.toString()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_more, container, false)
         tvStatus = view.findViewById(R.id.tvVersion)
@@ -73,22 +75,36 @@ class MoreFragment : Fragment() {
         updateStatus()
         lvMore = view.findViewById(R.id.lvMoreActions)
 
-        val listItems = arrayListOf(
-            OrbotMenuAction(R.string.v3_hosted_services, R.drawable.ic_menu_onion) { startActivity(Intent(requireActivity(), OnionServiceActivity::class.java))},
-            OrbotMenuAction(R.string.v3_client_auth_activity_title, R.drawable.ic_shield) { startActivity(Intent(requireActivity(), ClientAuthActivity::class.java))},
-            OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {
-                activity?.startActivityForResult(Intent(requireActivity(), AppManagerActivity::class.java), REQUEST_VPN_APP_SELECT)
+        val listItems =
+            arrayListOf(OrbotMenuAction(R.string.v3_hosted_services, R.drawable.ic_menu_onion) {
+                startActivity(
+                    Intent(requireActivity(), OnionServiceActivity::class.java)
+                )
             },
-            OrbotMenuAction(R.string.menu_settings, R.drawable.ic_settings_gear) {
+                OrbotMenuAction(
+                    R.string.v3_client_auth_activity_title, R.drawable.ic_shield
+                ) { startActivity(Intent(requireActivity(), ClientAuthActivity::class.java)) },
+                OrbotMenuAction(R.string.btn_choose_apps, R.drawable.ic_choose_apps) {
+                    activity?.startActivityForResult(
+                        Intent(
+                            requireActivity(), AppManagerActivity::class.java
+                        ), REQUEST_VPN_APP_SELECT
+                    )
+                },
+                OrbotMenuAction(R.string.menu_settings, R.drawable.ic_settings_gear) {
 
-              //  activity?.startActivityForResult(SettingsPreferencesFragment.createIntent(requireActivity(), R.xml.preferences), REQUEST_CODE_SETTINGS)
-                activity?.startActivityForResult(Intent(context, SettingsActivity::class.java), REQUEST_CODE_SETTINGS)
-                                                                                 },
-            OrbotMenuAction(R.string.menu_log, R.drawable.ic_log) { showLog()},
-            OrbotMenuAction(R.string.menu_about, R.drawable.ic_about) { AboutDialogFragment()
-                .show(requireActivity().supportFragmentManager, AboutDialogFragment.TAG)},
-            OrbotMenuAction(R.string.menu_exit, R.drawable.ic_exit) { doExit()}
-        )
+                    activity?.startActivityForResult(
+                        Intent(context, SettingsActivity::class.java), REQUEST_CODE_SETTINGS
+                    )
+                },
+                OrbotMenuAction(R.string.menu_log, R.drawable.ic_log) { showLog() },
+                OrbotMenuAction(R.string.menu_about, R.drawable.ic_about) {
+                    AboutDialogFragment().show(
+                            requireActivity().supportFragmentManager,
+                            AboutDialogFragment.TAG
+                        )
+                },
+                OrbotMenuAction(R.string.menu_exit, R.drawable.ic_exit) { doExit() })
         lvMore.adapter = MoreActionAdapter(requireActivity(), listItems)
 
         return view;
@@ -100,17 +116,21 @@ class MoreFragment : Fragment() {
 
 
     private fun doExit() {
-        val killIntent = Intent(requireActivity(), OrbotService::class.java)
-            .setAction(OrbotConstants.ACTION_STOP)
+        val killIntent = Intent(
+            requireActivity(),
+            OrbotService::class.java
+        ).setAction(OrbotConstants.ACTION_STOP)
             .putExtra(OrbotConstants.ACTION_STOP_FOREGROUND_TASK, true)
         sendIntentToService(OrbotConstants.ACTION_STOP_VPN)
         requireActivity().startService(killIntent)
         requireActivity().finish()
     }
 
-    private fun sendIntentToService(intent: Intent) = ContextCompat.startForegroundService(requireActivity(), intent)
-    private fun sendIntentToService(action: String) = sendIntentToService(
-        Intent(requireActivity(), OrbotService::class.java).apply {
+    private fun sendIntentToService(intent: Intent) =
+        ContextCompat.startForegroundService(requireActivity(), intent)
+
+    private fun sendIntentToService(action: String) =
+        sendIntentToService(Intent(requireActivity(), OrbotService::class.java).apply {
             this.action = action
         })
 

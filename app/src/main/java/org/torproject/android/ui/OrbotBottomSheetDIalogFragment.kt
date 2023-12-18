@@ -12,7 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-/*
+/**
 Class to setup default bottom sheet behavior for Config Connection, MOAT and any other
 bottom sheets to come
  */
