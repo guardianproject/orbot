@@ -103,7 +103,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
     OrbotRawEventListener mOrbotRawEventListener;
     OrbotVpnManager mVpnManager;
     Handler mHandler;
-    //we should randomly sort alBridges so we don't have the same bridge order each time
     ActionBroadcastReceiver mActionBroadcastReceiver;
     private String mCurrentStatus = STATUS_OFF;
     TorControlConnection conn = null;

@@ -16,7 +16,6 @@
 
 package org.torproject.android.service.vpn;
 
-import android.annotation.TargetApi;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -55,14 +54,11 @@ import IPtProxy.PacketFlow;
 
 public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
     private static final String TAG = "OrbotVpnService";
-    public static int sSocksProxyServerPort = -1;
-    public static String sSocksProxyLocalhost = null;
     boolean isStarted = false;
     private final static String mSessionName = "OrbotVPN";
     private ParcelFileDescriptor mInterface;
     private int mTorSocks = -1;
     private int mTorDns = -1;
-    private int mTorHttp = -1;
     private final VpnService mService;
     private final SharedPreferences prefs;
     private DNSResolver mDnsResolver;
@@ -101,14 +97,13 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                     Log.d(TAG, "setting VPN ports");
 
                     int torSocks = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT, -1);
-                    int torHttp = intent.getIntExtra(OrbotService.EXTRA_HTTP_PROXY_PORT,-1);
+//                    int torHttp = intent.getIntExtra(OrbotService.EXTRA_HTTP_PROXY_PORT,-1);
                     int torDns = intent.getIntExtra(OrbotService.EXTRA_DNS_PORT, -1);
 
                     //if running, we need to restart
                     if ((torSocks != -1 && torSocks != mTorSocks
                             && torDns != -1 && torDns != mTorDns)) {
 
-                        mTorHttp = torHttp;
                         mTorSocks = torSocks;
                         mTorDns = torDns;
 
@@ -182,13 +177,13 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
             builder.addAddress("fdfe:dcba:9876::1", 126);
             builder.addRoute("::", 0);
 
-            /**
+            /*
              * Can't use this since our HTTP proxy is only CONNECT and not a full proxy
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 builder.setHttpProxy(ProxyInfo.buildDirectProxy("localhost",mTorHttp));
             }**/
 
-            doLollipopAppRouting(builder);
+            doAppBasedRouting(builder);
 
             // https://developer.android.com/reference/android/net/VpnService.Builder#setMetered(boolean)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -199,7 +194,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                 builder.allowFamily(OsConstants.AF_INET);
                 builder.allowFamily(OsConstants.AF_INET6);
 
-                /**
+                /*
                  // Allow applications to bypass the VPN
                  builder.allowBypass();
 
@@ -295,8 +290,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
         return (p.getHeader().getProtocol() == IpNumber.ICMPV4 || p.getHeader().getProtocol() == IpNumber.ICMPV6);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void doLollipopAppRouting(VpnService.Builder builder) throws NameNotFoundException {
+    private void doAppBasedRouting(VpnService.Builder builder) throws NameNotFoundException {
         var apps = TorifiedApp.getApps(mService, prefs);
         var perAppEnabled = false;
         var canBypass = !isVpnLockdown(mService);
@@ -327,17 +321,13 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                     builder.addDisallowedApplication(packageName);
 
             }
-            else
-            {
+            else {
                 //nothing will work unless they choose it in the choose apps screen
                 //remove all apps from Tor
-
             }
 
         } else {
             Log.i(TAG, "Skip bypass perApp? " + perAppEnabled + " vpnLockdown? " + !canBypass);
-
-
         }
     }
 

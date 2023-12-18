@@ -18,8 +18,8 @@ public class OrbotRawEventListener implements RawEventListener {
     private final OrbotService mService;
     private long mTotalBandwidthWritten, mTotalBandwidthRead;
     private final Map<String, DebugLoggingNode> hmBuiltNodes;
-    private Map<Integer, ExitNode> exitNodeMap;
-    private Set<Integer> ignoredInternalCircuits;
+    private final Map<Integer, ExitNode> exitNodeMap;
+    private final Set<Integer> ignoredInternalCircuits;
 
     private static final String CIRCUIT_BUILD_FLAG_IS_INTERNAL = "IS_INTERNAL";
     private static final String CIRCUIT_BUILD_FLAG_ONE_HOP_TUNNEL = "ONEHOP_TUNNEL";
