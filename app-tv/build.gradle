@@ -1,5 +1,5 @@
-apply from: "../commons-limited-device.gradle"
-apply from : '../dependencies.gradle'
+apply from: '../dependencies.gradle'
+apply from: '../commons-device.gradle'
 
 android {
     defaultConfig {
@@ -8,6 +8,12 @@ android {
         targetSdkVersion 33
     }
 
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+        }
+    }
 
     flavorDimensions "teevee"
 
@@ -23,7 +29,6 @@ android {
         }
     }
     namespace 'org.torproject.android.tv'
-
 }
 
 configurations {
@@ -50,6 +55,4 @@ dependencies {
             libs.apl_appintro
     )
     androidTestImplementation libs.fastlane_screengrab
-
-
 }
