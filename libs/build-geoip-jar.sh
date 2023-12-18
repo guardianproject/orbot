@@ -1,5 +1,4 @@
 # assumes tor is in a directory next to orbot 
-# make sure tor-android is up to date, particularly external/tor...
 rm geoip.jar
 mkdir assets
 cp -a ../../tor/src/config/geoip assets/
