@@ -30,6 +30,8 @@ public class DNSResolver {
         packet = new DatagramPacket(buf, buf.length);
         datagramSocket.receive(packet);
 
+        datagramSocket.close();
+
         return packet.getData();
     }
 
