@@ -16,7 +16,6 @@
     <string name="your_reachableaddresses_settings_caused_an_exception_">Teie ReachableAddresses seadistus põhjustas ekse!</string>
   <string name="your_relay_settings_caused_an_exception_">Teie releeseadistus põhjustas ekse!</string>
     <string name="found_existing_tor_process">leidus töötav Tor protsess...</string>
-  <string name="something_bad_happened">Juhtus midagi halba. Kontrollige logi</string>
     <string name="unable_to_start_tor">Tor käivitamine ebaõnnestus:</string>
     <string name="newnym">Lülitusite uuele Tor identiteedile!</string>
 </resources>

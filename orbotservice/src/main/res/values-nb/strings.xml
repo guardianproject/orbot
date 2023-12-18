@@ -17,7 +17,6 @@
     <string name="your_reachableaddresses_settings_caused_an_exception_">Dine \"adresser som kan nås\"-innstillinger forårsaket et unntak!</string>
   <string name="your_relay_settings_caused_an_exception_">Dine relé-innstillinger forårsaket et unntak!</string>
     <string name="found_existing_tor_process">fant eksisterende Tor-prosess...</string>
-  <string name="something_bad_happened">Noe alvorlig skjedde. Sjekk loggen.</string>
     <string name="unable_to_start_tor">Klarte ikke å starte Tor:</string>
     <string name="newnym">Du har byttet til en ny Tor-identitet!</string>
     <string name="updating_settings_in_tor_service">Oppdaterer innstillinger i Tor service</string>
