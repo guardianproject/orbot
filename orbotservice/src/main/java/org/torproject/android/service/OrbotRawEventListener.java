@@ -46,8 +46,7 @@ public class OrbotRawEventListener implements RawEventListener {
 
             handleStreamEventExpandedNotifications(payload[1], payload[3], payload[2], payload[4]);
 
-            if (Prefs.useDebugLogging())
-                handleStreamEventsDebugLogging(payload[1], payload[0]);
+            if (Prefs.useDebugLogging()) handleStreamEventsDebugLogging(payload[1], payload[0]);
         } else if (TorControlCommands.EVENT_CIRCUIT_STATUS.equals(keyword)) {
             String status = payload[1];
             String circuitId = payload[0];
@@ -65,9 +64,7 @@ public class OrbotRawEventListener implements RawEventListener {
 
         } else if (TorControlCommands.EVENT_OR_CONN_STATUS.equals(keyword)) {
             handleConnectionStatus(payload[1], payload[0]);
-        } else if (TorControlCommands.EVENT_DEBUG_MSG.equals(keyword) || TorControlCommands.EVENT_INFO_MSG.equals(keyword) ||
-                TorControlCommands.EVENT_NOTICE_MSG.equals(keyword) || TorControlCommands.EVENT_WARN_MSG.equals(keyword) ||
-                TorControlCommands.EVENT_ERR_MSG.equals(keyword)) {
+        } else if (TorControlCommands.EVENT_DEBUG_MSG.equals(keyword) || TorControlCommands.EVENT_INFO_MSG.equals(keyword) || TorControlCommands.EVENT_NOTICE_MSG.equals(keyword) || TorControlCommands.EVENT_WARN_MSG.equals(keyword) || TorControlCommands.EVENT_ERR_MSG.equals(keyword)) {
             handleDebugMessage(keyword, data);
         } else {
             String unrecognized = "Message (" + keyword + "): " + data;
@@ -76,8 +73,7 @@ public class OrbotRawEventListener implements RawEventListener {
     }
 
     private void handleBandwidth(long read, long written) {
-        String message = OrbotService.formatBandwidthCount(mService, read) + " \u2193" + " / " +
-                OrbotService.formatBandwidthCount(mService, written) + " \u2191";
+        String message = OrbotService.formatBandwidthCount(mService, read) + " \u2193" + " / " + OrbotService.formatBandwidthCount(mService, written) + " \u2191";
 
         if (mService.getCurrentStatus().equals(TorService.STATUS_ON))
             mService.showBandwidthNotification(message, read != 0 || written != 0);
@@ -98,7 +94,8 @@ public class OrbotRawEventListener implements RawEventListener {
         if (!status.equals(TorControlCommands.STREAM_EVENT_SUCCEEDED)) return;
         if (!clientProtocol.contains("SOCKS5")) return;
         int id = Integer.parseInt(circuitId);
-        if (target.contains(".onion")) return; // don't display to users exit node info for onion addresses!
+        if (target.contains(".onion"))
+            return; // don't display to users exit node info for onion addresses!
         ExitNode node = exitNodeMap.get(id);
         if (node != null) {
             if (node.country == null && !node.querying) {
@@ -118,8 +115,7 @@ public class OrbotRawEventListener implements RawEventListener {
                     }
                 });
             } else {
-                if (node.country != null)
-                    mService.setNotificationSubtext(node.toString());
+                if (node.country != null) mService.setNotificationSubtext(node.toString());
                 else mService.setNotificationSubtext(null);
             }
         }
@@ -134,7 +130,8 @@ public class OrbotRawEventListener implements RawEventListener {
     private void handleCircuitStatusExpandedNotifications(String circuitStatus, String circuitId, String path) {
         int id = Integer.parseInt(circuitId);
         if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_BUILT)) {
-            if (ignoredInternalCircuits.contains(id)) return; // this circuit won't be used by user clients
+            if (ignoredInternalCircuits.contains(id))
+                return; // this circuit won't be used by user clients
             String[] nodes = path.split(",");
             String exit = nodes[nodes.length - 1];
             String fingerprint = exit.split("~")[0];
@@ -169,10 +166,8 @@ public class OrbotRawEventListener implements RawEventListener {
 
             String[] nodeParts;
 
-            if (nodePath.contains("="))
-                nodeParts = nodePath.split("=");
-            else
-                nodeParts = nodePath.split("~");
+            if (nodePath.contains("=")) nodeParts = nodePath.split("=");
+            else nodeParts = nodePath.split("~");
 
             if (nodeParts.length == 1) {
                 nodeId = nodeParts[0].substring(1);
@@ -182,8 +177,7 @@ public class OrbotRawEventListener implements RawEventListener {
                 nodeName = nodeParts[1];
             }
 
-            if (nodeId == null)
-                continue;
+            if (nodeId == null) continue;
 
             node = hmBuiltNodes.get(nodeId);
 
@@ -197,15 +191,13 @@ public class OrbotRawEventListener implements RawEventListener {
 
             sb.append(node.name);
 
-            if (st.hasMoreTokens())
-                sb.append(" > ");
+            if (st.hasMoreTokens()) sb.append(" > ");
 
             if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_EXTENDED) && isFirstNode) {
                 hmBuiltNodes.put(node.id, node);
                 isFirstNode = false;
             } else if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_LAUNCHED)) {
-                if (Prefs.useDebugLogging() && nodeCount > 3)
-                    mService.debug(sb.toString());
+                if (Prefs.useDebugLogging() && nodeCount > 3) mService.debug(sb.toString());
             } else if (circuitStatus.equals(TorControlCommands.CIRC_EVENT_CLOSED)) {
                 hmBuiltNodes.remove(node.id);
             }
@@ -219,10 +211,8 @@ public class OrbotRawEventListener implements RawEventListener {
     }
 
     private void handleDebugMessage(String severity, String message) {
-        if (severity.equalsIgnoreCase("debug"))
-            mService.debug(severity + ": " + message);
-        else
-            mService.logNotice(severity + ": " + message);
+        if (severity.equalsIgnoreCase("debug")) mService.debug(severity + ": " + message);
+        else mService.logNotice(severity + ": " + message);
     }
 
     public Map<String, DebugLoggingNode> getNodes() {
@@ -236,6 +226,7 @@ public class OrbotRawEventListener implements RawEventListener {
         ExitNode(String fingerPrint) {
             this.fingerPrint = fingerPrint;
         }
+
         public final String fingerPrint;
         public String country;
         public String ipAddress;

@@ -16,12 +16,9 @@ public class DNSResolver {
 
     public byte[] processDNS(byte[] payload) throws IOException {
 
-        if (mLocalhost == null)
-            mLocalhost = InetAddress.getLocalHost();
+        if (mLocalhost == null) mLocalhost = InetAddress.getLocalHost();
 
-        DatagramPacket packet = new DatagramPacket(
-                payload, payload.length, mLocalhost, mPort
-        );
+        DatagramPacket packet = new DatagramPacket(payload, payload.length, mLocalhost, mPort);
         DatagramSocket datagramSocket = new DatagramSocket();
         datagramSocket.send(packet);
 

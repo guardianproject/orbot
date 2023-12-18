@@ -19,8 +19,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 
         if (Prefs.limitSnowflakeProxyingCharging()) {
             if (intent.getAction().equals(Intent.ACTION_POWER_CONNECTED)) {
-                if (Prefs.beSnowflakeProxy())
-                    mService.enableSnowflakeProxy();
+                if (Prefs.beSnowflakeProxy()) mService.enableSnowflakeProxy();
 
             } else {
                 intent.getAction().equals(Intent.ACTION_POWER_DISCONNECTED);

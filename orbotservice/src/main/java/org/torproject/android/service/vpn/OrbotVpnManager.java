@@ -53,7 +53,7 @@ import IPtProxy.IPtProxy;
 import IPtProxy.PacketFlow;
 
 public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
-    private static final String TAG = "OrbotVpnService";
+    private static final String TAG = "OrbotVpnManager";
     boolean isStarted = false;
     private final static String mSessionName = "OrbotVPN";
     private ParcelFileDescriptor mInterface;
@@ -255,8 +255,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                             try {
                                 var packet = IpSelector.newPacket(pdata,0,pdata.length);
 
-                                if (packet instanceof IpPacket) {
-                                    IpPacket ipPacket = (IpPacket) packet;
+                                if (packet instanceof IpPacket ipPacket) {
                                     if (isPacketDNS(ipPacket))
                                         mExec.execute(new RequestPacketHandler(ipPacket, pFlow, mDnsResolver));
                                     else if (isPacketICMP(ipPacket))
