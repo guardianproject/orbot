@@ -234,9 +234,15 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
-        final boolean shouldStartVpnFromSystemIntent =
-                !intent.getBooleanExtra(OrbotConstants.EXTRA_NOT_SYSTEM, false);
         try {
+            if (intent == null) {
+                Log.d(TAG, "Got null onStartCommand() intent");
+                return Service.START_REDELIVER_INTENT;
+            }
+
+            final boolean shouldStartVpnFromSystemIntent =
+                    !intent.getBooleanExtra(OrbotConstants.EXTRA_NOT_SYSTEM, false);
+
             if (mCurrentStatus.equals(STATUS_OFF))
                 showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor);
 
@@ -254,17 +260,13 @@ public class OrbotService extends VpnService implements OrbotConstants {
                             + "which should be impossible!");
                 }
             }
-            else if (intent != null)
+            else {
                 mExecutor.execute(new IncomingIntentRouter(intent));
-            else
-                Log.d(TAG, "Got null onStartCommand() intent");
-
+            }
         }
-        catch (RuntimeException re)
-        {
+        catch (RuntimeException re) {
             //catch this to avoid malicious launches as document Cure53 Audit: ORB-01-009 WP1/2: Orbot DoS via exported activity (High)
         }
-
 
         return Service.START_REDELIVER_INTENT;
     }
