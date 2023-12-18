@@ -2,8 +2,6 @@ package org.torproject.android
 
 import android.app.Application
 import android.content.res.Configuration
-import android.os.StrictMode
-import android.os.StrictMode.VmPolicy
 import org.torproject.android.core.Languages
 import org.torproject.android.core.LocaleHelper
 import org.torproject.android.service.OrbotConstants
@@ -16,7 +14,7 @@ class OrbotApp : Application(), OrbotConstants {
     override fun onCreate() {
         super.onCreate()
 
-//      useful for finding unclosed sockets... 
+//      useful for finding unclosed sockets...
 //        StrictMode.setVmPolicy(
 //            VmPolicy.Builder()
 //                .detectLeakedClosableObjects()
