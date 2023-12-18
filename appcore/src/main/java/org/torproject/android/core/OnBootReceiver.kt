@@ -32,7 +32,9 @@ class OnBootReceiver : BroadcastReceiver() {
 
         try {
 
-            val intent = Intent(context, OrbotService::class.java).apply { this.action = action }
+            val intent = Intent(context, OrbotService::class.java).apply {
+                this.action = action
+            }.putNotSystem()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
                 context.startForegroundService(intent)
             else {
@@ -43,6 +45,8 @@ class OnBootReceiver : BroadcastReceiver() {
             //catch this to avoid malicious launches as document Cure53 Audit: ORB-01-009 WP1/2: Orbot DoS via exported activity (High)
         }
     }
+
+    private fun Intent.putNotSystem(): Intent = putExtra(OrbotConstants.EXTRA_NOT_SYSTEM, true)
 
     companion object {
         private var sReceivedBoot = false
