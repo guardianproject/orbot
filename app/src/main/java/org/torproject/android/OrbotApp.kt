@@ -32,9 +32,6 @@ class OrbotApp : Application(), OrbotConstants {
             Languages.setLanguage(this, Prefs.getDefaultLocale(), true)
         }
 
-        // If it exists, remove v2 onion service data
-        deleteDatabase("hidden_services")
-
         // this code only runs on first install and app updates
         if (Prefs.getCurrentVersionForUpdate() < BuildConfig.VERSION_CODE) {
             Prefs.setCurrentVersionForUpdate(BuildConfig.VERSION_CODE);
