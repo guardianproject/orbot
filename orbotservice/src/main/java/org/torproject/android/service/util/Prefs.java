@@ -39,6 +39,8 @@ public class Prefs {
     private final static String PREF_SNOWFLAKES_SERVED_COUNT = "pref_snowflakes_served";
     private final static String PREF_SNOWFLAKES_SERVED_COUNT_WEEKLY = "pref_snowflakes_served_weekly";
 
+    private static final String PREF_CURRENT_VERSION = "pref_current_version";
+
     private static final String PREF_CONNECTION_PATHWAY = "pref_connection_pathway";
     public static final String PATHWAY_SMART = "smart", PATHWAY_DIRECT = "direct",
         PATHWAY_SNOWFLAKE = "snowflake", PATHWAY_SNOWFLAKE_AMP = "snowflake_amp", PATHWAY_CUSTOM = "custom";
@@ -46,6 +48,22 @@ public class Prefs {
     public static final String PREF_SECURE_WINDOW_FLAG = "pref_flag_secure";
 
     private static SharedPreferences prefs;
+
+    public static int getCurrentVersionForUpdate() {
+        return prefs.getInt(PREF_CURRENT_VERSION, 0);
+    }
+
+    public static void setCurrentVersionForUpdate(int version) {
+        putInt(PREF_CURRENT_VERSION, version);
+    }
+
+    private static final String PREF_REINSTALL_GEOIP = "pref_geoip";
+    public static boolean isGeoIpReinstallNeeded() {
+        return prefs.getBoolean(PREF_REINSTALL_GEOIP, true);
+    }
+    public static void setIsGeoIpReinstallNeeded(boolean reinstallNeeded) {
+        putBoolean(PREF_REINSTALL_GEOIP, reinstallNeeded);
+    }
 
     public static void setContext(Context context) {
         if (prefs == null) {

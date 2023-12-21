@@ -9,7 +9,6 @@ import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.util.Prefs
 import java.util.Locale
 
-
 class OrbotApp : Application(), OrbotConstants {
 
 
@@ -35,6 +34,15 @@ class OrbotApp : Application(), OrbotConstants {
 
         // If it exists, remove v2 onion service data
         deleteDatabase("hidden_services")
+
+        // this code only runs on first install and app updates
+        if (Prefs.getCurrentVersionForUpdate() < BuildConfig.VERSION_CODE) {
+            Prefs.setCurrentVersionForUpdate(BuildConfig.VERSION_CODE);
+            // don't do anything resource intensive here, instead set a flag to do the task later
+
+            // tell OrbotService it needs to reinstall geoip
+            Prefs.setIsGeoIpReinstallNeeded(true)
+        }
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
