@@ -468,11 +468,10 @@ public class OrbotService extends VpnService implements OrbotConstants {
                     try {
                         new CustomTorResourceInstaller(this, appBinHome).installGeoIP();
                         Prefs.setIsGeoIpReinstallNeeded(false);
-                    } catch (IOException io) {
+                    } catch (IOException io) { // user has < 10MB free space on disk...
                         Log.e(TAG, "Error installing geoip files", io);
-                        logNotice(getString(R.string.log_notice_geoip_error));
                     }
-                } else Log.d(TAG, "no need to write geoip");
+                }
 
 
                 pluggableTransportInstall();
