@@ -1,0 +1,4 @@
+* Onion Service v3のサポート
+* ブリッジ・コンフィギュレーションの改善
+* VPNモードが "unmetered connection "として扱われるようにした。
+* Snowflakeプロキシとしての実行を可能にする実験的モード
