@@ -267,7 +267,7 @@
     <string name="kindess_config_detail">Konfigurácia toho, ako a kedy môže vaše zariadenie fungovať ako proxy server Snowflake pre iných používateľov Tor.</string>
     <string name="btn_copy_log">Kopírovanie denníka</string>
     <string name="many_ways">Existuje mnoho spôsobov, ako dosiahnuť Tor. Niektoré z nich vám môžu vyhovovať viac ako iné.</string>
-    <string name="kindness_adjust_title">Nastavte ho, keď beží…</string>
+    <string name="kindness_adjust_title">Nastavenie</string>
     <string name="snowflake_subtitle">Spája sa prostredníctvom dobrovoľníkov Tor. Obchádza niektoré blokovania Tor.</string>
     <string name="get_a_bridge">Most z Tor (Obfs4)</string>
     <string name="get_a_bridge_subtitle">Skrýva vašu návštevnosť. Obchádza niektoré blokovania Tor.</string>

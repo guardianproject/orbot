@@ -285,6 +285,6 @@
     <string name="asking">ĐANG HỎI...</string>
     <string name="no_interent_title">Kết nối tới Internet</string>
     <string name="no_internet_subtitle">Bạn cần một kết nối internet để sử dụng Orbot.</string>
-    <string name="kindness_adjust_title">ĐIều chỉnh khi nó chạy…</string>
+    <string name="kindness_adjust_title">Cài đặt</string>
     <string name="setting_padding">Định khoảng cách Padding</string>
 </resources>

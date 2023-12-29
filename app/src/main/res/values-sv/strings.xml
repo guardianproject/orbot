@@ -233,7 +233,7 @@
     <string name="asking">FRÅGAR...</string>
     <string name="no_interent_title">Anslut till internet</string>
     <string name="no_internet_subtitle">Du behöver en internetuppkoppling för att använda Orbot.</string>
-    <string name="kindness_adjust_title">Justera när det går…</string>
+    <string name="kindness_adjust_title">Inställningar</string>
     <string name="configure_header">Konfigurera din Tor-anslutning</string>
     <string name="drawer_close">Stäng</string>
     <string name="proxy_ports">Proxy-portar</string>
