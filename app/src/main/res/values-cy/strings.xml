@@ -113,4 +113,5 @@
     <string name="enter_a_custom_relay_nickname">Rhowch lysenw cyfnewid personol</string>
     <string name="relay_port">Porthladd Cyfnewid</string>
     <string name="reachable_addresses">Cyfeiriadau Cyrraeddadwy</string>
+    <string name="kindness_adjust_title">Gosodiadau</string>
 </resources>

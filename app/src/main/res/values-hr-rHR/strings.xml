@@ -128,4 +128,6 @@
     <string name="menu_tor_connection">Tor veza</string>
     <string name="menu_faq">FAQ</string>
     <string name="confirm">Potvrdi</string>
+    <string name="custom_bridges">Prilagođeni mostovi</string>
+    <string name="kindness_adjust_title">Postavke</string>
 </resources>
