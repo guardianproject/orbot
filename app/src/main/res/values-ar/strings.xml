@@ -177,7 +177,7 @@
     <string name="custom_bridge">جسر مخصص</string>
     <string name="no_interent_title">اتصل بالإنترنت</string>
     <string name="no_internet_subtitle">تحتاج إلى اتصال بالإنترنت لاستخدام Orbot.</string>
-    <string name="kindness_adjust_title">ضبط عند تشغيله…</string>
+    <string name="kindness_adjust_title">إعدادات</string>
     <string name="pref_http_dialog">تكوين منفذ HTTP</string>
     <string name="testing_tor_direct">جارٍ اختبار الاتصال بـتور…</string>
     <string name="apps_suggested_title">تطبيقات المقترحة</string>

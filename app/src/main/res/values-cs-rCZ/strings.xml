@@ -189,7 +189,7 @@
     <string name="paste_bridges">Vložení mostů</string>
     <string name="volunteer_mode_weekly_label">Týdenní součet</string>
     <string name="request_bridges">Žádost o mosty</string>
-    <string name="kindness_adjust_title">Nastavte, když běží…</string>
+    <string name="kindness_adjust_title">Nastavení</string>
     <string name="apps_suggested_title">Navrhované aplikace</string>
     <string name="pref_circuit_padding_summary">Umožňuje vyplňování obvodů pro obranu proti některým formám analýzy provozu</string>
     <string name="full_device_vpn">Úplné zařízení VPN</string>
