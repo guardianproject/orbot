@@ -39,9 +39,11 @@ public class ZipUtilities {
         try {
             BufferedInputStream origin;
             ParcelFileDescriptor pdf = contentResolver.openFileDescriptor(zipFile, "w");
+            assert pdf != null;
             FileOutputStream dest = new FileOutputStream(pdf.getFileDescriptor());
             ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
             byte[] data = new byte[BUFFER];
+            assert files != null;
             for (String file : files) {
                 FileInputStream fi = new FileInputStream(file);
                 origin = new BufferedInputStream(fi, BUFFER);
@@ -82,6 +84,7 @@ public class ZipUtilities {
             is = contentResolver.openInputStream(zipFile);
             ZipInputStream zis = new ZipInputStream(new BufferedInputStream(is));
             boolean returnVal = extractFromZipInputStream(outputPath, zis);
+            assert is != null;
             is.close();
             return returnVal;
         } catch (IOException e) {
