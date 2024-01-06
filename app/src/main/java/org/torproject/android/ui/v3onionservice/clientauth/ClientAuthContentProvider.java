@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 
 import org.torproject.android.BuildConfig;
 
+import java.util.Objects;
+
 public class ClientAuthContentProvider extends ContentProvider {
     public static final String[] PROJECTION = {
             V3ClientAuth._ID,
@@ -66,7 +68,7 @@ public class ClientAuthContentProvider extends ContentProvider {
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
         SQLiteDatabase db = mDatabase.getWritableDatabase();
         long regId = db.insert(ClientAuthDatabase.DATABASE_NAME, null, values);
-        getContext().getContentResolver().notifyChange(CONTENT_URI, null);
+        Objects.requireNonNull(getContext()).getContentResolver().notifyChange(CONTENT_URI, null);
         return ContentUris.withAppendedId(CONTENT_URI, regId);
     }
 
@@ -76,7 +78,7 @@ public class ClientAuthContentProvider extends ContentProvider {
             selection = "_id=" + uri.getLastPathSegment();
         SQLiteDatabase db = mDatabase.getWritableDatabase();
         int rows = db.delete(ClientAuthDatabase.DATABASE_NAME, selection, selectionArgs);
-        getContext().getContentResolver().notifyChange(CONTENT_URI, null);
+        Objects.requireNonNull(getContext()).getContentResolver().notifyChange(CONTENT_URI, null);
         return rows;
     }
 
@@ -86,7 +88,7 @@ public class ClientAuthContentProvider extends ContentProvider {
         if (uriMatcher.match(uri) == V3AUTH_ID)
             selection = "id_=" + uri.getLastPathSegment();
         int rows = db.update(ClientAuthDatabase.DATABASE_NAME, values, selection, null);
-        getContext().getContentResolver().notifyChange(CONTENT_URI, null);
+        Objects.requireNonNull(getContext()).getContentResolver().notifyChange(CONTENT_URI, null);
         return rows;
     }
 

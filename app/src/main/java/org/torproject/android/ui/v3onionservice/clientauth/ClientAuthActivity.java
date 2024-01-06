@@ -25,6 +25,7 @@ import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.ui.v3onionservice.V3BackupUtils;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ClientAuthActivity extends AppCompatActivity {
 
@@ -45,7 +46,7 @@ public class ClientAuthActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         setSupportActionBar(findViewById(R.id.toolbar));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         mResolver = getContentResolver();
         mAdapter = new ClientAuthListAdapter(this, mResolver.query(ClientAuthContentProvider.CONTENT_URI, ClientAuthContentProvider.PROJECTION, null, null, null));
@@ -73,6 +74,7 @@ public class ClientAuthActivity extends AppCompatActivity {
             Uri uri = data.getData();
             if (uri != null) {
                 Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+                assert cursor != null;
                 int nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
                 cursor.moveToFirst();
                 String filename = cursor.getString(nameIndex);

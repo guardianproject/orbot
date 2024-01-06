@@ -29,8 +29,9 @@ public class ClientAuthDeleteDialogFragment extends DialogFragment {
     }
 
     private void doDelete() {
+        assert getArguments() != null;
         int id = getArguments().getInt(ClientAuthActivity.BUNDLE_KEY_ID);
-        getContext().getContentResolver().delete(ClientAuthContentProvider.CONTENT_URI, ClientAuthContentProvider.V3ClientAuth._ID + "=" + id, null);
+        requireContext().getContentResolver().delete(ClientAuthContentProvider.CONTENT_URI, ClientAuthContentProvider.V3ClientAuth._ID + "=" + id, null);
     }
 
 }

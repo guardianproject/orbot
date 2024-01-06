@@ -22,6 +22,8 @@ import org.torproject.android.core.DiskUtils;
 import org.torproject.android.core.ui.NoPersonalizedLearningEditText;
 import org.torproject.android.ui.v3onionservice.V3BackupUtils;
 
+import java.util.Objects;
+
 public class ClientAuthBackupDialogFragment extends DialogFragment {
 
     private NoPersonalizedLearningEditText etFilename;
@@ -83,7 +85,7 @@ public class ClientAuthBackupDialogFragment extends DialogFragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(BUNDLE_KEY_FILENAME, etFilename.getText().toString());
+        outState.putString(BUNDLE_KEY_FILENAME, Objects.requireNonNull(etFilename.getText()).toString());
     }
 
 
@@ -96,11 +98,11 @@ public class ClientAuthBackupDialogFragment extends DialogFragment {
 
 
     private void doBackup() {
-        String filename = etFilename.getText().toString().trim();
+        String filename = Objects.requireNonNull(etFilename.getText()).toString().trim();
         if (!filename.endsWith(ClientAuthActivity.CLIENT_AUTH_FILE_EXTENSION))
             filename += ClientAuthActivity.CLIENT_AUTH_FILE_EXTENSION;
             Intent createFileIntent = DiskUtils.createWriteFileIntent(filename, ClientAuthActivity.CLIENT_AUTH_SAF_MIME_TYPE);
-            getActivity().startActivityForResult(createFileIntent, REQUEST_CODE_WRITE_FILE);
+            requireActivity().startActivityForResult(createFileIntent, REQUEST_CODE_WRITE_FILE);
     }
 
     @Override
@@ -114,6 +116,7 @@ public class ClientAuthBackupDialogFragment extends DialogFragment {
 
     private void attemptToWriteBackup(Uri outputFile) {
         V3BackupUtils v3BackupUtils = new V3BackupUtils(getContext());
+        assert getArguments() != null;
         String domain = getArguments().getString(ClientAuthActivity.BUNDLE_KEY_DOMAIN);
         String hash = getArguments().getString(ClientAuthActivity.BUNDLE_KEY_HASH);
         String backup = v3BackupUtils.createV3AuthBackup(domain, hash, outputFile);
