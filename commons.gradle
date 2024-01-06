@@ -1,9 +1,6 @@
-
-/*
-    Applies across all modules
- */
+// Applies across all modules
 android {
-    compileSdkVersion 33
+    compileSdkVersion 34
     buildToolsVersion '33.0.0'
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
