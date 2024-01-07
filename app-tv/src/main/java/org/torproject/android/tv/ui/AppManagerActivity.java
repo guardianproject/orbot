@@ -12,6 +12,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -35,6 +36,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.StringTokenizer;
 
 public class AppManagerActivity extends AppCompatActivity implements OrbotConstants {
@@ -51,7 +53,7 @@ public class AppManagerActivity extends AppCompatActivity implements OrbotConsta
 
         this.setContentView(R.layout.layout_apps);
         setTitle("");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         listApps = findViewById(R.id.applistview);
         progressBar = findViewById(R.id.progressBar);
     }

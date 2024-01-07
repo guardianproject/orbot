@@ -18,6 +18,8 @@ import org.torproject.android.service.vpn.TorifiedApp;
 import static org.torproject.android.service.OrbotConstants.PREFS_KEY_TORIFIED;
 import static org.torproject.android.tv.TeeveeMainActivity.getApp;
 
+import java.util.Objects;
+
 public class AppConfigActivity extends AppCompatActivity {
 
     TorifiedApp mApp;
@@ -31,7 +33,7 @@ public class AppConfigActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         final String pkgId = getIntent().getStringExtra(Intent.EXTRA_PACKAGE_NAME);
 
@@ -39,6 +41,7 @@ public class AppConfigActivity extends AppCompatActivity {
 
         ApplicationInfo aInfo;
         try {
+            assert pkgId != null;
             aInfo = getPackageManager().getApplicationInfo(pkgId, 0);
             mApp = getApp(this, aInfo);
 
