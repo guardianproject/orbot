@@ -78,4 +78,6 @@
     <string name="allow">Permitter</string>
     <string name="hidden_services">Servicios onion</string>
     <string name="done">Facite!</string>
+    <string name="menu_scan">Scannar BridgeQR</string>
+    <string name="menu_share_bridge">Compartir BridgeQR</string>
 </resources>
