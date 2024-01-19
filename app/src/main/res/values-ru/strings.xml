@@ -254,7 +254,7 @@
 \nблагодаря вам.</string>
     <string name="title_choose_apps">Выбор приложений</string>
     <string name="apps_suggested_title">Рекомендуемые приложения</string>
-    <string name="power_user_description">Для пользователей, знакомых с Tor. Позволяет запустить Orbot без настройки VPN, показывая открытые порты SOCKS и HTTP</string>
+    <string name="power_user_description">Для пользователей, знакомых с Tor. Позволяет запустить Orbot без настройки VPN, показывая открытые порты SOCKS и HTTP.</string>
     <string name="apps_other_apps">Другие приложения</string>
     <string name="action_activate">Активировать</string>
     <string name="app_suggested_subtitle">Orbot лучше всего работает с приложениями для обмена сообщениями и социальными сетями.</string>
