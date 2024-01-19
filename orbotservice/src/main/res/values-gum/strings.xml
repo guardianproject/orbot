@@ -1,24 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Orbot</string>
-  <string name="app_description">Orbot es una aplicación libre de proxy (interpuesto) que faculta a otras aplicaciones para usar Internet de forma más segura. Orbot utiliza Tor para cifrar su tráfico de Internet, y luego lo oculta rebotándolo a través de una serie de computadoras por todo el mundo. Tor es software libre y una red abierta que le ayuda a defenderse contra una forma de vigilancia de red conocida como análisis de tráfico que amenaza la libertad y la privacidad personales, las actividades y relaciones comerciales confidenciales, y la seguridad de estado.</string>
-    <string name="status_starting_up">Orbot está iniciandose...</string>
-  <string name="status_activated">Conectado a la red Tor</string>
-  <string name="status_disabled">Orbot está desactivado</string>
-  <string name="status_shutting_down">TorService se está cerrando</string>
-    <!--Welcome Wizard strings (DJH)-->
-    <!--END Welcome Wizard strings (DJH)-->
-    <!--New Wizard Strings-->
-  <!--Title Screen-->
-    <!--Warning screen-->
-    <!--Permissions screen-->
-    <!--TipsAndTricks screen-->
-    <!--Transparent Proxy screen-->
-    <string name="couldn_t_start_tor_process_">No se pudo iniciar el proceso de Tor: </string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">¡Sus \'Reglas de direcciones accesibles\' han producido una excepción!</string>
-  <string name="your_relay_settings_caused_an_exception_">¡La configuración de su repetidor ha producido una excepción!</string>
-    <string name="found_existing_tor_process">Se encontró un proceso de Tor ya existente...</string>
-    <string name="unable_to_start_tor">No fue posible iniciar Tor: </string>
-    <string name="newnym">¡Ha cambiado a una nueva identidad de Tor!</string>
-    <string name="updating_settings_in_tor_service">actualizando la configuración en el servicio Tor</string>
+    <string name="app_name">Orbot</string>
+    <string name="orbot_vpn">Orbot VPN</string>
+    <string name="app_description">Orbotpe chi anwei kɵmɵn ikpape internetyu mentra kenamarmɵ chine maramtik kɵn. 
+Orbotpe, internet yu wammeran mentra lasrpitsɵsrkɵmɵntrappe Tor teik tɵka wetɵ ashmɵntrai isua marik kɵn, trek chippe chi wam merane esekawa ampumai imai purep ipik kɵn ik pirau mupa kuin pɵrap. 
+Torpe kan software kɵn mayaelai chi anwei kɵmɵ, incha chu puisrɵ, kape chu pasriksrɵpe, wam kerilan mu kɵpen wamipikelɵ wetɵ ashmɵntrai purukupik kɵn, trek tɵwai chutɵ kucha maya misakwan aship pasrapik Estado teik wan purukupik kɵn, kan \"analisis de tráfico\" teik tɵka.</string>
+    <string name="status_starting_up">Orbotpe pɵlpasrɵp pasran&#8230;</string>
+    <string name="status_activated">Toryu kelicha pasrik</string>
+    <string name="status_disabled">Orbotpe kuetsik pasran</string>
+    <string name="open_orbot_to_connect_to_tor">Orbotwan kur Toryu kelichap</string>
+    <string name="status_shutting_down">Orbotpe kasrɵp pasran</string>
+    <string name="connect_to_tor">Tor yu kelitsik pasran</string>
+    <string name="orbot_config_invalid">Orborwan tamartrentikpe kalɵ kɵn</string>
+
+    <string name="couldn_t_start_tor_process_">Torwan p­‎​ɵlpasrtrap kaimeik pasran</string>
+    <string name="your_reachableaddresses_settings_caused_an_exception_">ReachableAddresses wan tamartrentikpe nɵrɵ pek tamarik kenamisran</string>
+    <string name="your_relay_settings_caused_an_exception_">Relay wan tamartrentikpe nɵrɵ pek tamarik kenamisran</string>
+    <string name="found_existing_tor_process">Wetɵtraik kenamisran Tor&#8230; </string>
+    <string name="something_bad_happened">Chiyu kɵsrɵn kalɵ wepitre. Registroyu katɵle ash</string>
+    <string name="unable_to_start_tor">Torpe pɵlpasrtrap kaiman</string>
+
+    <string name="newnym">Tor maik kenamisrɵpik kuipe yunɵmaran</string>
+
+    <string name="updating_settings_in_tor_service">Toryu srɵitɵ tamaramelɵ</string>
+
+    <string name="menu_new_identity">Srɵitɵ malɵ kena maramik</string>
+    <string name="waiting_for_control_port">Puerto de controlwan munirap</string>
+    <string name="connecting_to_control_port">Puerto de controlyu kelichip</string>
+
+    <string name="kibibyte_per_second">KiB/s</string>
+    <string name="mebibyte_per_second">MiB/s</string>
+
+    <string name="snowflake_proxy_client_connected_msg">1%sÑui proxy snowflake purukun munkɵsrɵn asam keilan ashchap inchen 1%s</string>
+
+    <string name="log_notice_unable_to_update_onions">Ishik munchi meran asam kaik k​­ɵn</string>
+    <string name="log_notice_low_memory_warning">Memoria patsap pasran</string>
+    <string name="log_notice_snowflake_proxy_enabled">Snowflake proxype kurik pasran </string>
+    <string name="log_notice_snowflake_proxy_disabled">Snowflake proxype kasreik pasran </string>
+    <string name="log_notice_updating_torrc">Torrcwan na isuikmai tamaramik</string>
+    <string name="log_notice_added_event_handler">Control portwan keerik pasramisran</string>
+    <string name="log_notice_connected_to_tor_control_port">Control portwan kelitsik pasran</string>
+    <string name="log_notice_ignoring_start_request">Katɵle pɵlpasramik cha mieikwan ka tan, yantɵ pɵlmarik pasran</string>
+    <string name="log_notice_geoip_error">Geoipyu mariklan tamara pasramikyu, kalɵ wepian </string>
+
 </resources>
+
