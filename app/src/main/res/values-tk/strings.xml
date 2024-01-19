@@ -1,2 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="pref_start_boot_title">Bootda Start Orbot</string>
+    <string name="pref_start_boot_summary">Android enjamyňyz açylanda Orbot awtomatiki işe giriziň we Tor-y birikdiriň</string>
+    <string name="pref_allow_background_starts_summary">Islendik programma Orbot-a Tor we degişli hyzmatlaryň işleýändigini aýtmaga start (rugsat) beriň</string>
+    <string name="pref_proxy_password_summary">Proxy Paroly (Islege Görä)</string>
+    <string name="app_name">Orbot</string>
+    <string name="menu_settings">Sazlamalar</string>
+    <string name="menu_log">Hasaba gir</string>
+    <string name="menu_stop">Stop</string>
+    <string name="menu_about">Hakynda</string>
+    <string name="main_layout_download">Göçürip al</string>
+    <string name="main_layout_upload">Yükle</string>
+    <string name="button_about">Hakynda</string>
+    <string name="menu_exit">Çykalga</string>
+    <string name="pref_node_configuration">Node konfigurasiýasy</string>
+    <string name="pref_node_configuration_summary">Bular anonimligiňizi azaldyp biljek ösen sazlamalar</string>
+    <string name="pref_entrance_node">Giriş düwünleri</string>
+    <string name="pref_entrance_node_summary">Barmak yzlary, lakamlar, ýurtlar we ilkinji hop üçin salgylar</string>
+    <string name="pref_entrance_node_dialog">Giriş Düwünlerini Giriziň</string>
+    <string name="pref_allow_background_starts_title">Fon Başlamagyna Rugsat Beriň</string>
+    <string name="pref_proxy_title">Çykmak üçin Proxy Networj (islege görä)</string>
+    <string name="pref_proxy_type_title">Çykyş Proksi Görnüşi</string>
+    <string name="pref_proxy_type_dialog">Proxy Görnüşini Giriziň</string>
+    <string name="pref_proxy_host_summary">Proxy Serweriň host ady</string>
+    <string name="pref_proxy_port_dialog">Proxy portuna giriň</string>
+    <string name="pref_proxy_username_dialog">Proxy ulanyjy adyňyzy giriziň</string>
+    <string name="pref_proxy_password_title">Çykmak üçin Proxy proksi Paroly</string>
+</resources>
