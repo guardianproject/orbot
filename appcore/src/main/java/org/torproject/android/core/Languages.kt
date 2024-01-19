@@ -48,6 +48,7 @@ class Languages private constructor(activity: Activity) {
             Locale("gu"),
             Locale("guc"),
             Locale("gum"),
+            Locale("nah"),
             Locale("hi"),
                 Locale("hr"), Locale("hu"), Locale("hy","AM"),
             Locale("ia"),
@@ -181,6 +182,8 @@ class Languages private constructor(activity: Activity) {
             }
             else if (locale.language.equals("guc")) {
                 tmpMap["guc"] = "Wayuu"
+            } else if (locale.language.equals("nah")) {
+                tmpMap["nah"] = "Nahuatl"
             }
             else {
                 tmpMap[locale.toString()] = locale.getDisplayLanguage(locale) + " " + locale.getDisplayCountry(locale)
