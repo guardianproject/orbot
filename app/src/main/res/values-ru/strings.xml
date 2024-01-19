@@ -254,7 +254,7 @@
 \nблагодаря вам.</string>
     <string name="title_choose_apps">Выбор приложений</string>
     <string name="apps_suggested_title">Рекомендуемые приложения</string>
-    <string name="power_user_description">Для пользователей, знакомых с Tor. Позволяет запустить Orbot без настройки VPN, показывая открытые порты SOCKS и HTTP.</string>
+    <string name="power_user_description">Для пользователей, знакомых с Tor. Позволяет запустить Orbot без настройки VPN, показывая открытые порты SOCKS и HTTP</string>
     <string name="apps_other_apps">Другие приложения</string>
     <string name="action_activate">Активировать</string>
     <string name="app_suggested_subtitle">Orbot лучше всего работает с приложениями для обмена сообщениями и социальными сетями.</string>
@@ -268,7 +268,7 @@
     <string name="asking">ЗАПРОС…</string>
     <string name="no_interent_title">Подключиться к интернету</string>
     <string name="no_internet_subtitle">Для использования Orbot необходимо подключение к интернету.</string>
-    <string name="kindness_adjust_title">Настройка работы…</string>
+    <string name="kindness_adjust_title">Настройки</string>
     <string name="kindess_config_detail">Настройте, как и когда ваше устройство может использоваться в качестве прокси-сервера Snowflake для других пользователей Tor.</string>
     <string name="pref_isolate_protocol">Изолировать протоколы клиентов</string>
     <string name="pref_isolate_port_summary">Использовать разные цепочки подключения для каждого порта назначения</string>
