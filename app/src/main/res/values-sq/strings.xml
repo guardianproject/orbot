@@ -260,7 +260,7 @@
     <string name="pref_isolate_port_summary">Përdorni një qark të ndryshëm për çdo portë vendmbërritje</string>
     <string name="no_interent_title">Lidhu në internet</string>
     <string name="pref_isolate_protocol">Izolo protokolle klienti</string>
-    <string name="kindness_adjust_title">Cilësimet</string>
+    <string name="kindness_adjust_title">Rregullime</string>
     <string name="full_device_vpn">VPN Për Krejt Pajisjen</string>
     <string name="log_copied">Regjistri u Kopjua</string>
     <string name="btn_copy_log">Kopjo Regjistrin</string>
@@ -279,12 +279,12 @@
     <string name="many_ways">Ka mjaft mënyra për të mbërritur te Tor-i. Disa mund të funksionojnë më mirë se të tjerat për ju.</string>
     <string name="relaying">Përdorim Relesh</string>
     <string name="pref_circuit_padding">Mbushje qarku</string>
-    <string name="pref_reduced_circuit_padding_summary">Përdorni algoritme më të ulëta të mbushjes për të reduktuar përdorimin e të dhënave dhe baterisë</string>
-    <string name="pref_circuit_padding_summary">Aktivizo mbushjen e qarkut për t\'u mbrojtur nga disa forma të analizës së trafikut</string>
+    <string name="pref_reduced_circuit_padding_summary"></string>
+    <string name="pref_circuit_padding_summary">Aktivizoni mbushje qarku, për t’u mbrojtur nga disa forma analizimi trafiku</string>
     <string name="setting_padding">Mbushje</string>
-    <string name="menu_kindness">Mirësia</string>
-    <string name="pref_connection_padding_summary">Gjithmonë mundëson mbushjen e lidhjes për t\'u mbrojtur nga disa forma të analizës së trafikut. Parazgjedhja: automatik</string>
-    <string name="pref_reduced_circuit_padding">Mbushje e reduktuar e qarkut</string>
+    <string name="menu_kindness"></string>
+    <string name="pref_connection_padding_summary">Aktivizon përherë mbushje lidhjeje, për t’u mbrojtur nga disa forma analizimi trafiku. Parazgjedhje: auto</string>
+    <string name="pref_reduced_circuit_padding">Mbushje e reduktuar qarku</string>
     <string name="pref_connection_padding">Mbushja e lidhjes</string>
-    <string name="pref_reduced_connection_padding">Mbushje e reduktuar e lidhjes</string>
+    <string name="pref_reduced_connection_padding">Mbushje e reduktuar lidhjeje</string>
 </resources>
