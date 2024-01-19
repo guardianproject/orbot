@@ -267,7 +267,7 @@
     <string name="action_use">Nota</string>
     <string name="no_interent_title">Tengjast við internetið</string>
     <string name="no_internet_subtitle">Þú þarft internettengingu til að nota Orbot.</string>
-    <string name="kindness_adjust_title">Aðlaga þegar það keyrir…</string>
+    <string name="kindness_adjust_title">Stillingar</string>
     <string name="pref_isolate_port_summary">Nota mismunandi rás fyrir hverja markgátt</string>
     <string name="hide_apps">Feldu forrit fyrir netvöktun og náðu aðgangi þegar lokað er á þau.</string>
     <string name="not_sure">Ekki viss\?</string>
