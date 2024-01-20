@@ -248,7 +248,7 @@
     <string name="next">Next</string>
     <string name="solve_captcha">Solve Captcha</string>
     <string name="incorrect_solution">Incorrect Solution</string>
-    <string name="bridges_obtained_connecting">Bridges obtained! Connecting to tor...</string>
+    <string name="bridges_obtained_connecting">Bridges obtained! Connecting to tor…</string>
     <string name="custom_bridge_description">A custom bridge is provided by someone you know. Ask within your trusted networks and organizations to see if anyone is hosting one.</string>
     <string name="having_trouble">Having trouble</string>
     <string name="having_trouble_subtitle">We can try a Tor bridge next but will need your help</string>
@@ -267,7 +267,7 @@
     <string name="ask_tor">Ask Tor</string>
     <string name="many_ways">There are many ways to reach Tor. Some may work better than others for you.</string>
     <string name="action_use">Use</string>
-    <string name="asking">ASKING...</string>
+    <string name="asking">ASKING…</string>
     <string name="no_interent_title">Connect to internet</string>
     <string name="no_internet_subtitle">You need an internet connection to use Orbot.</string>
     <string name="kindness_adjust_title">Settings</string>
