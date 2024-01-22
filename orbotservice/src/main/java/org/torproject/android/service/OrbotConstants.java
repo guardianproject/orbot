@@ -170,7 +170,10 @@ public interface OrbotConstants {
      * Include packages here to make the VPNService ignore these apps. This is to
      * prevent tor over tor scenarios...
      */
-    List<String> BYPASS_VPN_PACKAGES = Arrays.asList("org.torproject.torbrowser_alpha", "org.torproject.torbrowser", "org.onionshare.android", // issue #618
+    List<String> BYPASS_VPN_PACKAGES = Arrays.asList(
+            "org.torproject.torbrowser_alpha",
+            "org.torproject.torbrowser",
+            "org.onionshare.android", // issue #618
             "org.briarproject.briar.android" // https://github.com/guardianproject/orbot/issues/474
     );
 

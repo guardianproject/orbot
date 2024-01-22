@@ -81,7 +81,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
         if (intent != null) {
             var action = intent.getAction();
             if (action != null) {
-                if (action.equals(ACTION_START_VPN) || action.equals(ACTION_START) ) {
+                if (action.equals(ACTION_START_VPN) || action.equals(ACTION_START)) {
                     Log.d(TAG, "starting VPN");
                     isStarted = true;
                 } else if (action.equals(ACTION_STOP_VPN) || action.equals(ACTION_STOP)) {
@@ -101,8 +101,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                     int torDns = intent.getIntExtra(OrbotService.EXTRA_DNS_PORT, -1);
 
                     //if running, we need to restart
-                    if ((torSocks != -1 && torSocks != mTorSocks
-                            && torDns != -1 && torDns != mTorDns)) {
+                    if ((torSocks != -1 && torSocks != mTorSocks && torDns != -1 && torDns != mTorDns)) {
 
                         mTorSocks = torSocks;
                         mTorDns = torDns;
@@ -115,7 +114,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
         return Service.START_STICKY;
     }
 
-    public void restartVPN (VpnService.Builder builder) {
+    public void restartVPN(VpnService.Builder builder) {
         stopVPN();
         setupTun2Socks(builder);
     }
@@ -167,11 +166,8 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
 
             //    builder.setMtu(VPN_MTU);
             //   builder.addAddress(virtualGateway, 32);
-            builder.addAddress(virtualGateway, 24)
-                .addRoute(defaultRoute, 0)
-                .setSession(mService.getString(R.string.orbot_vpn))
-                .addDnsServer(FAKE_DNS) //just setting a value here so DNS is captured by TUN interface
-                .addRoute(FAKE_DNS, 32);
+            builder.addAddress(virtualGateway, 24).addRoute(defaultRoute, 0).setSession(mService.getString(R.string.orbot_vpn)).addDnsServer(FAKE_DNS) //just setting a value here so DNS is captured by TUN interface
+                    .addRoute(FAKE_DNS, 32);
 
             //handle ipv6
             builder.addAddress("fdfe:dcba:9876::1", 126);
@@ -201,8 +197,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                  **/
             }
 
-             builder.setSession(mSessionName)
-                    .setConfigureIntent(null) // previously this was set to a null member variable
+            builder.setSession(mSessionName).setConfigureIntent(null) // previously this was set to a null member variable
                     .setBlocking(true);
 
             mInterface = builder.establish();
@@ -238,13 +233,13 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
             }
         };
 
-        IPtProxy.startSocks(pFlow, "127.0.0.1",mTorSocks);
+        IPtProxy.startSocks(pFlow, "127.0.0.1", mTorSocks);
 
         //read packets from TUN and send to go-tun2socks
         mThreadPacket = new Thread() {
-            public void run () {
+            public void run() {
 
-                var buffer = new byte[32767*2]; //64k
+                var buffer = new byte[32767 * 2]; //64k
                 keepRunningPacket = true;
                 while (keepRunningPacket) {
                     try {
@@ -253,24 +248,21 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                         if (pLen > 0) {
                             var pdata = Arrays.copyOf(buffer, pLen);
                             try {
-                                var packet = IpSelector.newPacket(pdata,0,pdata.length);
+                                var packet = IpSelector.newPacket(pdata, 0, pdata.length);
 
                                 if (packet instanceof IpPacket ipPacket) {
                                     if (isPacketDNS(ipPacket))
                                         mExec.execute(new RequestPacketHandler(ipPacket, pFlow, mDnsResolver));
-                                    else if (isPacketICMP(ipPacket))
-                                    {
+                                    else if (isPacketICMP(ipPacket)) {
                                         //do nothing, drop!
-                                    }
-                                    else
-                                        IPtProxy.inputPacket(pdata);
+                                    } else IPtProxy.inputPacket(pdata);
                                 }
                             } catch (IllegalRawDataException e) {
                                 Log.e(TAG, e.getLocalizedMessage());
                             }
                         }
                     } catch (Exception e) {
-                        Log.d(TAG, "error reading from VPN fd: " +  e.getLocalizedMessage());
+                        Log.d(TAG, "error reading from VPN fd: " + e.getLocalizedMessage());
                     }
                 }
             }
@@ -285,6 +277,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
         }
         return false;
     }
+
     private static boolean isPacketICMP(IpPacket p) {
         return (p.getHeader().getProtocol() == IpNumber.ICMPV4 || p.getHeader().getProtocol() == IpNumber.ICMPV6);
     }
@@ -313,14 +306,13 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                 builder.addDisallowedApplication(mService.getPackageName());
 
                 //disallow all apps since we no longer have a default "full device" mode
-              //  for (TorifiedApp app : apps)
+                //  for (TorifiedApp app : apps)
                 //    builder.addDisallowedApplication(app.getPackageName());
 
                 for (String packageName : OrbotConstants.BYPASS_VPN_PACKAGES)
                     builder.addDisallowedApplication(packageName);
 
-            }
-            else {
+            } else {
                 //nothing will work unless they choose it in the choose apps screen
                 //remove all apps from Tor
             }
