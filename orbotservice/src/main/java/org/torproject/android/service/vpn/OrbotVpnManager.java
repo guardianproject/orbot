@@ -77,7 +77,7 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
         prefs = Prefs.getSharedPrefs(mService.getApplicationContext());
     }
 
-    public int handleIntent(VpnService.Builder builder, Intent intent) {
+    public void handleIntent(VpnService.Builder builder, Intent intent) {
         if (intent != null) {
             var action = intent.getAction();
             if (action != null) {
@@ -111,7 +111,6 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                 }
             }
         }
-        return Service.START_STICKY;
     }
 
     public void restartVPN(VpnService.Builder builder) {
@@ -160,14 +159,16 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
 
     private synchronized void setupTun2Socks(final VpnService.Builder builder) {
         try {
-            final String localhost = "127.0.0.1";
             final String defaultRoute = "0.0.0.0";
             final String virtualGateway = "192.168.50.1";
 
             //    builder.setMtu(VPN_MTU);
             //   builder.addAddress(virtualGateway, 32);
-            builder.addAddress(virtualGateway, 24).addRoute(defaultRoute, 0).setSession(mService.getString(R.string.orbot_vpn)).addDnsServer(FAKE_DNS) //just setting a value here so DNS is captured by TUN interface
-                    .addRoute(FAKE_DNS, 32);
+            builder.addAddress(virtualGateway, 24)
+                    .addRoute(defaultRoute, 0)
+                    .addRoute(FAKE_DNS, 32)
+                    .addDnsServer(FAKE_DNS) //just setting a value here so DNS is captured by TUN interface
+                    .setSession(mService.getString(R.string.orbot_vpn));
 
             //handle ipv6
             builder.addAddress("fdfe:dcba:9876::1", 126);
@@ -190,18 +191,13 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
                 builder.allowFamily(OsConstants.AF_INET);
                 builder.allowFamily(OsConstants.AF_INET6);
 
-                /*
-                 // Allow applications to bypass the VPN
-                 builder.allowBypass();
-
-                 **/
             }
 
-            builder.setSession(mSessionName).setConfigureIntent(null) // previously this was set to a null member variable
+            builder.setSession(mSessionName)
+                    .setConfigureIntent(null) // previously this was set to a null member variable
                     .setBlocking(true);
 
             mInterface = builder.establish();
-
             mDnsResolver = new DNSResolver(mTorDns);
 
             final Handler handler = new Handler(Looper.getMainLooper());
@@ -284,41 +280,34 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
 
     private void doAppBasedRouting(VpnService.Builder builder) throws NameNotFoundException {
         var apps = TorifiedApp.getApps(mService, prefs);
-        var perAppEnabled = false;
-        var canBypass = !isVpnLockdown(mService);
+        var individualAppsWereSelected = false;
+        var isLockdownMode = isVpnLockdown(mService);
 
         for (TorifiedApp app : apps) {
             if (app.isTorified() && (!app.getPackageName().equals(mService.getPackageName()))) {
                 if (prefs.getBoolean(app.getPackageName() + OrbotConstants.APP_TOR_KEY, true)) {
                     builder.addAllowedApplication(app.getPackageName());
                 }
-
-                perAppEnabled = true;
+                individualAppsWereSelected = true;
             }
         }
+        Log.i(TAG, "App based routing is enabled?=" + individualAppsWereSelected + ", isLockdownMode=" + isLockdownMode);
 
-        if (!perAppEnabled) {
+        if (isLockdownMode) {
+             /* TODO https://github.com/guardianproject/orbot/issues/774
+                Need to allow briar, onionshare, etc to enter orbot's vpn gateway, but not enter the tor
+                network, that way these apps can use their own tor connection
+                 // TODO  "add" these packages here...
+                 */
+        }
 
-            //if not VPN lockdown, then we can let these apps all go by
-            if (canBypass) {
+        if (!individualAppsWereSelected && !isLockdownMode) {
+            // disallow orobt itself...
+            builder.addDisallowedApplication(mService.getPackageName());
 
-                //remove all apps from Tor
-                builder.addDisallowedApplication(mService.getPackageName());
-
-                //disallow all apps since we no longer have a default "full device" mode
-                //  for (TorifiedApp app : apps)
-                //    builder.addDisallowedApplication(app.getPackageName());
-
-                for (String packageName : OrbotConstants.BYPASS_VPN_PACKAGES)
-                    builder.addDisallowedApplication(packageName);
-
-            } else {
-                //nothing will work unless they choose it in the choose apps screen
-                //remove all apps from Tor
-            }
-
-        } else {
-            Log.i(TAG, "Skip bypass perApp? " + perAppEnabled + " vpnLockdown? " + !canBypass);
+            // disallow tor apps to avoid tor over tor, Orbot doesnt need to concern itself with them
+            for (String packageName : OrbotConstants.BYPASS_VPN_PACKAGES)
+                builder.addDisallowedApplication(packageName);
         }
     }
 
