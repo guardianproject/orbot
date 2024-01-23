@@ -1,24 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Orbot</string>
-  <string name="app_description">Orbot es una aplicación libre de proxy (interpuesto) que faculta a otras aplicaciones para usar Internet de forma más segura. Orbot utiliza Tor para cifrar su tráfico de Internet, y luego lo oculta rebotándolo a través de una serie de computadoras por todo el mundo. Tor es software libre y una red abierta que le ayuda a defenderse contra una forma de vigilancia de red conocida como análisis de tráfico que amenaza la libertad y la privacidad personales, las actividades y relaciones comerciales confidenciales, y la seguridad de estado.</string>
-    <string name="status_starting_up">Orbot está iniciandose...</string>
-  <string name="status_activated">Conectado a la red Tor</string>
-  <string name="status_disabled">Orbot está desactivado</string>
-  <string name="status_shutting_down">TorService se está cerrando</string>
-    <!--Welcome Wizard strings (DJH)-->
-    <!--END Welcome Wizard strings (DJH)-->
-    <!--New Wizard Strings-->
-  <!--Title Screen-->
-    <!--Warning screen-->
-    <!--Permissions screen-->
-    <!--TipsAndTricks screen-->
-    <!--Transparent Proxy screen-->
-    <string name="couldn_t_start_tor_process_">No se pudo iniciar el proceso de Tor: </string>
-    <string name="your_reachableaddresses_settings_caused_an_exception_">¡Sus \'Reglas de direcciones accesibles\' han producido una excepción!</string>
-  <string name="your_relay_settings_caused_an_exception_">¡La configuración de su repetidor ha producido una excepción!</string>
-    <string name="found_existing_tor_process">Se encontró un proceso de Tor ya existente...</string>
-    <string name="unable_to_start_tor">No fue posible iniciar Tor: </string>
-    <string name="newnym">¡Ha cambiado a una nueva identidad de Tor!</string>
-    <string name="updating_settings_in_tor_service">actualizando la configuración en el servicio Tor</string>
+    <string name="app_name">orbot</string>
+    <string name="orbot_vpn">0rbot VNP</string>
+    <string name="app_description">Orbot shia wane a\'yataaya maliasat, akaalinjia tü wane a\'yataayaakalüirua süpüla anainjatüin shia\'yataaya. Orbot a\'yataasü sulu\'u \"internet\" süka wane kanüliasü Tor je süchikijee sunujuluin sulu\'u wane kojuyasü \"computador\" sainküsü mmakat. Tor maliasat je taashisü süpüla sa\'inmajüin pia suulia eekai mojulaweein pümüin wanaa sümaa pi\'yataain sulu\'u \"internet\".</string>
+    <string name="status_starting_up">Eepeja\'asu Orbot&#8230;</string>
+    <string name="status_activated">Antirrawaas jumaa atalaya Tor</string>
+    <string name="status_disabled">Yokutusu\'u Orbot</string>
+    <string name="open_orbot_to_connect_to_tor">Pe\'erulaa  Orbot jupula  puyata ín juma Tor.</string>
+    <string name="status_shutting_down">Yokuuter  Tor</string>
+    <string name="connect_to_tor">Antirrawaa sunain Tor</string>
+    <string name="orbot_config_invalid">sükumajia Orbot maliaasat</string>
+
+    <string name="couldn_t_start_tor_process_">Nojotsü o\'ottuin sukuaipa shiatain Tor</string>
+    <string name="your_reachableaddresses_settings_caused_an_exception_">Tü anatiaaka   erree juntunuín  casaa, nojots jainrre\'in</string>
+    <string name="your_relay_settings_caused_an_exception_">Tü anatiaka  eerjaya maimatuaa, nojots  jainrrei´n </string>
+    <string name="found_existing_tor_process">Antusü sünain sajia wanee Tor etüjulia &#8230;</string>
+    <string name="something_bad_happened">Mujukuaipatsü pünala tü sunajayakat</string>
+    <string name="unable_to_start_tor">no jot süpüla achuajaje\'in Tor</string>
+
+    <string name="newnym">Tü piranaajain sülü wanee jeketü shiyawase Tor</string>
+
+    <string name="updating_settings_in_tor_service">Anoutuüin  tüü akümajiak süpüla Tor</string>
+
+    <string name="menu_new_identity">Anuli\'aa jekets</string>
+    <string name="waiting_for_control_port">Atapajus  juntia</string>
+    <string name="connecting_to_control_port">süntiraya tü süchecheria sütsin</string>
+
+    <string name="kibibyte_per_second">KiB/s</string>
+    <string name="mebibyte_per_second">MiB/s</string>
+
+    <string name="snowflake_proxy_client_connected_msg">%sPuuproxinka copo de nieve munaka amuliajús wayuu jupula nainjuin tu nainrreka.%s</string>
+
+    <string name="log_notice_unable_to_update_onions">Nojoluinjat  aitanüin junulia cewoolla.</string>
+    <string name="log_notice_low_memory_warning">Motée ainrüü</string>
+    <string name="log_notice_snowflake_proxy_enabled">Proxy copo de nieve amuliajús jupula painruuín tu paiinrreka </string>
+    <string name="log_notice_snowflake_proxy_disabled">proxinka copo de nieve Yokúuts</string>
+    <string name="log_notice_updating_torrc">Jeketerr  tu anatiakal  tu ipünamiukal C</string>
+    <string name="log_notice_added_event_handler">Kaa´muinshi atumaa  chi ayawuajuikai  kazachiki</string>
+    <string name="log_notice_connected_to_tor_control_port">Antirrashi  Tor  juma ipunamuika eki.</string>
+    <string name="log_notice_ignoring_start_request">Nojots apunuin  juchuntia  eepeja\'asú</string>
+    <string name="log_notice_geoip_error">Mojus jukuaipaa junain j\'iitaayaa erre aatunu\'in geoip</string>
+
 </resources>
+
