@@ -1,6 +1,6 @@
 #!/bin/sh
 
-rm *aar *jar -v
+rm -v *aar *jar
 if [ ! -d OrbotIPtProxy ]; then
    git clone https://github.com/bitmold/OrbotIPtProxy
 fi
