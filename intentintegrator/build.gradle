@@ -18,6 +18,5 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
     libs.androidx_appcompat
 }
