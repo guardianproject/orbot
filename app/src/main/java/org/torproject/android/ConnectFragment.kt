@@ -13,7 +13,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.Html
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import net.freehaven.tor.control.TorControlCommands
+import org.torproject.android.core.putNotSystem
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.OrbotService
 import org.torproject.android.service.util.Prefs
@@ -365,14 +365,14 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks,
         refreshMenuList(requireContext())
     }
 
-    private fun Intent.putNotSystem(): Intent = this.putExtra(OrbotConstants.EXTRA_NOT_SYSTEM, true)
 
     /** Sends intent to service, first modifying it to indicate it is not from the system */
     private fun sendIntentToService(intent: Intent) =
         ContextCompat.startForegroundService(requireActivity(), intent.putNotSystem())
 
-    private fun sendIntentToService(action: String) =
+    private fun sendIntentToService(action: String) {
         sendIntentToService(Intent(requireActivity(), OrbotService::class.java).apply {
             this.action = action
         })
+    }
 }

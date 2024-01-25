@@ -1504,27 +1504,17 @@ public class OrbotService extends VpnService implements OrbotConstants {
     private class ActionBroadcastReceiver extends BroadcastReceiver {
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
-                case TorControlCommands.SIGNAL_NEWNYM: {
-                    newIdentity();
-                    break;
-                }
-                case CMD_ACTIVE: {
-                    sendSignalActive();
-                    break;
-                }
-                case LOCAL_ACTION_NOTIFICATION_START: {
-                    startTor();
-                    break;
-                }
-                case ACTION_ERROR: {
+                case TorControlCommands.SIGNAL_NEWNYM -> newIdentity();
+                case CMD_ACTIVE -> sendSignalActive();
+                case LOCAL_ACTION_NOTIFICATION_START -> startTor();
+                case ACTION_ERROR -> {
                     if (showTorServiceErrorMsg) {
                         Toast.makeText(context, getString(R.string.orbot_config_invalid), Toast.LENGTH_LONG).show();
                         showTorServiceErrorMsg = false;
                     }
                     stopTor();
-                    break;
                 }
-                case ACTION_STATUS: {
+                case ACTION_STATUS -> {
                     // hack for https://github.com/guardianproject/tor-android/issues/73 remove when fixed
                     var newStatus = intent.getStringExtra(EXTRA_STATUS);
                     if (mCurrentStatus.equals(STATUS_OFF) && newStatus.equals(STATUS_STOPPING))
@@ -1534,7 +1524,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
                         showDeactivatedNotification();
                     }
                     sendStatusToOrbotActivity();
-                    break;
                 }
             }
         }

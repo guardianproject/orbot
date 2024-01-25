@@ -17,6 +17,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.scottyab.rootbeer.RootBeer
 import org.torproject.android.core.LocaleHelper
+import org.torproject.android.core.putNotSystem
 import org.torproject.android.core.ui.BaseActivity
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.util.Prefs
@@ -145,8 +146,6 @@ class OrbotActivity : BaseActivity() {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(orbotServiceBroadcastReceiver)
     }
 
-
-    private fun Intent.putNotSystem(): Intent = this.putExtra(OrbotConstants.EXTRA_NOT_SYSTEM, true)
 
     /** Sends intent to service, first modifying it to indicate it is not from the system */
     private fun sendIntentToService(intent: Intent) =

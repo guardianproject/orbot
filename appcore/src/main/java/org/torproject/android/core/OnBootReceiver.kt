@@ -46,8 +46,6 @@ class OnBootReceiver : BroadcastReceiver() {
         }
     }
 
-    private fun Intent.putNotSystem(): Intent = putExtra(OrbotConstants.EXTRA_NOT_SYSTEM, true)
-
     companion object {
         private var sReceivedBoot = false
     }

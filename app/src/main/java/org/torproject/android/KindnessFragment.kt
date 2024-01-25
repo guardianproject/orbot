@@ -10,8 +10,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.ContextCompat
+import org.torproject.android.core.putNotSystem
 import org.torproject.android.service.OrbotConstants
-import org.torproject.android.service.OrbotService
 import org.torproject.android.service.util.Prefs
 
 class KindnessFragment : Fragment() {
@@ -28,10 +28,10 @@ class KindnessFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_kindness, container, false)
-        tvAlltimeTotal = view.findViewById<TextView>(R.id.tvAlltimeTotal)
-        tvWeeklyTotal = view.findViewById<TextView>(R.id.tvWeeklyTotal)
-        swVolunteerMode = view.findViewById<SwitchCompat>(R.id.swVolunteerMode)
-        btnActionActivate = view.findViewById<Button>(R.id.btnActionActivate)
+        tvAlltimeTotal = view.findViewById(R.id.tvAlltimeTotal)
+        tvWeeklyTotal = view.findViewById(R.id.tvWeeklyTotal)
+        swVolunteerMode = view.findViewById(R.id.swVolunteerMode)
+        btnActionActivate = view.findViewById(R.id.btnActionActivate)
         pnlActivate = view.findViewById(R.id.panel_kindness_activate)
         pnlStatus = view.findViewById(R.id.panel_kindness_status)
         tvAlltimeTotal.text = Prefs.getSnowflakesServed().toString()
@@ -41,25 +41,16 @@ class KindnessFragment : Fragment() {
         swVolunteerMode.setOnCheckedChangeListener { _, isChecked ->
             Prefs.setBeSnowflakeProxy(isChecked)
             showPanelStatus(isChecked)
-            sendIntentToService(
-                Intent(
-                    requireActivity(),
-                    OrbotService::class.java
-                ).setAction(OrbotConstants.CMD_SNOWFLAKE_PROXY)
-            )
+            sendIntentToService(OrbotConstants.CMD_SNOWFLAKE_PROXY)
         }
 
         view.findViewById<TextView>(R.id.swVolunteerAdjust).setOnClickListener {
-
             KindessConfigBottomSheet().show(
                 requireActivity().supportFragmentManager, CustomBridgeBottomSheet.TAG
             )
-
         }
 
         btnActionActivate.setOnClickListener {
-            //   Prefs.setBeSnowflakeProxy(true)
-            //  showPanelStatus(true)
             swVolunteerMode.isChecked = true
             Prefs.setBeSnowflakeProxy(true)
             sendIntentToService(OrbotConstants.CMD_ACTIVE)
@@ -71,7 +62,7 @@ class KindnessFragment : Fragment() {
     }
 
     private fun sendIntentToService(intent: Intent) =
-        ContextCompat.startForegroundService(requireContext(), intent)
+        ContextCompat.startForegroundService(requireContext(), intent.putNotSystem())
 
     private fun sendIntentToService(action: String) = sendIntentToService(Intent(
         requireContext(), org.torproject.android.service.OrbotService::class.java
@@ -97,10 +88,7 @@ class KindnessFragment : Fragment() {
 
         } else {
             pnlActivate.visibility = View.VISIBLE
-            pnlActivate.animate().alpha(1f).setDuration(duration).withEndAction {
-
-                }
-
+            pnlActivate.animate().alpha(1f).setDuration(duration).withEndAction {}
 
             pnlStatus.animate().alpha(0f).setDuration(duration).withEndAction {
                     pnlStatus.visibility = View.GONE

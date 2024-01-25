@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -99,167 +98,174 @@
         android:id="@+id/panel_kindness_status"
         android:visibility="gone"
         android:alpha="0">
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:clickable="true"
-            >
+            android:clickable="true">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginBottom="120dp">
-        <ImageView
-            android:id="@+id/ivHeader"
-            android:layout_width="140sp"
-            android:layout_height="140sp"
-            android:src="@drawable/kindness"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5" />
 
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/volunteer_status_title"
-            android:textColor="@android:color/white"
-            android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
-            android:textStyle="normal"
-            android:gravity="center_horizontal"
-            android:padding="15dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivHeader" />
+                <ImageView
+                    android:id="@+id/ivHeader"
+                    android:layout_width="140sp"
+                    android:layout_height="140sp"
+                    android:src="@drawable/kindness"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5" />
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/rowVolunteerMode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-            android:padding="@dimen/activity_horizontal_margin"
-            android:background="@color/panel_widget_background"
-            android:layout_margin="10dp">
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/volunteer_status_title"
+                    android:textColor="@android:color/white"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:textStyle="normal"
+                    android:gravity="center_horizontal"
+                    android:padding="15dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivHeader" />
 
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_heart"
-                android:paddingTop="20dp"
-
-                app:layout_constraintStart_toStartOf="parent"
-                />
-            <TextView
-                android:id="@+id/swVolunteerHeader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/volunteer_mode"
-                android:textSize="24dp"
-                android:paddingTop="@dimen/activity_horizontal_margin"
-                android:layout_marginLeft="32dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                />
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/swVolunteerMode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:showText="false"
-                android:textSize="24dp"
-                android:padding="@dimen/activity_horizontal_margin" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_settings_gear"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/swVolunteerMode"
-                />
-            <TextView
-                android:id="@+id/swVolunteerAdjust"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginBottom="@dimen/button_horizontal_large_margin"
-                android:text="@string/menu_settings"
-                android:textSize="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/swVolunteerHeader" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/rowVolunteerMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:background="@color/panel_widget_background"
+                    android:layout_margin="10dp">
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_heart"
+                        android:paddingTop="20dp"
+
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/swVolunteerHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/volunteer_mode"
+                        android:textSize="24dp"
+                        android:paddingTop="@dimen/activity_horizontal_margin"
+                        android:layout_marginLeft="32dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/swVolunteerMode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:showText="false"
+                        android:textSize="24dp"
+                        android:padding="@dimen/activity_horizontal_margin" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_settings_gear"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/swVolunteerMode" />
+
+                    <TextView
+                        android:id="@+id/swVolunteerAdjust"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginBottom="@dimen/button_horizontal_large_margin"
+                        android:text="@string/menu_settings"
+                        android:textSize="24dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/swVolunteerHeader" />
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rowVolunteerMode"
-            android:orientation="horizontal"
-            android:background="@color/panel_widget_background"
-            android:layout_margin="10dp"
-            android:id="@+id/volunteer_display_weekly">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/volunteer_mode_weekly_label"
-                android:textColor="@color/progress_bar_purple"
-                android:textSize="20dp"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:fontFamily="sans-serif-medium"
-                android:textAllCaps="true" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/tvWeeklyTotal"
-                android:text="#"
-                android:textSize="24dp"
-                android:padding="@dimen/activity_horizontal_margin"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:fontFamily="sans-serif-medium" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/volunteer_display_weekly"
-            android:orientation="horizontal"
-            android:background="@color/panel_widget_background"
-            android:layout_margin="10dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/volunteer_mode_alltime_label"
-                android:textColor="@color/progress_bar_purple"
-                android:textSize="20dp"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:textAllCaps="true"
-                android:fontFamily="sans-serif-medium" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/tvAlltimeTotal"
-                android:text="#"
-                android:textSize="24dp"
-                android:padding="@dimen/activity_horizontal_margin"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:fontFamily="sans-serif-medium" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rowVolunteerMode"
+                    android:orientation="horizontal"
+                    android:background="@color/panel_widget_background"
+                    android:layout_margin="10dp"
+                    android:id="@+id/volunteer_display_weekly">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/volunteer_mode_weekly_label"
+                        android:textColor="@color/progress_bar_purple"
+                        android:textSize="20dp"
+                        android:padding="@dimen/activity_horizontal_margin"
+                        android:fontFamily="sans-serif-medium"
+                        android:textAllCaps="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/tvWeeklyTotal"
+                        android:text="#"
+                        android:textSize="24dp"
+                        android:padding="@dimen/activity_horizontal_margin"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:fontFamily="sans-serif-medium" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/volunteer_display_weekly"
+                    android:orientation="horizontal"
+                    android:background="@color/panel_widget_background"
+                    android:layout_margin="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/volunteer_mode_alltime_label"
+                        android:textColor="@color/progress_bar_purple"
+                        android:textSize="20dp"
+                        android:padding="@dimen/activity_horizontal_margin"
+                        android:textAllCaps="true"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/tvAlltimeTotal"
+                        android:text="#"
+                        android:textSize="24dp"
+                        android:padding="@dimen/activity_horizontal_margin"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:fontFamily="sans-serif-medium" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
