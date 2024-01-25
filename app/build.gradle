@@ -32,8 +32,8 @@ android {
     }
     buildTypes {
         release {
-            shrinkResources false
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
         }
     }
 
@@ -87,6 +87,7 @@ android {
 
         implementation "com.squareup.retrofit2:retrofit:2.9.0"
         implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+        implementation "org.slf4j:slf4j-simple:1.6.1"
 
         androidTestImplementation libs.fastlane_screengrab
 //        coreLibraryDesugaring 'com.android.tools:desugar_j dk_libs:1.1.5'
