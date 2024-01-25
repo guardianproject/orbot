@@ -16,7 +16,6 @@
 
 package org.torproject.android.service.vpn;
 
-import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -81,32 +80,34 @@ public class OrbotVpnManager implements Handler.Callback, OrbotConstants {
         if (intent != null) {
             var action = intent.getAction();
             if (action != null) {
-                if (action.equals(ACTION_START_VPN) || action.equals(ACTION_START)) {
-                    Log.d(TAG, "starting VPN");
-                    isStarted = true;
-                } else if (action.equals(ACTION_STOP_VPN) || action.equals(ACTION_STOP)) {
-                    isStarted = false;
-                    Log.d(TAG, "stopping VPN");
-                    stopVPN();
+                switch (action) {
+                    case ACTION_START_VPN, ACTION_START -> {
+                        Log.d(TAG, "starting VPN");
+                        isStarted = true;
+                    }
+                    case ACTION_STOP_VPN, ACTION_STOP -> {
+                        isStarted = false;
+                        Log.d(TAG, "stopping VPN");
+                        stopVPN();
 
-                    //reset ports
-                    mTorSocks = -1;
-                    mTorDns = -1;
-
-                } else if (action.equals(OrbotConstants.LOCAL_ACTION_PORTS)) {
-                    Log.d(TAG, "setting VPN ports");
-
-                    int torSocks = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT, -1);
+                        //reset ports
+                        mTorSocks = -1;
+                        mTorDns = -1;
+                    }
+                    case OrbotConstants.LOCAL_ACTION_PORTS -> {
+                        Log.d(TAG, "setting VPN ports");
+                        int torSocks = intent.getIntExtra(OrbotService.EXTRA_SOCKS_PROXY_PORT, -1);
 //                    int torHttp = intent.getIntExtra(OrbotService.EXTRA_HTTP_PROXY_PORT,-1);
-                    int torDns = intent.getIntExtra(OrbotService.EXTRA_DNS_PORT, -1);
+                        int torDns = intent.getIntExtra(OrbotService.EXTRA_DNS_PORT, -1);
 
-                    //if running, we need to restart
-                    if ((torSocks != -1 && torSocks != mTorSocks && torDns != -1 && torDns != mTorDns)) {
+                        //if running, we need to restart
+                        if ((torSocks != -1 && torSocks != mTorSocks && torDns != -1 && torDns != mTorDns)) {
 
-                        mTorSocks = torSocks;
-                        mTorDns = torDns;
+                            mTorSocks = torSocks;
+                            mTorDns = torDns;
 
-                        setupTun2Socks(builder);
+                            setupTun2Socks(builder);
+                        }
                     }
                 }
             }

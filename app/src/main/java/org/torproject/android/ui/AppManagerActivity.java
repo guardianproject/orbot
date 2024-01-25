@@ -47,7 +47,7 @@ import java.util.StringTokenizer;
 
 public class AppManagerActivity extends AppCompatActivity implements OnClickListener, OrbotConstants {
 
-    class TorifiedAppWrapper {
+    static class TorifiedAppWrapper {
         String header = null;
         String subheader = null;
         TorifiedApp app = null;
@@ -118,7 +118,7 @@ public class AppManagerActivity extends AppCompatActivity implements OnClickList
     }
 
     List<TorifiedApp> allApps, suggestedApps;
-    List<TorifiedAppWrapper> uiList = new ArrayList<>();
+    final List<TorifiedAppWrapper> uiList = new ArrayList<>();
 
     private void loadApps() {
         if (allApps == null) allApps = getApps(AppManagerActivity.this, mPrefs, null, alSuggested);

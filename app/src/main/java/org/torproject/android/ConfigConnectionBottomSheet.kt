@@ -2,7 +2,6 @@ package org.torproject.android
 
 import IPtProxy.IPtProxy
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.telephony.TelephonyManager
 import android.util.Log
@@ -194,9 +193,9 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
 
         IPtProxy.setStateLocation(fileCacheDir.absolutePath)
         IPtProxy.startLyrebird("DEBUG", false, false, null)
-        var pUsername =
+        val pUsername =
             "url=" + OrbotService.getCdnFront("moat-url") + ";front=" + OrbotService.getCdnFront("moat-front")
-        var pPassword = "\u0000"
+        val pPassword = "\u0000"
 
         //    Log.d(getClass().getSimpleName(), String.format("mHost=%s, mPort=%d, mUsername=%s, mPassword=%s", mHost, mPort, mUsername, mPassword));
         val authenticator: Authenticator = object : Authenticator() {
@@ -271,30 +270,30 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
                 return
             }
             val b = it[circumventionApiIndex]!!.bridges
-            if (b.type == CircumventionApiManager.BRIDGE_TYPE_SNOWFLAKE) {
-                Prefs.putConnectionPathway(Prefs.PATHWAY_SNOWFLAKE)
-                rbSnowflake.isChecked = true
-                btnAskTor.text = getString(R.string.connection_snowflake)
-
-            } else if (b.type == CircumventionApiManager.BRIDGE_TYPE_OBFS4) {
-
-                rbCustom.isChecked = true
-                btnAskTor.text = getString(R.string.connection_custom)
-
-                var bridgeStrings = ""
-                b.bridge_strings!!.forEach { bridgeString ->
-                    bridgeStrings += "$bridgeString\n"
+            when (b.type) {
+                CircumventionApiManager.BRIDGE_TYPE_SNOWFLAKE -> {
+                    Prefs.putConnectionPathway(Prefs.PATHWAY_SNOWFLAKE)
+                    rbSnowflake.isChecked = true
+                    btnAskTor.text = getString(R.string.connection_snowflake)
                 }
-                Prefs.setBridgesList(bridgeStrings)
-                Prefs.putConnectionPathway(Prefs.PATHWAY_CUSTOM)
 
-            } else {
-                rbDirect.isChecked = true
+                CircumventionApiManager.BRIDGE_TYPE_OBFS4 -> {
+                    rbCustom.isChecked = true
+                    btnAskTor.text = getString(R.string.connection_custom)
+
+                    var bridgeStrings = ""
+                    b.bridge_strings!!.forEach { bridgeString ->
+                        bridgeStrings += "$bridgeString\n"
+                    }
+                    Prefs.setBridgesList(bridgeStrings)
+                    Prefs.putConnectionPathway(Prefs.PATHWAY_CUSTOM)
+                }
+
+                else -> {
+                    rbDirect.isChecked = true
+                }
             }
-
             circumventionApiIndex += 1
         }
     }
-
-
 }

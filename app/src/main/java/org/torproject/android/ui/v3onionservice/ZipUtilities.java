@@ -24,7 +24,6 @@ import java.util.zip.ZipOutputStream;
 public class ZipUtilities {
     private static final int BUFFER = 2048;
     public static final String ZIP_MIME_TYPE = "application/zip";
-    public static final FilenameFilter FILTER_ZIP_FILES = (dir, name) -> name.toLowerCase().endsWith(".zip");
 
     private final String[] files;
     private final Uri zipFile;

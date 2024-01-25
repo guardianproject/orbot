@@ -128,7 +128,7 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks) :
     private fun requestBridges(solution: String) {
         val request = buildRequest(
             ENDPOINT_CHECK,
-            "\"id\": \"2\", \"type\": \"moat-solution\", \"transport\": \"obfs4\", \"challenge\": \"" + mChallenge + "\", \"solution\": \"" + solution + "\", \"qrcode\": \"false\""
+            "\"id\": \"2\", \"type\": \"moat-solution\", \"transport\": \"obfs4\", \"challenge\": \"$mChallenge\", \"solution\": \"$solution\", \"qrcode\": \"false\""
         ) { response: JSONObject ->
             mRequestInProgress = false
             mProgressBar.visibility = View.GONE

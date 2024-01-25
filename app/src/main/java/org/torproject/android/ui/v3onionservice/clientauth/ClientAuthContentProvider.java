@@ -45,14 +45,11 @@ public class ClientAuthContentProvider extends ContentProvider {
     @Override
     public String getType(@NonNull Uri uri) {
         int match = uriMatcher.match(uri);
-        switch (match) {
-            case V3AUTHS:
-                return "vnd.android.cursor.dir/vnd.torproject.v3auths";
-            case V3AUTH_ID:
-                return "vnd.android.cursor.item/vnd.torproject.v3auth";
-            default:
-                return null;
-        }
+        return switch (match) {
+            case V3AUTHS -> "vnd.android.cursor.dir/vnd.torproject.v3auths";
+            case V3AUTH_ID -> "vnd.android.cursor.item/vnd.torproject.v3auth";
+            default -> null;
+        };
     }
 
     @Nullable

@@ -59,14 +59,11 @@ public class OnionServiceContentProvider extends ContentProvider {
     @Override
     public String getType(@NonNull Uri uri) {
         int match = uriMatcher.match(uri);
-        switch (match) {
-            case ONIONS:
-                return "vnd.android.cursor.dir/vnd.torproject.onions";
-            case ONION_ID:
-                return "vnd.android.cursor.item/vnd.torproject.onion";
-            default:
-                return null;
-        }
+        return switch (match) {
+            case ONIONS -> "vnd.android.cursor.dir/vnd.torproject.onions";
+            case ONION_ID -> "vnd.android.cursor.item/vnd.torproject.onion";
+            default -> null;
+        };
     }
 
     @Nullable

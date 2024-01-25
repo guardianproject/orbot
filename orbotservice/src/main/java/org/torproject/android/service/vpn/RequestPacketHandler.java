@@ -58,9 +58,8 @@ public class RequestPacketHandler implements Runnable {
 
                 IpPacket respPacket = null;
 
-                if (packet instanceof IpV4Packet) {
+                if (packet instanceof IpV4Packet ipPacket) {
 
-                    IpV4Packet ipPacket = (IpV4Packet) packet;
                     IpV4Packet.Builder ipv4Builder = new IpV4Packet.Builder();
                     ipv4Builder.version(ipPacket.getHeader().getVersion()).protocol(ipPacket.getHeader().getProtocol()).tos(ipPacket.getHeader().getTos()).srcAddr(ipPacket.getHeader().getDstAddr()).dstAddr(ipPacket.getHeader().getSrcAddr()).correctChecksumAtBuild(true).correctLengthAtBuild(true).dontFragmentFlag(ipPacket.getHeader().getDontFragmentFlag()).reservedFlag(ipPacket.getHeader().getReservedFlag()).moreFragmentFlag(ipPacket.getHeader().getMoreFragmentFlag()).ttl(Integer.valueOf(64).byteValue()).payloadBuilder(udpBuilder);
 

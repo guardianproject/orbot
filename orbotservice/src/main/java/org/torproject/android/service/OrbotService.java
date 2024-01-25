@@ -865,7 +865,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     private synchronized void startTorService() throws Exception {
-        updateTorConfigCustom(TorService.getDefaultsTorrc(this), "DNSPort 0\n" + "TransPort 0\n" + "DisableNetwork 1\n", false);
+        updateTorConfigCustom(TorService.getDefaultsTorrc(this), """
+                DNSPort 0
+                TransPort 0
+                DisableNetwork 1
+                """, false);
 
         var fileTorrcCustom = updateTorrcCustomFile();
         if ((!fileTorrcCustom.exists()) || (!fileTorrcCustom.canRead())) return;
@@ -1304,35 +1308,14 @@ public class OrbotService extends VpnService implements OrbotConstants {
     @Override
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
-
         switch (level) {
-            case TRIM_MEMORY_BACKGROUND:
-                debug("trim memory requested: app in the background");
-                break;
-
-            case TRIM_MEMORY_COMPLETE:
-                debug("trim memory requested: cleanup all memory");
-                break;
-
-            case TRIM_MEMORY_MODERATE:
-                debug("trim memory requested: clean up some memory");
-                break;
-
-            case TRIM_MEMORY_RUNNING_CRITICAL:
-                debug("trim memory requested: memory on device is very low and critical");
-                break;
-
-            case TRIM_MEMORY_RUNNING_LOW:
-                debug("trim memory requested: memory on device is running low");
-                break;
-
-            case TRIM_MEMORY_RUNNING_MODERATE:
-                debug("trim memory requested: memory on device is moderate");
-                break;
-
-            case TRIM_MEMORY_UI_HIDDEN:
-                debug("trim memory requested: app is not showing UI anymore");
-                break;
+            case TRIM_MEMORY_BACKGROUND -> debug("trim memory requested: app in the background");
+            case TRIM_MEMORY_COMPLETE -> debug("trim memory requested: cleanup all memory");
+            case TRIM_MEMORY_MODERATE -> debug("trim memory requested: clean up some memory");
+            case TRIM_MEMORY_RUNNING_CRITICAL -> debug("trim memory requested: memory on device is very low and critical");
+            case TRIM_MEMORY_RUNNING_LOW -> debug("trim memory requested: memory on device is running low");
+            case TRIM_MEMORY_RUNNING_MODERATE -> debug("trim memory requested: memory on device is moderate");
+            case TRIM_MEMORY_UI_HIDDEN -> debug("trim memory requested: app is not showing UI anymore");
         }
     }
 
@@ -1426,77 +1409,72 @@ public class OrbotService extends VpnService implements OrbotConstants {
         public void run() {
             var action = mIntent.getAction();
             if (TextUtils.isEmpty(action)) return;
-            if (action.equals(ACTION_START)) {
-                var connectionPathway = Prefs.getConnectionPathway();
-                if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
-                    startSnowflakeClientDomainFronting();
-                } else if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE_AMP)) {
-                    startSnowflakeClientAmpRendezvous();
-                } else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
-                    IPtProxy.startLyrebird("DEBUG", false, false, null);
-                }
-                startTor();
-                replyWithStatus(mIntent);
+            switch (action) {
+                case ACTION_START -> {
+                    var connectionPathway = Prefs.getConnectionPathway();
+                    if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
+                        startSnowflakeClientDomainFronting();
+                    } else if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE_AMP)) {
+                        startSnowflakeClientAmpRendezvous();
+                    } else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
+                        IPtProxy.startLyrebird("DEBUG", false, false, null);
+                    }
+                    startTor();
+                    replyWithStatus(mIntent);
+                    if (Prefs.useVpn()) {
+                        if (mVpnManager != null && (!mVpnManager.isStarted())) { // start VPN here
+                            Intent vpnIntent = VpnService.prepare(OrbotService.this);
+                            if (vpnIntent == null) { //then we can run the VPN
+                                mVpnManager.handleIntent(new Builder(), mIntent);
+                            }
+                        }
 
-                if (Prefs.useVpn()) {
-                    if (mVpnManager != null && (!mVpnManager.isStarted())) { // start VPN here
+                        if (mPortSOCKS != -1 && mPortHTTP != -1)
+                            sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
+                    }
+                }
+                case ACTION_STOP -> {
+                    var userIsQuittingOrbot = mIntent.getBooleanExtra(ACTION_STOP_FOREGROUND_TASK, false);
+                    stopTorAsync(!userIsQuittingOrbot);
+                }
+                case ACTION_UPDATE_ONION_NAMES -> updateV3OnionNames();
+                case ACTION_STOP_FOREGROUND_TASK -> stopForeground(true);
+                case ACTION_START_VPN -> {
+                    if (mVpnManager != null && (!mVpnManager.isStarted())) {
+                        //start VPN here
                         Intent vpnIntent = VpnService.prepare(OrbotService.this);
                         if (vpnIntent == null) { //then we can run the VPN
                             mVpnManager.handleIntent(new Builder(), mIntent);
                         }
                     }
-
                     if (mPortSOCKS != -1 && mPortHTTP != -1)
                         sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
                 }
-            } else if (action.equals(ACTION_STOP)) {
-                var userIsQuittingOrbot = mIntent.getBooleanExtra(ACTION_STOP_FOREGROUND_TASK, false);
-                stopTorAsync(!userIsQuittingOrbot);
-            } else if (action.equals(ACTION_UPDATE_ONION_NAMES)) {
-                updateV3OnionNames();
-            } else if (action.equals(ACTION_STOP_FOREGROUND_TASK)) {
-                stopForeground(true);
-            } else if (action.equals(ACTION_START_VPN)) {
-                if (mVpnManager != null && (!mVpnManager.isStarted())) {
-                    //start VPN here
-                    Intent vpnIntent = VpnService.prepare(OrbotService.this);
-                    if (vpnIntent == null) { //then we can run the VPN
-                        mVpnManager.handleIntent(new Builder(), mIntent);
-                    }
+                case ACTION_STOP_VPN -> {
+                    if (mVpnManager != null) mVpnManager.handleIntent(new Builder(), mIntent);
                 }
-
-                if (mPortSOCKS != -1 && mPortHTTP != -1)
-                    sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
-
-
-            } else if (action.equals(ACTION_STOP_VPN)) {
-                if (mVpnManager != null) mVpnManager.handleIntent(new Builder(), mIntent);
-            } else if (action.equals(ACTION_RESTART_VPN)) {
-
-                if (mVpnManager != null) mVpnManager.restartVPN(new Builder());
-
-            } else if (action.equals(ACTION_STATUS)) {
-                if (mCurrentStatus.equals(STATUS_OFF))
-                    showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor);
-                replyWithStatus(mIntent);
-
-            } else if (action.equals(TorControlCommands.SIGNAL_RELOAD)) {
-                requestTorRereadConfig();
-            } else if (action.equals(TorControlCommands.SIGNAL_NEWNYM)) {
-                newIdentity();
-            } else if (action.equals(CMD_ACTIVE)) {
-                sendSignalActive();
-                replyWithStatus(mIntent);
-            } else if (action.equals(CMD_SET_EXIT)) {
-                setExitNode(mIntent.getStringExtra("exit"));
-            } else if (action.equals(ACTION_LOCAL_LOCALE_SET)) {
-                configLanguage();
-            } else if (action.equals(CMD_SNOWFLAKE_PROXY)) {
-                if (Prefs.beSnowflakeProxy()) {
-                    enableSnowflakeProxy();
-                } else disableSnowflakeProxy();
-            } else {
-                Log.w(TAG, "unhandled OrbotService Intent: " + action);
+                case ACTION_RESTART_VPN -> {
+                    if (mVpnManager != null) mVpnManager.restartVPN(new Builder());
+                }
+                case ACTION_STATUS -> {
+                    if (mCurrentStatus.equals(STATUS_OFF))
+                        showToolbarNotification(getString(R.string.open_orbot_to_connect_to_tor), NOTIFY_ID, R.drawable.ic_stat_tor);
+                    replyWithStatus(mIntent);
+                }
+                case TorControlCommands.SIGNAL_RELOAD -> requestTorRereadConfig();
+                case TorControlCommands.SIGNAL_NEWNYM -> newIdentity();
+                case CMD_ACTIVE -> {
+                    sendSignalActive();
+                    replyWithStatus(mIntent);
+                }
+                case CMD_SET_EXIT -> setExitNode(mIntent.getStringExtra("exit"));
+                case ACTION_LOCAL_LOCALE_SET -> configLanguage();
+                case CMD_SNOWFLAKE_PROXY -> {
+                    if (Prefs.beSnowflakeProxy()) {
+                        enableSnowflakeProxy();
+                    } else disableSnowflakeProxy();
+                }
+                default -> Log.w(TAG, "unhandled OrbotService Intent: " + action);
             }
         }
     }

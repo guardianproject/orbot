@@ -7,7 +7,6 @@ import android.service.quicksettings.TileService
 import androidx.annotation.RequiresApi
 import org.torproject.android.OrbotActivity
 
-@RequiresApi(Build.VERSION_CODES.N)
 class OrbotTileService: TileService() {
 
     // Called when the user taps on your tile in an active or inactive state.

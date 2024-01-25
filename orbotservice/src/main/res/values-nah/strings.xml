@@ -15,7 +15,6 @@
     <string name="your_reachableaddresses_settings_caused_an_exception_">¡Mocentiliz ReachableAddresses ye omochihua, yehce za iyopa!</string>
     <string name="your_relay_settings_caused_an_exception_">¡Mocentilis tepozteknolotilistli ye omochihua, yehce za iyopa!</string>
     <string name="found_existing_tor_process">Otinamiqueh ce ayiliztli cenyuhqui quenime Tor &#8230;</string>
-    <string name="something_bad_happened">Opanoc ahmo cualli. Xitlachiz cecemilhuitlacuiloli</string>
     <string name="unable_to_start_tor">Ahmo opehua Tor</string>
 
     <string name="newnym">¡Axan tiyancuitlacauh ica Tor! </string>

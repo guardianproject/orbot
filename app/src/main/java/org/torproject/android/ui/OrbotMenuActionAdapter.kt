@@ -104,7 +104,7 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
                         icons[packageManager.getApplicationLabel(applicationInfo).toString()] = iv
                     } catch (e: PackageManager.NameNotFoundException) {
                         //couldn't draw icon for the package name
-                        Log.d("Orbot", "error getting package info for: " + tordApp);
+                        Log.d("Orbot", "error getting package info for: $tordApp");
 
                     }
                 }
@@ -119,7 +119,7 @@ class OrbotMenuActionAdapter(context: Context, list: ArrayList<OrbotMenuAction>)
         return false
     }
 
-    val URL_TOR_CHECK = "https://check.torproject.org"
+    private val URL_TOR_CHECK = "https://check.torproject.org"
 
     private fun openBrowser(checkUrl: String, doSomething: Boolean, packageName: String) {
         startIntent(context, packageName, Intent.ACTION_VIEW, Uri.parse(checkUrl));

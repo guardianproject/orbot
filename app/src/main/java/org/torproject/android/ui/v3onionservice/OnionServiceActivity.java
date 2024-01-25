@@ -25,8 +25,6 @@ import org.torproject.android.R;
 import org.torproject.android.core.DiskUtils;
 import org.torproject.android.core.LocaleHelper;
 
-import java.io.File;
-
 public class OnionServiceActivity extends AppCompatActivity {
 
     static final String BUNDLE_KEY_ID = "id", BUNDLE_KEY_PORT = "port", BUNDLE_KEY_DOMAIN = "domain", BUNDLE_KEY_PATH = "path";
