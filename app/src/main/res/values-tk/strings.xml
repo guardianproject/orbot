@@ -137,4 +137,5 @@
     <string name="enable">Işlet</string>
     <string name="consider_enable_battery_optimizations">Hiç hili hyzmat berilmeýär. Energiýa sarp etmegiňizi optimizirlemegi göz öňünde tutuň</string>
     <string name="bridge_cloud">Bulut serwerleriniň üsti bilen birikdiriň</string>
+    <string name="set_locale_title">Dil</string>
 </resources>
