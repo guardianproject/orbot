@@ -67,16 +67,6 @@ android {
         }
     }
     packagingOptions {
-        jniLibs {
-            /**
-            excludes += ['lib/x86/libgojni.so',
-                         'lib/x86_64/libgojni.so',
-                         'lib/arm64-v8a/libgojni.so',
-                         'lib/armeabi-v7a/libgojni.so',
-                         'lib/armeabi/libgojni.so']
-             **/
-        }
-
         resources {
             excludes += ['META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version']
         }
@@ -93,7 +83,6 @@ android {
 
                 //use locally built ipt_proxy+go_tun2socks
                 project(':OrbotLib')
-             //   libs.ipt_proxy
         )
 
         implementation "com.squareup.retrofit2:retrofit:2.9.0"
@@ -101,8 +90,6 @@ android {
 
         androidTestImplementation libs.fastlane_screengrab
 //        coreLibraryDesugaring 'com.android.tools:desugar_j dk_libs:1.1.5'
-
-
     }
     lint {
         abortOnError false
@@ -118,7 +105,7 @@ android {
 dependencies {
     implementation "androidx.core:core-ktx:1.8.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     // Kotlin
