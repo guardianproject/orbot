@@ -279,10 +279,10 @@
     <string name="many_ways">Ka mjaft mënyra për të mbërritur te Tor-i. Disa mund të funksionojnë më mirë se të tjerat për ju.</string>
     <string name="relaying">Përdorim Relesh</string>
     <string name="pref_circuit_padding">Mbushje qarku</string>
-    <string name="pref_reduced_circuit_padding_summary"></string>
+    <string name="pref_reduced_circuit_padding_summary"/>
     <string name="pref_circuit_padding_summary">Aktivizoni mbushje qarku, për t’u mbrojtur nga disa forma analizimi trafiku</string>
     <string name="setting_padding">Mbushje</string>
-    <string name="menu_kindness"></string>
+    <string name="menu_kindness"/>
     <string name="pref_connection_padding_summary">Aktivizon përherë mbushje lidhjeje, për t’u mbrojtur nga disa forma analizimi trafiku. Parazgjedhje: auto</string>
     <string name="pref_reduced_circuit_padding">Mbushje e reduktuar qarku</string>
     <string name="pref_connection_padding">Mbushja e lidhjes</string>

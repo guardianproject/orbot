@@ -130,4 +130,6 @@
     <string name="confirm">Potvrdi</string>
     <string name="custom_bridges">Prilagođeni mostovi</string>
     <string name="kindness_adjust_title">Postavke</string>
+    <string name="v3_client_auth_activity_title">Autorizacija klijenta</string>
+    <string name="btn_start_vpn">Pokreni VPN</string>
 </resources>
