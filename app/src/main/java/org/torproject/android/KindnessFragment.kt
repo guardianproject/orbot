@@ -50,7 +50,6 @@ class KindnessFragment : Fragment() {
 
         btnActionActivate.setOnClickListener {
             swVolunteerMode.isChecked = true
-            sendIntentToService(OrbotConstants.CMD_ACTIVE)
         }
 
         showPanelStatus(Prefs.beSnowflakeProxy())
