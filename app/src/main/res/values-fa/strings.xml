@@ -271,7 +271,7 @@
     <string name="asking">پرسیدن...</string>
     <string name="no_interent_title">به اینترنت وصل شوید</string>
     <string name="no_internet_subtitle">برای استفاده از روبوت پیازی نیاز به اینترنت دارید.</string>
-    <string name="kindness_adjust_title">زمانی که اجرا می‌شود تنظیم کنید…</string>
+    <string name="kindness_adjust_title">تنظیمات</string>
     <string name="kindess_config_detail">پیکربندی کنید که چگونه و چه زمانی دستگاه شما می‌تواند به عنوان یک پروکسی دانه برف برای سایر کاربران Tor عمل کند.</string>
     <string name="log_copied">گزارشات رونوشت شدند</string>
     <string name="btn_copy_log">رونوشت گزارشات</string>

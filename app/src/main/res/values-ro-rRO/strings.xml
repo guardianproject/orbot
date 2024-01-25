@@ -243,7 +243,7 @@
     <string name="smart_connect">Conectare inteligentă (implicită)</string>
     <string name="get_a_bridge_subtitle">Camuflează traficul. Ocolește unele blocaje Tor.</string>
     <string name="custom_bridge">Punte personalizată</string>
-    <string name="kindness_adjust_title">Reglați când funcționează…</string>
+    <string name="kindness_adjust_title">Setări</string>
     <string name="snowflake_subtitle">Se conectează prin intermediul voluntarilor Tor. Ocolește unele blocaje Tor.</string>
     <string name="secure_your_connection_title">Gata de conectare</string>
     <string name="snowflake">Fulg de zăpadă (original)</string>

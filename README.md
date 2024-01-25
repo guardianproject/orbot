@@ -16,7 +16,8 @@ while also providing a secure HTTP Proxy for connecting web browsers and other
 HTTP client applications into the Tor SOCKS interface.
 
 ***********************************************
-<img src=./fastlane/metadata/android/en-US/images/phoneScreenshots/device-2018-01.png width="24%"> <img src=./fastlane/metadata/android/en-US/images/phoneScreenshots/device-2018-02.png width="24%"> <img src=./fastlane/metadata/android/en-US/images/phoneScreenshots/device-2018-03.png width="24%"> <img src=./fastlane/metadata/android/en-US/images/phoneScreenshots/device-2018-05.png width="24%">
+<img src=./fastlane/metadata/android/en-US/images/phoneScreenshots/device-2024-01.png width="24%"> <img src=./fastlane/metadata/android/en-US/images/phoneScreenshots/device-2024-02.png width="24%">
+<img src=./fastlane/metadata/android/en-US/images/phoneScreenshots/device-2024-03.png width="24%"> <img src=./fastlane/metadata/android/en-US/images/phoneScreenshots/device-2024-04.png width="24%">
 
 ***********************************************
 Orbot is a crucial component of the Guardian Project, an initiative  that leads an effort
