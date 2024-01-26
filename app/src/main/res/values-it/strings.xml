@@ -247,7 +247,7 @@
     <string name="btn_start_vpn">Avvia VPN</string>
     <string name="snowflake_proxy_msg_title">Mostra la notifica di connessione</string>
     <string name="snowflake_proxy_msg_description">Mostra un messaggio quando aiuti qualcuno ad aggirare la censura</string>
-    <string name="bridges_obtained_connecting">Bridge ottenuti! Connessione a Tor...</string>
+    <string name="bridges_obtained_connecting">Bridge ottenuti! Connessione a Tor…</string>
     <string name="incorrect_solution">Soluzione sbagliata</string>
     <string name="custom_bridge_description">Un bridge personalizzato viene fornito da qualcuno che conosci. Chiedi tra le reti e le organizzazioni fidate per vedere se qualcuno ne ospita uno.</string>
     <string name="having_trouble">Ci sono problemi</string>
@@ -277,7 +277,7 @@
     <string name="not_sure">Non sei sicuro\?</string>
     <string name="ask_tor">Chiedi a Tor</string>
     <string name="many_ways">Ci sono molti modi per raggiungere Tor. Alcuni possono funzionare meglio di altri per te.</string>
-    <string name="asking">RICHIESTA...</string>
+    <string name="asking">RICHIESTA…</string>
     <string name="kindness_adjust_title">Impostazioni</string>
     <string name="pref_flag_secure_summary">Impedisci ad altre app di catturare schermate di Orbot</string>
     <string name="pref_flag_secure_title">Sicurezza dello schermo</string>

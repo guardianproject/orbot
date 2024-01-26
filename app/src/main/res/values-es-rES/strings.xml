@@ -248,7 +248,7 @@
     <string name="solve_captcha">Resolver Captcha</string>
     <string name="ports_not_set">Puertos no configurados</string>
     <string name="incorrect_solution">Solución incorrecta</string>
-    <string name="bridges_obtained_connecting">¡Puentes obtenidos! Conectando a tor...</string>
+    <string name="bridges_obtained_connecting">¡Puentes obtenidos! Conectando a tor…</string>
     <string name="custom_bridge_description">Un puente personalizado lo proporciona alguien que usted conoce. Pregunte dentro de sus redes y organizaciones de confianza para ver si alguien está alojando uno.</string>
     <string name="having_trouble">¿Tienes problemas\?</string>
     <string name="having_trouble_subtitle">Podemos probar un puente Tor a continuación, pero necesitaremos su ayuda.</string>
@@ -267,7 +267,7 @@
     <string name="not_sure">¿No estas segura\?</string>
     <string name="many_ways">Hay muchas formas de conectarse a Tor. Algunas pueden funcionar mejor que otras para ti.</string>
     <string name="action_use">Uso</string>
-    <string name="asking">Preguntando...</string>
+    <string name="asking">PREGUNTANDO…</string>
     <string name="no_interent_title">Conectarse a Internet</string>
     <string name="no_internet_subtitle">Necesitas estar conectado a Internet para usar Orbot.</string>
     <string name="kindness_adjust_title">Ajustes</string>
