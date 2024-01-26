@@ -269,7 +269,7 @@
         android:id="@+id/btnAction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:text="@string/connect"
         android:textColor="@android:color/white"
         android:paddingLeft="@dimen/button_horizontal_large_margin"
@@ -279,6 +279,7 @@
 
         app:layout_constraintEnd_toEndOf="@id/tvCancel"
         app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mainGuideline" />
+        app:layout_constraintTop_toBottomOf="@id/mainGuideline"
+        app:layout_constraintHorizontal_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
