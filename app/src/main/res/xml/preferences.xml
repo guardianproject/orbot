@@ -53,6 +53,14 @@
             android:summary="@string/pref_flag_secure_summary"
             android:title="@string/pref_flag_secure_title"
             app:iconSpaceReserved="false"
+	    />
+
+       <CheckBoxPreference
+            android:key="pref_detect_root"
+            android:defaultValue="true"
+            android:summary="@string/pref_detect_root_summary"
+            android:title="@string/pref_detect_root_title"
+            app:iconSpaceReserved="false"
             />
 
     </PreferenceCategory>
