@@ -80,16 +80,17 @@ class OrbotActivity : BaseActivity() {
 
         Prefs.initWeeklyWorker()
 
-        val rootBeer = RootBeer(this)
-        if (rootBeer.isRooted) {
-            //we found indication of root
-            val toast = Toast.makeText(
-                applicationContext, getString(R.string.root_warning), Toast.LENGTH_LONG
-            )
-            toast.show()
-
-        } else {
-            //we didn't find indication of root
+        if (Prefs.detectRoot()) {
+            val rootBeer = RootBeer(this)
+            if (rootBeer.isRooted) {
+                //we found indication of root
+                val toast = Toast.makeText(
+                    applicationContext, getString(R.string.root_warning), Toast.LENGTH_LONG
+                )
+                toast.show()
+            } else {
+                //we didn't find indication of root
+            }
         }
 
     }

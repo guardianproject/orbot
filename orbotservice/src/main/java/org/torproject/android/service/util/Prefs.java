@@ -17,6 +17,7 @@ public class Prefs {
     private final static String PREF_BRIDGES_ENABLED = "pref_bridges_enabled";
     private final static String PREF_BRIDGES_LIST = "pref_bridges_list";
     private final static String PREF_DEFAULT_LOCALE = "pref_default_locale";
+    private final static String PREF_DETECT_ROOT = "pref_detect_root";
     private final static String PREF_ENABLE_LOGGING = "pref_enable_logging";
     private final static String PREF_START_ON_BOOT = "pref_start_boot";
     private final static String PREF_ALLOW_BACKGROUND_STARTS = "pref_allow_background_starts";
@@ -109,6 +110,10 @@ public class Prefs {
 
     public static void setDefaultLocale(String value) {
         putString(PREF_DEFAULT_LOCALE, value);
+    }
+
+    public static boolean detectRoot () {
+        return prefs.getBoolean(PREF_DETECT_ROOT,true);
     }
 
     public static boolean beSnowflakeProxy () {
