@@ -146,4 +146,5 @@
     <string name="get_a_bridge_subtitle">Trafigiňizi gizleýär. Käbir Tor bloklaryndan geçýär.</string>
     <string name="custom_bridge_subtitle">Tor gaty bloklanan bolsa, baglanyşykda bolmaga kömek eder. Size ynanýan adamyňyzdan bridge salgysy gerek.</string>
     <string name="incorrect_solution">Ters Çözgit</string>
+    <string name="connect">Birikdir</string>
 </resources>
