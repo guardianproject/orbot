@@ -64,7 +64,6 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks,
 
             tvTitle = it.findViewById(R.id.tvTitle)
             tvSubtitle = it.findViewById(R.id.tvSubtitle)
-            tvSubtitle = it.findViewById(R.id.tvSubtitle)
             tvConfigure = it.findViewById(R.id.tvConfigure)
             btnStartVpn = it.findViewById(R.id.btnStart)
             ivOnion = it.findViewById(R.id.ivStatus)
@@ -226,8 +225,6 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks,
         tvTitle.text = getString(R.string.no_interent_title)
         tvSubtitle.text = getString(R.string.no_internet_subtitle)
 
-        tvSubtitle.visibility = View.VISIBLE
-
         btnStartVpn.visibility = View.GONE
         lvConnectedActions.visibility = View.GONE
         tvConfigure.visibility = View.GONE
@@ -242,7 +239,6 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks,
         tvSubtitle.visibility = View.GONE
         progressBar.visibility = View.INVISIBLE
         tvTitle.text = context.getString(R.string.connected_title)
-        tvSubtitle.visibility = View.GONE
         btnStartVpn.visibility = View.GONE
         lvConnectedActions.visibility = View.VISIBLE
         tvConfigure.visibility = View.GONE
