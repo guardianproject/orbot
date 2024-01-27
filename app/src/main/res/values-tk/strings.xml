@@ -138,4 +138,13 @@
     <string name="consider_enable_battery_optimizations">Hiç hili hyzmat berilmeýär. Energiýa sarp etmegiňizi optimizirlemegi göz öňünde tutuň</string>
     <string name="bridge_cloud">Bulut serwerleriniň üsti bilen birikdiriň</string>
     <string name="set_locale_title">Dil</string>
+    <string name="snowflake_subtitle">Tor meýletinçileriniň üsti bilen birikýär. Käbir Tor bloklaryndan geçýär.</string>
+    <string name="solve_captcha">Captcha-ny çöz</string>
+    <string name="bridges_obtained_connecting">Köprüler alyndy! Tor-a birlikýär …</string>
+    <string name="pref_flag_secure_title">Ekranyň howpsuzlygy</string>
+    <string name="custom_bridge">Omörite Bridge</string>
+    <string name="get_a_bridge_subtitle">Trafigiňizi gizleýär. Käbir Tor bloklaryndan geçýär.</string>
+    <string name="custom_bridge_subtitle">Tor gaty bloklanan bolsa, baglanyşykda bolmaga kömek eder. Size ynanýan adamyňyzdan bridge salgysy gerek.</string>
+    <string name="incorrect_solution">Ters Çözgit</string>
+    <string name="connect">Birikdir</string>
 </resources>

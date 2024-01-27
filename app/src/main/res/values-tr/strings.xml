@@ -245,7 +245,7 @@
     <string name="smart_connect_subtitle">Orbot, Tor\'a kullanılabilir herhangi bir yolla bağlanmayı dener: Doğrudan, Snowflake, Köprü.</string>
     <string name="snowflake">Snowflake (Orijinal)</string>
     <string name="incorrect_solution">Yanlış Çözüm</string>
-    <string name="bridges_obtained_connecting">Köprüler alındı! Tor\'a bağlanılıyor...</string>
+    <string name="bridges_obtained_connecting">Köprüler alındı! Tor\'a bağlanılıyor…</string>
     <string name="custom_bridge_description">Tanıdığınız biri tarafından özel bir köprü sağlanır. Güvenilir ağlarınızda ve kuruluşlarınızda barındıran biri olup olmadığını sorun.</string>
     <string name="having_trouble">Sorun yaşıyorum</string>
     <string name="having_trouble_subtitle">Bir sonraki adımda Tor köprüsünü deneyebiliriz ancak yardımınıza ihtiyacımız olacak</string>
@@ -264,7 +264,7 @@
     <string name="ask_tor">Tor\'a sor</string>
     <string name="many_ways">Tor\'a erişmenin birçok yolu vardır. Bazıları sizin için diğerlerinden daha iyi çalışabilir.</string>
     <string name="action_use">Kullan</string>
-    <string name="asking">SORUYOR...</string>
+    <string name="asking">SORUYOR…</string>
     <string name="no_interent_title">İnternete bağlan</string>
     <string name="kindness_adjust_title">Ayarlar</string>
     <string name="snowflake_amp">Snowflake (AMP)</string>
