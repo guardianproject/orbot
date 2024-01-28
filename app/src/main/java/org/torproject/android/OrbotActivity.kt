@@ -198,7 +198,7 @@ class OrbotActivity : BaseActivity() {
                                 if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SMART)) {
                                     shouldDoOffLayout = false
                                 }
-                                if (shouldDoOffLayout) fragConnect.doLayoutOff()
+                                if (shouldDoOffLayout && fragConnect.isAdded) fragConnect.doLayoutOff()
                             } else fragConnect.doLayoutOff()
                         }
 
