@@ -255,7 +255,7 @@
     <string name="app_services">App services</string>
     <string name="refresh_apps">Refresh Apps</string>
     <string name="incorrect_solution">Incorrect Solution</string>
-    <string name="bridges_obtained_connecting">Bridges obtained! Connecting to tor...</string>
+    <string name="bridges_obtained_connecting">Bridges obtained! Connecting to Tor…</string>
     <string name="having_trouble">Having trouble</string>
     <string name="having_trouble_subtitle">We can try a Tor bridge next but will need your help</string>
     <string name="pref_isolate_port">Isolate destination ports</string>
@@ -267,9 +267,9 @@
     <string name="ask_tor">Ask Tor</string>
     <string name="many_ways">There are many ways to reach Tor. Some may work better than others for you.</string>
     <string name="action_use">Use</string>
-    <string name="asking">ASKING...</string>
+    <string name="asking">ASKING…</string>
     <string name="no_internet_subtitle">You need an Internet connection to use Orbot.</string>
-    <string name="kindness_adjust_title">Adjust when it runs…</string>
+    <string name="kindness_adjust_title">Settings</string>
     <string name="kindess_config_detail">Configure how and when your device can act as a Snowflake proxy for other Tor users.</string>
     <string name="hide_apps">Hide apps from network monitoring and get access when they are blocked.</string>
     <string name="pref_isolate_protocol">Isolate client protocols</string>
