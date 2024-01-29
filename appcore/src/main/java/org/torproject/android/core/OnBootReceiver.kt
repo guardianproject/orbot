@@ -16,10 +16,10 @@ class OnBootReceiver : BroadcastReceiver() {
         try {
 
             if (Prefs.startOnBoot() && !sReceivedBoot) {
-                //   if (isNetworkAvailable(context)) {
-                startService(OrbotConstants.ACTION_START, context)
-                sReceivedBoot = true
-                // }
+                if (isNetworkAvailable(context)) {
+                    startService(OrbotConstants.ACTION_START, context)
+                    sReceivedBoot = true
+                }
             }
 
         }
