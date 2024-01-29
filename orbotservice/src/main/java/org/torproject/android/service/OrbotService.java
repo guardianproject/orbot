@@ -460,13 +460,20 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) createNotificationChannel();
 
-                try {
-                    CustomTorResourceInstaller installer = new CustomTorResourceInstaller(this, appBinHome);
-                    installer.installGeoIP();
-                } catch (IOException io) {
-                    Log.e(TAG, "Error installing geoip files", io);
-                    logNotice(getString(R.string.log_notice_geoip_error));
+                var hasGeoip = new File(appBinHome, GEOIP_ASSET_KEY).exists();
+                var hasGeoip6 = new File(appBinHome, GEOIP6_ASSET_KEY).exists();
+
+                // only write out geoip files if there's an app update or they don't exist
+                if (!hasGeoip || !hasGeoip6 || Prefs.isGeoIpReinstallNeeded()) {
+                    try {
+                        Log.d(TAG, "Installing geoip files...");
+                        new CustomTorResourceInstaller(this, appBinHome).installGeoIP();
+                        Prefs.setIsGeoIpReinstallNeeded(false);
+                    } catch (IOException io) { // user has < 10MB free space on disk...
+                        Log.e(TAG, "Error installing geoip files", io);
+                    }
                 }
+
 
                 pluggableTransportInstall();
 
@@ -1096,11 +1103,10 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 extraLines = processSettingsImplObfs4(extraLines);
             }
         }
-        //only apply GeoIP if you need it
         var fileGeoIP = new File(appBinHome, GEOIP_ASSET_KEY);
         var fileGeoIP6 = new File(appBinHome, GEOIP6_ASSET_KEY);
 
-        if (fileGeoIP.exists()) {
+        if (fileGeoIP.exists()) { // only apply geoip if it exists
             extraLines.append("GeoIPFile" + ' ').append(fileGeoIP.getCanonicalPath()).append('\n');
             extraLines.append("GeoIPv6File" + ' ').append(fileGeoIP6.getCanonicalPath()).append('\n');
         }
