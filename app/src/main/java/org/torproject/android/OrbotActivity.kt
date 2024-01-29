@@ -6,7 +6,9 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
@@ -35,6 +37,25 @@ class OrbotActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        /** TODO
+        Currently there are a lot of problems wiht landscape mode and bugs resulting from
+        rotation. To this end, Orbot will be locked into either portrait or landscape
+        if the device is a tablet (whichever the app is set when an activity is created)
+        until these things are fixed. On smaller devices it's just portrait...
+         */
+        var isTablet =
+            resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK >=
+                    Configuration.SCREENLAYOUT_SIZE_LARGE
+        requestedOrientation = if (isTablet) {
+            var currentOrientation = resources.configuration.orientation
+            var lockedInOrientation =
+                if (currentOrientation == Configuration.ORIENTATION_LANDSCAPE)
+                    ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                else ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            lockedInOrientation
+        } else ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        
 
         try {
             createOrbot()
@@ -156,8 +177,8 @@ class OrbotActivity : BaseActivity() {
         this,
         org.torproject.android.service.OrbotService::class.java
     ).apply {
-            this.action = action
-        })
+        this.action = action
+    })
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -165,7 +186,7 @@ class OrbotActivity : BaseActivity() {
             fragConnect.startTorAndVpn()
         } else if (requestCode == REQUEST_CODE_SETTINGS && resultCode == RESULT_OK) {
             Prefs.setDefaultLocale(data?.getStringExtra("locale"))
-            sendIntentToService(OrbotConstants.ACTION_LOCAL_LOCALE_SET);
+            sendIntentToService(OrbotConstants.ACTION_LOCAL_LOCALE_SET)
             (application as OrbotApp).setLocale()
             finish()
             startActivity(Intent(this, OrbotActivity::class.java))
