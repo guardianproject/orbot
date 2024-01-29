@@ -23,8 +23,10 @@ import java.net.Authenticator
 import java.net.PasswordAuthentication
 import java.util.*
 
-class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbacks) :
+class ConfigConnectionBottomSheet() :
     OrbotBottomSheetDialogFragment() {
+
+    private var callbacks: ConnectionHelperCallbacks? = null
 
     private lateinit var rbDirect: RadioButton
     private lateinit var rbSnowflake: RadioButton
@@ -35,6 +37,14 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
 
     private lateinit var btnAction: Button
     private lateinit var btnAskTor: Button
+
+    companion object {
+        public fun newInstance(callbacks: ConnectionHelperCallbacks): ConfigConnectionBottomSheet {
+            return ConfigConnectionBottomSheet().apply {
+                this.callbacks = callbacks
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -128,7 +138,7 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
                         Prefs.putConnectionPathway(Prefs.PATHWAY_CUSTOM)
                         rbCustom.isChecked = true
                         dismiss()
-                        callbacks.tryConnecting()
+                        callbacks?.tryConnecting()
                     }
                 }).show(requireActivity().supportFragmentManager, MoatBottomSheet.TAG)
             } else if (rbDirect.isChecked) {
@@ -146,7 +156,7 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
                 CustomBridgeBottomSheet(object : ConnectionHelperCallbacks {
                     override fun tryConnecting() {
                         Prefs.putConnectionPathway(Prefs.PATHWAY_CUSTOM)
-                        callbacks.tryConnecting()
+                        callbacks?.tryConnecting()
                     }
                 }).show(requireActivity().supportFragmentManager, CustomBridgeBottomSheet.TAG)
             }
@@ -157,7 +167,7 @@ class ConfigConnectionBottomSheet(private val callbacks: ConnectionHelperCallbac
 
     private fun closeAndConnect() {
         closeAllSheets()
-        callbacks.tryConnecting()
+        callbacks?.tryConnecting()
     }
 
     // it's 2022 and android makes you do ungodly things for mere radio button functionality
