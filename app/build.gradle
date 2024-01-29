@@ -1,8 +1,8 @@
-apply from: "../commons-device.gradle"
-apply plugin: 'kotlin-android'
-apply from : '../dependencies.gradle'
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+}
 
-/* gets the version name from the latest Git tag, stripping the leading v off */
 def getVersionName = { ->
     def stdout = new ByteArrayOutputStream()
     exec {
@@ -17,19 +17,20 @@ static def versionCodeEpoch() {
 }
 
 android {
+    compileSdk 34
+    namespace "org.torproject.android"
+
+
     defaultConfig {
         applicationId "org.torproject.android"
         versionName getVersionName()
-        minSdkVersion 23
-        compileSdkVersion 33
-        targetSdkVersion 33
+        minSdk 23
+        targetSdk 34
         multiDexEnabled true
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         archivesBaseName = "Orbot"
     }
-    compileOptions {
-//        coreLibraryDesugaringEnabled true
-    }
+
     buildTypes {
         release {
             shrinkResources false
@@ -66,31 +67,13 @@ android {
             universalApk true
         }
     }
+
     packagingOptions {
         resources {
             excludes += ['META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version']
         }
     }
 
-    dependencies {
-        implementation(
-                project(':appcore'),
-                project(':intentintegrator'),
-                project(':orbotservice'),
-                libs.android_material,
-                libs.android_volley,
-                libs.androidx_localbroadcast,
-
-                //use locally built ipt_proxy+go_tun2socks
-                project(':OrbotLib')
-        )
-
-        implementation "com.squareup.retrofit2:retrofit:2.9.0"
-        implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-
-        androidTestImplementation libs.fastlane_screengrab
-//        coreLibraryDesugaring 'com.android.tools:desugar_j dk_libs:1.1.5'
-    }
     lint {
         abortOnError false
         checkReleaseBuilds false
@@ -100,19 +83,37 @@ android {
         textReport false
         xmlReport false
     }
-    namespace 'org.torproject.android'
 }
+
 dependencies {
-    implementation "androidx.core:core-ktx:1.8.0"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    // Kotlin
-    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
-    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
+    // Local
+    implementation project(':OrbotLib')
+    implementation project(':appcore')
+    implementation project(':intentintegrator')
+    implementation project(':orbotservice')
 
-    //root detection
-    implementation 'com.scottyab:rootbeer-lib:0.1.0'
+    // Core
+    implementation libs.android.material
+    implementation libs.android.volley
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.localbroadcast
 
+    // Navigation
+    implementation libs.androidx.navigation.fragment
+    implementation libs.androidx.navigation.ui
+
+    // Squareup
+    implementation libs.squareup.retrofit
+    implementation libs.squareup.gson
+
+    // Root detection
+    implementation libs.scottyab.rootbeer
+
+    // Testing
+    implementation libs.androidx.core.ktx
+    implementation libs.kotlin.stdlib.jdk8
+    testImplementation libs.junit.junit
+    androidTestImplementation libs.androidx.test.espresso
+    androidTestImplementation libs.androidx.test.junit
+    androidTestImplementation libs.fastlane.screengrab
 }

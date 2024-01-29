@@ -1,6 +1,3 @@
-// Applies across android app modules: app, app-tv
-apply plugin: 'com.android.application'
-
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
 if (keystorePropertiesFile.canRead()) {

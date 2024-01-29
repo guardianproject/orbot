@@ -1,13 +1,17 @@
-apply plugin: 'com.android.library'
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+}
+
 apply from: "../commons.gradle"
-apply from : '../dependencies.gradle'
 
 android {
-    ndkVersion '21.3.6528147'
+    compileSdk 34
+    namespace 'org.torproject.android.service'
 
     defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 33
+        minSdk 23
+        targetSdk 34
     }
 
     buildTypes {
@@ -16,12 +20,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     packagingOptions {
         resources {
             excludes += ['META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version']
         }
     }
 
+    ndkVersion '21.3.6528147'
 
     lint {
         abortOnError true
@@ -32,27 +38,20 @@ android {
         textReport false
         xmlReport false
     }
-    namespace 'org.torproject.android.service'
 }
 
 dependencies {
-
-    api libs.guardian_jtorctl
-
-    //use locally built ipt_proxy+go_tun2socks
+    // Use locally built ipt_proxy+go_tun2socks
     api project(':OrbotLib')
+    api libs.guardian.jtorctl
+    api libs.tor.android
 
-    api libs.tor_android
-
-    implementation(
-            libs.android_shell,
-            libs.androidx_core,
-            libs.androidx_localbroadcast,
-            libs.pcap_core,
-            libs.pcap_factory,
-            libs.androidx_work,
-            libs.androidx_work_kotlin
-    )
+    implementation libs.android.shell
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.localbroadcast
+    implementation libs.pcap.core
+    implementation libs.pcap.factory
+    implementation libs.androidx.work.kotlin
 
     implementation files('../libs/geoip.jar')
 }
