@@ -210,4 +210,6 @@
     <string name="smart_connect_subtitle">Orbot, Tor bilen islendik görnüşde birikmäge synanyşýar: Göni, Snowflake, Bridge.</string>
     <string name="snowflake">Snowflake (Original)</string>
     <string name="pref_detect_root_summary">Bu enjam kökli bolsa, başlangyçda duýduryş beriň</string>
+    <string name="restart_orbot_to_use_this_bridge_">Üýtgeşmeleriň güýje girmegi üçin Orbot-ny täzeden açyň</string>
+    <string name="volunteer_mode_label">Hoşniýetlilik tertibi</string>
 </resources>
