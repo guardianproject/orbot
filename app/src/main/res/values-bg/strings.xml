@@ -287,4 +287,6 @@
     <string name="connection_direct">Директно</string>
     <string name="pref_flag_secure_summary">Предотвратяване на други приложения да заснемат екрана на Orbot</string>
     <string name="root_warning">Orbot е установил, достъп до суперпотребителя, което снижава сигурността на устройството.</string>
+    <string name="pref_detect_root_title">Наличие на суперпотребител</string>
+    <string name="pref_detect_root_summary">Предупреждаване за наличие на достъп до правата на суперпотребителя</string>
 </resources>

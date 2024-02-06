@@ -183,4 +183,33 @@
     <string name="pref_isolate_port_summary">Her niýetlenen port üçin dürli circuit ulanyň</string>
     <string name="kindness_adjust_title">Sazlamalar</string>
     <string name="hide_apps">Programmalary tor gözegçiliginden gizläň we petiklenende giriň.</string>
+    <string name="version">Version:</string>
+    <string name="pref_http_dialog">HTTP Port Konfigurasiýasy</string>
+    <string name="pref_dnsport_dialog">DNS Port Konfigurasiýasy</string>
+    <string name="get_bridges_email_request">E-poçta Arkaly Köprüleri Talap Ediň</string>
+    <string name="v3_backup_key">Client Authorization Uptiýaçlyk Açary</string>
+    <string name="pref_isolate_dest">Barjak salgylaryňyzy izolirläň</string>
+    <string name="pref_isolate_port">Niýetlenen portlary izolirläň</string>
+    <string name="pref_isolate_protocol">Müşderi teswirnamalaryny izolirläň</string>
+    <string name="volunteer_mode_alltime_label">Hemişelik Total</string>
+    <string name="smart_connect">Akylly birikme (bellenilen)</string>
+    <string name="direct_connect">Tor-a Göni Birikme</string>
+    <string name="direct_connect_subtitle">Tor bilen birikmegiň iň gowy usuly. Tor petiklenmedik bolsa ulanyň.</string>
+    <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="next">Indiki</string>
+    <string name="pref_general_group">Umumy</string>
+    <string name="exit_nodes">Exit Nodes</string>
+    <string name="enable_your_device_to_be_a_non_exit_relay">Enjamyňyzy non-exit relay hökmünde işlediň</string>
+    <string name="relay_nickname">Relay nickname</string>
+    <string name="project_home">Taslamanyň Baş Sahypasy:</string>
+    <string name="volunteer_mode_title">Başgalaryna kömek ediň
+\nTor bilen birikdiriň</string>
+    <string name="volunteer_mode_weekly_label">Hepdelik Total</string>
+    <string name="ports_not_set">Portlar gurulmady</string>
+    <string name="pref_detect_root_title">Köki Kesgitlemek</string>
+    <string name="smart_connect_subtitle">Orbot, Tor bilen islendik görnüşde birikmäge synanyşýar: Göni, Snowflake, Bridge.</string>
+    <string name="snowflake">Snowflake (Original)</string>
+    <string name="pref_detect_root_summary">Bu enjam kökli bolsa, başlangyçda duýduryş beriň</string>
+    <string name="restart_orbot_to_use_this_bridge_">Üýtgeşmeleriň güýje girmegi üçin Orbot-ny täzeden açyň</string>
+    <string name="volunteer_mode_label">Hoşniýetlilik tertibi</string>
 </resources>

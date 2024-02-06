@@ -287,4 +287,6 @@
     <string name="pref_flag_secure_title">Segurança da tela</string>
     <string name="connection_direct">Direto</string>
     <string name="root_warning">O Orbot detectou que o seu dispositivo tem root, isso pode causar sérios problemas de segurança.</string>
+    <string name="pref_detect_root_summary">Avisar durante a inicialização se as permissões root estão ativadas neste dispositivo</string>
+    <string name="pref_detect_root_title">Detecção root</string>
 </resources>

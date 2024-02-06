@@ -287,4 +287,6 @@
     <string name="volunteer_mode_weekly_label">Totale settimanale</string>
     <string name="pref_circuit_padding">Riempimento del circuito</string>
     <string name="pref_circuit_padding_summary">Attiva il riempimento del circuito in difesa contro alcune forme di analisi del traffico</string>
+    <string name="pref_detect_root_summary">Avvisa all\'avvio se l\'autorizzazione root è attiva in questo dispositivo</string>
+    <string name="pref_detect_root_title">Rilevazione root</string>
 </resources>
