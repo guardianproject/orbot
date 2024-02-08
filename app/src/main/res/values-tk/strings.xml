@@ -40,7 +40,7 @@
     <string name="get_bridges_email">E-poçta</string>
     <string name="apps_mode">VPN Tertibi</string>
     <string name="send_email">E-poçta Iberiň</string>
-    <string name="v3_client_auth_activity_title">Client Authorization</string>
+    <string name="v3_client_auth_activity_title">Müşderiniň Awtorizasiýasy</string>
     <string name="v3_delete_client_authorization">Client Authorization Açaryny Pozuň</string>
     <string name="v3_delete_client_authorization_confirm">Client Authorization Pozuň</string>
     <string name="name">Ady</string>
@@ -57,7 +57,7 @@
     <string name="consider_disable_battery_optimizations">Işleýän hyzmatlar, batareýany optimizasiýany öçürmegi göz öňünde tutuň</string>
     <string name="pref_isolate_dest_summary">Her niýetlenen salgy üçin dürli zynjyr ulanyň</string>
     <string name="pref_isolate_protocol_summary">Her birleşdiriji protokol üçin başga zynjyr ulanyň</string>
-    <string name="pref_circuit_padding">Circuit padding</string>
+    <string name="pref_circuit_padding">Zynjyr ýassygy</string>
     <string name="pref_reduced_circuit_padding">Circuit padding azaldyň</string>
     <string name="pref_prefer_ipv6">IPv6 birikmelerini has gowy görýärin</string>
     <string name="pref_disable_ipv4">IPv4 birikmelerini öçüriň</string>
@@ -68,7 +68,7 @@
     <string name="bridge_community">Jemgyýet serwerleriniň üsti bilen birikdiriň</string>
     <string name="trouble_connecting">Birikdirmekde kynçylyk çekýärsiňizmi?</string>
     <string name="vpn_disabled">VPN ýapyk</string>
-    <string name="menu_new_identity">New Identity</string>
+    <string name="menu_new_identity">Täze Şahsyýet</string>
     <string name="user_services">Ulanyjy hyzmatlary</string>
     <string name="app_services">Programma hyzmatlary</string>
     <string name="refresh_apps">Programmalary täzeläň</string>
@@ -85,7 +85,7 @@
     <string name="secure_your_connection_title">Birikmäge taýyn</string>
     <string name="secure_your_connection_subtitle">Programmalary tor gözegçiliginden gizläň we petiklenende giriň.</string>
     <string name="connected_title">Birikdirildi</string>
-    <string name="btn_start_vpn">Start VPN</string>
+    <string name="btn_start_vpn">VPN başlat</string>
     <string name="btn_configure">Nädip Birikdirmelidigini Saýlaň</string>
     <string name="volunteer_mode_subtitle">Başgalara birikmäge kömek ediň</string>
     <string name="trying_to_connect_title">Birikmek…</string>
@@ -124,11 +124,11 @@
     <string name="enter_ports">Portlary giriziň</string>
     <string name="ports_reachable_behind_a_restrictive_firewall">Çäklendiriji gorag diwarynyň aňyrsynda portlar</string>
     <string name="vpn_default_world">Global (Awto)</string>
-    <string name="hidden_services">Onion Services</string>
+    <string name="hidden_services">Onion Hyzmatlary</string>
     <string name="confirm">Tassykla</string>
     <string name="v3_backup_key_warning">Duýduryş: Bu açaryňyzy beýleki programmalar üçin elýeterli edip biler</string>
     <string name="v3_backup_name_hint">Uptiýaçlyk filename…</string>
-    <string name="menu_hidden_services">Onion Services</string>
+    <string name="menu_hidden_services">Onion Hyzmatlary</string>
     <string name="save">Saklaň</string>
     <string name="snowflake_proxy_msg_description">Birine senzuradan çykmaga kömek edeniňizde habary görkeziň</string>
     <string name="restore_backup">Uptiýaçlyk nusgasyny dikeltmek</string>
@@ -183,7 +183,7 @@
     <string name="pref_isolate_port_summary">Her niýetlenen port üçin dürli circuit ulanyň</string>
     <string name="kindness_adjust_title">Sazlamalar</string>
     <string name="hide_apps">Programmalary tor gözegçiliginden gizläň we petiklenende giriň.</string>
-    <string name="version">Version:</string>
+    <string name="version">Wersiýa:</string>
     <string name="pref_http_dialog">HTTP Port Konfigurasiýasy</string>
     <string name="pref_dnsport_dialog">DNS Port Konfigurasiýasy</string>
     <string name="get_bridges_email_request">E-poçta Arkaly Köprüleri Talap Ediň</string>
@@ -198,9 +198,9 @@
     <string name="snowflake_amp">Snowflake (AMP)</string>
     <string name="next">Indiki</string>
     <string name="pref_general_group">Umumy</string>
-    <string name="exit_nodes">Exit Nodes</string>
+    <string name="exit_nodes">Çykalga Düwünleri</string>
     <string name="enable_your_device_to_be_a_non_exit_relay">Enjamyňyzy non-exit relay hökmünde işlediň</string>
-    <string name="relay_nickname">Relay nickname</string>
+    <string name="relay_nickname">Releý lakamy</string>
     <string name="project_home">Taslamanyň Baş Sahypasy:</string>
     <string name="volunteer_mode_title">Başgalaryna kömek ediň
 \nTor bilen birikdiriň</string>
@@ -208,8 +208,18 @@
     <string name="ports_not_set">Portlar gurulmady</string>
     <string name="pref_detect_root_title">Köki Kesgitlemek</string>
     <string name="smart_connect_subtitle">Orbot, Tor bilen islendik görnüşde birikmäge synanyşýar: Göni, Snowflake, Bridge.</string>
-    <string name="snowflake">Snowflake (Original)</string>
+    <string name="snowflake">Snowflake (Hakyky)</string>
     <string name="pref_detect_root_summary">Bu enjam kökli bolsa, başlangyçda duýduryş beriň</string>
     <string name="restart_orbot_to_use_this_bridge_">Üýtgeşmeleriň güýje girmegi üçin Orbot-ny täzeden açyň</string>
     <string name="volunteer_mode_label">Hoşniýetlilik tertibi</string>
+    <string name="drawer_close">Ýap</string>
+    <string name="app_description">Orbot, beýleki programmalara interneti has ygtybarly ulanmaga mümkinçilik berýän mugt proksi serwer programmasydyr. Tor arkaly, Orbot internet trafigiňizi şifrleýär we dünýäniň dürli kompýuterlerinden geçirip gizleýär. Tor, şahsy erkinligiňize we maglumatlaryňyza, gizlin iş amallaryna we gatnaşyklaryňyza, döwlet howpsuzlygy we traffigiň derňewi diýlip atlandyrylýan tor gözegçiliginden goraýan mugt programma üpjünçiligi we açyk ulgamdyr.</string>
+    <string name="wizard_details_msg">Orbot; Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks we LibEvent gurluşlaryny öz içine alýan açyk çeşme programmasy. Tor network birikmek üçin ýerli HTTP proksi (8118) we SOCKS proksi (9050) üpjün edýär.</string>
+    <string name="pref_proxy_type_summary">Proksi serwerinde ulanmak üçin tor protokollary: HTTP, HTTPS, SOCKS4, SOCKS5</string>
+    <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Barmak yzlary, gysgaltmalar, ýurtlar we soňky böküş üçin salgylar</string>
+    <string name="pref_proxy_host_title">Gidiji Proksi Wekili</string>
+    <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Barmak yzlary, gysgaltmalar, ýurtlar we aýyrmak üçin salgylar</string>
+    <string name="relays">Releýler</string>
+    <string name="relaying">Releýlenýär</string>
+    <string name="enter_or_port">Gir ýa-da port</string>
 </resources>
