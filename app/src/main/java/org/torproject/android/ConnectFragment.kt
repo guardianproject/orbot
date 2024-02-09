@@ -234,7 +234,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks,
 
     fun doLayoutOn(context: Context) {
 
-        ivOnion.setImageResource(R.drawable.orbion)
+        ivOnion.setImageResource(R.drawable.toron)
 
         tvSubtitle.visibility = View.GONE
         progressBar.visibility = View.INVISIBLE
@@ -250,7 +250,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks,
 
     fun doLayoutOff() {
 
-        ivOnion.setImageResource(R.drawable.orbioff)
+        ivOnion.setImageResource(R.drawable.toroff)
         stopAnimations()
         tvSubtitle.visibility = View.VISIBLE
         progressBar.visibility = View.INVISIBLE
@@ -308,7 +308,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks,
             progress = 0
             visibility = View.VISIBLE
         }
-        ivOnion.setImageResource(R.drawable.orbistarting)
+        ivOnion.setImageResource(R.drawable.torstarting)
         val animHover = AnimationUtils.loadAnimation(context, R.anim.hover);
         animHover.repeatCount = 7
         animHover.repeatMode = Animation.REVERSE
