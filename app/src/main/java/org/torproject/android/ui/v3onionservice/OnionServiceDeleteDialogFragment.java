@@ -24,9 +24,12 @@ public class OnionServiceDeleteDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        return new AlertDialog.Builder(getContext())
+        return new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.confirm_service_deletion)
-                .setPositiveButton(android.R.string.ok, (dialog, which) -> doDelete(getArguments(), getContext()))
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                    assert getArguments() != null;
+                    doDelete(getArguments(), requireContext());
+                })
                 .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.cancel())
                 .create();
     }
@@ -37,7 +40,7 @@ public class OnionServiceDeleteDialogFragment extends DialogFragment {
         String localPath = arguments.getString(OnionServiceActivity.BUNDLE_KEY_PATH);
         if (localPath != null)
             DiskUtils.recursivelyDeleteDirectory(new File(base, localPath));
-        ((OnionServiceActivity) getActivity()).showBatteryOptimizationsMessageIfAppropriate();
+        ((OnionServiceActivity) requireActivity()).showBatteryOptimizationsMessageIfAppropriate();
     }
 
 }

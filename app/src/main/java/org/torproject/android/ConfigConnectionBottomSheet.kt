@@ -217,7 +217,7 @@ class ConfigConnectionBottomSheet() :
 
         Authenticator.setDefault(authenticator)
 
-        val countryCodeValue: String? = getDeviceCountryCode(requireContext())
+        val countryCodeValue: String = getDeviceCountryCode(requireContext())
 
         CircumventionApiManager().getSettings(SettingsRequest(countryCodeValue), {
             it?.let {
@@ -246,7 +246,7 @@ class ConfigConnectionBottomSheet() :
         })
     }
 
-    private fun getDeviceCountryCode(context: Context): String? {
+    private fun getDeviceCountryCode(context: Context): String {
         var countryCode: String?
 
         // Try to get country code from TelephonyManager service
