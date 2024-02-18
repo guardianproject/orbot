@@ -1,0 +1,8 @@
+- Ulanyjy interfeýsine möhüm täzelenme!
+- Gurmak we köpri konfigurasiýasy üçin täze jadygöýler
+- VPN aýratynlyklary gowulaşdy
+- Onion/Gizlin hyzmat konfigurasiýasy näsazlyklary üçin düzedişler
+
+we başgalar...
+
+SAG BOLUŇ: pgerber, syphyr, Khsed4, BjarniRunar, Unpublished, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, arrase we başgalar, meseleler, commits we PR-ler üçin

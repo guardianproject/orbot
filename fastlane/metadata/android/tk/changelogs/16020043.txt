@@ -1,0 +1,9 @@
+- 10MB-den 30% kiçi gurnama (APK) ululygy! 
+ - tor 0.3.3.5 täzelendi (Onion Services v3 we başga-da köp goldaw we ş.m.)
+ - tor, köp sanly transport ikilik gurnama üçin köp düzedişler
+ - Indi "Polipo" HTTP serweri ýok, diňe Tor-uň täze gurlan ukybyny ulanyň
+ - programmada dil saýlamasyny gowulandyrmak
+
+TÄZE RUGSAT:Daşarky ammar" -a girmek, sogan hyzmatlary üçin ätiýaçlyk maglumatlary dowam etdirmek üçin. 
+
+Doly goýberiş bellikleri: https://github.com/n8fr8/orbot/releases/tag/16.0.2-RC-1
