@@ -40,4 +40,7 @@
     <string name="kibibyte">KiB</string>
     <string name="confirm">Tasdiqlash</string>
     <string name="mebibyte">MiB</string>
+    <string name="license">Litsenziya:</string>
+    <string name="deny">Rad etish</string>
+    <string name="allow">Ruxsat berish</string>
 </resources>
