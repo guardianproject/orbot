@@ -1,0 +1,4 @@
+- Tor iň soňky 0.3.4.9 wersiýasyna täzelendi
+- VPN durnuklylygy üçin düzedişler
+- Android 8 ve 9-da test edildi
+- Köp diller üçin kämilleşdirilen we täzelenen terjimeler

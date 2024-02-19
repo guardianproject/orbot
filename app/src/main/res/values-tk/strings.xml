@@ -222,4 +222,63 @@
     <string name="relays">Releýler</string>
     <string name="relaying">Releýlenýär</string>
     <string name="enter_or_port">Gir ýa-da port</string>
+    <string name="third_party_software">Üçünji tarap programma üpjünçiligi:</string>
+    <string name="hidden_service_request">Bir programma, %1$s portdaky onion serwerini Tor network-ine açmak isleýär. Programma ynanýan bolsaňyz, bu howpsuz.</string>
+    <string name="pref_use_expanded_notifications">Elýeterli bolanda habarnamada toruňyzdan çykýan ýurduňyzy ýa-da IP adresiňizi görkeziň</string>
+    <string name="pref_disable_network_title">Network ýok wagty Awto-Uky</string>
+    <string name="pref_open_proxy_on_all_interfaces_summary">Wi-Fi ulgamlaryna, birikdirilen enjamlara we IP-ä birikdirip bilýänlere Tor-a girmäge rugsat beriň</string>
+    <string name="pref_socks_title">Tor SOCKS</string>
+    <string name="pref_socks_summary">Tor-uň SOCKS proksi hödürleýän porty (deslapky: 9050 ýa-da 0 ýapmak üçin)</string>
+    <string name="pref_socks_dialog">SOCKS Portunyň Sazlamalary</string>
+    <string name="pref_http_summary">Tor, HTTP proksi hödürleýän port (deslapky: 8118 ýa-da 0 ýapmak üçin)</string>
+    <string name="pref_transport_summary">Tor-uň aç-açan proksi hödürleýän porty (deslapky: 9040 ýa-da 0 ýapmak üçin)</string>
+    <string name="pref_transport_dialog">TransProxy Port Sazlamalary</string>
+    <string name="pref_dnsport_summary">Tor DNS-i hödürleýän port (deslapky: 5400 ýa-da 0 ýapmak üçin)</string>
+    <string name="pref_torrc_title">Torrc Aýratyn Sazlamalar</string>
+    <string name="pref_torrc_summary">HÜNARMENLER ÜÇIN: torrc sazlamalar setirlerini göni giriziň</string>
+    <string name="pref_torrc_dialog">Aýratyn Torrc</string>
+    <string name="kibibyte">KiB</string>
+    <string name="mebibyte">MiB</string>
+    <string name="v3_hosted_services">Eýeçiligindäki Onion Hyzmatlary</string>
+    <string name="v3_key_hash">Base32 üçin x25519 Şahsy Açary</string>
+    <string name="v3_onion">.onion Domen</string>
+    <string name="v3_import_auth_private">.auth_private goş</string>
+    <string name="backup_port_exist">Ýalňyşlyk: Onion hyzmaty eýýäm port %s ulanýar</string>
+    <string name="backup_service">Ätiýaçlyk Hyzmaty<i>(Duýduryş: Hyzmat sazlamalaryňyzy beýleki programmalara aç-açan biler)</i></string>
+    <string name="pref_connection_padding">Baglanşyk ýassygy</string>
+    <string name="pref_connection_padding_summary">Baglanyşyk ýassygy, gatnawy barlamagyň käbir usullaryndan goramak üçin elmydama ulanylýar. Bellenilen: awtomatiki</string>
+    <string name="pref_reduced_connection_padding">Azaldylan baglanşyk ýassygy</string>
+    <string name="pref_circuit_padding_summary">Trafik derňewiniň käbir görnüşlerinden goramak üçin zynjyr ýassygyny işjeňleşdiriň</string>
+    <string name="pref_reduced_connection_padding_summary">Röle birikmelerini has çalt ýapýar, data we batareýany ulanmagy azaltmak üçin az bufer paketlerini iberýär</string>
+    <string name="pref_reduced_circuit_padding_summary">Data we batareýany az sarp etmek üçin has ýeňil ýassyk algoritmlerini ulanyň</string>
+    <string name="pref_prefer_ipv6_summary">IPv6 salgylarynyň ileri tutulýandygyny görkezýän nokatlaryny aýdýar</string>
+    <string name="pref_disable_ipv4_summary">Çykyş nokatlaryna IPv4 salgylaryna birikmezligi aýdýar</string>
+    <string name="full_device_vpn">Bütin enjamyňyz üçin VPN</string>
+    <string name="configure_custom_bridges">Ýörite Köprüleri sazlaň</string>
+    <string name="use_custom_bridges">Ýörite Köprüleri ulanyň</string>
+    <string name="in_a_browser">Brauzeriňizde, %s giriň we Köprü alyň &gt; Diňe maňa köpri ber basyň!</string>
+    <string name="bridge_snowflake">Snowflake ulanyp, beýleki Tor ulanyjylarynyň üsti bilen birikdiriň (1-nji usul - Çalt)</string>
+    <string name="configure_header">Tor baglanşygyňyzy sazlaň</string>
+    <string name="menu_faq">Sorag-jogap</string>
+    <string name="menu_header_learn">Has giňişleýin öwreniň</string>
+    <string name="btn_use_custom_bridge">Ýörite Köpri ulanyň</string>
+    <string name="msg_taking_too_long">Bu gaty uzaga çekýän ýaly</string>
+    <string name="msg_try_something_else">Başga bir zady synap görüň</string>
+    <string name="proxy_ports">Proksi Portlar</string>
+    <string name="strict_nodes_description">Aýrylan düwünleriň (Exclude Nodes) sazlamalaryny ähli zynjyrlary gurmak üçin talap hökmünde görüň. Sazlamalaryňyz bilen hiç hili zynjyr döredilip bilinmese, bu işlemegi bozup biler.</string>
+    <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Düzediş ýazgysyny işjeňleşdiriň (görmek üçin adb ýa-da aLogCat talap eder)</string>
+    <string name="drawer_open">Açyk</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jübi (mobile) ulgamyňyzda Tor ulanylyşy işjeň ýagdaýda petiklenýän bolsa, Tor girmek üçin \'Bridge Server\' ulanyp bilersiňiz. Sazlamak we synap görmek üçin aşakdaky opsiýalardan birini saýlaň…</string>
+    <string name="power_user_description">Tor bilen tanyş ulanyjylar üçin. Orbot-a VPN sazlamasyz başlamaga mümkinçilik berýär we açyk SOCKS we HTTP portlaryny görkezýär</string>
+    <string name="kindess_config_detail">Enjamyňyzyň beýleki Tor ulanyjylary üçin nädip we haçan Snowflake proksi bolup biljekdigini sazlaň.</string>
+    <string name="setting_padding">Ýassyklama</string>
+    <string name="setting_debug">Düzediş</string>
+    <string name="get_a_bridge">Tor arkaly (Obfs4) köprisi</string>
+    <string name="connection_custom">Ýörite</string>
+    <string name="volunteer_mode_subtitle_desc">Sypaýçylyk ülňi enjamyňyzy beýlekiler üçin köpri bolmaga mümkinçilik berýär. Adamlara Tor-uň petiklenen ýerlerinde ulanmagyna kömek edýär.
+\n
+\n• Batareýaňyzy çökertmez
+\n• Internetiňizi haýallatmaz
+\n• Diňe wifi arkaly işleýär
+\n• Islän wagtyňyz öçürlip bilner</string>
 </resources>
