@@ -82,7 +82,6 @@
 </string>
     <string name="third_party_software">3rd-Party-Software:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="pref_use_expanded_notifications">Ipakita ang pinalaking notification kasama ng Tor exit country at IP</string>
   <string name="pref_use_expanded_notifications_title">Pinalawak na Notifications</string>
     <string name="set_locale_title">Wika</string>

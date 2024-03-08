@@ -79,14 +79,6 @@
             android:textColorLink="@android:color/white" />
 
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            android:text="@string/libevent_url"
-            android:textColor="@android:color/white"
-            android:textColorLink="@android:color/white" />
-
-        <TextView
             android:id="@+id/tvObfs4"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
