@@ -360,30 +360,43 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     private final SecureRandom mSecureRandGen = new SecureRandom(); //used to randomly select STUN servers for snowflake
 
-    public void enableSnowflakeProxy() { // This is to host a snowflake entrance node / bridge
-        var capacity = 1;
-        var keepLocalAddresses = false;
-        var unsafeLogging = false;
-        var stunServers = getCdnFront("snowflake-stun").split(",");
+    public synchronized void enableSnowflakeProxy() { // This is to host a snowflake entrance node / bridge
+        if (!IPtProxy.isSnowflakeProxyRunning()) {
+            var capacity = 1;
+            var keepLocalAddresses = false;
+            var unsafeLogging = false;
+            var stunServers = getCdnFront("snowflake-stun").split(",");
 
-        int randomIndex = mSecureRandGen.nextInt(stunServers.length);
-        var stunUrl = stunServers[randomIndex];
-        var relayUrl = getCdnFront("snowflake-relay-url");//"wss://snowflake.bamsoftware.com";
-        var natProbeUrl = getCdnFront("snowflake-nat-probe");//"https://snowflake-broker.torproject.net:8443/probe";
-        var brokerUrl = getCdnFront("snowflake-target-direct");//https://snowflake-broker.torproject.net/";
-        IPtProxy.startSnowflakeProxy(capacity, brokerUrl, relayUrl, stunUrl, natProbeUrl, null, keepLocalAddresses, unsafeLogging, () -> {
-            Prefs.addSnowflakeServed();
-            if (!Prefs.showSnowflakeProxyMessage()) return;
-            var message = String.format(getString(R.string.snowflake_proxy_client_connected_msg), ONION_EMOJI, ONION_EMOJI);
-            new Handler(getMainLooper()).post(() -> Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show());
-        });
-        logNotice(getString(R.string.log_notice_snowflake_proxy_enabled));
+            int randomIndex = mSecureRandGen.nextInt(stunServers.length);
+            var stunUrl = stunServers[randomIndex];
+            var relayUrl = getCdnFront("snowflake-relay-url");//"wss://snowflake.bamsoftware.com";
+            var natProbeUrl = getCdnFront("snowflake-nat-probe");//"https://snowflake-broker.torproject.net:8443/probe";
+            var brokerUrl = getCdnFront("snowflake-target-direct");//https://snowflake-broker.torproject.net/";
+            IPtProxy.startSnowflakeProxy(capacity, brokerUrl, relayUrl, stunUrl, natProbeUrl, null, keepLocalAddresses, unsafeLogging, () -> {
+                Prefs.addSnowflakeServed();
+                if (!Prefs.showSnowflakeProxyMessage()) return;
+                var message = String.format(getString(R.string.snowflake_proxy_client_connected_msg), ONION_EMOJI, ONION_EMOJI);
+                new Handler(getMainLooper()).post(() -> Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show());
+            });
+            logNotice(getString(R.string.log_notice_snowflake_proxy_enabled));
+
+            if (Prefs.showSnowflakeProxyMessage()) {
+                var message = getString(R.string.log_notice_snowflake_proxy_enabled);
+                new Handler(getMainLooper()).post(() -> Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show());
+            }
+
+        }
     }
 
-    public void disableSnowflakeProxy() {
+    public synchronized void disableSnowflakeProxy() {
         if (IPtProxy.isSnowflakeProxyRunning()) {
             IPtProxy.stopSnowflakeProxy();
             logNotice(getString(R.string.log_notice_snowflake_proxy_disabled));
+
+            if (Prefs.showSnowflakeProxyMessage()) {
+                var message = getString(R.string.log_notice_snowflake_proxy_disabled);
+                new Handler(getMainLooper()).post(() -> Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show());
+            }
         }
     }
 

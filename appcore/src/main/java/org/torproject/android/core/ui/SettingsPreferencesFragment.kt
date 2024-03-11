@@ -37,7 +37,7 @@ class SettingsPreferencesFragment : PreferenceFragmentCompat() {
         val bridgesEnabled = Prefs.bridgesEnabled()
         findPreference<Preference>("pref_be_a_snowflake")?.isEnabled = !bridgesEnabled
         findPreference<Preference>("pref_be_a_snowflake_limit")?.isEnabled = !bridgesEnabled
-        findPreference<Preference>("pref_show_snowflake_proxy_msg")?.isEnabled = !bridgesEnabled
+      //  findPreference<Preference>("pref_show_snowflake_proxy_msg")?.isEnabled = !bridgesEnabled
 
         // kludge for #992
         val categoryNodeConfig = findPreference<Preference>("category_node_config")
