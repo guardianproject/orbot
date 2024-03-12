@@ -386,6 +386,54 @@ public class OrbotService extends VpnService implements OrbotConstants {
             }
 
         }
+
+    }
+
+    private void enableSnowflakeProxyNetworkListener () {
+        if (Prefs.limitSnowflakeProxyingWifi()) {
+            //check if on wifi
+            ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                connMgr.registerDefaultNetworkCallback(new ConnectivityManager.NetworkCallback() {
+                    @Override
+                    public void onAvailable(@NonNull Network network) {
+                        super.onAvailable(network);
+                        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                        boolean hasWifi;
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                            hasWifi = connMgr.getNetworkCapabilities(connMgr.getActiveNetwork()).hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
+                        else
+                            hasWifi = connMgr.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
+
+                        if (Prefs.beSnowflakeProxy()) {
+                            if (hasWifi) enableSnowflakeProxy();
+                            else disableSnowflakeProxy();
+                        }
+                    }
+
+                    @Override
+                    public void onLost(@NonNull Network network) {
+                        super.onLost(network);
+
+                        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                        boolean hasWifi;
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                            hasWifi = connMgr.getNetworkCapabilities(connMgr.getActiveNetwork()).hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
+                        else
+                            hasWifi = connMgr.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
+
+                        if (Prefs.beSnowflakeProxy()) {
+                            if (hasWifi) enableSnowflakeProxy();
+                            else disableSnowflakeProxy();
+                        }
+
+                    }
+                });
+            }
+        }
     }
 
     public synchronized void disableSnowflakeProxy() {
@@ -397,6 +445,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 var message = getString(R.string.log_notice_snowflake_proxy_disabled);
                 new Handler(getMainLooper()).post(() -> Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show());
             }
+
         }
     }
 
@@ -505,7 +554,11 @@ public class OrbotService extends VpnService implements OrbotConstants {
             ifilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
             registerReceiver(mPowerReceiver, ifilter);
 
-            manageSnowflakeProxy();
+            enableSnowflakeProxyNetworkListener();
+
+            if (Prefs.beSnowflakeProxy()
+                    && !(Prefs.limitSnowflakeProxyingCharging() || Prefs.limitSnowflakeProxyingWifi()))
+                enableSnowflakeProxy();
 
         } catch (RuntimeException re) {
             //catch this to avoid malicious launches as document Cure53 Audit: ORB-01-009 WP1/2: Orbot DoS via exported activity (High)
@@ -518,65 +571,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
         Locale.setDefault(locale);
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-    }
-
-    public void manageSnowflakeProxy() {
-        if (Prefs.beSnowflakeProxy()) {
-
-            if (Prefs.limitSnowflakeProxyingCharging()) {
-                //wait until the next time it is plugged in
-            } else if (Prefs.limitSnowflakeProxyingWifi()) {
-                //check if on wifi
-                ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-                boolean hasWifi;
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    hasWifi = connMgr.getNetworkCapabilities(connMgr.getActiveNetwork()).hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
-
-                } else {
-                    hasWifi = connMgr.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
-                }
-
-                if (hasWifi) enableSnowflakeProxy();
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    connMgr.registerDefaultNetworkCallback(new ConnectivityManager.NetworkCallback() {
-                        @Override
-                        public void onAvailable(@NonNull Network network) {
-                            super.onAvailable(network);
-                            ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-                            boolean hasWifi;
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
-                                hasWifi = connMgr.getNetworkCapabilities(connMgr.getActiveNetwork()).hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
-                            else
-                                hasWifi = connMgr.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
-
-                            if (hasWifi) enableSnowflakeProxy();
-                            else disableSnowflakeProxy();
-                        }
-
-                        @Override
-                        public void onLost(@NonNull Network network) {
-                            super.onLost(network);
-
-                            ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-                            boolean hasWifi;
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
-                                hasWifi = connMgr.getNetworkCapabilities(connMgr.getActiveNetwork()).hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
-                            else
-                                hasWifi = connMgr.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
-
-                            if (hasWifi) enableSnowflakeProxy();
-                            else disableSnowflakeProxy();
-
-                        }
-                    });
-                }
-
-            } else enableSnowflakeProxy();
-        }
     }
 
     protected String getCurrentStatus() {
