@@ -281,10 +281,10 @@
     <string name="pref_circuit_padding">“Padding” qarku</string>
     <string name="pref_reduced_circuit_padding_summary"/>
     <string name="pref_circuit_padding_summary">Aktivizoni “padding” qarku, për t’u mbrojtur nga disa forma analizimi trafiku</string>
-    <string name="setting_padding">Mbushje</string>
+    <string name="setting_padding">“Padding”</string>
     <string name="menu_kindness"/>
     <string name="pref_connection_padding_summary">Aktivizon përherë “padding” lidhjeje, për t’u mbrojtur nga disa forma analizimi trafiku. Parazgjedhje: auto</string>
-    <string name="pref_reduced_circuit_padding">Padding e reduktuar qarku</string>
+    <string name="pref_reduced_circuit_padding">“Padding” i reduktuar qarku</string>
     <string name="pref_connection_padding">“Padding” lidhjeje</string>
     <string name="pref_reduced_connection_padding">“Padding” e reduktuar lidhjeje</string>
     <string name="pref_detect_root_summary">Sinjalizo, gjatë nisjes, nëse në këtë pajisje janë të aktivizuara leje si rrënjë</string>
