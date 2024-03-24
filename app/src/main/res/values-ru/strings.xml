@@ -242,7 +242,7 @@
 \n• Он может работать только через Wi-Fi
 \n• Его можно отключить в любое время</string>
     <string name="smart_connect">Умное подключение (по умолчанию)</string>
-    <string name="get_a_bridge">Мост из Tor (Obfs4)</string>
+    <string name="get_a_bridge">Мост от Tor (Obfs4)</string>
     <string name="direct_connect">Прямое подключение к Tor</string>
     <string name="incorrect_solution">Неправильное решение</string>
     <string name="bridges_obtained_connecting">Мосты получены! Подключение к Tor…</string>
@@ -250,7 +250,7 @@
     <string name="having_trouble_subtitle">В следующий раз можно попробовать использовать мост Tor, но понадобится ваша помощь</string>
     <string name="custom_bridge_description">Пользовательский мост предоставляется кем-то из ваших знакомых. Спросите в своих доверенных сетях и организациях, нет ли у кого-нибудь такого моста.</string>
     <string name="power_user_mode">Режим опытного пользователя</string>
-    <string name="volunteer_status_title">Сегодня стало лучше
+    <string name="volunteer_status_title">Мир стал лучше
 \nблагодаря вам.</string>
     <string name="title_choose_apps">Выбор приложений</string>
     <string name="apps_suggested_title">Рекомендуемые приложения</string>
@@ -263,7 +263,7 @@
     <string name="snowflake_amp">Snowflake (AMP)</string>
     <string name="many_ways">Есть много способов добраться до Tor. Некоторые из них могут сработать у вас лучше, чем другие.</string>
     <string name="not_sure">Не уверены\?</string>
-    <string name="ask_tor">Запросить Tor</string>
+    <string name="ask_tor">Спросить у Tor</string>
     <string name="action_use">Использовать</string>
     <string name="asking">ЗАПРОС…</string>
     <string name="no_interent_title">Подключиться к интернету</string>
@@ -278,7 +278,7 @@
     <string name="option_only_when_charging">Только при зарядке</string>
     <string name="option_only_on_wifi">Только по Wi-Fi</string>
     <string name="menu_more">Ещё</string>
-    <string name="menu_kindness">Помощь другим</string>
+    <string name="menu_kindness">Доброта</string>
     <string name="setting_padding">Прокладка</string>
     <string name="setting_debug">Отладка</string>
     <string name="connection_direct">Прямое</string>
