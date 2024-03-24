@@ -287,4 +287,6 @@
     <string name="pref_flag_secure_title">Защита экрана</string>
     <string name="pref_flag_secure_summary">Не позволять другим приложениям получать снимки экрана Orbot</string>
     <string name="root_warning">Orbot обнаружил root-доступ на вашем устройстве, что снижает его защищённость.</string>
+    <string name="pref_detect_root_title">Обнаружение root</string>
+    <string name="pref_detect_root_summary">Предупреждать при запуске, если на устройстве включены права root-доступа</string>
 </resources>
