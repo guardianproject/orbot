@@ -110,6 +110,9 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     private PowerConnectionReceiver mPowerReceiver;
 
+    private boolean mHasPower = false;
+    private boolean mHasWifi = false;
+
     /**
      * @param bridgeList bridges that were manually entered into Orbot settings
      * @return Array with each bridge as an element, no whitespace entries see issue #289...
@@ -352,9 +355,9 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     private void startSnowflakeClientAmpRendezvous() {
         var stunServers = getCdnFront("snowflake-stun");
-        var target = getCdnFront("snowflake-target-direct");//"https://snowflake-broker.torproject.net/";
-        var front = getCdnFront("snowflake-amp-front");//"www.google.com";
-        var ampCache = getCdnFront("snowflake-amp-cache");//"https://cdn.ampproject.org/";
+        var target = getCdnFront("snowflake-target-direct");
+        var front = getCdnFront("snowflake-amp-front");
+        var ampCache = getCdnFront("snowflake-amp-cache");
         IPtProxy.startSnowflake(stunServers, target, front, ampCache, null, true, false, false, 1);
     }
 
@@ -362,6 +365,13 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     public synchronized void enableSnowflakeProxy() { // This is to host a snowflake entrance node / bridge
         if (!IPtProxy.isSnowflakeProxyRunning()) {
+
+            if (Prefs.limitSnowflakeProxyingWifi() && (!mHasWifi))
+                return;
+
+            if (Prefs.limitSnowflakeProxyingCharging() && (!mHasPower))
+                return;
+
             var capacity = 1;
             var keepLocalAddresses = false;
             var unsafeLogging = false;
@@ -369,9 +379,9 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
             int randomIndex = mSecureRandGen.nextInt(stunServers.length);
             var stunUrl = stunServers[randomIndex];
-            var relayUrl = getCdnFront("snowflake-relay-url");//"wss://snowflake.bamsoftware.com";
-            var natProbeUrl = getCdnFront("snowflake-nat-probe");//"https://snowflake-broker.torproject.net:8443/probe";
-            var brokerUrl = getCdnFront("snowflake-target-direct");//https://snowflake-broker.torproject.net/";
+            var relayUrl = getCdnFront("snowflake-relay-url");
+            var natProbeUrl = getCdnFront("snowflake-nat-probe");
+            var brokerUrl = getCdnFront("snowflake-target-direct");
             IPtProxy.startSnowflakeProxy(capacity, brokerUrl, relayUrl, stunUrl, natProbeUrl, null, keepLocalAddresses, unsafeLogging, () -> {
                 Prefs.addSnowflakeServed();
                 if (!Prefs.showSnowflakeProxyMessage()) return;
@@ -399,39 +409,40 @@ public class OrbotService extends VpnService implements OrbotConstants {
                     @Override
                     public void onAvailable(@NonNull Network network) {
                         super.onAvailable(network);
-                        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-                        boolean hasWifi;
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
-                            hasWifi = connMgr.getNetworkCapabilities(connMgr.getActiveNetwork()).hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
-                        else
-                            hasWifi = connMgr.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
-
-                        if (Prefs.beSnowflakeProxy()) {
-                            if (hasWifi) enableSnowflakeProxy();
-                            else disableSnowflakeProxy();
-                        }
+                        checkNetworkForSnowflakeProxy ();
                     }
 
                     @Override
                     public void onLost(@NonNull Network network) {
                         super.onLost(network);
-
-                        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-                        boolean hasWifi;
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
-                            hasWifi = connMgr.getNetworkCapabilities(connMgr.getActiveNetwork()).hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
-                        else
-                            hasWifi = connMgr.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
-
-                        if (Prefs.beSnowflakeProxy()) {
-                            if (hasWifi) enableSnowflakeProxy();
-                            else disableSnowflakeProxy();
-                        }
-
+                        checkNetworkForSnowflakeProxy ();
                     }
                 });
+            }
+        }
+    }
+
+    public void setHasPower (boolean hasPower) {
+        mHasPower = hasPower;
+        if (Prefs.beSnowflakeProxy()) {
+            if (Prefs.limitSnowflakeProxyingCharging()) {
+                if (mHasPower) enableSnowflakeProxy();
+                else disableSnowflakeProxy();
+            }
+        }
+    }
+    private void checkNetworkForSnowflakeProxy () {
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+            mHasWifi = connMgr.getNetworkCapabilities(connMgr.getActiveNetwork()).hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
+        else
+            mHasWifi = connMgr.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
+
+        if (Prefs.beSnowflakeProxy()) {
+            if (Prefs.limitSnowflakeProxyingWifi()) {
+                if (mHasWifi) enableSnowflakeProxy();
+                else disableSnowflakeProxy();
             }
         }
     }
