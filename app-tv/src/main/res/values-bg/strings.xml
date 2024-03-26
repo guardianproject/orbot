@@ -84,7 +84,6 @@
   <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Софтуер на трети страни: </string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="pref_use_expanded_notifications">Покажи разширена информация за Tor изходната държава и IP в лентата за известия</string>
   <string name="pref_use_expanded_notifications_title">Разширени известия</string>
     <string name="set_locale_title">Език</string>
