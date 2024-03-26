@@ -1,4 +1,4 @@
 * OnionServices v3 üçin goldaw
-* bridge konfigurasiýasyny gowulandyrmak
-* VPN re modeimine "ölçegsiz birikme" hökmünde garalmagyny üpjün edýär
-*Snowflake proxy hökmünde işlemegi üpjün etmek üçin synag usuly
+* köpri konfigurasiýasyny gowulandyrmak
+* VPN usulyna "ölçegsiz birikme" hökmünde garalmagyny üpjün edýär
+* Snowflake proksi hökmünde işlemegi üpjün etmek üçin synag usuly

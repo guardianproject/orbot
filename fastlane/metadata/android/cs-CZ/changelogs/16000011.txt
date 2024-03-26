@@ -1,0 +1,8 @@
+- Velká aktualizace uživatelského rozhraní!
+- Noví průvodci pro nastavení mostů
+- Vylepšené funkce VPN
+- Opravy pádů nastavení Onion/skryté služby
+
+a mnohem více...
+
+PODĚKOVÁNÍ PATŘÍ: pgerber, syphyr, Khsed4, BjarniRunar, Unpublished, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, arrase a dalším za issues, commits a PRs

@@ -1,11 +1,11 @@
 Orbot, beýleki programmalara interneti has ygtybarly ulanmaga mümkinçilik berýän mugt proksi serwer programmasydyr. Tor ulanyp, Orbot internet trafigiňizi şifrleýär we dünýäniň dürli kompýuterlerinden geçirip gizleýär. Tor, şahsy erkinligiňize we maglumatlaryňyza, gizlin iş amallaryna we gatnaşyklaryňyza, hökümet howpsuzlygy we traffigiň derňewi diýlip atlandyrylýan tor gözegçiliginden goraýan mugt programma üpjünçiligi we açyk network.
 
-Orbot, hakykatdanam şahsy internet birikmesini döredýän ýeke-täk programma. New York Times-yň ýazyşy ýaly, “Tor bilen aragatnaşyk ýüze çykanda, onuň nireden ýa-da kimden gelýändigini hiç wagt bilmersiňiz.” 
+Orbot, hakykatdanam şahsy internet birikmesini döredýän ýeke-täk programma. New York Times-iň ýazyşy ýaly, “Tor bilen aragatnaşyk ýüze çykanda, onuň nireden ýa-da kimden gelýändigini hiç wagt bilmersiňiz.” 
 
 Tor 2012-nji ýylyň Elektron Serhet gaznasy (EFF) pioner baýragyny aldy.
 
 ★ BAŞGA ZAT KABUL ETMÄŇ: Orbot, Android-de internedi ulanmagyň iň ygtybarly usulydyr. Tamamlandy. Orbot sizi gönüden-göni VPN we proksi ýaly birleşdirmegiň ýerine, dünýädäki kompýuterlerde şifrlenen traffigiňizi birnäçe gezek bökdär. Bu amal birneme uzaga çekýär, ýöne iň güýçli gizlinlik we şahsyýet goragy üçin garaşmak gerek.
-★ PROGRAMMA GIZLINLIGI: Islendik programma, Orbot VPN aýratynlygy arkaly, Tor arkaly ugrukdyrylyp bilner.
+★ PROGRAMMA GIZLINLIGI: Islendik programma, Orbot VPN aýratynlygy bilen, Tor arkaly ugrukdyrylyp bilner.
 ★ HEMMELER ÜÇIN GIZLINLIK: Tor size bäsdeşi şahsy derňemäge, mekdepdäki “Facebook” blokundan aýlanyp geçmäge ýa-da iş ýerinde sport görmek üçin gorag diwaryndan geçmegä kömek edip biler.
 
 ***Biz Seslenmeleri halaýarys***

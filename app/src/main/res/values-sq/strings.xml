@@ -10,7 +10,7 @@
     <string name="menu_exit">Dalje</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
-    <string name="pref_general_group">Të Përgjithshme</string>
+    <string name="pref_general_group">Të përgjithshme</string>
     <!--New Wizard Strings-->
     <!--Title Screen-->
     <!--Warning screen-->
@@ -26,9 +26,9 @@
     <string name="backup_restored">Kopjeruajtja u rikthye</string>
     <string name="disable">Çaktivizoje</string>
     <string name="enable">Aktivizoje</string>
-    <string name="pref_disable_network_summary">Vëre në gjumë Tor-in, kur nuk ka internet</string>
+    <string name="pref_disable_network_summary">Vëre në gjumë Tor-in, kur s’ka internet</string>
     <string name="pref_transport_dialog">Formësim Porte</string>
-    <string name="pref_torrc_dialog">Torrc vejtkae</string>
+    <string name="pref_torrc_dialog">Torrc vetjake</string>
     <string name="volunteer_status_title">Për hir tuajin sot
 \nështë më mirë.</string>
     <string name="title_choose_apps">Zgjidhni Aplikacione</string>
@@ -39,7 +39,7 @@
     <string name="request_bridges">Kërkoni Ura</string>
     <string name="refresh_captcha">Rifresko CAPTCHA-n</string>
     <string name="solve_captcha_instruction">Që të kërkoni ura, zgjidhni CAPTCHA-n.</string>
-    <string name="captcha">Kaptça</string>
+    <string name="captcha"/>
     <string name="enter_characters_from_image">Jepni tekstin më sipër</string>
     <string name="snowflake_proxy_msg_title">Shfaq Njoftim Lidhjeje</string>
     <string name="connected_title">I lidhur</string>
@@ -58,7 +58,7 @@
     <string name="apps_suggested_title">Aplikacione të Këshilluar</string>
     <string name="apps_other_apps">Aplikacione të Tjera</string>
     <string name="pref_start_boot_title">Nise Orbot-in që gjatë Nisjes së Kompjuterit</string>
-    <string name="exit_nodes">Nyje Daljesh</string>
+    <string name="exit_nodes">Nyja Daljesh</string>
     <string name="confirm">Ripohojeni</string>
     <string name="onion_port">Portë Onion</string>
     <string name="done">U bë!</string>
@@ -104,7 +104,7 @@
     <string name="main_layout_upload">Ngarkim</string>
     <string name="menu_scan">Skanoni BridgeQR</string>
     <string name="wizard_details_msg">Orbot-i është një aplikacion me burim të hapët, që përmban Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks dhe LibEvent.AI furnizon një tunel VPN, një ndërmjetës vendor HTTP Connect (HTTPS vetëm në portën 8118) dhe një ndërmjetës SOCKS (9050) te rrjeti Tor.</string>
-    <string name="pref_node_configuration">Formësim Nyje</string>
+    <string name="pref_node_configuration">Formësim Nyjesh</string>
     <string name="pref_node_configuration_summary">Këto janë rregullime të thelluara që mund të reduktojnë anonimitetin tuaj</string>
     <string name="pref_entrance_node">Nyja Hyrjesh</string>
     <string name="pref_entrance_node_dialog">Jepni Nyja Hyrjesh</string>
@@ -134,7 +134,7 @@
     <string name="reachable_ports">Porta të kapshme</string>
     <string name="enter_ports">Jepni porta</string>
     <string name="project_home">Kreu i Projektit:</string>
-    <string name="third_party_software">Software Palësh të Treta:</string>
+    <string name="third_party_software"><em>Software</em> Palësh të Treta:</string>
     <string name="version">Version:</string>
     <string name="license">Licencë:</string>
     <string name="pref_dnsport_dialog">Formësim Porte DNS</string>
@@ -158,7 +158,7 @@
     <string name="pref_http_dialog">Formësim Porte HTTP</string>
     <string name="pref_transport_title">Portë Tor TransProxy</string>
     <string name="pref_dnsport_title">Portë DNS Tor</string>
-    <string name="pref_dnsport_summary">Portë ku Tor-i ofron DNS e vet (parazgjedhje: 5400, ose 0 për ta çaktivizuar)</string>
+    <string name="pref_dnsport_summary">Portë ku Tor-i ofron DNS-në e vet (parazgjedhje: 5400, ose 0 për ta çaktivizuar)</string>
     <string name="pref_torrc_title">Formësim Torrc Vetjake</string>
     <string name="mebibyte">MiB</string>
     <string name="bridges_updated">Urat u Përditësuan</string>
@@ -198,7 +198,7 @@
     <string name="pref_start_boot_summary">Nise automatikisht Orbot-in dhe lidhu me Tor-in, kur niset pajisja Android</string>
     <string name="pref_entrance_node_summary">Shenja gishtash, nofka, vende dhe adresa për hopin e parë</string>
     <string name="pref_allow_background_starts_summary">Lejoni çfarëdo aplikacioni t’i thotë Orbot-it të nisë Tor-in dhe shërbime të lidhura me të</string>
-    <string name="strict_nodes_description">Traktoji rregullimet për Nyje Dalëse si një domosdoshmëri për ngritjen e krejt qarqeve. Kjo mund të dëmtojë funksione, nëse s’është e mundur të prodhohen qarqe me rregullimet tuaja për Nyje Dalëse.</string>
+    <string name="strict_nodes_description">Trajtojini rregullimet për Nyje Dalëse si një domosdoshmëri për ngritjen e krejt qarqeve. Kjo mund të dëmtojë funksione, nëse s’është e mundur të prodhohen qarqe me rregullimet tuaja për Nyje Dalëse.</string>
     <string name="pref_use_expanded_notifications">Shfaq te njoftimi vendin dhe adresën IP të nyjës tuaj dalëse Tor, kur dihet</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Lejoni të pranishëm në Wi-Fi-n tuaj, pajisje të lidhura dhe këdo tjetër që mund të lidhet te IP-ja juaj, të hyjnë në</string>
     <string name="pref_socks_summary">Portë te e cila Tor-i ofron ndërmjetësin e vet SOCKS (parazgjedhje: 9050, ose 0 për ta çaktivizuar)</string>
@@ -242,7 +242,7 @@
     <string name="having_trouble_subtitle">Më pas mund të provojmë një urë Tor, por do të na duhet ndihma juaj</string>
     <string name="pref_allow_background_starts_title">Lejo Nisje Në Prapaskenë</string>
     <string name="pref_proxy_title">Ndërmjetës Rrjeti Në Dalje (Opsional)</string>
-    <string name="pref_proxy_type_title">Llojj Ndërmjetësi Në Dalje</string>
+    <string name="pref_proxy_type_title">Lloj Ndërmjetësi Në Dalje</string>
     <string name="pref_proxy_host_title">Strehë Ndërmjetësi Në Dalje</string>
     <string name="pref_proxy_port_title">Portë Ndërmjetësi Në Dalje</string>
     <string name="pref_proxy_username_title">Emër Përdoruesi Ndërmjetësi Në Dalje</string>
@@ -252,7 +252,7 @@
     <string name="connection_custom">Vetjake</string>
     <string name="setting_debug">Diagnostiojeni</string>
     <string name="menu_more">Më tepër</string>
-    <string name="hide_apps">Fshihini aplikacione mbikëqyrjes së rrjetit dhe përfitoni hyrje kur janë të bllokuar.</string>
+    <string name="hide_apps">Fshihni aplikacione nga mbikëqyrje rrjeti dhe përfitoni hyrje, kur janë të bllokuar.</string>
     <string name="no_internet_subtitle">Që të përdorni Orbot-in, ju duhet një lidhje internet.</string>
     <string name="not_sure">Jo i sigurt\?</string>
     <string name="ask_tor">Pyetni Tor-in</string>
@@ -274,17 +274,19 @@
     <string name="kindess_config_detail">Formësoni si dhe kur pajisja juaj mund të veprojë si një ndërmjetës Snowflake për përdorues të tjerë të Tor-it.</string>
     <string name="menu_share_bridge">Ndani me të tjerët BridgeQR</string>
     <string name="pref_isolate_protocol_summary">Përdorni një qark të ndryshëm për çdo protokoll lidhjeje</string>
-    <string name="pref_reduced_connection_padding_summary">I mbyll më herët lidhjet me relenë dhe dërgon më pak pakete “padding”, për të zvogëluar përdorim të dhënash dhe bateriebattery usage</string>
+    <string name="pref_reduced_connection_padding_summary">I mbyll më herët lidhjet me relenë dhe dërgon më pak pakete “padding”, për të zvogëluar përdorim të dhënash dhe baterie</string>
     <string name="pref_flag_secure_summary">Pengo aplikacione të tjerë të bëjnë foto ekrani të Orbot-it</string>
     <string name="many_ways">Ka mjaft mënyra për të mbërritur te Tor-i. Disa mund të funksionojnë më mirë se të tjerat për ju.</string>
     <string name="relaying">Përdorim Relesh</string>
-    <string name="pref_circuit_padding">Mbushje qarku</string>
+    <string name="pref_circuit_padding">“Padding” qarku</string>
     <string name="pref_reduced_circuit_padding_summary"/>
-    <string name="pref_circuit_padding_summary">Aktivizoni mbushje qarku, për t’u mbrojtur nga disa forma analizimi trafiku</string>
-    <string name="setting_padding">Mbushje</string>
+    <string name="pref_circuit_padding_summary">Aktivizoni “padding” qarku, për t’u mbrojtur nga disa forma analizimi trafiku</string>
+    <string name="setting_padding">“Padding”</string>
     <string name="menu_kindness"/>
-    <string name="pref_connection_padding_summary">Aktivizon përherë mbushje lidhjeje, për t’u mbrojtur nga disa forma analizimi trafiku. Parazgjedhje: auto</string>
-    <string name="pref_reduced_circuit_padding">Mbushje e reduktuar qarku</string>
-    <string name="pref_connection_padding">Mbushja e lidhjes</string>
-    <string name="pref_reduced_connection_padding">Mbushje e reduktuar lidhjeje</string>
+    <string name="pref_connection_padding_summary">Aktivizon përherë “padding” lidhjeje, për t’u mbrojtur nga disa forma analizimi trafiku. Parazgjedhje: auto</string>
+    <string name="pref_reduced_circuit_padding">“Padding” i reduktuar qarku</string>
+    <string name="pref_connection_padding">“Padding” lidhjeje</string>
+    <string name="pref_reduced_connection_padding">“Padding” e reduktuar lidhjeje</string>
+    <string name="pref_detect_root_summary">Sinjalizo, gjatë nisjes, nëse në këtë pajisje janë të aktivizuara leje si rrënjë</string>
+    <string name="pref_detect_root_title">Pikasje Rrënje</string>
 </resources>

@@ -1,0 +1,9 @@
+- o 30% menší instalátor (APK), pod 10MB! 
+ - aktualizace na Tor 0.3.3.5 (Onion služby v3 a další)
+ - mnoho oprav Tor, instalace pluggable transport binary
+ - Už ne "Polipo" HTTP server, jen používání vestavěné možnosti Toru
+ - vylepšený výběr jazyka v aplikaci
+
+NOVÉ PRÁVO: Přístup k "Externímu úložišti" je pro zachování informace zálohování pro služby onion. 
+
+Úplné poznámky k vydání jsou na: https://github.com/n8fr8/orbot/releases/tag/16.0.2-RC-1

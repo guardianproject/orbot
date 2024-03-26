@@ -271,7 +271,7 @@
 \nあなたのおかげで。</string>
     <string name="not_sure">わからない？</string>
     <string name="ask_tor">トールに聞く</string>
-    <string name="asking">アスク...</string>
+    <string name="asking">質問…</string>
     <string name="kindness_adjust_title">設定</string>
     <string name="kindess_config_detail">あなたの端末が他のTor利用者用のSnowflakeプロキシとしてどう動作するか、いつ動作するかを設定します。</string>
     <string name="btn_copy_log">ログをコピー</string>
@@ -287,4 +287,6 @@
     <string name="pref_flag_secure_summary">他のアプリがOrbotのスクリーンショットを撮るのを防ぐ</string>
     <string name="pref_flag_secure_title">画面の安全</string>
     <string name="root_warning">Orbotは、端末が安全問題の原因になり得るroot化状態であると検知しました。</string>
+    <string name="pref_detect_root_title">Root検知</string>
+    <string name="pref_detect_root_summary">この端末でroot権限が有効になっている場合、起動時に警告</string>
 </resources>

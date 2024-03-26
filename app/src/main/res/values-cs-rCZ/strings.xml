@@ -212,7 +212,7 @@
     <string name="v3_backup_name_hint">Název záložního souboru…</string>
     <string name="pref_disable_ipv4">Informuje exity, že jsou upřednostňovány adresy IPv6</string>
     <string name="pref_isolate_port">Izolovat cílové porty</string>
-    <string name="asking">PTÁTE SE...</string>
+    <string name="asking">PTÁTE SE…</string>
     <string name="power_user_description">Pro uživatele, kteří znají Tor. Umožňuje spustit Orbot bez nastavení VPN a zobrazuje otevřené porty SOCKS a HTTP</string>
     <string name="app_services">Služby aplikací</string>
     <string name="snowflake_amp">Sněhová vločka (AMP)</string>
@@ -257,7 +257,7 @@
     <string name="bridge_snowflake_amp">Připojení přes jiné uživatele Toru pomocí aplikace Snowflake (metoda 2 - AMP)</string>
     <string name="volunteer_mode">Režim laskavosti</string>
     <string name="app_shortcuts">Aplikace podporující Tor</string>
-    <string name="bridges_obtained_connecting">Získané mosty! Připojení k tor...</string>
+    <string name="bridges_obtained_connecting">Mosty získány! Připojování k Tor…</string>
     <string name="testing_tor_direct_success">Úspěch. Připojení Tor je dobré!</string>
     <string name="btn_start_vpn">Spuštění sítě VPN</string>
     <string name="strict_nodes_description">Nastavení Vyloučit uzly považujte za požadavek pro sestavení všech obvodů. To může narušit funkčnost, pokud s nastavením Exclude Nodes nebude možné vygenerovat žádné obvody.</string>
@@ -287,4 +287,6 @@
     <string name="done">Hotovo!</string>
     <string name="v3_key_hash">x25519 Soukromý klíč v Base32</string>
     <string name="configure_header">Konfigurace připojení Tor</string>
+    <string name="pref_detect_root_summary">Varovat při spuštění, pokud jsou na tomto zařízení zapnuta oprávnění root</string>
+    <string name="pref_detect_root_title">Rozpoznání root</string>
 </resources>

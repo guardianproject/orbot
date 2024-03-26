@@ -287,4 +287,6 @@
     <string name="in_a_browser">En un navegador, visiteu %s i toqueu a Obtén Ponts &gt; Dona\'m ponts!</string>
     <string name="v3_key_hash">Clau privada x25519 en Base32</string>
     <string name="configure_header">Configureu la connexió al Tor</string>
+    <string name="pref_detect_root_summary">Avisa a l\'inici si els permisos d\'administrador estan activats en aquest dispositiu</string>
+    <string name="pref_detect_root_title">Detecció d\'administrador</string>
 </resources>

@@ -1,0 +1,8 @@
+- ¡Importante actualización de la interfaz de usuario!
+- Nuevos asistentes para ajuste y configuración de Puentes.
+- Mejora de las funciones VPN.
+- Arreglos para fallos de configuración de servicios Onion/Hidden.
+
+¡Y mucho más!
+
+GRACIAS A: pgerber, syphyr, Khsed4, BjarniRunar, Unpublished, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, arrase y otros por los problemas, commits y PRs
