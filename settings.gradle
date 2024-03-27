@@ -1,5 +1,3 @@
-import org.gradle.api.initialization.resolve.RepositoriesMode
-
 pluginManagement {
     repositories {
         google()
@@ -7,18 +5,10 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
-        // noinspection JcenterRepositoryObsolete
-        jcenter {
-            content {
-                includeGroup('com.jraska')
-                includeGroup('tools.fastlane')
-            }
-        }
         mavenCentral()
         maven { url "https://jitpack.io" }
         maven { url "https://raw.githubusercontent.com/guardianproject/gpmaven/master" }
