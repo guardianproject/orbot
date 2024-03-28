@@ -21,8 +21,8 @@ android {
         applicationId "org.torproject.android"
         versionName getVersionName()
         minSdkVersion 23
-        compileSdkVersion 33
-        targetSdkVersion 33
+        compileSdkVersion 34
+        targetSdkVersion 34
         multiDexEnabled true
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         archivesBaseName = "Orbot"

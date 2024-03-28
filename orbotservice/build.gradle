@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         minSdkVersion 23
-        targetSdkVersion 33
+        targetSdkVersion 34
     }
 
     buildTypes {
@@ -36,7 +36,6 @@ android {
 }
 
 dependencies {
-
     api libs.guardian_jtorctl
 
     //use locally built ipt_proxy+go_tun2socks
