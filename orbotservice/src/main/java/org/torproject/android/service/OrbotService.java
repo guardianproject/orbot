@@ -24,6 +24,7 @@ import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.net.VpnService;
 import android.os.Build;
@@ -434,10 +435,18 @@ public class OrbotService extends VpnService implements OrbotConstants {
     private void checkNetworkForSnowflakeProxy () {
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
-            mHasWifi = connMgr.getNetworkCapabilities(connMgr.getActiveNetwork()).hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
-        else
-            mHasWifi = connMgr.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            NetworkCapabilities netCap = connMgr.getNetworkCapabilities(connMgr.getActiveNetwork());
+            if (netCap != null)
+                mHasWifi = netCap.hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
+            else
+                mHasWifi = false;
+        }
+        else {
+            NetworkInfo netInfo = connMgr.getActiveNetworkInfo();
+            if (netInfo != null)
+                mHasWifi = netInfo.getType() == ConnectivityManager.TYPE_WIFI;
+        }
 
         if (Prefs.beSnowflakeProxy()) {
             if (Prefs.limitSnowflakeProxyingWifi()) {
