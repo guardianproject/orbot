@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbot jest darmową aplikacją proxy która wspomaga inne aplikacje do używania internetu bezpiecznie. Orbot używa Tora do szyfrowania Twojego ruchu internetowego i następnie przepuszczania go przez wiele innych komputereów pororzucanych na całym świecie. Tor jest darmowym oprogramowaniem i otwartą siecią która pomaga Tobie w obronie przed monitoringiem sieci która zagrarza osobistej wolności i prywatności, poufnym biznesowym aktywnościom.</string>
+    <string name="app_description">Orbot to bezpłatna aplikacja proxy, która umożliwia innym aplikacjom bezpieczniejsze korzystanie z Internetu. Orbot używa sieci Tor do szyfrowania ruchu internetowego, a następnie ukrywa go, przechodząc przez szereg komputerów na całym świecie. Tor to darmowe oprogramowanie i otwarta sieć, która pomaga bronić się przed formą nadzoru sieci, która zagraża wolności osobistej i prywatności, poufnym działaniom i relacjom biznesowym oraz bezpieczeństwu państwa, znanym jako analiza ruchu.</string>
     <string name="menu_settings">Ustawienia</string>
     <string name="menu_log">Dziennik</string>
     <string name="menu_stop">Zatrzymaj</string>
@@ -125,7 +125,7 @@
     <string name="backup_saved_at_external_storage">Kopia zapasowa zapisywana w pamięci zewnętrznej</string>
     <string name="backup_service">Usługa kopii zapasowej <i>(Uwaga: może to ujawnić konfigurację usługi innym aplikacjom)</i></string>
     <string name="hidden_service_request">Aplikacja chce otworzyć port serwera Onion %1$s do sieci Tor. Jest to bezpieczne, jeśli zaufasz aplikacji.</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jeśli twoja sieć komórkowa aktywnie blokuje Tor, możesz użyć „Serwer mostkowy” jako alternatywnego sposobu wejścia. Wybierz jedną z opcji, aby skonfigurować i przetestować …</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jeśli Twoja sieć komórkowa aktywnie blokuje sieć Tor, możesz użyć opcji „Serwer mostkowy” jako alternatywnego sposobu wejścia. Wybierz jedną z opcji, aby skonfigurować i przetestować…</string>
     <string name="wizard_details_msg">Orbot to aplikacja typu open source, która zawiera Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks i LibEvent. Zapewnia lokalny serwer Proxy HTTP (8118) i serwer Proxy SOCKS (9050) do sieci Tor. Orbot ma również możliwość, na zrootowanym urządzeniu, wysyłania całego ruchu internetowego przez Tor.</string>
     <string name="refresh_apps">Odśwież aplikacje</string>
     <string name="app_services">Usługi aplikacji</string>
