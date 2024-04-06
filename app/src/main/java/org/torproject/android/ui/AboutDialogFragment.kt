@@ -2,7 +2,6 @@ package org.torproject.android.ui
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.text.Html
 import android.view.View
@@ -11,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 
 import org.torproject.android.R
+import org.torproject.android.BuildConfig
 import org.torproject.android.core.DiskUtils
 import org.torproject.android.service.OrbotService
 
@@ -22,6 +22,7 @@ class AboutDialogFragment : DialogFragment() {
 
     companion object {
         const val TAG = "AboutDialogFragment"
+        const val VERSION = "${BuildConfig.VERSION_NAME} (Tor ${OrbotService.BINARY_TOR_VERSION})"
         private const val BUNDLE_KEY_TV_ABOUT_TEXT = "about_tv_txt"
         private const val ABOUT_LICENSE_EQUALSIGN =
             "==============================================================================="
@@ -32,18 +33,8 @@ class AboutDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val view: View? = activity?.layoutInflater?.inflate(R.layout.layout_about, null)
 
-        val version: String? = try {
-            "${
-                context?.packageManager?.getPackageInfo(
-                    requireContext().packageName, 0
-                )?.versionName
-            } (Tor ${OrbotService.BINARY_TOR_VERSION})"
-        } catch (e: PackageManager.NameNotFoundException) {
-            "Version Not Found"
-        }
-
         val versionName = view?.findViewById<TextView>(R.id.versionName)
-        versionName?.text = version
+        versionName?.text = VERSION
 
         tvAbout = view?.findViewById(R.id.aboutother) as TextView
 
