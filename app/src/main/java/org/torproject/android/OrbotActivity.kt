@@ -260,7 +260,8 @@ class OrbotActivity : BaseActivity() {
     }
 
     fun showLog() {
-        logBottomSheet.show(supportFragmentManager, OrbotActivity::class.java.simpleName)
-
+        if (!logBottomSheet.isAdded) {
+            logBottomSheet.show(supportFragmentManager, OrbotActivity::class.java.simpleName)
+        }
     }
 }
