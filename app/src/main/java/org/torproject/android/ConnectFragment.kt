@@ -222,7 +222,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks,
         tvSubtitle.visibility = View.VISIBLE
 
         progressBar.visibility = View.INVISIBLE
-        tvTitle.text = getString(R.string.no_interent_title)
+        tvTitle.text = getString(R.string.no_internet_title)
         tvSubtitle.text = getString(R.string.no_internet_subtitle)
 
         btnStartVpn.visibility = View.GONE

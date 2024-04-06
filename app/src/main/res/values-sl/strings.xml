@@ -253,7 +253,7 @@
     <string name="smart_connect_subtitle">Orbot se poskuša povezati s Torom prek katerega koli razpoložljivega načina: neposredno, snažinka, most.</string>
     <string name="custom_bridge_description">Most po meri zagotovi nekdo, ki ga poznate. Povprašajte v svojih zaupanja vrednih omrežjih in organizacijah, ali jih kdo gosti.</string>
     <string name="log_copied">Dnevnik kopiran</string>
-    <string name="no_interent_title">Povežite se z internetom</string>
+    <string name="no_internet_title">Povežite se z internetom</string>
     <string name="kindess_config_detail">Konfigurirajte, kako in kdaj lahko vaša naprava deluje kot proksi snežinka za druge uporabnike Tora.</string>
     <string name="root_warning">Orbot je zaznal, da je vaša naprava korenirana, kar lahko povzroči varnostne težave.</string>
     <string name="configure_header">Natavite svojo Tor povezavo</string>

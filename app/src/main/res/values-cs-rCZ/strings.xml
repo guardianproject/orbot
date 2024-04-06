@@ -112,7 +112,7 @@
     <string name="connection_snowflake">Snowflake</string>
     <string name="connection_custom">Vlastní</string>
     <string name="action_use">Použít</string>
-    <string name="no_interent_title">Připojit k Internetu</string>
+    <string name="no_internet_title">Připojit k Internetu</string>
     <string name="action_activate">Aktivovat</string>
     <string name="title_choose_apps">Vybrat aplikace</string>
     <string name="setting_padding">Výplň</string>

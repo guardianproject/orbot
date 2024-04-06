@@ -268,7 +268,7 @@
     <string name="many_ways">Hay muchas formas de conectarse a Tor. Algunas pueden funcionar mejor que otras para ti.</string>
     <string name="action_use">Uso</string>
     <string name="asking">PREGUNTANDO…</string>
-    <string name="no_interent_title">Conectarse a Internet</string>
+    <string name="no_internet_title">Conectarse a Internet</string>
     <string name="no_internet_subtitle">Necesitas estar conectado a Internet para usar Orbot.</string>
     <string name="kindness_adjust_title">Ajustes</string>
     <string name="ask_tor">Preguntale a Tor</string>

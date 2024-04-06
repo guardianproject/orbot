@@ -260,7 +260,7 @@
     <string name="snowflake_amp">Snowflake (AMP méthode)</string>
     <string name="many_ways">Il existe de nombreuses façons d\'atteindre Tor. Certaines peuvent fonctionner mieux que d\'autres pour vous.</string>
     <string name="power_user_description">Pour les utilisateurs familiers avec Tor. Permet de démarrer Orbot sans le paramètre VPN et montre les ports SOCKS et HTTP ouverts</string>
-    <string name="no_interent_title">Se connecter à l\'internet</string>
+    <string name="no_internet_title">Se connecter à l\'internet</string>
     <string name="menu_kindness">La gentillesse</string>
     <string name="option_only_on_wifi">Uniquement sur Wifi</string>
     <string name="volunteer_mode_label">Mode gentillesse</string>

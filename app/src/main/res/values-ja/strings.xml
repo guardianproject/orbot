@@ -263,7 +263,7 @@
     <string name="pref_isolate_protocol_summary">接続中のプロトコルごとに別の回路を使用する</string>
     <string name="many_ways">Torに到達する方法はたくさんあります。いくつかは、あなたにとってより良い方法であるかもしれません。</string>
     <string name="action_use">使用</string>
-    <string name="no_interent_title">インターネットに接続</string>
+    <string name="no_internet_title">インターネットに接続</string>
     <string name="no_internet_subtitle">Orbotを使用するには、インターネット接続が必要です。</string>
     <string name="snowflake_amp">Snowflake (AMP)</string>
     <string name="log_copied">ログをコピーしました</string>

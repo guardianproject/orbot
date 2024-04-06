@@ -115,7 +115,7 @@
     <string name="bridges_obtained_connecting">Կամուրջները ստացվեցի՜ն: Միացվում է tor-ին…</string>
     <string name="btn_copy_log">Պատճենել մատյանը</string>
     <string name="action_use">Օգտվել</string>
-    <string name="no_interent_title">Միացեք համացանցին</string>
+    <string name="no_internet_title">Միացեք համացանցին</string>
     <string name="no_internet_subtitle">Orbot-ից օգտվելու համար Ձեզ պետք է միացում համացանցին:</string>
     <string name="confirm_service_deletion">Հաստատել ծառայության ջնջումը</string>
     <string name="start_tor_again_for_finish_the_process">Գործընթացի ավարտման համար մեկնարկեք Tor-ը կրկին</string>

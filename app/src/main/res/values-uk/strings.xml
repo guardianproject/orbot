@@ -262,7 +262,7 @@
     <string name="log_copied">Журнал скопійовано</string>
     <string name="action_use">Використати</string>
     <string name="many_ways">Існує багато способів отримати доступ до Tor. Деякі з них можуть працювати для вас краще, ніж інші.</string>
-    <string name="no_interent_title">Підключення до Інтернету</string>
+    <string name="no_internet_title">Підключення до Інтернету</string>
     <string name="snowflake_amp">Snowflake (спосіб 2)</string>
     <string name="not_sure">Не впевнений\?</string>
     <string name="ask_tor">Запитайте Tor</string>

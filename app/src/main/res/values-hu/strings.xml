@@ -148,7 +148,7 @@
     <string name="menu_help_others">Segítsen másoknak</string>
     <string name="menu_header_learn">Tudjon meg többet</string>
     <string name="action_activate">Aktiválás</string>
-    <string name="no_interent_title">Csatlakozás az internethez</string>
+    <string name="no_internet_title">Csatlakozás az internethez</string>
     <string name="kibibyte">KiB</string>
     <string name="title_choose_apps">Alkalmazások kiválasztása</string>
     <string name="setting_debug">Hibakeresés</string>
