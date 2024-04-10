@@ -274,7 +274,7 @@
     <string name="connection_snowflake">Qar dənəciyi</string>
     <string name="ask_tor">Tordan soruşun</string>
     <string name="option_only_when_charging">Yalnız şarj edərkən</string>
-    <string name="no_interent_title">İnternetə qoşulun</string>
+    <string name="no_internet_title">İnternetə qoşulun</string>
     <string name="kindness_adjust_title">Parametrlər</string>
     <string name="setting_padding">Doldurma</string>
     <string name="action_use">istifadə edin</string>

@@ -252,7 +252,7 @@
     <string name="volunteer_status_title">Täna on parem
 \ntänu sinule.</string>
     <string name="app_suggested_subtitle">Orbot töötab kõige paremini koos sõnumite ja sotsiaalmeedia rakendustega.</string>
-    <string name="no_interent_title">Ühendage internetiga</string>
+    <string name="no_internet_title">Ühendage internetiga</string>
     <string name="no_internet_subtitle">Orbot\'i kasutamiseks on vaja internetiühendust.</string>
     <string name="kindess_config_detail">Konfigureerige, kuidas ja millal teie seade saab tegutseda Snowflake\'i proxy\'ina teiste Tor\'i kasutajate jaoks.</string>
     <string name="log_copied">Logi kopeeritud</string>

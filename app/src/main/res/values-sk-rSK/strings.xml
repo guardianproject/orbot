@@ -235,7 +235,7 @@
     <string name="having_trouble_subtitle">Ďalej môžeme vyskúšať most Tor, ale budeme potrebovať vašu pomoc</string>
     <string name="apps_suggested_title">Navrhované aplikácie</string>
     <string name="not_sure">Nie ste si istí\?</string>
-    <string name="no_interent_title">Pripojenie k internetu</string>
+    <string name="no_internet_title">Pripojenie k internetu</string>
     <string name="no_internet_subtitle">Na používanie služby Orbot potrebujete internetové pripojenie.</string>
     <string name="power_user_mode">Režim Power User</string>
     <string name="power_user_description">Pre používateľov, ktorí poznajú Tor. Umožňuje spustiť Orbot bez nastavenia VPN a zobrazuje otvorené porty SOCKS a HTTP</string>

@@ -248,7 +248,7 @@
     <string name="option_only_when_charging">Tikai uzlādes laikā</string>
     <string name="hide_apps">Paslēpiet lietotnes no tīkla uzraudzības un iegūstiet piekļuvi, ja tās ir bloķētas.</string>
     <string name="pref_isolate_port_summary">Katrai galamērķa ostai izmantojiet atšķirīgu ķēdi</string>
-    <string name="no_interent_title">Savienojums ar internetu</string>
+    <string name="no_internet_title">Savienojums ar internetu</string>
     <string name="pref_isolate_protocol">Izolēt klienta protokolus</string>
     <string name="custom_bridge_subtitle">Visdrīzāk, lai saglabātu savienojumu, ja Tor ir nopietni bloķēts. Nepieciešama uzticamas personas tilta adrese.</string>
     <string name="volunteer_mode_weekly_label">Nedēļas kopsumma</string>

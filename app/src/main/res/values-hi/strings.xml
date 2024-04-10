@@ -205,7 +205,7 @@
 \n• ये कभी भी बंद किया जा सकता है</string>
     <string name="proxy_ports">प्रॉक्सी पोर्ट</string>
     <string name="solve_captcha">कैप्चा सुलझाएं</string>
-    <string name="no_interent_title">इंटरनेट से जुड़ें</string>
+    <string name="no_internet_title">इंटरनेट से जुड़ें</string>
     <string name="kindness_adjust_title">चलते हुए अपनेआप बदलें…</string>
     <string name="kindess_config_detail">सेट करें कि आपका डिवाइस दूसरे टॉर यूज़रों के लिए कब स्नोफ्लेक्स प्रॉक्सी के तरह काम कर सकता है।</string>
     <string name="asking">पूछ रहे है।</string>

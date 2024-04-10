@@ -189,7 +189,7 @@
     <string name="snowflake_amp">Snowflake (AMP)</string>
     <string name="get_a_bridge">Punte de la Tor (Obfs4)</string>
     <string name="asking">CERERE…</string>
-    <string name="no_interent_title">Conectare la internet</string>
+    <string name="no_internet_title">Conectare la internet</string>
     <string name="kindess_config_detail">Configurați cum și când dispozitivul dvs. poate acționa ca proxy Snowflake pentru alți utilizatori Tor.</string>
     <string name="allow">Permiteți</string>
     <string name="deny">Refuzați</string>

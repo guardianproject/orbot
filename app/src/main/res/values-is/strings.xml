@@ -265,7 +265,7 @@
     <string name="ask_tor">Spurðu Tor</string>
     <string name="many_ways">Það eru margar aðferðir við að ná sambandi við Tor. Sumar gætu virkað betur fyrir þig en aðrar.</string>
     <string name="action_use">Nota</string>
-    <string name="no_interent_title">Tengjast við internetið</string>
+    <string name="no_internet_title">Tengjast við internetið</string>
     <string name="no_internet_subtitle">Þú þarft internettengingu til að nota Orbot.</string>
     <string name="kindness_adjust_title">Stillingar</string>
     <string name="pref_isolate_port_summary">Nota mismunandi rás fyrir hverja markgátt</string>

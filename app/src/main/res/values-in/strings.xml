@@ -267,7 +267,7 @@
     <string name="not_sure">Tidak yakin\?</string>
     <string name="ask_tor">Tanyakan Tor</string>
     <string name="many_ways">Ada lebih banyak cara untuk mencapai Tor. Beberapa dapat bekerja dengan baik daripada yang lain untuk Anda.</string>
-    <string name="no_interent_title">Hubungkan ke internet</string>
+    <string name="no_internet_title">Hubungkan ke internet</string>
     <string name="no_internet_subtitle">Anda membutuhkan koneksi internet untuk menggunakan Orbot.</string>
     <string name="kindness_adjust_title">Atur ketika berjalan…</string>
     <string name="kindess_config_detail">Atur bagaimana dan kapan perangkat Anda dapat menjadi sebagai proksi Snowflake untuk pengguna Tor lain.</string>

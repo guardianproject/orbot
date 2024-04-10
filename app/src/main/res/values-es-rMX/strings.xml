@@ -110,7 +110,7 @@
     <string name="app_suggested_subtitle">Orbot funciona mejor con aplicaciones de mensajería y redes sociales.</string>
     <string name="log_copied">Registro copiado</string>
     <string name="apps_other_apps">Otras aplicaciones</string>
-    <string name="no_interent_title">Conectarse al Internet</string>
+    <string name="no_internet_title">Conectarse al Internet</string>
     <string name="app_name">Orbot</string>
     <string name="menu_stop">Detener</string>
     <string name="menu_about">Acerca de</string>

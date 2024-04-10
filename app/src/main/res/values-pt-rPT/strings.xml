@@ -267,7 +267,7 @@
     <string name="menu_more">Mais</string>
     <string name="hide_apps">Oculte apps do monitoramento da rede e obtenha acesso quando eles estiverem bloqueados.</string>
     <string name="pref_isolate_protocol">Isolar os protocolos do cliente</string>
-    <string name="no_interent_title">Ligar à Internet</string>
+    <string name="no_internet_title">Ligar à Internet</string>
     <string name="kindness_adjust_title">Ajustar quando for ativo…</string>
     <string name="option_only_on_wifi">Apenas ligado à Wi-Fi</string>
     <string name="option_only_when_charging">Só durante o carregamento</string>

@@ -137,7 +137,7 @@
     <string name="menu_tor_connection">חיבור Tor</string>
     <string name="drawer_close">סגירה</string>
     <string name="next">הבא</string>
-    <string name="no_interent_title">התחברות לאינטרנט</string>
+    <string name="no_internet_title">התחברות לאינטרנט</string>
     <string name="allow">להתיר</string>
     <string name="deny">לסרב</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">לאפשר יומן ניפוי תקלות אל פלט (חובה להשתמש ב־adb או ב־aLogCat כדי לצפות)</string>

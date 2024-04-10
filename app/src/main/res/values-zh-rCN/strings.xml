@@ -262,7 +262,7 @@
     <string name="volunteer_status_title">今天因你
 \n而更好。</string>
     <string name="action_use">使用方法</string>
-    <string name="no_interent_title">连接到互联网</string>
+    <string name="no_internet_title">连接到互联网</string>
     <string name="menu_more">更多</string>
     <string name="connection_direct">私信</string>
     <string name="connection_snowflake">Snowflake</string>
