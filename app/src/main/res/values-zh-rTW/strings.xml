@@ -220,4 +220,5 @@
     <string name="v3_delete_client_authorization">刪除用戶軟體驗證金鑰</string>
     <string name="pref_reduced_circuit_padding_summary">使用較低開銷的填充演算法來減少資料和電池的使用</string>
     <string name="testing_tor_direct_success">成功。Tor 連接良好！</string>
+    <string name="btn_start_vpn">啟動VPN</string>
 </resources>
