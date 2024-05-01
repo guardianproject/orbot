@@ -246,7 +246,7 @@
     <string name="strict_nodes_description">Meðhöndla útilokaða punkta sem forsendu við byggingu allra rása. Þetta gæti skemmt fyrir virkni ef ekki er hægt að byggja upp neinar rásir út frá stillingum útilokaðra punkta.</string>
     <string name="incorrect_solution">Röng lausn</string>
     <string name="having_trouble">Eru vandamál</string>
-    <string name="bridges_obtained_connecting">Fékk brýr! Tengist við TOR...</string>
+    <string name="bridges_obtained_connecting">Fékk brýr! Tengist við Tor…</string>
     <string name="custom_bridge_description">Einhver sem þú þekkir er að skaffa brú. Spurðu fólk í þeim hópum sem þú treystir hvort einhver þeirra sé að hýsa brúna.</string>
     <string name="having_trouble_subtitle">Við getum næst prófað Tor-brú en þurfum þína hjálp til þess</string>
     <string name="action_activate">Virkja</string>
@@ -271,7 +271,7 @@
     <string name="pref_isolate_port_summary">Nota mismunandi rás fyrir hverja markgátt</string>
     <string name="hide_apps">Feldu forrit fyrir netvöktun og náðu aðgangi þegar lokað er á þau.</string>
     <string name="not_sure">Ekki viss\?</string>
-    <string name="asking">SPYR...</string>
+    <string name="asking">SPYR…</string>
     <string name="log_copied">Atvikaskrá afrituð</string>
     <string name="menu_more">Meira</string>
     <string name="connection_snowflake">Snowflake</string>
@@ -287,4 +287,6 @@
     <string name="setting_padding">Útvíkkun</string>
     <string name="root_warning">Orbot hefur skynjað að tækið þitt sé með rótaraðgangi (rooted), sem getur valdið öryggisvandamálum.</string>
     <string name="kindess_config_detail">Stilltu hvernig og hvenær tækið þitt getur unnið sem Snowflake-milliþjónn fyrir aðra Tor-notendur.</string>
+    <string name="pref_detect_root_summary">Aðvara í ræsingu ef rótarheimildir eru virkar á þessu tæki</string>
+    <string name="pref_detect_root_title">Skynja rótarheimildir</string>
 </resources>
