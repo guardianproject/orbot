@@ -409,7 +409,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     }
 
-    private ConnectivityManager.NetworkCallback netCall = new ConnectivityManager.NetworkCallback() {
+    private final ConnectivityManager.NetworkCallback netCall = new ConnectivityManager.NetworkCallback() {
         @Override
         public void onAvailable(@NonNull Network network) {
             super.onAvailable(network);
