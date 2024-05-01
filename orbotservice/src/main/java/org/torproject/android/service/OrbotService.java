@@ -261,6 +261,13 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
             unregisterReceiver(mPowerReceiver);
 
+            ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                connMgr.unregisterNetworkCallback(netCall);
+            }
+
+
         } catch (IllegalArgumentException iae) {
             //not registered yet
         }
@@ -402,26 +409,29 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     }
 
+    private ConnectivityManager.NetworkCallback netCall = new ConnectivityManager.NetworkCallback() {
+        @Override
+        public void onAvailable(@NonNull Network network) {
+            super.onAvailable(network);
+            checkNetworkForSnowflakeProxy ();
+        }
+
+        @Override
+        public void onLost(@NonNull Network network) {
+            super.onLost(network);
+            checkNetworkForSnowflakeProxy ();
+        }
+    };
+
     private void enableSnowflakeProxyNetworkListener () {
         if (Prefs.limitSnowflakeProxyingWifi()) {
             //check if on wifi
             ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                connMgr.registerDefaultNetworkCallback(new ConnectivityManager.NetworkCallback() {
-                    @Override
-                    public void onAvailable(@NonNull Network network) {
-                        super.onAvailable(network);
-                        checkNetworkForSnowflakeProxy ();
-                    }
-
-                    @Override
-                    public void onLost(@NonNull Network network) {
-                        super.onLost(network);
-                        checkNetworkForSnowflakeProxy ();
-                    }
-                });
+                connMgr.registerDefaultNetworkCallback(netCall);
             }
+
         }
     }
 
