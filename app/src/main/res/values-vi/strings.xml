@@ -240,7 +240,7 @@
     <string name="msg_taking_too_long">Điều này có vẻ như đang mất quá nhiều thời gian</string>
     <string name="proxy_ports">Các cổng Proxy</string>
     <string name="no_thx">Không cảm ơn</string>
-    <string name="bridges_obtained_connecting">Cầu Bridge đã kiếm được rồi! Đang kết nối tới Tor...</string>
+    <string name="bridges_obtained_connecting">Đã kiếm được cầu Bridge rồi! Đang kết nối tới Tor…</string>
     <string name="custom_bridge_description">Một cầu Bridge tuỳ chỉnh được cung cấp bởi ai đó mà bạn quen biết. Hãy hỏi xung quanh các mạng lưới quan hệ và tổ chức đáng tin cậy của bạn để xem nếu có ai đó đang host một cái.</string>
     <string name="power_user_description">Đối với những người dùng đã quen thuộc với Tor. Cho phép bạn khởi động Orbot mà không cần cài đặt VPN và hiển thị các cổng SOCKS và HTTP mở khả dụng</string>
     <string name="volunteer_mode_label">Chế độ thân thiện</string>
@@ -282,9 +282,11 @@
     <string name="apps_other_apps">Các app ứng dụng khác</string>
     <string name="ask_tor">Hãy hỏi Tor</string>
     <string name="smart_connect">Smart Connect Kết nối Thông minh (mặc định)</string>
-    <string name="asking">ĐANG HỎI...</string>
+    <string name="asking">ĐANG HỎI…</string>
     <string name="no_internet_title">Kết nối tới Internet</string>
     <string name="no_internet_subtitle">Bạn cần một kết nối internet để sử dụng Orbot.</string>
     <string name="kindness_adjust_title">Cài đặt</string>
     <string name="setting_padding">Định khoảng cách Padding</string>
+    <string name="pref_detect_root_summary">Cảnh báo khi khởi chạy rằng, liệu quyền hạn root đã được bật kích hoạt trên thiết bị này chưa</string>
+    <string name="pref_detect_root_title">Phát hiện Root</string>
 </resources>

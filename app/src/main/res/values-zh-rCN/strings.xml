@@ -250,7 +250,7 @@
     <string name="incorrect_solution">不正确的解答</string>
     <string name="having_trouble">出问题了</string>
     <string name="having_trouble_subtitle">我们接下来可以尝试 Tor 网桥，但需要你的帮助</string>
-    <string name="bridges_obtained_connecting">已获取网桥！正在连接到 tor…</string>
+    <string name="bridges_obtained_connecting">已获取网桥！正在连接到 Tor…</string>
     <string name="custom_bridge_description">自定义网桥是由你认识的人提供的。问问你所信任的人际网络和组织，看看是否有人托管网桥。</string>
     <string name="power_user_mode">高级用户模式</string>
     <string name="power_user_description">适合熟悉 Tor 的用户。 允许在没有 VPN 设置的情况下启动 Orbot 并显示打开的 SOCKS 和 HTTP 端口</string>
@@ -282,7 +282,7 @@
     <string name="not_sure">不确定吗？</string>
     <string name="ask_tor">询问Tor</string>
     <string name="many_ways">有许多途径可以连接到Tor，其中一些可能对您来说更有效。</string>
-    <string name="asking">正在咨询…</string>
+    <string name="asking">正在询问…</string>
     <string name="no_internet_subtitle">你需要连接网络来使用Orbot。</string>
     <string name="kindness_adjust_title">设置</string>
     <string name="option_only_on_wifi">仅打开Wi-Fi时</string>
@@ -290,4 +290,6 @@
     <string name="pref_flag_secure_summary">禁止其他App对Orbot进行截屏</string>
     <string name="pref_flag_secure_title">屏幕安全</string>
     <string name="root_warning">Orbot检测到您的设备已经取得了root权限，这可能会导致安全问题。</string>
+    <string name="pref_detect_root_summary">如果能够在这一装置上进行根本许可,则在启动时发出警告</string>
+    <string name="pref_detect_root_title">Root 检测</string>
 </resources>
