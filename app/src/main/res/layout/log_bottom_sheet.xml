@@ -30,23 +30,25 @@
             android:layout_marginEnd="272dp"
             app:layout_constraintHorizontal_bias="0.0" />
 
-        <Button
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnCopyLog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:tint="@color/panel_background_main"
             android:backgroundTint="@color/orbot_btn_enabled_purple"
-            android:text="@string/btn_copy_log"
+            android:contentDescription="@string/btn_copy_log"
             android:textColor="@android:color/white"
+            android:src="@drawable/ic_copy_log"
+            app:borderWidth="0dp"
+            app:rippleColor="@color/dark_purple"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_goneMarginBottom="20dp" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnCopyLog"
+            app:layout_constraintTop_toBottomOf="@+id/orbotLogHeader"
             android:paddingBottom="@dimen/button_horizontal_large_margin">
 
             <TextView
