@@ -207,7 +207,7 @@ class ConfigConnectionBottomSheet() :
             "url=" + OrbotService.getCdnFront("moat-url") + ";front=" + OrbotService.getCdnFront("moat-front")
         val pPassword = "\u0000"
 
-        //    Log.d(getClass().getSimpleName(), String.format("mHost=%s, mPort=%d, mUsername=%s, mPassword=%s", mHost, mPort, mUsername, mPassword));
+        //    Log.d(getClass().getSimpleName(), String.format("mHost=%s, mPort=%d, mUsername=%s, mPassword=%s", mHost, mPort, mUsername, mPassword))
         val authenticator: Authenticator = object : Authenticator() {
             override fun getPasswordAuthentication(): PasswordAuthentication {
                 Log.d(javaClass.simpleName, "getPasswordAuthentication!")
@@ -224,7 +224,7 @@ class ConfigConnectionBottomSheet() :
                 circumventionApiBridges = it.settings
                 if (circumventionApiBridges == null) {
                     //Log.d("abc", "settings is null, we can assume a direct connect is fine ")
-                    rbDirect.isChecked = true;
+                    rbDirect.isChecked = true
 
                 } else {
 

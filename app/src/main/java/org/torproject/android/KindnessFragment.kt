@@ -17,12 +17,12 @@ import org.torproject.android.service.util.Prefs
 
 class KindnessFragment : Fragment() {
 
-    private lateinit var tvAllTimeTotal: TextView;
-    private lateinit var tvWeeklyTotal: TextView;
-    private lateinit var swVolunteerMode: SwitchCompat;
-    private lateinit var btnActionActivate: Button;
-    private lateinit var pnlActivate: View;
-    private lateinit var pnlStatus: View;
+    private lateinit var tvAllTimeTotal: TextView
+    private lateinit var tvWeeklyTotal: TextView
+    private lateinit var swVolunteerMode: SwitchCompat
+    private lateinit var btnActionActivate: Button
+    private lateinit var pnlActivate: View
+    private lateinit var pnlStatus: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?

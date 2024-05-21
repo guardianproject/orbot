@@ -34,7 +34,7 @@ class OrbotApp : Application(), OrbotConstants {
 
         // this code only runs on first install and app updates
         if (Prefs.getCurrentVersionForUpdate() < BuildConfig.VERSION_CODE) {
-            Prefs.setCurrentVersionForUpdate(BuildConfig.VERSION_CODE);
+            Prefs.setCurrentVersionForUpdate(BuildConfig.VERSION_CODE)
             // don't do anything resource intensive here, instead set a flag to do the task later
 
             // tell OrbotService it needs to reinstall geoip
