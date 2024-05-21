@@ -266,13 +266,13 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks,
 
             var connectStr = ""
             if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_DIRECT)) connectStr =
-                context.getString(R.string.action_use) + ' ' + getString(R.string.direct_connect);
+                context.getString(R.string.action_use) + ' ' + getString(R.string.direct_connect)
             else if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SNOWFLAKE)) connectStr =
-                context.getString(R.string.action_use) + ' ' + getString(R.string.snowflake);
+                context.getString(R.string.action_use) + ' ' + getString(R.string.snowflake)
             else if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SNOWFLAKE_AMP)) connectStr =
-                context.getString(R.string.action_use) + ' ' + getString(R.string.snowflake_amp);
+                context.getString(R.string.action_use) + ' ' + getString(R.string.snowflake_amp)
             else if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_CUSTOM)) connectStr =
-                context.getString(R.string.action_use) + ' ' + getString(R.string.custom_bridge);
+                context.getString(R.string.action_use) + ' ' + getString(R.string.custom_bridge)
 
             text = if (Prefs.isPowerUserMode()) getString(R.string.connect)
             else if (connectStr.isEmpty()) Html.fromHtml(
@@ -309,12 +309,12 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks,
             visibility = View.VISIBLE
         }
         ivOnion.setImageResource(R.drawable.torstarting)
-        val animHover = AnimationUtils.loadAnimation(context, R.anim.hover);
+        val animHover = AnimationUtils.loadAnimation(context, R.anim.hover)
         animHover.repeatCount = 7
         animHover.repeatMode = Animation.REVERSE
         ivOnion.animation = animHover
         animHover.start()
-        val animShadow = AnimationUtils.loadAnimation(context, R.anim.shadow);
+        val animShadow = AnimationUtils.loadAnimation(context, R.anim.shadow)
         animShadow.repeatCount = 7
         animShadow.repeatMode = Animation.REVERSE
         ivOnionShadow.animation = animShadow
@@ -350,7 +350,7 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks,
     override fun onExitNodeSelected(exitNode: String, countryDisplayName: String) {
 
         //tor format expects "{" for country code
-        Prefs.setExitNodes("{$exitNode}");
+        Prefs.setExitNodes("{$exitNode}")
 
         sendIntentToService(
             Intent(

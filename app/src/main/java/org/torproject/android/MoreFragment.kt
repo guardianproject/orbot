@@ -22,7 +22,7 @@ import org.torproject.android.ui.v3onionservice.OnionServiceActivity
 import org.torproject.android.ui.v3onionservice.clientauth.ClientAuthActivity
 
 class MoreFragment : Fragment() {
-    private lateinit var lvMore: ListView;
+    private lateinit var lvMore: ListView
 
     private var httpPort = -1
     private var socksPort = -1
@@ -102,7 +102,7 @@ class MoreFragment : Fragment() {
                 OrbotMenuAction(R.string.menu_exit, R.drawable.ic_exit) { doExit() })
         lvMore.adapter = MoreActionAdapter(requireActivity(), listItems)
 
-        return view;
+        return view
     }
 
     private fun getTorVersion(): String {
