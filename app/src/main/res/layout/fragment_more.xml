@@ -16,12 +16,24 @@
         android:layout_height="wrap_content"
         android:id="@+id/lvMoreActions"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/orbion"
+            android:layout_margin="12dp"
+            />
     <TextView
         android:id="@+id/tvVersion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Orbot vX.X.X"
-        android:layout_gravity="bottom|center"
         android:layout_marginBottom="100dp"
         />
+    </LinearLayout>
 </FrameLayout>

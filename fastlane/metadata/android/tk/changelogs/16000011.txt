@@ -1,0 +1,8 @@
+- Esasy UI täzelenmesi!
+- Täze bridge gurmak we konfigurasiýa jadygöýleri.
+- VPN aýratynlyklary gowulaşdy
+- Düzedilen Onion/Hidden hyzmatlaryň konfigurasiýa näsazlyklary
+
+we başga-da köp zatlar...
+
+SAGBOL: pgerber, syphyr, Khsed4, BjarniRunar, Çap edilmedik, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, arrase we başgalar soraglar, borçlar we PR

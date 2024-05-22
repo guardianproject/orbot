@@ -1,0 +1,9 @@
+- Un APK d'instal·lació un 30% més petit, menys de 10 MB!
+- Actualització a Tor 0.3.3.5 (compatibilitat amb els Serveis Onion v3 i més).
+- Moltes correccions per al Tor, instal·lació del binari de transport integrable.
+- S'ha tret el servidor HTTP «Polipo», ara es fa servir la nova capacitat integrada del Tor.
+- S'ha millorat la selecció de llengües a l'aplicació.
+
+NOU PERMÍS: Accés a l'«emmagatzematge extern» és per a la informació de la còpia de seguretat persistent dels serveis onion.
+
+Notes de la versió completes a: https://github.com/n8fr8/orbot/releases/tag/16.0.2-RC-1

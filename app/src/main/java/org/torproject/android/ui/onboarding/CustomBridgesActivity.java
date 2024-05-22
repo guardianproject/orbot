@@ -35,9 +35,11 @@ import org.torproject.android.service.util.Prefs;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 public class CustomBridgesActivity extends AppCompatActivity implements TextWatcher {
 
+    private static final String DEFAULT_ENCODING = StandardCharsets.UTF_8.name();
     private static final String EMAIL_TOR_BRIDGES = "bridges@torproject.org";
     private static final String URL_TOR_BRIDGES = "https://bridges.torproject.org/bridges";
 
@@ -130,8 +132,7 @@ public class CustomBridgesActivity extends AppCompatActivity implements TextWatc
                     int urlIdx = results.indexOf("://");
 
                     if (urlIdx != -1) {
-                        //noinspection CharsetObjectCanBeUsed   -- requires API 19, we are 18
-                        results = URLDecoder.decode(results, "UTF-8");
+                        results = URLDecoder.decode(results, DEFAULT_ENCODING);
                         results = results.substring(urlIdx + 3);
 
                         setNewBridges(results);

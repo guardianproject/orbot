@@ -257,7 +257,7 @@
     <string name="testing_tor_direct_success">Berhasil. Koneksi Tor baik!</string>
     <string name="refresh_captcha">Muat ulang CAPTCHA</string>
     <string name="incorrect_solution">Solusi Tidak Benar</string>
-    <string name="bridges_obtained_connecting">Jembatan didapatkan! Menghubungkan ke tor...</string>
+    <string name="bridges_obtained_connecting">Jembatan didapatkan! Menghubungkan ke tor…</string>
     <string name="custom_bridge_description">Sebuah jembatan khusus disediakan oleh seseorang yang Anda tahu. Tanya dalam jaringan dan organisasi terpercaya Anda jika seseorang menyediakan sebuah jembatan.</string>
     <string name="having_trouble">Mengalami masalah</string>
     <string name="having_trouble_subtitle">Kami bisa mencoba sebuah jembatan Tor berikut tetapi akan membutuhkan bantuan Anda</string>
@@ -267,9 +267,9 @@
     <string name="not_sure">Tidak yakin\?</string>
     <string name="ask_tor">Tanyakan Tor</string>
     <string name="many_ways">Ada lebih banyak cara untuk mencapai Tor. Beberapa dapat bekerja dengan baik daripada yang lain untuk Anda.</string>
-    <string name="no_interent_title">Hubungkan ke internet</string>
+    <string name="no_internet_title">Hubungkan ke internet</string>
     <string name="no_internet_subtitle">Anda membutuhkan koneksi internet untuk menggunakan Orbot.</string>
-    <string name="kindness_adjust_title">Atur ketika berjalan…</string>
+    <string name="kindness_adjust_title">Pengaturan</string>
     <string name="kindess_config_detail">Atur bagaimana dan kapan perangkat Anda dapat menjadi sebagai proksi Snowflake untuk pengguna Tor lain.</string>
     <string name="asking">MENANYAKAN…</string>
     <string name="action_use">Gunakan</string>
@@ -290,4 +290,6 @@
     <string name="root_warning">Orbot telah mendeteksi bahwa perangkat Anda telah di‐root, yang dapat membuat masalah keamanan.</string>
     <string name="pref_flag_secure_summary">Cegah aplikasi lain mengambil tangkapan layar Orbot</string>
     <string name="pref_flag_secure_title">Keamanan Layar</string>
+    <string name="pref_detect_root_summary">Peringatkan pada pemulaian jika perizinan root diaktifkan di perangkat ini</string>
+    <string name="pref_detect_root_title">Deteksi Root</string>
 </resources>

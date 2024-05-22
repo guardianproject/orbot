@@ -131,7 +131,7 @@
     <string name="deny">거절</string>
     <string name="hidden_services">Onion 서비스</string>
     <string name="allow">허용</string>
-    <string name="no_interent_title">인터넷에 연결하기</string>
+    <string name="no_internet_title">인터넷에 연결하기</string>
     <string name="menu_kindness">상냥함</string>
     <string name="btn_refresh">새로고침</string>
 </resources>

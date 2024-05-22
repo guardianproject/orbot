@@ -4,11 +4,11 @@
     <string name="app_description">Orbot je besplatna proxy aplikacija koja omogućuje ostalim aplikacijama da koriste internet sigurnije. Orbot koristi Tor za enkripciju Vašeg Internet prometa, a zatim ga skriva šaljući ga kroz seriju računala diljem svijeta. Tor je besplatan software i otvorena mreža koja pomaže u borbi protiv nadzora mreže koji ugrožava osobne slobode i privatnost, povjerljive poslovne aktivnosti i odnose, te pomaže u borbi protiv analize prometa.</string>
     <string name="menu_settings">Postavke</string>
     <string name="menu_log">Dnevnik</string>
-    <string name="menu_stop">Zaustavi</string>
-    <string name="menu_about">O</string>
+    <string name="menu_stop">Prekini</string>
+    <string name="menu_about">Informacije</string>
     <string name="main_layout_download">Preuzimanje</string>
     <string name="main_layout_upload">Slanje</string>
-    <string name="button_about">O</string>
+    <string name="button_about">Informacije</string>
     <string name="menu_exit">Izlaz</string>
     <string name="menu_scan">Skeniraj BridgeQR</string>
     <string name="menu_share_bridge">Podijeli BridgeQR</string>
@@ -128,4 +128,18 @@
     <string name="menu_tor_connection">Tor veza</string>
     <string name="menu_faq">FAQ</string>
     <string name="confirm">Potvrdi</string>
+    <string name="custom_bridges">Prilagođeni mostovi</string>
+    <string name="kindness_adjust_title">Postavke</string>
+    <string name="v3_client_auth_activity_title">Autorizacija klijenta</string>
+    <string name="btn_start_vpn">Pokreni VPN</string>
+    <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="volunteer_mode_alltime_label">Ukupno (svo vrijeme)</string>
+    <string name="direct_connect">Izravna veza s Torom</string>
+    <string name="direct_connect_subtitle">Najbolji način povezivanja s Torom. Koristi ga ako Tor nije blokiran.</string>
+    <string name="smart_connect">Pametno povezivanje (standardno)</string>
+    <string name="volunteer_mode_title">Pomogni drugima
+\nda se povežu na Tor</string>
+    <string name="snowflake">Snowflake (Original)</string>
+    <string name="snowflake_subtitle">Povezuje se preko Tor volontera. Zaobilazi neka blokiranja Tor-a.</string>
+    <string name="volunteer_mode_weekly_label">Ukupno (tjedno)</string>
 </resources>

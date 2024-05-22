@@ -195,7 +195,7 @@
 \n• Wifi ukatuqikiw phunsyunaspa
 \n• Kuna pachas jiwt\'akispawa</string>
     <string name="incorrect_solution">Pantjat askichäwi</string>
-    <string name="kindness_adjust_title">Sarantki ukja askicht\'aña…</string>
+    <string name="kindness_adjust_title">Jak\'ankiri</string>
     <string name="setting_debug">Q\'umachaña</string>
     <string name="menu_kindness">Yanapt\'asiña</string>
     <string name="option_only_when_charging">Karjaski ukjaki</string>
@@ -241,7 +241,7 @@
 \njumïpana.</string>
     <string name="not_sure">Pächastati\?</string>
     <string name="connection_direct">Chiqaki</string>
-    <string name="no_interent_title">Internetar waythapiyaña</string>
+    <string name="no_internet_title">Internetar waythapiyaña</string>
     <string name="pref_flag_secure_title">Pantalla jark\'aqäwi</string>
     <string name="many_ways">Tor ukarux kunaymantuqit waythapiyasispa. Yaqhipanakax yaqhanakat sipan kusa jumatak irnaqi.</string>
     <string name="kindess_config_detail">Yaqha Tor apnaqirinakatakix kunjama ukat kunawsas tispusitiwumax Snowflake proxy ukjam tukuspa uk mayjt\'ayam.</string>

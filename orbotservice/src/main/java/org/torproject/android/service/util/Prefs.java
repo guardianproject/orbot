@@ -17,6 +17,7 @@ public class Prefs {
     private final static String PREF_BRIDGES_ENABLED = "pref_bridges_enabled";
     private final static String PREF_BRIDGES_LIST = "pref_bridges_list";
     private final static String PREF_DEFAULT_LOCALE = "pref_default_locale";
+    private final static String PREF_DETECT_ROOT = "pref_detect_root";
     private final static String PREF_ENABLE_LOGGING = "pref_enable_logging";
     private final static String PREF_START_ON_BOOT = "pref_start_boot";
     private final static String PREF_ALLOW_BACKGROUND_STARTS = "pref_allow_background_starts";
@@ -38,6 +39,8 @@ public class Prefs {
     private final static String PREF_SNOWFLAKES_SERVED_COUNT = "pref_snowflakes_served";
     private final static String PREF_SNOWFLAKES_SERVED_COUNT_WEEKLY = "pref_snowflakes_served_weekly";
 
+    private static final String PREF_CURRENT_VERSION = "pref_current_version";
+
     private static final String PREF_CONNECTION_PATHWAY = "pref_connection_pathway";
     public static final String PATHWAY_SMART = "smart", PATHWAY_DIRECT = "direct",
         PATHWAY_SNOWFLAKE = "snowflake", PATHWAY_SNOWFLAKE_AMP = "snowflake_amp", PATHWAY_CUSTOM = "custom";
@@ -45,6 +48,22 @@ public class Prefs {
     public static final String PREF_SECURE_WINDOW_FLAG = "pref_flag_secure";
 
     private static SharedPreferences prefs;
+
+    public static int getCurrentVersionForUpdate() {
+        return prefs.getInt(PREF_CURRENT_VERSION, 0);
+    }
+
+    public static void setCurrentVersionForUpdate(int version) {
+        putInt(PREF_CURRENT_VERSION, version);
+    }
+
+    private static final String PREF_REINSTALL_GEOIP = "pref_geoip";
+    public static boolean isGeoIpReinstallNeeded() {
+        return prefs.getBoolean(PREF_REINSTALL_GEOIP, true);
+    }
+    public static void setIsGeoIpReinstallNeeded(boolean reinstallNeeded) {
+        putBoolean(PREF_REINSTALL_GEOIP, reinstallNeeded);
+    }
 
     public static void setContext(Context context) {
         if (prefs == null) {
@@ -109,6 +128,10 @@ public class Prefs {
 
     public static void setDefaultLocale(String value) {
         putString(PREF_DEFAULT_LOCALE, value);
+    }
+
+    public static boolean detectRoot () {
+        return prefs.getBoolean(PREF_DETECT_ROOT,true);
     }
 
     public static boolean beSnowflakeProxy () {

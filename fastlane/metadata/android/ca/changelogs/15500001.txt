@@ -1,0 +1,8 @@
+***ATENCIÓ: S'HAN SUPRIMIT TOTES LES FUNCIONALITATS ROOT D'AQUESTA NOVA VERSIÓ DE L'ORBOT.***
+Utilitzeu el «Mode d'aplicacions VPN» de l'Orbot o el navegador Orfox per a fer servir servidors intermediaris transparents amb root.
+
+* Actualització al Tor 0.3.1.8
+* S'ha suprimit la compatibilitat les funcions amb Root / Transproxy perquè ja no s'hi pot confiar ni estan testades.
+* Compatibilitat millorada per a fer servir VPN amb servidors intermediaris transparents i amb la nova interfície d'usuari de selecció d'aplicacions «Apps».
+* S'ha resolt la inclusió d'informació de la llicència de l'Obfs4proxy
+* Actualitzat a l'última compatibilitat del Tor amb les ubicacions del pont Meek

@@ -17,7 +17,7 @@ class ExitNodeDialogFragment(private val callback: ExitNodeSelectedCallback) : D
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val currentExit = Prefs.getExitNodes().replace("\\{","").replace("\\}","")
+        val currentExit = Prefs.getExitNodes().replace("\\{", "").replace("\\}", "")
         val sortedCountries = TreeMap<String, Locale>(Collator.getInstance())
         COUNTRY_CODES.forEach {
             val locale = Locale("", it)
@@ -27,18 +27,19 @@ class ExitNodeDialogFragment(private val callback: ExitNodeSelectedCallback) : D
         val globe = getString(R.string.globe)
 
         val array = arrayOfNulls<String>(COUNTRY_CODES.size + 1)
-        array[0] =  "$globe " + getString(R.string.vpn_default_world)
+        array[0] = "$globe " + getString(R.string.vpn_default_world)
         sortedCountries.keys.forEachIndexed { index, displayCountry ->
-            array[index + 1] = Utils.convertCountryCodeToFlagEmoji(sortedCountries[displayCountry]!!.country) +
-                    " " + displayCountry
+            array[index + 1] =
+                Utils.convertCountryCodeToFlagEmoji(sortedCountries[displayCountry]!!.country) +
+                        " " + displayCountry
         }
 
         return AlertDialog.Builder(context)
-            .setNegativeButton(android.R.string.cancel) {d, _ -> d.dismiss()}
+            .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
             .setTitle(R.string.btn_change_exit)
-            .setItems(array) {_, pos ->
+            .setItems(array) { _, pos ->
                 var country = ""
-                when(pos) {
+                when (pos) {
                     0 -> {} // global
                     else -> {
                         var i = 1

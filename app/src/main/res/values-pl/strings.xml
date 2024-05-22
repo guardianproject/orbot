@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbot jest darmową aplikacją proxy która wspomaga inne aplikacje do używania internetu bezpiecznie. Orbot używa Tora do szyfrowania Twojego ruchu internetowego i następnie przepuszczania go przez wiele innych komputereów pororzucanych na całym świecie. Tor jest darmowym oprogramowaniem i otwartą siecią która pomaga Tobie w obronie przed monitoringiem sieci która zagrarza osobistej wolności i prywatności, poufnym biznesowym aktywnościom.</string>
+    <string name="app_description">Orbot to bezpłatna aplikacja proxy, która umożliwia innym aplikacjom bezpieczniejsze korzystanie z Internetu. Orbot używa sieci Tor do szyfrowania ruchu internetowego, a następnie ukrywa go, przechodząc przez szereg komputerów na całym świecie. Tor to darmowe oprogramowanie i otwarta sieć, która pomaga bronić się przed formą nadzoru sieci, która zagraża wolności osobistej i prywatności, poufnym działaniom i relacjom biznesowym oraz bezpieczeństwu państwa, znanym jako analiza ruchu.</string>
     <string name="menu_settings">Ustawienia</string>
     <string name="menu_log">Dziennik</string>
     <string name="menu_stop">Zatrzymaj</string>
@@ -125,7 +125,7 @@
     <string name="backup_saved_at_external_storage">Kopia zapasowa zapisywana w pamięci zewnętrznej</string>
     <string name="backup_service">Usługa kopii zapasowej <i>(Uwaga: może to ujawnić konfigurację usługi innym aplikacjom)</i></string>
     <string name="hidden_service_request">Aplikacja chce otworzyć port serwera Onion %1$s do sieci Tor. Jest to bezpieczne, jeśli zaufasz aplikacji.</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jeśli twoja sieć komórkowa aktywnie blokuje Tor, możesz użyć „Serwer mostkowy” jako alternatywnego sposobu wejścia. Wybierz jedną z opcji, aby skonfigurować i przetestować …</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jeśli Twoja sieć komórkowa aktywnie blokuje sieć Tor, możesz użyć opcji „Serwer mostkowy” jako alternatywnego sposobu wejścia. Wybierz jedną z opcji, aby skonfigurować i przetestować…</string>
     <string name="wizard_details_msg">Orbot to aplikacja typu open source, która zawiera Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks i LibEvent. Zapewnia lokalny serwer Proxy HTTP (8118) i serwer Proxy SOCKS (9050) do sieci Tor. Orbot ma również możliwość, na zrootowanym urządzeniu, wysyłania całego ruchu internetowego przez Tor.</string>
     <string name="refresh_apps">Odśwież aplikacje</string>
     <string name="app_services">Usługi aplikacji</string>
@@ -255,7 +255,7 @@
     <string name="pref_circuit_padding">Wypełnienie obwodu</string>
     <string name="incorrect_solution">Nieprawidłowe rozwiązanie</string>
     <string name="having_trouble">Masz problem</string>
-    <string name="bridges_obtained_connecting">Otrzymano mostki! Łączę z Tor...</string>
+    <string name="bridges_obtained_connecting">Uzyskano mostki! Łączę z Tor…</string>
     <string name="having_trouble_subtitle">Możemy spróbować mostka Tor, ale będziemy potrzebować twojej pomocy</string>
     <string name="custom_bridge_description">Mostek niestandardowy jest dostarczany przez kogoś, kogo znasz. Zapytaj w swoich zaufanych sieciach i organizacjach, czy ktoś jest gospodarzem takiego mostka.</string>
     <string name="hide_apps">Ukryj aplikacje przed monitorowaniem sieci i uzyskaj dostęp, gdy zostaną zablokowane.</string>
@@ -265,13 +265,13 @@
     <string name="not_sure">Nie wiesz\?</string>
     <string name="no_internet_subtitle">Do korzystania z Orbota potrzebne jest połączenie z internetem.</string>
     <string name="action_use">Użyj</string>
-    <string name="kindness_adjust_title">Dostosuj, kiedy działa…</string>
+    <string name="kindness_adjust_title">Ustawienia</string>
     <string name="many_ways">Istnieje wiele sposobów na dotarcie do Tor. Niektóre z nich mogą działać lepiej niż inne dla Ciebie.</string>
-    <string name="asking">PYTANIE...</string>
+    <string name="asking">PYTANIE…</string>
     <string name="pref_isolate_port_summary">Użyj innego obwodu dla każdego portu docelowego</string>
     <string name="pref_isolate_protocol_summary">Użyj innego obwodu dla każdego protokołu łączącego</string>
     <string name="ask_tor">Zapytaj Tor</string>
-    <string name="no_interent_title">Podłączenie do Internetu</string>
+    <string name="no_internet_title">Podłączenie do Internetu</string>
     <string name="kindess_config_detail">Skonfiguruj, jak i kiedy Twoje urządzenie może działać jako proxy Snowflake dla innych użytkowników Tor.</string>
     <string name="log_copied">Dziennik skopiowany</string>
     <string name="connection_direct">Bezpośrednio</string>
@@ -287,4 +287,6 @@
     <string name="option_only_when_charging">Tylko podczas ładowania</string>
     <string name="option_only_on_wifi">Tylko przez Wi-Fi</string>
     <string name="btn_copy_log">Skopiuj dziennik</string>
+    <string name="pref_detect_root_title">Wykrywanie roota</string>
+    <string name="pref_detect_root_summary">Ostrzegaj przy uruchomieniu, jeśli na tym urządzeniu włączone są uprawnienia roota</string>
 </resources>

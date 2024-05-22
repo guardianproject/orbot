@@ -1,27 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Orbot</string>
-  <string name="app_description">Orbot est une appli libre de serveur mandataire permettant aux applis d\'utiliser Internet avec une sécurité accrue. Orbot utilise Tor pour chiffrer votre trafic Internet et le cache ensuite en le relayant au travers d\'ordinateurs de par le monde. Tor est un logiciel libre et un réseau ouvert qui vous aide à vous défendre contre une forme de surveillance réseau qui menace la liberté personnelle et la protection des données personnelles, les activités professionnelles confidentielles et les relations, et l\'analyse du trafic des gouvernements.</string>
-    <string name="status_starting_up">Orbot démarre...</string>
-  <string name="status_activated">Connecté au réseau Tor</string>
-  <string name="status_disabled">Orbot est désactivé</string>
-  <string name="status_shutting_down">TorService est en cours d\'extinction</string>
-    <!--Welcome Wizard strings (DJH)-->
-    <!--END Welcome Wizard strings (DJH)-->
-    <!--New Wizard Strings-->
-  <!--Title Screen-->
-    <!--Warning screen-->
-    <!--Permissions screen-->
-    <!--TipsAndTricks screen-->
-    <!--Transparent Proxy screen-->
+    <string name="app_name">Orbot</string>
+    <string name="app_description">Orbot est une appli libre de serveur mandataire permettant aux applis d\'utiliser Internet avec une sécurité accrue. Orbot utilise Tor pour chiffrer votre trafic Internet et le cache ensuite en le relayant au travers d\'ordinateurs de par le monde. Tor est un logiciel libre et un réseau ouvert qui vous aide à vous défendre contre une forme de surveillance réseau qui menace la liberté personnelle et la protection des données personnelles, les activités professionnelles confidentielles et les relations, et l\'analyse du trafic des gouvernements.</string>
+    <string name="status_starting_up">Orbot démarre…</string>
+    <string name="status_activated">Connecté au réseau Tor</string>
+    <string name="status_disabled">Orbot est désactivé</string>
+    <string name="status_shutting_down">TorService est en cours d\'extinction</string>
     <string name="couldn_t_start_tor_process_">Impossible de démarrer le processus Tor : </string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">Vos paramètres ReachableAddresses (adresses accessibles) ont causé une exception !</string>
-  <string name="your_relay_settings_caused_an_exception_">Vos paramètres de relais ont causé une exception !</string>
-    <string name="found_existing_tor_process">un processus existant de Tor a été trouvé...</string>
-  <string name="something_bad_happened">Quelque chose n\'a pas été. Vérifiez le journal</string>
+    <string name="your_relay_settings_caused_an_exception_">Vos paramètres de relais ont causé une exception !</string>
+    <string name="found_existing_tor_process">un processus existant de Tor a été trouvé…</string>
     <string name="unable_to_start_tor">Impossible de démarrer Tor :</string>
     <string name="newnym">Vous avez basculé vers une nouvelle identité Tor !</string>
     <string name="updating_settings_in_tor_service">mise à jour des paramètres dans le service Tor</string>
-  <string name="mebibyte_per_second">Mio/s</string>
-  <string name="kibibyte_per_second">Kio/s</string>
+    <string name="mebibyte_per_second">Mio/s</string>
+    <string name="kibibyte_per_second">Kio/s</string>
 </resources>

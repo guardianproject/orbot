@@ -133,9 +133,9 @@ public class TCPSourceApp {
 
             if (hasIPv6)
                 while (m6.find()) {
-                    String addressEntry = m6.group(1);
+//                    String addressEntry = m6.group(1);
                     String portEntry = m6.group(2);
-                    int pidEntry = Integer.valueOf(m6.group(3));
+                    int pidEntry = Integer.parseInt(m6.group(3));
 
                     if (Integer.parseInt(portEntry, 16) == dport) {
                         PackageManager manager = context.getPackageManager();
@@ -151,14 +151,6 @@ public class TCPSourceApp {
                     }
                 }
 
-        } catch (SocketException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NameNotFoundException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -198,14 +190,6 @@ public class TCPSourceApp {
                 }
             }
 
-        } catch (SocketException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NameNotFoundException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }

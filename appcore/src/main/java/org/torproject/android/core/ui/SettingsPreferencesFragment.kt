@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.XmlRes
 import androidx.preference.*
@@ -20,7 +19,7 @@ class SettingsPreferencesFragment : PreferenceFragmentCompat() {
     private fun initPrefs () {
         setNoPersonalizedLearningOnEditTextPreferences()
 
-        prefLocale = findPreference<ListPreference>("pref_default_locale")
+        prefLocale = findPreference("pref_default_locale")
         val languages = Languages[requireActivity()]
         prefLocale?.entries = languages!!.allNames
         prefLocale?.entryValues = languages.supportedLocales
@@ -38,7 +37,12 @@ class SettingsPreferencesFragment : PreferenceFragmentCompat() {
         val bridgesEnabled = Prefs.bridgesEnabled()
         findPreference<Preference>("pref_be_a_snowflake")?.isEnabled = !bridgesEnabled
         findPreference<Preference>("pref_be_a_snowflake_limit")?.isEnabled = !bridgesEnabled
-        findPreference<Preference>("pref_show_snowflake_proxy_msg")?.isEnabled = !bridgesEnabled
+      //  findPreference<Preference>("pref_show_snowflake_proxy_msg")?.isEnabled = !bridgesEnabled
+
+        // kludge for #992
+        val categoryNodeConfig = findPreference<Preference>("category_node_config")
+        categoryNodeConfig?.title = "${categoryNodeConfig?.title}" + "\n\n" + "${categoryNodeConfig?.summary}"
+        categoryNodeConfig?.summary = null
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // if defined in XML, disable the persistent notification preference on Oreo+
@@ -65,8 +69,6 @@ class SettingsPreferencesFragment : PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.preferences, rootKey)
         initPrefs()
     }
-
-   // override fun attachBaseContext(newBase: Context) = super.attachBaseContext(LocaleHelper.onAttach(newBase))
 
     private fun setNoPersonalizedLearningOnEditTextPreferences() {
         val preferenceScreen = preferenceScreen

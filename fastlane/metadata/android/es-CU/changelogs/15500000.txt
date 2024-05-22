@@ -1,0 +1,8 @@
+***ADVERTENCIA: TODAS LAS OPCIONES PARA ROOT HAN SIDO QUITADAS DE ESTA NUEVA VERSIÓN***
+Utilice "Aplicaciones Modo VPN" de Orbot o el navegador Orfox en lugar de un transproxy con root.
+
+* Actualización Tor 0.3.1.8
+* Se eliminó el soporte para Root / Funciones Transproxy, (no probadasy no confiable)
+* Soporte MEJORADO para VPN Transproxy y nueva interfaz de selección de aplicaciones "Apps"
+* Problema de inclusión de información de licencia obfs4proxy
+* Actualización a las últimas ubicaciones de los puentes Meek compatibles con Tor

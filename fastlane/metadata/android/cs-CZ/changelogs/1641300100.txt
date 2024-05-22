@@ -1,0 +1,3 @@
+- odstraněna možnost Meek "Cloud" mostu, protože již není podporována
+- další zlepšení podpory pro Onion V3 službu
+- pro #441, opravuje vyhledávání aplikace pro app-based VPN výběr

@@ -32,7 +32,9 @@ class OnBootReceiver : BroadcastReceiver() {
 
         try {
 
-            val intent = Intent(context, OrbotService::class.java).apply { this.action = action }
+            val intent = Intent(context, OrbotService::class.java).apply {
+                this.action = action
+            }.putNotSystem()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
                 context.startForegroundService(intent)
             else {

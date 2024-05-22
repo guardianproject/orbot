@@ -1,23 +1,22 @@
-Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.
+Το Orbot είναι μια δωρεάν εφαρμογή διακομιστή μεσολάβησης που δίνει τη δυνατότητα σε άλλες εφαρμογές να χρησιμοποιούν το διαδίκτυο με μεγαλύτερη ασφάλεια. Το Orbot χρησιμοποιεί το Tor για να κρυπτογραφήσει την κυκλοφορία σας στο Διαδίκτυο και στη συνέχεια το κρύβει αναπηδώντας μέσα από μια σειρά υπολογιστών σε όλο τον κόσμο. Το Tor είναι δωρεάν λογισμικό και ένα ανοιχτό δίκτυο που σας βοηθά να αμυνθείτε ενάντια σε μια μορφή επιτήρησης δικτύου που απειλεί την προσωπική ελευθερία και ιδιωτικότητα, τις εμπιστευτικές επιχειρηματικές δραστηριότητες και σχέσεις και την κρατική ασφάλεια, γνωστή ως ανάλυση κυκλοφορίας.
 
-*** SAMSUNG GALAXY USERS ***
-On some devices, a Samsung app is listening on the same network port that Orbot needs. Download 'SockStat' from Google Play. Look for the app on port 9050. Force stop and disable that app. You can also try to change Orbot's "Tor SOCKS" setting under the Debug section to 9051 or AUTO. You can see the fix in this video: https://www.youtube.com/watch?v=yK-nK4F67_g
+*** ΧΡΗΣΤΕΣ SAMSUNG GALAXY ***
+Σε ορισμένες συσκευές, μια εφαρμογή Samsung χρησιμοποιεί την ίδια θύρα δικτύου που χρειάζεται το Orbot. Κατεβάστε το "SockStat" από το Google Play. Αναζητήστε την εφαρμογή στη θύρα 9050. Κάντε αναγκαστική διακοπή και απενεργοποίηση αυτής της εφαρμογής. Μπορείτε επίσης να δοκιμάσετε να αλλάξετε τη ρύθμιση "Tor SOCKS" του Orbot στην ενότητα Εντοπισμός σφαλμάτων σε 9051 ή αυτόματο. Μπορείτε να δείτε τη λύση σε αυτό το βίντεο: https://www.youtube.com/watch?v=yK-nK4F67_g
 *****
+Το Orbot είναι η μόνη εφαρμογή που δημιουργεί μια πραγματικά ιδιωτική σύνδεση στο διαδίκτυο. Όπως γράφουν οι New York Times, «όταν φτάνει μια επικοινωνία από το Tor, δεν μπορείς ποτέ να ξέρεις από πού ή από ποιον προέρχεται». Το Tor κέρδισε το 2012 Electronic Frontier Foundation (EFF) Pioneer Award.
 
-Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.
+★ ΜΗΝ ΑΠΟΔΕΧΤΕ ΚΑΜΙΑ ΤΡΟΠΟΠΟΙΗΣΗ: Το Orbot είναι ο ασφαλέστερος τρόπος χρήσης του Διαδικτύου στο Android. Το Orbot κάνει αναπήδηση την κρυπτογραφημένη επισκεψιμότητά σας πολλές φορές μέσω υπολογιστών σε όλο τον κόσμο, αντί να σας συνδέει απευθείας όπως το VPN και οι διακομιστές μεσολάβησης. Αυτή η διαδικασία διαρκεί λίγο περισσότερο, αλλά η ισχυρότερη προστασία απορρήτου και ταυτότητας που είναι διαθέσιμη αξίζει την αναμονή.
+★ ΙΔΙΩΤΙΚΗ ΠΕΡΙΓΡΑΦΗ ΙΣΤΟΣΕΛΙΔΑΣ: Χρησιμοποιήστε το Orfox, τον πιο ανώνυμο τρόπο πρόσβασης σε οποιονδήποτε ιστότοπο, ακόμα και αν είναι συνήθως αποκλεισμένος, παρακολουθούμενος ή στον κρυφό ιστό. Αποκτήστε το Orfox: https://play.google.com/store/apps/details?id=info.guardianproject.orfox
+★ ΜΗΝΥΜΑΤΑ ΙΔΙΩΤΙΚΗΣ ΣΥΖΗΤΗΣΗΣ: Χρησιμοποιήστε το ChatSecure με το Orbot για να συνομιλήσετε εμπιστευτικά με οποιονδήποτε, οπουδήποτε, δωρεάν. Αποκτήστε το ChatSecure: https://goo.gl/O3FfS
+★ ΑΠΟΡΡΗΤΟ ΓΙΑ ΕΦΑΡΜΟΓΕΣ: Οποιαδήποτε εγκατεστημένη εφαρμογή μπορεί να χρησιμοποιήσει το Tor εάν διαθέτει δυνατότητα διακομιστή μεσολάβησης, χρησιμοποιώντας τις ρυθμίσεις που βρίσκονται εδώ: https://goo.gl/2OA1y. Χρησιμοποιήστε το Orbot με το Twitter ή δοκιμάστε ιδιωτική αναζήτηση στον ιστό με το DuckDuckGo: https://goo.gl/lgh1p
+★ ΑΠΟΡΡΗΤΟ ΓΙΑ ΟΛΟΥΣ: Το Tor μπορεί να σας βοηθήσει να ερευνήσετε εμπιστευτικά έναν ανταγωνιστή, να ξεπεράσετε το μπλοκ του Facebook στο σχολείο ή να παρακάμψετε ένα τείχος προστασίας για να παρακολουθήσετε αθλήματα στη δουλειά.
+★ ΕΥΚΟΛΗ ΙΔΙΩΤΙΚΟΤΗΤΑ: Ρίξτε μια ματιά στη μοναδική, διαδραστική πορεία μας: https://guardianproject.info/howto/browsefreely
+★ ΕΙΝΑΙ ΕΠΙΣΗΜΟ: Αυτή είναι η επίσημη έκδοση της υπηρεσίας δρομολόγησης Tor onion για Android.
 
-★ ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.
-★ PRIVATE WEB SURFING: Use with Orfox, the most anonymous way to access any website, even if it’s normally blocked, monitored, or on the hidden web. Get Orfox: https://play.google.com/store/apps/details?id=info.guardianproject.orfox
-★ PRIVATE CHAT MESSAGING: Use ChatSecure with Orbot to chat confidentially with anyone, anywhere for free. Get ChatSecure: https://goo.gl/O3FfS
-★ PRIVACY FOR APPS: Any installed app can use Tor if it has a proxy feature, using the settings found here: https://goo.gl/2OA1y Use Orbot with Twitter, or try private web searching with DuckDuckGo: https://goo.gl/lgh1p
-★ PRIVACY FOR EVERYONE: Tor can help you confidentially research a competitor, get around the Facebook block at school, or circumvent a firewall to watch sports at work.
-★ PRIVACY MADE EASY: Check out our fun, interactive walkthrough: https://guardianproject.info/howto/browsefreely
-★ IT’S OFFICIAL: This is the official version of the Tor onion routing service for Android.
+***Λατρεύουμε τα σχόλια***
+★ ΣΧΕΤΙΚΑ ΜΕ ΕΜΑΣ: Το Guardian Project είναι μια ομάδα προγραμματιστών που κατασκευάζουν ασφαλείς εφαρμογές για κινητά και ανοιχτού κώδικα για ένα καλύτερο αύριο.
+★ ΕΛΕΥΘΕΡΟ ΛΟΓΙΣΜΙΚΟ: Το Orbot είναι δωρεάν λογισμικό. Ρίξτε μια ματιά στον πηγαίο κώδικα μας ή εγγραφείτε στην κοινότητα για να τον βελτιώσετε: https://gitweb.torproject.org/orbot.git
+★ ΣΤΕΙΛΤΕ ΜΑΣ ΜΗΝΥΜΑ: Σας λείπει το αγαπημένο σας χαρακτηριστικό; Βρήκατε ένα ενοχλητικό σφάλμα; Θα θέλαμε να ακούσουμε νέα σας! Στείλτε μας ένα μήνυμα στο email: support@guardianproject.info
 
-***We Love Feedback***
-★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow.
-★ OPEN-SOURCE: Orbot is free software. Take a look at our source code, or join the community to make it better: https://gitweb.torproject.org/orbot.git
-★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? We’d love to hear from you! Send us an email: support@guardianproject.info
-
-***Disclaimer***
-The Guardian Project makes apps that are designed to protect your security and anonymity. The protocols that we use are widely regarded as the state of the art in security technology. While we are constantly upgrading our software to combat the latest threats and eliminate bugs, no technology is 100% foolproof. For maximum security and anonymity users must utilize best practices to keep themselves safe.  You can find a good introductory guide to these topics at https://securityinabox.org
+***Αποποίηση ευθυνών***
+Το Guardian Project δημιουργεί εφαρμογές που έχουν σχεδιαστεί για να προστατεύουν την ασφάλεια και την ανωνυμία σας. Τα πρωτόκολλα που χρησιμοποιούμε θεωρούνται ευρέως ως η τελευταία λέξη της τεχνολογίας και ασφαλείας. Ενώ αναβαθμίζουμε συνεχώς το λογισμικό μας για την καταπολέμηση των πιο πρόσφατων απειλών και την εξάλειψη σφαλμάτων, καμία τεχνολογία δεν είναι 100% αλάνθαστη. Για μέγιστη ασφάλεια και ανωνυμία, οι χρήστες πρέπει να χρησιμοποιούν βέλτιστες πρακτικές για να παραμείνουν ασφαλείς. Μπορείτε να βρείτε έναν καλό εισαγωγικό οδηγό για αυτά τα θέματα στη διεύθυνση https://securityinabox.org

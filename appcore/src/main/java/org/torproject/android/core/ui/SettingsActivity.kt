@@ -12,7 +12,6 @@ class SettingsActivity : BaseActivity() {
             .beginTransaction()
             .replace(android.R.id.content, SettingsPreferencesFragment())
             .commit()
-
     }
 
 

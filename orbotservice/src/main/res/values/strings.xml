@@ -15,7 +15,6 @@
     <string name="your_reachableaddresses_settings_caused_an_exception_">Your ReachableAddresses settings caused an exception!</string>
     <string name="your_relay_settings_caused_an_exception_">Your relay settings caused an exception!</string>
     <string name="found_existing_tor_process">found existing Tor process&#8230;</string>
-    <string name="something_bad_happened">Something bad happened. Check the log</string>
     <string name="unable_to_start_tor">Unable to start Tor:</string>
 
     <string name="newnym">You\'ve switched to a new Tor identity!</string>
@@ -39,7 +38,6 @@
     <string name="log_notice_added_event_handler">Added control port event handler</string>
     <string name="log_notice_connected_to_tor_control_port">Connected to tor control port</string>
     <string name="log_notice_ignoring_start_request">Ignoring start request, already started.</string>
-    <string name="log_notice_geoip_error">There was an error installing geoip files</string>
 
 </resources>
 

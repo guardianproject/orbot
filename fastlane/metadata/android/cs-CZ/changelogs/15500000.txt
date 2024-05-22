@@ -1,0 +1,8 @@
+***VAROVÁNÍ: VŠECHNY FUNKCE VYŽADUJÍCÍ ROOT BYLY Z TÉTO NOVÉ VERZE ORBOTA ODEBRÁNY.***
+Prosím používejte režim Orbota "Apps VPN Mode" nebo Orfox prohlížeč, namísto transparentní proxy jako root.
+
+* Aktualizace Tor na verzi 0.3.1.8
+* Odebrána podpora Root / Transproxy funkce, kvůli nespolehlivosti a neotestování
+* VYLEPŠENÁ podpora VPN transparentní proxy a nové "Apps" app uživatelské prostředí sekce
+* Problém inkluze informace licence adresy Obfs4proxy
+* Aktualizace na nejnovější podporu Tor Meek bridge umístění

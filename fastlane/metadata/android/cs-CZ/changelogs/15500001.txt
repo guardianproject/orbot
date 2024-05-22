@@ -1,0 +1,10 @@
+***VAROVÁNÍ: VŠECHNY FUNKCE ROOT BYLY ODEBRÁNY Z TÉTO NOVÉ VERZE ORBOTA.***
+Použijte "Apps VPN režim" Orbota nebo Orfox prohlížeč místo transparentní proxifikace jako root.
+
+* Aktualizace na Tor 0.3.1.8
+* Odebrána podpora Root / Transproxy funkce protože se staly
+nespolehlivými a nadále netestovanými
+* VYLEPŠENA podpora transparentní proxifikace VPN a nové
+uživatelské rozhraní výběru "Apps" aplikace
+* problém s inkluzí informací licence adresy Obfs4proxy
+* Aktualizace na nejnovější umístění mostů Tor meek

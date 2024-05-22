@@ -1,0 +1,4 @@
+* VPN mody üçin möhüm düzedişler
+* Täze deslapky köpriler
+* Tor wersiýasy 0.4.0.4 täzelendi
+* 64 bitli mody we Android Q-ny goldaýar

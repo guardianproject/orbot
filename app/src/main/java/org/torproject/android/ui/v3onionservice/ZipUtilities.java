@@ -24,7 +24,6 @@ import java.util.zip.ZipOutputStream;
 public class ZipUtilities {
     private static final int BUFFER = 2048;
     public static final String ZIP_MIME_TYPE = "application/zip";
-    public static final FilenameFilter FILTER_ZIP_FILES = (dir, name) -> name.toLowerCase().endsWith(".zip");
 
     private final String[] files;
     private final Uri zipFile;
@@ -40,9 +39,11 @@ public class ZipUtilities {
         try {
             BufferedInputStream origin;
             ParcelFileDescriptor pdf = contentResolver.openFileDescriptor(zipFile, "w");
+            assert pdf != null;
             FileOutputStream dest = new FileOutputStream(pdf.getFileDescriptor());
             ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
             byte[] data = new byte[BUFFER];
+            assert files != null;
             for (String file : files) {
                 FileInputStream fi = new FileInputStream(file);
                 origin = new BufferedInputStream(fi, BUFFER);
@@ -83,6 +84,7 @@ public class ZipUtilities {
             is = contentResolver.openInputStream(zipFile);
             ZipInputStream zis = new ZipInputStream(new BufferedInputStream(is));
             boolean returnVal = extractFromZipInputStream(outputPath, zis);
+            assert is != null;
             is.close();
             return returnVal;
         } catch (IOException e) {

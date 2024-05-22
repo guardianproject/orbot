@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbot е безплатно приложение-посредник, което дава възможност на други приложения да използват интерент по-сигурно. За да шифрова трафика, който се предава интернет Orbot използва Тор, като след това го скрива, препращайки го през няколко компютъра по целия свят. Тор е безплатен софтуер и отворена мрежа, която помага да се предпазите от шпиониране по мрежата, което заплашва свободата и личното пространство, конфиденциални бизнес отношения и връзки, и от вид правителствено следене наречено анализ на трафика.</string>
+    <string name="app_description">Orbot е безплатно приложение-посредник, което дава възможност на други приложения да използват интернет по-сигурно. За да шифрова трафика, който се предава интернет Orbot използва Тор, като след това го скрива, препращайки го през няколко компютъра по целия свят. Тор е безплатен софтуер и отворена мрежа, която помага да се предпазите от шпиониране по мрежата, което заплашва свободата и личното пространство, конфиденциални бизнес отношения и връзки, и от вид правителствено следене наречено анализ на трафика.</string>
     <string name="menu_settings">Настройки</string>
     <string name="menu_log">Дневник</string>
     <string name="menu_stop">Спиране</string>
@@ -263,8 +263,8 @@
     <string name="snowflake_amp">Снежинка (AMP)</string>
     <string name="action_use">Използване</string>
     <string name="asking">ЗАПИТВАНЕ…</string>
-    <string name="no_interent_title">Свържете се с интернет</string>
-    <string name="kindness_adjust_title">Настройка на работата…</string>
+    <string name="no_internet_title">Свържете се с интернет</string>
+    <string name="kindness_adjust_title">Настройки</string>
     <string name="no_internet_subtitle">За да използвате Orbot е необходим достъп до интернет.</string>
     <string name="not_sure">Не сте сигурни\?</string>
     <string name="ask_tor">Попитайте Тор</string>
@@ -287,4 +287,6 @@
     <string name="connection_direct">Директно</string>
     <string name="pref_flag_secure_summary">Предотвратяване на други приложения да заснемат екрана на Orbot</string>
     <string name="root_warning">Orbot е установил, достъп до суперпотребителя, което снижава сигурността на устройството.</string>
+    <string name="pref_detect_root_title">Наличие на суперпотребител</string>
+    <string name="pref_detect_root_summary">Предупреждаване за наличие на достъп до правата на суперпотребителя</string>
 </resources>

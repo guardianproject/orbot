@@ -46,6 +46,7 @@ public class V3BackupUtils {
         String fileText = OrbotService.buildV3ClientAuthFile(domain, keyHash);
         try {
             ParcelFileDescriptor pfd = mContext.getContentResolver().openFileDescriptor(backupFile, "w");
+            assert pfd != null;
             FileOutputStream fos = new FileOutputStream(pfd.getFileDescriptor());
             fos.write(fileText.getBytes());
             fos.close();
@@ -146,19 +147,9 @@ public class V3BackupUtils {
         return new File(mContext.getFilesDir().getAbsolutePath(), OrbotConstants.ONION_SERVICES_DIR);
     }
 
-    public void restoreZipBackupV3Legacy(File zipFile) {
-        String backupName = zipFile.getName();
-        ZipUtilities zip = new ZipUtilities(null, null, mResolver);
-        String v3Dir = backupName.substring(0, backupName.lastIndexOf('.'));
-        File v3Path = new File(getV3BasePath().getAbsolutePath(), v3Dir);
-        if (zip.unzipLegacy(v3Path.getAbsolutePath(), zipFile))
-            extractConfigFromUnzippedBackupV3(backupName);
-        else
-            Toast.makeText(mContext, R.string.error, Toast.LENGTH_LONG).show();
-    }
-
     public void restoreZipBackupV3(Uri zipUri) {
         Cursor returnCursor = mResolver.query(zipUri, null, null, null, null);
+        assert returnCursor != null;
         int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
         returnCursor.moveToFirst();
         String backupName = returnCursor.getString(nameIndex);

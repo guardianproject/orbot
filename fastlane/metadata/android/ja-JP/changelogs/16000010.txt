@@ -1,0 +1,8 @@
+-ユーザーインターフェースのメジャーアップデート!
+-セットアップとブリッジ設定の新しいウィザード
+-VPN機能の向上
+-Onion/Hidden Service構成のクラッシュの修正
+
+などなど...
+
+感謝:pgerber、syphyr、Khsed 4、BjarniRunar、Unpublished、igortoliveira、goapunk、SpotComms、AkshatAgrawal 05、dixidroid、arraseなどが問題、コミット、PRを提供して下さりました

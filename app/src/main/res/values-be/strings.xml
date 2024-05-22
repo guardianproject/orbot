@@ -95,7 +95,7 @@
     <string name="pref_torrc_dialog">Карыстальніцкі Torrc</string>
     <string name="bridges_updated">Масты абноўлены</string>
     <string name="restart_orbot_to_use_this_bridge_">Калі ласка, перазапусціце Orbot для ўступу змены ў сілу</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Калі ваша мабільная сетка актыўна блакуе Tor, вы можаце выкарыстоўваць масты Tor для доступу да сеткі. Абярыце адзін з варыянтаў для налады і тэставання:</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Калі ваша мабільная сетка актыўна блакуе Tor, вы можаце выкарыстоўваць масты Tor для доступу да сеткі. Абярыце адзін з варыянтаў для налады і тэставання…</string>
     <string name="get_bridges_email">Эл. пошта</string>
     <string name="apps_mode">VPN-рэжым</string>
     <string name="send_email">Адправіць ліст</string>
@@ -108,7 +108,7 @@
     <string name="name">Імя</string>
     <string name="done">Гатова!</string>
     <string name="copy_address_to_clipboard">Скапіяваць адрас у буфер памену</string>
-    <string name="backup_service">Рэзерваваць службу</string>
+    <string name="backup_service">Сэрвіс рэзервовага капіравання <i>(Папярэджанне: гэта можа прывесці да таго, што ваша канфігурацыя сэрвісу будзе раскрыта іншым праграмам)</i></string>
     <string name="delete_service">Выдаліць службу</string>
     <string name="backup_saved_at_external_storage">Рэзервовая копія захавана на вонкавым сховішчы</string>
     <string name="backup_restored">Адноўлена з рэзервовай копіі</string>
@@ -122,8 +122,8 @@
     <string name="share_as_qr">Падзяліцца праз QR-код</string>
     <string name="disable">Адключыць</string>
     <string name="enable">Уключыць</string>
-    <string name="consider_disable_battery_optimizations">Разгледзьце магчымасць адключэння аптымізацыі батарэі</string>
-    <string name="consider_enable_battery_optimizations">Разгледзьце магчымасць уключэння аптымізацыі батарэі</string>
+    <string name="consider_disable_battery_optimizations">Размешчаныя службы працуюць, падумайце аб адключэнні аптымізацыі батарэі</string>
+    <string name="consider_enable_battery_optimizations">Размешчаныя паслугі не працуюць, уключыце аптымізацыю батарэі</string>
     <string name="pref_isolate_dest">Ізаляваць адрасы прызначэння</string>
     <string name="pref_isolate_dest_summary">Ужываць розныя ланцугі для кожнага адраса прызначэння</string>
     <string name="pref_connection_padding">Пракладка злучэння</string>
@@ -169,4 +169,18 @@
     <string name="pref_open_proxy_on_all_interfaces_summary">Дазвольце аднарангавым карыстальнікам Wi-Fi, прывязаным прыладам і любым іншым, хто можа падлучыцца да вашага IP-адрасу, атрымліваць доступ да Tor</string>
     <string name="strict_nodes_description">Разглядайце налады Exclude Nodes як патрабаванне для пабудовы ўсіх ланцугоў. Гэта можа прывесці да парушэння функцыянальнасці, калі ніводны контур не можа быць згенераваны з дапамогай налад Exclude Nodes.</string>
     <string name="pref_http_summary">Порт, на якім Tor прапануе свой HTTP-проксі (па змаўчанні: 8118 ці 0 для адключэння)</string>
+    <string name="v3_hosted_services">Размяшчэнне Onion Services</string>
+    <string name="pref_http_dialog">Канфігурацыя порта HTTP</string>
+    <string name="v3_backup_key">Ключ аўтарызацыі рэзервовага кліента</string>
+    <string name="v3_backup_name_hint">Імя файла рэзервовай копіі…</string>
+    <string name="get_bridges_email_request">Запыт Bridges па электроннай пошце</string>
+    <string name="v3_client_auth_activity_title">Аўтарызацыя кліента</string>
+    <string name="v3_backup_key_warning">Папярэджанне: гэта можа паставіць ваш ключ у іншыя праграмы</string>
+    <string name="v3_delete_client_authorization">Выдаліць ключ аўтарызацыі кліента</string>
+    <string name="v3_delete_client_authorization_confirm">Выдаліць аўтарызацыю кліента</string>
+    <string name="v3_onion">Дамен .onion</string>
+    <string name="v3_key_hash">Закрыты ключ x25519 у Base32</string>
+    <string name="pref_isolate_port">Ізалюйце парты прызначэння</string>
+    <string name="v3_import_auth_private">Імпартаваць .auth_private</string>
+    <string name="backup_port_exist">Памылка: служба Onion ужо выкарыстоўвае порт %s</string>
 </resources>

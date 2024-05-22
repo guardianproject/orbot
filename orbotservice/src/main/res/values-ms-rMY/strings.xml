@@ -16,6 +16,5 @@
     <string name="your_reachableaddresses_settings_caused_an_exception_">Tetapan ReachableAddresses anda menyebabkan pengecualian!</string>
   <string name="your_relay_settings_caused_an_exception_">Tetapan relay anda menyebabkan pengecualian!</string>
     <string name="found_existing_tor_process">Proses Tor sedia ada ditemui..</string>
-  <string name="something_bad_happened">Sesuatu yang buruk berlaku. Semak log.</string>
     <string name="unable_to_start_tor">Tidak dapat memulakan Tor:</string>
 </resources>

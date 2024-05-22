@@ -268,10 +268,10 @@
     <string name="not_sure">مطمئن نیستید؟</string>
     <string name="many_ways">راه‌های زیادی برای اتّصال به تور وجود دارد. برخی ممکن است بهتر از دیگران برای شما کار کنند.</string>
     <string name="action_use">استفاده</string>
-    <string name="asking">پرسیدن...</string>
-    <string name="no_interent_title">به اینترنت وصل شوید</string>
+    <string name="asking">پرسیدن…</string>
+    <string name="no_internet_title">به اینترنت وصل شوید</string>
     <string name="no_internet_subtitle">برای استفاده از روبوت پیازی نیاز به اینترنت دارید.</string>
-    <string name="kindness_adjust_title">زمانی که اجرا می‌شود تنظیم کنید…</string>
+    <string name="kindness_adjust_title">تنظیمات</string>
     <string name="kindess_config_detail">پیکربندی کنید که چگونه و چه زمانی دستگاه شما می‌تواند به عنوان یک پروکسی دانه برف برای سایر کاربران Tor عمل کند.</string>
     <string name="log_copied">گزارشات رونوشت شدند</string>
     <string name="btn_copy_log">رونوشت گزارشات</string>
@@ -287,4 +287,6 @@
     <string name="pref_flag_secure_summary">جلوگیری از نماگرفت دیگر کاره‌ها از روبوت پیازی</string>
     <string name="pref_flag_secure_title">امنیت صفحه‌نمایش</string>
     <string name="root_warning">روبوت پیازی تشخیص داده دستگاهتان روت شده که می تواند موجب مشکلات امنیتی شود.</string>
+    <string name="pref_detect_root_summary">هشدار در آغاز در صورت به کار افتاده بودن اجازه‌های ریشه روی این افزاره</string>
+    <string name="pref_detect_root_title">تشخیص ریشه</string>
 </resources>

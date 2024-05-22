@@ -45,16 +45,14 @@ public class CustomTorResourceInstaller {
         stmOut.close();
         stm.close();
 
-        if (zis != null)
-            zis.close();
+        if (zis != null) zis.close();
     }
 
     /*
      * Extract the Tor resources from the APK file using ZIP
      */
     public void installGeoIP() throws IOException {
-        if (!installFolder.exists())
-            installFolder.mkdirs();
+        if (!installFolder.exists()) installFolder.mkdirs();
         assetToFile(OrbotConstants.GEOIP_ASSET_KEY, OrbotConstants.GEOIP_ASSET_KEY, false, false);
         assetToFile(OrbotConstants.GEOIP6_ASSET_KEY, OrbotConstants.GEOIP6_ASSET_KEY, false, false);
     }

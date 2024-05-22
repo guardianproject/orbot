@@ -1,0 +1,9 @@
+- Gurmak ölçegi (APK) 30% kiçi, 10 MB-dan az!
+ - tor 0.3.3.5 täzelendi (Onion Services v3 we başga-da köp goldaw)
+ - dakylýan transport ikili Tor gurmak üçin köp düzedişler.
+ - Indi Toruň täze gurlan mümkinçiliklerini ulanyp, Polipo HTTP serweri ýok.
+ - programmada dil saýlanyşyny gowulandyrmak
+
+TÄZE RUGSAT: "Daşarky ammar"-a girmek, onion hyzmatlary üçin ätiýaçlyk maglumatlary tygşytlamak üçin niýetlenendir. 
+
+Doly goýberiş bellikleri: https://github.com/n8fr8/orbot/releases/tag/16.0.2-RC-1

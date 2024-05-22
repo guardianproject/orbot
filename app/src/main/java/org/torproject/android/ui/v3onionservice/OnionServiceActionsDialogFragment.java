@@ -17,8 +17,6 @@ import org.torproject.android.R;
 import org.torproject.android.core.ClipboardUtils;
 import org.torproject.android.core.DiskUtils;
 
-import java.io.File;
-
 public class OnionServiceActionsDialogFragment extends DialogFragment {
 
     private static final int REQUEST_CODE_WRITE_FILE = 343;
@@ -32,10 +30,10 @@ public class OnionServiceActionsDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Bundle arguments = getArguments();
-        AlertDialog ad = new AlertDialog.Builder(getActivity())
+        AlertDialog ad = new AlertDialog.Builder(requireActivity())
                 .setItems(new CharSequence[]{
                         getString(R.string.copy_address_to_clipboard),
-                        Html.fromHtml(getString(R.string.backup_service)),
+                        Html.fromHtml(getString(R.string.backup_service), Html.FROM_HTML_MODE_LEGACY),
                         getString(R.string.delete_service)}, null)
                 .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
                 .setTitle(R.string.hidden_services)
@@ -43,10 +41,18 @@ public class OnionServiceActionsDialogFragment extends DialogFragment {
 
         // done this way so we can startActivityForResult on backup without the dialog vanishing
         ad.getListView().setOnItemClickListener((parent, view, position, id) -> {
-            if (position == 0) doCopy(arguments, getContext());
-            else if (position == 1) doBackup(arguments, getContext());
-            else if (position == 2)
+            if (position == 0) {
+                assert arguments != null;
+                doCopy(arguments, getContext());
+            }
+            else if (position == 1) {
+                assert arguments != null;
+                doBackup(arguments, getContext());
+            }
+            else if (position == 2) {
+                assert getFragmentManager() != null;
                 new OnionServiceDeleteDialogFragment(arguments).show(getFragmentManager(), OnionServiceDeleteDialogFragment.class.getSimpleName());
+            }
             if (position != 1) dismiss();
         });
         return ad;
@@ -67,12 +73,8 @@ public class OnionServiceActionsDialogFragment extends DialogFragment {
             Toast.makeText(context, R.string.please_restart_Orbot_to_enable_the_changes, Toast.LENGTH_LONG).show();
             return;
         }
-        if (DiskUtils.supportsStorageAccessFramework()) {
-            Intent createFileIntent = DiskUtils.createWriteFileIntent(filename, "application/zip");
-            startActivityForResult(createFileIntent, REQUEST_CODE_WRITE_FILE);
-        } else { // APIs 16, 17, 18
-            attemptToWriteBackup(Uri.fromFile(new File(DiskUtils.getOrCreateLegacyBackupDir(getString(R.string.app_name)), filename)));
-        }
+        Intent createFileIntent = DiskUtils.createWriteFileIntent(filename, "application/zip");
+        startActivityForResult(createFileIntent, REQUEST_CODE_WRITE_FILE);
     }
 
     @Override
@@ -85,6 +87,7 @@ public class OnionServiceActionsDialogFragment extends DialogFragment {
     }
 
     private void attemptToWriteBackup(Uri outputFile) {
+        assert getArguments() != null;
         String relativePath = getArguments().getString(OnionServiceActivity.BUNDLE_KEY_PATH);
         V3BackupUtils v3BackupUtils = new V3BackupUtils(getContext());
         String backup = v3BackupUtils.createV3ZipBackup(relativePath, outputFile);

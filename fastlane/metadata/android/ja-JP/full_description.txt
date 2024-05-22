@@ -1,23 +1,18 @@
-Orbot is a free proxy app that empowers other apps to use the internet more securely. Orbot uses Tor to encrypt your Internet traffic and then hides it by bouncing through a series of computers around the world. Tor is free software and an open network that helps you defend against a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security known as traffic analysis.
+Orbotは、他のアプリがより安全にインターネットを使用できるようにする無料のプロキシアプリです。OrbotはTorを使ってインターネットトラフィックを暗号化し、世界中の一連のコンピュータを経由してそれを隠します。Torは、個人の自由やプライバシー、機密性の高いビジネス活動や人間関係、トラフィック分析と呼ばれる国家のセキュリティを脅かすネットワーク監視の一種に対する防御を支援するフリーソフトウェアおよびオープンネットワークです。
 
-*** SAMSUNG GALAXY USERS ***
-On some devices, a Samsung app is listening on the same network port that Orbot needs. Download 'SockStat' from Google Play. Look for the app on port 9050. Force stop and disable that app. You can also try to change Orbot's "Tor SOCKS" setting under the Debug section to 9051 or AUTO. You can see the fix in this video: https://www.youtube.com/watch?v=yK-nK4F67_g
-*****
+Orbotは、本当にプライベートなインターネット接続を作成する唯一のアプリです。New York Timesが書いているように、「Torから通信が届いても、どこの誰からの通信かわかりません」。
 
-Orbot is the only app that creates a truly private internet connection. As the New York Times writes, “when a communication arrives from Tor, you can never know where or whom it’s from.” Tor won the 2012 Electronic Frontier Foundation (EFF) Pioneer Award.
+Torは2012年に電子フロンティア財団 (EFF) パイオニア賞を受賞しました。
 
-★ ACCEPT NO SUBSTITUTES: Orbot is the safest way to use the Internet on Android. Period. Orbot bounces your encrypted traffic several times through computers around the world, instead of connecting you directly like VPNs and proxies. This process takes a little longer, but the strongest privacy and identity protection available is worth the wait.
-★ PRIVATE WEB SURFING: Use with Orfox, the most anonymous way to access any website, even if it’s normally blocked, monitored, or on the hidden web. Get Orfox: https://play.google.com/store/apps/details?id=info.guardianproject.orfox
-★ PRIVATE CHAT MESSAGING: Use ChatSecure with Orbot to chat confidentially with anyone, anywhere for free. Get ChatSecure: https://goo.gl/O3FfS
-★ PRIVACY FOR APPS: Any installed app can use Tor if it has a proxy feature, using the settings found here: https://goo.gl/2OA1y Use Orbot with Twitter, or try private web searching with DuckDuckGo: https://goo.gl/lgh1p
-★ PRIVACY FOR EVERYONE: Tor can help you confidentially research a competitor, get around the Facebook block at school, or circumvent a firewall to watch sports at work.
-★ PRIVACY MADE EASY: Check out our fun, interactive walkthrough: https://guardianproject.info/howto/browsefreely
-★ IT’S OFFICIAL: This is the official version of the Tor onion routing service for Android.
+★ 代替品なし:OrbotはAndroidでインターネットを使用する非常に安全な方法です。その通り。Orbotは、VPNやプロキシのようにユーザーを直接接続するのではなく、世界中のコンピューターを通じて暗号化されたトラフィックを何度もバウンスします。このプロセスには少し時間がかかりますが、利用可能な最強のプライバシーとID保護は待つ価値があります。
+★ アプリのプライバシー:Orbot VPN機能を使用して、すべてのアプリをTor経由でルーティングできます。
+★ すべての人のプライバシー:Orbotは、ユーザーが使用しているアプリやアクセスしているWebサイトを、接続を監視している人に知られないようにします。ネットワークトラフィックを監視している人にわかるのは、Torを使っていることだけです。
 
-***We Love Feedback***
-★ ABOUT US: Guardian Project is a group of developers that make secure mobile apps and open-source code for a better tomorrow.
-★ OPEN-SOURCE: Orbot is free software. Take a look at our source code, or join the community to make it better: https://gitweb.torproject.org/orbot.git
-★ MESSAGE US: Are we missing your favorite feature? Found an annoying bug? We’d love to hear from you! Send us an email: support@guardianproject.info
+***私たちはフィードバックが大好きです***
+★ 詳細:Orbotの詳細については、https://orbot.app/ja/ を参照してください。
+★ 私たちについて:Guardian Projectは、より良い明日のために安全なモバイルアプリとオープンソースコードを作る開発者のグループです。
+★ オープンソース:Orbotはフリーソフトウェアです。ソースコードを見るか、コミュニティに参加して改善してください。https://github.com/guardianproject/orbot
+★ メッセージ:お気に入りの機能はありますか？厄介なバグを見つけましたか？ぜひ support@guardianproject.info までご連絡ください!
 
-***Disclaimer***
-The Guardian Project makes apps that are designed to protect your security and anonymity. The protocols that we use are widely regarded as the state of the art in security technology. While we are constantly upgrading our software to combat the latest threats and eliminate bugs, no technology is 100% foolproof. For maximum security and anonymity users must utilize best practices to keep themselves safe.  You can find a good introductory guide to these topics at https://securityinabox.org
+***免責事項***
+Guardian Projectは、ユーザーのセキュリティと匿名性を保護するように設計されたアプリを開発しています。私たちが使用するプロトコルは、セキュリティ技術の最先端と広く見なされています。最新の脅威に対処し、バグを排除するためにソフトウェアを常にアップグレードしていますが、100%完璧な技術はありません。セキュリティと匿名性を最大限に高めるには、ユーザーはベストプラクティスを活用して安全を確保する必要があります。これらのトピックの入門ガイドは、https://securityinabox.orgにあります。

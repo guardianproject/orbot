@@ -8,7 +8,7 @@
 
 [![Weblate Status](./docs/badges/translate_weblate.svg)](https://hosted.weblate.org/engage/guardianproject/)
 [![Play Downloads](./docs/badges/downloads_gplay.svg)](https://play.google.com/store/apps/details?id=org.torproject.android)
-[![Bitrise Status](./docs/badges/bitrise_workflow.svg)](https://app.bitrise.io/app/0e76c31b8e7e1801) ([CI docs](./docs/CI.md))
+[![Bitrise Status](./docs/badges/bitrise_workflow.svg)](https://app.bitrise.io/app/0e76c31b8e7e1801) ([CI docs](./docs/info/CI.md))
 
 Orbot is a freely licensed open-source application developed for the
 Android platform. It acts as a front-end for the Tor binary application,
@@ -16,7 +16,8 @@ while also providing a secure HTTP Proxy for connecting web browsers and other
 HTTP client applications into the Tor SOCKS interface.
 
 ***********************************************
-<img src=./fastlane/metadata/android/en-US/images/phoneScreenshots/device-2018-01.png width="24%"> <img src=./fastlane/metadata/android/en-US/images/phoneScreenshots/device-2018-02.png width="24%"> <img src=./fastlane/metadata/android/en-US/images/phoneScreenshots/device-2018-03.png width="24%"> <img src=./fastlane/metadata/android/en-US/images/phoneScreenshots/device-2018-05.png width="24%">
+<img src=./fastlane/metadata/android/en-US/images/phoneScreenshots/device-2024-01.png width="24%"> <img src=./fastlane/metadata/android/en-US/images/phoneScreenshots/device-2024-02.png width="24%">
+<img src=./fastlane/metadata/android/en-US/images/phoneScreenshots/device-2024-03.png width="24%"> <img src=./fastlane/metadata/android/en-US/images/phoneScreenshots/device-2024-04.png width="24%">
 
 ***********************************************
 Orbot is a crucial component of the Guardian Project, an initiative  that leads an effort
@@ -30,13 +31,20 @@ is reasonably secure, but please ensure you read the usage instructions and
 learn to configure it properly. Learn more: https://torproject.org/
 
 ***********************************************
+
 <div align="center">
-- Download Orbot:
-https://github.com/guardianproject/orbot/releases/latest <br>
-- Tor FAQ (Frequently Asked Questions):
-https://support.torproject.org/faq/ <br>
-- Contribute Translations:
-https://hosted.weblate.org/engage/guardianproject/ <br>
+  <table>
+    <tr>
+      <td><a href="https://github.com/guardianproject/orbot/releases/latest">Download the Latest Orbot Release</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://support.torproject.org/faq/">Tor FAQ (Frequently Asked Questions)</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://hosted.weblate.org/engage/guardianproject/">Please Contribute Your Translations</a></td>
+    </tr>
+  </table>
+</div>
 
 ***********************************************
 **Copyright &#169; 2009-2023, Nathan Freitas, The Guardian Project**

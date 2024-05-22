@@ -254,20 +254,20 @@
 \n• Se voidaan poistaa käytöstä koska tahansa</string>
     <string name="hide_apps">Piilota sovelluksia verkkoseurannalta ja käytä estettyjä palveluita.</string>
     <string name="incorrect_solution">Virheellinen ratkaisu</string>
-    <string name="bridges_obtained_connecting">Sillat vastaanotettu! Muodostetaan Tor-yhteyttä...</string>
+    <string name="bridges_obtained_connecting">Sillat vastaanotettu! Yhdistetään Tor-verkkoon…</string>
     <string name="having_trouble_subtitle">Seuraavaksi voidaan kokeilla Tor-siltaa, mutta se edellyttää apuasi.</string>
     <string name="having_trouble">Kohdataan ongelmia</string>
     <string name="log_copied">Lokitiedot kopioitu</string>
-    <string name="kindness_adjust_title">Määritä milloin se suoritetaan…</string>
+    <string name="kindness_adjust_title">Asetukset</string>
     <string name="snowflake_amp">Snowflake (AMP)</string>
     <string name="ask_tor">Kysy Torilta</string>
     <string name="action_use">Tapa:</string>
-    <string name="asking">KYSYTÄÄN...</string>
+    <string name="asking">KYSYTÄÄN…</string>
     <string name="no_internet_subtitle">Tarvitset Internet-yhteyden Orbotin käyttöön.</string>
     <string name="kindess_config_detail">Määritä miten ja milloin laitteesi voi toimia Snowflake-välityspalvelimena muille Tor-käyttäjille.</string>
     <string name="not_sure">Etkö osaa valita\?</string>
     <string name="many_ways">Tor voidaan tavoittaa monilla tavoilla. Jotkin saattavat sopia sinulle muita paremmin.</string>
-    <string name="no_interent_title">Yhdistä Internetiin</string>
+    <string name="no_internet_title">Yhdistä Internetiin</string>
     <string name="pref_isolate_protocol">Eristä pääteprotokollat</string>
     <string name="pref_isolate_port">Eristä kohdeportit</string>
     <string name="pref_isolate_port_summary">Käytä jokaiselle kohdeportille eri ketjua.</string>
@@ -285,4 +285,6 @@
     <string name="btn_copy_log">Kopioi loki</string>
     <string name="pref_flag_secure_summary">Estä muita sovelluksia ottamasta kuvankaappauksia Orbotista.</string>
     <string name="root_warning">Orbot on havainnut laitteesi olevan rootattu ja tästä voi aiheutua tietoturvaongelmia.</string>
+    <string name="pref_detect_root_summary">Varoita käynnistettäessä, jos laitetta käytetään root-oikeuksilla</string>
+    <string name="pref_detect_root_title">Root-tunnistus</string>
 </resources>

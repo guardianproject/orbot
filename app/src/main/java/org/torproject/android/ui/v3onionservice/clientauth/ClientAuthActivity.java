@@ -16,7 +16,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -25,8 +24,8 @@ import org.torproject.android.core.DiskUtils;
 import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.ui.v3onionservice.V3BackupUtils;
 
-import java.io.File;
 import java.util.List;
+import java.util.Objects;
 
 public class ClientAuthActivity extends AppCompatActivity {
 
@@ -47,7 +46,7 @@ public class ClientAuthActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         setSupportActionBar(findViewById(R.id.toolbar));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         mResolver = getContentResolver();
         mAdapter = new ClientAuthListAdapter(this, mResolver.query(ClientAuthContentProvider.CONTENT_URI, ClientAuthContentProvider.PROJECTION, null, null, null));
@@ -75,6 +74,7 @@ public class ClientAuthActivity extends AppCompatActivity {
             Uri uri = data.getData();
             if (uri != null) {
                 Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+                assert cursor != null;
                 int nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
                 cursor.moveToFirst();
                 String filename = cursor.getString(nameIndex);
@@ -115,35 +115,11 @@ public class ClientAuthActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_import_auth_priv) {
-            if (DiskUtils.supportsStorageAccessFramework()) {
-                // unfortunately no good way to filter .auth_private files
-                Intent readFileIntent = DiskUtils.createReadFileIntent(CLIENT_AUTH_SAF_MIME_TYPE);
-                startActivityForResult(readFileIntent, REQUEST_CODE_READ_ZIP_BACKUP);
-            } else { // APIs 16, 17, 18
-                doRestoreLegacy();
-            }
+            // unfortunately no good way to filter .auth_private files
+            Intent readFileIntent = DiskUtils.createReadFileIntent(CLIENT_AUTH_SAF_MIME_TYPE);
+            startActivityForResult(readFileIntent, REQUEST_CODE_READ_ZIP_BACKUP);
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void doRestoreLegacy() {
-        File backupDir = DiskUtils.getOrCreateLegacyBackupDir(getString(R.string.app_name));
-        File[] files = backupDir.listFiles((dir, name) -> name.toLowerCase().endsWith(".auth_private"));
-        if (files == null || files.length == 0) {
-            Toast.makeText(this, R.string.create_a_backup_first, Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        CharSequence[] fileNames = new CharSequence[files.length];
-        for (int i = 0; i < files.length; i++) fileNames[i] = files[i].getName();
-
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.restore_backup)
-                .setItems(fileNames, (dialog, which) -> {
-                    String authFileText = DiskUtils.readFile(getContentResolver(), files[which]);
-                    new V3BackupUtils(this).restoreClientAuthBackup(authFileText);
-                })
-                .show();
     }
 
     @Override
@@ -151,6 +127,4 @@ public class ClientAuthActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.v3_client_auth_menu, menu);
         return true;
     }
-
-
 }

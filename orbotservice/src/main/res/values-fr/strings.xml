@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Orbot</string>
-  <string name="app_description">Orbot est une application proxy gratuite qui améliore l\'utilisation plus sécurisée des applications. Orbot utilise Tor pour crypter votre trafic internet et le cacher en passant par une série d\'ordinateur partout dans le monde. Tor est un logiciel gratuit et un réseau ouvert qui vous aide à vous défendre contre les surveillances de réseau qui font peur à la liberté personnelle et la vie privée, les activités confidentielles des entreprises et des relations, et l\'état de la sécurité connu sous le nom d\'analyse de trafic.</string>
-    <string name="status_starting_up">Démarrage de Orbot...</string>
-  <string name="status_activated">Connecté au réseau Tor</string>
-  <string name="status_disabled">Orbot est désactivé</string>
-  <string name="status_shutting_down">Le service Tor est en cours de fermeture</string>
-    <!--Welcome Wizard strings (DJH)-->
-  <!--END Welcome Wizard strings (DJH)-->
-  <!--New Wizard Strings-->
-  <!--Title Screen-->
-  <!--Warning screen-->
-  <!--Permissions screen-->
-  <!--TipsAndTricks screen-->
-  <!--Transparent Proxy screen-->
+    <string name="app_name">Orbot</string>
+    <string name="app_description">Orbot est une application proxy gratuite qui améliore l\'utilisation plus sécurisée des applications. Orbot utilise Tor pour crypter votre trafic internet et le cacher en passant par une série d\'ordinateur partout dans le monde. Tor est un logiciel gratuit et un réseau ouvert qui vous aide à vous défendre contre les surveillances de réseau qui font peur à la liberté personnelle et la vie privée, les activités confidentielles des entreprises et des relations, et l\'état de la sécurité connu sous le nom d\'analyse de trafic.</string>
+    <string name="status_starting_up">Démarrage de Orbot…</string>
+    <string name="status_activated">Connecté au réseau Tor</string>
+    <string name="status_disabled">Orbot est désactivé</string>
+    <string name="open_orbot_to_connect_to_tor">Ouvrez Orbot pour vous connecter à Tor</string>
+    <string name="status_shutting_down">Le service Tor est en cours de fermeture</string>
+    <string name="connect_to_tor">Se Connecter à Tor</string>
 </resources>

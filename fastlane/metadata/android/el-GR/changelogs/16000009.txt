@@ -1,0 +1,8 @@
+- Σημαντική ενημέρωση διεπαφής χρήστη!
+- Νέοι οδηγοί για ρύθμιση και διαμόρφωση γέφυρας
+- Βελτιωμένες δυνατότητες VPN
+- Διορθώσεις για σφάλματα διαμόρφωσης Onion/Hidden υπηρεσίας
+
+και πολλά ακόμα...
+
+ΕΥΧΑΡΙΣΤΟΥΜΕ ΤΟΥΣ: pgerber, syphyr, Khsed4, BjarniRunar, Unpublished, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, arrase και άλλους για τα ζητήματα, τις δεσμεύσεις και τις PR

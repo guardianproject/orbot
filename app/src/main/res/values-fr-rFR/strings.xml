@@ -12,17 +12,9 @@
     <string name="menu_exit">Fermer</string>
     <string name="menu_scan">Balayer le code QR d’un pont</string>
     <string name="menu_share_bridge">Partager le code QR d’un pont</string>
-    <!--Welcome Wizard strings (DJH)-->
-    <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Général</string>
     <string name="pref_start_boot_title">Démarrer Orbot à l’amorçage</string>
     <string name="pref_start_boot_summary">Démarrer Orbot automatiquement et se connecter à Tor lors de l’amorçage de votre appareil Android</string>
-    <!--New Wizard Strings-->
-    <!--Title Screen-->
-    <!--Warning screen-->
-    <!--Permissions screen-->
-    <!--TipsAndTricks screen-->
-    <!--Transparent Proxy screen-->
     <string name="pref_node_configuration">Configuration des nœuds</string>
     <string name="pref_node_configuration_summary">Ces paramètres avancés peuvent réduire votre anonymat</string>
     <string name="pref_entrance_node">Nœuds d’entrée</string>
@@ -190,7 +182,7 @@
     <string name="license">Licence :</string>
     <string name="bridge_snowflake_amp">Se connecter par d’autres utilisateurs de Tor grâce à Snowflake (méthode 2 – AMP)</string>
     <string name="snowflake_proxy_msg_title">Afficher la notification de connexion</string>
-    <string name="snowflake_proxy_msg_description">Afficher un message quand votre Snowflake aide quelqu’un à contourner la censure</string>
+    <string name="snowflake_proxy_msg_description">Afficher un message lorsque vous aidez quelqu\'un à contourner la censure</string>
     <string name="power_user_mode">Mode utilisateur avancé</string>
     <string name="action_activate">Activer</string>
     <string name="volunteer_status_title">Aujourd’hui, c’est meilleur
@@ -241,7 +233,7 @@
     <string name="btn_use_custom_bridge">Utiliser un pont personnalisé</string>
     <string name="msg_taking_too_long">Cela semble prendre trop long</string>
     <string name="incorrect_solution">Solution incorrecte</string>
-    <string name="bridges_obtained_connecting">Ponts obtenus! Connexion à tor...</string>
+    <string name="bridges_obtained_connecting">Ponts obtenus! Connexion à tor…</string>
     <string name="having_trouble_subtitle">Nous pouvons essayer un pont Tor ensuite mais avons besoin de votre aide</string>
     <string name="secure_your_connection_title">Prêt à se connecter</string>
     <string name="menu_app_settings">Paramètres de l’application</string>
@@ -257,8 +249,8 @@
     <string name="action_use">Utilisation</string>
     <string name="ask_tor">Demander à Tor</string>
     <string name="no_internet_subtitle">Vous avez besoin d\'une connexion internet pour utiliser Orbot.</string>
-    <string name="kindness_adjust_title">Ajuster lorsqu\'il fonctionne...</string>
-    <string name="asking">DEMANDER...</string>
+    <string name="kindness_adjust_title">Paramètres</string>
+    <string name="asking">DEMANDER…</string>
     <string name="setting_padding">Rembourrage</string>
     <string name="setting_debug">Débogage</string>
     <string name="menu_more">Plus d\'informations</string>
@@ -268,7 +260,7 @@
     <string name="snowflake_amp">Snowflake (AMP méthode)</string>
     <string name="many_ways">Il existe de nombreuses façons d\'atteindre Tor. Certaines peuvent fonctionner mieux que d\'autres pour vous.</string>
     <string name="power_user_description">Pour les utilisateurs familiers avec Tor. Permet de démarrer Orbot sans le paramètre VPN et montre les ports SOCKS et HTTP ouverts</string>
-    <string name="no_interent_title">Se connecter à l\'internet</string>
+    <string name="no_internet_title">Se connecter à l\'internet</string>
     <string name="menu_kindness">La gentillesse</string>
     <string name="option_only_on_wifi">Uniquement sur Wifi</string>
     <string name="volunteer_mode_label">Mode gentillesse</string>
@@ -285,4 +277,8 @@
     <string name="connection_snowflake">Snowflake</string>
     <string name="connection_custom">Personnalisé</string>
     <string name="pref_flag_secure_summary">Empêcher les autres applications de prendre des captures d\'écran d\'Orbot</string>
+    <string name="pref_flag_secure_title">Sécurité de l\'écran</string>
+    <string name="root_warning">Orbot a détecté que votre appareil est rooté, ce qui peut entraîner des problèmes de sécurité.</string>
+    <string name="pref_detect_root_summary">Avertir au démarrage si les droits d\'accès root sont activés sur cet appareil</string>
+    <string name="pref_detect_root_title">Détection root</string>
 </resources>

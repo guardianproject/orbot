@@ -22,8 +22,7 @@ public class StartTorReceiver extends BroadcastReceiver implements OrbotConstant
             if (TextUtils.equals(action, ACTION_START)) {
                 String packageName = intent.getStringExtra(EXTRA_PACKAGE_NAME);
                 if (Prefs.allowBackgroundStarts()) {
-                    Intent startTorIntent = new Intent(context, OrbotService.class)
-                            .setAction(action);
+                    Intent startTorIntent = new Intent(context, OrbotService.class).setAction(action).putExtra(OrbotConstants.EXTRA_NOT_SYSTEM, true);
                     if (packageName != null) {
                         startTorIntent.putExtra(OrbotService.EXTRA_PACKAGE_NAME, packageName);
                     }
@@ -37,8 +36,7 @@ public class StartTorReceiver extends BroadcastReceiver implements OrbotConstant
                     context.sendBroadcast(startsDisabledIntent);
                 }
             }
-        }
-        catch (RuntimeException re) {
+        } catch (RuntimeException re) {
             //catch this to avoid malicious launches as document Cure53 Audit: ORB-01-009 WP1/2: Orbot DoS via exported activity (High)
         }
     }

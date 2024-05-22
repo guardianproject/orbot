@@ -175,9 +175,9 @@
 \nالاتصال بتور</string>
     <string name="volunteer_mode_label">وضع اللطف</string>
     <string name="custom_bridge">جسر مخصص</string>
-    <string name="no_interent_title">اتصل بالإنترنت</string>
+    <string name="no_internet_title">اتصل بالإنترنت</string>
     <string name="no_internet_subtitle">تحتاج إلى اتصال بالإنترنت لاستخدام Orbot.</string>
-    <string name="kindness_adjust_title">ضبط عند تشغيله…</string>
+    <string name="kindness_adjust_title">إعدادات</string>
     <string name="pref_http_dialog">تكوين منفذ HTTP</string>
     <string name="testing_tor_direct">جارٍ اختبار الاتصال بـتور…</string>
     <string name="apps_suggested_title">تطبيقات المقترحة</string>
@@ -255,13 +255,13 @@
     <string name="direct_connect">اتصال مباشر بتور</string>
     <string name="direct_connect_subtitle">أفضل طريقة للاتصال بتور. استخدم إذا لم يٌحظر تور.</string>
     <string name="snowflake">Snowflake (الأصل)</string>
-    <string name="snowflake_amp">Snowflake (AMP)</string>
+    <string name="snowflake_amp">ندفة الثلج (AMP)</string>
     <string name="snowflake_subtitle">يربط من خلال متطوعي تور. يلتف حول بعض حظر تور.</string>
     <string name="get_a_bridge">جسر من تور (Obfs4)</string>
     <string name="get_a_bridge_subtitle">يخفي حركةمرورك. يلتف حول بعض حظر تور.</string>
     <string name="solve_captcha">حِل Captcha</string>
     <string name="incorrect_solution">حل غير صحيح</string>
-    <string name="bridges_obtained_connecting">حصلت على الجسور! جارِ الاتصال بـتور...</string>
+    <string name="bridges_obtained_connecting">حصلت على الجسور! جارِ الاتصال بـتور…</string>
     <string name="custom_bridge_description">يتم توفير جسر مخصص من قبل شخص تعرفه. اسأل داخل شبكاتك ومؤسساتك الموثوقة لمعرفة ما إذا كان أي شخص يستضيف واحدة.</string>
     <string name="having_trouble">لديك مشكلة</string>
     <string name="kindess_config_detail">تضبيط كيف ومتى يمكن لجهازك العمل كوكيل Snowflake لمستخدمي تور الآخرين.</string>
@@ -274,7 +274,7 @@
     <string name="not_sure">غير متأكد؟</string>
     <string name="ask_tor">اسأل تور</string>
     <string name="many_ways">هناك طرق عديدة للوصول إلى تور. قد يعمل البعض بشكل أفضل من البعض الآخر بالنسبة لك.</string>
-    <string name="asking">جارِ السؤال...</string>
+    <string name="asking">جارِ السؤال…</string>
     <string name="pref_open_proxy_on_all_interfaces_title">افتح الوكيل على جميع الواجهات</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">اسمح لأقران Wi-Fi والأجهزة المقيدة وأي شخص آخر يمكنه الاتصال بـ IP الخاص بك بالوصول إلى تور</string>
     <string name="pref_http_summary">المنفذ الذي يقدم تور وكيل HTTP عليه (افتراضي: 8118 أو 0 للتعطيل)</string>
@@ -287,4 +287,6 @@
     <string name="v3_import_auth_private">استيراد .auth_private</string>
     <string name="setting_padding">الحشوة</string>
     <string name="root_warning">اكتشف Orbot أن جهازك مزوّد بحق الوصول إلى الجذر (rooted)، مما قد يتسبب في حدوث مشكلات أمنية.</string>
+    <string name="pref_detect_root_summary">تحذير عند بدء التشغيل إذا فعّلت أذونات الجذر على هذا الجهاز</string>
+    <string name="pref_detect_root_title">كشف الجذر</string>
 </resources>

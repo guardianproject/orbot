@@ -20,16 +20,7 @@ public class PermissionManager {
 
     private static final int SNACK_BAR_DURATION = 5000;
 
-    public static boolean isLollipopOrHigher() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
-    }
-
-    public static boolean isAndroidM() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
-    }
-
     @SuppressLint("WrongConstant") // docs *say* you can specify custom durations...
-    @TargetApi(Build.VERSION_CODES.M)
     public static void requestBatteryPermissions(FragmentActivity activity, View view) {
         final String packageName = activity.getPackageName();
         PowerManager pm = (PowerManager) activity.getApplicationContext().getSystemService(Context.POWER_SERVICE);
@@ -50,7 +41,6 @@ public class PermissionManager {
     }
 
     @SuppressLint("WrongConstant") // docs *say* you can specify custom durations...
-    @TargetApi(Build.VERSION_CODES.M)
     public static void requestDropBatteryPermissions(FragmentActivity activity, View view) {
         PowerManager pm = (PowerManager) activity.getApplicationContext().getSystemService(Context.POWER_SERVICE);
         if (!pm.isIgnoringBatteryOptimizations(activity.getPackageName())) {

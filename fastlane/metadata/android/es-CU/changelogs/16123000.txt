@@ -1,0 +1,2 @@
+* Correcciones para el soporte de Puentes
+* Actualizado a Tor 0.4.1.5

@@ -1,0 +1,10 @@
+***DUÝDURYŞ: ÄHLI ROOT AÝRATYNLYKLARY BU TÄZE ORBOT WERSIÝASYNDAN AÝRYLDY.***
+Root bilen aç-açan proksi ýerine Orbot "Apps VPN Mode" ýa-da Orfox brauzerini ulanyň.
+
+* Tor 0.3.1.8 täzeläň
+* Root / Transproxy funksiýalary üçin goldaw aýyryldy,
+sebäbi ygtybarsyz we synagdan geçirilmedi
+* VPN aç-açan proksi we täze "Programmalar" programma saýlama
+UI üçin GOWULAŞAN goldawy
+* Obfs4proxy ygtyýarnama maglumatlary goşmak meselesini çözmek
+* Iň soňky Meek köpri ýerleri Tor goldawyna täzeläň

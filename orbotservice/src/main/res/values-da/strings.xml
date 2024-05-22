@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Orbot</string>
-  <string name="app_description">Orbot er en gratis og åben proxy-applikation, der gør det muligt at anvende internettet mere sikkert fra andre programmer. Orbot bruger Tor til at kryptere internettrafikken, og skjuler den ved at sende den gennem serverere, lokaliseret i hele verden. Tor er gratis og åben software, der kan hjælpe dig mod netværksovervågning kaldet trafikanalyse, der kan true din personlige frihed, dit privatliv, handelsaktivitet og forhold.</string>
+    <string name="app_name">Orbot</string>
+    <string name="app_description">Orbot er en gratis og åben proxy-applikation, der gør det muligt at anvende internettet mere sikkert fra andre programmer. Orbot bruger Tor til at kryptere internettrafikken, og skjuler den ved at sende den gennem serverere, lokaliseret i hele verden. Tor er gratis og åben software, der kan hjælpe dig mod netværksovervågning kaldet trafikanalyse, der kan true din personlige frihed, dit privatliv, handelsaktivitet og forhold.</string>
     <string name="status_starting_up">Orbot starter op ...</string>
-  <string name="status_activated">Der er forbindelse til Tor-netværket</string>
-  <string name="status_disabled">Orbot er slået fra</string>
-    <!--Welcome Wizard strings (DJH)-->
-    <!--END Welcome Wizard strings (DJH)-->
-    <!--New Wizard Strings-->
-  <!--Title Screen-->
-  <!--Warning screen-->
-    <!--Permissions screen-->
-    <!--TipsAndTricks screen-->
-    <!--Transparent Proxy screen-->
+    <string name="status_activated">Der er forbindelse til Tor-netværket</string>
+    <string name="status_disabled">Orbot er slået fra</string>
     <string name="couldn_t_start_tor_process_">Kunne ikke starte Tor processen:</string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">Din ReachableAdresses indstilling forudsagede en fejl!</string>
-  <string name="your_relay_settings_caused_an_exception_">Dine relæindstillinger forårsagede en fejl!</string>
+    <string name="your_relay_settings_caused_an_exception_">Dine relæindstillinger forårsagede en fejl!</string>
     <string name="found_existing_tor_process">fandt eksisterende Tor process...</string>
-  <string name="something_bad_happened">Noget slemt er sket. Check loggen</string>
     <string name="unable_to_start_tor">Kunne ikke starte Tor:</string>
 </resources>

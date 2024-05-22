@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbot 是一款免费的代理应用，能够让其他应用更安全地使用互联网。通过在位于世界各地的一系列计算机之间进行跳转，Orbot 可利用 Tor 对网络通信进行加密并隐藏。Tor 是一款自由软件，并且是一个开放的网络。它可以保护用户免受流量分析的危害，这种网络监控可对个人自由与隐私、商业机密活动和关系以及国家安全造成威胁。</string>
+    <string name="app_description">Orbot 是免费的代理应用，可让其他应用更安全地使用网络。Orbot 使用 Tor 加密网络流量，然后通过世界各地一系列计算机跳转来隐藏流量。Tor 是自由软件和开放网络，帮助用户抵御称为流量分析的网络监控，网络监控威胁到个人自由和隐私、机密商业活动和关系以及国家安全。</string>
     <string name="menu_settings">设置</string>
     <string name="menu_log">日志</string>
     <string name="menu_stop">停止</string>
@@ -24,7 +24,7 @@
     <!--TipsAndTricks screen-->
     <!--Transparent Proxy screen-->
     <string name="pref_node_configuration">节点配置</string>
-    <string name="pref_node_configuration_summary">这些高级设置可降低你的匿名度</string>
+    <string name="pref_node_configuration_summary">这些高级设置可降低匿名性</string>
     <string name="pref_entrance_node">入口节点</string>
     <string name="pref_entrance_node_summary">用于首次跳转的密钥指纹、昵称、国家与地址</string>
     <string name="pref_entrance_node_dialog">输入入口节点</string>
@@ -71,7 +71,7 @@
     <string name="ports_reachable_behind_a_restrictive_firewall">防火墙限定的可访问端口</string>
     <string name="enter_ports">输入端口</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">启用调试日志输出（必须使用 adb 或 aLogCat 查看）</string>
-    <string name="project_home">项目主页(们)：</string>
+    <string name="project_home">项目主页：</string>
     <string name="third_party_software">第三方软件：</string>
     <string name="pref_use_expanded_notifications">当可用时，在通知中显示 tor 出口节点的国家和 IP 地址</string>
     <string name="pref_use_expanded_notifications_title">扩展的通知</string>
@@ -99,7 +99,7 @@
     <string name="save">保存</string>
     <string name="name">名称</string>
     <string name="please_restart_Orbot_to_enable_the_changes">请重启 Orbot 以使变更生效</string>
-    <string name="wizard_details_msg">Orbot是一个开源应用程序，包含Tor、IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks,LibEvent。它为Tor网络提供了一个本地HTTP代理(8118)和一个SOCKS代理(9050)。Orbot还能在获取根权限的设备上通过Tor发送所有的网络流量。</string>
+    <string name="wizard_details_msg">Orbot 是一个开源应用程序，包含 Tor、IPtProxy（Obfs4Proxy、Meek、Snowflake）、Go-Tun2Socks 和 LibEvent。它提供了一个 VPN 隧道、一个本地 HTTP 连接代理（HTTPS 仅连接端口 8118）和一个 SOCKS 代理（9050）进入 Tor 网络。</string>
     <string name="pref_open_proxy_on_all_interfaces_title">在所有接口上打开代理</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">允许连接到同一Wi-Fi、局域网设备和任何其他可以连接到你的IP的人访问Tor</string>
     <string name="pref_http_title">Tor HTTP</string>
@@ -193,7 +193,7 @@
     <string name="snowflake_proxy_msg_description">当您的 Snowflake 帮助某人规避审查时显示一条消息</string>
     <string name="secure_your_connection_title">准备好连接</string>
     <string name="connected_title">已连接</string>
-    <string name="strict_nodes_description">将“排除节点”设置作为构建所有电路的必要条件。如果你的“排除节点”设置无法生成电路，可能会破坏功能。</string>
+    <string name="strict_nodes_description">将“排除节点”设置视为构建所有线路的要求。如果“排除节点”设置无法生成线路，可能会破坏功能。</string>
     <string name="volunteer_mode">善举模式</string>
     <string name="trying_to_connect_title">连接中…</string>
     <string name="volunteer_mode_subtitle">帮助其他人连接</string>
@@ -250,7 +250,7 @@
     <string name="incorrect_solution">不正确的解答</string>
     <string name="having_trouble">出问题了</string>
     <string name="having_trouble_subtitle">我们接下来可以尝试 Tor 网桥，但需要你的帮助</string>
-    <string name="bridges_obtained_connecting">已获取网桥！正在连接到 tor…</string>
+    <string name="bridges_obtained_connecting">已获取网桥！正在连接到 Tor…</string>
     <string name="custom_bridge_description">自定义网桥是由你认识的人提供的。问问你所信任的人际网络和组织，看看是否有人托管网桥。</string>
     <string name="power_user_mode">高级用户模式</string>
     <string name="power_user_description">适合熟悉 Tor 的用户。 允许在没有 VPN 设置的情况下启动 Orbot 并显示打开的 SOCKS 和 HTTP 端口</string>
@@ -262,9 +262,9 @@
     <string name="volunteer_status_title">今天因你
 \n而更好。</string>
     <string name="action_use">使用方法</string>
-    <string name="no_interent_title">连接到互联网</string>
+    <string name="no_internet_title">连接到互联网</string>
     <string name="menu_more">更多</string>
-    <string name="connection_direct">私信</string>
+    <string name="connection_direct">直接连接</string>
     <string name="connection_snowflake">Snowflake</string>
     <string name="connection_custom">自定义</string>
     <string name="setting_padding">间距</string>
@@ -282,12 +282,14 @@
     <string name="not_sure">不确定吗？</string>
     <string name="ask_tor">询问Tor</string>
     <string name="many_ways">有许多途径可以连接到Tor，其中一些可能对您来说更有效。</string>
-    <string name="asking">正在咨询…</string>
+    <string name="asking">正在询问…</string>
     <string name="no_internet_subtitle">你需要连接网络来使用Orbot。</string>
-    <string name="kindness_adjust_title">在运行时调整…</string>
+    <string name="kindness_adjust_title">设置</string>
     <string name="option_only_on_wifi">仅打开Wi-Fi时</string>
     <string name="option_only_when_charging">仅在充电时</string>
-    <string name="pref_flag_secure_summary">禁止其他App对Orbot进行截屏</string>
+    <string name="pref_flag_secure_summary">阻止其他应用对 Orbot 进行截屏</string>
     <string name="pref_flag_secure_title">屏幕安全</string>
-    <string name="root_warning">Orbot检测到您的设备已经取得了root权限，这可能会导致安全问题。</string>
+    <string name="root_warning">Orbot 检测到您的设备已取得 Root 权限，这可能会导致安全问题。</string>
+    <string name="pref_detect_root_summary">如果此设备已启用 Root 权限，则启动时发出警告</string>
+    <string name="pref_detect_root_title">Root 检测</string>
 </resources>

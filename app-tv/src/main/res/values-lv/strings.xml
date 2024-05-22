@@ -84,7 +84,6 @@
   <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">Trešo personu programmatūra:</string>
   <string name="tor_version">Tor: https://www.torproject.org</string>
-  <string name="libevent_version">LibEvent v2.0.21: http://www.monkey.org/~provos/libevent/</string>
     <string name="pref_use_expanded_notifications">Rādīt paplašinātus paziņojumus, kur norādīts IP un Tor izejas valsts</string>
   <string name="pref_use_expanded_notifications_title">Paplašināti paziņojumi</string>
     <string name="set_locale_title">Valoda</string>

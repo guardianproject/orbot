@@ -94,7 +94,6 @@
     <string name="project_urls">https://www.torproject.org/docs/android\nhttps://guardianproject.info/apps/orbot/</string>
     <string name="third_party_software">3rd-Party-Software: </string>
     <string name="tor_version">Tor: https://www.torproject.org</string>
-    <string name="libevent_version">LibEvent: http://www.monkey.org/~provos/libevent/</string>
     <string name="obfsproxy_version">Obfs4proxy: https://github.com/Yawning/obfs4</string>
     <string name="openssl_version">OpenSSL: http://www.openssl.org</string>
     <string name="hidden_service_request">An app wants to open onion server port %1$d to the Tor network. This is safe if you trust the app.</string>

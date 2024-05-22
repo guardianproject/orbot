@@ -1,0 +1,18 @@
+Orbot, beýleki programmalara interneti has ygtybarly ulanmaga mümkinçilik berýän mugt proksi serwer programmasydyr. Tor ulanyp, Orbot internet trafigiňizi şifrleýär we dünýäniň dürli kompýuterlerinden geçirip gizleýär. Tor, şahsy erkinligiňize we maglumatlaryňyza, gizlin iş amallaryna we gatnaşyklaryňyza, hökümet howpsuzlygy we traffigiň derňewi diýlip atlandyrylýan tor gözegçiliginden goraýan mugt programma üpjünçiligi we açyk network.
+
+Orbot, hakykatdanam şahsy internet birikmesini döredýän ýeke-täk programma. New York Times-iň ýazyşy ýaly, “Tor bilen aragatnaşyk ýüze çykanda, onuň nireden ýa-da kimden gelýändigini hiç wagt bilmersiňiz.” 
+
+Tor 2012-nji ýylyň Elektron Serhet gaznasy (EFF) pioner baýragyny aldy.
+
+★ BAŞGA ZAT KABUL ETMÄŇ: Orbot, Android-de internedi ulanmagyň iň ygtybarly usulydyr. Tamamlandy. Orbot sizi gönüden-göni VPN we proksi ýaly birleşdirmegiň ýerine, dünýädäki kompýuterlerde şifrlenen traffigiňizi birnäçe gezek bökdär. Bu amal birneme uzaga çekýär, ýöne iň güýçli gizlinlik we şahsyýet goragy üçin garaşmak gerek.
+★ PROGRAMMA GIZLINLIGI: Islendik programma, Orbot VPN aýratynlygy bilen, Tor arkaly ugrukdyrylyp bilner.
+★ HEMMELER ÜÇIN GIZLINLIK: Tor size bäsdeşi şahsy derňemäge, mekdepdäki “Facebook” blokundan aýlanyp geçmäge ýa-da iş ýerinde sport görmek üçin gorag diwaryndan geçmegä kömek edip biler.
+
+***Biz Seslenmeleri halaýarys***
+★ KÖPRÄK ÖWREN: https://orbot.app, Orbot hakda has giňişleýin öwreniň we oňa gatnaşyň
+★ BIZ HAKDA:“Guardian” taslamasy, ertiriň has gowy bolmagy üçin ygtybarly ykjam programmalary we açyk çeşme koduny ýazýan döredijiler toparydyr.
+★ AÇYK-ÇEŞME: Orbot mugt programma üpjünçiligi. Çeşme kodumyza göz aýlaň ýa-da has gowulaşdyrmak üçin bileleşige goşulyň: https://github.com/guardianproject/orbot
+★ BIZE HABAR BERIŇ: Halaýan aýratynlygyňyz ýokmy? Bizar ediji näsazlyk tapdyňyzmy? Muny eşitmek isleýäris! Bize e-poçta iberiň: support@guardianproject.info
+
+***Düşündiriş***
+“Guardian” taslamasy, howpsuzlygyňyzy we gizlinligiňizi goramak üçin döredilen programmalary ýasaýar. Ulanylýan teswirnamalarymyz howpsuzlyk tehnologiýasynda iň möhüm hasaplanýar. Iň soňky howplara garşy göreşmek we kemçilikleri ýok etmek üçin programma üpjünçiligimizi yzygiderli kämilleşdirsek-de, hiç bir tehnologiýa 100% kämil däl. Iň ýokary howpsuzlyk we gizlinlik üçin ulanyjylar özlerini howpsuz saklamak üçin iň oňat tejribeleri durmuşa geçirmelidirler. Bu mowzuklar üçin gowy giriş gollanmasyny https://securityinabox.org sahypasynda tapyp bilersiňiz

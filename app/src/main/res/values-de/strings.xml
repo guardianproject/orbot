@@ -255,7 +255,7 @@
     <string name="msg_taking_too_long">Dies scheint zu lange zu dauern</string>
     <string name="msg_try_something_else">Versuche etwas anderes</string>
     <string name="incorrect_solution">Falsche Lösung</string>
-    <string name="bridges_obtained_connecting">Brücken erhalten! Anschluss an Tor...</string>
+    <string name="bridges_obtained_connecting">Brücken erhalten! Anschluss an Tor…</string>
     <string name="having_trouble">Probleme haben</string>
     <string name="having_trouble_subtitle">Als Nächstes können wir eine Tor-Brücke ausprobieren, aber dazu brauchen wir deine Hilfe</string>
     <string name="hide_apps">Verstecke Apps vor der Netzwerküberwachung und erhalte Zugriff, wenn sie blockiert sind.</string>
@@ -265,7 +265,7 @@
     <string name="connection_snowflake">Snowflake</string>
     <string name="connection_custom">Benutzerdefiniert</string>
     <string name="action_use">Verwenden</string>
-    <string name="no_interent_title">Mit dem Internet verbinden</string>
+    <string name="no_internet_title">Mit dem Internet verbinden</string>
     <string name="setting_padding">Rahmenabstand</string>
     <string name="setting_debug">Debug</string>
     <string name="menu_kindness">Freundlichkeit</string>
@@ -275,11 +275,11 @@
     <string name="ask_tor">Tor fragen</string>
     <string name="option_only_when_charging">Nur beim Laden</string>
     <string name="pref_isolate_port_summary">Für jeden Zielport eine andere Leitung verwenden</string>
-    <string name="kindness_adjust_title">Anpassen, wenn es läuft …</string>
+    <string name="kindness_adjust_title">Einstellungen</string>
     <string name="log_copied">Log kopiert</string>
     <string name="btn_copy_log">Log kopieren</string>
     <string name="option_only_on_wifi">Nur über WLAN</string>
-    <string name="asking">FRAGEN ...</string>
+    <string name="asking">FRAGEN…</string>
     <string name="snowflake_amp">Snowflake (AMP)</string>
     <string name="pref_flag_secure_title">Bildschirmsicherheit</string>
     <string name="root_warning">Orbot hat herausgefunden, dass dein Gerät gerootet ist, was Sicherheitsprobleme auslösen kann.</string>
@@ -287,4 +287,6 @@
     <string name="pref_isolate_protocol_summary">Für jedes Verbindungsprotokoll eine andere Leitung verwenden</string>
     <string name="pref_flag_secure_summary">Andere Apps daran hindern, Screenshots von Orbot zu machen</string>
     <string name="many_ways">Es gibt viele Wege, Tor zu erreichen. Manche funktionieren vielleicht besser als andere für dich.</string>
+    <string name="pref_detect_root_summary">Beim Start warnen, wenn Root-Berechtigungen auf diesem Gerät aktiviert sind</string>
+    <string name="pref_detect_root_title">Root Erkennung</string>
 </resources>

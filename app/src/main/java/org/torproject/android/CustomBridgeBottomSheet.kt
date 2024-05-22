@@ -8,7 +8,8 @@ import android.widget.Button
 import android.widget.EditText
 import org.torproject.android.service.util.Prefs
 
-class CustomBridgeBottomSheet(private val callbacks: ConnectionHelperCallbacks): OrbotBottomSheetDialogFragment() {
+class CustomBridgeBottomSheet(private val callbacks: ConnectionHelperCallbacks) :
+    OrbotBottomSheetDialogFragment() {
     companion object {
         const val TAG = "CustomBridgeBottomSheet"
         private const val bridgeStatement = "obfs4"
@@ -18,11 +19,9 @@ class CustomBridgeBottomSheet(private val callbacks: ConnectionHelperCallbacks):
     private lateinit var etBridges: EditText
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        val v =  inflater.inflate(R.layout.custom_bridge_bottom_sheet, container, false)
+        val v = inflater.inflate(R.layout.custom_bridge_bottom_sheet, container, false)
         v.findViewById<View>(R.id.tvCancel).setOnClickListener { dismiss() }
         btnAction = v.findViewById(R.id.btnAction)
         btnAction.setOnClickListener {

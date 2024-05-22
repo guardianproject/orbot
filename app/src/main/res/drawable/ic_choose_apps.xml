@@ -17,10 +17,4 @@
       android:fillColor="#ffffff"
       android:strokeColor="#ffffff"
       android:fillAlpha="0.8"/>
-  <path
-      android:pathData="M20,0L20,0A4,4 0,0 1,24 4L24,4A4,4 0,0 1,20 8L20,8A4,4 0,0 1,16 4L16,4A4,4 0,0 1,20 0z"
-      android:fillColor="#A06DDF"/>
-  <path
-      android:pathData="M20,0L20,0A4,4 0,0 1,24 4L24,4A4,4 0,0 1,20 8L20,8A4,4 0,0 1,16 4L16,4A4,4 0,0 1,20 0z"
-      android:fillColor="#9DCD2B"/>
 </vector>

@@ -6,7 +6,9 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
@@ -17,32 +19,48 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.scottyab.rootbeer.RootBeer
 import org.torproject.android.core.LocaleHelper
+import org.torproject.android.core.putNotSystem
 import org.torproject.android.core.ui.BaseActivity
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.util.Prefs
 import org.torproject.android.ui.LogBottomSheet
-import org.torproject.android.ui.v3onionservice.PermissionManager
-
 
 class OrbotActivity : BaseActivity() {
 
-  //  private lateinit var torStatsGroup: Group
     private lateinit var bottomNavigationView: BottomNavigationView
 
     private lateinit var logBottomSheet: LogBottomSheet
-    lateinit var fragConnect : ConnectFragment
-    lateinit var fragMore : MoreFragment
+    lateinit var fragConnect: ConnectFragment
+    lateinit var fragMore: MoreFragment
 
     var previousReceivedTorStatus: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        try {
-            createOrbot ()
+        /** TODO TODO TODO TODO TODO 
+        Currently there are a lot of problems wiht landscape mode and bugs resulting from
+        rotation. To this end, Orbot will be locked into either portrait or landscape
+        if the device is a tablet (whichever the app is set when an activity is created)
+        until these things are fixed. On smaller devices it's just portrait...
+         */
+        val isTablet =
+            resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK >=
+                    Configuration.SCREENLAYOUT_SIZE_LARGE
+        requestedOrientation = if (isTablet) {
+            val currentOrientation = resources.configuration.orientation
+            val lockedInOrientation =
+                if (currentOrientation == Configuration.ORIENTATION_LANDSCAPE)
+                    ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                else ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            lockedInOrientation
+        } else ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        }
-        catch (re: RuntimeException) {
+
+        try {
+            createOrbot()
+
+        } catch (re: RuntimeException) {
             //catch this to avoid malicious launches as document Cure53 Audit: ORB-01-009 WP1/2: Orbot DoS via exported activity (High)
 
             //clear malicious intent
@@ -52,7 +70,7 @@ class OrbotActivity : BaseActivity() {
 
     }
 
-    private fun createOrbot () {
+    private fun createOrbot() {
         setContentView(R.layout.activity_orbot)
 
         logBottomSheet = LogBottomSheet()
@@ -64,24 +82,36 @@ class OrbotActivity : BaseActivity() {
         bottomNavigationView.selectedItemId = R.id.connectFragment
 
         with(LocalBroadcastManager.getInstance(this)) {
-            registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_STATUS))
-            registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_LOG))
-            registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_PORTS))
-            registerReceiver(orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_SMART_CONNECT_EVENT))
+            registerReceiver(
+                orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_STATUS)
+            )
+            registerReceiver(
+                orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_LOG)
+            )
+            registerReceiver(
+                orbotServiceBroadcastReceiver, IntentFilter(OrbotConstants.LOCAL_ACTION_PORTS)
+            )
+            registerReceiver(
+                orbotServiceBroadcastReceiver,
+                IntentFilter(OrbotConstants.LOCAL_ACTION_SMART_CONNECT_EVENT)
+            )
         }
 
         requestNotificationPermission()
 
         Prefs.initWeeklyWorker()
 
-        val rootBeer = RootBeer(this)
-        if (rootBeer.isRooted) {
-            //we found indication of root
-            val toast = Toast.makeText(applicationContext, getString(R.string.root_warning), Toast.LENGTH_LONG)
-            toast.show()
-
-        } else {
-            //we didn't find indication of root
+        if (Prefs.detectRoot()) {
+            val rootBeer = RootBeer(this)
+            if (rootBeer.isRooted) {
+                //we found indication of root
+                val toast = Toast.makeText(
+                    applicationContext, getString(R.string.root_warning), Toast.LENGTH_LONG
+                )
+                toast.show()
+            } else {
+                //we didn't find indication of root
+            }
         }
 
     }
@@ -90,19 +120,20 @@ class OrbotActivity : BaseActivity() {
         finish()
     }
 
-    private fun requestNotificationPermission () {
+    private fun requestNotificationPermission() {
         when (PackageManager.PERMISSION_GRANTED) {
             ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.POST_NOTIFICATIONS
+                this, Manifest.permission.POST_NOTIFICATIONS
             ) -> {
                 // You can use the API that requires the permission.
             }
+
             else -> {
                 // You can directly ask for the permission.
                 // The registered ActivityResultCallback gets the result of this request.
                 requestPermissionLauncher.launch(
-                    Manifest.permission.POST_NOTIFICATIONS)
+                    Manifest.permission.POST_NOTIFICATIONS
+                )
             }
         }
     }
@@ -111,21 +142,20 @@ class OrbotActivity : BaseActivity() {
 // system permissions dialog. Save the return value, an instance of
 // ActivityResultLauncher. You can use either a val, as shown in this snippet,
 // or a lateinit var in your onAttach() or onCreate() method.
-    val requestPermissionLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-            if (isGranted) {
-                // Permission is granted. Continue the action or workflow in your
-                // app.
-            } else {
-                // Explain to the user that the feature is unavailable because the
-                // feature requires a permission that the user has denied. At the
-                // same time, respect the user's decision. Don't link to system
-                // settings in an effort to convince the user to change their
-                // decision.
-            }
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            // Permission is granted. Continue the action or workflow in your
+            // app.
+        } else {
+            // Explain to the user that the feature is unavailable because the
+            // feature requires a permission that the user has denied. At the
+            // same time, respect the user's decision. Don't link to system
+            // settings in an effort to convince the user to change their
+            // decision.
         }
+    }
 
     override fun onResume() {
         super.onResume()
@@ -139,12 +169,16 @@ class OrbotActivity : BaseActivity() {
     }
 
 
-    private fun sendIntentToService(intent: Intent) = ContextCompat.startForegroundService(this, intent)
-    private fun sendIntentToService(action: String) = sendIntentToService(
-        android.content.Intent(this, org.torproject.android.service.OrbotService::class.java)
-            .apply {
-            this.action = action
-        })
+    /** Sends intent to service, first modifying it to indicate it is not from the system */
+    private fun sendIntentToService(intent: Intent) =
+        ContextCompat.startForegroundService(this, intent.putNotSystem())
+
+    private fun sendIntentToService(action: String) = sendIntentToService(android.content.Intent(
+        this,
+        org.torproject.android.service.OrbotService::class.java
+    ).apply {
+        this.action = action
+    })
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -152,6 +186,7 @@ class OrbotActivity : BaseActivity() {
             fragConnect.startTorAndVpn()
         } else if (requestCode == REQUEST_CODE_SETTINGS && resultCode == RESULT_OK) {
             Prefs.setDefaultLocale(data?.getStringExtra("locale"))
+            sendIntentToService(OrbotConstants.ACTION_LOCAL_LOCALE_SET)
             (application as OrbotApp).setLocale()
             finish()
             startActivity(Intent(this, OrbotActivity::class.java))
@@ -161,17 +196,18 @@ class OrbotActivity : BaseActivity() {
         }
     }
 
-    override fun attachBaseContext(newBase: Context) = super.attachBaseContext(LocaleHelper.onAttach(newBase))
+    override fun attachBaseContext(newBase: Context) =
+        super.attachBaseContext(LocaleHelper.onAttach(newBase))
 
     var allCircumventionAttemptsFailed = false
 
-    private val orbotServiceBroadcastReceiver = object : BroadcastReceiver(){
+    private val orbotServiceBroadcastReceiver = object : BroadcastReceiver() {
         @SuppressLint("SetTextI18n")
         override fun onReceive(context: Context?, intent: Intent?) {
             val status = intent?.getStringExtra(OrbotConstants.EXTRA_STATUS)
             when (intent?.action) {
                 OrbotConstants.LOCAL_ACTION_STATUS -> {
-                   if (status.equals(previousReceivedTorStatus)) return
+                    if (status.equals(previousReceivedTorStatus)) return
                     when (status) {
                         OrbotConstants.STATUS_OFF -> {
                             if (previousReceivedTorStatus.equals(OrbotConstants.STATUS_STARTING)) {
@@ -183,11 +219,10 @@ class OrbotActivity : BaseActivity() {
                                 if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SMART)) {
                                     shouldDoOffLayout = false
                                 }
-                                if (shouldDoOffLayout) fragConnect.doLayoutOff()
-                            }
-                            else
-                                fragConnect.doLayoutOff()
+                                if (shouldDoOffLayout && fragConnect.isAdded) fragConnect.doLayoutOff()
+                            } else fragConnect.doLayoutOff()
                         }
+
                         OrbotConstants.STATUS_STARTING -> fragConnect.doLayoutStarting(this@OrbotActivity)
                         OrbotConstants.STATUS_ON -> fragConnect.doLayoutOn(this@OrbotActivity)
                         OrbotConstants.STATUS_STOPPING -> {}
@@ -196,6 +231,7 @@ class OrbotActivity : BaseActivity() {
                     previousReceivedTorStatus = status
 
                 }
+
                 OrbotConstants.LOCAL_ACTION_LOG -> {
                     intent.getStringExtra(OrbotConstants.LOCAL_EXTRA_BOOTSTRAP_PERCENT)?.let {
                         // todo progress bar shouldn't be accessed directly here, *tell* the connect fragment to update
@@ -205,11 +241,13 @@ class OrbotActivity : BaseActivity() {
                         logBottomSheet.appendLog(it)
                     }
                 }
+
                 OrbotConstants.LOCAL_ACTION_PORTS -> {
                     val socks = intent.getIntExtra(OrbotConstants.EXTRA_SOCKS_PROXY_PORT, -1)
                     val http = intent.getIntExtra(OrbotConstants.EXTRA_HTTP_PROXY_PORT, -1)
-                    if (http > 0 && socks > 0) fragMore?.setPorts(http, socks)
+                    if (http > 0 && socks > 0) fragMore.setPorts(http, socks)
                 }
+
                 else -> {}
             }
         }
@@ -219,11 +257,11 @@ class OrbotActivity : BaseActivity() {
         const val REQUEST_CODE_VPN = 1234
         const val REQUEST_CODE_SETTINGS = 2345
         const val REQUEST_VPN_APP_SELECT = 2432
-        val CAN_DO_APP_ROUTING = PermissionManager.isLollipopOrHigher()
     }
 
     fun showLog() {
-        logBottomSheet.show(supportFragmentManager, OrbotActivity::class.java.simpleName)
-
+        if (!logBottomSheet.isAdded) {
+            logBottomSheet.show(supportFragmentManager, OrbotActivity::class.java.simpleName)
+        }
     }
 }

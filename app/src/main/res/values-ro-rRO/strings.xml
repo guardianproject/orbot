@@ -188,8 +188,8 @@
     <string name="proxy_ports">Porturi proxy</string>
     <string name="snowflake_amp">Snowflake (AMP)</string>
     <string name="get_a_bridge">Punte de la Tor (Obfs4)</string>
-    <string name="asking">CERERE...</string>
-    <string name="no_interent_title">Conectare la internet</string>
+    <string name="asking">CERERE…</string>
+    <string name="no_internet_title">Conectare la internet</string>
     <string name="kindess_config_detail">Configurați cum și când dispozitivul dvs. poate acționa ca proxy Snowflake pentru alți utilizatori Tor.</string>
     <string name="allow">Permiteți</string>
     <string name="deny">Refuzați</string>
@@ -243,12 +243,12 @@
     <string name="smart_connect">Conectare inteligentă (implicită)</string>
     <string name="get_a_bridge_subtitle">Camuflează traficul. Ocolește unele blocaje Tor.</string>
     <string name="custom_bridge">Punte personalizată</string>
-    <string name="kindness_adjust_title">Reglați când funcționează…</string>
+    <string name="kindness_adjust_title">Setări</string>
     <string name="snowflake_subtitle">Se conectează prin intermediul voluntarilor Tor. Ocolește unele blocaje Tor.</string>
     <string name="secure_your_connection_title">Gata de conectare</string>
     <string name="snowflake">Fulg de zăpadă (original)</string>
     <string name="log_copied">Jurnalul a fost copiat</string>
-    <string name="bridges_obtained_connecting">Punți obținute! Se conectează la Tor...</string>
+    <string name="bridges_obtained_connecting">Punți obținute! Se conectează la Tor…</string>
     <string name="custom_bridge_description">O punte personalizată este oferită de cineva cunoscut. Întrebați în cadrul rețelelor și organizațiilor de încredere să vedeți dacă cineva găzduiește una.</string>
     <string name="having_trouble">Am probleme</string>
     <string name="power_user_description">Pentru utilizatorii familiarizați cu Tor. Vă permite să porniți Orbot fără setarea VPN și afișează porturile SOCKS și HTTP deschise</string>
@@ -287,4 +287,6 @@
     <string name="pref_flag_secure_summary">Împiedicați alte aplicații să facă capturi de ecran din Orbot</string>
     <string name="pref_flag_secure_title">Ecran de securitate</string>
     <string name="root_warning">Orbot a detectat că dispozitivul dvs. este deblocat (root), ceea ce poate cauza probleme de securitate.</string>
+    <string name="pref_detect_root_summary">Avertizează la pornire dacă permisiunile root sunt activate pe acest dispozitiv</string>
+    <string name="pref_detect_root_title">Detectare root</string>
 </resources>
