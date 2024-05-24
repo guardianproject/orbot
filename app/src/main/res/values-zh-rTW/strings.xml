@@ -283,4 +283,11 @@
     <string name="pref_detect_root_title">Root 檢測</string>
     <string name="msg_taking_too_long">這似乎花了太長時間</string>
     <string name="kindness_adjust_title">設定</string>
+    <string name="get_a_bridge">Tor 橋接器（Obfs4）</string>
+    <string name="volunteer_mode_subtitle_desc">善良模式讓您的設備成為他人的橋接器。這有助於人們在被封鎖的地方使用 Tor。
+\n
+\n• 它不會消耗您的電池
+\n• 它不會減慢您的網速
+\n• 它只能在 wifi 上運行
+\n• 它可以隨時關閉</string>
 </resources>
