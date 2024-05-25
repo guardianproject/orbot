@@ -3,8 +3,6 @@ apply from: "../commons.gradle"
 apply from : '../dependencies.gradle'
 
 android {
-    ndkVersion '21.3.6528147'
-
     defaultConfig {
         minSdkVersion 23
         targetSdkVersion 33
