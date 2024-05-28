@@ -104,40 +104,6 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/relays"
-
-        app:iconSpaceReserved="false"
-        >
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:enabled="true"
-            android:key="pref_or"
-            android:summary="@string/enable_your_device_to_be_a_non_exit_relay"
-            android:title="@string/relaying"
-            app:iconSpaceReserved="false"
-            />
-
-        <EditTextPreference
-            android:defaultValue="9001"
-            android:dialogTitle="@string/enter_or_port"
-            android:inputType="number"
-            android:key="pref_or_port"
-            android:summary="@string/listening_port_for_your_tor_relay"
-            android:title="@string/relay_port"
-            app:iconSpaceReserved="false"
-            />
-
-        <EditTextPreference
-            android:defaultValue="OrbotRelay"
-            android:dialogTitle="@string/enter_a_custom_relay_nickname"
-            android:key="pref_or_nickname"
-            android:summary="@string/the_nickname_for_your_tor_relay"
-            android:title="@string/relay_nickname"
-            app:iconSpaceReserved="false"
-            />
-
-    </PreferenceCategory>
-
     <PreferenceCategory android:title="@string/reachable_addresses"
 
         app:iconSpaceReserved="false"
