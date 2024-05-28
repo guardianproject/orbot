@@ -1111,7 +1111,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
     private StringBuffer processSettingsImpl(StringBuffer extraLines) throws IOException {
         logNotice(getString(R.string.updating_settings_in_tor_service));
         var prefs = Prefs.getSharedPrefs(getApplicationContext());
-        var becomeRelay = prefs.getBoolean(OrbotConstants.PREF_OR, false);
         var ReachableAddresses = prefs.getBoolean(OrbotConstants.PREF_REACHABLE_ADDRESSES, false);
         var enableStrictNodes = prefs.getBoolean("pref_strict_nodes", false);
         var entranceNodes = prefs.getString("pref_entrance_nodes", "");
@@ -1161,23 +1160,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
         } catch (Exception e) {
             showToolbarNotification(getString(R.string.your_reachableaddresses_settings_caused_an_exception_), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
-            return null;
-        }
-
-        try {
-            if (becomeRelay && (!Prefs.bridgesEnabled()) && (!ReachableAddresses)) {
-                var ORPort = Integer.parseInt(Objects.requireNonNull(prefs.getString(PREF_OR_PORT, "9001")));
-                var nickname = prefs.getString(PREF_OR_NICKNAME, "Orbot");
-                var dnsFile = writeDNSFile();
-
-                extraLines.append("ServerDNSResolvConfFile").append(' ').append(dnsFile).append('\n'); // DNSResolv is not a typo
-                extraLines.append("ORPort").append(' ').append(ORPort).append('\n');
-                extraLines.append("Nickname").append(' ').append(nickname).append('\n');
-                extraLines.append("ExitPolicy").append(' ').append("reject *:*").append('\n');
-
-            }
-        } catch (Exception e) {
-            showToolbarNotification(getString(R.string.your_relay_settings_caused_an_exception_), ERROR_NOTIFY_ID, R.drawable.ic_stat_notifyerr);
             return null;
         }
 

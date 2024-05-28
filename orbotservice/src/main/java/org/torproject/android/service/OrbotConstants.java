@@ -13,8 +13,6 @@ import java.util.List;
 public interface OrbotConstants {
 
     String TAG = "Orbot";
-
-    String PREF_OR = "pref_or";
     String PREF_OR_PORT = "pref_or_port";
     String PREF_OR_NICKNAME = "pref_or_nickname";
     String PREF_REACHABLE_ADDRESSES = "pref_reachable_addresses";
@@ -170,10 +168,7 @@ public interface OrbotConstants {
      * Include packages here to make the VPNService ignore these apps. This is to
      * prevent tor over tor scenarios...
      */
-    List<String> BYPASS_VPN_PACKAGES = Arrays.asList(
-            "org.torproject.torbrowser_alpha",
-            "org.torproject.torbrowser",
-            "org.onionshare.android", // issue #618
+    List<String> BYPASS_VPN_PACKAGES = Arrays.asList("org.torproject.torbrowser_alpha", "org.torproject.torbrowser", "org.onionshare.android", // issue #618
             "org.briarproject.briar.android" // https://github.com/guardianproject/orbot/issues/474
     );
 
