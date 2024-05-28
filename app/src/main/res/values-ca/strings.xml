@@ -57,11 +57,6 @@
     <string name="strict_nodes">Nodes estrictes</string>
     <string name="bridges">Ponts</string>
     <string name="use_bridges">Utilitza ponts</string>
-    <string name="relays">Repetidors</string>
-    <string name="relaying">Repetició</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Permet que el dispositiu sigui un repetidor sense sortida</string>
-    <string name="relay_port">Port repetidor</string>
-    <string name="listening_port_for_your_tor_relay">Port d\'escolta per al repetidor Tor</string>
     <string name="enter_or_port">Introduïu el port OR</string>
     <string name="relay_nickname">Àlies del repetidor</string>
     <string name="the_nickname_for_your_tor_relay">L\'àlies del repetidor Tor</string>

@@ -57,11 +57,6 @@
     <string name="strict_nodes">Değişmeyen Düğümler</string>
     <string name="bridges">Köprüler</string>
     <string name="use_bridges">Köprüleri Kullan</string>
-    <string name="relays">Aktarıcılar</string>
-    <string name="relaying">Aktarım</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Aygıtınız çıkış yapmayan bir aktarıcı olarak kullanılsın</string>
-    <string name="relay_port">Aktarıcı Bağlantı Noktası</string>
-    <string name="listening_port_for_your_tor_relay">Tor aktarıcınızın dinleme bağlantı noktası</string>
     <string name="enter_or_port">OR bağlantı noktasını girin</string>
     <string name="relay_nickname">Aktarıcı kısaltması</string>
     <string name="the_nickname_for_your_tor_relay">Tor aktarıcınızın kısaltması</string>

@@ -56,11 +56,6 @@
     <string name="strict_nodes">限制节点</string>
     <string name="bridges">网桥</string>
     <string name="use_bridges">使用网桥</string>
-    <string name="relays">中继</string>
-    <string name="relaying">中继转发</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">使您的设备成为非出口中继</string>
-    <string name="relay_port">中继端口</string>
-    <string name="listening_port_for_your_tor_relay">Tor 中继的侦听端口</string>
     <string name="enter_or_port">输入 OR 端口</string>
     <string name="relay_nickname">中继昵称</string>
     <string name="the_nickname_for_your_tor_relay">Tor 中继昵称</string>

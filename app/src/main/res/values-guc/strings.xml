@@ -54,11 +54,6 @@
   <string name="strict_nodes_description">Nojoluinjat apaa nuín  Nodo jupula achuwuajanuín </string>
   <string name="bridges">Pa\' taa</string>
   <string name="use_bridges">Pülata jau pa\' taá</string>
-  <string name="relays">Papajer juchikumuín. </string>
-  <string name="relaying">Achuwuajajer ju chiku\'aya </string>
-  <string name="enable_your_device_to_be_a_non_exit_relay">Punata  pukachuerrase jupula   nojoluinjat ajuituin</string>
-  <string name="relay_port">Juntia´sülü shipia maimatua.</string>
-  <string name="listening_port_for_your_tor_relay">Apajia  jupula  jitnuín  Tor piantua </string>
   <string name="enter_or_port">Pikero\'loo juluu  juntia OR</string>
   <string name="relay_nickname">Kanulia yas  </string>
   <string name="the_nickname_for_your_tor_relay"> Kanuliayas jupula jitnuin piantua</string>

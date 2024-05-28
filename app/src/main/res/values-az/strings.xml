@@ -56,11 +56,6 @@
     <string name="strict_nodes">Kəskin Kəsişmələr</string>
     <string name="bridges">Körpülər</string>
     <string name="use_bridges">Körpü İstifadə Et</string>
-    <string name="relays">Keçidlər</string>
-    <string name="relaying">Keçidləmə</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Cihazının son-keçid funksiyasını aktivləşdir</string>
-    <string name="relay_port">Keçid Portu</string>
-    <string name="listening_port_for_your_tor_relay">Tor keçidin üçün portun dinlənməsi</string>
     <string name="enter_or_port">OR port daxil et</string>
     <string name="relay_nickname">Keçid adı</string>
     <string name="the_nickname_for_your_tor_relay">Tor keçidin üçün ad</string>

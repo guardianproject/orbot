@@ -123,9 +123,6 @@
     <string name="enter_exclude_nodes">Jepni Nyja Përjashtimi</string>
     <string name="strict_nodes">Nyja Strikt</string>
     <string name="use_bridges">Përdorni Ura</string>
-    <string name="relays">Rele</string>
-    <string name="relay_port">Portë Releje</string>
-    <string name="listening_port_for_your_tor_relay">Portë përgjimi për relenë tuaj Tor</string>
     <string name="enter_or_port">Jepni portë OR</string>
     <string name="relay_nickname">Nofkë releje</string>
     <string name="the_nickname_for_your_tor_relay">Nofka për relenë tuaj Tor</string>
@@ -222,7 +219,6 @@
     <string name="snowflake_subtitle">Lidhuni përmes vullnetarësh Tor. Anashkalohen disa bllokime Tor-i.</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Shenja gishtash, nofka, vende dhe adresa për hopin e fundit</string>
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Shenja gishtash, nofka, vende dhe adresa për t’u përjashtuar</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Aktivizojeni pajisjen tuaj të jetë një rele jo-dalje</string>
     <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">Xhiro si një klient pas një firewall-i me rregulla kufizuese</string>
     <string name="ports_reachable_behind_a_restrictive_firewall">Porta të kapshme pas një firewall-i kufizues</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Aktivizo regjistër diagnostikimi te ç’jepet (duhet përdorur adb ose aLogcat për ta parë)</string>
@@ -277,7 +273,6 @@
     <string name="pref_reduced_connection_padding_summary">I mbyll më herët lidhjet me relenë dhe dërgon më pak pakete “padding”, për të zvogëluar përdorim të dhënash dhe baterie</string>
     <string name="pref_flag_secure_summary">Pengo aplikacione të tjerë të bëjnë foto ekrani të Orbot-it</string>
     <string name="many_ways">Ka mjaft mënyra për të mbërritur te Tor-i. Disa mund të funksionojnë më mirë se të tjerat për ju.</string>
-    <string name="relaying">Përdorim Relesh</string>
     <string name="pref_circuit_padding">“Padding” qarku</string>
     <string name="pref_reduced_circuit_padding_summary"/>
     <string name="pref_circuit_padding_summary">Aktivizoni “padding” qarku, për t’u mbrojtur nga disa forma analizimi trafiku</string>

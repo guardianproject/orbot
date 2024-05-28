@@ -16,7 +16,6 @@
     <!--Transparent Proxy screen-->
     <string name="couldn_t_start_tor_process_">无法启动 Tor 进程：</string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">可访问地址设置导致异常！</string>
-  <string name="your_relay_settings_caused_an_exception_">中继设置导致异常！</string>
     <string name="found_existing_tor_process">发现当前已存在 Tor 进程...</string>
     <string name="unable_to_start_tor">无法启动 Tor：</string>
     <string name="newnym">已切换为新的 Tor 标识！</string>

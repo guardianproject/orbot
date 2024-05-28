@@ -16,7 +16,6 @@
     <!--Transparent Proxy screen-->
     <string name="couldn_t_start_tor_process_">Tidak dapat memulai proses Tor:</string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">Pengaturan ReachableAddresses anda menyebabkan kesalahan!</string>
-  <string name="your_relay_settings_caused_an_exception_">Pengaturan relay anda menyebabkan kesalahan!</string>
     <string name="found_existing_tor_process">menemukan proses Tor yang ada...</string>
     <string name="unable_to_start_tor">Tidak dapat memulai Tor:</string>
     <string name="newnym">Anda telah beralih ke identitas Tor baru!</string>

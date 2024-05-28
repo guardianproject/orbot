@@ -56,11 +56,6 @@
     <string name="strict_nodes">Strict noder</string>
     <string name="bridges">Broer</string>
     <string name="use_bridges">Bruk broer</string>
-    <string name="relays">Reléer</string>
-    <string name="relaying">Videresending</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Aktiver enheten til å være et ikke-exit relé</string>
-    <string name="relay_port">Relé-port</string>
-    <string name="listening_port_for_your_tor_relay">Porten Tor-reléet ditt lytter på</string>
     <string name="enter_or_port">Skriv inn ELLER-port</string>
     <string name="relay_nickname">Reléets kallenavn</string>
     <string name="the_nickname_for_your_tor_relay">Kallenavnet for ditt Tor-relé</string>

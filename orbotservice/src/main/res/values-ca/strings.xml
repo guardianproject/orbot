@@ -14,7 +14,6 @@
     <!--Transparent Proxy screen-->
     <string name="couldn_t_start_tor_process_">No s\'ha pogut iniciar el procés Tor:</string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">Els paràmetres d\'adreces accessibles han provocat una excepció.</string>
-  <string name="your_relay_settings_caused_an_exception_">Els paràmetres de reemissió han causat una excepció.</string>
     <string name="found_existing_tor_process">s\'ha trobat un procés Tor existent...</string>
     <string name="unable_to_start_tor">Ha estat impossible iniciar Tor:</string>
     <string name="newnym">Heu canviat a una nova identitat Tor.</string>

@@ -57,11 +57,6 @@
     <string name="strict_nodes">سخت‌گیری در گره‌ها</string>
     <string name="bridges">پل‌ها</string>
     <string name="use_bridges">استفاده از پل‌ها</string>
-    <string name="relays">بازپخش کننده‌ها</string>
-    <string name="relaying">درحال بازپخش</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">افزارهٔ خود را برای یک بازپخش کننده غیرخروجی به‌کار بیندازید</string>
-    <string name="relay_port">درگاه بازپخش کننده</string>
-    <string name="listening_port_for_your_tor_relay">درگاه شنونده برای بازپخش کنندهٔ تور شما</string>
     <string name="enter_or_port">درگاه OR را وارد کنید</string>
     <string name="relay_nickname">نام مستعار بازپخش کننده</string>
     <string name="the_nickname_for_your_tor_relay">نام مستعار بازپخش کنندهٔ شما</string>

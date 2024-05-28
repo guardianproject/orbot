@@ -57,11 +57,6 @@
     <string name="strict_nodes">Αποκλειστικοί κόμβοι</string>
     <string name="bridges">Γέφυρες</string>
     <string name="use_bridges">Χρήση γεφυρών</string>
-    <string name="relays">Αναμεταδότες</string>
-    <string name="relaying">Γίνεται αναμετάδοση</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Μετατρέψτε την συσκευή σας σε ένα αναμεταδότη μη-εξόδου</string>
-    <string name="relay_port">Θύρα αναμετάδοσης</string>
-    <string name="listening_port_for_your_tor_relay">Θύρα ακρόασης για τον αναμεταδότη σας</string>
     <string name="enter_or_port">Εισάγετε την θύρα OR</string>
     <string name="relay_nickname">Ψευδώνυμο του αναμεταδότη</string>
     <string name="the_nickname_for_your_tor_relay">Το ψευδώνυμο του αναμεταδότη σας Tor</string>

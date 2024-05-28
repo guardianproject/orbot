@@ -50,11 +50,6 @@
     <string name="strict_nodes_description">Ma mocentiliz quiixitla tencuitliltetl quenime ce neixcahuilli pampa quinchihuazqueh nochi malacachtic. Inin hueliz quicotoniz ayiliztli intla ahmo huel mochihuaz malacachtic ica mocentilliz ixitla tencuitliltetl</string>
     <string name="bridges">Apantli</string>
     <string name="use_bridges">Xicmaniliz apantli</string>
-    <string name="relays">Tepozmacahuapanotlahuilli</string>
-    <string name="relaying">Tlapano ica huecaixipcaxitl ihuan radiotl</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Motepoznonotza ca neconiliztli pampa tepozmacahuapanoltlahuilli ahmo quizaya</string>
-    <string name="relay_port">Tzalantli tepozmacahuapanoltlahuilli</string>
-    <string name="listening_port_for_your_tor_relay">Caquitzalantli ica morelé Tor</string>
     <string name="enter_or_port">Xitlacuilo tzalantli OR</string>
     <string name="relay_nickname">Ontetocaitl</string>
     <string name="the_nickname_for_your_tor_relay">Ontetocaitl ica mo Tor</string>

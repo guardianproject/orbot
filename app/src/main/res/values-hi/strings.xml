@@ -57,11 +57,6 @@
     <string name="strict_nodes">सख्त नोड</string>
     <string name="bridges">ब्रिज</string>
     <string name="use_bridges">ब्रिज इस्तेमाल करें</string>
-    <string name="relays">रीले</string>
-    <string name="relaying">रीले कर रहे</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">अपने डिवाइस को गैर-आखिरी रीले बनाएं</string>
-    <string name="relay_port">रीले पोर्ट</string>
-    <string name="listening_port_for_your_tor_relay">आपके टॉर रीले के लिए सुननेवाला पोर्ट</string>
     <string name="enter_or_port">ओआर पोर्ट डालें</string>
     <string name="relay_nickname">रीले उपनाम</string>
     <string name="the_nickname_for_your_tor_relay">आपके टॉर रीले के लिए उपनाम</string>

@@ -29,7 +29,6 @@
     <string name="name">Name</string>
     <string name="disable">Disable</string>
     <string name="pref_general_group">General</string>
-    <string name="relay_port">Relay Port</string>
     <string name="the_nickname_for_your_tor_relay">The nickname for your Tor relay</string>
     <string name="hidden_service_request">An app wants to open onion server on port %1$s to the Tor network. This is safe if you trust the app.</string>
     <string name="allow">Allow</string>
@@ -94,7 +93,6 @@
     <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">Run as a client behind a firewall with restrictive policies</string>
     <string name="ports_reachable_behind_a_restrictive_firewall">Ports reachable behind a restrictive firewall</string>
     <string name="enter_ports">Enter ports</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Allow your device to be a non-exit relay</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Enable debug log to output (must use adb or aLogcat to view)</string>
     <string name="enter_a_custom_relay_nickname">Enter a custom relay nickname</string>
     <string name="reachable_addresses">Reachable Addresses</string>
@@ -182,9 +180,6 @@
     <string name="pref_proxy_password_summary">Proxy password (optional)</string>
     <string name="exclude_nodes">Exclude Nodes</string>
     <string name="use_bridges">Use Bridges</string>
-    <string name="relays">Relays</string>
-    <string name="relaying">Relaying</string>
-    <string name="listening_port_for_your_tor_relay">Listening port for your Tor relay</string>
     <string name="project_home">Project Home:</string>
     <string name="third_party_software">3rd-Party-Software:</string>
     <string name="version">Version:</string>

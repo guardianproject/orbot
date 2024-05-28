@@ -57,11 +57,6 @@
     <string name="strict_nodes">Strictノード</string>
     <string name="bridges">ブリッジ</string>
     <string name="use_bridges">ブリッジを使う</string>
-    <string name="relays">中継</string>
-    <string name="relaying">中継する</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">この端末を非出口中継にする</string>
-    <string name="relay_port">中継のポート</string>
-    <string name="listening_port_for_your_tor_relay">このTor中継のリスニングポート</string>
     <string name="enter_or_port">ORポートを入力</string>
     <string name="relay_nickname">中継のニックネーム</string>
     <string name="the_nickname_for_your_tor_relay">このTor中継のニックネーム</string>

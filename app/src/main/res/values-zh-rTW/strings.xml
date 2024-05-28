@@ -57,11 +57,6 @@
     <string name="strict_nodes">嚴格限制節點</string>
     <string name="bridges">網橋（Bridges）</string>
     <string name="use_bridges">使用網橋</string>
-    <string name="relays">中繼（Relays）</string>
-    <string name="relaying">中繼設定</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">啟用您的裝置成為 Tor 網路的中繼節點（非出口節點）</string>
-    <string name="relay_port">中繼連接埠</string>
-    <string name="listening_port_for_your_tor_relay">您的 Tor 中繼功能連接埠</string>
     <string name="enter_or_port">連接埠</string>
     <string name="relay_nickname">中繼節點暱稱</string>
     <string name="the_nickname_for_your_tor_relay">給您的 Tor 中繼節點一個暱稱</string>

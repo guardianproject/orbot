@@ -16,7 +16,6 @@
     <!--Transparent Proxy screen-->
     <string name="couldn_t_start_tor_process_">Невозможно запустить Tor: </string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">Ваши настройки доступных адресов вызвали исключение!</string>
-  <string name="your_relay_settings_caused_an_exception_">Настройки вашего ретранслятора вызвали исключение!</string>
     <string name="found_existing_tor_process">найден существующий процесс Tor...</string>
     <string name="unable_to_start_tor">Невозможно запустить Tor:</string>
     <string name="newnym">Вы переключились на новый идентификатор Tor!</string>

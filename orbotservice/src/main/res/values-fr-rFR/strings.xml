@@ -8,7 +8,6 @@
     <string name="status_shutting_down">TorService est en cours d\'extinction</string>
     <string name="couldn_t_start_tor_process_">Impossible de démarrer le processus Tor : </string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">Vos paramètres ReachableAddresses (adresses accessibles) ont causé une exception !</string>
-    <string name="your_relay_settings_caused_an_exception_">Vos paramètres de relais ont causé une exception !</string>
     <string name="found_existing_tor_process">un processus existant de Tor a été trouvé…</string>
     <string name="unable_to_start_tor">Impossible de démarrer Tor :</string>
     <string name="newnym">Vous avez basculé vers une nouvelle identité Tor !</string>

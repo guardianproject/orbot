@@ -55,11 +55,6 @@
     <string name="strict_nodes">Strikte punkter</string>
     <string name="bridges">Broer</string>
     <string name="use_bridges">Brug broer</string>
-    <string name="relays">Relæer</string>
-    <string name="relaying">Relæfunktion</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Lad denne enhed være et ikke-udgangs relæ</string>
-    <string name="relay_port">Relæets port</string>
-    <string name="listening_port_for_your_tor_relay">Port at dette Tor relæ lytter på</string>
     <string name="enter_or_port">Indtast OR port</string>
     <string name="relay_nickname">Relænavn</string>
     <string name="the_nickname_for_your_tor_relay">Kaldenavnet for dit Tor-relæ</string>

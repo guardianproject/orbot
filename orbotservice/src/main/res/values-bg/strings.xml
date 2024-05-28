@@ -16,7 +16,6 @@
     <!--Transparent Proxy screen-->
     <string name="couldn_t_start_tor_process_">Неуспешно стартиране на Тор процес: </string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">Твоята ReachableAddresses настройка предизвика грешка!</string>
-  <string name="your_relay_settings_caused_an_exception_">Твоите настройки за препращане предизвикаха изключение!</string>
     <string name="found_existing_tor_process">намерил си съвместим Tor проект...</string>
     <string name="unable_to_start_tor">Не може да стартира Тор:</string>
     <string name="newnym">Сменихте своята Тор идентичност!</string>

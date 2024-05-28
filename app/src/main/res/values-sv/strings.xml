@@ -57,11 +57,6 @@
     <string name="strict_nodes">Strikta Noder</string>
     <string name="bridges">Broar</string>
     <string name="use_bridges">Använd Broar</string>
-    <string name="relays">Reläer</string>
-    <string name="relaying">Överföring</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Aktivera din enhet till att vara ett icke-utgångsrelä</string>
-    <string name="relay_port">Relä Port</string>
-    <string name="listening_port_for_your_tor_relay">Lyssningsport för din Tor relä</string>
     <string name="enter_or_port">Allmänt</string>
     <string name="relay_nickname">Relä namn</string>
     <string name="the_nickname_for_your_tor_relay">Namnet för din Tor relä</string>

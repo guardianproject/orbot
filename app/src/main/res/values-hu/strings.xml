@@ -57,11 +57,6 @@
     <string name="strict_nodes">Szigorú csomópontok</string>
     <string name="bridges">Hidak</string>
     <string name="use_bridges">Hidak használata</string>
-    <string name="relays">Átjátszók</string>
-    <string name="relaying">Átjátszás</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Engedélyezd az eszközödnek, hogy nem-átjátszó elosztó legyen</string>
-    <string name="relay_port">Átjátszó port</string>
-    <string name="listening_port_for_your_tor_relay">Hallgató port a Tor átjátszódnak</string>
     <string name="enter_or_port">Enter VAGY port</string>
     <string name="relay_nickname">Átjátszó becenév</string>
     <string name="the_nickname_for_your_tor_relay">A Tor átjátszód beceneve</string>

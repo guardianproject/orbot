@@ -57,11 +57,6 @@
     <string name="strict_nodes">Точні вузли</string>
     <string name="bridges">Мости</string>
     <string name="use_bridges">Використовувати мости</string>
-    <string name="relays">Ретранслятори</string>
-    <string name="relaying">Ретрансляція</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Зробити ваш пристрій не вихідним ретранслятором</string>
-    <string name="relay_port">Порт ретранслятора</string>
-    <string name="listening_port_for_your_tor_relay">Прослуховуваний порт для вашого ретранслятора Tor</string>
     <string name="enter_or_port">Введіть порт OR</string>
     <string name="relay_nickname">Ім\'я ретранслятора</string>
     <string name="the_nickname_for_your_tor_relay">Ім\'я для вашого ретранслятора Tor</string>

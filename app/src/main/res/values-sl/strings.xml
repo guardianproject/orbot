@@ -35,7 +35,6 @@
     <string name="pref_proxy_username_summary">Uporabniško ime posrednika (neobvezno)</string>
     <string name="exit_nodes">Izhodna vozlišča</string>
     <string name="pref_proxy_port_summary">Vrata strežnika proxy</string>
-    <string name="relay_port">Relejna vrata</string>
     <string name="enter_or_port">Vnesite vrata OR</string>
     <string name="the_nickname_for_your_tor_relay">Vzdevek za rele Tor</string>
     <string name="enter_a_custom_relay_nickname">Vnesite vzdevek releja po meri</string>
@@ -104,8 +103,6 @@
     <string name="strict_nodes">Stroga vozlišča</string>
     <string name="bridges">Mostovi</string>
     <string name="use_bridges">Uporaba mostov</string>
-    <string name="relays">Releji</string>
-    <string name="relaying">Posredovanje</string>
     <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">Delujte kot odjemalec za požarnim zidom z restriktivnimi politikami</string>
     <string name="enter_ports">Vnesite vrata</string>
     <string name="project_home">Projekt Domov:</string>
@@ -190,11 +187,9 @@
     <string name="bridges_updated">Posodobljeni mostovi</string>
     <string name="pref_proxy_password_title">Odhodni proxy Geslo</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Prstni odtisi, zareze, države in naslovi za zadnji skok</string>
-    <string name="listening_port_for_your_tor_relay">Vrata za poslušanje releja Tor</string>
     <string name="relay_nickname">Vzdevek štafete</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Omogočite dostop do Tor-a vrstnikom Wi-Fi, vezanim napravam in vsem drugim, ki se lahko povežejo z vašim IP-jem</string>
     <string name="pref_use_expanded_notifications">V obvestilu prikažite državo in naslov IP izhodnega vozlišča tor, če sta na voljo</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Omogočite, da je vaša naprava posrednik brez izhoda</string>
     <string name="reachable_ports">Dosegljiva vrata</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Omogočite izpis dnevnika odpravljanja napak (za ogled morate uporabiti adb ali aLogcat)</string>
     <string name="hidden_service_request">Aplikacija želi v omrežju Tor odpreti čebulni strežnik na vratih %1$s. To je varno, če aplikaciji zaupate.</string>

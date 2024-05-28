@@ -15,7 +15,6 @@
     <!--Transparent Proxy screen-->
     <string name="couldn_t_start_tor_process_">Не може да се започне Tor-процесот:</string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">Вашите поставки за достапните адреси предизвикаа грешка!</string>
-  <string name="your_relay_settings_caused_an_exception_">Вашите поставки за реле предизвикаа грешка!</string>
     <string name="found_existing_tor_process">Пронајден постоечки Tor-процес ...</string>
     <string name="unable_to_start_tor">Tor не може да се стартува:</string>
     <string name="newnym">Се префрливте на нов идентитет на Tor!</string>

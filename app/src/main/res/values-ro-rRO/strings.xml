@@ -56,11 +56,6 @@
     <string name="strict_nodes">Noduri stricte</string>
     <string name="bridges">Punţi</string>
     <string name="use_bridges">Foloseşte punţi</string>
-    <string name="relays">Comutatoare</string>
-    <string name="relaying">Comutare</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Activeaza dispozitivul sa fie un comutator fara iesire</string>
-    <string name="relay_port">Port de retransmitere</string>
-    <string name="listening_port_for_your_tor_relay">Port pentru comutatorul tău Tor</string>
     <string name="enter_or_port">Introdu portul OR</string>
     <string name="relay_nickname">Utilizatorul comutatorului</string>
     <string name="the_nickname_for_your_tor_relay">Numele utilizatorului pentru comutatorul tău Tor</string>

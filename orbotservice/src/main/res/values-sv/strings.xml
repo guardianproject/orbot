@@ -16,7 +16,6 @@
     <!--Transparent Proxy screen-->
     <string name="couldn_t_start_tor_process_">Kunde inte starta Tor-process:</string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">Din NåbaraAdresser inställning orsakade ett undantag!</string>
-  <string name="your_relay_settings_caused_an_exception_">Din relä inställning orsakade ett undantag!</string>
     <string name="found_existing_tor_process">hittade existerande Tor process...</string>
     <string name="unable_to_start_tor">Kan inte starta Tor:</string>
     <string name="newnym">Du har bytt till en ny Tor identitet!</string>

@@ -50,11 +50,6 @@
     <string name="strict_nodes_description">Treat Exclude Nodes settings as a requirement for building all circuits. This may break functionality if no circuits are able to be generated with your Exclude Nodes settings.</string>
     <string name="bridges">Bridges</string>
     <string name="use_bridges">Use Bridges</string>
-    <string name="relays">Relays</string>
-    <string name="relaying">Relaying</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Enable your device to be a non-exit relay</string>
-    <string name="relay_port">Relay Port</string>
-    <string name="listening_port_for_your_tor_relay">Listening port for your Tor relay</string>
     <string name="enter_or_port">Enter OR port</string>
     <string name="relay_nickname">Relay nickname</string>
     <string name="the_nickname_for_your_tor_relay">The nickname for your Tor relay</string>

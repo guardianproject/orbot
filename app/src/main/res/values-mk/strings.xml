@@ -57,11 +57,6 @@
     <string name="strict_nodes">Задолжителни јазли</string>
     <string name="bridges">Мостови</string>
     <string name="use_bridges">Користи мостови</string>
-    <string name="relays">Релеи</string>
-    <string name="relaying">Препраќање</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Овозможи го уредот да биде реле без излез</string>
-    <string name="relay_port">Порта на реле</string>
-    <string name="listening_port_for_your_tor_relay">Порта за слушање на вашиот реле на Tor</string>
     <string name="enter_or_port">Внесете OR порта</string>
     <string name="relay_nickname">Име на релето</string>
     <string name="the_nickname_for_your_tor_relay">Име на вашето реле за Tor</string>

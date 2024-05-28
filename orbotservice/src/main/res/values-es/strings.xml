@@ -16,7 +16,6 @@
     <!--Transparent Proxy screen-->
     <string name="couldn_t_start_tor_process_">No se pudo iniciar el proceso de Tor: </string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">¡Sus \'Reglas de direcciones accesibles\' han producido una excepción!</string>
-  <string name="your_relay_settings_caused_an_exception_">¡La configuración de su repetidor ha producido una excepción!</string>
     <string name="found_existing_tor_process">Se encontró un proceso de Tor ya existente...</string>
     <string name="unable_to_start_tor">No fue posible iniciar Tor: </string>
     <string name="newnym">¡Ha cambiado a una nueva identidad de Tor!</string>

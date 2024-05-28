@@ -48,7 +48,6 @@
     <string name="pref_proxy_username_dialog">Inserir Nome de Utilizador do Proxy</string>
     <string name="bridges">Pontes</string>
     <string name="use_bridges">Usar Pontes</string>
-    <string name="relays">Retransmissores</string>
     <string name="pref_isolate_dest_summary">Usar um circuito diferente para cada endereço de destino</string>
     <string name="pref_open_proxy_on_all_interfaces_summary">Permita que pares Wi-Fi, aparelhos conectados e outros que se possam conectar ao seu IP, acessem o Tor</string>
     <string name="user_services">Serviços ao utilizador</string>
@@ -137,10 +136,6 @@
     <string name="enter_a_custom_relay_nickname">Insira um apelido de retransmissão customizado</string>
     <string name="the_nickname_for_your_tor_relay">O apelido para o seu retransmissor Tor</string>
     <string name="relay_nickname">Apelido do retransmissor</string>
-    <string name="listening_port_for_your_tor_relay">Ouvindo a porta do seu retransmissor Tor</string>
-    <string name="relay_port">Porta Retransmissora</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Ativar o seu aparelho para ser um retransmissor de sem saída</string>
-    <string name="relaying">Retransmitindo</string>
     <string name="strict_nodes">Nós Estritos</string>
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Impressões digitais, apelidos, países e endereços para excluir</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Impressões digitais, apelidos, países e endereços para a última etapa</string>

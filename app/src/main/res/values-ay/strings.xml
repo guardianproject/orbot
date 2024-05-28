@@ -57,11 +57,6 @@
     <string name="strict_nodes">Sum uñjat puriñawjanaka</string>
     <string name="bridges">Chakanaka</string>
     <string name="use_bridges">Chakanak apnaqaña</string>
-    <string name="relays">Ch\'iqiyirinaka</string>
-    <string name="relaying">Apayat ch\'iqiyaña</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Jan uñstir ch\'iqiyirïñapatak tispusitiwum aqtayam</string>
-    <string name="relay_port">Ch\'iqiyirin waythapiwjapa</string>
-    <string name="listening_port_for_your_tor_relay">Tor ch\'iqiyirimatak ist\'añ waythapiwja</string>
     <string name="enter_or_port">OR waythapiwj qillqantam</string>
     <string name="relay_nickname">Ch\'iqiyirin ñanqha sutipa</string>
     <string name="the_nickname_for_your_tor_relay">Tor ch\'iqiyiriman ñanqha sutip uñt\'ayiri</string>

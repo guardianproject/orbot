@@ -56,11 +56,6 @@
     <string name="strict_nodes">Precīzie mezgli</string>
     <string name="bridges">Tilti</string>
     <string name="use_bridges">Lietot tiltus</string>
-    <string name="relays">Retranslatori</string>
-    <string name="relaying">Retranslēšana</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Iespējot Jūsu iekārtu par bezapstājas retranslatoru</string>
-    <string name="relay_port">Retranslatora ports</string>
-    <string name="listening_port_for_your_tor_relay">Jūsu Tor retranslatora klausīšanās ports</string>
     <string name="enter_or_port">Ievadiet OR portu</string>
     <string name="relay_nickname">Retranslatora segvārds</string>
     <string name="the_nickname_for_your_tor_relay">Jūsu Tor\'a retranslatora segvārds</string>

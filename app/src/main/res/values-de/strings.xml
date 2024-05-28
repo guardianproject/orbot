@@ -57,11 +57,6 @@
     <string name="strict_nodes"> Strikte Netzknoten</string>
     <string name="bridges">Brücken</string>
     <string name="use_bridges">Brücken benutzen</string>
-    <string name="relays">Relais</string>
-    <string name="relaying">Weiterleitung</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Dein Gerät als Nichtausgangsrelais aktivieren</string>
-    <string name="relay_port">Relais-Port</string>
-    <string name="listening_port_for_your_tor_relay">Port für dein Tor-Relais, auf das gehört werden soll</string>
     <string name="enter_or_port">OR-Anschluss eingeben</string>
     <string name="relay_nickname">Relais-Spitzname</string>
     <string name="the_nickname_for_your_tor_relay">Der Spitzname für dein Tor-Relais</string>

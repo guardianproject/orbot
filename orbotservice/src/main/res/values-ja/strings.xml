@@ -16,7 +16,6 @@
     <!--Transparent Proxy screen-->
     <string name="couldn_t_start_tor_process_">Torプロセスの起動に失敗:</string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">あなたのReachableAddresses設定により例外が発生しました!</string>
-  <string name="your_relay_settings_caused_an_exception_">あなたのリレー設定により例外が発生しました!</string>
     <string name="found_existing_tor_process">Torプロセスを発見</string>
     <string name="unable_to_start_tor">Torを実行できませんでした</string>
     <string name="newnym">新たな Tor の身元に切り替えました。</string>

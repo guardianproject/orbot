@@ -51,11 +51,6 @@
     <string name="strict_nodes">Nodos estrictos</string>
     <string name="bridges">Puentes</string>
     <string name="use_bridges">Usar Puentes</string>
-    <string name="relays">Repetidores</string>
-    <string name="relaying">Repitiendo</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Permite que tu dispositivo sea un repetidor de no-salida</string>
-    <string name="relay_port">Puerto Repetidor</string>
-    <string name="listening_port_for_your_tor_relay">Puerto de escucha para tu repetidor de Tor</string>
     <string name="enter_or_port">Entrar puerto OR</string>
     <string name="relay_nickname">Apodo de Repetidor</string>
     <string name="the_nickname_for_your_tor_relay">Apodo de tu repetidor de Tor</string>

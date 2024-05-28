@@ -57,11 +57,6 @@
     <string name="strict_nodes">โหนดเข้มงวด</string>
     <string name="bridges">Bridges</string>
     <string name="use_bridges">ใช้งาน Bridges</string>
-    <string name="relays">รีเลย์</string>
-    <string name="relaying">การรีเลย์</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">ทำให้อุปกรณ์ของคุณทำงานเป็นรีเลย์แบบไม่ใช่ทางออก</string>
-    <string name="relay_port">พอร์ตรีเลย์</string>
-    <string name="listening_port_for_your_tor_relay">พอร์ตที่ให้รีเลย์ของ Tor ทำงาน</string>
     <string name="enter_or_port">ระบุพอร์ตของ OR</string>
     <string name="relay_nickname">ชื่อเล่นของรีเลย์</string>
     <string name="the_nickname_for_your_tor_relay">ชื่อเล่นสำหรับรีเลย์ของ Tor ของคุณ</string>

@@ -22,7 +22,6 @@
     <string name="pref_disable_network_title">Išjungti tinklo automatinio užmigdymo funkciją</string>
     <string name="pref_use_expanded_notifications">Pranešime rodyti „Tor“ išėjimo mazgo šalį ir IP adresą, kai tai įmanoma</string>
     <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">Veikti kaip klientui už ugniasienės su ribojančia politika</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Įgalinkite savo įrenginį būti neišeinančią relę</string>
     <string name="pref_proxy_host_title">Išeinantis įgaliotojo serverio priegloba</string>
     <string name="pref_proxy_host_dialog">Įveskite įgaliotojo serverio prieglobos serverį</string>
     <string name="pref_proxy_host_summary">Įgaliotojo serverio prieglobos vardas</string>
@@ -33,7 +32,6 @@
     <string name="bridge_snowflake">Prisijungimas per kitus „Tor“ naudotojus naudojant „Snowflake“ (1 būdas)</string>
     <string name="solve_captcha_instruction">Išspręskite CAPTCHA, kad galėtumėte prašyti tiltų.</string>
     <string name="ports_reachable_behind_a_restrictive_firewall">Prievadai, pasiekiami už ribojančiosios ugniasienės</string>
-    <string name="listening_port_for_your_tor_relay">„Tor“ relės klausymo prievadas</string>
     <string name="testing_tor_direct_success">Sėkmė. „Tor“ jungtis yra gera!</string>
     <string name="bridge_direct_connect">Prisijungti tiesiogiai prie „Tor“ (geriausia)</string>
     <string name="backup_saved_at_external_storage">Atsarginė kopija išsaugota išorinėje saugykloje</string>
@@ -125,7 +123,6 @@
     <string name="reachable_ports">Pasiekiami prievadai</string>
     <string name="reachable_addresses">Pasiekiami adresai</string>
     <string name="relay_nickname">Relės slapyvardis</string>
-    <string name="relay_port">Relės prievadas</string>
     <string name="use_bridges">Naudoti tiltus</string>
     <string name="exclude_nodes">Išskirti mazgus</string>
     <string name="strict_nodes">Griežti mazgai</string>
@@ -165,7 +162,6 @@
     <string name="hidden_service_request">Programėlė nori atidaryti „Tor“ tinklo prievado %1$s onion serverį. Tai saugu, jei pasitikite programėle.</string>
     <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Jei jūsų mobiliojo ryšio tinklas aktyviai blokuoja „Tor“, galite naudoti „tilto serverį“ kaip alternatyvų prisijungimo būdą. Pasirinkite vieną iš parinkčių, kad galėtumėte konfigūruoti ir išbandyti…</string>
     <string name="wizard_details_msg">„Orbot“ yra atvirojo kodo programa, kurią sudaro „Tor“, „Obfs4Proxy“, „Go-Tun2Socks“ ir „LibEvent“. Ji suteikia vietinį HTTP įgaliotąjį (proxy) serverį (8118) ir SOCKS įgaliotąjį serverį (9050) į „Tor“ tinklą.</string>
-    <string name="relaying">Perdavimas</string>
     <string name="pref_general_group">Bendrieji</string>
     <string name="menu_log">Žurnalas</string>
     <string name="enable">Įjungti</string>
@@ -175,7 +171,6 @@
     <string name="save">Išsaugoti</string>
     <string name="set_locale_title">Kalba</string>
     <string name="third_party_software">3-iųjų šalių programinė įranga:</string>
-    <string name="relays">Relės</string>
     <string name="bridges">Tiltai</string>
     <string name="error">Klaida</string>
     <string name="get_bridges_email">El. Paštas</string>

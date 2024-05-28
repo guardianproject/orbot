@@ -48,11 +48,6 @@
     <string name="strict_nodes">Nœuds stricts</string>
     <string name="bridges">Ponts</string>
     <string name="use_bridges">Utiliser des ponts</string>
-    <string name="relays">Relais</string>
-    <string name="relaying">Relais</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Faire de votre appareil un relais de non-sortie</string>
-    <string name="relay_port">Port de relais</string>
-    <string name="listening_port_for_your_tor_relay">Port d’écoute de votre relais Tor</string>
     <string name="enter_or_port">Saisir le port OR</string>
     <string name="relay_nickname">Pseudonyme du relais</string>
     <string name="the_nickname_for_your_tor_relay">Le pseudonyme de votre relais Tor</string>

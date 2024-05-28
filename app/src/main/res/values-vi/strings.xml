@@ -56,11 +56,6 @@
     <string name="strict_nodes">Nút giao mạng được chỉ định</string>
     <string name="bridges">Cầu Bridge</string>
     <string name="use_bridges">Sử dụng cầu Bridge</string>
-    <string name="relays">Rơ-le chuyển tiếp</string>
-    <string name="relaying">Đang chuyển tiếp rơ-le</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Cho phép thiết bị của bạn làm một nút giao rơ-le chuyển tiếp (không phải nút đầu ra cuối cùng)</string>
-    <string name="relay_port">Cổng Rơ-le chuyển tiếp</string>
-    <string name="listening_port_for_your_tor_relay">Cổng tiếp nhận cho rơ-le chuyển tiếp Tor của bạn</string>
     <string name="enter_or_port">Nhập cổng OR</string>
     <string name="relay_nickname">Biệt hiệu nút relay</string>
     <string name="the_nickname_for_your_tor_relay">Biệt hiệu cho nút Tor-relay của bạn</string>

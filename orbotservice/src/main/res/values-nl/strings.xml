@@ -16,7 +16,6 @@
     <!--Transparent Proxy screen-->
     <string name="couldn_t_start_tor_process_">Kon Tor-proces niet starten: </string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">Je ReachableAddresses-instellingen veroorzaakten een fout!</string>
-  <string name="your_relay_settings_caused_an_exception_">Je relay-instellingen veroorzaakten een fout!</string>
     <string name="found_existing_tor_process">bestaand Tor-proces gevonden…</string>
     <string name="unable_to_start_tor">Kan Tor niet starten:</string>
     <string name="newnym">Je bent naar een nieuwe Tor identiteit gewisseld!</string>

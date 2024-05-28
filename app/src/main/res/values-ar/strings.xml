@@ -56,11 +56,6 @@
     <string name="strict_nodes">النقاط المشددة</string>
     <string name="bridges">الجسور</string>
     <string name="use_bridges">استخدم الجسور</string>
-    <string name="relays">المرحلات</string>
-    <string name="relaying">يرحل</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">اسمح لجهازك ليكون مرحل غير نهائي</string>
-    <string name="relay_port">منفذ المرحل</string>
-    <string name="listening_port_for_your_tor_relay">المنفذ المصغي لمُرحل تور الخاص بك</string>
     <string name="enter_or_port">أدخل منفذ OR</string>
     <string name="relay_nickname">الاسم المستعار للمُرحل</string>
     <string name="the_nickname_for_your_tor_relay">الاسم المستعار لمُرحل تور الخاص بك</string>

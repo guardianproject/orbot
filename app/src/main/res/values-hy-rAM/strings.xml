@@ -60,11 +60,9 @@
 \nՁեր շնորհիվ:</string>
     <string name="not_sure">Վստահ չե՞ք</string>
     <string name="menu_log">Մատյան</string>
-    <string name="relays">Հերթափոխություններ</string>
     <string name="setting_debug">Վրիպազերծում</string>
     <string name="reachable_ports">Մատչելի մատույցներ</string>
     <string name="use_bridges">Օգտագործել կամուրջներ</string>
-    <string name="relaying">Հերթափոխում</string>
     <string name="use_custom_bridges">Օգտագործել հարմարեցված կամուրջները</string>
     <string name="volunteer_mode_title">Օգնեք ուրիշներին
 \nմիանալ Tor-ին</string>
@@ -139,7 +137,6 @@
     <string name="log_copied">Մատյանը պատճենվեց</string>
     <string name="ask_tor">Հարցրեք Tor-ին</string>
     <string name="kindness_adjust_title">Կարգավորումներ</string>
-    <string name="relay_port">Հերթափոխության մատույց</string>
     <string name="enter_a_custom_relay_nickname">Մուտքագրեք հերթափոխության հարմարեցված մականունը</string>
     <string name="reachable_addresses">Մատչելի հասցեներ</string>
     <string name="enter_ports">Մուտքագրեք մատույցները</string>

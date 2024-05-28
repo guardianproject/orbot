@@ -57,11 +57,6 @@
     <string name="strict_nodes">nodos estrictos</string>
     <string name="bridges">puentes</string>
     <string name="use_bridges">usar puentes</string>
-    <string name="relays">retransmitir</string>
-    <string name="relaying">retransmision </string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Habilite su dispositivo para que sea retransmision sin salida</string>
-    <string name="relay_port">puerto de retransmision</string>
-    <string name="listening_port_for_your_tor_relay">puerto de escucha para la retransmision de Tor</string>
     <string name="enter_or_port">entrar puerto OR</string>
     <string name="relay_nickname">apodo de retransmision</string>
     <string name="the_nickname_for_your_tor_relay">el apodo para tu retransmision de Tor</string>

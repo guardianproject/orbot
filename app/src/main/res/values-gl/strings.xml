@@ -57,11 +57,6 @@
     <string name="strict_nodes">Nós Estritos</string>
     <string name="bridges">Pontes</string>
     <string name="use_bridges">Usar Pontes</string>
-    <string name="relays">Reenvíos</string>
-    <string name="relaying">Reenvío</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Habilite o seu dispositivo para ser un reenvío non de saída</string>
-    <string name="relay_port">Porto de Reenvío</string>
-    <string name="listening_port_for_your_tor_relay">Porto de Escoita do seu reenvío Tor</string>
     <string name="enter_or_port">Introduza o porto OR</string>
     <string name="relay_nickname">Alias de Reenvío</string>
     <string name="the_nickname_for_your_tor_relay">Seu alias para reenvío de Tor</string>

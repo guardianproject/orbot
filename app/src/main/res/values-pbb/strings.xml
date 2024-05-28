@@ -54,12 +54,7 @@
   <string name="strict_nodes_description">Circuitotx vxitwa’ja, nodo puçkhe nvxitnxitxkhwey phewu’j, na’ mjĩia’s kyuju’juna phewu’jmeete </string>
   <string name="bridges">Weh</string>
   <string name="use_bridges">Weha’s muwe</string>
-  <string name="relays">Relés</string>
-  <string name="relaying">Wejx mkaajxkhewũ’j </string>
-  <string name="enable_your_device_to_be_a_non_exit_relay">Idx ꞔaama’s mijxkaah, naa Relés kase’jsamee nvxihtya’</string>
-  <string name="relay_port">Wejx kaajxkhewũ’jnxi vxitx</string>
-  <string name="listening_port_for_your_tor_relay">Wejx kaajxkhewũ’jnxi  TORa’s wẽse’jwa’ vxitx</string>
-  <string name="enter_or_port">Vxiç vxitxkwe’s mkiph</string>
+    <string name="enter_or_port">Vxiç vxitxkwe’s mkiph</string>
   <string name="relay_nickname">Ukhenxi yase</string>
   <string name="the_nickname_for_your_tor_relay">Ukhenxi yase TORtewe’sx wejx kaajxkhewũ’jnxi’s</string>
   <string name="enter_a_custom_relay_nickname">Mki’ph ukhenxi yase wejx kaajxkhewũ’jnxi’tewe’sxa’s</string>

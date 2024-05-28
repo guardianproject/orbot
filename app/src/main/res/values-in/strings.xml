@@ -56,11 +56,6 @@
     <string name="strict_nodes">Node Terlarang</string>
     <string name="bridges">Jembatan-jembatan</string>
     <string name="use_bridges">Pakai Bridges</string>
-    <string name="relays">Relays</string>
-    <string name="relaying">Sedang me-Relay</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Nyalakan perangkat anda menjadi non-exit relay</string>
-    <string name="relay_port">Port Relay</string>
-    <string name="listening_port_for_your_tor_relay">Port mendengarkan untuk TOR relay anda</string>
     <string name="enter_or_port">Memasuki OR port</string>
     <string name="relay_nickname">Nama Relay</string>
     <string name="the_nickname_for_your_tor_relay">sebuah nama untuk Tor Relay anda</string>

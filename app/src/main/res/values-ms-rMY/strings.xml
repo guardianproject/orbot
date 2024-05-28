@@ -51,11 +51,6 @@
     <string name="strict_nodes">Nod Ketat</string>
     <string name="bridges">Jambatan</string>
     <string name="use_bridges">Guna Jambatan</string>
-    <string name="relays">Relays</string>
-    <string name="relaying">Relaying</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Membolehkan peranti anda untuk menjadi geganti bukan keluar</string>
-    <string name="relay_port">Relay Port</string>
-    <string name="listening_port_for_your_tor_relay">Mendapatkan port untuk tetapan relay Tor anda</string>
     <string name="enter_or_port">Masukkan port OR</string>
     <string name="relay_nickname">Nama samaran relay</string>
     <string name="the_nickname_for_your_tor_relay">Nama samaran ini untuk relay Tor anda</string>

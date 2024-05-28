@@ -57,11 +57,6 @@
     <string name="strict_nodes">Strikte nodes</string>
     <string name="bridges">Bridges</string>
     <string name="use_bridges">Gebruik bridges</string>
-    <string name="relays">Relays</string>
-    <string name="relaying">Relayen</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Stel je toestel in staat om een non-exit relay te zijn</string>
-    <string name="relay_port">Relay-poort</string>
-    <string name="listening_port_for_your_tor_relay">Luisterpoort van jouw Tor-relay</string>
     <string name="enter_or_port">Voer OR-poort in</string>
     <string name="relay_nickname">Relay-bijnaam</string>
     <string name="the_nickname_for_your_tor_relay">De bijnaam voor jouw Tor-relay</string>

@@ -56,11 +56,6 @@
     <string name="strict_nodes">Striktni Čvorovi</string>
     <string name="bridges">Mostovi</string>
     <string name="use_bridges">Koristi Mostove</string>
-    <string name="relays">Releji</string>
-    <string name="relaying">Prenošenje</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Omogućite svom uređaju da bude ne-izlazni relej</string>
-    <string name="relay_port">Relej Port</string>
-    <string name="listening_port_for_your_tor_relay">Port za slušanje Vašeg Tor releja</string>
     <string name="enter_or_port">Unesi OR port</string>
     <string name="relay_nickname">Nadimak releja</string>
     <string name="the_nickname_for_your_tor_relay">Nadimak za Vaš Tor relej</string>

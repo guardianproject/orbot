@@ -14,7 +14,6 @@
     <!--Transparent Proxy screen-->
     <string name="couldn_t_start_tor_process_">Hindi ma umpisahan ang proseso ng Tor:</string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">Ang iyong ReachableAddresses settings ay nag sanhi ng exception!</string>
-  <string name="your_relay_settings_caused_an_exception_">Ang iyong relay settings ay nag sanhi ng exception!</string>
     <string name="found_existing_tor_process"> nakakita ng umiiral na Tor process...</string>
     <string name="unable_to_start_tor">Hindi masimulan ang Tor:</string>
     <string name="newnym">Ikaw ay nagpalit ng bagong pagkakakilanlan sa Tor!</string>

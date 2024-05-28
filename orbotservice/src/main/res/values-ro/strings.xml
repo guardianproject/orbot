@@ -14,7 +14,6 @@
     <!--Transparent Proxy screen-->
     <string name="couldn_t_start_tor_process_">Nu am putut porni procesul Tor:</string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">Setarile tale pentru adrese accesibile au cauzat o exceptie!</string>
-  <string name="your_relay_settings_caused_an_exception_">Setarile tale de relay au cauzat o exceptie!</string>
     <string name="found_existing_tor_process">gasit proces Tor existent...</string>
     <string name="unable_to_start_tor">Nu am reusit sa pornesc Tor:</string>
     <string name="newnym">Ați comutat la o nouă identitate Tor!</string>

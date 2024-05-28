@@ -57,11 +57,6 @@
     <string name="strict_nodes">Nodo hertsiak</string>
     <string name="bridges">Zubiak</string>
     <string name="use_bridges">Erabili zubiak</string>
-    <string name="relays">Erreleak</string>
-    <string name="relaying">Erreleatzea</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Gaitu zure gailua ez-irteerako errelea izatea</string>
-    <string name="relay_port">Errele ataka</string>
-    <string name="listening_port_for_your_tor_relay">Zure Tor errelearentzako entzuteko portua</string>
     <string name="enter_or_port">Sartu OR ataka</string>
     <string name="relay_nickname">Errele ezizena</string>
     <string name="the_nickname_for_your_tor_relay">Zure Tor errelearen ezizena</string>

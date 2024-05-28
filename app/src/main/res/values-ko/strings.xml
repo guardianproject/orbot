@@ -56,11 +56,6 @@
     <string name="strict_nodes">노드 선택</string>
     <string name="bridges">중계서버</string>
     <string name="use_bridges">중계서버 사용</string>
-    <string name="relays">중계서버</string>
-    <string name="relaying">중계</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">귀하의 장치를 출구가 아닌 중계서버로 활성화</string>
-    <string name="relay_port">중계 포트</string>
-    <string name="listening_port_for_your_tor_relay">귀하의 Tor 중계서버를 위한 Listening 포트</string>
     <string name="enter_or_port">OR 포트 입력</string>
     <string name="relay_nickname">중계서버 별명</string>
     <string name="the_nickname_for_your_tor_relay">귀하의 중계서버를 위한 별명</string>

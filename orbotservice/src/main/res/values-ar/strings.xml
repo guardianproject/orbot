@@ -16,7 +16,6 @@
     <!--Transparent Proxy screen-->
     <string name="couldn_t_start_tor_process_">لقد تعذر بدء تشغيل تور:</string>
     <string name="your_reachableaddresses_settings_caused_an_exception_">إعدادات العنوان القابل للاتصال لديك تسببت بخطأ!</string>
-  <string name="your_relay_settings_caused_an_exception_">إعدادات المرحلات لديك تسببت بخطأ!</string>
     <string name="found_existing_tor_process">عُثر علي عملية تور سابقة تعمل...</string>
     <string name="unable_to_start_tor">غير قادر على بدء تور:</string>
     <string name="newnym">لقد تحولت الى هوية تور جديدة</string>

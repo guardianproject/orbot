@@ -57,11 +57,6 @@
     <string name="strict_nodes">Nodi rigorosi</string>
     <string name="bridges">Bridge</string>
     <string name="use_bridges">Utilizza i bridge</string>
-    <string name="relays">Relay (Inoltratori)</string>
-    <string name="relaying">Relaying (Inoltro)</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Consenti al tuo dispositivo di fare da relay senza uscita</string>
-    <string name="relay_port">Porta del relay</string>
-    <string name="listening_port_for_your_tor_relay">Porta in ascolto per il proprio relay di Tor</string>
     <string name="enter_or_port">Inserisci la porta OR</string>
     <string name="relay_nickname">Nickname del relay</string>
     <string name="the_nickname_for_your_tor_relay">Il nickname per il proprio relay di Tor</string>

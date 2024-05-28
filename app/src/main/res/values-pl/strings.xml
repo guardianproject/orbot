@@ -56,11 +56,6 @@
     <string name="strict_nodes">Ścisłe węzły</string>
     <string name="bridges">Mostki</string>
     <string name="use_bridges">Użyj mostków</string>
-    <string name="relays">Przekaźniki</string>
-    <string name="relaying">Przekazywanie</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Pozwól swojemu urządzeniu zostać bezwyjściowym przekaźnikiem</string>
-    <string name="relay_port">Port przekaźników</string>
-    <string name="listening_port_for_your_tor_relay">Nasłuchiwanie portu Twojego przekaźnika</string>
     <string name="enter_or_port">Wpisz port OR</string>
     <string name="relay_nickname">Nick przekaźnika</string>
     <string name="the_nickname_for_your_tor_relay">Nick Twojego przekaźnika Tora</string>
