@@ -248,7 +248,7 @@
     <string name="pref_isolate_port">Izolácia cieľových portov</string>
     <string name="pref_isolate_protocol">Izolácia klientskych protokolov</string>
     <string name="pref_isolate_protocol_summary">Pre každý pripojovací protokol použite iný obvod</string>
-    <string name="bridges_obtained_connecting">Získané mosty! Pripojenie k tor...</string>
+    <string name="bridges_obtained_connecting">Získané mosty! Pripájam k Tor…</string>
     <string name="custom_bridge_description">Vlastný most poskytuje niekto, koho poznáte. Opýtajte sa vo svojich dôveryhodných sieťach a organizáciách, či ho niekto nehostuje.</string>
     <string name="having_trouble">Ťažkosti</string>
     <string name="volunteer_mode_subtitle_desc">Režim láskavosti umožňuje, aby sa vaše zariadenie stalo mostom pre ostatných. Pomáha ľuďom používať Tor na miestach, kde je blokovaný.
@@ -263,7 +263,7 @@
     <string name="app_suggested_subtitle">Orbot funguje najlepšie s aplikáciami na zasielanie správ a sociálnymi médiami.</string>
     <string name="apps_other_apps">Ostatné aplikácie</string>
     <string name="ask_tor">Spýtajte sa Tora</string>
-    <string name="asking">PÝTAŤ SA...</string>
+    <string name="asking">PÝTAŤ SA…</string>
     <string name="kindess_config_detail">Konfigurácia toho, ako a kedy môže vaše zariadenie fungovať ako proxy server Snowflake pre iných používateľov Tor.</string>
     <string name="btn_copy_log">Kopírovanie denníka</string>
     <string name="many_ways">Existuje mnoho spôsobov, ako dosiahnuť Tor. Niektoré z nich vám môžu vyhovovať viac ako iné.</string>
@@ -287,4 +287,6 @@
     <string name="volunteer_mode_alltime_label">Celkovo za celý čas</string>
     <string name="smart_connect_subtitle">Orbot sa pokúša pripojiť k sieti Tor akýmkoľvek dostupným spôsobom: Priamy, Snowflake, Bridge.</string>
     <string name="direct_connect">Priame pripojenie k sieti Tor</string>
+    <string name="pref_detect_root_summary">Varovať pri spustení, ak sú na tomto zariadení zapnuté oprávnenia root</string>
+    <string name="pref_detect_root_title">Rozpoznanie root</string>
 </resources>
