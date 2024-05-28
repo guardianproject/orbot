@@ -40,7 +40,6 @@ Torpe kan software kɵn mayaelai chi anwei kɵmɵ, incha chu puisrɵ, kape chu p
     <string name="log_notice_added_event_handler">Control portwan keerik pasramisran</string>
     <string name="log_notice_connected_to_tor_control_port">Control portwan kelitsik pasran</string>
     <string name="log_notice_ignoring_start_request">Katɵle pɵlpasramik cha mieikwan ka tan, yantɵ pɵlmarik pasran</string>
-    <string name="log_notice_geoip_error">Geoipyu mariklan tamara pasramikyu, kalɵ wepian </string>
 
 </resources>
 

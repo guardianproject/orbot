@@ -3,12 +3,8 @@
   <string name="app_name">Orbot
 </string>
   <string name="app_description">Orbotpe chi anwei kɵmɵn ikpape internetyu mentra kenamarmɵ chine maramtik kɵn. Orbotpe, internet yu wammeran mentra lasrpitsɵsrkɵmɵntrappe Tor teik tɵka wetɵ ashmɵntrai isua marik kɵn, trek chippe chi wam merane esekawa ampumai imai purep ipik kɵn pɵrashmerayu ik pirau mupa kuin pɵrap. Torpe kan software kɵn mayaelai chi anwei kɵmɵ, incha chu puisrɵ, kape chu pasriksrɵpe, wam kerilan mu kɵpen wampikelɵ wetɵ ashmɵntrai purukupik kɵn, trek tɵwai chutɵ kucha maya misakwan aship pasrapik Estado teik wan purukupik kɵn, kan \"analisis de tráfico\" teik tɵka.</string>
-  <string name="status_starting_up">Orbotpe pɵlpasrɵp pasran</string>
-  <string name="status_activated">Toryu kelitsik pasran</string>
-  <string name="status_shutting_down">Orbotpe kasran</string>
   <string name="menu_settings">Tamaramtelɵ</string>
   <string name="menu_log">Munchi keeramik</string>
-  <string name="menu_start">Pɵlpasrɵp</string>
   <string name="menu_stop">Pasrampunkarup</string>
   <string name="menu_about">Ikwan wamɵrɵsrɵpik</string>
   <string name="main_layout_download">Kɵtrɵsrup</string>
@@ -190,14 +186,8 @@ Trek tamaramikwane  asha mar</string>
   <string name="in_a_browser">Kan wampirishipiku, \"piuntsikmera\" chipiku kepintrɵ %s&gt; \"piuntsikmerantɵ trantra!\"</string>
   <string name="paste_bridges">Pasta piuntsik teiklɵ</string>
   <string name="use_qr_code">QR tɵka mar </string>
-  <string name="snowflake_proxy_pref_category">Snowflake Proxy (Maik kɵtashchap asamik)</string>
   <string name="bridge_snowflake">Toryu pek munchimerayu kutri kepiamik, Snowflake (Método 1 - Fastly) teka </string>
   <string name="bridge_snowflake_amp">Toryu pek munchimerayu kutri kepiamik, Snowflake (Método 2-AMP) teka</string>
-  <string name="be_a_snowflake_title">Snowflake Proxyn tɵka maramik </string>
-  <string name="be_a_snowflake_desc">Ñui Wamsrupiku kui, merashyu kui Toryu misak muchimeran ka kempamtrei (ikwane piuntsik tɵka kepatruwa wawape maram keik ken)</string>
-  <string name="be_a_snowflake_title_limit">Snowflake Proxy chu pastsɵkamik</string>
-  <string name="be_a_snowflake_desc_limit">Ñi marep weik naktsi purerepiku kelicha wein kui, wifiyu kepia wei kuik wawape maramtik ken </string>
-  <string formatted="true" name="snowflake_proxy_enabled">Snowflake proxy pilɵkei pasran </string>
   <string name="snowflake_proxy_msg_title">Wam srɵlmera kelichen eshkantrapikwan pila pasramik</string>
   <string name="snowflake_proxy_msg_description">Mun kepen marɵp unikwan  wampiksrɵ kutri ashchap inchen purɵ pasren eshkantrei pasramik</string>
   <!--new UX-->
