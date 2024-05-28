@@ -1200,7 +1200,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     private StringBuffer processSettingsImplObfs4(StringBuffer extraLines) {
         Log.d(TAG, "in obfs4 torrc config");
-        extraLines.append("ClientTransportPlugin obfs3 socks5 127.0.0.1:" + IPtProxy.obfs3Port()).append('\n');
         extraLines.append("ClientTransportPlugin obfs4 socks5 127.0.0.1:" + IPtProxy.obfs4Port()).append('\n');
         var bridgeList = "";
         if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_CUSTOM)) {
