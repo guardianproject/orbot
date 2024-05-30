@@ -61,6 +61,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.StringTokenizer;
@@ -305,6 +306,20 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     private static HashMap<String, String> mFronts;
+    private static List<String> mSnowflakeBridges;
+
+    public static void loadSnowflakeBridges(Context context) {
+        if (mSnowflakeBridges != null) return;
+        mSnowflakeBridges = new ArrayList<>();
+        try {
+            var reader = new BufferedReader(new InputStreamReader(context.getAssets().open("snowflake-brokers")));
+            String line;
+            while ((line =reader.readLine()) != null) mSnowflakeBridges.add(line);
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void loadCdnFronts(Context context) {
         if (mFronts == null) {
@@ -562,7 +577,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 pluggableTransportInstall();
 
                 mVpnManager = new OrbotVpnManager(this);
-
+                loadSnowflakeBridges(this);
                 loadCdnFronts(this);
             } catch (Exception e) {
                 Log.e(TAG, "Error setting up Orbot", e);
@@ -1193,8 +1208,9 @@ public class OrbotService extends VpnService implements OrbotConstants {
     private StringBuffer processSettingsImplSnowflake(StringBuffer extraLines) {
         Log.d(TAG, "in snowflake torrc config");
         extraLines.append("ClientTransportPlugin snowflake socks5 127.0.0.1:" + IPtProxy.snowflakePort()).append('\n');
-        extraLines.append("Bridge ").append(getCdnFront("snowflake-broker-1")).append("\n");
-        extraLines.append("Bridge ").append(getCdnFront("snowflake-broker-2")).append("\n");
+        for (String bridge : mSnowflakeBridges) {
+            extraLines.append("Bridge ").append(bridge).append("\n");
+        }
         return extraLines;
     }
 
