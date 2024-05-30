@@ -1,0 +1,4 @@
+* Velké opravy režimu VPN
+* Nové predvolené mosty
+* Aktualizované na Tor 0.4.0.4
+* Podpora 64-bitového režimu a Android Q
