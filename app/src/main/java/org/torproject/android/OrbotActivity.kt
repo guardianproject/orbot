@@ -18,9 +18,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.scottyab.rootbeer.RootBeer
+import org.torproject.android.connection.ConnectFragment
 import org.torproject.android.core.LocaleHelper
 import org.torproject.android.core.putNotSystem
 import org.torproject.android.core.ui.BaseActivity
+import org.torproject.android.more.MoreFragment
 import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.util.Prefs
 import org.torproject.android.ui.LogBottomSheet

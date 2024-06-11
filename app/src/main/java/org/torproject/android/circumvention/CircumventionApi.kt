@@ -3,7 +3,7 @@ package org.torproject.android.circumvention
 import IPtProxy.IPtProxy
 import okhttp3.OkHttpClient
 import org.torproject.android.service.OrbotService
-import org.torproject.android.ui.onboarding.ProxiedHurlStack
+import org.torproject.android.onboarding.ProxiedHurlStack
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
