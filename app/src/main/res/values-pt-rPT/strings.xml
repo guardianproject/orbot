@@ -247,7 +247,7 @@
     <string name="next">Próximo</string>
     <string name="solve_captcha">Resolver o captcha</string>
     <string name="incorrect_solution">Solução incorreta</string>
-    <string name="bridges_obtained_connecting">Pontes obtidas! Conectando-se ao tor...</string>
+    <string name="bridges_obtained_connecting">Pontes obtidas! Conectando-se ao tor…</string>
     <string name="custom_bridge_description">Uma ponte personalizada foi fornecida por alguém que conhece. Pergunte nas suas redes e organizações confiáveis para ver se alguém está hospedando um.</string>
     <string name="having_trouble_subtitle">Podemos tentar uma ponte Tor em seguida, mas precisaremos da sua ajuda</string>
     <string name="power_user_mode">Modo de utilizador avançado</string>
@@ -268,7 +268,7 @@
     <string name="hide_apps">Oculte apps do monitoramento da rede e obtenha acesso quando eles estiverem bloqueados.</string>
     <string name="pref_isolate_protocol">Isolar os protocolos do cliente</string>
     <string name="no_internet_title">Ligar à Internet</string>
-    <string name="kindness_adjust_title">Ajustar quando for ativo…</string>
+    <string name="kindness_adjust_title">Configurações</string>
     <string name="option_only_on_wifi">Apenas ligado à Wi-Fi</string>
     <string name="option_only_when_charging">Só durante o carregamento</string>
     <string name="pref_isolate_port">Isolar as portas de destino</string>
@@ -287,4 +287,6 @@
     <string name="snowflake_amp">Snowflake (AMP)</string>
     <string name="not_sure">Não tem a certeza\?</string>
     <string name="pref_isolate_port_summary">Utilizar um circuito diferente para cada porta de destino</string>
+    <string name="pref_detect_root_summary">Avisar no arranque se permissões de root estão ativadas neste dispositivo</string>
+    <string name="pref_detect_root_title">Deteção de Root</string>
 </resources>
