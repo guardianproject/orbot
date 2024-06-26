@@ -819,14 +819,53 @@ public class OrbotService extends VpnService implements OrbotConstants {
         //info.guardianproject.arti.Arti.init(this);
 
         //enable localhost:9150 socks proxy for use with WebView and other proxy capable communication
-        ArtiProxy artiProxy = ArtiProxy.Builder(this)
+        ArtiProxy.ArtiProxyBuilder artiProxyBuilder = ArtiProxy.Builder(this);
+
                 // .setUnmanagedSnowflakeClientPort((int) IPtProxy.snowflakePort())
                 //.setBridgeLines(bridgeLines)
                 //.setSnowflakePort((int) IPtProxy.snowflakePort())
-                .setLogListener((log) -> {Log.d("artilog", log);}
 
-                )
-                .build();
+        var connectionPathway = Prefs.getConnectionPathway();
+        if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
+
+            artiProxyBuilder.setSnowflakePort((int) IPtProxy.snowflakePort());
+
+            ArrayList<String> bridgeLines = new ArrayList<>();
+            bridgeLines.add(getCdnFront("snowflake-broker-1"));
+            bridgeLines.add(getCdnFront("snowflake-broker-2"));
+            artiProxyBuilder.setBridgeLines(bridgeLines);
+
+        } else if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE_AMP)) {
+
+            artiProxyBuilder.setSnowflakePort((int) IPtProxy.snowflakePort());
+
+            ArrayList<String> bridgeLines = new ArrayList<>();
+            bridgeLines.add(getCdnFront("snowflake-broker-1"));
+            bridgeLines.add(getCdnFront("snowflake-broker-2"));
+            artiProxyBuilder.setBridgeLines(bridgeLines);
+
+        } else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
+            //obfs4
+            artiProxyBuilder.setObfs4Port((int) IPtProxy.obfs4Port());
+
+            var bridgeString = "";
+            if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_CUSTOM)) {
+                bridgeString = Prefs.getBridgesList();
+            } else bridgeString = Prefs.getPrefSmartTryObfs4();
+            var customBridges = parseBridgesFromSettings(bridgeString);
+
+            ArrayList<String> bridgeList = new ArrayList<String>(Arrays.asList(customBridges));
+            artiProxyBuilder.setBridgeLines(bridgeList);
+
+        }
+
+
+        artiProxyBuilder.setLogListener((log) -> {
+                    Log.d("artilog", log);
+                    sendCallbackLogMessage(log);
+                });
+
+        ArtiProxy artiProxy = artiProxyBuilder.build();
         artiProxy.start();
 
         mPortSOCKS = 9150;
