@@ -42,11 +42,11 @@ object LocaleHelper {
             region = parts[1]
         }
 
-        val locale = Locale(language,region)
-        Locale.setDefault(locale)
+        val localeObj = Locale(language,region)
+        Locale.setDefault(localeObj)
         val configuration = context.resources.configuration
-        configuration.setLocale(locale)
-        configuration.setLayoutDirection(locale)
+        configuration.setLocale(localeObj)
+        configuration.setLayoutDirection(localeObj)
         return context.createConfigurationContext(configuration)
     }
 

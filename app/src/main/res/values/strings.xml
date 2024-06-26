@@ -69,7 +69,7 @@
     <string name="orbot_url" translatable="false">https://orbot.app/</string>
     <string name="orbot_github" translatable="false">https://github.com/guardianproject/orbot/</string>
     <string name="tor_url" translatable="false">Tor: https://www.torproject.org</string>
-    <string name="obfs4_url" translatable="false">obfs4 v%s: https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/lyrebird</string>
+    <string name="obfs4_url" translatable="false">lyrebird v%s: https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/lyrebird</string>
     <string name="snowflake_url" translatable="false">Snowflake v%s: https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake</string>
     <string name="openssl_url" translatable="false">OpenSSL: http://www.openssl.org</string>
     <string name="third_party_software">3rd-Party-Software: </string>

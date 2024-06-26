@@ -55,7 +55,7 @@ class SettingsPreferencesFragment : PreferenceFragmentCompat() {
         prefFlagSecure?.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _: Preference?, newValue: Any? ->
 
             Prefs.setSecureWindow(newValue as Boolean)
-            (activity as BaseActivity)?.resetSecureFlags()
+            (activity as BaseActivity).resetSecureFlags()
 
             true
         }

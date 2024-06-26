@@ -38,7 +38,6 @@
     <string name="log_notice_added_event_handler">Khẽkh vxite u’kacxa thegwa’ </string>
     <string name="log_notice_connected_to_tor_control_port">Txitxanxi ũsa’ çaam pe’pete u’kaya’</string>
     <string name="log_notice_ignoring_start_request">Pki’taya jxkaahnxi’s wẽse’jme’. Takhya’k</string>
-    <string name="log_notice_geoip_error">Ewuume’ geoiptxi ki’pwẽte’</string>
 
 </resources>
 
