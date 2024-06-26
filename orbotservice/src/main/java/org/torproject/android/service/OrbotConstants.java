@@ -5,8 +5,6 @@ package org.torproject.android.service;
 
 import android.content.Intent;
 
-import org.torproject.jni.TorService;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -64,8 +62,10 @@ public interface OrbotConstants {
     /**
      * A request to Orbot to transparently start Tor services
      */
-    String ACTION_START = TorService.ACTION_START;
+    String ACTION_START = "org.torproject.android.intent.action.START";
     String ACTION_STOP = "org.torproject.android.intent.action.STOP";
+
+   String ACTION_ERROR = "org.torproject.android.intent.action.ERROR";
 
     // needed when Orbot exits and tor is not running, but the notification is still active
     String ACTION_STOP_FOREGROUND_TASK = "org.torproject.android.intent.action.STOP_FOREGROUND_TASK";
@@ -81,18 +81,18 @@ public interface OrbotConstants {
     /**
      * {@link Intent} send by Orbot with {@code ON/OFF/STARTING/STOPPING} status
      */
-    String ACTION_STATUS = TorService.ACTION_STATUS;
+    String ACTION_STATUS = "org.torproject.android.intent.action.STATUS";
     /**
      * {@code String} that contains a status constant: {@link #STATUS_ON},
      * {@link #STATUS_OFF}, {@link #STATUS_STARTING}, or
      * {@link #STATUS_STOPPING}
      */
-    String EXTRA_STATUS = TorService.EXTRA_STATUS;
+    String EXTRA_STATUS = "org.torproject.android.intent.extra.STATUS";
     /**
      * A {@link String} {@code packageName} for Orbot to direct its status reply
      * to, used in {@link #ACTION_START} {@link Intent}s sent to Orbot
      */
-    String EXTRA_PACKAGE_NAME = TorService.EXTRA_PACKAGE_NAME;
+    String EXTRA_PACKAGE_NAME = "org.torproject.android.intent.extra.PACKAGE_NAME";
     /**
      * The SOCKS proxy settings in URL form.
      */
@@ -135,17 +135,17 @@ public interface OrbotConstants {
     String SMART_STATUS_CIRCUMVENTION_ATTEMPT_FAILED = "bad_attempt_suggestion";
 
 
+
     /**
      * All tor-related services and daemons are stopped
      */
-    String STATUS_OFF = TorService.STATUS_OFF;
-
+    String STATUS_OFF = "OFF";
     /**
      * All tor-related services and daemons have completed starting
      */
-    String STATUS_ON = TorService.STATUS_ON;
-    String STATUS_STARTING = TorService.STATUS_STARTING;
-    String STATUS_STOPPING = TorService.STATUS_STOPPING;
+    String STATUS_ON = "ON";
+    String STATUS_STARTING = "STARTING";
+    String STATUS_STOPPING = "STOPPING";
 
     /**
      * The user has disabled the ability for background starts triggered by

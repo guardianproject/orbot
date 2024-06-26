@@ -40,7 +40,8 @@ dependencies {
     //use locally built ipt_proxy+go_tun2socks
     api project(':OrbotLib')
 
-    api libs.tor_android
+    //api libs.tor_android
+    implementation("info.guardianproject:arti-mobile-ex:1.2.2.1")
 
     implementation(
             libs.android_shell,

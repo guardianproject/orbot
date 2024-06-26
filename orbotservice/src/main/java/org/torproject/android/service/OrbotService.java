@@ -3,7 +3,6 @@
 
 package org.torproject.android.service;
 
-import static org.torproject.jni.TorService.ACTION_ERROR;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
@@ -44,7 +43,6 @@ import org.torproject.android.service.util.PowerConnectionReceiver;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.util.Utils;
 import org.torproject.android.service.vpn.OrbotVpnManager;
-import org.torproject.jni.TorService;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -69,6 +67,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import IPtProxy.IPtProxy;
+import info.guardianproject.arti.ArtiProxy;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -78,7 +77,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 @SuppressWarnings("StringConcatenationInsideStringBufferAppend")
 public class OrbotService extends VpnService implements OrbotConstants {
 
-    public final static String BINARY_TOR_VERSION = TorService.VERSION_NAME;
+    public final static String BINARY_TOR_VERSION = "Arti 1.2.2.1";//TorService.VERSION_NAME;
 
     static final int NOTIFY_ID = 1;
     private static final int ERROR_NOTIFY_ID = 3;
@@ -296,6 +295,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         if (!showNotification) {
             clearNotifications();
             stopSelf();
+
         }
     }
 
@@ -614,6 +614,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         }
     }
 
+    /**
     private File updateTorrcCustomFile() throws IOException {
         var prefs = Prefs.getSharedPrefs(getApplicationContext());
         var extraLines = new StringBuffer();
@@ -716,7 +717,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         var fileTorRcCustom = TorService.getTorrc(this);
         updateTorConfigCustom(fileTorRcCustom, extraLines.toString(), false);
         return fileTorRcCustom;
-    }
+    }**/
 
     private String checkPortOrAuto(String portString) {
         if (!portString.equalsIgnoreCase("auto")) {
@@ -795,7 +796,9 @@ public class OrbotService extends VpnService implements OrbotConstants {
             if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SMART)) {
                 smartConnectionPathwayStartTor();
             }
-            startTorService();
+
+            //startTorService();
+            startArti ();
             showTorServiceErrorMsg = true;
 
             if (Prefs.hostOnionServicesEnabled()) {
@@ -809,6 +812,29 @@ public class OrbotService extends VpnService implements OrbotConstants {
             logException(getString(R.string.unable_to_start_tor) + " " + e.getLocalizedMessage(), e);
             stopTorOnError(e.getLocalizedMessage());
         }
+    }
+
+    private void startArti () {
+        //show arti logs into Android logcat
+        //info.guardianproject.arti.Arti.init(this);
+
+        //enable localhost:9150 socks proxy for use with WebView and other proxy capable communication
+        ArtiProxy artiProxy = ArtiProxy.Builder(this)
+                // .setUnmanagedSnowflakeClientPort((int) IPtProxy.snowflakePort())
+                //.setBridgeLines(bridgeLines)
+                //.setSnowflakePort((int) IPtProxy.snowflakePort())
+                .setLogListener((log) -> {Log.d("artilog", log);}
+
+                )
+                .build();
+        artiProxy.start();
+
+        mPortSOCKS = 9150;
+        mPortDns = 9151;
+        mCurrentStatus = STATUS_ON;
+        sendCallbackPorts(mPortSOCKS, mPortHTTP, mPortDns, mPortTrans);
+        sendStatusToOrbotActivity();
+
     }
 
     static int TRIES_DELETE = 0;
@@ -900,6 +926,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         }
     }
 
+    /**
     private synchronized void startTorService() throws Exception {
         updateTorConfigCustom(TorService.getDefaultsTorrc(this), """
                 DNSPort 0
@@ -989,7 +1016,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         } else {
             shouldUnbindTorService = bindService(serviceIntent, BIND_AUTO_CREATE, mExecutor, torServiceConnection);
         }
-    }
+    }**/
 
     private void sendLocalStatusOffBroadcast() {
         var localOffStatus = new Intent(LOCAL_ACTION_STATUS).putExtra(EXTRA_STATUS, STATUS_OFF);
