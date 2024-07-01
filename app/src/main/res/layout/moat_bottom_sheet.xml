@@ -26,7 +26,8 @@
         android:text="@string/solve_captcha"
         style="@style/BottomSheetHeader"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <FrameLayout
         android:id="@+id/captchaContainer"
