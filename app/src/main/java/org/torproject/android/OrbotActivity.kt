@@ -215,21 +215,20 @@ class OrbotActivity : BaseActivity() {
                                     allCircumventionAttemptsFailed = false
                                     return
                                 }
-                                var shouldDoOffLayout = true
-                                if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SMART)) {
-                                    shouldDoOffLayout = false
+                                if (!Prefs.getConnectionPathway().equals(Prefs.PATHWAY_SMART) && fragConnect.isAdded && fragConnect.context != null) {
+                                    fragConnect.doLayoutOff()
                                 }
-                                if (shouldDoOffLayout && fragConnect.isAdded) fragConnect.doLayoutOff()
-                            } else fragConnect.doLayoutOff()
+                            } else if (fragConnect.isAdded && fragConnect.context != null) {
+                                fragConnect.doLayoutOff()
+                            }
                         }
 
-                        OrbotConstants.STATUS_STARTING -> fragConnect.doLayoutStarting(this@OrbotActivity)
-                        OrbotConstants.STATUS_ON -> fragConnect.doLayoutOn(this@OrbotActivity)
+                        OrbotConstants.STATUS_STARTING -> if (fragConnect.isAdded && fragConnect.context != null) fragConnect.doLayoutStarting(this@OrbotActivity)
+                        OrbotConstants.STATUS_ON -> if (fragConnect.isAdded && fragConnect.context != null) fragConnect.doLayoutOn(this@OrbotActivity)
                         OrbotConstants.STATUS_STOPPING -> {}
                     }
 
                     previousReceivedTorStatus = status
-
                 }
 
                 OrbotConstants.LOCAL_ACTION_LOG -> {
