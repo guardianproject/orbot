@@ -73,6 +73,7 @@ import IPtProxy.IPtProxy;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 @SuppressWarnings("StringConcatenationInsideStringBufferAppend")
@@ -540,7 +541,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 filter.addAction(LOCAL_ACTION_NOTIFICATION_START);
 
                 mActionBroadcastReceiver = new ActionBroadcastReceiver();
-                registerReceiver(mActionBroadcastReceiver, filter);
+                ContextCompat.registerReceiver(this, mActionBroadcastReceiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) createNotificationChannel();
 

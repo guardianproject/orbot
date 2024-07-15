@@ -19,9 +19,11 @@
 
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
-    <!-- for Android 13 -->
+    <!-- For Android 13 -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
+    <!-- For Android 14 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
 
     <queries>
         <intent>
@@ -40,8 +42,7 @@
         android:theme="@style/DefaultTheme"
         tools:replace="android:allowBackup"
         android:hasFragileUserData="false"
-        android:taskAffinity=""
-        >
+        android:taskAffinity="">
 
         <activity android:name=".OrbotActivity"
             android:excludeFromRecents="false"
