@@ -38,7 +38,6 @@
     <string name="log_notice_added_event_handler">Kaa´muinshi atumaa  chi ayawuajuikai  kazachiki</string>
     <string name="log_notice_connected_to_tor_control_port">Antirrashi  Tor  juma ipunamuika eki.</string>
     <string name="log_notice_ignoring_start_request">Nojots apunuin  juchuntia  eepeja\'asú</string>
-    <string name="log_notice_geoip_error">Mojus jukuaipaa junain j\'iitaayaa erre aatunu\'in geoip</string>
 
 </resources>
 

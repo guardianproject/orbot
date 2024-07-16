@@ -39,6 +39,8 @@ class Languages private constructor(activity: Activity) {
                 Locale("bn"), Locale("ca"), Locale("cs"),
                 Locale("da"), Locale("el"), Locale("es"),
                 Locale("es", "MX"),
+            Locale("es", "CU"),
+
             Locale("es", "AR"),
                 Locale("en","GB"),
                 Locale("eo"),
@@ -185,8 +187,11 @@ class Languages private constructor(activity: Activity) {
             } else if (locale.language.equals("nah")) {
                 tmpMap["nah"] = "Nahuatl"
             }
+            else if (locale.country.equals("cu",true)) {
+                tmpMap[locale.toString()] = "Español Cubano"
+            }
             else {
-                tmpMap[locale.toString()] = locale.getDisplayLanguage(locale) + " " + locale.getDisplayCountry(locale)
+                tmpMap[locale.toString()] = locale.getDisplayLanguage(locale).capitalize() + " " + locale.getDisplayCountry(locale)
             }
         }
 

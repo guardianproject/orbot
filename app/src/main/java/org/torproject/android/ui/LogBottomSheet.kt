@@ -7,9 +7,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+
 import org.torproject.android.OrbotBottomSheetDialogFragment
 import org.torproject.android.R
 
@@ -25,7 +27,7 @@ class LogBottomSheet : OrbotBottomSheetDialogFragment() {
         tvLog = v.findViewById(R.id.orbotLog)
         tvLog.text = buffer.toString()
 
-        v.findViewById<Button>(R.id.btnCopyLog).setOnClickListener {
+        v.findViewById<FloatingActionButton>(R.id.btnCopyLog).setOnClickListener {
             val clipboard = context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clip: ClipData = ClipData.newPlainText("log", tvLog.text)
             clipboard.setPrimaryClip(clip)

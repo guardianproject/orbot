@@ -74,6 +74,7 @@ import IPtProxy.IPtProxy;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 @SuppressWarnings("StringConcatenationInsideStringBufferAppend")
@@ -555,7 +556,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 filter.addAction(LOCAL_ACTION_NOTIFICATION_START);
 
                 mActionBroadcastReceiver = new ActionBroadcastReceiver();
-                registerReceiver(mActionBroadcastReceiver, filter);
+                ContextCompat.registerReceiver(this, mActionBroadcastReceiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) createNotificationChannel();
 
@@ -1216,7 +1217,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
     private StringBuffer processSettingsImplObfs4(StringBuffer extraLines) {
         Log.d(TAG, "in obfs4 torrc config");
-        extraLines.append("ClientTransportPlugin obfs3 socks5 127.0.0.1:" + IPtProxy.obfs3Port()).append('\n');
         extraLines.append("ClientTransportPlugin obfs4 socks5 127.0.0.1:" + IPtProxy.obfs4Port()).append('\n');
         var bridgeList = "";
         if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_CUSTOM)) {

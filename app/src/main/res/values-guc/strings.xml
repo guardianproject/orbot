@@ -2,12 +2,8 @@
 <resources>
   <string name="app_name">Orbot</string>
   <string name="app_description">Orbot shia wane a\'yataaya maliasat, akaalinjia tü wane a\'yataayaakalüirua süpüla anainjainjatüin shia\'yataaya. Orbot a\'yataasü sulu\'u \"internet\" süka wane kanüliasü Tor je süchikijee sunujuluin sulu\'u wane kojuyasü \"computador\" sainküsü mmakat. Tor maliasat je taashisü süpüla sa\'inmajüin pia suulia eekai mojulaweein pümüin wanaa sümaa pi\'yataain sulu\'u \"internet\".</string>
-  <string name="status_starting_up">Orbot otta\'yulia.</string>
-  <string name="status_activated">Antirrawaas jumaa atalaya Tor</string>
-  <string name="status_shutting_down">Asürülasu  orbot</string>
   <string name="menu_settings">Anaata</string>
   <string name="menu_log">Sünüliamajatu</string>
-  <string name="menu_start">Ottaa</string>
   <string name="menu_stop">Püsha´walaa</string>
   <string name="menu_about">Jautoupuna</string>
   <string name="main_layout_download">Ashakatiraa</string>
@@ -187,14 +183,8 @@
   <string name="in_a_browser">sünain wane navegador , pünala%sy toque \"einjatüin sülatia\"&gt;\"¡shiyane papüinjatka sülatia!\"</string>
   <string name="paste_bridges">pü´ntirera sülatia</string>
   <string name="use_qr_code">puyataya código QR</string>
-  <string name="snowflake_proxy_pref_category">Proxy sünainje copo sünainje nieve (o&gt;ulakiairü)</string>
   <string name="bridge_snowflake">paapajira sünainje wanerüwa sümajatü Tor nayatayain Snowflake (Método 1_Fastly)</string>
   <string name="bridge_snowflake_amp">paapajira sünainje wanerüa sümajat Tor ayatashi süka Snowflake ( Metodo 2 _ AMP)</string>
-  <string name="be_a_snowflake_title">Jüyateria proxy sünainje copo sünainje nieve</string>
-  <string name="be_a_snowflake_desc">pü&gt;ula wane natajatnü sümajat Tor napajiraiwa Tor sünainje tü südispositivoinkat. ( tü nojotsü süpüla sapainjutü sapajirain sümaa wane sülatia)</string>
-  <string name="be_a_snowflake_title_limit">punta yalamuín nee Snowflake Proxy </string>
-  <string name="be_a_snowflake_desc_limit">o\'uttunúinjatu jupula anaijatu\'in juma Wifi</string>
-  <string formatted="true" name="snowflake_proxy_enabled">Anaipa  Snowflake Proxy</string>
   <string name="snowflake_proxy_msg_title">piiyater tamuin   erre ana´\'in  jukaipa  configuración</string>
   <string name="snowflake_proxy_msg_description">Jii\'yater epa wuanee  wayuu ain´jein casa mojus</string>
   <!--new UX-->

@@ -38,7 +38,6 @@
     <string name="log_notice_added_event_handler">Mocahuaz in ihuelititzalantli</string>
     <string name="log_notice_connected_to_tor_control_port">Ye octencui huelititzalantli</string>
     <string name="log_notice_ignoring_start_request">Ahmo onicma pehuaicihuitiliztli, ye opehua.</string>
-    <string name="log_notice_geoip_error">Onca ce neixpololiztli ihcuac otictlali tlanechicolli geoip</string>
 
 </resources>
 

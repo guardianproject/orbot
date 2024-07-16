@@ -2,13 +2,9 @@
 <resources>
   <string name="app_name">ORBOT</string>
   <string name="app_description">ORBOTa’ teeçx PROXY’ dewemee vxiswa’ja’, naayu’ vxite çaam wejxatxku ũukhmee kmajĩ’ji’. ORBOTa’ TORa’sku kseelpi’ji’ mjĩitx jxpa’yahtx jxaawkaan. TORa’ vxite çaam wejxa’, txa’wẽyçxa dewewa’jme’, na’ wala pu’çxhin kĩhsupa jiyuwẽte ki’ kwe’sx mjĩitx nwe’wek peethegkameen; sa’ ũukhmee vxiswa’ja’.</string>
-  <string name="status_starting_up">ORBOTa’ takheça’...</string>
-  <string name="status_activated">TORte Açhnxi ũsa’ </string>
-  <string name="status_shutting_down">ORBOTa’ aphaaça’ </string>
-  <string name="menu_settings">Phewu’jwa’  </string>
+    <string name="menu_settings">Phewu’jwa’  </string>
   <string name="menu_log">Yase akhçxa jxaawnxi </string>
-  <string name="menu_start">Mtakh </string>
-  <string name="menu_stop">Myuju </string>
+    <string name="menu_stop">Myuju </string>
   <string name="menu_about">Naa yuwete’</string>
   <string name="main_layout_download">Miispahtx</string>
   <string name="main_layout_upload">Mkaateka’j </string>
@@ -189,15 +185,9 @@ Notificaciones ampliadas</string>
   <string name="in_a_browser">Internette pakwenxite, na’s %s mtheg jĩiçxa ayte miikxtheth \"weh muy\" &gt; \"¡wehçxaatx mah!\"</string>
   <string name="paste_bridges">Wehtx miikne’ta’j</string>
   <string name="use_qr_code">Codigo QR miikseelpi’j</string>
-  <string name="snowflake_proxy_pref_category">Snowflake Proxi (isanxi)</string>
-  <string name="bridge_snowflake">Torta’s kseelpi’jsa yaseyak maçh, na’s kseelpi’jcxa Snowflake (Método 1 - Fastly)</string>
+    <string name="bridge_snowflake">Torta’s kseelpi’jsa yaseyak maçh, na’s kseelpi’jcxa Snowflake (Método 1 - Fastly)</string>
   <string name="bridge_snowflake_amp">Tora’s kseelpi’j yaseyak maçh, na’s kseelpi’jcxa Snowflake (Método 2 - AMP)</string>
-  <string name="be_a_snowflake_title">Snowflake Proxy’s miijxkaah</string>
-  <string name="be_a_snowflake_desc">Tora’s kseelpi’jsatx miinvxiht, txãawe’sx çaam welxsu açhkan. (na’sa vxisya ewuumeene’ga wehte açhcxa’)</string>
-  <string name="be_a_snowflake_title_limit">Snowflake Proxy kũunxitepa’j</string>
-  <string name="be_a_snowflake_desc_limit">Çaam welx kne’ta’jnxi ũste ki\' wifi ji\'phteçxa\'.</string>
-  <string formatted="true" name="snowflake_proxy_enabled">Snowflake Proxy’ fxki’tanxi ũsa’</string>
-  <string name="snowflake_proxy_msg_title">Miikthegu’ açhcxa’ kaajiyu’jnxis</string>
+    <string name="snowflake_proxy_msg_title">Miikthegu’ açhcxa’ kaajiyu’jnxis</string>
   <string name="snowflake_proxy_msg_description">Teeçx yuwe ktheguju’, idx Snowflake vxitetx kaajxkhewũ’ya pu’çxte</string>
   <!--new UX-->
   <string name="volunteer_mode">Modo Kindness</string>
