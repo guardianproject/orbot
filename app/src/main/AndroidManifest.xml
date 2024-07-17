@@ -66,14 +66,14 @@
             android:label="@string/title_choose_apps"/>
 
         <activity
-            android:name=".ui.v3onionservice.OnionServiceActivity"
+            android:name=".v3onionservice.OnionServiceActivity"
             android:label="@string/hidden_services">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".OrbotActivity" />
         </activity>
 
-        <activity android:name=".ui.v3onionservice.clientauth.ClientAuthActivity"
+        <activity android:name=".v3onionservice.clientauth.ClientAuthActivity"
             android:label="@string/v3_client_auth_activity_title">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -81,17 +81,17 @@
         </activity>
 
         <activity
-            android:name=".ui.onboarding.CustomBridgesActivity"
+            android:name=".onboarding.CustomBridgesActivity"
             android:label="@string/use_custom_bridges" />
 
         <provider
-            android:name=".ui.v3onionservice.OnionServiceContentProvider"
+            android:name=".v3onionservice.OnionServiceContentProvider"
             android:authorities="${applicationId}.ui.v3onionservice"
             android:exported="false" />
 
         <provider
             android:authorities="${applicationId}.ui.v3onionservice.clientauth"
-            android:name=".ui.v3onionservice.clientauth.ClientAuthContentProvider"
+            android:name=".v3onionservice.clientauth.ClientAuthContentProvider"
             android:exported="false"/>
 
         <receiver
