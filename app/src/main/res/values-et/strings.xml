@@ -120,10 +120,10 @@
     <string name="menu_header_features">Omadused</string>
     <string name="captcha_title">Anna meile teada, et sa oled inimene</string>
     <string name="menu_tor_connection">Tor ühendus</string>
-    <string name="menu_help_others">Aidata teisi</string>
-    <string name="menu_faq">FAQ</string>
-    <string name="menu_header_learn">Lisateave</string>
-    <string name="btn_use_custom_bridge">Kasutage kohandatud silda</string>
+    <string name="menu_help_others">Aita teisi</string>
+    <string name="menu_faq">KKK</string>
+    <string name="menu_header_learn">Loe lisaks</string>
+    <string name="btn_use_custom_bridge">Kasuta kohandatud silda</string>
     <string name="msg_taking_too_long">See tundub liiga kaua aega võtvat</string>
     <string name="msg_try_something_else">Proovi midagi muud</string>
     <string name="wizard_details_msg">Orbot on avatud lähtekoodiga rakendus, mis sisaldab Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks ja LibEvent. See pakub VPN-tunnelit, lokaalset HTTP Connect proksi (HTTPS ainult port 8118) ja SOCKS-proksi (9050) Tor-võrku.</string>
@@ -223,10 +223,10 @@
     <string name="apps_other_apps">Muud rakendused</string>
     <string name="asking">KÜSIMINE...</string>
     <string name="kindness_adjust_title">Reguleerige, kui see jookseb…</string>
-    <string name="volunteer_mode_title">Aidata teisi
-\nühendada Toriga</string>
+    <string name="volunteer_mode_title">Aita teisi
+\nTori ühenduse loomisel</string>
     <string name="volunteer_mode_label">Sõbralikkuse režiim</string>
-    <string name="volunteer_mode_alltime_label">Kogu aeg Kokku</string>
+    <string name="volunteer_mode_alltime_label">Kordi läbi aegade</string>
     <string name="smart_connect_subtitle">Orbot üritab luua ühendust Toriga igal võimalikul viisil: Direct, Snowflake, Bridge.</string>
     <string name="snowflake_subtitle">Ühendab Tori vabatahtlike kaudu. Saab ümber mõnest Tor\'i blokeeringust.</string>
     <string name="get_a_bridge_subtitle">Varjab teie liiklust. Saab ümber mõnest Tor\'i blokeeringust.</string>
@@ -238,9 +238,9 @@
     <string name="pref_isolate_port">Eraldada sihtkoha sadamad</string>
     <string name="pref_isolate_port_summary">Kasutage iga sihtkoha jaoks erinevat vooluahelat</string>
     <string name="pref_isolate_protocol_summary">Kasutage iga ühendusprotokolli jaoks erinevat vooluahelat</string>
-    <string name="ports_not_set">Sadamad ei ole määratud</string>
+    <string name="ports_not_set">Pordid ei ole määratud</string>
     <string name="pref_isolate_protocol">Isoleerida kliendiprotokollid</string>
-    <string name="volunteer_mode_weekly_label">Nädalane kogusumma</string>
+    <string name="volunteer_mode_weekly_label">Kordi nädalas</string>
     <string name="hide_apps">Peida rakendused võrgu jälgimise eest ja saada juurdepääs, kui need on blokeeritud.</string>
     <string name="custom_bridge_subtitle">Tõenäoliselt hoiab teid ühenduses, kui Tor on tõsiselt blokeeritud. Nõuab silla aadressi kellegi, keda te usaldate.</string>
     <string name="action_activate">Aktiveeri</string>
@@ -257,15 +257,15 @@
     <string name="kindess_config_detail">Konfigureerige, kuidas ja millal teie seade saab tegutseda Snowflake\'i proxy\'ina teiste Tor\'i kasutajate jaoks.</string>
     <string name="log_copied">Logi kopeeritud</string>
     <string name="configure_header">Tor-ühenduse konfigureerimine</string>
-    <string name="smart_connect">Smart Connect (vaikimisi)</string>
+    <string name="smart_connect">Nutikas ühendus (vaikimisi)</string>
     <string name="direct_connect_subtitle">Parim viis Toriga ühendumiseks. Kasutage, kui Tor ei ole blokeeritud.</string>
-    <string name="drawer_open">Avatud</string>
+    <string name="drawer_open">Ava</string>
     <string name="drawer_close">Sulge</string>
-    <string name="proxy_ports">Proxy pordid</string>
-    <string name="volunteer_mode_subtitle_desc">Sõbralikkuse režiim võimaldab teie seadmel olla teistele sillaks. See aitab inimestel kasutada Tor\'i kohtades, kus see on blokeeritud.
+    <string name="proxy_ports">Proksi pordid</string>
+    <string name="volunteer_mode_subtitle_desc">Sõbralikkuse režiim võimaldab sinu seadmel olla teiste jaoks sillaks. See aitab inimestel kasutada Tori kohtades, kus see on blokeeritud.
 \n
-\n- See ei tühjenda teie akut
-\n- See ei aeglusta teie internetti
+\n- See ei tühjenda sinu seadme akut
+\n- See ei aeglusta sinu internetiühendust
 \n- Seda saab kasutada ainult üle wifi
 \n- Seda saab igal ajal välja lülitada</string>
     <string name="ask_tor">Küsi Torilt</string>
