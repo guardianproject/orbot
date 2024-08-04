@@ -11,13 +11,17 @@ import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.*
+
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.scottyab.rootbeer.RootBeer
+
 import org.torproject.android.core.LocaleHelper
 import org.torproject.android.core.putNotSystem
 import org.torproject.android.core.ui.BaseActivity
@@ -27,11 +31,10 @@ import org.torproject.android.ui.LogBottomSheet
 
 class OrbotActivity : BaseActivity() {
 
-    private lateinit var bottomNavigationView: BottomNavigationView
-
     private lateinit var logBottomSheet: LogBottomSheet
-    lateinit var fragConnect: ConnectFragment
-    lateinit var fragMore: MoreFragment
+    var fragConnect: ConnectFragment = ConnectFragment()
+    var fragKindness: KindnessFragment = KindnessFragment()
+    var fragMore: MoreFragment = MoreFragment()
 
     var previousReceivedTorStatus: String? = null
 
@@ -75,11 +78,12 @@ class OrbotActivity : BaseActivity() {
 
         logBottomSheet = LogBottomSheet()
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation)
+        val navController: NavController = findNavController(R.id.nav_fragment)
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        val navController = findNavController(R.id.nav_fragment)
         bottomNavigationView.setupWithNavController(navController)
-        bottomNavigationView.selectedItemId = R.id.connectFragment
+
+        bottomNavigationView.menu.findItem(R.id.connectFragment).isChecked = true
 
         with(LocalBroadcastManager.getInstance(this)) {
             registerReceiver(
@@ -113,7 +117,6 @@ class OrbotActivity : BaseActivity() {
                 //we didn't find indication of root
             }
         }
-
     }
 
     override fun onBackPressed() {
