@@ -16,6 +16,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 
@@ -84,6 +85,42 @@ class OrbotActivity : BaseActivity() {
         bottomNavigationView.setupWithNavController(navController)
 
         bottomNavigationView.menu.findItem(R.id.connectFragment).isChecked = true
+
+        val navOptionsLeftToRight = NavOptions.Builder()
+            .setEnterAnim(R.anim.slide_in_right)
+            .setExitAnim(R.anim.slide_out_left)
+            .setPopEnterAnim(R.anim.slide_in_right)
+            .setPopExitAnim(R.anim.slide_out_left)
+            .build()
+
+        val navOptionsRightToLeft = NavOptions.Builder()
+            .setEnterAnim(R.anim.slide_in_left)
+            .setExitAnim(R.anim.slide_out_right)
+            .setPopEnterAnim(R.anim.slide_in_left)
+            .setPopExitAnim(R.anim.slide_out_right)
+            .build()
+
+        var lastSelectedItemId = R.id.connectFragment
+
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            if (item.itemId == lastSelectedItemId) {
+                return@setOnItemSelectedListener true
+            }
+
+            val navOptions = if (item.itemId > lastSelectedItemId) {
+                navOptionsLeftToRight
+            } else {
+                navOptionsRightToLeft
+            }
+            lastSelectedItemId = item.itemId
+
+            when (item.itemId) {
+                R.id.connectFragment -> navController.navigate(R.id.connectFragment, null, navOptions)
+                R.id.kindnessFragment -> navController.navigate(R.id.kindnessFragment, null, navOptions)
+                R.id.moreFragment -> navController.navigate(R.id.moreFragment, null, navOptions)
+            }
+            true
+        }
 
         with(LocalBroadcastManager.getInstance(this)) {
             registerReceiver(
