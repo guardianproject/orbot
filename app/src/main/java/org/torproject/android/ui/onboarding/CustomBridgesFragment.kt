@@ -1,20 +1,23 @@
 package org.torproject.android.ui.onboarding
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 
 import com.google.zxing.integration.android.IntentIntegrator
 
@@ -31,23 +34,24 @@ import java.net.URLDecoder
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
-class CustomBridgesActivity : AppCompatActivity(), TextWatcher {
+class CustomBridgesFragment : Fragment(), TextWatcher {
     private var mEtPastedBridges: EditText? = null
 
     @SuppressLint("ClickableViewAccessibility")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_custom_bridges)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_custom_bridges, container, false)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
+        val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
+        toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        view.findViewById<TextView>(R.id.tvDescription).text = getString(R.string.in_a_browser, URL_TOR_BRIDGES)
 
-        findViewById<TextView>(R.id.tvDescription).text = getString(R.string.in_a_browser, URL_TOR_BRIDGES)
-
-        findViewById<View>(R.id.btCopyUrl).setOnClickListener {
-            copyToClipboard("bridge_url", URL_TOR_BRIDGES, getString(R.string.done), this)
+        view.findViewById<View>(R.id.btCopyUrl).setOnClickListener {
+            copyToClipboard("bridge_url", URL_TOR_BRIDGES, getString(R.string.done), requireContext())
         }
 
         var bridges: String? = Prefs.getBridgesList().trim { it <= ' ' }
@@ -55,7 +59,7 @@ class CustomBridgesActivity : AppCompatActivity(), TextWatcher {
             bridges = null
         }
 
-        mEtPastedBridges = findViewById(R.id.etPastedBridges)
+        mEtPastedBridges = view.findViewById(R.id.etPastedBridges)
         mEtPastedBridges?.setOnTouchListener { v, event ->
             if (v.hasFocus()) {
                 v.parent.requestDisallowInterceptTouchEvent(true)
@@ -69,10 +73,10 @@ class CustomBridgesActivity : AppCompatActivity(), TextWatcher {
 
         mEtPastedBridges?.setText(bridges)
         mEtPastedBridges?.addTextChangedListener(this)
-        val integrator = IntentIntegrator(this)
+        val integrator = IntentIntegrator(requireActivity())
 
-        findViewById<View>(R.id.btScanQr).setOnClickListener { integrator.initiateScan() }
-        findViewById<View>(R.id.btShareQr).setOnClickListener {
+        view.findViewById<View>(R.id.btScanQr).setOnClickListener { integrator.initiateScan() }
+        view.findViewById<View>(R.id.btShareQr).setOnClickListener {
             Prefs.getBridgesList().takeIf { it.isNotEmpty() }?.let { setBridges ->
                 try {
                     integrator.shareText("bridge://${URLEncoder.encode(setBridges, "UTF-8")}")
@@ -81,7 +85,7 @@ class CustomBridgesActivity : AppCompatActivity(), TextWatcher {
                 }
             }
         }
-        findViewById<View>(R.id.btEmail).setOnClickListener {
+        view.findViewById<View>(R.id.btEmail).setOnClickListener {
             val requestText = "get transport"
             val emailUrl = "mailto:${Uri.encode(EMAIL_TOR_BRIDGES)}?subject=${Uri.encode(requestText)}&body=${Uri.encode(requestText)}"
             val emailIntent = Intent(Intent.ACTION_SENDTO, Uri.parse(emailUrl)).apply {
@@ -90,11 +94,13 @@ class CustomBridgesActivity : AppCompatActivity(), TextWatcher {
             }
             startActivity(Intent.createChooser(emailIntent, getString(R.string.send_email)))
         }
+
+        return view
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
-            finish()
+            activity?.onBackPressed()
             return true
         }
         return super.onOptionsItemSelected(item)
@@ -124,7 +130,7 @@ class CustomBridgesActivity : AppCompatActivity(), TextWatcher {
                     Log.e(javaClass.simpleName, "unsupported", e)
                 }
             }
-            setResult(RESULT_OK)
+            activity?.setResult(Activity.RESULT_OK)
         }
     }
 
@@ -146,9 +152,9 @@ class CustomBridgesActivity : AppCompatActivity(), TextWatcher {
         Prefs.setBridgesList(trimmedBridges)
         Prefs.putBridgesEnabled(trimmedBridges != null)
 
-        Intent(this, OrbotService::class.java).apply {
+        Intent(requireContext(), OrbotService::class.java).apply {
             action = TorControlCommands.SIGNAL_RELOAD
-            startService(this)
+            requireContext().startService(this)
         }
     }
 
