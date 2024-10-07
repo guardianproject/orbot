@@ -49,7 +49,9 @@ import com.google.zxing.integration.android.IntentResult;
 import com.jetradarmobile.snowfall.SnowfallView;
 
 import net.freehaven.tor.control.TorControlCommands;
+
 import org.json.JSONArray;
+import org.torproject.android.core.DiskUtils;
 import org.torproject.android.core.Languages;
 import org.torproject.android.core.LocaleHelper;
 import org.torproject.android.core.ui.Rotate3dAnimation;
@@ -62,9 +64,6 @@ import org.torproject.android.service.OrbotService;
 import org.torproject.android.service.util.Prefs;
 import org.torproject.android.service.vpn.TorifiedApp;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
@@ -202,20 +201,6 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
             }
         }
     };
-
-    private static String readFromAssets(Context context, String filename) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(filename)));
-
-        // do reading, usually loop until end of file reading
-        StringBuilder sb = new StringBuilder();
-        String mLine = reader.readLine();
-        while (mLine != null) {
-            sb.append(mLine + '\n'); // process line
-            mLine = reader.readLine();
-        }
-        reader.close();
-        return sb.toString();
-    }
 
     public static TorifiedApp getApp(Context context, ApplicationInfo aInfo) {
         TorifiedApp app = new TorifiedApp();
@@ -437,7 +422,7 @@ public class TeeveeMainActivity extends Activity implements OrbotConstants, OnLo
         TextView aboutOther = view.findViewById(R.id.aboutother);
 
         try {
-            String aboutText = readFromAssets(this, "LICENSE");
+            String aboutText = DiskUtils.readFileFromAssets("LICENSE", this);
             aboutText = aboutText.replace("\n", "<br/>");
             aboutOther.setText(Html.fromHtml(aboutText, Html.FROM_HTML_MODE_LEGACY));
         } catch (Exception e) {
