@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbot ist eine kostenlose Proxy-App, die andere Apps in die Lage versetzt, das Internet sicherer zu nutzen. Orbot verwendet Tor, um deinen Traffic im Internet zu verschlüsseln, und verbirgt ihn dann, indem er ihn durch eine Reihe von Computern auf der ganzen Welt hüpfen lässt. Tor ist freie Software und ein offenes Netzwerk, das dabei hilft, sich vor Formen der Netzüberwachung zu schützen, die persönliche Freiheiten und Privatsphäre, vertrauliche Geschäftsaktivitäten und -beziehungen bedrohen, sowie vor Maßnahmen der Staatssicherheit, die als Traffic-Analyse bekannt sind.</string>
+    <string name="app_description">Orbot ist eine kostenlose Proxy-App, die andere Apps in die Lage versetzt, das Internet sicherer zu nutzen. Orbot verwendet Tor, um deinen Datenverkehr im Internet zu verschlüsseln, und verbirgt ihn dann, indem er ihn durch eine Reihe von Computern auf der ganzen Welt hüpfen lässt. Tor ist freie Software und ein offenes Netzwerk, das dabei hilft, sich vor Formen der Netzüberwachung zu schützen, die persönliche Freiheiten und Privatsphäre, vertrauliche Geschäftsaktivitäten und -beziehungen bedrohen, sowie vor Maßnahmen der Staatssicherheit, die als Datenverkehrsanalyse bekannt sind.</string>
     <string name="menu_settings">Einstellungen</string>
     <string name="menu_log">Protokoll</string>
     <string name="menu_stop">Stopp</string>
@@ -85,7 +85,7 @@
     <string name="pref_socks_summary">Port, der den SOCKS-Proxy von Tor bereitstellt (Standard: 9050 oder 0, um ihn zu deaktivieren)</string>
     <string name="pref_socks_dialog">SOCKS-Port-Konfiguration</string>
     <string name="pref_transport_title">Tor-TransProxy-Port</string>
-    <string name="pref_transport_summary">Port, der den Transparent Proxy von Tor bereitstellt (Standard: 9040 oder 0, um ihn zu deaktivieren)</string>
+    <string name="pref_transport_summary">Port, der den transparenten Proxy von Tor bereitstellt (Standard: 9040 oder 0, um ihn zu deaktivieren)</string>
     <string name="pref_transport_dialog">TransProxy-Port-Konfiguration</string>
     <string name="pref_dnsport_title">Tor-DNS-Port</string>
     <string name="pref_dnsport_summary">Port, an dem Tor seinen DNS bereitstellt (Standard: 5400 oder 0, um ihn zu deaktivieren)</string>
@@ -117,7 +117,7 @@
     <string name="start_tor_again_for_finish_the_process">Tor neu starten, um den Vorgang abzuschließen</string>
     <string name="confirm_service_deletion">Löschen des Dienstes bestätigen</string>
     <string name="service_type">Dienst-Typ</string>
-    <string name="please_restart_Orbot_to_enable_the_changes">Bitte Orbot zum Aktivieren der Änderungen neustarten</string>
+    <string name="please_restart_Orbot_to_enable_the_changes">Bitte Orbot zum Aktivieren der Änderungen neu starten</string>
     <string name="onion">.onion</string>
     <string name="share_as_qr">Als QR-Code teilen</string>
     <string name="disable">Deaktivieren</string>
@@ -161,7 +161,7 @@
     <string name="request_bridges_from_torproject">Brücken von torproject.org anfordern</string>
     <string name="enter_characters_from_image">Text oben eingeben</string>
     <string name="captcha">CAPTCHA</string>
-    <string name="solve_captcha_instruction">Löse das CAPTCHA um Brücken anzufordern.</string>
+    <string name="solve_captcha_instruction">Löse das CAPTCHA, um Brücken anzufordern.</string>
     <string name="refresh_captcha">CAPTCHA erneuern</string>
     <string name="request_bridges">Brücken anfordern</string>
     <string name="testing_tor_direct">Verbindung zu Tor wird getestet …</string>
@@ -174,7 +174,7 @@
     <string name="v3_backup_key_warning">Warnung: Dadurch könnten deine Schlüssel anderen Apps zugänglich gemacht werden</string>
     <string name="v3_backup_key">Schlüssel für Client-Autorisierung sichern</string>
     <string name="v3_onion">.onion-Domain</string>
-    <string name="v3_key_hash">x25519 Privater Schlüssel in Base32</string>
+    <string name="v3_key_hash">Privater x25519-Schlüssel in Base32</string>
     <string name="v3_client_auth_activity_title">Client-Autorisierung</string>
     <string name="backup_port_exist">Fehler: Ein Onion-Dienst nutzt bereits Port %s</string>
     <string name="get_bridges_email_request">Brücken via E-Mail anfordern</string>
@@ -184,7 +184,7 @@
     <string name="version">Version:</string>
     <string name="license">Lizenz:</string>
     <string name="snowflake_proxy_msg_description">Eine Meldung anzeigen, wenn du jemandem hilfst, Zensur zu umgehen</string>
-    <string name="in_a_browser">Im Browser %s aufrufen und auf Get Bridges &gt; Just Give Me Bridges tippen!</string>
+    <string name="in_a_browser">Im Browser %s aufrufen und auf „Get Bridges &gt; Just Give Me Bridges“ tippen!</string>
     <string name="snowflake_proxy_msg_title">Verbindungsbenachrichtigung anzeigen</string>
     <string name="bridge_snowflake">Mittels Snowflake über andere Tor-Nutzer verbinden (Methode 1 - Schnell)</string>
     <string name="bridge_snowflake_amp">Mittels Snowflake über andere Tor-Nutzer verbinden (Methode 2 - AMP)</string>
@@ -213,14 +213,14 @@
     <string name="drawer_open">Öffnen</string>
     <string name="drawer_close">Schließen</string>
     <string name="proxy_ports">Proxy-Anschlüsse</string>
-    <string name="volunteer_mode_title">Anderen helfen
+    <string name="volunteer_mode_title">Anderen helfen,
 \nsich mit Tor zu verbinden</string>
     <string name="volunteer_mode_label">Freundlichkeitsmodus</string>
     <string name="volunteer_mode_weekly_label">Wöchentlich Insgesamt</string>
-    <string name="volunteer_mode_alltime_label">Gesamtzeit Gesamt</string>
+    <string name="volunteer_mode_alltime_label">Gesamtzeit gesamt</string>
     <string name="smart_connect">Smart Connect (Voreinstellung)</string>
-    <string name="smart_connect_subtitle">Orbot versucht, sich mit Tor über jeden verfügbaren Weg zu verbinden: Direkt, Snowflake, Bridge.</string>
-    <string name="direct_connect">Direkte Verbindung zu Tor</string>
+    <string name="smart_connect_subtitle">Orbot versucht, sich mit Tor über jeden verfügbaren Weg zu verbinden: direkt, Snowflake, Brücke.</string>
+    <string name="direct_connect">Direkte Verbindung mit Tor</string>
     <string name="direct_connect_subtitle">Der beste Weg, sich mit Tor zu verbinden. Benutze ihn, wenn Tor nicht blockiert wird.</string>
     <string name="snowflake">Snowflake</string>
     <string name="snowflake_subtitle">Verbindet sich durch Tor-Freiwillige. Umgeht einige Tor-Blockierungen.</string>
@@ -243,7 +243,7 @@
     <string name="btn_change_exit">Ausgang ändern</string>
     <string name="btn_refresh">Auffrischen</string>
     <string name="btn_tor_off">Tor ausschalten</string>
-    <string name="no_thx">Nein Danke</string>
+    <string name="no_thx">Nein danke</string>
     <string name="menu_header_features">Eigenschaften</string>
     <string name="captcha_title">Zeige uns, dass du ein Mensch bist</string>
     <string name="menu_tor_connection">Tor-Verbindung</string>
@@ -288,5 +288,5 @@
     <string name="pref_flag_secure_summary">Andere Apps daran hindern, Screenshots von Orbot zu machen</string>
     <string name="many_ways">Es gibt viele Wege, Tor zu erreichen. Manche funktionieren vielleicht besser als andere für dich.</string>
     <string name="pref_detect_root_summary">Beim Start warnen, wenn Root-Berechtigungen auf diesem Gerät aktiviert sind</string>
-    <string name="pref_detect_root_title">Root Erkennung</string>
+    <string name="pref_detect_root_title">Root-Erkennung</string>
 </resources>

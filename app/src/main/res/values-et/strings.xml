@@ -2,65 +2,65 @@
 <resources>
     <string name="app_name">Orbot</string>
     <string name="app_description">Orbot on vabalt kasutatav proxy rakendus, mis võimaldab teistel rakendustel Interneti turvalisemat kasutust. Orbot krüpteerib ja peidab teie Internetiliikluse Tor abil paljude maailma arvutite vahel põrgatades. Tor on vaba tarkvara ja vaba võrgustik mis aitab teil kaitsta oma privaatsust, vabadust, konfidentsiaalset äritegevust, suhteid ja riiklikku julgeolekut arvutivõrgus toimuva liikluse analüüsi eest.</string>
-    <string name="menu_settings">Seaded</string>
+    <string name="menu_settings">Seadistused</string>
     <string name="menu_log">Logi</string>
-    <string name="menu_stop">Stopp</string>
-    <string name="menu_about">Lähemalt</string>
-    <string name="main_layout_download">Lae alla</string>
-    <string name="main_layout_upload">Lae üles</string>
-    <string name="button_about">Lähemalt</string>
-    <string name="menu_exit">Välja</string>
+    <string name="menu_stop">Peata</string>
+    <string name="menu_about">Rakenduse teave</string>
+    <string name="main_layout_download">Laadi alla</string>
+    <string name="main_layout_upload">Laadi üles</string>
+    <string name="button_about">Rakenduse teave</string>
+    <string name="menu_exit">Välju</string>
     <!--Welcome Wizard strings (DJH)-->
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Üldist</string>
     <string name="pref_start_boot_title">Käivita Orbot seadme käivitumisel</string>
-    <string name="pref_start_boot_summary">Automaatne Orbot käivitumine ja Tor külge ühendumine seadme käivitumisel</string>
+    <string name="pref_start_boot_summary">Automaatne Orbot käivitumine ja Tori võrku ühendumine seadme käivitumisel</string>
     <!--New Wizard Strings-->
     <!--Title Screen-->
     <!--Warning screen-->
     <!--Permissions screen-->
     <!--TipsAndTricks screen-->
     <!--Transparent Proxy screen-->
-    <string name="pref_node_configuration">Sõlme seadistamine</string>
-    <string name="pref_node_configuration_summary">Need on seadistused edasijõudnutele ja võivad vähendada teie anonüümsust</string>
+    <string name="pref_node_configuration">Seadista sõlm</string>
+    <string name="pref_node_configuration_summary">Need on seadistused edasijõudnutele ja võivad vähendada sinu anonüümsust</string>
     <string name="pref_entrance_node">Sisendsõlmed</string>
-    <string name="pref_entrance_node_summary">Sõrmejäljed, hüüdnimed, riigid ja aadressid esimese hüppe jaoks</string>
-    <string name="pref_entrance_node_dialog">Sisestage sisendsõlmed</string>
-    <string name="pref_proxy_title">Väljuva võrgu proxy (Valikuline)</string>
-    <string name="pref_proxy_type_title">Väljuva proxy tüüp</string>
-    <string name="pref_proxy_type_summary">Proxy serveri kasutamise protokoll: HTTP, HTTPS, Socks4, Socks5</string>
-    <string name="pref_proxy_type_dialog">Sisestage proxy tüüp</string>
-    <string name="pref_proxy_host_title">Väljuva proxy seade</string>
-    <string name="pref_proxy_host_summary">Proxyserveri seadmenimi</string>
-    <string name="pref_proxy_host_dialog">Sisestage proxy seade</string>
-    <string name="pref_proxy_port_title">Väljuva proxy port</string>
-    <string name="pref_proxy_port_summary">Proxyserveri port</string>
-    <string name="pref_proxy_port_dialog">Sisestage proxy port</string>
-    <string name="pref_proxy_username_title">Väljuva proxy kasutajanimi</string>
-    <string name="pref_proxy_username_summary">Proxy kasutajanimi (Valikuline)</string>
-    <string name="pref_proxy_username_dialog">Sisestage proxy kasutajanimi</string>
-    <string name="pref_proxy_password_title">Väljuva proxy salasõna</string>
-    <string name="pref_proxy_password_summary">Proxy salasõna (Valikuline)</string>
-    <string name="pref_proxy_password_dialog">Sisestage proxy salasõna</string>
+    <string name="pref_entrance_node_summary">Sõrmejäljed, hüüdnimed, riigid ja aadressid esimese võrgusammu jaoks</string>
+    <string name="pref_entrance_node_dialog">Sisesta sisendsõlmed</string>
+    <string name="pref_proxy_title">Väljuva võrgu proksi (Valikuline)</string>
+    <string name="pref_proxy_type_title">Väljuva proksi tüüp</string>
+    <string name="pref_proxy_type_summary">Proksiserveri kasutamise protokoll: HTTP, HTTPS, Socks4, Socks5</string>
+    <string name="pref_proxy_type_dialog">Sisesta proksi tüüp</string>
+    <string name="pref_proxy_host_title">Väljuva proksi seade</string>
+    <string name="pref_proxy_host_summary">Proksiserveri seadmenimi</string>
+    <string name="pref_proxy_host_dialog">Sisesta proksi seade</string>
+    <string name="pref_proxy_port_title">Väljuva proksi port</string>
+    <string name="pref_proxy_port_summary">Proksiserveri port</string>
+    <string name="pref_proxy_port_dialog">Sisesta proksi port</string>
+    <string name="pref_proxy_username_title">Väljuva proksi kasutajanimi</string>
+    <string name="pref_proxy_username_summary">Proksi kasutajanimi (kui soovid)</string>
+    <string name="pref_proxy_username_dialog">Sisesta proksi kasutajanimi</string>
+    <string name="pref_proxy_password_title">Väljuva proksi salasõna</string>
+    <string name="pref_proxy_password_summary">Proksi salasõna (kui soovid)</string>
+    <string name="pref_proxy_password_dialog">Sisesta proksi salasõna</string>
     <string name="error">Viga</string>
     <string name="exit_nodes">Väljundsõlmed</string>
-    <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Sõrmejäljed, hüüdnimed, riigid ja aadressid viimase hüppe jaoks</string>
-    <string name="enter_exit_nodes">Sisestage väljundsõlmed</string>
+    <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Sõrmejäljed, hüüdnimed, riigid ja aadressid viimase võrgusammu jaoks</string>
+    <string name="enter_exit_nodes">Sisesta väljundsõlmed</string>
     <string name="exclude_nodes">Välistatud sõlmed</string>
-    <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Sõrmejäljed, hüüdnimed, riigid ja aadressid mida välistada</string>
-    <string name="enter_exclude_nodes">Sisestage välistatavad sõlmed</string>
-    <string name="strict_nodes">Kindlad sõlmed</string>
-    <string name="bridges">Sillad</string>
-    <string name="use_bridges">Kasuta sildu</string>
-    <string name="relays">Edastajad</string>
+    <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Sõrmejäljed, hüüdnimed, riigid ja aadressid mida me ei kasuta</string>
+    <string name="enter_exclude_nodes">Sisesta välistatavad sõlmed</string>
+    <string name="strict_nodes">Ranged sõlmed</string>
+    <string name="bridges">Võrgusillad</string>
+    <string name="use_bridges">Kasuta võrgusildu</string>
+    <string name="relays">Ruuterid</string>
     <string name="relaying">Edastamine</string>
-    <string name="enable_your_device_to_be_a_non_exit_relay">Luba oma seadmel hakata mitte-väljund edastajaks</string>
+    <string name="enable_your_device_to_be_a_non_exit_relay">Luba oma seadmel hakata vaheruuteriks (aga mitte lõppruuteriks)</string>
     <string name="relay_port">Edastusport</string>
-    <string name="listening_port_for_your_tor_relay">Port mida teie Tor edastaja kuulab</string>
-    <string name="enter_or_port">Kas Enter VÕI port</string>
-    <string name="relay_nickname">Edastaja hüüdnimi</string>
-    <string name="the_nickname_for_your_tor_relay">Teie Tor edastaja hüüdnimi</string>
-    <string name="enter_a_custom_relay_nickname">Sisestage edastaja kohandatud hüüdnimi</string>
+    <string name="listening_port_for_your_tor_relay">Port mida sinu Tori ruuter kuulab</string>
+    <string name="enter_or_port">Sisesta Tori port</string>
+    <string name="relay_nickname">Ruuteri hüüdnimi</string>
+    <string name="the_nickname_for_your_tor_relay">Sinu Tori ruuteri hüüdnimi</string>
+    <string name="enter_a_custom_relay_nickname">Sisesta enda valitud hüüdnimi ruuterile</string>
     <string name="reachable_addresses">Juurdepääsetavad aadressid</string>
     <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">Käivita kui piirava poliitikaga tulemüüri taga asuvat klienti</string>
     <string name="reachable_ports">Juurdepääsetavad pordid</string>
@@ -95,8 +95,8 @@
     <string name="menu_share_bridge">Jaga BridgeQR</string>
     <string name="share_as_qr">Jaga kui QR</string>
     <string name="app_shortcuts">Tor-toega rakendused</string>
-    <string name="pref_allow_background_starts_title">Lubage taustakäivitusi</string>
-    <string name="pref_allow_background_starts_summary">Lase mis tahes rakendusel Orbotile öelda, et ta käivitab Tori ja sellega seotud teenused</string>
+    <string name="pref_allow_background_starts_title">Luba käivitusi taustal</string>
+    <string name="pref_allow_background_starts_summary">Luba mis tahes rakendusel Orbotile öelda, et ta käivitaks Tori ja sellega seotud teenused</string>
     <string name="version">Versioon:</string>
     <string name="license">litsents:</string>
     <string name="v3_delete_client_authorization">Kliendi autoriseerimisvõtme kustutamine</string>
@@ -120,13 +120,13 @@
     <string name="menu_header_features">Omadused</string>
     <string name="captcha_title">Anna meile teada, et sa oled inimene</string>
     <string name="menu_tor_connection">Tor ühendus</string>
-    <string name="menu_help_others">Aidata teisi</string>
-    <string name="menu_faq">FAQ</string>
-    <string name="menu_header_learn">Lisateave</string>
-    <string name="btn_use_custom_bridge">Kasutage kohandatud silda</string>
+    <string name="menu_help_others">Aita teisi</string>
+    <string name="menu_faq">KKK</string>
+    <string name="menu_header_learn">Loe lisaks</string>
+    <string name="btn_use_custom_bridge">Kasuta kohandatud silda</string>
     <string name="msg_taking_too_long">See tundub liiga kaua aega võtvat</string>
     <string name="msg_try_something_else">Proovi midagi muud</string>
-    <string name="wizard_details_msg">Orbot on avatud lähtekoodiga rakendus, mis sisaldab Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks ja LibEvent. See pakub VPN-tunnelit, lokaalset HTTP Connect proksi (HTTPS ainult port 8118) ja SOCKS-proksi (9050) Tor-võrku.</string>
+    <string name="wizard_details_msg">Orbot on avatud lähtekoodiga rakendus, mis sisaldab Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks ja LibEvent. Ta võimaldab kasutada VPN-tunnelit, lokaalset HTTP Connect proksit (HTTPS ainult pordis 8118) ja SOCKS-proksit (9050) Tor-võrku.</string>
     <string name="hidden_service_request">Rakendus soovib avada Tor-võrku sibulaserveri sadamas %1$s. See on turvaline, kui te rakendust usaldate.</string>
     <string name="allow">Luba</string>
     <string name="pref_use_expanded_notifications_title">Laiendatud teated</string>
@@ -143,7 +143,7 @@
     <string name="pref_disable_ipv4">IPv4-ühenduste keelamine</string>
     <string name="use_custom_bridges">Kasutage kohandatud sildu</string>
     <string name="paste_bridges">Pasta sillad</string>
-    <string name="strict_nodes_description">Käsitlege Exclude Nodes seadistusi kui kõigi vooluahelate ehitamise nõuet. See võib rikkuda funktsionaalsuse, kui teie Exclude Nodes seadetega ei ole võimalik luua ühtegi ahelat.</string>
+    <string name="strict_nodes_description">Arvesta Exclude Nodes seadistusi kui kõikide võrguühenduste. See võib lõhkuda funktsionaalsust, kui sinu Exclude Nodes seadistustega ei ole võimalik luua ühtegi võrguühendust.</string>
     <string name="set_locale_title">Keel</string>
     <string name="pref_socks_title">Tor SOCKS proxy</string>
     <string name="pref_http_title">Tori HTTP</string>
@@ -162,7 +162,7 @@
     <string name="v3_onion">.onion domeen</string>
     <string name="v3_backup_key_warning">Hoiatus: See võib paljastada teie võtme teistele rakendustele</string>
     <string name="v3_import_auth_private">Impordi .auth_private</string>
-    <string name="confirm">Kinnitage</string>
+    <string name="confirm">Kinnita</string>
     <string name="local_port">Kohalik sadam</string>
     <string name="onion_port">Sibulasadam</string>
     <string name="backup_saved_at_external_storage">Varukoopia, mis on salvestatud välisesse salvestusruumi</string>
@@ -171,7 +171,7 @@
     <string name="restore_backup">Taastada varukoopia</string>
     <string name="create_a_backup_first">Loo esmalt varukoopia</string>
     <string name="start_tor_again_for_finish_the_process">Alusta Tor uuesti protsessi lõpetamiseks</string>
-    <string name="confirm_service_deletion">Kinnitage teenuse kustutamine</string>
+    <string name="confirm_service_deletion">Kinnita teenuse kustutamine</string>
     <string name="service_type">Teenuse tüüp</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Palun taaskäivitage Orbot muudatuste lubamiseks</string>
     <string name="onion">.onion teenus</string>
@@ -221,12 +221,12 @@
     <string name="power_user_mode">Elektrikasutajarežiim</string>
     <string name="title_choose_apps">Vali rakendused</string>
     <string name="apps_other_apps">Muud rakendused</string>
-    <string name="asking">KÜSIMINE...</string>
-    <string name="kindness_adjust_title">Reguleerige, kui see jookseb…</string>
-    <string name="volunteer_mode_title">Aidata teisi
-\nühendada Toriga</string>
+    <string name="asking">KÜSIME…</string>
+    <string name="kindness_adjust_title">Seadistused</string>
+    <string name="volunteer_mode_title">Aita teisi
+\nTori ühenduse loomisel</string>
     <string name="volunteer_mode_label">Sõbralikkuse režiim</string>
-    <string name="volunteer_mode_alltime_label">Kogu aeg Kokku</string>
+    <string name="volunteer_mode_alltime_label">Kordi läbi aegade</string>
     <string name="smart_connect_subtitle">Orbot üritab luua ühendust Toriga igal võimalikul viisil: Direct, Snowflake, Bridge.</string>
     <string name="snowflake_subtitle">Ühendab Tori vabatahtlike kaudu. Saab ümber mõnest Tor\'i blokeeringust.</string>
     <string name="get_a_bridge_subtitle">Varjab teie liiklust. Saab ümber mõnest Tor\'i blokeeringust.</string>
@@ -238,14 +238,14 @@
     <string name="pref_isolate_port">Eraldada sihtkoha sadamad</string>
     <string name="pref_isolate_port_summary">Kasutage iga sihtkoha jaoks erinevat vooluahelat</string>
     <string name="pref_isolate_protocol_summary">Kasutage iga ühendusprotokolli jaoks erinevat vooluahelat</string>
-    <string name="ports_not_set">Sadamad ei ole määratud</string>
+    <string name="ports_not_set">Pordid ei ole määratud</string>
     <string name="pref_isolate_protocol">Isoleerida kliendiprotokollid</string>
-    <string name="volunteer_mode_weekly_label">Nädalane kogusumma</string>
+    <string name="volunteer_mode_weekly_label">Kordi nädalas</string>
     <string name="hide_apps">Peida rakendused võrgu jälgimise eest ja saada juurdepääs, kui need on blokeeritud.</string>
     <string name="custom_bridge_subtitle">Tõenäoliselt hoiab teid ühenduses, kui Tor on tõsiselt blokeeritud. Nõuab silla aadressi kellegi, keda te usaldate.</string>
     <string name="action_activate">Aktiveeri</string>
     <string name="many_ways">Torini jõudmiseks on mitmeid viise. Mõni neist võib teie jaoks toimida paremini kui teised.</string>
-    <string name="bridges_obtained_connecting">Sillad saadud! Ühendamine tor...</string>
+    <string name="bridges_obtained_connecting">Sillad vastu võetud! Ühendame Tori võrguga…</string>
     <string name="having_trouble_subtitle">Järgmisena võime proovida Tori silda, kuid vajame teie abi</string>
     <string name="custom_bridge_description">Kohandatud silda pakub keegi, keda te tunnete. Küsige oma usaldusväärsetes võrgustikes ja organisatsioonides, et näha, kas keegi võõrustab sellist silda.</string>
     <string name="power_user_description">Toriga tuttavatele kasutajatele. Võimaldab käivitada Orbot ilma VPN-seadistusteta ja näitab avatud SOCKS- ja HTTP-porti</string>
@@ -254,18 +254,18 @@
     <string name="app_suggested_subtitle">Orbot töötab kõige paremini koos sõnumite ja sotsiaalmeedia rakendustega.</string>
     <string name="no_internet_title">Ühendage internetiga</string>
     <string name="no_internet_subtitle">Orbot\'i kasutamiseks on vaja internetiühendust.</string>
-    <string name="kindess_config_detail">Konfigureerige, kuidas ja millal teie seade saab tegutseda Snowflake\'i proxy\'ina teiste Tor\'i kasutajate jaoks.</string>
+    <string name="kindess_config_detail">Määratle, kuidas ja millal sinu seade saab toimida Snowflake\'i proksina teiste Tori kasutajate jaoks.</string>
     <string name="log_copied">Logi kopeeritud</string>
     <string name="configure_header">Tor-ühenduse konfigureerimine</string>
-    <string name="smart_connect">Smart Connect (vaikimisi)</string>
+    <string name="smart_connect">Nutikas ühendus (vaikimisi)</string>
     <string name="direct_connect_subtitle">Parim viis Toriga ühendumiseks. Kasutage, kui Tor ei ole blokeeritud.</string>
-    <string name="drawer_open">Avatud</string>
+    <string name="drawer_open">Ava</string>
     <string name="drawer_close">Sulge</string>
-    <string name="proxy_ports">Proxy pordid</string>
-    <string name="volunteer_mode_subtitle_desc">Sõbralikkuse režiim võimaldab teie seadmel olla teistele sillaks. See aitab inimestel kasutada Tor\'i kohtades, kus see on blokeeritud.
+    <string name="proxy_ports">Proksi pordid</string>
+    <string name="volunteer_mode_subtitle_desc">Sõbralikkuse režiim võimaldab sinu seadmel olla teiste jaoks sillaks. See aitab inimestel kasutada Tori kohtades, kus see on blokeeritud.
 \n
-\n- See ei tühjenda teie akut
-\n- See ei aeglusta teie internetti
+\n- See ei tühjenda sinu seadme akut
+\n- See ei aeglusta sinu internetiühendust
 \n- Seda saab kasutada ainult üle wifi
 \n- Seda saab igal ajal välja lülitada</string>
     <string name="ask_tor">Küsi Torilt</string>
@@ -287,4 +287,6 @@
     <string name="root_warning">Orbot on tuvastanud, et teie seade on juurdunud, mis võib põhjustada turvaprobleeme.</string>
     <string name="btn_copy_log">Logi kopeerimine</string>
     <string name="connection_snowflake">Snowflake</string>
+    <string name="pref_detect_root_summary">Kui antud seadmes on juurkasutaja õigused kasutusel, siis käivitamisel hoiata</string>
+    <string name="pref_detect_root_title">Tuvasta juurkasutaja õigused</string>
 </resources>
