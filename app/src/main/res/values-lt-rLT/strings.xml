@@ -248,7 +248,7 @@
     <string name="incorrect_solution">Neteisingas sprendimas</string>
     <string name="custom_bridge">Pasirinktinis tiltas</string>
     <string name="app_suggested_subtitle">„Orbot“ geriausiai veikia su pranešimų ir socialinių tinklų programėlėmis.</string>
-    <string name="bridges_obtained_connecting">Gauti tiltai! Jungiamasi prie „Tor“...</string>
+    <string name="bridges_obtained_connecting">Gauti tiltai! Jungiamasi prie „Tor“…</string>
     <string name="having_trouble">Turi problemų</string>
     <string name="having_trouble_subtitle">Galime išbandyti „Tor“ tiltą, bet mums reikės jūsų pagalbos</string>
     <string name="get_a_bridge_subtitle">Uždengia jūsų srautą. Apeina tam tikrą „Tor“ blokavimą.</string>
@@ -271,14 +271,14 @@
     <string name="option_only_when_charging">Tik įkraunant</string>
     <string name="pref_isolate_port_summary">Kiekvienam paskirties prievadui naudokite skirtingą grandinę</string>
     <string name="pref_isolate_protocol">Izoliuoti kliento protokolus</string>
-    <string name="kindness_adjust_title">Reguliuokite, kai jis veikia…</string>
+    <string name="kindness_adjust_title">Nustatymai</string>
     <string name="log_copied">Nukopijuotas žurnalas</string>
     <string name="btn_copy_log">Kopijavimo žurnalas</string>
     <string name="setting_padding">Paminkštinimas</string>
     <string name="option_only_on_wifi">Tik per Wifi</string>
     <string name="connection_direct">Tiesioginis</string>
     <string name="pref_isolate_port">Išskirti paskirties prievadai</string>
-    <string name="asking">KLAUSIMAS...</string>
+    <string name="asking">KLAUSIAMA…</string>
     <string name="snowflake_amp">Snowflake (AMP)</string>
     <string name="menu_kindness">Gerumas</string>
     <string name="pref_flag_secure_title">Ekrano apsauga</string>
