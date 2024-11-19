@@ -174,7 +174,9 @@ public interface OrbotConstants {
             "org.torproject.torbrowser_alpha",
             "org.torproject.torbrowser",
             "org.onionshare.android", // issue #618
-            "org.briarproject.briar.android" // https://github.com/guardianproject/orbot/issues/474
+            "org.onionshare.android.fdroid",
+            "org.briarproject.briar.android", // https://github.com/guardianproject/orbot/issues/474
+            "im.cwtch.flwtch"
     );
 
     List<String> VPN_SUGGESTED_APPS = Arrays.asList("org.thoughtcrime.securesms", // Signal
