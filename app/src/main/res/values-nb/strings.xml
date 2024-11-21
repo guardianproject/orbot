@@ -253,7 +253,7 @@
     <string name="direct_connect">Direkte tilkobling til Tor</string>
     <string name="pref_isolate_port">Isolere destinasjonsporter</string>
     <string name="menu_tor_connection">Tor-tilkobling</string>
-    <string name="asking">SPØKER...</string>
+    <string name="asking">SPØKER…</string>
     <string name="power_user_description">For brukere som er kjent med Tor. Lar deg starte Orbot uten VPN-innstillingen og viser åpne SOCKS- og HTTP-porter</string>
     <string name="snowflake_amp">Snowflake (AMP)</string>
     <string name="menu_kindness">Vennlighet</string>
@@ -271,7 +271,7 @@
     <string name="pref_isolate_protocol_summary">Bruk en annen krets for hver tilkoblingsprotokoll</string>
     <string name="incorrect_solution">Feil løsning</string>
     <string name="volunteer_mode">Modus for vennlighet</string>
-    <string name="bridges_obtained_connecting">Broer oppnådd! Tilkobling til tor...</string>
+    <string name="bridges_obtained_connecting">Broer oppnådd! Tilkobling til tor…</string>
     <string name="btn_start_vpn">Starte VPN</string>
     <string name="strict_nodes_description">Behandle Exclude Nodes-innstillingene som et krav for å bygge alle kretser. Dette kan ødelegge funksjonaliteten hvis ingen kretser kan genereres med innstillingene for ekskluderte noder.</string>
     <string name="app_suggested_subtitle">Orbot fungerer best med apper for meldinger og sosiale medier.</string>

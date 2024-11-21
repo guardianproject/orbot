@@ -222,7 +222,7 @@
     <string name="connection_snowflake">Snowflake</string>
     <string name="connection_custom">Vlastné</string>
     <string name="next">Ďalšie</string>
-    <string name="action_activate">Kedy aktivovať...</string>
+    <string name="action_activate">Kedy aktivovať…</string>
     <string name="setting_debug">Ladenie</string>
     <string name="menu_more">Viac</string>
     <string name="action_use">Použiť</string>
