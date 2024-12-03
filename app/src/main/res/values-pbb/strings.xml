@@ -100,7 +100,7 @@ Notificaciones ampliadas</string>
   <string name="mebibyte">MiB</string>
   <string name="bridges_updated">U\'se phuse\'jnxi weh</string>
   <string name="restart_orbot_to_use_this_bridge_">Ki’ mthak Orbota’s  yu’pthe’jnxitx nvxihtwa’</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Çaamwelx i’neeyũute’ Tora’s fxki’ta, Fxiy u’kawẽçxa’ \'Bridge Server\' vxisya’ ewuunega. Teeçx muwe phuse\'jwa’ jĩicxa’ miisa...</string>
+  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">Çaamwelx i’neeyũute’ Tora’s fxki’ta, Fxiy u’kawẽçxa’ \'Bridge Server\' vxisya’ ewuunega. Teeçx muwe phuse\'jwa’ jĩicxa’ miisa…</string>
   <string name="get_bridges_email"> Çaamte yuwe’s kaahnxi</string>
   <string name="get_bridges_email_request">Çaamte yuwe’s kaahnxite, wehtx mpẽhy </string>
   <string name="apps_mode">Modo VPN </string>
@@ -157,7 +157,7 @@ Notificaciones ampliadas</string>
   <string name="pref_disable_ipv4">IPv4 açhnxi’s mfxĩçxha</string>
   <string name="pref_disable_ipv4_summary">Kase’jnxite, IPv4 dxi’jte açhmeene’kwe jĩ’kee</string>
   <string name="app_shortcuts">App Torjĩ nvxitnxi ũsta’</string>
-  <string name="testing_tor_direct">Tor açhnxi’s isana...</string>
+  <string name="testing_tor_direct">Tor açhnxi’s isana…</string>
   <string name="testing_tor_direct_success">Ewnxuja’. ¡Tor açhnxi’ ewa\'!</string>
   <string name="bridge_direct_connect">Torteyũ maçh (wejx ewna) 
  </string>
@@ -198,7 +198,7 @@ Notificaciones ampliadas</string>
   <string name="btn_configure">Mphuse\'j</string>
   <string name="configure_header">Mphuse\'j Toryak kitxawa\'</string>
   <string name="volunteer_mode_subtitle">Vxitetx mpu’çxh açya’ ewuukan</string>
-  <string name="trying_to_connect_title">Açhnaa...</string>
+  <string name="trying_to_connect_title">Açhnaa…</string>
   <string name="btn_choose_apps">Appetx mtxhitxh</string>
   <string name="btn_change_exit">Kase’jnxi\'s myu’pthe’j </string>
   <string name="btn_refresh">Miikphuusẽe</string>
@@ -237,7 +237,7 @@ Notificaciones ampliadas</string>
   <string name="next">Vxite</string>
   <string name="solve_captcha">Captcha’s mpaas.</string>
   <string name="incorrect_solution">Paasnxi’ ewme’</string>
-  <string name="bridges_obtained_connecting">¡Weh uynxitx¡ torte açhna...
+  <string name="bridges_obtained_connecting">¡Weh uynxitx¡ torte açhna…
 .</string>
   <string name="custom_bridge_description">Idx jiimega’ weh phewu’çxha ũssa. Mpaapẽy jiiyunxisatx, idx çaam wessu aan kimçxapa ji’phna</string>
   <string name="having_trouble">Yuwe ewmeesak vxaa</string>

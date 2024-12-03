@@ -99,7 +99,7 @@
   <string name="mebibyte">MiB</string>
   <string name="bridges_updated">sülatia akumajushi</string>
   <string name="restart_orbot_to_use_this_bridge_">pülejera süchukua Orbot süpüla sujutalüin tü sülatiakat.</string>
-  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">müsia tü red móvil süsülajale Tor, esü süpula paapain wane  apajui sülatia maka wane sükuwaipa shikerotia. püneka wane tü ekat süpula sükumajia musia sülatia...</string>
+  <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">müsia tü red móvil süsülajale Tor, esü süpula paapain wane  apajui sülatia maka wane sükuwaipa shikerotia. püneka wane tü ekat süpula sükumajia musia sülatia…</string>
   <string name="get_bridges_email">süpulajana pütchii electronico</string>
   <string name="get_bridges_email_request">Achuntia sülatia sülupüna tü süpulajanakat pütchii electronico</string>
   <string name="apps_mode"> süküaipa VPN</string>
@@ -156,7 +156,7 @@
   <string name="pref_disable_ipv4">akatünusü sapajiraya IPv4</string>
   <string name="pref_disable_ipv4_summary">masümuin wana süma süjuitüin nojoluinjatü apajirain sünainje shiyawasee IPv4</string>
   <string name="app_shortcuts">apliaciones jutatüsü süpüla Tor</string>
-  <string name="testing_tor_direct">o&gt;ulaküsü tü suntireria sünain Tor...</string>
+  <string name="testing_tor_direct">o&gt;ulaküsü tü suntireria sünain Tor…</string>
   <string name="testing_tor_direct_success">anayawatsü ¡ tü sünteria sümüin Tor anasü !</string>
   <string name="bridge_direct_connect">püntirelale watüwoshi sünain Tor ( anashanüsü )</string>
   <string name="bridge_community">püntirerale sünainje süpülajatkat outkajalekaluirüa</string>

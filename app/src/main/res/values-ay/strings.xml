@@ -150,7 +150,7 @@
     <string name="drawer_open">Jist\'araña</string>
     <string name="snowflake_amp">Snowflake (AMP)</string>
     <string name="snowflake">Snowflake</string>
-    <string name="bridges_obtained_connecting">¡Chakanakax jikxatatawa! Tor ukar waythapiskiwa...</string>
+    <string name="bridges_obtained_connecting">¡Chakanakax jikxatatawa! Tor ukar waythapiskiwa…</string>
     <string name="menu_more">Juk\'ampi</string>
     <string name="next">Jutiri</string>
     <string name="btn_refresh">Jichhaptayaña</string>
@@ -178,7 +178,7 @@
     <string name="custom_bridge">Maynichat Chaka</string>
     <string name="connection_custom">Maynichata</string>
     <string name="use_custom_bridges">Maynichat chakanak apnaqaña</string>
-    <string name="asking">Jiskt\'askiwa...</string>
+    <string name="asking">Jiskt\'askiwa…</string>
     <string name="ask_tor">Tor ukar jiskt\'am</string>
     <string name="connection_snowflake">Snowflake</string>
     <string name="allow">Sarantayaña</string>

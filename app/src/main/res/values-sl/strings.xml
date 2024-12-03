@@ -232,7 +232,7 @@
     <string name="having_trouble">Škripanje</string>
     <string name="not_sure">Niste prepričani\?</string>
     <string name="ask_tor">Vprašajte Tor</string>
-    <string name="asking">SPRAŠEVANJE ...</string>
+    <string name="asking">SPRAŠEVANJE …</string>
     <string name="no_internet_subtitle">Za uporabo Orbota potrebujete internetno povezavo.</string>
     <string name="power_user_description">Za uporabnike, ki poznajo Tor. Omogoča zagon Orbota brez nastavitve VPN in prikazuje odprta vrata SOCKS in HTTP</string>
     <string name="power_user_mode">Napredni uporabniški način</string>
@@ -263,7 +263,7 @@
     <string name="custom_bridge_subtitle">Najverjetneje da boste ostali povezani, če je Tor močno blokiran. Zahteva naslov mosta nekoga, ki mu zaupate.</string>
     <string name="solve_captcha">Rešite Captcha</string>
     <string name="incorrect_solution">Napačna rešitev</string>
-    <string name="bridges_obtained_connecting">Mostovi pridobljeni! Povezovanje s Torom ...</string>
+    <string name="bridges_obtained_connecting">Mostovi pridobljeni! Povezovanje s Torom …</string>
     <string name="having_trouble_subtitle">Naslednjič lahko poskusimo s Torovim mostom, vendar bomo potrebovali vašo pomoč</string>
     <string name="volunteer_status_title">Danes je bolje
 \nzaradi tebe.</string>

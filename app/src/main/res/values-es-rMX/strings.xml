@@ -250,7 +250,7 @@
     <string name="next">Siguiente</string>
     <string name="solve_captcha">Resolver CAPTCHA</string>
     <string name="incorrect_solution">Solución incorrecta</string>
-    <string name="bridges_obtained_connecting">¡Puentes obtenidos! Conectando a tor...</string>
+    <string name="bridges_obtained_connecting">¡Puentes obtenidos! Conectando a tor…</string>
     <string name="having_trouble">Estas teniendo problemas</string>
     <string name="having_trouble_subtitle">Podemos probar un puente Tor a continuación, pero necesitaremos tu ayuda</string>
     <string name="power_user_mode">Modo de usuarie avanzado</string>
@@ -266,9 +266,9 @@
     <string name="ask_tor">Preguntale a Tor</string>
     <string name="many_ways">Hay muchas formas de conectarse a Tor. Algunas pueden funcionar mejor que otros para ti.</string>
     <string name="action_use">Usar</string>
-    <string name="asking">PREGUNTANDO...</string>
+    <string name="asking">PREGUNTANDO…</string>
     <string name="no_internet_subtitle">Necesitas una conexión a Internet para usar Orbot.</string>
-    <string name="kindness_adjust_title">Ajustar cuando se ejecuta...</string>
+    <string name="kindness_adjust_title">Ajustar cuando se ejecuta…</string>
     <string name="kindess_config_detail">Configura cómo y cuándo tu dispositivo puede actuar como un proxy Snowflake para otros usuarios de Tor.</string>
     <string name="menu_more">Mas</string>
     <string name="option_only_when_charging">Solo cuando estes cargando tu telefono</string>

@@ -260,7 +260,7 @@
     <string name="get_a_bridge_subtitle">Trafikinizi gizlədir. Bəzi Tor bloklamalarının ətrafında olur.</string>
     <string name="smart_connect_subtitle">Orbot Tor-a istənilən yolla qoşulmağa çalışır: Direct, Snowflake, Bridge.</string>
     <string name="incorrect_solution">Yanlış Həll</string>
-    <string name="bridges_obtained_connecting">Körpülər alındı! tor-a qoşulur...</string>
+    <string name="bridges_obtained_connecting">Körpülər alındı! tor-a qoşulur…</string>
     <string name="app_suggested_subtitle">Orbot mesajlaşma və sosial media proqramları ilə ən yaxşı şəkildə işləyir.</string>
     <string name="title_choose_apps">Proqramları seçin</string>
     <string name="get_a_bridge">Tordan körpü (Obfs4)</string>
@@ -280,7 +280,7 @@
     <string name="action_use">istifadə edin</string>
     <string name="option_only_on_wifi">Yalnız Wi-Fi-da</string>
     <string name="connection_direct">Birbaşa</string>
-    <string name="asking">SORUŞMAQ...</string>
+    <string name="asking">SORUŞMAQ…</string>
     <string name="menu_kindness">Xeyirxahlıq</string>
     <string name="pref_flag_secure_title">Ekran Təhlükəsizliyi</string>
     <string name="root_warning">Orbot cihazınızın köklü olduğunu aşkar etdi və bu, təhlükəsizlik problemlərinə səbəb ola bilər.</string>

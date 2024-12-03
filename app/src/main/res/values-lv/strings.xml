@@ -264,7 +264,7 @@
     <string name="direct_connect">Tiešais savienojums ar Tor</string>
     <string name="connection_direct">Tiešsaistes</string>
     <string name="pref_isolate_port">Izolēt galamērķa ostas</string>
-    <string name="asking">ASKING...</string>
+    <string name="asking">ASKING…</string>
     <string name="power_user_description">Lietotājiem, kas pārzina Tor. Ļauj palaist Orbot bez VPN iestatījuma un parāda atvērtos SOCKS un HTTP portus</string>
     <string name="snowflake_amp">Sniegpārsliņa (AMP)</string>
     <string name="menu_kindness">Labestība</string>
@@ -276,7 +276,7 @@
     <string name="smart_connect_subtitle">Orbot mēģina izveidot savienojumu ar Tor, izmantojot jebkuru pieejamo veidu: Tiešais, sniega pārsla, tilts.</string>
     <string name="pref_isolate_protocol_summary">Katram savienojuma protokolam izmantojiet atšķirīgu ķēdi</string>
     <string name="incorrect_solution">Nepareizs risinājums</string>
-    <string name="bridges_obtained_connecting">Iegūti tilti! Savienojums ar tor...</string>
+    <string name="bridges_obtained_connecting">Iegūti tilti! Savienojums ar tor…</string>
     <string name="app_suggested_subtitle">Orbot vislabāk darbojas ar ziņapmaiņas un sociālo mediju lietotnēm.</string>
     <string name="get_a_bridge">Tilts no Tor (Obfs4)</string>
     <string name="volunteer_mode_title">Palīdzēt citiem

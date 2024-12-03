@@ -228,7 +228,7 @@
     <string name="paste_bridges">הדבקת גשרים</string>
     <string name="volunteer_mode_weekly_label">סיכום שבועי</string>
     <string name="request_bridges">בקשת גשרים</string>
-    <string name="kindness_adjust_title">כיוון מתי הוא פועל…</string>
+    <string name="kindness_adjust_title">הגדרות</string>
     <string name="apps_suggested_title">יישומונים מוצעים</string>
     <string name="log_copied">יומן הועתק</string>
     <string name="btn_copy_log">העתקת יומן</string>
@@ -245,7 +245,7 @@
     <string name="direct_connect">חיבור ישיר ל־Tor</string>
     <string name="connection_direct">ישיר</string>
     <string name="v3_backup_name_hint">שם קובץ גיבוי…</string>
-    <string name="asking">מתבצע תשאול...</string>
+    <string name="asking">מתבצע תשאול…</string>
     <string name="power_user_description">למשתמשים שמכירים את Tor. מאפשר לך להפעיל את Orbot ללא הגדרת ה־VPN ומציג פתחות SOCKS ו־HTTP פתוחות</string>
     <string name="snowflake_amp">Snowflake (AMP)</string>
     <string name="get_bridges_email_request">בקשת גשרים באמצעות דוא״ל</string>
@@ -268,7 +268,7 @@
     <string name="incorrect_solution">פתרון שגוי</string>
     <string name="bridge_snowflake_amp">התחברות דרך משתמשי Tor אחרים באמצעות Snowflake (שיטה 2 - AMP)</string>
     <string name="volunteer_mode">מצב חסד</string>
-    <string name="bridges_obtained_connecting">הושגו גשרים! מתחברים ל־tor...</string>
+    <string name="bridges_obtained_connecting">הושגו גשרים! מתחברים ל־tor…</string>
     <string name="testing_tor_direct_success">הצלחנו. החיבור ל־Tor טוב!</string>
     <string name="btn_start_vpn">התחלת VPN</string>
     <string name="strict_nodes_description">התייחסות להגדרות החרגה של צמתים כדרישה לבניית כל המעגלים. זה עלול לשבור את השימושיות אם לא ניתן ליצור מעגלים עם הגדרות ‚החרגה של צמתים’.</string>
@@ -287,4 +287,6 @@
     <string name="many_ways">ישנן דרכים רבות להגיע ל־Tor. חלקן עשויות לעבוד טוב יותר מאחרות עבורך.</string>
     <string name="in_a_browser">בדפדפן, יש לבקר ב־%s וללחוץ על קבלת גשרים &gt; אני רוצה רק גשרים!</string>
     <string name="configure_header">הגדרת חיבור ה־Tor שלך</string>
+    <string name="pref_detect_root_summary">להזהיר בהתחלה אם המכשיר הזה פרוץ (root) וההרשאות האלה פעילות</string>
+    <string name="pref_detect_root_title">זיהוי פריצה (root)</string>
 </resources>

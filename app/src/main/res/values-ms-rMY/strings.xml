@@ -96,4 +96,11 @@
     <string name="get_bridges_email">Email</string>
     <string name="deny">Nafi</string>
     <string name="connect">Sambung</string>
+    <string name="menu_scan">Imbas BridgeQR</string>
+    <string name="menu_share_bridge">Kongsi BridgeQR</string>
+    <string name="allow">Benarkan</string>
+    <string name="pref_allow_background_starts_title">Benarkan bermula di latar belakang</string>
+    <string name="pref_allow_background_starts_summary">Benarkan mana-mana aplikasi memberitahu Orbot untuk mulakan Tor dan servis berkenaan</string>
+    <string name="newnym">Anda bertukar ke identiti Tor baharu!</string>
+    <string name="pref_socks_title">Tor SOCKS</string>
 </resources>

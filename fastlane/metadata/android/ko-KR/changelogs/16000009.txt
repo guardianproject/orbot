@@ -1,0 +1,8 @@
+- 사용자 인터페이스에 대한 주요 업데이트!
+- 설정 및 브리지 구성을 위한 새로운 마법사
+- 향상된 VPN 기능
+- 어니언/숨겨진 서비스 구성 충돌 수정
+
+그 외에도...
+
+기여자: 이슈, 커밋 및 PR에 참여해 주신 pgerber, syphyr, Khse4, Bjarni Runar, Unpublished, igortoliveira, Goapunk, SpotComms, Akshat Agrawal05, dixidroid, arrase 등
