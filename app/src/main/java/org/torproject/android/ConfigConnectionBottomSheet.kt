@@ -1,6 +1,7 @@
 package org.torproject.android
 
 import IPtProxy.IPtProxy
+import IPtProxy.OnTransportStopped
 import android.content.Context
 import android.os.Bundle
 import android.telephony.TelephonyManager
@@ -16,6 +17,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import org.torproject.android.circumvention.Bridges
 import org.torproject.android.circumvention.CircumventionApiManager
 import org.torproject.android.circumvention.SettingsRequest
+import org.torproject.android.service.OrbotConstants
 import org.torproject.android.service.OrbotService
 import org.torproject.android.service.util.Prefs
 import java.io.File
@@ -201,8 +203,9 @@ class ConfigConnectionBottomSheet() :
             fileCacheDir.mkdir()
         }
 
-        IPtProxy.setStateLocation(fileCacheDir.absolutePath)
-        IPtProxy.startLyrebird("DEBUG", false, false, null)
+        val proxy = OrbotService.getIptProxyController(context)
+        proxy.start(IPtProxy.MeekLite,null);
+
         val pUsername =
             "url=" + OrbotService.getCdnFront("moat-url") + ";front=" + OrbotService.getCdnFront("moat-front")
         val pPassword = "\u0000"
@@ -219,7 +222,7 @@ class ConfigConnectionBottomSheet() :
 
         val countryCodeValue: String = getDeviceCountryCode(requireContext())
 
-        CircumventionApiManager().getSettings(SettingsRequest(countryCodeValue), {
+        CircumventionApiManager(proxy.port(IPtProxy.MeekLite)).getSettings(SettingsRequest(countryCodeValue), {
             it?.let {
                 circumventionApiBridges = it.settings
                 if (circumventionApiBridges == null) {
@@ -237,7 +240,7 @@ class ConfigConnectionBottomSheet() :
                     setPreferenceForSmartConnect()
                 }
 
-                IPtProxy.stopLyrebird()
+                proxy.stop(IPtProxy.MeekLite)
             }
         }, {
             // TODO what happens to the app in this case?!

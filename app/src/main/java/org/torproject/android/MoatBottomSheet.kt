@@ -1,7 +1,10 @@
 package org.torproject.android
 
+import IPtProxy.Controller
 import IPtProxy.IPtProxy
+import IPtProxy.IPtProxy.Obfs4
 import android.app.Activity
+import android.content.pm.ApplicationInfo
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
@@ -24,8 +27,10 @@ import org.json.JSONException
 import org.json.JSONObject
 import org.torproject.android.service.OrbotService
 import org.torproject.android.service.util.Prefs
+import org.torproject.android.service.util.TCPSourceApp.getApplicationInfo
 import org.torproject.android.ui.onboarding.ProxiedHurlStack
 import java.io.File
+
 
 class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks) :
     OrbotBottomSheetDialogFragment(), View.OnClickListener {
@@ -65,19 +70,21 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks) :
     private lateinit var mQueue: RequestQueue
     private lateinit var mBtnAction: Button
 
+    private lateinit var mController : Controller
+
     private fun setupMoat() {
         val fileCacheDir = File(requireActivity().cacheDir, "pt")
         if (!fileCacheDir.exists()) {
             fileCacheDir.mkdir()
         }
 
-        IPtProxy.setStateLocation(fileCacheDir.absolutePath)
-
-        IPtProxy.startLyrebird("DEBUG", false, false, null)
+        val isDebuggable = (0 != (context?.applicationInfo?.flags?.and(ApplicationInfo.FLAG_DEBUGGABLE)))
+        mController = OrbotService.getIptProxyController(context)
+        mController.start(IPtProxy.Obfs4,"")
 
         val phs = ProxiedHurlStack(
             "127.0.0.1",
-            IPtProxy.meekPort().toInt(),
+            mController.port(Obfs4).toInt(),
             "url=" + OrbotService.getCdnFront("moat-url") + ";front=" + OrbotService.getCdnFront("moat-front"),
             "\u0000"
         )

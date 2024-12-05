@@ -38,26 +38,30 @@ interface CircumventionEndpoints {
 object ServiceBuilder {
 
 
-    var proxy: Proxy = Proxy(Proxy.Type.SOCKS, InetSocketAddress("127.0.0.1", IPtProxy.meekPort().toInt()))
 
+    fun <T> buildService(service: Class<T>, proxyPort: Long): T {
 
-    private val client = OkHttpClient.Builder().proxy(proxy).build()
+        var proxy: Proxy =
+            Proxy(Proxy.Type.SOCKS, InetSocketAddress("127.0.0.1", proxyPort.toInt()))
 
-    private val retrofit = Retrofit.Builder()
-        .baseUrl("https://bridges.torproject.org/moat/circumvention/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(client)
-        .build()
+        val client = OkHttpClient.Builder().proxy(proxy).build()
 
-    fun<T> buildService(service: Class<T>): T = retrofit.create(service)
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://bridges.torproject.org/moat/circumvention/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+
+        return retrofit.create(service)
+    }
 }
 
-class  CircumventionApiManager {
+class  CircumventionApiManager (port: Long) {
     companion object {
         const val BRIDGE_TYPE_OBFS4 = "obfs4"
         const val BRIDGE_TYPE_SNOWFLAKE = "snowflake"
     }
-    private val retrofit = ServiceBuilder.buildService(CircumventionEndpoints::class.java)
+    private val retrofit = ServiceBuilder.buildService(CircumventionEndpoints::class.java, port)
 
     fun getCountries(onResult: (List<String>?) -> Unit, onError: ((Throwable) -> Unit)? = null) {
         retrofit.getCountries().enqueue(object: Callback<List<String>> {
