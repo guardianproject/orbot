@@ -163,7 +163,7 @@
     <string name="strict_nodes_description">تعامل مع إعدادات استبعاد العقد كشرط لبناء جميع المسار. قد يؤدي هذا إلى تعطيل الوظيفة إذا لم يكن بالإمكان إنشاء مسار باستخدام إعدادات استبعاد العقد.</string>
     <string name="testing_tor_direct_success">نجاح. اتصال تور جيد!</string>
     <string name="app_services">خدمات التطبيق</string>
-    <string name="paste_bridges">لصق الجسور</string>
+    <string name="paste_bridges">ألصق الجسور</string>
     <string name="use_qr_code">استخدم رمز QR</string>
     <string name="volunteer_mode">وضع اللطف</string>
     <string name="secure_your_connection_title">جاهز للاتصال</string>
@@ -202,7 +202,7 @@
     <string name="configure_custom_bridges">تضبيط الجسور المخصصة</string>
     <string name="bridge_snowflake">تواصل من خلال مستخدمي تور الآخرين باستخدام Snowflake (الطريقة 1 - Fastly)</string>
     <string name="use_custom_bridges">استخدم جسور مخصصة</string>
-    <string name="in_a_browser">في المتصفح، زُر %s واضغط على احصل على جسور &gt; أعطني جسور فقط!</string>
+    <string name="in_a_browser">في المتصفح، زُر %s واضغط على احصل على جسور &gt; أعطني الجسور فقط!</string>
     <string name="bridge_snowflake_amp">تواصل من خلال مستخدمي تور الآخرين باستخدام Snowflake (الطريقة 2 - AMP)</string>
     <string name="snowflake_proxy_msg_title">إظهار إشعارات الاتصال</string>
     <string name="snowflake_proxy_msg_description">أظهر رسالة عندما تساعد شخصًا ما في التحايل على الرقابة</string>
