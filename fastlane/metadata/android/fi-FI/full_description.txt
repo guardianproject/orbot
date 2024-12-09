@@ -5,10 +5,11 @@ Orbot on ainoa sovellus, joka luo oikeasti yksityisen Internet-yhteyden. Kuten N
 Vuonna 2012 Tor voitti Electronic Frontier -säätiön (EFF) Pioneer-palkinnon.
 
 ★ ÄLÄ HYVÄKSY KORVIKKEITA: Orbot on turvallisin keino yhdistää internetiin Androidilla. Piste. Orbot heittelee kryptattua verkkoliikennettäsi useita kertoja tietokoneiden läpi ympäri maailman - sen sijaan, että se yhdistäisi sinut suoraan kuten VPN:t ja välityspalvelimet. Tämä prosessi kestää hieman kauemmin, mutta vahvin yksityisyyden- ja identiteetinsuoja on odottamisen arvoinen.
-★ YKSITYISYYTTÄ SOVELLUKSIIN: Mikä tahansa asennettu sovellus voi käyttää Toria Orbotin VPN-ominaisuuden avulla, tai jos siinä on valmiiksi välityspalvelinominaisuus käyttmällä täältä löytyviä asetuksia: https://goo.gl/2OA1y Käytä Orbotia Twitterin kanssa, tai kokeile verkkohakuja DuckDuckGon avulla: https://goo.gl/lgh1p
+★ YKSITYISYYTTÄ SOVELLUKSIIN: Mikä tahansa asennettu sovellus voidaan reitittää Toria Orbotin VPN-ominaisuuden kautta.
 ★YKSITYISYYTTÄ KAIKILLE: Orbot estää toisia katsomasta yhteyttäsi tietääkseen mitä sovelluksia tai verkkosivuja käytät. Sinua valvovat ihmiset voivat ainoastaan nähdä, että käytät Toria.
 
 ***Me rakastamme palautetta***
+★ OPI LISÄÄ: Opi lisää Orbotista ja liity joukkoon osoitteessa https://orbot.app
 ★MEISTÄ: Guardian Project on ryhmä kehittäjiä, joka tekee turvallisia mobiilisovelluksia ja avointa lähdekoodia paremman huomisen vuoksi.
 ★AVOIN KOODI: Orbot on vapaa ohjelmisto. Katso lähdekoodiimme tai liity yhteisöömme tehdäksesi siitä vielä paremman:  https://github.com/guardianproject/orbot tai https://gitweb.torproject.org/orbot.git
 ★LÄHETÄ MEILLE VIESTI: Puuttuuko meiltä sinulle tärkeä ominaisuus? Löysitkö ärsyttävän bugin? Olisi mahtavaa kuulla sinulta enemmän! Lähetä meille sähköpostia: support@guardianproject.info
