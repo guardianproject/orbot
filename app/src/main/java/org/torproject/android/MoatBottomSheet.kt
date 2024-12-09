@@ -2,7 +2,7 @@ package org.torproject.android
 
 import IPtProxy.Controller
 import IPtProxy.IPtProxy
-import IPtProxy.IPtProxy.Obfs4
+import IPtProxy.IPtProxy.MeekLite
 import android.app.Activity
 import android.content.pm.ApplicationInfo
 import android.graphics.BitmapFactory
@@ -80,11 +80,11 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks) :
 
         val isDebuggable = (0 != (context?.applicationInfo?.flags?.and(ApplicationInfo.FLAG_DEBUGGABLE)))
         mController = OrbotService.getIptProxyController(context)
-        mController.start(IPtProxy.Obfs4,"")
+        mController.start(IPtProxy.MeekLite,"")
 
         val phs = ProxiedHurlStack(
             "127.0.0.1",
-            mController.port(Obfs4).toInt(),
+            mController.port(MeekLite).toInt(),
             "url=" + OrbotService.getCdnFront("moat-url") + ";front=" + OrbotService.getCdnFront("moat-front"),
             "\u0000"
         )
