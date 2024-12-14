@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply from: "../commons.gradle"
 apply from : '../dependencies.gradle'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
     defaultConfig {
@@ -31,6 +32,9 @@ android {
         xmlReport false
     }
     namespace 'org.torproject.android.service'
+    kotlinOptions {
+        jvmTarget = '17'
+    }
 }
 
 dependencies {
@@ -52,4 +56,5 @@ dependencies {
     )
 
     implementation files('../libs/geoip.jar')
+    implementation 'androidx.core:core-ktx:1.10.1'
 }
