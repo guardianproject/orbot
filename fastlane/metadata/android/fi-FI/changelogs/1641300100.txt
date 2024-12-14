@@ -1,0 +1,3 @@
+- poistettu Meek "Cloud" -siltavaihtoehto, koska sitä ei enää tueta
+- lisää parannuksia Onion V3 -palvelutukeen
+- #441; korjaa sovellushaun sovelluspohjaisessa VPN-valinnassa

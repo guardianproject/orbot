@@ -1,0 +1,8 @@
+- Pääpäivitys käyttöliittymään!
+- Uusia ohjattuja asennus- ja siltakonfiguraatioita
+- Parannetut VPN-ominaisuudet
+- Korjauksia Onion/Hidden-palvelun kokoonpanon kaatumisiin
+
+ja paljon muuta...
+
+KIITOS: pgerber, syphyr, Khsed4, BjarniRunar, julkaisematon, igortoliveira, goapunk, SpotComms, AkshatAgrawal05, dixidroid, arrase ja muut ongelmankorjauksista, sitoumuksista ja vetopyynnöistä

@@ -1,0 +1,4 @@
+* lisätty Snowflake sillan tuki
+* päivitetty Obfs4- ja Meek-siltatuki
+* "Pyydä uusia siltoja" -ominaisuuden parannettu nopeus
+* Päivitä Tor versioon 0.4.4.6

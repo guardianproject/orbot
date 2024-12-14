@@ -1,0 +1,9 @@
+- 30 % pienempi asennuskoko (APK), alle 10 Mt!
+ - päivitetty tor-versioon 0.3.3.5 (Onion Services v3 -tuki ja enemmän)
+ - monia korjauksia tor-, kytkettävälle kuljetusbinaariasennukselle
+ - ei enää "Polipo" HTTP-palvelinta, vain Torin uusi sisäänrakennettu ominaisuus
+ - parannettu kielen valinta sovelluksessa
+
+UUSI LUPA: Pääsy "ulkoiseen tallennustilaan" on sipulipalveluiden varmuuskopiointitietojen säilyttäminen.
+
+Täydelliset julkaisutiedot tästä: https://github.com/n8fr8/orbot/releases/tag/16.0.2-RC-1
