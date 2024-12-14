@@ -1,6 +1,6 @@
 apply from: "../commons-device.gradle"
 apply plugin: 'kotlin-android'
-apply from : '../dependencies.gradle'
+apply from: '../dependencies.gradle'
 
 /* gets the version name from the latest Git tag, stripping the leading v off */
 def getVersionName = { ->
@@ -34,6 +34,10 @@ android {
         release {
             shrinkResources false
             minifyEnabled false
+        }
+        debug {
+            debuggable true
+            applicationIdSuffix '.debug'
         }
     }
 
