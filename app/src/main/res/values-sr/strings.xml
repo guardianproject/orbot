@@ -17,7 +17,7 @@
     <!--END Welcome Wizard strings (DJH)-->
     <string name="pref_general_group">Опште</string>
     <string name="pref_start_boot_title">Покрени Орбот при покретању уређаја</string>
-    <string name="pref_start_boot_summary">Аутоматски покрените Орбот и конектујте се са Тор мрежом када се упали Ваш Андроид уређај.</string>
+    <string name="pref_start_boot_summary">Аутоматски покрените Орбот и конектујте се са Тор мрежом када се укључи ваш Андроид уређај</string>
     <!--New Wizard Strings-->
     <!--Title Screen-->
     <!--Warning screen-->
@@ -72,10 +72,10 @@
     <string name="ports_reachable_behind_a_restrictive_firewall">Портови доступни иза рестриктивног firewall-а</string>
     <string name="enter_ports">Унесите портове</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">омогућите debug логовоање (мора се користити adb или aLogCat да би се прегледали)</string>
-    <string name="project_home">Почетна за пројекте:</string>
+    <string name="project_home">Почетна страница пројекта:</string>
     <string name="third_party_software">Софтвер од стране неслужбених издавача:</string>
     <string name="hidden_service_request">Апликација жели да отвори сакривен порт%1$s на серверу за Тор мрежу. Ово је сигуран потез уколико верујете апликацији.</string>
-    <string name="pref_use_expanded_notifications">Прикажи опширно обавештење Тор излаза државе и IP-ја</string>
+    <string name="pref_use_expanded_notifications">Прикажи у обавештењу земљу и IP адресу вашег излазног чвора када су доступни</string>
     <string name="pref_use_expanded_notifications_title">Опширно Обавештење</string>
     <string name="set_locale_title">Језик</string>
     <string name="pref_disable_network_title">Без Мреже Auto-Sleep</string>
@@ -131,28 +131,28 @@
     <string name="menu_header_features">Могућности</string>
     <string name="action_use">Користи</string>
     <string name="no_thx">Не хвала</string>
-    <string name="version">Издање:</string>
+    <string name="version">Верзија:</string>
     <string name="license">Лиценца:</string>
     <string name="allow">Дозволи</string>
-    <string name="menu_new_identity">Нов идентитет</string>
+    <string name="menu_new_identity">Нови идентитет</string>
     <string name="connected_title">Повезан сам</string>
     <string name="trying_to_connect_title">Повезивање у току…</string>
     <string name="btn_refresh">Освежи</string>
-    <string name="title_choose_apps">Избор програма</string>
+    <string name="title_choose_apps">Изабери програме</string>
     <string name="action_activate">Активирај</string>
     <string name="setting_debug">Исправљање грешака</string>
-    <string name="menu_more">Опширније</string>
+    <string name="menu_more">Више</string>
     <string name="drawer_open">Отвори</string>
     <string name="drawer_close">Затвори</string>
     <string name="connect">Повежи се</string>
-    <string name="next">Sledeće</string>
-    <string name="menu_faq">FAQ</string>
+    <string name="next">Даље</string>
+    <string name="menu_faq">ЧПП</string>
     <string name="deny">Одбиј</string>
     <string name="kibibyte">KiB</string>
     <string name="mebibyte">MiB</string>
-    <string name="confirm">Potvrdi</string>
+    <string name="confirm">Потврди</string>
     <string name="connection_direct">Директни</string>
-    <string name="connection_custom">Custom</string>
+    <string name="connection_custom">Прилагођено</string>
     <string name="pref_isolate_port">Изоловање одредишних портова</string>
     <string name="pref_isolate_protocol_summary">Користите различит круг за сваки повезујући протокол</string>
     <string name="pref_reduced_circuit_padding">Смањено пуњење кола</string>
@@ -175,7 +175,7 @@
 \n• Неће успорити ваш интернет
 \n• Може радити само преко Wi-Fi
 \n• Може се искључити у било ком тренутку</string>
-    <string name="snowflake">Snowflake (Original)</string>
+    <string name="snowflake">Snowflake (оригинал)</string>
     <string name="apps_suggested_title">Предложене апликације</string>
     <string name="not_sure">Нисте сигурни?</string>
     <string name="asking">ПИТАЊЕ…</string>
