@@ -1,0 +1,4 @@
+- päivitä Tor versioon 0.3.4.9
+- VPN-vakauden korjauksia
+- testattu Android 8:ssa ja 9:ssä
+- parannetut ja päivitetyt käännökset useille kielille

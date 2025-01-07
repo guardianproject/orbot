@@ -1,0 +1,4 @@
+* Pääkorjaukset VPN-tilaan
+* Uudet oletussillat
+* Päivitetty tor-versioon 0.4.0.4
+* Tuki 64-bittiselle tilalle ja Android Q:lle

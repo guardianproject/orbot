@@ -1,0 +1,4 @@
+* tuki OnionServices versiolle 3
+* parannuksia siltakokoonpanoon
+* varmistaa, että VPN-tilaa käsitellään "mittaamattomana yhteytenä"
+* kokeellinen tila Snowflake-välityspalvelimena toimimisen mahdollistamiseksi

@@ -1,0 +1,10 @@
+***Varoitus: Kaikki juuriominaisuudet on poistettu tästä uudesta Orbot-versiosta.***
+Käytä Orbotin "Apps VPN Mode"- tai Orfox-selainta läpinäkyvän välityspalvelimen sijasta rootin kanssa.
+
+* Päivitys Tor-versioon 0.3.1.8
+* Poistettu tuki juuri/transproxy-toiminnoille sellaisina kuin ne olivat tulleet
+epäluotettava ja testaamaton
+* PARANNETTU tuki VPN:n läpinäkyvälle välityspalvelimelle ja uudelle "Apps"-sovellukselle
+valinta käyttöliittymä
+* Osoite Obfs4proxy-lisenssitietojen sisällyttämistä koskeva ongelma
+* Päivitä uusimpaan Tor-versioon, Meek-sillan sijaintien tuki
