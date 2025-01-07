@@ -1,55 +1,56 @@
-apply plugin: 'com.android.library'
-apply from: "../commons.gradle"
-apply from : '../dependencies.gradle'
+apply plugin: "com.android.library"
 
 android {
+    namespace = "org.torproject.android.service"
+    compileSdk = 35
+
     defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 34
+        minSdk = 23
+        targetSdk = 35
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    packagingOptions {
-        resources {
-            excludes += ['META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version']
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    packagingOptions {
+        resources {
+            excludes += ["META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version"]
+        }
+    }
 
     lint {
         abortOnError true
         checkReleaseBuilds false
-        disable 'InvalidPackage'
+        disable "InvalidPackage"
         htmlReport true
-        lintConfig file('../lint.xml')
+        lintConfig file("../lint.xml")
         textReport false
         xmlReport false
     }
-    namespace 'org.torproject.android.service'
 }
 
 dependencies {
-    api libs.guardian_jtorctl
+    // Use locally built ipt_proxy+go_tun2socks
+    api(project(":OrbotLib"))
+    api(libs.guardian.jtorctl)
+    api(libs.tor.android)
 
-    //use locally built ipt_proxy+go_tun2socks
-    api project(':OrbotLib')
+    implementation(libs.android.shell)
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.localbroadcast)
+    implementation(libs.androidx.work)
+    implementation(libs.androidx.work.kotlin)
+    implementation(libs.pcap.core)
+    implementation(libs.pcap.factory)
 
-    api libs.tor_android
-
-    implementation(
-            libs.android_shell,
-            libs.androidx_core,
-            libs.androidx_localbroadcast,
-            libs.pcap_core,
-            libs.pcap_factory,
-            libs.androidx_work,
-            libs.androidx_work_kotlin
-    )
-
-    implementation files('../libs/geoip.jar')
+    implementation(files("../libs/geoip.jar"))
 }

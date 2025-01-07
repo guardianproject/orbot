@@ -1,8 +1,7 @@
-apply from: "../commons-device.gradle"
+apply from: "../commons.gradle"
 apply plugin: 'kotlin-android'
-apply from : '../dependencies.gradle'
 
-/* gets the version name from the latest Git tag, stripping the leading v off */
+// Gets the version name from the latest Git tag, stripping the leading v off
 def getVersionName = { ->
     def stdout = new ByteArrayOutputStream()
     exec {
@@ -17,19 +16,23 @@ static def versionCodeEpoch() {
 }
 
 android {
+    namespace = "org.torproject.android"
+    compileSdk = 35
+
     defaultConfig {
         applicationId "org.torproject.android"
         versionName getVersionName()
-        minSdkVersion 23
-        compileSdk 34
-        targetSdkVersion 34
+        minSdk = 23
+        targetSdk = 35
         multiDexEnabled true
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         archivesBaseName = "Orbot"
     }
-    compileOptions {
-//        coreLibraryDesugaringEnabled true
+
+    buildFeatures {
+        buildConfig true
     }
+
     buildTypes {
         release {
             shrinkResources false
@@ -37,16 +40,29 @@ android {
         }
     }
 
-    kotlinOptions {
-        jvmTarget = '17'
+    splits {
+        abi {
+            enable true
+            reset()
+            include "x86", "armeabi-v7a", "x86_64", "arm64-v8a"
+        }
     }
 
-    flavorDimensions "free"
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    flavorDimensions = ["free"]
 
     productFlavors {
         fullperm {
             dimension "free"
-            applicationId 'org.torproject.android'
+            applicationId "org.torproject.android"
             versionCode 1741200100
             versionName getVersionName()
             archivesBaseName = "Orbot-${versionName}"
@@ -54,7 +70,7 @@ android {
 
         nightly {
             dimension "free"
-            applicationId 'org.torproject.android.nightly'
+            applicationId "org.torproject.android.nightly"
             versionName getVersionName()
             versionCode versionCodeEpoch()
             archivesBaseName = "Orbot-${versionName}"
@@ -66,31 +82,13 @@ android {
             universalApk true
         }
     }
+
     packagingOptions {
         resources {
             excludes += ['META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version']
         }
     }
 
-    dependencies {
-        implementation(
-                project(':appcore'),
-                project(':intentintegrator'),
-                project(':orbotservice'),
-                libs.android_material,
-                libs.android_volley,
-                libs.androidx_localbroadcast,
-
-                //use locally built ipt_proxy+go_tun2socks
-                project(':OrbotLib')
-        )
-
-        implementation "com.squareup.retrofit2:retrofit:2.9.0"
-        implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-
-        androidTestImplementation libs.fastlane_screengrab
-//        coreLibraryDesugaring 'com.android.tools:desugar_j dk_libs:1.1.5'
-    }
     lint {
         abortOnError false
         checkReleaseBuilds false
@@ -100,19 +98,27 @@ android {
         textReport false
         xmlReport false
     }
-    namespace 'org.torproject.android'
 }
+
 dependencies {
-    implementation "androidx.core:core-ktx:1.13.1"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
-    // Kotlin
-    implementation "androidx.navigation:navigation-fragment-ktx:2.7.7"
-    implementation "androidx.navigation:navigation-ui-ktx:2.7.7"
+    // Use locally built ipt_proxy+go_tun2socks
+    implementation(project(":OrbotLib"))
+    implementation(project(":appcore"))
+    implementation(project(":intentintegrator"))
+    implementation(project(":orbotservice"))
 
-    //root detection
-    implementation 'com.scottyab:rootbeer-lib:0.1.0'
+    implementation(libs.android.material)
+    implementation(libs.android.volley)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.localbroadcast)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.converter.gson)
+    implementation(libs.retrofit)
+    implementation(libs.rootbeer.lib)
 
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.fastlane.screengrab)
 }
