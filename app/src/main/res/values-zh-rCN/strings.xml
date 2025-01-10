@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Orbot</string>
-    <string name="app_description">Orbot 是免费的代理应用，可让其他应用更安全地使用网络。Orbot 使用 Tor 加密网络流量，然后通过世界各地一系列计算机跳转来隐藏流量。Tor 是自由软件和开放网络，帮助用户抵御称为流量分析的网络监控，网络监控威胁到个人自由和隐私、机密商业活动和关系以及国家安全。</string>
+    <string name="app_description">Orbot 是让其他应用更安全地使用互联网的免费代理应用。Orbot 使用 Tor 加密互联网流量，然后通过世界各地一系列计算机跳转来隐藏流量。Tor 是自由软件和开放网络，可帮您抵御称为流量分析的网络监控，网络监控威胁到个人自由和隐私、机密商业活动和关系以及政府安全。</string>
     <string name="menu_settings">设置</string>
     <string name="menu_log">日志</string>
     <string name="menu_stop">停止</string>
@@ -26,7 +26,7 @@
     <string name="pref_node_configuration">节点配置</string>
     <string name="pref_node_configuration_summary">这些高级设置可降低匿名性</string>
     <string name="pref_entrance_node">入口节点</string>
-    <string name="pref_entrance_node_summary">首次跃点的指纹、昵称、国家和地址</string>
+    <string name="pref_entrance_node_summary">首次跃点的指纹、昵称、国家/地区和地址</string>
     <string name="pref_entrance_node_dialog">输入入口节点</string>
     <string name="pref_allow_background_starts_title">允许后台启动</string>
     <string name="pref_allow_background_starts_summary">允许任何应用告知 Orbot 启动 Tor 及相关服务</string>
@@ -48,10 +48,10 @@
     <string name="pref_proxy_password_dialog">输入代理密码</string>
     <string name="error">错误</string>
     <string name="exit_nodes">出口节点</string>
-    <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">最后跃点的指纹、昵称、国家和地址</string>
+    <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">最后跃点的指纹、昵称、国家/地区和地址</string>
     <string name="enter_exit_nodes">输入出口节点</string>
     <string name="exclude_nodes">排除节点</string>
-    <string name="fingerprints_nicks_countries_and_addresses_to_exclude">要排除的指纹、昵称、国家和地址</string>
+    <string name="fingerprints_nicks_countries_and_addresses_to_exclude">要排除的指纹、昵称、国家/地区和地址</string>
     <string name="enter_exclude_nodes">输入排除节点</string>
     <string name="strict_nodes">限制节点</string>
     <string name="bridges">网桥</string>
@@ -66,25 +66,25 @@
     <string name="the_nickname_for_your_tor_relay">Tor 中继昵称</string>
     <string name="enter_a_custom_relay_nickname">输入自定义中继昵称</string>
     <string name="reachable_addresses">可访问地址</string>
-    <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">在具有限制策略防火墙内，作为客户端运行</string>
+    <string name="run_as_a_client_behind_a_firewall_with_restrictive_policies">作为采用限制策略防火墙后面的客户端运行</string>
     <string name="reachable_ports">可访问端口</string>
-    <string name="ports_reachable_behind_a_restrictive_firewall">防火墙限定的可访问端口</string>
+    <string name="ports_reachable_behind_a_restrictive_firewall">在限制型防火墙后面可访问的端口</string>
     <string name="enter_ports">输入端口</string>
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">启用调试日志输出（必须使用 adb 或 aLogCat 查看）</string>
     <string name="project_home">项目主页：</string>
     <string name="third_party_software">第三方软件：</string>
     <string name="pref_use_expanded_notifications">如果可以，在通知中显示 Tor 出口节点的国家/地区和 IP 地址</string>
-    <string name="pref_use_expanded_notifications_title">扩展的通知</string>
+    <string name="pref_use_expanded_notifications_title">扩展通知</string>
     <string name="set_locale_title">语言</string>
     <string name="pref_disable_network_title">无网络自动休眠</string>
-    <string name="pref_disable_network_summary">在没有互联网时，让 Tor 进入休眠状态</string>
+    <string name="pref_disable_network_summary">没有网络连接时让 Tor 进入休眠状态</string>
     <string name="newnym">您已切换到新的 Tor 身份！</string>
     <string name="pref_socks_title">Tor SOCKS</string>
     <string name="pref_socks_summary">Tor 提供 SOCKS 代理的端口（默认值：9050，0 表示禁用）</string>
     <string name="pref_socks_dialog">SOCKS 端口配置</string>
     <string name="pref_transport_title">Tor 透明代理端口</string>
     <string name="pref_transport_summary">Tor 提供透明代理的端口（默认值：9040，0 表示禁用）</string>
-    <string name="pref_transport_dialog">透明代理配置</string>
+    <string name="pref_transport_dialog">透明代理端口配置</string>
     <string name="pref_dnsport_title">Tor DNS 端口</string>
     <string name="pref_dnsport_summary">Tor 提供 DNS 的端口（默认值：5400，0 表示禁用）</string>
     <string name="pref_dnsport_dialog">DNS 端口配置</string>
@@ -100,8 +100,8 @@
     <string name="name">名称</string>
     <string name="please_restart_Orbot_to_enable_the_changes">请重启 Orbot 以使更改生效</string>
     <string name="wizard_details_msg">Orbot 是包含 Tor、IPtProxy（Obfs4Proxy、Meek、Snowflake）、Go-Tun2Socks 和 LibEvent 开源应用程序。它提供了一个 VPN 隧道、一个本地 HTTP 连接代理（HTTPS 仅连接端口 8118）和一个 SOCKS 代理（9050）进入 Tor 网络。</string>
-    <string name="pref_open_proxy_on_all_interfaces_title">在所有接口上打开代理</string>
-    <string name="pref_open_proxy_on_all_interfaces_summary">允许连接到同一 Wi-Fi、局域网设备和其他任何可以连接到您 IP 的人访问 Tor</string>
+    <string name="pref_open_proxy_on_all_interfaces_title">在所有接口上开放代理</string>
+    <string name="pref_open_proxy_on_all_interfaces_summary">允许 Wi-Fi 对等设备、网络共享设备和其他任何可以连接到您 IP 的人访问 Tor</string>
     <string name="pref_http_title">Tor HTTP</string>
     <string name="pref_http_summary">Tor 提供 HTTP 代理的端口（默认值：8118，0 表示禁用）</string>
     <string name="pref_http_dialog">HTTP 端口配置</string>
@@ -118,11 +118,11 @@
     <string name="start_tor_again_for_finish_the_process">再次启动 Tor 以完成该过程</string>
     <string name="confirm_service_deletion">确认服务删除</string>
     <string name="service_type">服务类型</string>
-    <string name="share_as_qr">通过二维码分享</string>
+    <string name="share_as_qr">以二维码形式分享</string>
     <string name="disable">禁用</string>
     <string name="enable">启用</string>
     <string name="consider_disable_battery_optimizations">托管服务正在运行，考虑禁用电池优化</string>
-    <string name="consider_enable_battery_optimizations">没有托管服务正在运行，考虑启用电池优化</string>
+    <string name="consider_enable_battery_optimizations">没有运行托管服务，考虑启用电池优化</string>
     <string name="pref_disable_ipv4">禁用 IPv4 连接</string>
     <string name="app_shortcuts">启用 Tor 的应用</string>
     <string name="bridge_direct_connect">直接连接到 Tor（最佳）</string>
@@ -137,23 +137,23 @@
     <string name="user_services">用户服务</string>
     <string name="menu_new_identity">新建身份</string>
     <string name="pref_disable_ipv4_summary">告知出口不要连接到 IPv4 地址</string>
-    <string name="pref_prefer_ipv6_summary">告知出口，优先选择 IPv6 地址</string>
+    <string name="pref_prefer_ipv6_summary">告知出口优先选择 IPv6 地址</string>
     <string name="pref_prefer_ipv6">首选 IPv6 连接</string>
     <string name="pref_reduced_connection_padding_summary">尽早关闭中继连接并发送更少的填充数据包以减少数据和电池用量</string>
     <string name="pref_reduced_connection_padding">减少连接填充</string>
-    <string name="pref_connection_padding_summary">始终启用连接填充以抵御某些形式的流量分析。默认值：自动</string>
+    <string name="pref_connection_padding_summary">始终启用连接填充以抵御某些形式的流量分析。默认：自动</string>
     <string name="pref_isolate_dest">隔离目标地址</string>
     <string name="create_a_backup_first">先创建备份</string>
     <string name="onion_port">洋葱端口</string>
     <string name="menu_hidden_services">洋葱服务</string>
     <string name="hidden_services">洋葱服务</string>
-    <string name="hidden_service_request">有应用要在端口 %1$s上打开到 Tor 网络的洋葱服务器。如果您信任此应用，这是安全的。</string>
+    <string name="hidden_service_request">有应用想要打开 Tor 网络 %1$s 端口上的洋葱服务器。如果您信任此应用，这是安全的。</string>
     <string name="pref_connection_padding">连接填充</string>
     <string name="onion">.onion 地址</string>
     <string name="bridge_snowflake">使用 Snowflake 通过其他 Tor 用户连接（方法 1 - Fastly）</string>
     <string name="use_qr_code">使用二维码</string>
     <string name="paste_bridges">粘贴网桥</string>
-    <string name="in_a_browser">在浏览器中访问 %s并点击 Get Bridges &gt; Just Give Me Bridges!</string>
+    <string name="in_a_browser">在浏览器中访问 %s并点击获取网桥 &gt; 给我网桥吧！</string>
     <string name="use_custom_bridges">使用自定义网桥</string>
     <string name="configure_custom_bridges">配置自定义网桥</string>
     <string name="custom_bridges">自定义网桥</string>
@@ -196,7 +196,7 @@
     <string name="strict_nodes_description">将“排除节点”设置视为构建所有线路的要求。如果“排除节点”设置无法生成线路，可能会破坏功能。</string>
     <string name="volunteer_mode">善举模式</string>
     <string name="trying_to_connect_title">连接中…</string>
-    <string name="volunteer_mode_subtitle">帮助其他人连接</string>
+    <string name="volunteer_mode_subtitle">帮助他人连接</string>
     <string name="btn_tor_off">关闭 Tor</string>
     <string name="menu_header_features">功能</string>
     <string name="menu_app_settings">应用设置</string>
@@ -215,7 +215,7 @@
     <string name="msg_taking_too_long">这似乎花了太长时间</string>
     <string name="btn_refresh">刷新</string>
     <string name="captcha_title">让我们知道您是真人</string>
-    <string name="custom_bridge_subtitle">最有可能让您在 Tor 严重屏蔽时保持连接。需要您信任的人提供的网桥地址。</string>
+    <string name="custom_bridge_subtitle">最有可能让您在 Tor 严重屏蔽时保持连接，需要您信任的人提供网桥地址。</string>
     <string name="connect">连接</string>
     <string name="solve_captcha">解决验证码</string>
     <string name="configure_header">配置 Tor 连接</string>
@@ -227,38 +227,32 @@
     <string name="volunteer_mode_title">帮助他人
 \n连接到 Tor</string>
     <string name="volunteer_mode_alltime_label">所有时间总计</string>
-    <string name="get_a_bridge_subtitle">伪装流量。绕过某些 Tor 屏蔽。</string>
-    <string name="volunteer_mode_subtitle_desc">善举模式可让您的设备成为他人的网桥，帮助人们在 Tor 被屏蔽的地方使用 Tor。
-\n
-\n• 它不会耗尽您的电量
-\n• 它不会减慢您的网络速度
-\n• 它只能通过 WiFi 运行
-\n• 您可以随时关闭它</string>
+    <string name="get_a_bridge_subtitle">隐藏您的流量，绕过某些 Tor 屏蔽。</string>
+    <string name="volunteer_mode_subtitle_desc">善举模式可让您的设备成为他人的网桥，帮助人们在 Tor 被屏蔽的地方使用 Tor。\n\n• 不会耗尽电池电量\n• 不会减慢网速\n• 只通过 Wi-Fi 运行\n• 可随时关闭</string>
     <string name="snowflake">Snowflake (Original)</string>
     <string name="custom_bridge">自定义网桥</string>
     <string name="smart_connect">智能连接（默认）</string>
     <string name="smart_connect_subtitle">Orbot 尝试通过任何可用的方式连接到 Tor：直接连接、Snowflake、网桥。</string>
     <string name="direct_connect">直接连接到 Tor</string>
-    <string name="direct_connect_subtitle">连接 Tor 的最佳方式。在 Tor 未被屏蔽时使用。</string>
+    <string name="direct_connect_subtitle">连接 Tor 的最佳方式，在 Tor 未被屏蔽时使用。</string>
     <string name="next">下一步</string>
-    <string name="get_a_bridge">Tor 网桥（obfs4）</string>
-    <string name="snowflake_subtitle">通过 Tor 志愿者连接。绕过某些 Tor 屏蔽。</string>
-    <string name="ports_not_set">未设置端口</string>
+    <string name="get_a_bridge">获取 obfs4 网桥</string>
+    <string name="snowflake_subtitle">通过 Tor 志愿者连接，绕过某些 Tor 屏蔽。</string>
+    <string name="ports_not_set">端口未设置</string>
     <string name="incorrect_solution">验证码输入错误</string>
     <string name="having_trouble">出问题了</string>
     <string name="having_trouble_subtitle">我们接下来可以尝试 Tor 网桥，但需要您的帮助</string>
     <string name="bridges_obtained_connecting">网桥已获取！正在连接到 Tor…</string>
-    <string name="custom_bridge_description">自定义网桥由您认识的人提供。询问您信任的网络和组织，看看是否有人托管此类网桥。</string>
+    <string name="custom_bridge_description">自定义网桥由您认识的人提供。请向您信任的网络和组织询问是否有人托管此类网桥。</string>
     <string name="power_user_mode">高级用户模式</string>
-    <string name="power_user_description">适用于熟悉 Tor 的用户。允许您在未设置 VPN 的情况下启动 Orbot，并显示打开的 SOCKS 和 HTTP 端口</string>
+    <string name="power_user_description">适用于熟悉 Tor 的用户。允许您在未设置 VPN 的情况下启动 Orbot，并显示开放的 SOCKS 和 HTTP 端口</string>
     <string name="title_choose_apps">选择应用</string>
     <string name="app_suggested_subtitle">Orbot 与消息传递和社交媒体应用配合使用效果最好。</string>
-    <string name="apps_suggested_title">推荐的应用</string>
+    <string name="apps_suggested_title">建议应用</string>
     <string name="apps_other_apps">其他应用</string>
     <string name="action_activate">激活</string>
-    <string name="volunteer_status_title">今天因你
-\n而更好。</string>
-    <string name="action_use">使用方法</string>
+    <string name="volunteer_status_title">因为有你，\n今天会更好。</string>
+    <string name="action_use">使用</string>
     <string name="no_internet_title">连接到网络</string>
     <string name="menu_more">更多</string>
     <string name="connection_direct">直接连接</string>
@@ -282,7 +276,7 @@
     <string name="asking">正在询问…</string>
     <string name="no_internet_subtitle">使用 Orbot 需要网络连接。</string>
     <string name="kindness_adjust_title">设置</string>
-    <string name="option_only_on_wifi">仅连接 WiFi 时</string>
+    <string name="option_only_on_wifi">仅使用 Wi-Fi 时</string>
     <string name="option_only_when_charging">仅在充电时</string>
     <string name="pref_flag_secure_summary">防止其他应用对 Orbot 进行截屏</string>
     <string name="pref_flag_secure_title">屏幕安全</string>
