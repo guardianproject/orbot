@@ -13,7 +13,7 @@
     <string name="menu_scan">Scan BridgeQR</string>
     <string name="menu_share_bridge">Share BridgeQR</string>
     <!--Welcome Wizard strings (DJH)-->
-    <string name="wizard_details_msg">Orbot is an open-source application that contains IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks, and LibEvent. It provides a local HTTP proxy (8118) and a SOCKS proxy (9050) into the Tor network. Orbot also has the ability, on rooted device, to send all internet traffic through Tor.</string>
+    <string name="wizard_details_msg">Orbot is an open-source application that contains Tor, IPtProxy (Obfs4Proxy, Meek, Snowflake), Go-Tun2Socks and LibEvent. It provides a VPN tunnel, a local HTTP Connect proxy (HTTPS only on port 8118) and a SOCKS proxy (9050) into the Tor network.</string>
     <!--END Welcome Wizard strings (DJH)-->
     <!--New Wizard Strings-->
     <!--Title Screen-->
@@ -43,8 +43,7 @@
     <string name="power_user_mode">Power User Mode</string>
     <string name="power_user_description">For users familiar with Tor. Allows you to start Orbot without the VPN setting and shows open SOCKS and HTTP ports</string>
     <string name="action_activate">Activate</string>
-    <string name="volunteer_status_title">Today is better
-\nbecause of you.</string>
+    <string name="volunteer_status_title">Today is better\nbecause of you.</string>
     <string name="title_choose_apps">Choose Apps</string>
     <string name="app_suggested_subtitle">Orbot works best with messaging and social media apps.</string>
     <string name="apps_suggested_title">Suggested Apps</string>
@@ -52,14 +51,14 @@
     <string name="pref_disable_ipv4">Disable IPv4 connections</string>
     <string name="exit_nodes">Exit Nodes</string>
     <string name="enter_exit_nodes">Enter Exit Nodes</string>
-    <string name="trouble_connecting">Trouble connecting\?</string>
+    <string name="trouble_connecting">Trouble connecting?</string>
     <string name="bridge_snowflake">Connect through other Tor users using Snowflake (Method 1 - Fastly)</string>
     <string name="bridge_snowflake_amp">Connect through other Tor users using Snowflake (Method 2 - AMP)</string>
     <string name="pref_allow_background_starts_title">Allow Background Starts</string>
     <string name="pref_node_configuration_summary">These are advanced settings that can reduce your anonymity</string>
     <string name="pref_start_boot_summary">Automatically start Orbot and connect Tor when your Android device boots</string>
-    <string name="pref_proxy_port_summary">Proxy server port</string>
-    <string name="pref_proxy_password_dialog">Enter proxy password</string>
+    <string name="pref_proxy_port_summary">Proxy Server Port</string>
+    <string name="pref_proxy_password_dialog">Enter Proxy Password</string>
     <string name="testing_tor_direct_success">Success. Tor connection is good!</string>
     <string name="pref_entrance_node_dialog">Enter Entrance Nodes</string>
     <string name="pref_entrance_node">Entrance Nodes</string>
@@ -67,26 +66,26 @@
     <string name="pref_proxy_title">Outbound Network Proxy (Optional)</string>
     <string name="pref_proxy_type_title">Outbound Proxy Type</string>
     <string name="pref_allow_background_starts_summary">Allow any app to start Orbot and related services</string>
-    <string name="pref_proxy_type_dialog">Enter proxy type</string>
-    <string name="pref_proxy_host_summary">Proxy server hostname</string>
+    <string name="pref_proxy_type_dialog">Enter Proxy Type</string>
+    <string name="pref_proxy_host_summary">Proxy Server Hostname</string>
     <string name="relay_nickname">Relay nickname</string>
     <string name="confirm">Confirm</string>
-    <string name="pref_proxy_port_title">Outbound proxy port</string>
-    <string name="pref_proxy_username_title">Outbound proxy username</string>
+    <string name="pref_proxy_port_title">Outbound Proxy Port</string>
+    <string name="pref_proxy_username_title">Outbound Proxy Username</string>
     <string name="pref_isolate_dest_summary">Use a different circuit for each destination address</string>
     <string name="pref_reduced_circuit_padding">Reduced circuit padding</string>
     <string name="pref_proxy_type_summary">Proxy server protocol: HTTP, HTTPS, SOCKS4, SOCKS5</string>
-    <string name="pref_proxy_host_dialog">Enter proxy host</string>
-    <string name="pref_proxy_host_title">Outbound proxy host</string>
-    <string name="pref_proxy_port_dialog">Enter proxy port</string>
+    <string name="pref_proxy_host_dialog">Enter Proxy Host</string>
+    <string name="pref_proxy_host_title">Outbound Proxy Host</string>
+    <string name="pref_proxy_port_dialog">Enter Proxy Port</string>
     <string name="enter_exclude_nodes">Enter Exclude Nodes</string>
     <string name="pref_disable_network_title">No Network Auto-Sleep</string>
     <string name="v3_backup_key_warning">Warning: This could expose your key to other apps</string>
     <string name="menu_hidden_services">Onion Services</string>
     <string name="pref_reduced_connection_padding_summary">Closes relay connections sooner and sends less padding packets to reduce data and battery usage</string>
     <string name="in_a_browser">In a browser, visit %s and tap Get Bridges &gt; Just Give Me Bridges!</string>
-    <string name="pref_proxy_username_summary">Proxy username (optional)</string>
-    <string name="pref_proxy_password_title">Outbound proxy password</string>
+    <string name="pref_proxy_username_summary">Proxy Username (Optional)</string>
+    <string name="pref_proxy_password_title">Outbound Proxy Password</string>
     <string name="fingerprints_nicks_countries_and_addresses_for_the_last_hop">Fingerprints, nicknames, countries and addresses for the last hop</string>
     <string name="fingerprints_nicks_countries_and_addresses_to_exclude">Fingerprints, nicknames, countries and addresses to exclude</string>
     <string name="strict_nodes">Strict Nodes</string>
@@ -98,16 +97,16 @@
     <string name="enable_debug_log_to_output_must_use_adb_or_alogcat_to_view_">Enable debug log to output (must use adb or aLogcat to view)</string>
     <string name="enter_a_custom_relay_nickname">Enter a custom relay nickname</string>
     <string name="reachable_addresses">Reachable Addresses</string>
-    <string name="reachable_ports">Reachable ports</string>
+    <string name="reachable_ports">Reachable Ports</string>
     <string name="backup_saved_at_external_storage">Backup saved at external storage</string>
     <string name="pref_torrc_summary">EXPERTS ONLY: enter direct torrc config lines</string>
     <string name="pref_torrc_dialog">Custom Torrc</string>
     <string name="vpn_default_world">Global (Auto)</string>
     <string name="hidden_services">Onion Services</string>
-    <string name="consider_disable_battery_optimizations">Hosted services running, consider disabling battery optimizations</string>
+    <string name="consider_disable_battery_optimizations">Hosted services running, consider disabling battery optimisations</string>
     <string name="please_restart_Orbot_to_enable_the_changes">Please restart Orbot to enable the changes</string>
     <string name="onion">.onion</string>
-    <string name="consider_enable_battery_optimizations">No hosted services running, consider enabling battery optimizations</string>
+    <string name="consider_enable_battery_optimizations">No hosted services running, consider enabling battery optimisations</string>
     <string name="pref_isolate_dest">Isolate destination addresses</string>
     <string name="confirm_service_deletion">Confirm service deletion</string>
     <string name="backup_service">Backup Service <i>(Warning: This Could Expose Your Service Configuration to Other Apps)</i></string>
@@ -133,15 +132,9 @@
     <string name="drawer_close">Close</string>
     <string name="proxy_ports">Proxy Ports</string>
     <string name="ports_not_set">Ports Not Set</string>
-    <string name="volunteer_mode_title">Help others
-\nconnect to Tor</string>
+    <string name="volunteer_mode_title">Help others\nconnect to Tor</string>
     <string name="volunteer_mode_alltime_label">All Time Total</string>
-    <string name="volunteer_mode_subtitle_desc">Kindness mode allows your device to be a bridge for others. It helps people use Tor in places where it is blocked.
-\n
-\n• It will not drain your battery
-\n• It will not slow down your internet
-\n• It can run only over wifi
-\n• It can be turned off anytime</string>
+    <string name="volunteer_mode_subtitle_desc">Kindness mode allows your device to be a bridge for others. It helps people use Tor in places where it is blocked.\n\n• It will not drain your battery\n• It will not slow down your internet\n• It can run only over wifi\n• It can be turned off anytime</string>
     <string name="smart_connect">Smart Connect (default)</string>
     <string name="smart_connect_subtitle">Orbot tries connecting to Tor through any way available: Direct, Snowflake, Bridge.</string>
     <string name="direct_connect">Direct Connection to Tor</string>
@@ -178,17 +171,17 @@
     <string name="msg_taking_too_long">This seems to be taking too long</string>
     <string name="msg_try_something_else">Try something else</string>
     <string name="pref_start_boot_title">Start Orbot on Boot</string>
-    <string name="pref_proxy_username_dialog">Enter proxy username</string>
-    <string name="pref_proxy_password_summary">Proxy password (optional)</string>
+    <string name="pref_proxy_username_dialog">Enter Proxy Username</string>
+    <string name="pref_proxy_password_summary">Proxy Password (Optional)</string>
     <string name="exclude_nodes">Exclude Nodes</string>
     <string name="use_bridges">Use Bridges</string>
     <string name="relays">Relays</string>
     <string name="relaying">Relaying</string>
     <string name="listening_port_for_your_tor_relay">Listening port for your Tor relay</string>
     <string name="project_home">Project Home:</string>
-    <string name="third_party_software">3rd-Party-Software:</string>
+    <string name="third_party_software">3rd Party Software:</string>
     <string name="version">Version:</string>
-    <string name="license">License:</string>
+    <string name="license">Licence:</string>
     <string name="deny">Deny</string>
     <string name="pref_use_expanded_notifications_title">Expanded Notifications</string>
     <string name="pref_socks_title">Tor SOCKS</string>
@@ -198,8 +191,8 @@
     <string name="pref_torrc_title">Torrc Custom Config</string>
     <string name="kibibyte">KiB</string>
     <string name="restart_orbot_to_use_this_bridge_">Please restart Orbot to enable the changes</string>
-    <string name="v3_backup_key">Backup Client Authorization Key</string>
-    <string name="v3_delete_client_authorization">Delete Client Authorization Key</string>
+    <string name="v3_backup_key">Backup Client Authorisation Key</string>
+    <string name="v3_delete_client_authorization">Delete Client Authorisation Key</string>
     <string name="v3_backup_name_hint">Backup filename…</string>
     <string name="v3_import_auth_private">Import .auth_private</string>
     <string name="local_port">Local Port</string>
@@ -221,7 +214,7 @@
     <string name="configure_custom_bridges">Configure Custom Bridges</string>
     <string name="snowflake_proxy_msg_description">Show a message when you help someone circumvent censorship</string>
     <string name="strict_nodes_description">Treat Exclude Nodes settings as a requirement for building all circuits. This may break functionality if no circuits are able to be generated with your Exclude Nodes settings.</string>
-    <string name="pref_use_expanded_notifications">Display in the notification the country and IP Address of your tor exit node when available</string>
+    <string name="pref_use_expanded_notifications">Display in the notification the country and IP address of your tor exit node when available</string>
     <string name="backup_restored">Backup restored</string>
     <string name="backup_port_exist">Error: An Onion service is already using port %s</string>
     <string name="service_type">Service type</string>
@@ -236,13 +229,13 @@
     <string name="pref_dnsport_dialog">DNS Port Config</string>
     <string name="mebibyte">MiB</string>
     <string name="bridges_updated">Bridges Updated</string>
-    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">If your mobile network actively blocks Tor, you can use a \'Bridge Server\' as an alternate way in. Select one of the options to configure and test…</string>
+    <string name="if_your_mobile_network_actively_blocks_tor_you_can_use_a_tor_bridge_to_access_the_network_another_way_to_get_bridges_is_to_send_an_email_to_bridges_torproject_org_please_note_that_you_must_send_the_email_using_an_address_from_one_of_the_following_email_providers_riseup_gmail_or_yahoo_">If your mobile network actively blocks Tor, you can use a \'Bridge Server\' as an alternative way in. Select one of the options to configure and test…</string>
     <string name="get_bridges_email_request">Request Bridges via Email</string>
     <string name="apps_mode">VPN Mode</string>
     <string name="send_email">Send Email</string>
     <string name="v3_hosted_services">Hosted Onion Services</string>
-    <string name="v3_client_auth_activity_title">Client Authorization</string>
-    <string name="v3_delete_client_authorization_confirm">Delete Client Authorization</string>
+    <string name="v3_client_auth_activity_title">Client Authorisation</string>
+    <string name="v3_delete_client_authorization_confirm">Delete Client Authorisation</string>
     <string name="done">Done!</string>
     <string name="copy_address_to_clipboard">Copy address to clipboard</string>
     <string name="delete_service">Delete Service</string>
@@ -263,7 +256,7 @@
     <string name="pref_isolate_protocol_summary">Use a different circuit for each connecting protocol</string>
     <string name="snowflake_amp">Snowflake (AMP)</string>
     <string name="log_copied">Log Copied</string>
-    <string name="not_sure">Not sure\?</string>
+    <string name="not_sure">Not sure?</string>
     <string name="ask_tor">Ask Tor</string>
     <string name="many_ways">There are many ways to reach Tor. Some may work better than others for you.</string>
     <string name="action_use">Use</string>
@@ -275,7 +268,7 @@
     <string name="pref_isolate_protocol">Isolate client protocols</string>
     <string name="no_internet_title">Connect to Internet</string>
     <string name="setting_padding">Padding</string>
-    <string name="option_only_on_wifi">Only on Wifi</string>
+    <string name="option_only_on_wifi">Only on WiFi</string>
     <string name="option_only_when_charging">Only when charging</string>
     <string name="menu_more">More</string>
     <string name="setting_debug">Debug</string>
