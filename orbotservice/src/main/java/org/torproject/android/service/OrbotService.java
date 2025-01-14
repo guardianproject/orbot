@@ -291,7 +291,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     }
 
     private void stopTorAsync(boolean showNotification) {
-        debug("stopTor");
+        debug("stopTorAsync");
 
         if (showNotification) sendCallbackLogMessage(getString(R.string.status_shutting_down));
 
@@ -562,6 +562,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
     // if someone stops during startup, we may have to wait for the conn port to be setup, so we can properly shutdown tor
     private void stopTor() {
         if (shouldUnbindTorService) {
+            debug("unbinding tor service");
             unbindService(torServiceConnection); //unbinding from the tor service will stop tor
             shouldUnbindTorService = false;
             conn = null;
@@ -1057,6 +1058,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
         };
 
         Intent serviceIntent = new Intent(this, TorService.class);
+        debug("binding tor service");
         if (Build.VERSION.SDK_INT < 29) {
             shouldUnbindTorService = bindService(serviceIntent, torServiceConnection, BIND_AUTO_CREATE);
         } else {
