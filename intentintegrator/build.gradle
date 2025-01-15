@@ -1,22 +1,28 @@
-apply plugin: 'com.android.library'
-apply from: "../commons.gradle"
+apply plugin: "com.android.library"
 
 android {
+    namespace = "com.google.zxing.integration.android"
+    compileSdk = 35
+
     defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 34
+        minSdk = 23
+        targetSdk = 35
         consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
-    namespace 'com.google.zxing.integration.android'
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
 }
 
 dependencies {
-    libs.androidx_appcompat
+    implementation(libs.androidx.appcompat)
 }
