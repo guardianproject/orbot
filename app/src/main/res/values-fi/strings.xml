@@ -261,7 +261,7 @@
     <string name="kindness_adjust_title">Asetukset</string>
     <string name="snowflake_amp">Snowflake (AMP)</string>
     <string name="ask_tor">Kysy Torilta</string>
-    <string name="action_use">Tapa:</string>
+    <string name="action_use">käyttö</string>
     <string name="asking">KYSYTÄÄN…</string>
     <string name="no_internet_subtitle">Tarvitset Internet-yhteyden Orbotin käyttöön.</string>
     <string name="kindess_config_detail">Määritä miten ja milloin laitteesi voi toimia Snowflake-välityspalvelimena muille Tor-käyttäjille.</string>
