@@ -12,7 +12,7 @@ class CustomBridgeBottomSheet(private val callbacks: ConnectionHelperCallbacks) 
     OrbotBottomSheetDialogFragment() {
     companion object {
         const val TAG = "CustomBridgeBottomSheet"
-        private const val bridgeStatement = "obfs4"
+        private val bridgeStatement = Regex("(obfs4|meek|webtunnel)")
     }
 
     private lateinit var btnAction: Button
@@ -42,5 +42,4 @@ class CustomBridgeBottomSheet(private val callbacks: ConnectionHelperCallbacks) 
         btnAction.isEnabled =
             !(etBridges.text.isEmpty() || !etBridges.text.contains(bridgeStatement))
     }
-
 }
