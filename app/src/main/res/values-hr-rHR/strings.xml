@@ -142,4 +142,5 @@
     <string name="snowflake">Snowflake (Original)</string>
     <string name="snowflake_subtitle">Povezuje se preko Tor volontera. Zaobilazi neka blokiranja Tor-a.</string>
     <string name="volunteer_mode_weekly_label">Ukupno (tjedno)</string>
+    <string name="no_thx">Ne, ne trebam hvala</string>
 </resources>
