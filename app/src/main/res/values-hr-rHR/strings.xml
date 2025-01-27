@@ -143,4 +143,5 @@
     <string name="snowflake_subtitle">Povezuje se preko Tor volontera. Zaobilazi neka blokiranja Tor-a.</string>
     <string name="volunteer_mode_weekly_label">Ukupno (tjedno)</string>
     <string name="no_thx">Ne hvala</string>
+    <string name="setting_padding">Unutarnji odmak</string>
 </resources>
