@@ -26,8 +26,8 @@ class CustomBridgeBottomSheet(private val callbacks: ConnectionHelperCallbacks) 
         btnAction = v.findViewById(R.id.btnAction)
         btnAction.setOnClickListener {
             Prefs.setBridgesList(etBridges.text.toString())
-            callbacks.tryConnecting()
             closeAllSheets()
+            callbacks.tryConnecting()
         }
         etBridges = v.findViewById(R.id.etBridges)
         configureMultilineEditTextScrollEvent(etBridges)

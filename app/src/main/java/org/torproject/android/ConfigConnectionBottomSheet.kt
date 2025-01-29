@@ -139,8 +139,7 @@ class ConfigConnectionBottomSheet() :
                     override fun tryConnecting() {
                         Prefs.putConnectionPathway(Prefs.PATHWAY_CUSTOM)
                         rbCustom.isChecked = true
-                        dismiss()
-                        callbacks?.tryConnecting()
+                        closeAndConnect()
                     }
                 }).show(requireActivity().supportFragmentManager, MoatBottomSheet.TAG)
             } else if (rbDirect.isChecked) {
@@ -158,7 +157,7 @@ class ConfigConnectionBottomSheet() :
                 CustomBridgeBottomSheet(object : ConnectionHelperCallbacks {
                     override fun tryConnecting() {
                         Prefs.putConnectionPathway(Prefs.PATHWAY_CUSTOM)
-                        callbacks?.tryConnecting()
+                        closeAndConnect()
                     }
                 }).show(requireActivity().supportFragmentManager, CustomBridgeBottomSheet.TAG)
             }
