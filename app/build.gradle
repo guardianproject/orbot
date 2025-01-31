@@ -38,6 +38,10 @@ android {
             shrinkResources false
             minifyEnabled false
         }
+        debug {
+            debuggable true
+            applicationIdSuffix ".debug"
+        }
     }
 
     splits {
