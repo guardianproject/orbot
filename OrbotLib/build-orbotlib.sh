@@ -2,7 +2,7 @@
 
 rm -v *aar *jar
 if [ ! -d OrbotIPtProxy ]; then
-   git clone https://github.com/bitmold/OrbotIPtProxy
+   git clone https://github.com/guardianproject/OrbotIPtProxy.git
 fi
 cd OrbotIPtProxy
 git fetch
