@@ -39,7 +39,7 @@
     <string name="pref_proxy_host_dialog">Unesi Domaćina Proxy-a</string>
     <string name="pref_proxy_port_title">Port Izlaznog Proxy-a</string>
     <string name="pref_proxy_port_summary">Port Proxy Poslužitelja</string>
-    <string name="pref_proxy_port_dialog">Unesite port za proxy.</string>
+    <string name="pref_proxy_port_dialog">Unesite port za proxy</string>
     <string name="pref_proxy_username_title">Proxy izlazno korisničko ime</string>
     <string name="pref_proxy_username_summary">Proxy korisničko ime (Opcionalno)</string>
     <string name="pref_proxy_username_dialog">Unesite Proxy korisničko ime</string>
@@ -142,4 +142,6 @@
     <string name="snowflake">Snowflake (Original)</string>
     <string name="snowflake_subtitle">Povezuje se preko Tor volontera. Zaobilazi neka blokiranja Tor-a.</string>
     <string name="volunteer_mode_weekly_label">Ukupno (tjedno)</string>
+    <string name="no_thx">Ne hvala</string>
+    <string name="setting_padding">Unutarnji odmak</string>
 </resources>

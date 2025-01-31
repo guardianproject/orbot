@@ -130,7 +130,7 @@
     <string name="pref_connection_padding_summary">いくつかの形式のトラフィック解析から防御するために、コネクションパディングを常に有効にします。初期設定: 自動</string>
     <string name="pref_reduced_connection_padding">縮小されたコネクションパディング</string>
     <string name="pref_reduced_connection_padding_summary">データと電池の消費量を減らすために、リレー接続を早めに閉じ、パディングパケットの送信量を少なくします</string>
-    <string name="app_shortcuts">Tor が有効化されたアプリ</string>
+    <string name="app_shortcuts">Tor 対応アプリ</string>
     <string name="bridge_direct_connect">Tor に直接接続する (推奨)</string>
     <string name="bridge_community">コミュニティーサーバーを介して接続する</string>
     <string name="bridge_cloud">クラウドサーバーを介して接続する</string>
