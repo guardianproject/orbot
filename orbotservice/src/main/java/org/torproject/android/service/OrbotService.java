@@ -39,6 +39,7 @@ import android.widget.Toast;
 import net.freehaven.tor.control.TorControlCommands;
 import net.freehaven.tor.control.TorControlConnection;
 
+import org.torproject.android.service.util.Bridge;
 import org.torproject.android.service.util.CustomTorResourceInstaller;
 import org.torproject.android.service.util.PowerConnectionReceiver;
 import org.torproject.android.service.util.Prefs;
@@ -137,16 +138,6 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
          return mIptProxy;
     }
-    /**
-     * @param bridgeList bridges that were manually entered into Orbot settings
-     * @return Array with each bridge as an element, no whitespace entries see issue #289...
-     */
-    private static String[] parseBridgesFromSettings(String bridgeList) {
-        // this regex replaces lines that only contain whitespace with an empty String
-        bridgeList = bridgeList.trim().replaceAll("(?m)^[ \t]*\r?\n", "");
-        return bridgeList.split("\\n");
-    }
-
     public void debug(String msg) {
         Log.d(TAG, msg);
 
@@ -299,12 +290,12 @@ public class OrbotService extends VpnService implements OrbotConstants {
         // todo this needs to handle a lot of different cases that haven't been defined yet
         // todo particularly this is true for the smart connection case...
         if (connectionPathway.startsWith(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
-           // mIptProxy.stop
             mIptProxy.stop(IPtProxy.Snowflake);
-        } else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
-           // IPtProxy.stopLyrebird();
+        }
+        else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
+            mIptProxy.stop(IPtProxy.MeekLite);
             mIptProxy.stop(IPtProxy.Obfs4);
-
+            mIptProxy.stop(IPtProxy.Webtunnel);
         }
 
         stopTor();
@@ -1204,7 +1195,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
             if (pathway.startsWith(Prefs.PATHWAY_SNOWFLAKE) || Prefs.getPrefSmartTrySnowflake()) {
                 extraLines = processSettingsImplSnowflake(extraLines);
             } else if (pathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
-                extraLines = processSettingsImplObfs4(extraLines);
+                extraLines = processSettingsLyrebird(extraLines);
             }
         }
         var fileGeoIP = new File(appBinHome, GEOIP_ASSET_KEY);
@@ -1274,18 +1265,30 @@ public class OrbotService extends VpnService implements OrbotConstants {
         return extraLines;
     }
 
-    private StringBuffer processSettingsImplObfs4(StringBuffer extraLines) {
-        Log.d(TAG, "in obfs4 torrc config");
-        extraLines.append("ClientTransportPlugin obfs4 socks5 127.0.0.1:" + mIptProxy.port(IPtProxy.Obfs4)).append('\n');
+    private StringBuffer processSettingsLyrebird(StringBuffer extraLines) {
+        Log.d(TAG, "in Lyrebird torrc config");
 
-        var bridgeList = "";
-        if (Prefs.getConnectionPathway().equals(Prefs.PATHWAY_CUSTOM)) {
-            bridgeList = Prefs.getBridgesList();
-        } else bridgeList = Prefs.getPrefSmartTryObfs4();
-        var customBridges = parseBridgesFromSettings(bridgeList);
-        for (var b : customBridges)
+        var customBridges = getCustomBridges();
+
+        for (String transport : Bridge.getTransports(customBridges)) {
+            extraLines
+                    .append(String.format(Locale.US, "ClientTransportPlugin %s socks5 127.0.0.1:%d",
+                            transport, mIptProxy.port(transport)))
+                    .append('\n');
+        }
+
+        for (var b : customBridges) {
             extraLines.append("Bridge ").append(b).append("\n");
+        }
+
         return extraLines;
+    }
+
+    private List<Bridge> getCustomBridges() {
+        return Bridge.parseBridges(
+                Prefs.getConnectionPathway().equals(Prefs.PATHWAY_CUSTOM)
+                        ? Prefs.getBridgesList()
+                        : Prefs.getPrefSmartTryObfs4());
     }
 
     private StringBuffer processSettingsImplDirectPathway(StringBuffer extraLines) {
@@ -1528,11 +1531,12 @@ public class OrbotService extends VpnService implements OrbotConstants {
                     } else if (connectionPathway.equals(Prefs.PATHWAY_SNOWFLAKE_AMP)) {
                         startSnowflakeClientAmpRendezvous();
                     } else if (connectionPathway.equals(Prefs.PATHWAY_CUSTOM) || Prefs.getPrefSmartTryObfs4() != null) {
-                        //IPtProxy.startLyrebird("DEBUG", false, false, null);
-                        try {
-                            mIptProxy.start(IPtProxy.Obfs4,"");
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
+                        for (var transport : Bridge.getTransports(getCustomBridges())) {
+                            try {
+                                mIptProxy.start(transport, "");
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                     }
                     startTor();
