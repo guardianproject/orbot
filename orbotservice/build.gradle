@@ -1,3 +1,6 @@
+plugins {
+    alias(libs.plugins.kotlin.android)
+}
 apply plugin: "com.android.library"
 
 android {
@@ -36,6 +39,9 @@ android {
         textReport false
         xmlReport false
     }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
 }
 
 dependencies {
@@ -53,4 +59,5 @@ dependencies {
     implementation(libs.pcap.factory)
 
     implementation(files("../libs/geoip.jar"))
+    implementation libs.androidx.core.ktx
 }
