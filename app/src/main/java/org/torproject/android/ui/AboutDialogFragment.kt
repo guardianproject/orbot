@@ -22,7 +22,7 @@ class AboutDialogFragment : DialogFragment() {
 
     companion object {
         const val TAG = "AboutDialogFragment"
-        const val VERSION = "${BuildConfig.VERSION_NAME} (Tor ${OrbotService.BINARY_TOR_VERSION})"
+        const val VERSION = "${BuildConfig.VERSION_NAME}"
         private const val BUNDLE_KEY_TV_ABOUT_TEXT = "about_tv_txt"
         private const val ABOUT_LICENSE_EQUALSIGN =
             "==============================================================================="
@@ -37,6 +37,9 @@ class AboutDialogFragment : DialogFragment() {
         versionName?.text = VERSION
 
         tvAbout = view?.findViewById(R.id.aboutother) as TextView
+
+        val tvTor = view.findViewById<TextView>(R.id.tvTor)
+        tvTor.text = getString(R.string.tor_url, OrbotService.BINARY_TOR_VERSION)
 
         val tvObfs4 = view.findViewById<TextView>(R.id.tvObfs4)
         tvObfs4.text = getString(R.string.obfs4_url, IPtProxy.lyrebirdVersion())
