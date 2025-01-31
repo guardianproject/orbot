@@ -22,7 +22,7 @@ android {
     defaultConfig {
         applicationId "org.torproject.android"
         versionName getVersionName()
-        minSdk = 23
+        minSdk = 21
         targetSdk = 35
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

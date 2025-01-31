@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "org.torproject.android.tv"
-        minSdk = 23
+        minSdk = 21
         targetSdk = 35
     }
 
