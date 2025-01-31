@@ -432,6 +432,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
 
             if (mSnowflakeProxy == null) {
                 var capacity = 1;
+                var pollInterval = 120;
                 var stunServers = getCdnFront("snowflake-stun").split(",");
 
                 int randomIndex = mSecureRandGen.nextInt(stunServers.length);
@@ -443,6 +444,7 @@ public class OrbotService extends VpnService implements OrbotConstants {
                 mSnowflakeProxy = new SnowflakeProxy();
                 mSnowflakeProxy.setBrokerUrl(brokerUrl);
                 mSnowflakeProxy.setCapacity(capacity);
+                mSnowflakeProxy.setPollInterval(pollInterval);
                 mSnowflakeProxy.setRelayUrl(relayUrl);
                 mSnowflakeProxy.setStunServer(stunUrl);
                 mSnowflakeProxy.setNatProbeUrl(natProbeUrl);
