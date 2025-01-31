@@ -201,8 +201,8 @@ class MoatBottomSheet(private val callbacks: ConnectionHelperCallbacks) :
         Prefs.setBridgesList(bridges)
         Prefs.putBridgesEnabled(true)
         // Toast.makeText(requireContext(), R.string.bridges_obtained_connecting, Toast.LENGTH_LONG).show()
-        callbacks.tryConnecting()
         closeAllSheets()
+        callbacks.tryConnecting()
     }
 
     private fun onBridgeRequestFailed() {

@@ -127,6 +127,10 @@ class ConnectFragment : Fragment(), ConnectionHelperCallbacks,
         if (vpnIntent != null && (!Prefs.isPowerUserMode())) {
             startActivityForResult(vpnIntent, OrbotActivity.REQUEST_CODE_VPN)
         } else {
+            ivOnion.setImageResource(R.drawable.torstarting)
+            with(btnStartVpn) {
+                text = context.getString(android.R.string.cancel)
+            }
             // todo we need to add a power user mode for users to start the VPN without tor
             Prefs.putUseVpn(!Prefs.isPowerUserMode())
             sendIntentToService(OrbotConstants.ACTION_START)
