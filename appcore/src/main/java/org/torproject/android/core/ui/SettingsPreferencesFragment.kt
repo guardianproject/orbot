@@ -60,6 +60,14 @@ class SettingsPreferencesFragment : PreferenceFragmentCompat() {
             true
         }
 
+        val prefPowerUser = findPreference<CheckBoxPreference>("pref_power_user")
+        prefPowerUser?.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _: Preference?, newValue: Any? ->
+
+            Prefs.setPrefPowerUserMode(newValue as Boolean)
+
+        true
+    }
+
 
 
     }
