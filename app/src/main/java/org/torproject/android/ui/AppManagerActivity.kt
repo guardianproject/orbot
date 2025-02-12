@@ -314,7 +314,7 @@ class AppManagerActivity : AppCompatActivity(), View.OnClickListener, OrbotConst
                 try {
                     val pInfo = pMgr.getPackageInfo(aInfo.packageName, PackageManager.GET_PERMISSIONS)
                     if (pInfo?.requestedPermissions != null) {
-                        for (permInfo in pInfo.requestedPermissions) {
+                        for (permInfo in pInfo.requestedPermissions!!) {
                             if (permInfo == Manifest.permission.INTERNET) {
                                 app.setUsesInternet(true)
                             }
