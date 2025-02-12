@@ -67,7 +67,7 @@ android {
         fullperm {
             dimension "free"
             applicationId "org.torproject.android"
-            versionCode 1741200300
+            versionCode 1741200400
             versionName getVersionName()
             archivesBaseName = "Orbot-${versionName}"
         }
