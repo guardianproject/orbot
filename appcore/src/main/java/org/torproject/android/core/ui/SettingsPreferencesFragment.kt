@@ -34,10 +34,6 @@ class SettingsPreferencesFragment : PreferenceFragmentCompat() {
                 false
             }
 
-        val bridgesEnabled = Prefs.bridgesEnabled()
-        findPreference<Preference>("pref_be_a_snowflake")?.isEnabled = !bridgesEnabled
-        findPreference<Preference>("pref_be_a_snowflake_limit")?.isEnabled = !bridgesEnabled
-      //  findPreference<Preference>("pref_show_snowflake_proxy_msg")?.isEnabled = !bridgesEnabled
 
         // kludge for #992
         val categoryNodeConfig = findPreference<Preference>("category_node_config")
@@ -63,9 +59,11 @@ class SettingsPreferencesFragment : PreferenceFragmentCompat() {
         val prefPowerUser = findPreference<CheckBoxPreference>("pref_power_user")
         prefPowerUser?.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _: Preference?, newValue: Any? ->
 
-            Prefs.setPrefPowerUserMode(newValue as Boolean)
+         //   Prefs.setPrefPowerUserMode(newValue as Boolean)
 
         true
+
+
     }
 
 

@@ -2,6 +2,7 @@ package org.torproject.android.service.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.PeriodicWorkRequest;
@@ -199,7 +200,8 @@ public class Prefs {
     }
 
     public static SharedPreferences getSharedPrefs(Context context) {
-        return context.getSharedPreferences(OrbotConstants.PREF_TOR_SHARED_PREFS, Context.MODE_MULTI_PROCESS);
+     //   return context.getSharedPreferences(OrbotConstants.PREF_TOR_SHARED_PREFS, Context.MODE_MULTI_PROCESS);
+        return PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     public static int getSnowflakesServed () { return prefs.getInt(PREF_SNOWFLAKES_SERVED_COUNT,0);}
