@@ -20,6 +20,7 @@ public class Prefs {
     private final static String PREF_DEFAULT_LOCALE = "pref_default_locale";
     private final static String PREF_DETECT_ROOT = "pref_detect_root";
     private final static String PREF_ENABLE_LOGGING = "pref_enable_logging";
+    private final static String PREF_ENABLE_ROTATION = "pref_enable_rotation";
     private final static String PREF_START_ON_BOOT = "pref_start_boot";
     private final static String PREF_ALLOW_BACKGROUND_STARTS = "pref_allow_background_starts";
     private final static String PREF_OPEN_PROXY_ON_ALL_INTERFACES = "pref_open_proxy_on_all_interfaces";
@@ -165,6 +166,10 @@ public class Prefs {
 
     public static boolean useDebugLogging() {
         return prefs.getBoolean(PREF_ENABLE_LOGGING, false);
+    }
+
+    public static boolean enableRotation() {
+        return prefs.getBoolean(PREF_ENABLE_ROTATION, false);
     }
 
     public static boolean allowBackgroundStarts() {
